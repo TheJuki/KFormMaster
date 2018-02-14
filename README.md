@@ -1,12 +1,14 @@
 # F-Form-Master
 
 [ ![Download](https://api.bintray.com/packages/thejuki/maven/k-form-master/images/download.svg) ](https://bintray.com/thejuki/maven/k-form-master/_latestVersion)
+[![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
 
 > Easily build generic forms with minimal effort (A Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster))
 
-![](https://github.com/TheJuki/KFormMaster/blob/master/screenshots/full-screen-form.gif)
-![](https://github.com/TheJuki/KFormMaster/blob/master/screenshots/partial-screen-form.gif)
-![](https://github.com/TheJuki/KFormMaster/blob/master/screenshots/login.gif)
+## Examples
+| [Full Screen](https://github.com/TheJuki/KFormMaster/blob/master/app/src/main/java/com/thejuki/kformmasterexample/FullscreenFormActivity.kt) | [Partial Screen](https://github.com/TheJuki/KFormMaster/blob/master/app/src/main/java/com/thejuki/kformmasterexample/PartialScreenFormActivity.kt) | [Login](https://github.com/TheJuki/KFormMaster/blob/master/app/src/main/java/com/thejuki/kformmasterexample/LoginFormActivity.kt) |
+| --- | --- | --- |
+![Example](https://github.com/TheJuki/KFormMaster/blob/master/screenshots/full-screen-form.gif) | ![Example](https://github.com/TheJuki/KFormMaster/blob/master/screenshots/partial-screen-form.gif) | ![Example](https://github.com/TheJuki/KFormMaster/blob/master/screenshots/login.gif) |
 
 This library aids in building bigger forms on-the-fly. Forms with large number of elements can easily be added programmatically within a few minutes.
 
@@ -29,7 +31,7 @@ implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 
 
 ## How to use
-1. Add a Recyclerview anywhere in the layout where you want your list to be shown (If confused, look at the examples in this repo).
+* Step 1. Add a Recyclerview anywhere in the layout where you want your list to be shown (If confused, look at the examples in this repo).
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -50,7 +52,7 @@ implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 </LinearLayout>
 ```
 
-2. Add the Form Elements programmatically in your activity
+* Step 2. Add the Form Elements programmatically in your activity
 ```kotlin
 // initialize variables
  mFormBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListener {
@@ -77,11 +79,10 @@ elements.add(passwordElement)
 mFormBuilder!!.addFormElements(elements)
 mFormBuilder!!.refreshView()
 ```
-3. Now build and run!!
 
 ### Changelog
 
-####v1.0.0
+#### v1.0.0
 1. Just released!
 2. Converted to Kotlin using the fork by [shaymargolis](https://github.com/shaymargolis/FormMaster).
 3. Added DateTime, Button, Switch, and Token AutoComplete using [TokenAutoComplete](https://github.com/splitwise/TokenAutoComplete).
