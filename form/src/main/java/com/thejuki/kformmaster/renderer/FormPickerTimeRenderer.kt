@@ -52,7 +52,7 @@ class FormPickerTimeRenderer(type: Int, context: Context, formBuilder: FormBuild
                 time,
                 formElement.getValue()!!.hourOfDay!!,
                 formElement.getValue()!!.minute!!,
-                true)
+                false)
 
         setOnClickForHolder(holder, formElement.getTag(), timePickerDialog)
     }

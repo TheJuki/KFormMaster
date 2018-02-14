@@ -5,7 +5,7 @@ import java.io.Serializable
 data class ContactItem(val id: Long? = null,
                        val value: String? = null,
                        val label: String? = null
-) : Serializable {
+): Serializable {
     override fun toString(): String {
         return label.orEmpty()
     }
