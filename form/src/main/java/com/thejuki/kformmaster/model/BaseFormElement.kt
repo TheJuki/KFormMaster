@@ -86,6 +86,11 @@ open class BaseFormElement<T : Serializable>(var mTag: Int = 0, var mTitle: Stri
         return this
     }
 
+    fun setValueChanged(mValueChanged: OnFormElementValueChangedListener?): BaseFormElement<T> {
+        this.mValueChanged = mValueChanged
+        return this
+    }
+
     fun setOptionsSelected(mOptionsSelected: List<Any>): BaseFormElement<T> {
         this.mOptionsSelected = mOptionsSelected as List<T>
         return this

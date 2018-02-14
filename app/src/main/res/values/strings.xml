@@ -18,6 +18,8 @@
     <string name="AutoComplete">Auto Complete</string>
     <string name="AutoCompleteToken">Auto Complete Token</string>
     <string name="Button">Button</string>
+    <string name="Switch">Switch</string>
+    <string name="Slider">Slider</string>
     <string name="TextView">Text View</string>
 
     <string name="Confirm">Clear Date field?</string>
@@ -26,6 +28,7 @@
     <string name="FamilyInfo">Family Info</string>
     <string name="Schedule">Schedule</string>
     <string name="PreferredItems">Preferred Items</string>
+    <string name="MarkComplete">Mark Complete</string>
 
     <string name="this_is_a_big_pointless_place_holder">This is a big pointless place-holder</string>
     <string name="another_pointless_place_holder">Another pointless place-holder</string>

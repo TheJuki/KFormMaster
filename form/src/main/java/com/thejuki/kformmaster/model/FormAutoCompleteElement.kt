@@ -43,6 +43,16 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
     val stringOptions: Set<String>
         get() = mStringOptions ?: HashSet<String>()
 
+    fun setArrayAdapter(arrayAdapter: ArrayAdapter<*>?): FormAutoCompleteElement<T> {
+        this.arrayAdapter = arrayAdapter
+        return this
+    }
+
+    fun setDropdownWidth(dropdownWidth: Int?): FormAutoCompleteElement<T> {
+        this.dropdownWidth = dropdownWidth
+        return this
+    }
+
     override fun getType(): Int {
         return BaseFormElement.Companion.TYPE_EDITTEXT_AUTOCOMPLETE
     }

@@ -8,6 +8,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.RendererRecyclerViewAdapte
 import com.github.vivchar.rendererrecyclerviewadapter.ViewRenderer
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
+import com.thejuki.kformmaster.model.FormHeader
 import com.thejuki.kformmaster.renderer.*
 import java.util.*
 
@@ -23,7 +24,7 @@ class FormBuildHelper {
 
     private var mFormAdapter: RendererRecyclerViewAdapter? = null
 
-    private var mElements: ArrayList<BaseFormElement<*>>? = null
+    var mElements: ArrayList<BaseFormElement<*>> = arrayListOf()
 
     private var mListener: OnFormElementValueChangedListener? = null
 
@@ -53,8 +54,13 @@ class FormBuildHelper {
      *
      * @param context
      */
-    constructor(context: Context, listener: OnFormElementValueChangedListener) {
+    constructor(context: Context, listener: OnFormElementValueChangedListener? = null, recyclerView: RecyclerView? = null) {
         initializeFormBuildHelper(context, listener)
+
+        if(recyclerView != null)
+        {
+            attachRecyclerView(context, recyclerView)
+        }
     }
 
     /**
@@ -121,8 +127,13 @@ class FormBuildHelper {
      * @param formElements
      */
     fun addFormElements(formElements: List<BaseFormElement<*>>) {
-        this.mElements!!.addAll(formElements)
-        this.mFormAdapter!!.setItems(this.mElements!!)
+        this.mElements.addAll(formElements)
+        this.mFormAdapter!!.setItems(this.mElements)
+    }
+
+    fun setItems()
+    {
+        this.mFormAdapter!!.setItems(this.mElements)
     }
 
     /**
@@ -140,11 +151,11 @@ class FormBuildHelper {
      */
     fun getFormElement(tag: Int): BaseFormElement<*>? {
 
-        return this.mElements!!.firstOrNull { !it.isHeader && it.mTag == tag }
+        return this.mElements.firstOrNull { !it.isHeader && it.mTag == tag }
     }
 
     fun getElementAtIndex(index: Int): BaseFormElement<*>? {
-        return this.mElements!![index]
+        return this.mElements[index]
 
     }
 

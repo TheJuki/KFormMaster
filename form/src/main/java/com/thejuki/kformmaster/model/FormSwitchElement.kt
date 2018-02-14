@@ -26,6 +26,18 @@ open class FormSwitchElement<T : Serializable> : BaseFormElement<T> {
         return mOnValue!! == mValue!!
     }
 
+    fun setOnValue(mOnValue: T?): FormSwitchElement<T>
+    {
+        this.mOnValue = mOnValue
+        return this
+    }
+
+    fun setOffValue(mOffValue: T?): FormSwitchElement<T>
+    {
+        this.mOffValue = mOffValue
+        return this
+    }
+
     /**
      * Parcelable boilerplate
      */

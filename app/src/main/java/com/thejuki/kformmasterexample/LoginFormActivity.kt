@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.Toast
 import com.thejuki.kformmaster.helper.FormBuildHelper
-import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.model.FormEditTextElement
 import com.thejuki.kformmasterexample.LoginFormActivity.Tag.Email
@@ -67,24 +66,19 @@ class LoginFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        mFormBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListener {
-            override fun onValueChanged(formElement: BaseFormElement<*>) {
-
-            }
-        })
+        mFormBuilder = FormBuildHelper(this)
         mFormBuilder!!.attachRecyclerView(this, recyclerView)
 
         val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
         val emailElement = FormEditTextElement<String>(Email.ordinal)
-        emailElement.mType = BaseFormElement.TYPE_EDITTEXT_EMAIL
-        emailElement.mTitle = getString(R.string.email)
-        emailElement.mValue = ""
+                .setType(BaseFormElement.TYPE_EDITTEXT_EMAIL)
+                .setTitle(getString(R.string.email))
         elements.add(emailElement)
 
         val passwordElement = FormEditTextElement<String>(Password.ordinal)
-        passwordElement.mType = BaseFormElement.TYPE_EDITTEXT_PASSWORD
-        passwordElement.mTitle = getString(R.string.password)
+                .setType(BaseFormElement.TYPE_EDITTEXT_PASSWORD)
+                .setTitle(getString(R.string.password))
         elements.add(passwordElement)
 
         mFormBuilder!!.addFormElements(elements)

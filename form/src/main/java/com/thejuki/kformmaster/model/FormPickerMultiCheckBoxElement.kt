@@ -21,6 +21,12 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
         return BaseFormElement.TYPE_PICKER_MULTI_CHECKBOX
     }
 
+    fun setDialogTitle(dialogTitle: String?): FormPickerMultiCheckBoxElement<T>
+    {
+        this.dialogTitle = dialogTitle
+        return this
+    }
+
     /**
      * Parcelable boilerplate
      */

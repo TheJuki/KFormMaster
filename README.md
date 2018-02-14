@@ -23,7 +23,7 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 Add this in your app's **build.gradle** file:
 ```
 ext {
-    kFormMasterVersion = '1.0.0'
+    kFormMasterVersion = '1.1.0'
 }
 
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
@@ -52,32 +52,42 @@ implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 </LinearLayout>
 ```
 
-* Step 2. Add the Form Elements programmatically in your activity
+* Step 2 (No DSL). Add the Form Elements programmatically in your activity
 ```kotlin
-// initialize variables
- mFormBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListener {
-    override fun onValueChanged(formElement: BaseFormElement<*>) {
-
-    }
-})
+// Initialize variables
+mFormBuilder = FormBuildHelper(this)
 mFormBuilder!!.attachRecyclerView(this, recyclerView)
+
 val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
-// declare form elements
+// Declare form elements
 val emailElement = FormEditTextElement<String>(Email.ordinal)
-emailElement.mType = BaseFormElement.TYPE_EDITTEXT_EMAIL
-emailElement.mTitle = getString(R.string.email)
-emailElement.mValue = ""
+        .setType(BaseFormElement.TYPE_EDITTEXT_EMAIL)
+        .setTitle(getString(R.string.email))
 elements.add(emailElement)
 
 val passwordElement = FormEditTextElement<String>(Password.ordinal)
-passwordElement.mType = BaseFormElement.TYPE_EDITTEXT_PASSWORD
-passwordElement.mTitle = getString(R.string.password)
+        .setType(BaseFormElement.TYPE_EDITTEXT_PASSWORD)
+        .setTitle(getString(R.string.password))
 elements.add(passwordElement)
 
-// build and display the form
+// Add form elements and refresh the form list
 mFormBuilder!!.addFormElements(elements)
 mFormBuilder!!.refreshView()
+```
+
+* Step 2 (With DSL). Add the Form Elements programmatically in your activity
+```kotlin
+mFormBuilder = form(this, recyclerView) {
+    editText<String>(Email.ordinal) {
+        title = getString(R.string.email)
+        type = BaseFormElement.TYPE_EDITTEXT_EMAIL
+    }
+    editText<String>(Password.ordinal) {
+        title = getString(R.string.password)
+        type = BaseFormElement.TYPE_EDITTEXT_PASSWORD
+    }
+}
 ```
 
 ### Changelog
@@ -85,7 +95,11 @@ mFormBuilder!!.refreshView()
 #### v1.0.0
 1. Just released!
 2. Converted to Kotlin using the fork by [shaymargolis](https://github.com/shaymargolis/FormMaster).
-3. Added DateTime, Button, Switch, and Token AutoComplete using [TokenAutoComplete](https://github.com/splitwise/TokenAutoComplete).
+3. Added DateTime, Button, Switch, Slider, and Token AutoComplete using [TokenAutoComplete](https://github.com/splitwise/TokenAutoComplete).
+
+#### v1.1.0
+1. Add Kotlin DSL form builder
+2. Update examples to use new Kotlin DSL form builder
 
 ## Reference
 
@@ -154,147 +168,159 @@ data class ContactItem(val id: Long? = null,
     }
 }
 
-// Email
-val element = FormEditTextElement<String>(Tag.Email.ordinal)
-element.mType = BaseFormElement.TYPE_EDITTEXT_EMAIL
-element.mTitle = getString(R.string.email)
-element.mValue = ""
-
-// Password input
-val element = FormEditTextElement<String>(Password.ordinal)
-element.mType = BaseFormElement.TYPE_EDITTEXT_PASSWORD
-element.mTitle = getString(R.string.password)
-
-// Phone number input
-val element = FormEditTextElement<String>(Phone.ordinal)
-element.mType = BaseFormElement.TYPE_EDITTEXT_PHONE
-element.mTitle = getString(R.string.Phone)
-element.mValue = "+8801712345678"
-
-// Single line text input
-val element = FormEditTextElement<String>(Location.ordinal)
-element.mType = BaseFormElement.TYPE_EDITTEXT_TEXT_SINGLELINE
-element.mTitle = getString(R.string.Location)
-element.mValue = "Dhaka"
-
-// Multi line text input (default 4)
-val element = FormEditTextElement<String>(Address.ordinal)
-element.mType = BaseFormElement.TYPE_EDITTEXT_TEXT_MULTILINE
-element.mTitle = getString(R.string.Address)
-element.mValue = ""
-
-// Number element input
-val element = FormEditTextElement<String>(ZipCode.ordinal)
-element.mType = BaseFormElement.TYPE_EDITTEXT_NUMBER
-element.mTitle = getString(R.string.ZipCode)
-element.mValue = "1000"
-
-// Date picker input
-val element = FormPickerDateElement(Tag.Date.ordinal)
-element.mType = BaseFormElement.TYPE_EDITTEXT_NUMBER
-element.mTitle = getString(R.string.Date)
-element.mValue = FormPickerDateElement.DateHolder(Date(),
-        SimpleDateFormat("MM/dd/yyyy", Locale.US))
-
-// Time picker input
-val element = FormPickerTimeElement(Time.ordinal)
-element.mType = BaseFormElement.TYPE_EDITTEXT_NUMBER
-element.mTitle = getString(R.string.Time)
-element.mValue = FormPickerTimeElement.TimeHolder(Date(),
-        SimpleDateFormat("hh:mm a", Locale.US))
-
-// DateTime picker input
-val element = FormPickerDateTimeElement(DateTime.ordinal)
-element.mType = BaseFormElement.TYPE_EDITTEXT_NUMBER
-element.mTitle = getString(R.string.DateTime)
-element.mValue = FormPickerDateTimeElement.DateTimeHolder(Date(),
-        SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US))
-
-// Switch input
-val element = FormSwitchElement<String>(Switch.ordinal)
-element.mTitle = getString(R.string.is_elephant)
-element.mValue = "No"
-element.mOnValue = "Yes"
-element.mOffValue = "No"
-
-or 
-
-val element = FormSwitchElement<Boolean>(Switch.ordinal)
-element.mTitle = getString(R.string.is_elephant)
-element.mValue = false
-element.mOnValue = true
-element.mOffValue = false
-
-// Single item picker input
-val fruits = listOf<ListItem>(ListItem(id = 1, name = "Banana"),
-        ListItem(id = 2, name = "Orange"),
-        ListItem(id = 3, name = "Mango"),
-        ListItem(id = 4, name = "Guava")
-)
-val element = singleItemElement = FormPickerDropDownElement<ListItem>(SingleItem.ordinal)
-element.dialogTitle = getString(R.string.SingleItem)
-element.mTitle = getString(R.string.SingleItem)
-element.mOptions = fruits
-element.mValue = ListItem(id = 1, name = "Banana")
-
-// Multiple items picker input
-val fruits = listOf<ListItem>(ListItem(id = 1, name = "Banana"),
-        ListItem(id = 2, name = "Orange"),
-        ListItem(id = 3, name = "Mango"),
-        ListItem(id = 4, name = "Guava")
-)
-val element = FormPickerMultiCheckBoxElement<ListItem>(MultiItems.ordinal)
-element.dialogTitle = getString(R.string.MultiItems)
-element.mTitle = getString(R.string.MultiItems)
-element.mOptions = fruits
-element.mOptionsSelected = listOf(ListItem(id = 1, name = "Banana"))
-elements.add(element)
-
-// AutoComplete input (See sample for an example of ContactAutoCompleteAdapter)
-val element = FormAutoCompleteElement<ContactItem>(AutoCompleteElement.ordinal)
-element.arrayAdapter = ContactAutoCompleteAdapter(this,
-        android.R.layout.simple_list_item_1, defaultItems =
-arrayListOf(ContactItem(id = 1, value = "", label = "Try \"Apple May\"")))
-element.dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
-element.mTitle = getString(R.string.AutoComplete)
-element.mValue =
-        ContactItem(id = 1, value = "John Smith", label = "John Smith (Tester)")
-
-// AutoComplete input (See sample for an example of EmailAutoCompleteAdapter)
-// You can use the same adapter as FormAutoCompleteElement. In my case, I used a different API call for FormTokenAutoCompleteElement.
-val element = FormTokenAutoCompleteElement<ArrayList<ContactItem>>(AutoCompleteTokenElement.ordinal)
-element.arrayAdapter = EmailAutoCompleteAdapter(this,
-        android.R.layout.simple_list_item_1)
-element.dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
-element.mTitle = getString(R.string.AutoCompleteToken)
-
-// Text View for showing disabled/readonly text with a label
-val element = FormTextViewElement<String>(TextViewElement.ordinal)
-element.mTitle = getString(R.string.TextView) // label
-element.mValue = "This is readonly!" // read-only text
-
-// Button
-val element = FormButtonElement<String>(ButtonElement.ordinal)
-element.mValue = getString(R.string.Button)
-// Listen for this element's changes. For a button, this just means the button was clicked.
-element.mValueChanged = object : OnFormElementValueChangedListener {
+val listener = object : OnFormElementValueChangedListener {
     override fun onValueChanged(formElement: BaseFormElement<*>) {
-        val confirmAlert = AlertDialog.Builder(this@FormListenerActivity).create()
-        confirmAlert.setTitle(this@FormListenerActivity.getString(R.string.Confirm))
-        confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormListenerActivity.getString(android.R.string.ok), { _, _ ->
-            // Could be used to clear another field:
-            val dateToDeleteElement = mFormBuilder!!.getFormElement(Tag.Date.ordinal)
-            // Display current date
-            Toast.makeText(this@FormListenerActivity,
-                    (dateToDeleteElement!!.getValue() as FormPickerDateElement.DateHolder).getTime().toString(),
-                    Toast.LENGTH_SHORT).show()
-            (dateToDeleteElement.getValue() as FormPickerDateElement.DateHolder).useCurrentDate()
-            mFormBuilder!!.onValueChanged(dateToDeleteElement)
-            mFormBuilder!!.refreshView()
-        })
-        confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FormListenerActivity.getString(android.R.string.cancel), { _, _ ->
-        })
-        confirmAlert.show()
+
+    }
+}
+
+mFormBuilder = form(this@ActivityName, recyclerView, listener) {
+
+    // Header
+    header { title = getString(R.string.PersonalInfo) }
+
+    // Email EditText
+    editText<String>(Email.ordinal) {
+        title = getString(R.string.email)
+        type = BaseFormElement.TYPE_EDITTEXT_EMAIL
+        hint = getString(R.string.email_hint)
+    }
+
+    // Password EditText
+    editText<String>(Password.ordinal) {
+        title = getString(R.string.password)
+        type = BaseFormElement.TYPE_EDITTEXT_PASSWORD
+    }
+
+    // Phone EditText
+    editText<String>(Phone.ordinal) {
+        title = getString(R.string.Phone)
+        type = BaseFormElement.TYPE_EDITTEXT_PHONE
+        value = "+8801712345678"
+    }
+
+    // Singleline text EditText
+    editText<String>(Location.ordinal) {
+        title = getString(R.string.Location)
+        type = BaseFormElement.TYPE_EDITTEXT_TEXT_SINGLELINE
+        value = "Dhaka"
+    }
+
+    // Multiline EditText
+    editText<String>(Address.ordinal) {
+        title = getString(R.string.Address)
+        type = BaseFormElement.TYPE_EDITTEXT_TEXT_MULTILINE
+        value = ""
+    }
+
+    // Number EditText
+    editText<String>(ZipCode.ordinal) {
+        title = getString(R.string.ZipCode)
+        type = BaseFormElement.TYPE_EDITTEXT_NUMBER
+        value = "1000"
+    }
+
+    // Date
+    date(Tag.Date.ordinal) {
+        title = getString(R.string.Date)
+        dateValue = Date()
+        dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+    }
+
+    // Time
+    time(Time.ordinal) {
+        title = getString(R.string.Time)
+        dateValue = Date()
+        dateFormat = SimpleDateFormat("hh:mm a", Locale.US)
+    }
+
+    // DateTime
+    dateTime(DateTime.ordinal) {
+        title = getString(R.string.DateTime)
+        dateValue = Date()
+        dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+    }
+
+    // DropDown
+    dropDown<ListItem>(SingleItem.ordinal) {
+        title = getString(R.string.SingleItem)
+        dialogTitle = getString(R.string.SingleItem)
+        options = fruits
+        value = ListItem(id = 1, name = "Banana")
+    }
+
+    // MultiCheckBox
+    multiCheckBox<ListItem>(MultiItems.ordinal) {
+        title = getString(R.string.MultiItems)
+        dialogTitle = getString(R.string.MultiItems)
+        options = fruits
+        optionsSelected = listOf(ListItem(id = 1, name = "Banana"))
+    }
+
+    // AutoComplete
+    autoComplete<ContactItem>(AutoCompleteElement.ordinal) {
+        title = getString(R.string.AutoComplete)
+        arrayAdapter = ContactAutoCompleteAdapter(this@FormListenerActivity,
+                android.R.layout.simple_list_item_1, defaultItems =
+        arrayListOf(ContactItem(id = 1, value = "", label = "Try \"Apple May\"")))
+        dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
+        value = ContactItem(id = 1, value = "John Smith", label = "John Smith (Tester)")
+    }
+
+    // AutoCompleteToken
+    autoCompleteToken<ArrayList<ContactItem>>(AutoCompleteTokenElement.ordinal) {
+        title = getString(R.string.AutoCompleteToken)
+        arrayAdapter = EmailAutoCompleteAdapter(this@FormListenerActivity,
+                android.R.layout.simple_list_item_1)
+        dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
+    }
+
+    // Text View
+    textView<String>(TextViewElement.ordinal) {
+        title = getString(R.string.TextView)
+        value = "This is readonly!"
+    }
+
+    // Switch
+    switch<String>(SwitchElement.ordinal) {
+        title = getString(R.string.Switch)
+        value = "Yes"
+        onValue = "Yes"
+        offValue = "No"
+    }
+
+    // Slider
+    slider(SliderElement.ordinal) {
+        title = getString(R.string.Slider)
+        value = 50
+        min = 0
+        max = 100
+        steps = 20
+    }
+
+    // Button
+    button<String>(ButtonElement.ordinal) {
+        value = getString(R.string.Button)
+        valueChanged = object : OnFormElementValueChangedListener {
+            override fun onValueChanged(formElement: BaseFormElement<*>) {
+                val confirmAlert = AlertDialog.Builder(this@FormListenerActivity).create()
+                confirmAlert.setTitle(this@FormListenerActivity.getString(R.string.Confirm))
+                confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormListenerActivity.getString(android.R.string.ok), { _, _ ->
+                    // Could be used to clear another field:
+                    val dateToDeleteElement = mFormBuilder!!.getFormElement(Tag.Date.ordinal)
+                    // Display current date
+                    Toast.makeText(this@FormListenerActivity,
+                            (dateToDeleteElement!!.getValue() as FormPickerDateElement.DateHolder).getTime().toString(),
+                            Toast.LENGTH_SHORT).show()
+                    (dateToDeleteElement.getValue() as FormPickerDateElement.DateHolder).useCurrentDate()
+                    mFormBuilder!!.onValueChanged(dateToDeleteElement)
+                    mFormBuilder!!.refreshView()
+                })
+                confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FormListenerActivity.getString(android.R.string.cancel), { _, _ ->
+                })
+                confirmAlert.show()
+            }
+        }
     }
 }
 ```

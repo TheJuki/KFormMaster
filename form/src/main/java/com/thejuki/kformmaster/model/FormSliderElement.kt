@@ -29,6 +29,24 @@ open class FormSliderElement : BaseFormElement<Int> {
             return if (field <= 0) 1 else field
         }
 
+    fun setMax(mMax: Int): FormSliderElement
+    {
+        this.mMax = mMax
+        return this
+    }
+
+    fun setMin(mMin: Int): FormSliderElement
+    {
+        this.mMin = mMin
+        return this
+    }
+
+    fun setSteps(mSteps: Int): FormSliderElement
+    {
+        this.mSteps = mSteps
+        return this
+    }
+
     /**
      * Parcelable boilerplate
      */
