@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_to_our_portal"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_marginBottom="30dp" />
+
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/recyclerView"
+        android:divider="#b5b5b5"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:descendantFocusability="beforeDescendants" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:id="@+id/buttonLogin"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>

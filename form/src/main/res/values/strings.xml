@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Form Master</string>
+    <string name="form_master_pick_one">Pick one</string>
+    <string name="form_master_pick_one_or_more">Pick one or more</string>
+    <string name="form_master_okay">Okay</string>
+    <string name="form_master_cancel">Cancel</string>
+</resources>
