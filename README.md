@@ -23,7 +23,7 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 Add this in your app's **build.gradle** file:
 ```
 ext {
-    kFormMasterVersion = '1.1.0'
+    kFormMasterVersion = '1.2.0'
 }
 
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
@@ -61,13 +61,11 @@ formBuilder!!.attachRecyclerView(this, recyclerView)
 val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
 // Declare form elements
-val emailElement = FormEditTextElement<String>(Email.ordinal)
-        .setType(BaseFormElement.TYPE_EDITTEXT_EMAIL)
+val emailElement = FormEmailEditTextElement<String>(Email.ordinal)
         .setTitle(getString(R.string.email))
 elements.add(emailElement)
 
-val passwordElement = FormEditTextElement<String>(Password.ordinal)
-        .setType(BaseFormElement.TYPE_EDITTEXT_PASSWORD)
+val passwordElement = FormPasswordEditTextElement<String>(Password.ordinal)
         .setTitle(getString(R.string.password))
 elements.add(passwordElement)
 
@@ -79,27 +77,35 @@ formBuilder!!.refreshView()
 * Step 2 (With DSL). Add the Form Elements programmatically in your activity
 ```kotlin
 formBuilder = form(this, recyclerView) {
-    editText<String>(Email.ordinal) {
+    email<String>(Email.ordinal) {
         title = getString(R.string.email)
-        type = BaseFormElement.TYPE_EDITTEXT_EMAIL
     }
-    editText<String>(Password.ordinal) {
+    password<String>(Password.ordinal) {
         title = getString(R.string.password)
-        type = BaseFormElement.TYPE_EDITTEXT_PASSWORD
     }
 }
 ```
 
 ### Changelog
 
-#### v1.0.0
-1. Just released!
-2. Converted to Kotlin using the fork by [shaymargolis](https://github.com/shaymargolis/FormMaster).
-3. Added DateTime, Button, Switch, Slider, and Token AutoComplete using [TokenAutoComplete](https://github.com/splitwise/TokenAutoComplete).
+#### v1.2.0
+1. Update RendererRecyclerViewAdapter library
+2. Remove type from BaseFormElement as it is no longer needed
+3. Remove generic FormEditTextElement
+4. Add FormSingleLineEditTextElement (text), 
+    FormMultiLineEditTextElement (textArea), 
+    FormNumberEditTextElement (number), 
+    FormPasswordEditTextElement (password), 
+    and FormPhoneEditTextElement (phone)
 
 #### v1.1.0
 1. Add Kotlin DSL form builder
 2. Update examples to use new Kotlin DSL form builder
+
+#### v1.0.0
+1. Just released!
+2. Converted to Kotlin using the fork by [shaymargolis](https://github.com/shaymargolis/FormMaster).
+3. Added DateTime, Button, Switch, Slider, and Token AutoComplete using [TokenAutoComplete](https://github.com/splitwise/TokenAutoComplete).
 
 ## Reference
 
@@ -135,14 +141,15 @@ private enum class Tag {
     Date,
     Time,
     DateTime,
-    Switch,
     Password,
     SingleItem,
     MultiItems,
     AutoCompleteElement,
     AutoCompleteTokenElement,
     ButtonElement,
-    TextViewElement
+    TextViewElement,
+    SwitchElement,
+    SliderElement,
 }
 
 // Example Picker object
@@ -180,43 +187,37 @@ formBuilder = form(this@ActivityName, recyclerView, listener) {
     header { title = getString(R.string.PersonalInfo) }
 
     // Email EditText
-    editText<String>(Email.ordinal) {
+   email<String>(Email.ordinal) {
         title = getString(R.string.email)
-        type = BaseFormElement.TYPE_EDITTEXT_EMAIL
         hint = getString(R.string.email_hint)
     }
 
     // Password EditText
-    editText<String>(Password.ordinal) {
+    password<String>(Password.ordinal) {
         title = getString(R.string.password)
-        type = BaseFormElement.TYPE_EDITTEXT_PASSWORD
     }
 
     // Phone EditText
-    editText<String>(Phone.ordinal) {
+    phone<String>(Phone.ordinal) {
         title = getString(R.string.Phone)
-        type = BaseFormElement.TYPE_EDITTEXT_PHONE
         value = "+8801712345678"
     }
 
     // Singleline text EditText
-    editText<String>(Location.ordinal) {
+    text<String>(Location.ordinal) {
         title = getString(R.string.Location)
-        type = BaseFormElement.TYPE_EDITTEXT_TEXT_SINGLELINE
         value = "Dhaka"
     }
 
     // Multiline EditText
-    editText<String>(Address.ordinal) {
+    textArea<String>(Address.ordinal) {
         title = getString(R.string.Address)
-        type = BaseFormElement.TYPE_EDITTEXT_TEXT_MULTILINE
         value = ""
     }
 
     // Number EditText
-    editText<String>(ZipCode.ordinal) {
+    number<String>(ZipCode.ordinal) {
         title = getString(R.string.ZipCode)
-        type = BaseFormElement.TYPE_EDITTEXT_NUMBER
         value = "1000"
     }
 
@@ -303,20 +304,20 @@ formBuilder = form(this@ActivityName, recyclerView, listener) {
         value = getString(R.string.Button)
         valueChanged = object : OnFormElementValueChangedListener {
             override fun onValueChanged(formElement: BaseFormElement<*>) {
-                val confirmAlert = AlertDialog.Builder(this@FormListenerActivity).create()
-                confirmAlert.setTitle(this@FormListenerActivity.getString(R.string.Confirm))
-                confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormListenerActivity.getString(android.R.string.ok), { _, _ ->
+                val confirmAlert = AlertDialog.Builder(this@ActivityName).create()
+                confirmAlert.setTitle(this@ActivityName.getString(R.string.Confirm))
+                confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@ActivityName.getString(android.R.string.ok), { _, _ ->
                     // Could be used to clear another field:
                     val dateToDeleteElement = formBuilder!!.getFormElement(Tag.Date.ordinal)
                     // Display current date
-                    Toast.makeText(this@FormListenerActivity,
+                    Toast.makeText(this@ActivityName,
                             (dateToDeleteElement!!.value as FormPickerDateElement.DateHolder).getTime().toString(),
                             Toast.LENGTH_SHORT).show()
                     (dateToDeleteElement.value as FormPickerDateElement.DateHolder).useCurrentDate()
                     formBuilder!!.onValueChanged(dateToDeleteElement)
                     formBuilder!!.refreshView()
                 })
-                confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FormListenerActivity.getString(android.R.string.cancel), { _, _ ->
+                confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@ActivityName.getString(android.R.string.cancel), { _, _ ->
                 })
                 confirmAlert.show()
             }
