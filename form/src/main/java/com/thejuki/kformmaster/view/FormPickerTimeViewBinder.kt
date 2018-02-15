@@ -1,6 +1,5 @@
 package com.thejuki.kformmaster.view
 
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
@@ -10,7 +9,6 @@ import android.view.View
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
-import com.thejuki.kformmaster.model.FormPickerDateTimeElement
 import com.thejuki.kformmaster.model.FormPickerTimeElement
 
 /**
@@ -30,54 +28,41 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
 
         val editTextValue = finder.find(R.id.text) as AppCompatEditText
 
-        // If no value is set by the user, create a new instance of DateTimeHolder
+        // If no value is set by the user, create a new instance of TimeHolder
         with(model.getValue())
         {
             if (this == null) {
-                model.setValue(FormPickerDateTimeElement.DateTimeHolder())
+                model.setValue(FormPickerTimeElement.TimeHolder())
             }
             this?.validOrCurrentTime()
         }
 
-        val datePickerDialog = DatePickerDialog(context,
-                dateDialogListener(model),
-                model.getValue()?.year!!,
-                model.getValue()?.month!! - 1,
-                model.getValue()?.dayOfMonth!!)
+        val timePickerDialog = TimePickerDialog(context,
+                timeDialogListener(model),
+                model.getValue()?.hourOfDay!!,
+                model.getValue()?.minute!!,
+                false)
 
-        setOnClickListener(editTextValue, itemView, datePickerDialog)
+        setOnClickListener(editTextValue, itemView, timePickerDialog)
     }
 
-    private fun dateDialogListener(model: FormPickerDateTimeElement): DatePickerDialog.OnDateSetListener {
-        return DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-            // get current form element, existing value and new value
-
-            with(model.getValue())
-            {
-                this?.year = year
-                this?.month = monthOfYear + 1
-                this?.dayOfMonth = dayOfMonth
-            }
-
-            // Now show time picker
-            TimePickerDialog(context, timeDialogListener(model),
-                    model.getValue()!!.hourOfDay!!,
-                    model.getValue()!!.minute!!,
-                    false).show()
-        }
-    }
-
-    private fun timeDialogListener(model: FormPickerDateTimeElement): TimePickerDialog.OnTimeSetListener {
+    private fun timeDialogListener(model: FormPickerTimeElement): TimePickerDialog.OnTimeSetListener {
         return TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+            var timeChanged = false
             with(model.getValue())
             {
+                timeChanged = !(this?.hourOfDay == hourOfDay && this.minute == minute)
                 this?.hourOfDay = hourOfDay
                 this?.minute = minute
-                this?.isEmptyDateTime = false
+                this?.isEmptyTime = false
             }
-            model.setError(null) // Reset after value change
-            formBuilder.onValueChanged(model)
-            formBuilder.refreshView()
+
+            if (timeChanged) {
+                model.setError(null) // Reset after value change
+                model.mValueChanged?.onValueChanged(model)
+                formBuilder.onValueChanged(model)
+                formBuilder.refreshView()
+            }
         }
     }
 

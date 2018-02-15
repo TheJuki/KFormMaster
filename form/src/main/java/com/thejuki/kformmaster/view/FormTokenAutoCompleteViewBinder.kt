@@ -5,15 +5,13 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
-import com.thejuki.kformmaster.model.BaseFormElement
-import com.thejuki.kformmaster.model.FormEditTextElement
+import com.thejuki.kformmaster.model.FormTokenAutoCompleteElement
 
 /**
  * Form EditText Binder
@@ -24,7 +22,7 @@ import com.thejuki.kformmaster.model.FormEditTextElement
  * @version 1.0
  */
 class FormTokenAutoCompleteViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element_token_auto_complete, FormEditTextElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element_token_auto_complete, FormTokenAutoCompleteElement::class.java) { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -44,20 +42,6 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
             } else {
                 textViewTitle.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementTextTitle))
-            }
-        }
-
-        when (model.getType()) {
-            BaseFormElement.TYPE_EDITTEXT_TEXT_SINGLELINE -> editTextValue.maxLines = 1
-            BaseFormElement.TYPE_EDITTEXT_TEXT_MULTILINE -> {
-                editTextValue.setSingleLine(false)
-                editTextValue.maxLines = 4
-            }
-            BaseFormElement.TYPE_EDITTEXT_NUMBER -> editTextValue.setRawInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
-            BaseFormElement.TYPE_EDITTEXT_EMAIL -> editTextValue.setRawInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
-            BaseFormElement.TYPE_EDITTEXT_PHONE -> editTextValue.setRawInputType(InputType.TYPE_CLASS_PHONE or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
-            BaseFormElement.TYPE_EDITTEXT_PASSWORD -> editTextValue.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            else -> {
             }
         }
 

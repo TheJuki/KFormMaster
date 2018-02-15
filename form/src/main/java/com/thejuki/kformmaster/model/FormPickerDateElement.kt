@@ -19,7 +19,7 @@ import java.util.*
 class FormPickerDateElement : FormPickerElement<FormPickerDateElement.DateHolder> {
     class DateHolder : Serializable {
 
-        private var isEmptyDate: Boolean = false
+        var isEmptyDate: Boolean = false
         var dayOfMonth: Int? = null
         var month: Int? = null
         var year: Int? = null
