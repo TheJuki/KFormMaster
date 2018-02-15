@@ -8,10 +8,10 @@ import android.view.View
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
-import com.thejuki.kformmaster.model.FormEditTextElement
+import com.thejuki.kformmaster.model.FormTextViewElement
 
 /**
- * Form EditText Binder
+ * Form TextView ViewBinder
  *
  * Renderer for FormEditTextElement
  *
@@ -19,7 +19,7 @@ import com.thejuki.kformmaster.model.FormEditTextElement
  * @version 1.0
  */
 class FormTextViewViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormEditTextElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element, FormTextViewElement::class.java) { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -28,7 +28,7 @@ class FormTextViewViewBinder(private val context: Context, private val formBuild
         val editTextValue = finder.find(R.id.formElementValue) as AppCompatEditText
 
         editTextValue.setText(model.valueAsString)
-        editTextValue.hint = model.mHint ?: ""
+        editTextValue.hint = model.hint ?: ""
         editTextValue.isEnabled = false
         editTextValue.setTextColor(ContextCompat.getColor(context, R.color.colorFormMasterElementTextDisabled))
         editTextValue.isFocusable = false

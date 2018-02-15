@@ -91,10 +91,6 @@ class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder
         }
     }
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_PICKER_TIME
-    }
-
     /**
      * Parcelable boilerplate
      */

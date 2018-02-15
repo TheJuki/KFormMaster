@@ -1,5 +1,7 @@
 package com.thejuki.kformmaster.view
 
+import android.app.Dialog
+import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
 import android.view.ViewGroup
@@ -21,11 +23,11 @@ abstract class BaseFormViewBinder {
 
         // Setup title and error if present
         if (textViewTitle != null) {
-            textViewTitle.text = formElement.getTitle()
+            textViewTitle.text = formElement.title
         }
 
         if (textViewError != null) {
-            setError(textViewError, formElement.getError())
+            setError(textViewError, formElement.error)
         }
 
         if (formElement.isVisible()) {
@@ -47,4 +49,15 @@ abstract class BaseFormViewBinder {
         textViewError.visibility = View.VISIBLE
     }
 
+    fun setOnClickListener(editTextValue: AppCompatEditText, itemView: View, dialog: Dialog) {
+        editTextValue.isFocusable = false
+
+        // display the dialog on click
+        val listener = View.OnClickListener {
+            dialog.show()
+        }
+
+        itemView.setOnClickListener(listener)
+        editTextValue.setOnClickListener(listener)
+    }
 }

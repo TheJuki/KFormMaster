@@ -12,19 +12,18 @@ import android.view.inputmethod.InputMethodManager
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
-import com.thejuki.kformmaster.model.BaseFormElement
-import com.thejuki.kformmaster.model.FormEditTextElement
+import com.thejuki.kformmaster.model.FormPasswordEditTextElement
 
 /**
- * Form EditText Binder
+ * Form Password EditText ViewBinder
  *
  * Renderer for FormEditTextElement
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormEditTextViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormEditTextElement::class.java) { model, finder, _ ->
+class FormPasswordEditTextViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
+    var viewBinder = ViewBinder(R.layout.form_element, FormPasswordEditTextElement::class.java) { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -33,7 +32,7 @@ class FormEditTextViewBinder(private val context: Context, private val formBuild
         val editTextValue = finder.find(R.id.formElementValue) as AppCompatEditText
 
         editTextValue.setText(model.valueAsString)
-        editTextValue.hint = model.mHint ?: ""
+        editTextValue.hint = model.hint ?: ""
 
         setEditTextFocusEnabled(editTextValue, itemView)
 
@@ -47,19 +46,8 @@ class FormEditTextViewBinder(private val context: Context, private val formBuild
             }
         }
 
-        when (model.getType()) {
-            BaseFormElement.TYPE_EDITTEXT_TEXT_SINGLELINE -> editTextValue.maxLines = 1
-            BaseFormElement.TYPE_EDITTEXT_TEXT_MULTILINE -> {
-                editTextValue.setSingleLine(false)
-                editTextValue.maxLines = 4
-            }
-            BaseFormElement.TYPE_EDITTEXT_NUMBER -> editTextValue.setRawInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
-            BaseFormElement.TYPE_EDITTEXT_EMAIL -> editTextValue.setRawInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
-            BaseFormElement.TYPE_EDITTEXT_PHONE -> editTextValue.setRawInputType(InputType.TYPE_CLASS_PHONE or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
-            BaseFormElement.TYPE_EDITTEXT_PASSWORD -> editTextValue.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            else -> {
-            }
-        }
+        // Password
+        editTextValue.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
         editTextValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}

@@ -12,38 +12,34 @@ import android.os.Parcel
  */
 open class FormSliderElement : BaseFormElement<Int> {
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_SLIDER
-    }
-
-    var mMax: Int = 100
+    var max: Int = 100
         get() {
             return if (field <= 0) 100 else field
         }
-    var mMin: Int = 0
+    var min: Int = 0
         get() {
             return if (field <= 0) 0 else field
         }
-    var mSteps: Int = 1
+    var steps: Int = 1
         get() {
             return if (field <= 0) 1 else field
         }
 
-    fun setMax(mMax: Int): FormSliderElement
+    fun setMax(max: Int): FormSliderElement
     {
-        this.mMax = mMax
+        this.max = max
         return this
     }
 
-    fun setMin(mMin: Int): FormSliderElement
+    fun setMin(min: Int): FormSliderElement
     {
-        this.mMin = mMin
+        this.min = min
         return this
     }
 
-    fun setSteps(mSteps: Int): FormSliderElement
+    fun setSteps(steps: Int): FormSliderElement
     {
-        this.mSteps = mSteps
+        this.steps = steps
         return this
     }
 

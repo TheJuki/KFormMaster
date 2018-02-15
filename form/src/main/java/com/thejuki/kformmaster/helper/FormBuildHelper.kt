@@ -23,11 +23,11 @@ import java.util.*
  */
 class FormBuildHelper {
 
-    private var mFormAdapter: RendererRecyclerViewAdapter? = null
+    private var formAdapter: RendererRecyclerViewAdapter? = null
 
-    var mElements: ArrayList<BaseFormElement<*>> = arrayListOf()
+    var elements: ArrayList<BaseFormElement<*>> = arrayListOf()
 
-    private var mListener: OnFormElementValueChangedListener? = null
+    private var listener: OnFormElementValueChangedListener? = null
 
     /**
      * return true if the form is valid
@@ -36,9 +36,9 @@ class FormBuildHelper {
      */
     val isValidForm: Boolean
         get() {
-            return (0 until this.mFormAdapter!!.itemCount)
+            return (0 until this.formAdapter!!.itemCount)
                     .map { this.getElementAtIndex(it) }
-                    .none { !it!!.isHeader and it.isRequired() and it.mValue.toString().trim().isEmpty() }
+                    .none { !it!!.isHeader and it.isRequired() and it.value.toString().trim().isEmpty() }
         }
 
     /**
@@ -82,30 +82,46 @@ class FormBuildHelper {
      */
     private fun initializeFormBuildHelper(context: Context, listener: OnFormElementValueChangedListener?) {
 
-        // initialize form adapter
-        this.mElements = ArrayList()
+        // Initialize form adapter
+        this.elements = ArrayList()
+        this.formAdapter = RendererRecyclerViewAdapter(context)
+        this.formAdapter!!.setDiffCallback(ElementDiffCallback())
 
-        this.mFormAdapter = RendererRecyclerViewAdapter(context)
-        this.mFormAdapter!!.registerRenderer(FormHeaderViewBinder(context, this).viewBinder)
+        // Header
+        this.formAdapter!!.registerRenderer(FormHeaderViewBinder(context, this).viewBinder)
 
-        this.mFormAdapter!!.registerRenderer(FormEditTextViewBinder(context, this).viewBinder)
+        // Edit Texts
+        this.formAdapter!!.registerRenderer(FormSingleLineEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter!!.registerRenderer(FormMultiLineEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter!!.registerRenderer(FormNumberEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter!!.registerRenderer(FormEmailEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter!!.registerRenderer(FormPhoneEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter!!.registerRenderer(FormPasswordEditTextViewBinder(context, this).viewBinder)
 
-        this.mFormAdapter!!.registerRenderer(FormAutoCompleteViewBinder(context, this).viewBinder)
-        this.mFormAdapter!!.registerRenderer(FormTokenAutoCompleteViewBinder(context, this).viewBinder)
+        // AutoCompletes
+        this.formAdapter!!.registerRenderer(FormAutoCompleteViewBinder(context, this).viewBinder)
+        this.formAdapter!!.registerRenderer(FormTokenAutoCompleteViewBinder(context, this).viewBinder)
 
-        this.mFormAdapter!!.registerRenderer(FormButtonViewBinder(context, this).viewBinder)
-        this.mFormAdapter!!.registerRenderer(FormSwitchViewBinder(context, this).viewBinder)
-        this.mFormAdapter!!.registerRenderer(FormSliderViewBinder(context, this).viewBinder)
+        // Button
+        this.formAdapter!!.registerRenderer(FormButtonViewBinder(context, this).viewBinder)
 
-        this.mFormAdapter!!.registerRenderer(FormPickerDateViewBinder(context, this).viewBinder)
-        this.mFormAdapter!!.registerRenderer(FormPickerTimeViewBinder(context, this).viewBinder)
-        this.mFormAdapter!!.registerRenderer(FormPickerDateTimeViewBinder(context, this).viewBinder)
-        this.mFormAdapter!!.registerRenderer(FormPickerMultiCheckBoxViewBinder(context, this).viewBinder)
-        this.mFormAdapter!!.registerRenderer(FormPickerDropDownViewBinder(context, this).viewBinder)
+        // Switch
+        this.formAdapter!!.registerRenderer(FormSwitchViewBinder(context, this).viewBinder)
 
-        this.mFormAdapter!!.registerRenderer(FormTextViewViewBinder(context, this).viewBinder)
+        // Slider
+        this.formAdapter!!.registerRenderer(FormSliderViewBinder(context, this).viewBinder)
 
-        this.mListener = listener
+        // Pickers
+        this.formAdapter!!.registerRenderer(FormPickerDateViewBinder(context, this).viewBinder)
+        this.formAdapter!!.registerRenderer(FormPickerTimeViewBinder(context, this).viewBinder)
+        this.formAdapter!!.registerRenderer(FormPickerDateTimeViewBinder(context, this).viewBinder)
+        this.formAdapter!!.registerRenderer(FormPickerMultiCheckBoxViewBinder(context, this).viewBinder)
+        this.formAdapter!!.registerRenderer(FormPickerDropDownViewBinder(context, this).viewBinder)
+
+        // Text View
+        this.formAdapter!!.registerRenderer(FormTextViewViewBinder(context, this).viewBinder)
+
+        this.listener = listener
     }
 
     fun attachRecyclerView(context: Context, recyclerView: RecyclerView?) {
@@ -119,7 +135,7 @@ class FormBuildHelper {
         linearLayoutManager.stackFromEnd = false
 
         recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = mFormAdapter
+        recyclerView.adapter = formAdapter
         recyclerView.itemAnimator = DefaultItemAnimator()
     }
 
@@ -129,20 +145,20 @@ class FormBuildHelper {
      * @param formElements
      */
     fun addFormElements(formElements: List<BaseFormElement<*>>) {
-        this.mElements.addAll(formElements)
-        this.mFormAdapter!!.setItems(this.mElements)
+        this.elements.addAll(formElements)
+        this.formAdapter!!.setItems(this.elements)
     }
 
     fun setItems()
     {
-        this.mFormAdapter!!.setItems(this.mElements)
+        this.formAdapter!!.setItems(this.elements)
     }
 
     /**
      * redraws the view
      */
     fun refreshView() {
-        this.mFormAdapter!!.notifyDataSetChanged()
+        this.formAdapter!!.notifyDataSetChanged()
     }
 
     /**
@@ -153,15 +169,15 @@ class FormBuildHelper {
      */
     fun getFormElement(tag: Int): BaseFormElement<*>? {
 
-        return this.mElements.firstOrNull { !it.isHeader && it.mTag == tag }
+        return this.elements.firstOrNull { !it.isHeader && it.tag == tag }
     }
 
     fun getElementAtIndex(index: Int): BaseFormElement<*>? {
-        return this.mElements[index]
+        return this.elements[index]
 
     }
 
     fun onValueChanged(element: BaseFormElement<*>) {
-        mListener?.onValueChanged(element)
+        listener?.onValueChanged(element)
     }
 }

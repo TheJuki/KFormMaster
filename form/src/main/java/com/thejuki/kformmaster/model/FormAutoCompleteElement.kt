@@ -53,17 +53,6 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
         return this
     }
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_EDITTEXT_AUTOCOMPLETE
-    }
-
-    override var mValue: T? = null
-        set(value) {
-            field = value
-            typedString = value?.toString()
-            mValueChanged?.onValueChanged(this)
-        }
-
     override fun setValue(mValue: Any?): BaseFormElement<T> {
         typedString = mValue?.toString()
 

@@ -13,28 +13,24 @@ import java.io.Serializable
  */
 open class FormSwitchElement<T : Serializable> : BaseFormElement<T> {
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_SWITCH
-    }
-
-    var mOnValue: T? = null
-    var mOffValue: T? = null
+    var onValue: T? = null
+    var offValue: T? = null
 
     fun isOn(): Boolean {
-        if (mOnValue == null || mValue == null)
+        if (onValue == null || value == null)
             return false
-        return mOnValue!! == mValue!!
+        return onValue!! == value!!
     }
 
-    fun setOnValue(mOnValue: T?): FormSwitchElement<T>
+    fun setOnValue(onValue: T?): FormSwitchElement<T>
     {
-        this.mOnValue = mOnValue
+        this.onValue = onValue
         return this
     }
 
-    fun setOffValue(mOffValue: T?): FormSwitchElement<T>
+    fun setOffValue(offValue: T?): FormSwitchElement<T>
     {
-        this.mOffValue = mOffValue
+        this.offValue = offValue
         return this
     }
 

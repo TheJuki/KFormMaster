@@ -2,19 +2,19 @@ package com.thejuki.kformmaster.view
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormTokenAutoCompleteElement
+import com.thejuki.kformmaster.token.ItemsCompletionView
+import com.tokenautocomplete.TokenCompleteTextView
 
 /**
- * Form EditText Binder
+ * Form TokenAutoComplete ViewBinder
  *
  * Renderer for FormEditTextElement
  *
@@ -28,53 +28,57 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
-        val editTextValue = finder.find(R.id.text) as AppCompatEditText
+        val itemsCompletionView = finder.find(R.id.formElementValue) as ItemsCompletionView
 
-        editTextValue.setText(model.valueAsString)
-        editTextValue.hint = model.mHint ?: ""
+        if (model.value != null) {
+            itemsCompletionView.objects?.addAll(model.value as List<*>)
+        }
 
-        setEditTextFocusEnabled(editTextValue, itemView)
+        itemsCompletionView.hint = model.hint ?: ""
 
-        editTextValue.setOnFocusChangeListener { _, hasFocus ->
+        setEditTextFocusEnabled(itemsCompletionView, itemView)
+
+        val itemsAdapter = if (model.arrayAdapter != null)
+            model.arrayAdapter
+        else
+            ArrayAdapter(context, android.R.layout.simple_list_item_1, model.options)
+        itemsCompletionView.setAdapter<ArrayAdapter<*>>(itemsAdapter)
+
+        if (model.dropdownWidth != null) {
+            itemsCompletionView.dropDownWidth = model.dropdownWidth!!
+        }
+
+        itemsCompletionView.setTokenClickStyle(TokenCompleteTextView.TokenClickStyle.Select)
+        itemsCompletionView.allowDuplicates(false)
+
+        setEditTextFocusEnabled(itemsCompletionView, itemView)
+
+        itemsCompletionView.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 textViewTitle.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementFocusedTitle))
             } else {
                 textViewTitle.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementTextTitle))
+
+                model.setValue(itemsCompletionView.objects)
+                model.setError(null)
+                setError(textViewError, null)
+
+                formBuilder.onValueChanged(model)
             }
         }
-
-        editTextValue.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
-
-                // get current form element, existing value and new value
-                val formElement = formBuilder.getFormElement(model.getTag())
-                val currentValue = formElement!!.valueAsString
-                val newValue = charSequence.toString()
-
-                // trigger event only if the value is changed
-                if (currentValue != newValue) {
-                    formElement.setValue(newValue)
-                    formElement.setError(null)
-                    setError(textViewError, null)
-
-                    formBuilder.onValueChanged(formElement)
-                }
-            }
-
-            override fun afterTextChanged(editable: Editable) {}
-        })
     }
 
-    private fun setEditTextFocusEnabled(editTextValue: AppCompatEditText, itemView: View) {
+    private fun setEditTextFocusEnabled(itemsCompletionView: ItemsCompletionView, itemView: View) {
         itemView.setOnClickListener {
-            editTextValue.requestFocus()
+            itemsCompletionView.requestFocus()
+            if (itemsCompletionView.text.isNotEmpty()) {
+                itemsCompletionView.selectAll()
+            }
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            editTextValue.setSelection(editTextValue.text.length)
-            imm.showSoftInput(editTextValue, InputMethodManager.SHOW_IMPLICIT)
+            itemsCompletionView.setSelection(itemsCompletionView.text.length)
+            imm.showSoftInput(itemsCompletionView, InputMethodManager.SHOW_IMPLICIT)
         }
     }
 }

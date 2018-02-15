@@ -16,7 +16,7 @@ import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormAutoCompleteElement
 
 /**
- * Form EditText Binder
+ * Form AutoComplete ViewBinder
  *
  * Renderer for FormEditTextElement
  *
@@ -37,10 +37,12 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
         } else {
             autoCompleteTextView.setText(model.valueAsString)
         }
-        autoCompleteTextView.hint = model.mHint ?: ""
+        autoCompleteTextView.hint = model.hint ?: ""
 
         // Select all text when focused for easy removal
-        autoCompleteTextView.setSelectAllOnFocus(true)
+        if (autoCompleteTextView.text.isNotEmpty()) {
+            autoCompleteTextView.setSelectAllOnFocus(true)
+        }
 
         // Set threshold (the number of characters to type before the drop down is shown)
         autoCompleteTextView.threshold = 1
@@ -50,7 +52,7 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
         val itemsAdapter = if (model.arrayAdapter != null)
             model.arrayAdapter
         else
-            ArrayAdapter(context, android.R.layout.simple_list_item_1, model.mOptions)
+            ArrayAdapter(context, android.R.layout.simple_list_item_1, model.options)
         autoCompleteTextView.setAdapter<ArrayAdapter<*>>(itemsAdapter)
 
         if (model.dropdownWidth != null) {
@@ -91,7 +93,7 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
 
                 // trigger only if the value exists as one of the string options
                 if (model.stringOptions.contains(newValue)) {
-                    model.setValue(model.mOptions?.firstOrNull { it.toString() == newValue })
+                    model.setValue(model.options?.firstOrNull { it.toString() == newValue })
                     model.setError(null)
                     setError(textViewError, null)
 

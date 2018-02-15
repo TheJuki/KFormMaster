@@ -15,10 +15,6 @@ import java.io.Serializable
  */
 class FormButtonElement<T : Serializable> : BaseFormElement<T> {
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_BUTTON
-    }
-
     /**
      * Parcelable boilerplate
      */
@@ -43,12 +39,12 @@ class FormButtonElement<T : Serializable> : BaseFormElement<T> {
             return FormButtonElement()
         }
 
-        val CREATOR: Parcelable.Creator<FormEditTextElement<*>> = object : Parcelable.Creator<FormEditTextElement<*>> {
-            override fun createFromParcel(source: Parcel): FormEditTextElement<*> {
-                return FormEditTextElement<Serializable>(source)
+        val CREATOR: Parcelable.Creator<FormButtonElement<*>> = object : Parcelable.Creator<FormButtonElement<*>> {
+            override fun createFromParcel(source: Parcel): FormButtonElement<*> {
+                return FormButtonElement<Serializable>(source)
             }
 
-            override fun newArray(size: Int): Array<FormEditTextElement<*>?> {
+            override fun newArray(size: Int): Array<FormButtonElement<*>?> {
                 return arrayOfNulls(size)
             }
         }

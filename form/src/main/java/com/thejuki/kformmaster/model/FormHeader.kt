@@ -18,10 +18,6 @@ class FormHeader : BaseFormElement<String> {
 
     constructor(tag: Int = 0) : super(tag)
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_HEADER
-    }
-
     /**
      * Parcelable boilerplate
      */

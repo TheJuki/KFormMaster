@@ -8,7 +8,7 @@ import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormHeader
 
 /**
- * Form EditText Binder
+ * Form Header ViewBinder
  *
  * Renderer for FormEditTextElement
  *
@@ -19,6 +19,6 @@ class FormHeaderViewBinder(private val context: Context, private val formBuilder
     var viewBinder = ViewBinder(R.layout.form_element_header, FormHeader::class.java) { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
 
-        textViewTitle.text = model.getTitle()
+        textViewTitle.text = model.title
     }
 }

@@ -55,8 +55,8 @@ implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 * Step 2 (No DSL). Add the Form Elements programmatically in your activity
 ```kotlin
 // Initialize variables
-mFormBuilder = FormBuildHelper(this)
-mFormBuilder!!.attachRecyclerView(this, recyclerView)
+formBuilder = FormBuildHelper(this)
+formBuilder!!.attachRecyclerView(this, recyclerView)
 
 val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
@@ -72,13 +72,13 @@ val passwordElement = FormEditTextElement<String>(Password.ordinal)
 elements.add(passwordElement)
 
 // Add form elements and refresh the form list
-mFormBuilder!!.addFormElements(elements)
-mFormBuilder!!.refreshView()
+formBuilder!!.addFormElements(elements)
+formBuilder!!.refreshView()
 ```
 
 * Step 2 (With DSL). Add the Form Elements programmatically in your activity
 ```kotlin
-mFormBuilder = form(this, recyclerView) {
+formBuilder = form(this, recyclerView) {
     editText<String>(Email.ordinal) {
         title = getString(R.string.email)
         type = BaseFormElement.TYPE_EDITTEXT_EMAIL
@@ -174,7 +174,7 @@ val listener = object : OnFormElementValueChangedListener {
     }
 }
 
-mFormBuilder = form(this@ActivityName, recyclerView, listener) {
+formBuilder = form(this@ActivityName, recyclerView, listener) {
 
     // Header
     header { title = getString(R.string.PersonalInfo) }
@@ -307,14 +307,14 @@ mFormBuilder = form(this@ActivityName, recyclerView, listener) {
                 confirmAlert.setTitle(this@FormListenerActivity.getString(R.string.Confirm))
                 confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormListenerActivity.getString(android.R.string.ok), { _, _ ->
                     // Could be used to clear another field:
-                    val dateToDeleteElement = mFormBuilder!!.getFormElement(Tag.Date.ordinal)
+                    val dateToDeleteElement = formBuilder!!.getFormElement(Tag.Date.ordinal)
                     // Display current date
                     Toast.makeText(this@FormListenerActivity,
-                            (dateToDeleteElement!!.getValue() as FormPickerDateElement.DateHolder).getTime().toString(),
+                            (dateToDeleteElement!!.value as FormPickerDateElement.DateHolder).getTime().toString(),
                             Toast.LENGTH_SHORT).show()
-                    (dateToDeleteElement.getValue() as FormPickerDateElement.DateHolder).useCurrentDate()
-                    mFormBuilder!!.onValueChanged(dateToDeleteElement)
-                    mFormBuilder!!.refreshView()
+                    (dateToDeleteElement.value as FormPickerDateElement.DateHolder).useCurrentDate()
+                    formBuilder!!.onValueChanged(dateToDeleteElement)
+                    formBuilder!!.refreshView()
                 })
                 confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FormListenerActivity.getString(android.R.string.cancel), { _, _ ->
                 })
@@ -331,9 +331,9 @@ While creating a new instance of FormBuildHelper, add a listener in the construc
 Have a look at the example code for details
 
 ```kotlin
-var mFormBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListener {
+var formBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListener {
     override fun onValueChanged(formElement: BaseFormElement<*>) {
-         // do anything here with formElement.getValue()   
+         // do anything here with formElement.value
     }
 })
 ```
@@ -341,14 +341,14 @@ var mFormBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListe
 ### Get value for unique form elements
 Use the unique tag assigned earlier to retrieve value (See examples in this repo)
 ```kotlin
-val element = mFormBuilder!!.getFormElement(Email.ordinal)
-val value: String = element?.getValue() as String
+val element = formBuilder!!.getFormElement(Email.ordinal)
+val value: String = element?.value as String
 ```
 
 ### Check if form is valid
 Use this method if you need to check whether the required elements of the form is completed
 ```kotlin
-mFormBuilder.isValidForm() // returns boolean whether the form is valid or not
+formBuilder.isValidForm() // returns boolean whether the form is valid or not
 ```
 
 ### Form accent color change

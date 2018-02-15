@@ -1,7 +1,6 @@
 package com.thejuki.kformmaster.view
 
 import android.app.DatePickerDialog
-import android.app.Dialog
 import android.content.Context
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
@@ -12,7 +11,7 @@ import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPickerDateElement
 
 /**
- * Form EditText Binder
+ * Form Picker Date ViewBinder
  *
  * Renderer for FormEditTextElement
  *
@@ -26,10 +25,13 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
-        val editTextValue = finder.find(R.id.text) as AppCompatEditText
+        val editTextValue = finder.find(R.id.formElementValue) as AppCompatEditText
+
+        editTextValue.setText(model.valueAsString)
+        editTextValue.hint = model.hint ?: ""
 
         // If no value is set by the user, create a new instance of DateHolder
-        with(model.getValue())
+        with(model.value)
         {
             if (this == null) {
                 model.setValue(FormPickerDateElement.DateHolder())
@@ -39,9 +41,9 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
 
         val datePickerDialog = DatePickerDialog(context,
                 dateDialogListener(model),
-                model.getValue()?.year!!,
-                model.getValue()?.month!! - 1,
-                model.getValue()?.dayOfMonth!!)
+                model.value?.year!!,
+                model.value?.month!! - 1,
+                model.value?.dayOfMonth!!)
 
         setOnClickListener(editTextValue, itemView, datePickerDialog)
     }
@@ -50,7 +52,7 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
         return DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             // get current form element, existing value and new value
             var dateChanged = false
-            with(model.getValue())
+            with(model.value)
             {
                 dateChanged = !(this?.year == year && this.month == monthOfYear && this.dayOfMonth == dayOfMonth)
                 this?.year = year
@@ -62,22 +64,10 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
             if (dateChanged)
             {
                 model.setError(null) // Reset after value change
-                model.mValueChanged?.onValueChanged(model)
+                model.valueChanged?.onValueChanged(model)
                 formBuilder.onValueChanged(model)
                 formBuilder.refreshView()
             }
         }
-    }
-
-    fun setOnClickListener(editTextValue: AppCompatEditText, itemView: View, dialog: Dialog) {
-        editTextValue.isFocusable = false
-
-        // display the dialog on click
-        val listener = View.OnClickListener {
-            dialog.show()
-        }
-
-        itemView.setOnClickListener(listener)
-        editTextValue.setOnClickListener(listener)
     }
 }

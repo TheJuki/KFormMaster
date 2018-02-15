@@ -116,10 +116,6 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
         }
     }
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_PICKER_DATE_TIME
-    }
-
     /**
      * Parcelable boilerplate
      */
@@ -133,10 +129,9 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
 
     constructor(tag: Int = 0) : super(tag)
 
-    protected constructor(`in`: Parcel)
+    constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
-
 
         fun createDateTimeInstance(): FormPickerDateTimeElement {
             return FormPickerDateTimeElement()

@@ -1,16 +1,14 @@
 package com.thejuki.kformmaster.view
 
 import android.content.Context
-import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
-import android.view.inputmethod.InputMethodManager
+import android.widget.SeekBar
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
-import com.thejuki.kformmaster.model.FormEditTextElement
+import com.thejuki.kformmaster.model.FormSliderElement
+import kotlin.math.roundToInt
 
 /**
  * Form EditText Binder
@@ -21,49 +19,47 @@ import com.thejuki.kformmaster.model.FormEditTextElement
  * @version 1.0
  */
 class FormSliderViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element_slider, FormEditTextElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element_slider, FormSliderElement::class.java) { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
-        val editTextValue = finder.find(R.id.text) as AppCompatEditText
+        val slider = finder.find(R.id.formElementValue) as SeekBar
+        val progressValue = finder.find(R.id.formElementProgress) as AppCompatTextView
 
-        editTextValue.setText(model.valueAsString)
-        editTextValue.hint = model.mHint ?: ""
-
-        setEditTextFocusEnabled(editTextValue, itemView)
-
-        editTextValue.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
-
-                // get current form element, existing value and new value
-                val formElement = formBuilder.getFormElement(model.getTag())
-                val currentValue = formElement!!.valueAsString
-                val newValue = charSequence.toString()
-
-                // trigger event only if the value is changed
-                if (currentValue != newValue) {
-                    formElement.setValue(newValue)
-                    formElement.setError(null)
-                    setError(textViewError, null)
-
-                    formBuilder.onValueChanged(formElement)
-                }
-            }
-
-            override fun afterTextChanged(editable: Editable) {}
-        })
-    }
-
-    private fun setEditTextFocusEnabled(editTextValue: AppCompatEditText, itemView: View) {
-        itemView.setOnClickListener {
-            editTextValue.requestFocus()
-            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            editTextValue.setSelection(editTextValue.text.length)
-            imm.showSoftInput(editTextValue, InputMethodManager.SHOW_IMPLICIT)
+        if (model.value == null) {
+            model.value = model.min
         }
+
+        slider.progress = model.value as Int
+        slider.max = model.max
+
+        progressValue.text = model.value.toString()
+
+        slider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {}
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                val sliderValue = seekBar?.progress ?: 0
+                val steps: Double = model.steps.toDouble()
+                val maximumValue: Double = model.max.toDouble()
+                val minimumValue: Double = model.min.toDouble()
+                val stepValue: Int = ((sliderValue - minimumValue) / (maximumValue - minimumValue) * steps).roundToInt()
+                val stepAmount: Int = ((maximumValue - minimumValue) / steps).roundToInt()
+                var roundedValue: Int = stepValue * stepAmount + model.min
+
+                if (roundedValue < model.min) {
+                    roundedValue = model.min
+                } else if (roundedValue > model.max) {
+                    roundedValue = model.max
+                }
+
+                model.setValue(roundedValue)
+                formBuilder.onValueChanged(model)
+                formBuilder.refreshView()
+            }
+        })
     }
 }

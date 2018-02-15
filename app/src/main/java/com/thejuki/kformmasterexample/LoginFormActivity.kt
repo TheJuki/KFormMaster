@@ -6,7 +6,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.BaseFormElement
-import com.thejuki.kformmaster.model.FormEditTextElement
+import com.thejuki.kformmaster.model.FormEmailEditTextElement
+import com.thejuki.kformmaster.model.FormPasswordEditTextElement
 import com.thejuki.kformmasterexample.LoginFormActivity.Tag.Email
 import com.thejuki.kformmasterexample.LoginFormActivity.Tag.Password
 import kotlinx.android.synthetic.main.activity_login_form.*
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_login_form.*
  */
 class LoginFormActivity : AppCompatActivity() {
 
-    private var mFormBuilder: FormBuildHelper? = null
+    private var formBuilder: FormBuildHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +33,8 @@ class LoginFormActivity : AppCompatActivity() {
         setupForm()
 
         buttonLogin.setOnClickListener {
-            val loginElement = mFormBuilder!!.getFormElement(Email.ordinal)!!.mValue as String
-            val passwordElement = mFormBuilder!!.getFormElement(Password.ordinal)!!.mValue as String
+            val loginElement = formBuilder!!.getFormElement(Email.ordinal)!!.value as String
+            val passwordElement = formBuilder!!.getFormElement(Password.ordinal)!!.value as String
             Toast.makeText(this@LoginFormActivity, "Do whatever you want with this data\n" + loginElement + "\n" + passwordElement, Toast.LENGTH_SHORT).show()
         }
     }
@@ -66,23 +67,21 @@ class LoginFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        mFormBuilder = FormBuildHelper(this)
-        mFormBuilder!!.attachRecyclerView(this, recyclerView)
+        formBuilder = FormBuildHelper(this)
+        formBuilder!!.attachRecyclerView(this, recyclerView)
 
         val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
-        val emailElement = FormEditTextElement<String>(Email.ordinal)
-                .setType(BaseFormElement.TYPE_EDITTEXT_EMAIL)
+        val emailElement = FormEmailEditTextElement<String>(Email.ordinal)
                 .setTitle(getString(R.string.email))
         elements.add(emailElement)
 
-        val passwordElement = FormEditTextElement<String>(Password.ordinal)
-                .setType(BaseFormElement.TYPE_EDITTEXT_PASSWORD)
+        val passwordElement = FormPasswordEditTextElement<String>(Password.ordinal)
                 .setTitle(getString(R.string.password))
         elements.add(passwordElement)
 
-        mFormBuilder!!.addFormElements(elements)
-        mFormBuilder!!.refreshView()
+        formBuilder!!.addFormElements(elements)
+        formBuilder!!.refreshView()
 
     }
 }

@@ -1,19 +1,18 @@
 package com.thejuki.kformmaster.view
 
+import android.app.Dialog
 import android.content.Context
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPickerDropDownElement
 
 /**
- * Form EditText Binder
+ * Form Picker DropDown ViewBinder
  *
  * Renderer for FormEditTextElement
  *
@@ -27,43 +26,47 @@ class FormPickerDropDownViewBinder(private val context: Context, private val for
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
-        val editTextValue = finder.find(R.id.text) as AppCompatEditText
+        val editTextValue = finder.find(R.id.formElementValue) as AppCompatEditText
 
         editTextValue.setText(model.valueAsString)
-        editTextValue.hint = model.mHint ?: ""
+        editTextValue.hint = model.hint ?: ""
 
-        setEditTextFocusEnabled(editTextValue, itemView)
+        // reformat the options in format needed
+        val options = arrayOfNulls<CharSequence>(model.options?.size ?: 0)
 
-        editTextValue.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
-
-                // get current form element, existing value and new value
-                val formElement = formBuilder.getFormElement(model.getTag())
-                val currentValue = formElement!!.valueAsString
-                val newValue = charSequence.toString()
-
-                // trigger event only if the value is changed
-                if (currentValue != newValue) {
-                    formElement.setValue(newValue)
-                    formElement.setError(null)
-                    setError(textViewError, null)
-
-                    formBuilder.onValueChanged(formElement)
-                }
-            }
-
-            override fun afterTextChanged(editable: Editable) {}
-        })
-    }
-
-    private fun setEditTextFocusEnabled(editTextValue: AppCompatEditText, itemView: View) {
-        itemView.setOnClickListener {
-            editTextValue.requestFocus()
-            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            editTextValue.setSelection(editTextValue.text.length)
-            imm.showSoftInput(editTextValue, InputMethodManager.SHOW_IMPLICIT)
+        for (i in model.options!!.indices) {
+            options[i] = model.options!![i].toString()
         }
+
+        // prepare the dialog
+        val alertDialog: Dialog?
+
+        if (model.arrayAdapter != null) {
+            alertDialog = AlertDialog.Builder(context)
+                    .setTitle(model.dialogTitle ?: context.getString(R.string.form_master_pick_one))
+                    .setAdapter(model.arrayAdapter, { _, which ->
+                        editTextValue.setText(model.arrayAdapter!!.getItem(which).toString())
+                        model.setValue(model.arrayAdapter!!.getItem(which))
+                        model.setError(null) // Reset after value change
+                        setError(textViewError, null) // Reset after value change
+                        formBuilder.onValueChanged(model)
+                        formBuilder.refreshView()
+                    })
+                    .create()
+        } else {
+            alertDialog = AlertDialog.Builder(context)
+                    .setTitle(model.dialogTitle ?: context.getString(R.string.form_master_pick_one))
+                    .setItems(options) { _, which ->
+                        editTextValue.setText(options[which])
+                        model.setValue(model.options!![which])
+                        model.setError(null) // Reset after value change
+                        setError(textViewError, null) // Reset after value change
+                        formBuilder.onValueChanged(model)
+                        formBuilder.refreshView()
+                    }
+                    .create()
+        }
+
+        setOnClickListener(editTextValue, itemView, alertDialog)
     }
 }

@@ -17,10 +17,6 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
 
     var dialogTitle: String? = null
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_PICKER_MULTI_CHECKBOX
-    }
-
     fun setDialogTitle(dialogTitle: String?): FormPickerMultiCheckBoxElement<T>
     {
         this.dialogTitle = dialogTitle

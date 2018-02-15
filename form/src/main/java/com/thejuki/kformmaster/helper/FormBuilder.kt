@@ -48,7 +48,7 @@ class HeaderBuilder() : FieldBuilder {
 }
 fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
     val fieldModel = HeaderBuilder().apply(init).build()
-    mElements.add(fieldModel)
+    elements.add(fieldModel)
     return fieldModel
 }
 
@@ -61,18 +61,17 @@ abstract class BaseElementBuilder<T: Serializable>(protected val tag: Int) : Fie
         get() = field ?: ArrayList()
     var optionsSelected: List<T>? = null // list of selected options for single and multi picker
         get() = field ?: ArrayList()
-    var hint: String? = null // value to be shown if mValue is null
+    var hint: String? = null // value to be shown if value is null
     var error: String? = null
     var required: Boolean = false // value to set is the field is required
     var visible: Boolean = true
     var valueChanged: OnFormElementValueChangedListener? = null
 }
 
-/** Builder method to add a FormEditTextElement */
-class EditTextBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+/** Builder method to add a FormSingleLineEditTextElement */
+class SingleLineEditTextBuilder<T : Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
     override fun build() =
-            FormEditTextElement<T>(tag)
-                    .setType(type)
+            FormSingleLineEditTextElement<T>(tag)
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
@@ -80,11 +79,112 @@ class EditTextBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
-                    as FormEditTextElement<T>
+                    as FormSingleLineEditTextElement<T>
 }
-fun <T: Serializable> FormBuildHelper.editText(tag: Int, init: EditTextBuilder<T>.() -> Unit): FormEditTextElement<T> {
-    val element = EditTextBuilder<T>(tag).apply(init).build()
-    mElements.add(element)
+
+fun <T : Serializable> FormBuildHelper.text(tag: Int, init: SingleLineEditTextBuilder<T>.() -> Unit): FormSingleLineEditTextElement<T> {
+    val element = SingleLineEditTextBuilder<T>(tag).apply(init).build()
+    elements.add(element)
+    return element
+}
+
+/** Builder method to add a FormMultiLineEditTextElement */
+class MultiLineEditTextBuilder<T : Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+    override fun build() =
+            FormMultiLineEditTextElement<T>(tag)
+                    .setTitle(title.orEmpty())
+                    .setValue(value)
+                    .setHint(hint)
+                    .setError(error)
+                    .setRequired(required)
+                    .setVisible(visible)
+                    .setValueChanged(valueChanged)
+                    as FormMultiLineEditTextElement<T>
+}
+
+fun <T : Serializable> FormBuildHelper.textArea(tag: Int, init: MultiLineEditTextBuilder<T>.() -> Unit): FormMultiLineEditTextElement<T> {
+    val element = MultiLineEditTextBuilder<T>(tag).apply(init).build()
+    elements.add(element)
+    return element
+}
+
+/** Builder method to add a FormNumberEditTextElement */
+class NumberEditTextBuilder<T : Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+    override fun build() =
+            FormNumberEditTextElement<T>(tag)
+                    .setTitle(title.orEmpty())
+                    .setValue(value)
+                    .setHint(hint)
+                    .setError(error)
+                    .setRequired(required)
+                    .setVisible(visible)
+                    .setValueChanged(valueChanged)
+                    as FormNumberEditTextElement<T>
+}
+
+fun <T : Serializable> FormBuildHelper.number(tag: Int, init: NumberEditTextBuilder<T>.() -> Unit): FormNumberEditTextElement<T> {
+    val element = NumberEditTextBuilder<T>(tag).apply(init).build()
+    elements.add(element)
+    return element
+}
+
+/** Builder method to add a FormEmailEditTextElement */
+class EmailEditTextBuilder<T : Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+    override fun build() =
+            FormEmailEditTextElement<T>(tag)
+                    .setTitle(title.orEmpty())
+                    .setValue(value)
+                    .setHint(hint)
+                    .setError(error)
+                    .setRequired(required)
+                    .setVisible(visible)
+                    .setValueChanged(valueChanged)
+                    as FormEmailEditTextElement<T>
+}
+
+fun <T : Serializable> FormBuildHelper.email(tag: Int, init: EmailEditTextBuilder<T>.() -> Unit): FormEmailEditTextElement<T> {
+    val element = EmailEditTextBuilder<T>(tag).apply(init).build()
+    elements.add(element)
+    return element
+}
+
+/** Builder method to add a FormPhoneEditTextElement */
+class PasswordEditTextBuilder<T : Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+    override fun build() =
+            FormPasswordEditTextElement<T>(tag)
+                    .setTitle(title.orEmpty())
+                    .setValue(value)
+                    .setHint(hint)
+                    .setError(error)
+                    .setRequired(required)
+                    .setVisible(visible)
+                    .setValueChanged(valueChanged)
+                    as FormPasswordEditTextElement<T>
+}
+
+fun <T : Serializable> FormBuildHelper.password(tag: Int, init: PasswordEditTextBuilder<T>.() -> Unit): FormPasswordEditTextElement<T> {
+    val element = PasswordEditTextBuilder<T>(tag).apply(init).build()
+    elements.add(element)
+    return element
+}
+
+/** Builder method to add a FormEmailEditTextElement */
+class PhoneEditTextBuilder<T : Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+    override fun build() =
+            FormPhoneEditTextElement<T>(tag)
+                    .setTitle(title.orEmpty())
+                    .setValue(value)
+                    .setHint(hint)
+                    .setError(error)
+                    .setRequired(required)
+                    .setVisible(visible)
+                    .setValueChanged(valueChanged)
+                    as FormPhoneEditTextElement<T>
+}
+
+fun <T : Serializable> FormBuildHelper.phone(tag: Int, init: PhoneEditTextBuilder<T>.() -> Unit): FormPhoneEditTextElement<T> {
+    val element = PhoneEditTextBuilder<T>(tag).apply(init).build()
+    elements.add(element)
     return element
 }
 
@@ -107,7 +207,7 @@ class AutoCompleteBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag
 }
 fun <T: Serializable> FormBuildHelper.autoComplete(tag: Int, init: AutoCompleteBuilder<T>.() -> Unit): FormAutoCompleteElement<T> {
     val element = AutoCompleteBuilder<T>(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
@@ -130,7 +230,7 @@ class AutoCompleteTokenBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T
 }
 fun <T: Serializable> FormBuildHelper.autoCompleteToken(tag: Int, init: AutoCompleteTokenBuilder<T>.() -> Unit): FormTokenAutoCompleteElement<T> {
     val element = AutoCompleteTokenBuilder<T>(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
@@ -149,7 +249,7 @@ class ButtonBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
 }
 fun <T: Serializable> FormBuildHelper.button(tag: Int, init: ButtonBuilder<T>.() -> Unit): FormButtonElement<T> {
     val element = ButtonBuilder<T>(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
@@ -170,7 +270,7 @@ class DateBuilder(tag: Int) : BaseElementBuilder<FormPickerDateElement.DateHolde
 }
 fun FormBuildHelper.date(tag: Int, init: DateBuilder.() -> Unit): FormPickerDateElement {
     val element = DateBuilder(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
@@ -191,7 +291,7 @@ class TimeBuilder(tag: Int) : BaseElementBuilder<FormPickerDateElement.DateHolde
 }
 fun FormBuildHelper.time(tag: Int, init: TimeBuilder.() -> Unit): FormPickerTimeElement {
     val element = TimeBuilder(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
@@ -212,7 +312,7 @@ class DateTimeBuilder(tag: Int) : BaseElementBuilder<FormPickerDateElement.DateH
 }
 fun FormBuildHelper.dateTime(tag: Int, init: DateTimeBuilder.() -> Unit): FormPickerDateTimeElement {
     val element = DateTimeBuilder(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
@@ -236,7 +336,7 @@ class DropDownBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
 }
 fun <T: Serializable> FormBuildHelper.dropDown(tag: Int, init: DropDownBuilder<T>.() -> Unit): FormPickerDropDownElement<T> {
     val element = DropDownBuilder<T>(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
@@ -259,7 +359,7 @@ class MultiCheckBoxBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(ta
 }
 fun <T: Serializable> FormBuildHelper.multiCheckBox(tag: Int, init: MultiCheckBoxBuilder<T>.() -> Unit): FormPickerMultiCheckBoxElement<T> {
     val element = MultiCheckBoxBuilder<T>(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
@@ -282,7 +382,7 @@ class SwitchBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
 }
 fun <T: Serializable> FormBuildHelper.switch(tag: Int, init: SwitchBuilder<T>.() -> Unit): FormSwitchElement<T> {
     val element = SwitchBuilder<T>(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
@@ -307,7 +407,7 @@ class SliderBuilder(tag: Int) : BaseElementBuilder<Int>(tag) {
 }
 fun FormBuildHelper.slider(tag: Int, init: SliderBuilder.() -> Unit): FormSliderElement {
     val element = SliderBuilder(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
@@ -322,7 +422,7 @@ class TextViewBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
 }
 fun <T: Serializable> FormBuildHelper.textView(tag: Int, init: TextViewBuilder<T>.() -> Unit): FormTextViewElement<T> {
     val element = TextViewBuilder<T>(tag).apply(init).build()
-    mElements.add(element)
+    elements.add(element)
     return element
 }
 
