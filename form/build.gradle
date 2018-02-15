@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 2
-        versionName "1.1.0"
+        versionCode 3
+        versionName "1.2.0"
     }
 
     buildTypes {
@@ -32,23 +32,27 @@ tasks.withType(Javadoc).all {
     enabled = false
 }
 
+ext {
+    supportVersion = '27.0.2'
+    rendererRecyclerViewAdapterVersion = '2.5.0'
+    tokenautocompleteVersion = '2.0.8'
+}
+
 dependencies {
-    //noinspection GradleCompatible
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    compile('com.github.vivchar:RendererRecyclerViewAdapter:2.5.0') {
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-    }
+    implementation "com.android.support:appcompat-v7:$supportVersion",
+            "com.android.support:recyclerview-v7:$supportVersion"
+    api "com.github.vivchar:RendererRecyclerViewAdapter:$rendererRecyclerViewAdapterVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // Token Autocomplete
-    compile "com.splitwise:tokenautocomplete:2.0.8@aar"
+    implementation "com.splitwise:tokenautocomplete:$tokenautocompleteVersion@aar"
 }
 
 publish {
     userOrg = 'thejuki'
     groupId = 'com.thejuki'
     artifactId = 'k-form-master'
-    publishVersion = '1.1.0'
+    publishVersion = '1.2.0'
     desc = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
     website = 'https://github.com/TheJuki/KFormMaster'
 }

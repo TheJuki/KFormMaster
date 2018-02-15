@@ -18,7 +18,7 @@ import com.thejuki.kformmaster.model.FormAutoCompleteElement
 /**
  * Form AutoComplete ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormAutoCompleteElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
@@ -53,22 +53,19 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
             model.arrayAdapter
         else
             ArrayAdapter(context, android.R.layout.simple_list_item_1, model.options)
+
         autoCompleteTextView.setAdapter<ArrayAdapter<*>>(itemsAdapter)
 
         if (model.dropdownWidth != null) {
             autoCompleteTextView.dropDownWidth = model.dropdownWidth!!
         }
 
-        // Support for custom adapter with custom options
-        if (model.arrayAdapter != null) {
-            autoCompleteTextView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, _, position, _ ->
-                // Set options to selected option
-                model.setResultOption(adapterView.getItemAtPosition(position))
-                // Jump to beginning of text view
-                autoCompleteTextView.setSelection(0)
-                // Cause onTextChanged to be called
-                autoCompleteTextView.text = autoCompleteTextView.text
-            }
+        autoCompleteTextView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, _, position, _ ->
+            model.setValue(adapterView.getItemAtPosition(position))
+            model.setError(null)
+            setError(textViewError, null)
+
+            formBuilder.onValueChanged(model)
         }
 
         setEditTextFocusEnabled(autoCompleteTextView, itemView)
@@ -87,21 +84,11 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
 
             override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
-
-                val newValue = charSequence.toString()
-                model.typedString = newValue
-
-                // trigger only if the value exists as one of the string options
-                if (model.stringOptions.contains(newValue)) {
-                    model.setValue(model.options?.firstOrNull { it.toString() == newValue })
-                    model.setError(null)
-                    setError(textViewError, null)
-
-                    formBuilder.onValueChanged(model)
-                }
+                // Keep typed string
+                model.typedString = charSequence.toString()
 
                 // If field is blank set form value to null
-                if (newValue.isBlank()) {
+                if (charSequence.isBlank() && model.value != null) {
                     model.setValue(null)
                     model.setError(null)
                     setError(textViewError, null)

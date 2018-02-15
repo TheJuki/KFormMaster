@@ -16,7 +16,7 @@ import com.tokenautocomplete.TokenCompleteTextView
 /**
  * Form TokenAutoComplete ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormTokenAutoCompleteElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

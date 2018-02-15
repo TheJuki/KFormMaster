@@ -68,13 +68,6 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
         return this
     }
 
-    fun setResultOption(resultOption: Any) {
-        super.setOptions(listOf(resultOption) as List<T>)
-        super.setOptionsSelected(listOf(resultOption) as List<T>)
-        mStringOptions = HashSet()
-        mStringOptions!!.add(resultOption.toString())
-    }
-
     /**
      * Parcelable boilerplate
      */

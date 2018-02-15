@@ -16,7 +16,7 @@ import com.thejuki.kformmaster.model.FormMultiLineEditTextElement
 /**
  * Form MultiLine EditText ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormMultiLineEditTextElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

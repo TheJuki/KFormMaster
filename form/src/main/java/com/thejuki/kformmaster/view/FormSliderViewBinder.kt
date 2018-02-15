@@ -13,7 +13,7 @@ import kotlin.math.roundToInt
 /**
  * Form EditText Binder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormSliderElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

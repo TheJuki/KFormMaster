@@ -4,9 +4,9 @@ import android.os.Parcel
 import java.io.Serializable
 
 /**
- * Form EditText Element
+ * Form Switch Element
  *
- * Form element for AppCompatEditText
+ * Form element for Switch
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

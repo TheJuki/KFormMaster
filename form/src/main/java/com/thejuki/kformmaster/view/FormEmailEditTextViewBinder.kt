@@ -17,7 +17,7 @@ import com.thejuki.kformmaster.model.FormEmailEditTextElement
 /**
  * Form Email EditText ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormEmailEditTextElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

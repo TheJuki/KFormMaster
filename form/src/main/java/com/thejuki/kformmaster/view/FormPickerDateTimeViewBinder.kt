@@ -14,7 +14,7 @@ import com.thejuki.kformmaster.model.FormPickerDateTimeElement
 /**
  * Form Picker DateTime ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormPickerDateTimeElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

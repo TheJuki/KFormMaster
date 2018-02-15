@@ -14,7 +14,7 @@ import java.util.*
 /**
  * Form Picker MultiCheckBox ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormPickerMultiCheckBoxElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

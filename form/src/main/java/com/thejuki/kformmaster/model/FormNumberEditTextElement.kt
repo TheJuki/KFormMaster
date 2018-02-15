@@ -6,7 +6,7 @@ import android.os.Parcelable
 import java.io.Serializable
 
 /**
- * Form EditText Element
+ * Form Number EditText Element
  *
  * Form element for AppCompatEditText
  *

@@ -11,7 +11,7 @@ import com.thejuki.kformmaster.model.FormButtonElement
 /**
  * Form Button ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormButtonElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

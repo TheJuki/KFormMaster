@@ -17,7 +17,7 @@ import com.thejuki.kformmaster.model.FormPhoneEditTextElement
 /**
  * Form Phone EditText ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormPhoneEditTextElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

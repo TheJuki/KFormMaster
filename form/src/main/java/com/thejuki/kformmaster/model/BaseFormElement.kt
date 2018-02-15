@@ -18,7 +18,7 @@ import java.util.*
 open class BaseFormElement<T : Serializable>(var tag: Int = 0, var title: String? = null) : ViewModel, Parcelable {
 
     // class variables
-    var value: T? = null // value to be shown on right
+    open var value: T? = null // value to be shown on right
         set(value) {
             field = value
             valueChanged?.onValueChanged(this)
@@ -167,7 +167,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = 0, var title: String
     protected constructor(`in`: Parcel) : this() {
         this.tag = `in`.readInt()
         this.title = `in`.readString()
-        this.value = `in`.readSerializable() as T?
+        this.value = `in`.readSerializable() as T
 
         /*
          * We need special method to store array of generic objects

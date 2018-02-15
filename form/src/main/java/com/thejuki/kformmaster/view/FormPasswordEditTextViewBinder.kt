@@ -17,7 +17,7 @@ import com.thejuki.kformmaster.model.FormPasswordEditTextElement
 /**
  * Form Password EditText ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormPasswordEditTextElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

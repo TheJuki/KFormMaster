@@ -10,7 +10,7 @@ import com.thejuki.kformmaster.model.FormHeader
 /**
  * Form Header ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormHeader]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

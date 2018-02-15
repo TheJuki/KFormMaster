@@ -13,7 +13,7 @@ import com.thejuki.kformmaster.model.FormPickerTimeElement
 /**
  * Form Picker Time ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormPickerTimeElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

@@ -14,7 +14,7 @@ import com.thejuki.kformmaster.model.FormPickerDropDownElement
 /**
  * Form Picker DropDown ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormPickerDropDownElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

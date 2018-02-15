@@ -12,7 +12,7 @@ import com.thejuki.kformmaster.model.FormSwitchElement
 /**
  * Form EditText Binder
  *
- * Form Switch ViewBinder
+ * View Binder for [FormSwitchElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

@@ -17,7 +17,7 @@ import com.thejuki.kformmaster.model.FormNumberEditTextElement
 /**
  * Form Number EditText ViewBinder
  *
- * Renderer for FormEditTextElement
+ * View Binder for [FormNumberEditTextElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
