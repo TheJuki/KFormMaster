@@ -2,7 +2,7 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.github.vivchar.rendererrecyclerviewadapter.ItemModel
+import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import java.io.Serializable
 import java.util.*
@@ -15,7 +15,7 @@ import java.util.*
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-open class BaseFormElement<T : Serializable>(var mTag: Int = 0, var mTitle: String? = null) : ItemModel, Parcelable {
+open class BaseFormElement<T : Serializable>(var mTag: Int = 0, var mTitle: String? = null) : ViewModel, Parcelable {
 
     // class variables
     var mType: Int = 0 // type for the form element
@@ -100,7 +100,7 @@ open class BaseFormElement<T : Serializable>(var mTag: Int = 0, var mTitle: Stri
         return this.mTag
     }
 
-    override fun getType(): Int {
+    open fun getType(): Int {
         return this.mType
     }
 

@@ -54,7 +54,7 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
     }
 
     override fun getType(): Int {
-        return BaseFormElement.Companion.TYPE_EDITTEXT_AUTOCOMPLETE
+        return BaseFormElement.TYPE_EDITTEXT_AUTOCOMPLETE
     }
 
     override var mValue: T? = null

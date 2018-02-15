@@ -3,9 +3,6 @@ package com.thejuki.kformmaster.renderer
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-
-import com.github.vivchar.rendererrecyclerviewadapter.ViewRenderer
-
 import com.thejuki.kformmaster.holder.BaseFormHolder
 import com.thejuki.kformmaster.model.BaseFormElement
 
@@ -17,9 +14,9 @@ import com.thejuki.kformmaster.model.BaseFormElement
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-abstract class BaseFormRenderer<M : BaseFormElement<*>, VH : BaseFormHolder>(type: Int, context: Context) : ViewRenderer<M, VH>(type, context) {
+abstract class BaseFormRenderer<M : BaseFormElement<*>, VH : BaseFormHolder>(type: Int, protected var context: Context) {
 
-    override fun bindView(formElement: M, holder: VH) {
+    open fun bindView(formElement: M, holder: VH) {
         // Setup title and error if present
         if (holder.mTextViewTitle != null) {
             holder.mTextViewTitle.text = formElement.getTitle()

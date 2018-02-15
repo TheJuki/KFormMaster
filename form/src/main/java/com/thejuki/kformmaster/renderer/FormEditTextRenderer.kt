@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.view.View.inflate
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.thejuki.kformmaster.R
@@ -43,7 +44,7 @@ class FormEditTextRenderer(type: Int, context: Context, private val formBuilder:
             }
         }
 
-        when (this.type) {
+        when (formElement.getType()) {
             BaseFormElement.TYPE_EDITTEXT_TEXT_SINGLELINE -> holder.mEditTextValue!!.maxLines = 1
             BaseFormElement.TYPE_EDITTEXT_TEXT_MULTILINE -> {
                 holder.mEditTextValue!!.setSingleLine(false)

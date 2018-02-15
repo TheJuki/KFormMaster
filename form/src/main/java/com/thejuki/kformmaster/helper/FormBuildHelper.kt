@@ -1,16 +1,17 @@
 package com.thejuki.kformmaster.helper
 
 import android.content.Context
+import android.support.v7.widget.AppCompatTextView
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.github.vivchar.rendererrecyclerviewadapter.RendererRecyclerViewAdapter
-import com.github.vivchar.rendererrecyclerviewadapter.ViewRenderer
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
-import com.thejuki.kformmaster.model.FormHeader
-import com.thejuki.kformmaster.renderer.*
+import com.thejuki.kformmaster.view.*
 import java.util.*
+
 
 /**
  * Form Build Helper
@@ -63,6 +64,16 @@ class FormBuildHelper {
         }
     }
 
+    fun setError(textViewError: AppCompatTextView, error: String?) {
+        if (error.isNullOrEmpty()) {
+            textViewError.visibility = View.GONE
+            return
+        }
+
+        textViewError.text = error
+        textViewError.visibility = View.VISIBLE
+    }
+
     /**
      * private method for initializing form build helper
      *
@@ -74,36 +85,27 @@ class FormBuildHelper {
         // initialize form adapter
         this.mElements = ArrayList()
 
-        this.mFormAdapter = RendererRecyclerViewAdapter()
-        this.mFormAdapter!!.registerRenderer(FormHeaderRenderer(BaseFormElement.TYPE_HEADER, context))
+        this.mFormAdapter = RendererRecyclerViewAdapter(context)
+        this.mFormAdapter!!.registerRenderer(FormHeaderViewBinder(context, this).viewBinder)
 
-        this.mFormAdapter!!.registerRenderer(FormEditTextRenderer(BaseFormElement.TYPE_EDITTEXT_TEXT_SINGLELINE, context, this))
-        this.mFormAdapter!!.registerRenderer(FormEditTextRenderer(BaseFormElement.TYPE_EDITTEXT_TEXT_MULTILINE, context, this))
-        this.mFormAdapter!!.registerRenderer(FormEditTextRenderer(BaseFormElement.TYPE_EDITTEXT_NUMBER, context, this))
-        this.mFormAdapter!!.registerRenderer(FormEditTextRenderer(BaseFormElement.TYPE_EDITTEXT_EMAIL, context, this))
-        this.mFormAdapter!!.registerRenderer(FormEditTextRenderer(BaseFormElement.TYPE_EDITTEXT_PHONE, context, this))
-        this.mFormAdapter!!.registerRenderer(FormEditTextRenderer(BaseFormElement.TYPE_EDITTEXT_PASSWORD, context, this))
+        this.mFormAdapter!!.registerRenderer(FormEditTextViewBinder(context, this).viewBinder)
 
-        this.mFormAdapter!!.registerRenderer(FormAutoCompleteRenderer(BaseFormElement.TYPE_EDITTEXT_AUTOCOMPLETE, context, this))
-        this.mFormAdapter!!.registerRenderer(FormTokenAutoCompleteRenderer(BaseFormElement.TYPE_EDITTEXT_TOKEN_AUTOCOMPLETE, context, this))
+        this.mFormAdapter!!.registerRenderer(FormAutoCompleteViewBinder(context, this).viewBinder)
+        this.mFormAdapter!!.registerRenderer(FormTokenAutoCompleteViewBinder(context, this).viewBinder)
 
-        this.mFormAdapter!!.registerRenderer(FormButtonRenderer(BaseFormElement.TYPE_BUTTON, context, this))
-        this.mFormAdapter!!.registerRenderer(FormSwitchRenderer(BaseFormElement.TYPE_SWITCH, context, this))
-        this.mFormAdapter!!.registerRenderer(FormSliderRenderer(BaseFormElement.TYPE_SLIDER, context, this))
+        this.mFormAdapter!!.registerRenderer(FormButtonViewBinder(context, this).viewBinder)
+        this.mFormAdapter!!.registerRenderer(FormSwitchViewBinder(context, this).viewBinder)
+        this.mFormAdapter!!.registerRenderer(FormSliderViewBinder(context, this).viewBinder)
 
-        this.mFormAdapter!!.registerRenderer(FormPickerDateRenderer(BaseFormElement.TYPE_PICKER_DATE, context, this))
-        this.mFormAdapter!!.registerRenderer(FormPickerTimeRenderer(BaseFormElement.TYPE_PICKER_TIME, context, this))
-        this.mFormAdapter!!.registerRenderer(FormPickerDateTimeRenderer(BaseFormElement.TYPE_PICKER_DATE_TIME, context, this))
-        this.mFormAdapter!!.registerRenderer(FormPickerMultiCheckBoxRenderer(BaseFormElement.TYPE_PICKER_MULTI_CHECKBOX, context, this))
-        this.mFormAdapter!!.registerRenderer(FormPickerDropDownRenderer(BaseFormElement.TYPE_PICKER_DROP_DOWN, context, this))
+        this.mFormAdapter!!.registerRenderer(FormPickerDateViewBinder(context, this).viewBinder)
+        this.mFormAdapter!!.registerRenderer(FormPickerTimeViewBinder(context, this).viewBinder)
+        this.mFormAdapter!!.registerRenderer(FormPickerDateTimeViewBinder(context, this).viewBinder)
+        this.mFormAdapter!!.registerRenderer(FormPickerMultiCheckBoxViewBinder(context, this).viewBinder)
+        this.mFormAdapter!!.registerRenderer(FormPickerDropDownViewBinder(context, this).viewBinder)
 
-        this.mFormAdapter!!.registerRenderer(FormTextViewRenderer(BaseFormElement.TYPE_TEXTVIEW, context))
+        this.mFormAdapter!!.registerRenderer(FormTextViewViewBinder(context, this).viewBinder)
 
         this.mListener = listener
-    }
-
-    fun registerRenderer(r: ViewRenderer<*, *>) {
-        this.mFormAdapter!!.registerRenderer(r)
     }
 
     fun attachRecyclerView(context: Context, recyclerView: RecyclerView?) {

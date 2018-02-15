@@ -35,7 +35,7 @@ tasks.withType(Javadoc).all {
 dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:27.0.2'
-    compile('com.github.vivchar:RendererRecyclerViewAdapter:1.4.1') {
+    compile('com.github.vivchar:RendererRecyclerViewAdapter:2.5.0') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
