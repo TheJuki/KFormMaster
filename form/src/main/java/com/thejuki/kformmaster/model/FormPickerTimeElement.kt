@@ -18,7 +18,7 @@ import java.util.*
 class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder> {
     class TimeHolder : Serializable {
 
-        private var isEmptyTime: Boolean = false
+        var isEmptyTime: Boolean = false
         var hourOfDay: Int? = null
         var minute: Int? = null
         var dateFormat: DateFormat = SimpleDateFormat.getTimeInstance()
@@ -89,10 +89,6 @@ class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder
                     another.minute == this.minute &&
                     another.hourOfDay == this.hourOfDay
         }
-    }
-
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_PICKER_TIME
     }
 
     /**

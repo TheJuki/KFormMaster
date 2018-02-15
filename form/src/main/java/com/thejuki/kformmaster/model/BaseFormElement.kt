@@ -2,7 +2,7 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.github.vivchar.rendererrecyclerviewadapter.ItemModel
+import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import java.io.Serializable
 import java.util.*
@@ -15,120 +15,95 @@ import java.util.*
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-open class BaseFormElement<T : Serializable>(var mTag: Int = 0, var mTitle: String? = null) : ItemModel, Parcelable {
+open class BaseFormElement<T : Serializable>(var tag: Int = 0, var title: String? = null) : ViewModel, Parcelable {
 
     // class variables
-    var mType: Int = 0 // type for the form element
-    open var mValue: T? = null // value to be shown on right
+    open var value: T? = null // value to be shown on right
         set(value) {
             field = value
-            mValueChanged?.onValueChanged(this)
+            valueChanged?.onValueChanged(this)
         }
-    var mOptions: List<T>? = null // list of options for single and multi picker
+    var options: List<T>? = null // list of options for single and multi picker
         get() = field ?: ArrayList()
-    var mOptionsSelected: List<T>? = null // list of selected options for single and multi picker
+    var optionsSelected: List<T>? = null // list of selected options for single and multi picker
         get() = field ?: ArrayList()
-    var mHint: String? = null // value to be shown if mValue is null
-    var mError: String? = null
-    var mRequired: Boolean = false // value to set is the field is required
-    var mVisible: Boolean = true
-    var mValueChanged: OnFormElementValueChangedListener? = null
+    var hint: String? = null // value to be shown if value is null
+    var error: String? = null
+    var required: Boolean = false // value to set is the field is required
+    var visible: Boolean = true
+    var valueChanged: OnFormElementValueChangedListener? = null
 
     val valueAsString: String
-        get() = if (this.mValue == null) "" else this.mValue!!.toString()
+        get() = if (this.value == null) "" else this.value!!.toString()
 
     open val isHeader: Boolean
         get() = false
 
     // getters and setters
     fun setTag(mTag: Int): BaseFormElement<T> {
-        this.mTag = mTag
-        return this
-    }
-
-    fun setType(mType: Int): BaseFormElement<T> {
-        this.mType = mType
+        this.tag = mTag
         return this
     }
 
     fun setTitle(mTitle: String): BaseFormElement<T> {
-        this.mTitle = mTitle
+        this.title = mTitle
         return this
     }
 
     open fun setValue(mValue: Any?): BaseFormElement<T> {
-        this.mValue = mValue as T?
+        this.value = mValue as T?
+        valueChanged?.onValueChanged(this)
         return this
     }
 
     fun setHint(mHint: String?): BaseFormElement<T> {
-        this.mHint = mHint
+        this.hint = mHint
         return this
     }
 
     fun setError(error: String?): BaseFormElement<T> {
-        this.mError = error
+        this.error = error
         return this
     }
 
     fun setRequired(required: Boolean): BaseFormElement<T> {
-        this.mRequired = required
+        this.required = required
         return this
     }
 
     fun setVisible(visible: Boolean): BaseFormElement<T> {
-        this.mVisible = visible
+        this.visible = visible
         return this
     }
 
     open fun setOptions(mOptions: List<T>): BaseFormElement<T> {
-        this.mOptions = mOptions
+        this.options = mOptions
         return this
     }
 
     fun setValueChanged(mValueChanged: OnFormElementValueChangedListener?): BaseFormElement<T> {
-        this.mValueChanged = mValueChanged
+        this.valueChanged = mValueChanged
         return this
     }
 
     fun setOptionsSelected(mOptionsSelected: List<Any>): BaseFormElement<T> {
-        this.mOptionsSelected = mOptionsSelected as List<T>
+        this.optionsSelected = mOptionsSelected as List<T>
         return this
     }
 
-    fun getTag(): Int {
-        return this.mTag
-    }
-
-    override fun getType(): Int {
-        return this.mType
-    }
-
-    fun getTitle(): String? {
-        return this.mTitle
-    }
-
-    fun getValue(): T? {
-        return this.mValue
-    }
-
-    fun getError(): String? {
-        return this.mError
-    }
-
     fun isRequired(): Boolean {
-        return this.mRequired
+        return this.required
     }
 
     fun isVisible(): Boolean {
-        return this.mVisible
+        return this.visible
     }
 
     override fun toString(): String {
-        return "TAG: " + this.mTag.toString() +
-                ", TITLE: " + this.mTitle +
-                ", VALUE: " + this.mValue +
-                ", REQUIRED: " + this.mRequired.toString()
+        return "TAG: " + this.tag.toString() +
+                ", TITLE: " + this.title +
+                ", VALUE: " + this.value +
+                ", REQUIRED: " + this.required.toString()
     }
 
     /**
@@ -139,104 +114,95 @@ open class BaseFormElement<T : Serializable>(var mTag: Int = 0, var mTitle: Stri
     }
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeInt(this.mTag)
-        dest.writeInt(this.mType)
-        dest.writeString(this.mTitle)
-        dest.writeSerializable(this.mValue)
+        dest.writeInt(this.tag)
+        dest.writeString(this.title)
+        dest.writeSerializable(this.value)
 
         /*
          * We need special method to store array of generic objects
          * more here: https://stackoverflow.com/a/31979348/3625638
          */
 
-        // mOptions
-        if (mOptions == null || mOptions!!.size == 0) {
+        // options
+        if (options == null || options!!.size == 0) {
             dest.writeInt(0)
         } else {
-            dest.writeInt(mOptions!!.size)
+            dest.writeInt(options!!.size)
 
-            val objectsType = mOptions!![0].javaClass
+            val objectsType = options!![0].javaClass
             dest.writeSerializable(objectsType)
-            dest.writeList(mOptions)
+            dest.writeList(options)
         }
 
-        // mOptionsSelected
-        if (mOptionsSelected == null || mOptionsSelected!!.size == 0) {
+        // optionsSelected
+        if (optionsSelected == null || optionsSelected!!.size == 0) {
             dest.writeInt(0)
         } else {
-            dest.writeInt(mOptionsSelected!!.size)
+            dest.writeInt(optionsSelected!!.size)
 
-            val objectsType = mOptionsSelected!![0].javaClass
+            val objectsType = optionsSelected!![0].javaClass
             dest.writeSerializable(objectsType)
-            dest.writeList(mOptionsSelected)
+            dest.writeList(optionsSelected)
         }
 
-        dest.writeString(this.mHint)
-        dest.writeString(this.mError)
-        dest.writeByte(if (this.mRequired) 1.toByte() else 0.toByte())
-        dest.writeByte(if (this.mVisible) 1.toByte() else 0.toByte())
+        dest.writeString(this.hint)
+        dest.writeString(this.error)
+        dest.writeByte(if (this.required) 1.toByte() else 0.toByte())
+        dest.writeByte(if (this.visible) 1.toByte() else 0.toByte())
+    }
+
+    override fun hashCode(): Int {
+        return tag
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is BaseFormElement<*>) return false
+
+        if (tag != other.tag) return false
+
+        return true
     }
 
     protected constructor(`in`: Parcel) : this() {
-        this.mTag = `in`.readInt()
-        this.mType = `in`.readInt()
-        this.mTitle = `in`.readString()
-        this.mValue = `in`.readSerializable() as T
+        this.tag = `in`.readInt()
+        this.title = `in`.readString()
+        this.value = `in`.readSerializable() as T
 
         /*
          * We need special method to store array of generic objects
          * more here: https://stackoverflow.com/a/31979348/3625638
          */
 
-        // mOptions
+        // options
         val optionSize = `in`.readInt()
         if (optionSize == 0) {
-            mOptions = null
+            options = null
         } else {
             val type = `in`.readSerializable() as Class<*>
 
-            mOptions = ArrayList(optionSize)
-            `in`.readList(mOptions, type.classLoader)
+            options = ArrayList(optionSize)
+            `in`.readList(options, type.classLoader)
         }
 
-        // mOptionsSelected
+        // optionsSelected
         val selectedOptionSize = `in`.readInt()
         if (selectedOptionSize == 0) {
-            mOptionsSelected = null
+            optionsSelected = null
         } else {
             val type = `in`.readSerializable() as Class<*>
 
-            mOptionsSelected = ArrayList(selectedOptionSize)
-            `in`.readList(mOptionsSelected, type.classLoader)
+            optionsSelected = ArrayList(selectedOptionSize)
+            `in`.readList(optionsSelected, type.classLoader)
         }
 
-        this.mHint = `in`.readString()
-        this.mError = `in`.readString()
-        this.mRequired = `in`.readByte().toInt() != 0
-        this.mVisible = `in`.readByte().toInt() != 0
+        this.hint = `in`.readString()
+        this.error = `in`.readString()
+        this.required = `in`.readByte().toInt() != 0
+        this.visible = `in`.readByte().toInt() != 0
     }
 
     companion object {
-
-        // different types for the form elements
-        val TYPE_HEADER = 0
-        val TYPE_EDITTEXT_TEXT_SINGLELINE = 1
-        val TYPE_EDITTEXT_TEXT_MULTILINE = 2
-        val TYPE_EDITTEXT_NUMBER = 3
-        val TYPE_EDITTEXT_EMAIL = 4
-        val TYPE_EDITTEXT_PHONE = 5
-        val TYPE_EDITTEXT_PASSWORD = 6
-        val TYPE_EDITTEXT_AUTOCOMPLETE = 7
-        val TYPE_PICKER_DATE = 8
-        val TYPE_PICKER_TIME = 9
-        val TYPE_PICKER_DATE_TIME = 10
-        val TYPE_PICKER_MULTI_CHECKBOX = 11
-        val TYPE_PICKER_DROP_DOWN = 12
-        val TYPE_TEXTVIEW = 13
-        val TYPE_BUTTON = 14
-        val TYPE_SWITCH = 15
-        val TYPE_SLIDER = 16
-        val TYPE_EDITTEXT_TOKEN_AUTOCOMPLETE = 17
 
         /**
          * static method to create instance

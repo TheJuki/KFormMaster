@@ -15,10 +15,6 @@ import java.io.Serializable
  */
 class FormTextViewElement<T : Serializable> : BaseFormElement<T> {
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_TEXTVIEW
-    }
-
     /**
      * Parcelable boilerplate
      */

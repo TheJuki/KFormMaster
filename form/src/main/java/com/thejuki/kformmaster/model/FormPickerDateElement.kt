@@ -19,7 +19,7 @@ import java.util.*
 class FormPickerDateElement : FormPickerElement<FormPickerDateElement.DateHolder> {
     class DateHolder : Serializable {
 
-        private var isEmptyDate: Boolean = false
+        var isEmptyDate: Boolean = false
         var dayOfMonth: Int? = null
         var month: Int? = null
         var year: Int? = null
@@ -97,10 +97,6 @@ class FormPickerDateElement : FormPickerElement<FormPickerDateElement.DateHolder
         }
     }
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_PICKER_DATE
-    }
-
     /**
      * Parcelable boilerplate
      */
@@ -114,7 +110,7 @@ class FormPickerDateElement : FormPickerElement<FormPickerDateElement.DateHolder
 
     constructor(tag: Int = 0) : super(tag)
 
-    protected constructor(`in`: Parcel)
+    constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
 

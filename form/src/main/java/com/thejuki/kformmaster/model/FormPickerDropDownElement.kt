@@ -20,10 +20,6 @@ class FormPickerDropDownElement<T : Serializable> : FormPickerElement<T> {
 
     var arrayAdapter: ArrayAdapter<*>? = null
 
-    override fun getType(): Int {
-        return BaseFormElement.TYPE_PICKER_DROP_DOWN
-    }
-
     fun setDialogTitle(dialogTitle: String?): FormPickerDropDownElement<T>
     {
         this.dialogTitle = dialogTitle

@@ -23,7 +23,7 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 Add this in your app's **build.gradle** file:
 ```
 ext {
-    kFormMasterVersion = '1.1.0'
+    kFormMasterVersion = '1.2.0'
 }
 
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
@@ -55,51 +55,57 @@ implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 * Step 2 (No DSL). Add the Form Elements programmatically in your activity
 ```kotlin
 // Initialize variables
-mFormBuilder = FormBuildHelper(this)
-mFormBuilder!!.attachRecyclerView(this, recyclerView)
+formBuilder = FormBuildHelper(this)
+formBuilder!!.attachRecyclerView(this, recyclerView)
 
 val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
 // Declare form elements
-val emailElement = FormEditTextElement<String>(Email.ordinal)
-        .setType(BaseFormElement.TYPE_EDITTEXT_EMAIL)
+val emailElement = FormEmailEditTextElement<String>(Email.ordinal)
         .setTitle(getString(R.string.email))
 elements.add(emailElement)
 
-val passwordElement = FormEditTextElement<String>(Password.ordinal)
-        .setType(BaseFormElement.TYPE_EDITTEXT_PASSWORD)
+val passwordElement = FormPasswordEditTextElement<String>(Password.ordinal)
         .setTitle(getString(R.string.password))
 elements.add(passwordElement)
 
 // Add form elements and refresh the form list
-mFormBuilder!!.addFormElements(elements)
-mFormBuilder!!.refreshView()
+formBuilder!!.addFormElements(elements)
+formBuilder!!.refreshView()
 ```
 
 * Step 2 (With DSL). Add the Form Elements programmatically in your activity
 ```kotlin
-mFormBuilder = form(this, recyclerView) {
-    editText<String>(Email.ordinal) {
+formBuilder = form(this, recyclerView) {
+    email<String>(Email.ordinal) {
         title = getString(R.string.email)
-        type = BaseFormElement.TYPE_EDITTEXT_EMAIL
     }
-    editText<String>(Password.ordinal) {
+    password<String>(Password.ordinal) {
         title = getString(R.string.password)
-        type = BaseFormElement.TYPE_EDITTEXT_PASSWORD
     }
 }
 ```
 
 ### Changelog
 
-#### v1.0.0
-1. Just released!
-2. Converted to Kotlin using the fork by [shaymargolis](https://github.com/shaymargolis/FormMaster).
-3. Added DateTime, Button, Switch, Slider, and Token AutoComplete using [TokenAutoComplete](https://github.com/splitwise/TokenAutoComplete).
+#### v1.2.0
+1. Update RendererRecyclerViewAdapter library
+2. Remove type from BaseFormElement as it is no longer needed
+3. Remove generic FormEditTextElement
+4. Add FormSingleLineEditTextElement (text), 
+    FormMultiLineEditTextElement (textArea), 
+    FormNumberEditTextElement (number), 
+    FormPasswordEditTextElement (password), 
+    and FormPhoneEditTextElement (phone)
 
 #### v1.1.0
 1. Add Kotlin DSL form builder
 2. Update examples to use new Kotlin DSL form builder
+
+#### v1.0.0
+1. Just released!
+2. Converted to Kotlin using the fork by [shaymargolis](https://github.com/shaymargolis/FormMaster).
+3. Added DateTime, Button, Switch, Slider, and Token AutoComplete using [TokenAutoComplete](https://github.com/splitwise/TokenAutoComplete).
 
 ## Reference
 
@@ -135,14 +141,15 @@ private enum class Tag {
     Date,
     Time,
     DateTime,
-    Switch,
     Password,
     SingleItem,
     MultiItems,
     AutoCompleteElement,
     AutoCompleteTokenElement,
     ButtonElement,
-    TextViewElement
+    TextViewElement,
+    SwitchElement,
+    SliderElement,
 }
 
 // Example Picker object
@@ -174,49 +181,43 @@ val listener = object : OnFormElementValueChangedListener {
     }
 }
 
-mFormBuilder = form(this@ActivityName, recyclerView, listener) {
+formBuilder = form(this@ActivityName, recyclerView, listener) {
 
     // Header
     header { title = getString(R.string.PersonalInfo) }
 
     // Email EditText
-    editText<String>(Email.ordinal) {
+   email<String>(Email.ordinal) {
         title = getString(R.string.email)
-        type = BaseFormElement.TYPE_EDITTEXT_EMAIL
         hint = getString(R.string.email_hint)
     }
 
     // Password EditText
-    editText<String>(Password.ordinal) {
+    password<String>(Password.ordinal) {
         title = getString(R.string.password)
-        type = BaseFormElement.TYPE_EDITTEXT_PASSWORD
     }
 
     // Phone EditText
-    editText<String>(Phone.ordinal) {
+    phone<String>(Phone.ordinal) {
         title = getString(R.string.Phone)
-        type = BaseFormElement.TYPE_EDITTEXT_PHONE
         value = "+8801712345678"
     }
 
     // Singleline text EditText
-    editText<String>(Location.ordinal) {
+    text<String>(Location.ordinal) {
         title = getString(R.string.Location)
-        type = BaseFormElement.TYPE_EDITTEXT_TEXT_SINGLELINE
         value = "Dhaka"
     }
 
     // Multiline EditText
-    editText<String>(Address.ordinal) {
+    textArea<String>(Address.ordinal) {
         title = getString(R.string.Address)
-        type = BaseFormElement.TYPE_EDITTEXT_TEXT_MULTILINE
         value = ""
     }
 
     // Number EditText
-    editText<String>(ZipCode.ordinal) {
+    number<String>(ZipCode.ordinal) {
         title = getString(R.string.ZipCode)
-        type = BaseFormElement.TYPE_EDITTEXT_NUMBER
         value = "1000"
     }
 
@@ -303,20 +304,20 @@ mFormBuilder = form(this@ActivityName, recyclerView, listener) {
         value = getString(R.string.Button)
         valueChanged = object : OnFormElementValueChangedListener {
             override fun onValueChanged(formElement: BaseFormElement<*>) {
-                val confirmAlert = AlertDialog.Builder(this@FormListenerActivity).create()
-                confirmAlert.setTitle(this@FormListenerActivity.getString(R.string.Confirm))
-                confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormListenerActivity.getString(android.R.string.ok), { _, _ ->
+                val confirmAlert = AlertDialog.Builder(this@ActivityName).create()
+                confirmAlert.setTitle(this@ActivityName.getString(R.string.Confirm))
+                confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@ActivityName.getString(android.R.string.ok), { _, _ ->
                     // Could be used to clear another field:
-                    val dateToDeleteElement = mFormBuilder!!.getFormElement(Tag.Date.ordinal)
+                    val dateToDeleteElement = formBuilder!!.getFormElement(Tag.Date.ordinal)
                     // Display current date
-                    Toast.makeText(this@FormListenerActivity,
-                            (dateToDeleteElement!!.getValue() as FormPickerDateElement.DateHolder).getTime().toString(),
+                    Toast.makeText(this@ActivityName,
+                            (dateToDeleteElement!!.value as FormPickerDateElement.DateHolder).getTime().toString(),
                             Toast.LENGTH_SHORT).show()
-                    (dateToDeleteElement.getValue() as FormPickerDateElement.DateHolder).useCurrentDate()
-                    mFormBuilder!!.onValueChanged(dateToDeleteElement)
-                    mFormBuilder!!.refreshView()
+                    (dateToDeleteElement.value as FormPickerDateElement.DateHolder).useCurrentDate()
+                    formBuilder!!.onValueChanged(dateToDeleteElement)
+                    formBuilder!!.refreshView()
                 })
-                confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FormListenerActivity.getString(android.R.string.cancel), { _, _ ->
+                confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@ActivityName.getString(android.R.string.cancel), { _, _ ->
                 })
                 confirmAlert.show()
             }
@@ -331,9 +332,9 @@ While creating a new instance of FormBuildHelper, add a listener in the construc
 Have a look at the example code for details
 
 ```kotlin
-var mFormBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListener {
+var formBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListener {
     override fun onValueChanged(formElement: BaseFormElement<*>) {
-         // do anything here with formElement.getValue()   
+         // do anything here with formElement.value
     }
 })
 ```
@@ -341,14 +342,14 @@ var mFormBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListe
 ### Get value for unique form elements
 Use the unique tag assigned earlier to retrieve value (See examples in this repo)
 ```kotlin
-val element = mFormBuilder!!.getFormElement(Email.ordinal)
-val value: String = element?.getValue() as String
+val element = formBuilder!!.getFormElement(Email.ordinal)
+val value: String = element?.value as String
 ```
 
 ### Check if form is valid
 Use this method if you need to check whether the required elements of the form is completed
 ```kotlin
-mFormBuilder.isValidForm() // returns boolean whether the form is valid or not
+formBuilder.isValidForm() // returns boolean whether the form is valid or not
 ```
 
 ### Form accent color change

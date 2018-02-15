@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
-import com.thejuki.kformmaster.model.*
+import com.thejuki.kformmaster.model.BaseFormElement
+import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmasterexample.FormListenerActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
@@ -29,7 +30,7 @@ import java.util.Date
  */
 class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListener {
 
-    private var mFormBuilder: FormBuildHelper? = null
+    private var formBuilder: FormBuildHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,37 +90,30 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
     }
 
     private fun setupForm() {
-
-        mFormBuilder = form(this, recyclerView, this) {
+        formBuilder = form(this, recyclerView, this) {
             header { title = getString(R.string.PersonalInfo) }
-            editText<String>(Email.ordinal) {
+            email<String>(Email.ordinal) {
                 title = getString(R.string.email)
-                type = BaseFormElement.TYPE_EDITTEXT_EMAIL
                 hint = getString(R.string.email_hint)
             }
-            editText<String>(Password.ordinal) {
+            password<String>(Password.ordinal) {
                 title = getString(R.string.password)
-                type = BaseFormElement.TYPE_EDITTEXT_PASSWORD
             }
-            editText<String>(Phone.ordinal) {
+            phone<String>(Phone.ordinal) {
                 title = getString(R.string.Phone)
-                type = BaseFormElement.TYPE_EDITTEXT_PHONE
                 value = "+8801712345678"
             }
             header { title = getString(R.string.FamilyInfo) }
-            editText<String>(Location.ordinal) {
+            text<String>(Location.ordinal) {
                 title = getString(R.string.Location)
-                type = BaseFormElement.TYPE_EDITTEXT_TEXT_SINGLELINE
                 value = "Dhaka"
             }
-            editText<String>(Address.ordinal) {
+            textArea<String>(Address.ordinal) {
                 title = getString(R.string.Address)
-                type = BaseFormElement.TYPE_EDITTEXT_TEXT_MULTILINE
                 value = ""
             }
-            editText<String>(ZipCode.ordinal) {
+            number<String>(ZipCode.ordinal) {
                 title = getString(R.string.ZipCode)
-                type = BaseFormElement.TYPE_EDITTEXT_NUMBER
                 value = "1000"
             }
             header { title = getString(R.string.Schedule) }
@@ -164,6 +158,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                 arrayAdapter = EmailAutoCompleteAdapter(this@FormListenerActivity,
                         android.R.layout.simple_list_item_1)
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
+                hint = "Try \"Apple May\""
             }
             textView<String>(TextViewElement.ordinal) {
                 title = getString(R.string.TextView)
@@ -191,14 +186,14 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                         confirmAlert.setTitle(this@FormListenerActivity.getString(R.string.Confirm))
                         confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormListenerActivity.getString(android.R.string.ok), { _, _ ->
                             // Could be used to clear another field:
-                            val dateToDeleteElement = mFormBuilder!!.getFormElement(Tag.Date.ordinal)
+                            val dateToDeleteElement = formBuilder!!.getFormElement(Tag.Date.ordinal)
                             // Display current date
                             Toast.makeText(this@FormListenerActivity,
-                                    (dateToDeleteElement!!.getValue() as FormPickerDateElement.DateHolder).getTime().toString(),
+                                    (dateToDeleteElement!!.value as FormPickerDateElement.DateHolder).getTime().toString(),
                                     Toast.LENGTH_SHORT).show()
-                            (dateToDeleteElement.getValue() as FormPickerDateElement.DateHolder).useCurrentDate()
-                            mFormBuilder!!.onValueChanged(dateToDeleteElement)
-                            mFormBuilder!!.refreshView()
+                            (dateToDeleteElement.value as FormPickerDateElement.DateHolder).useCurrentDate()
+                            formBuilder!!.onValueChanged(dateToDeleteElement)
+                            formBuilder!!.refreshView()
                         })
                         confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FormListenerActivity.getString(android.R.string.cancel), { _, _ ->
                         })
@@ -210,6 +205,6 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
     }
 
     override fun onValueChanged(formElement: BaseFormElement<*>) {
-        Toast.makeText(this, formElement.getValue()?.toString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, if (formElement.value != null) formElement.value.toString() else formElement.optionsSelected?.toString(), Toast.LENGTH_SHORT).show()
     }
 }

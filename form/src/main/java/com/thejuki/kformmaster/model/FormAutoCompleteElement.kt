@@ -53,17 +53,6 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
         return this
     }
 
-    override fun getType(): Int {
-        return BaseFormElement.Companion.TYPE_EDITTEXT_AUTOCOMPLETE
-    }
-
-    override var mValue: T? = null
-        set(value) {
-            field = value
-            typedString = value?.toString()
-            mValueChanged?.onValueChanged(this)
-        }
-
     override fun setValue(mValue: Any?): BaseFormElement<T> {
         typedString = mValue?.toString()
 
@@ -77,13 +66,6 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
             mStringOptions!!.add(i.toString())
         }
         return this
-    }
-
-    fun setResultOption(resultOption: Any) {
-        super.setOptions(listOf(resultOption) as List<T>)
-        super.setOptionsSelected(listOf(resultOption) as List<T>)
-        mStringOptions = HashSet()
-        mStringOptions!!.add(resultOption.toString())
     }
 
     /**
