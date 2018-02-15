@@ -121,7 +121,6 @@ val header = FormHeader.createInstance(getString(R.string.HeaderString))
 **General object format**
 ```kotlin
 val element = Form[Type]Element<T: Serializable>(TAG_NAME: Int) // Tag is required. It is recommended to use an Enum's ordinal.
-    .setType(BaseFormElement.TYPE_PICKER_MULTI_CHECKBOX) // setting input type
     .setTitle("Pick your favourite fruit") // setting title
     .setValue("Banana") // setting value of the field, if any
     .setOptions(fruits) // setting pickable options, if any
