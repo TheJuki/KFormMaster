@@ -23,7 +23,7 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 Add this in your app's **build.gradle** file:
 ```
 ext {
-    kFormMasterVersion = '1.2.0'
+    kFormMasterVersion = '1.2.1'
 }
 
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
@@ -87,6 +87,9 @@ formBuilder = form(this, recyclerView) {
 ```
 
 ### Changelog
+
+#### v1.2.1
+1. Resolve issue with RendererRecyclerViewAdapter library
 
 #### v1.2.0
 1. Update RendererRecyclerViewAdapter library
