@@ -45,7 +45,7 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
         }
 
         val datePickerDialog = DatePickerDialog(context,
-                dateDialogListener(model),
+                dateDialogListener(model, editTextValue, textViewError),
                 model.value?.year!!,
                 model.value?.month!! - 1,
                 model.value?.dayOfMonth!!)
@@ -61,7 +61,9 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
         }
     })
 
-    private fun dateDialogListener(model: FormPickerDateTimeElement): DatePickerDialog.OnDateSetListener {
+    private fun dateDialogListener(model: FormPickerDateTimeElement,
+                                   editTextValue: AppCompatEditText,
+                                   textViewError: AppCompatTextView): DatePickerDialog.OnDateSetListener {
         return DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             // get current form element, existing value and new value
 
@@ -73,14 +75,16 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
             }
 
             // Now show time picker
-            TimePickerDialog(context, timeDialogListener(model),
+            TimePickerDialog(context, timeDialogListener(model, editTextValue, textViewError),
                     model.value!!.hourOfDay!!,
                     model.value!!.minute!!,
                     false).show()
         }
     }
 
-    private fun timeDialogListener(model: FormPickerDateTimeElement): TimePickerDialog.OnTimeSetListener {
+    private fun timeDialogListener(model: FormPickerDateTimeElement,
+                                   editTextValue: AppCompatEditText,
+                                   textViewError: AppCompatTextView): TimePickerDialog.OnTimeSetListener {
         return TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
             with(model.value)
             {
@@ -91,7 +95,9 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
             model.setError(null) // Reset after value change
             model.valueChanged?.onValueChanged(model)
             formBuilder.onValueChanged(model)
-            formBuilder.refreshView()
+
+            editTextValue.setText(model.valueAsString)
+            setError(textViewError, null)
         }
     }
 }

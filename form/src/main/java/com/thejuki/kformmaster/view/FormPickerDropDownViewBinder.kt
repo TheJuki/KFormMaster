@@ -53,8 +53,11 @@ class FormPickerDropDownViewBinder(private val context: Context, private val for
                         model.setValue(model.arrayAdapter!!.getItem(which))
                         model.setError(null) // Reset after value change
                         setError(textViewError, null) // Reset after value change
+                        model.valueChanged?.onValueChanged(model)
                         formBuilder.onValueChanged(model)
-                        formBuilder.refreshView()
+
+                        editTextValue.setText(model.valueAsString)
+                        setError(textViewError, null)
                     })
                     .create()
         } else {
@@ -65,8 +68,11 @@ class FormPickerDropDownViewBinder(private val context: Context, private val for
                         model.setValue(model.options!![which])
                         model.setError(null) // Reset after value change
                         setError(textViewError, null) // Reset after value change
+                        model.valueChanged?.onValueChanged(model)
                         formBuilder.onValueChanged(model)
-                        formBuilder.refreshView()
+
+                        editTextValue.setText(model.valueAsString)
+                        setError(textViewError, null)
                     }
                     .create()
         }

@@ -96,7 +96,7 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
                     model.setValue(null)
                     model.setError(null)
                     setError(textViewError, null)
-
+                    model.valueChanged?.onValueChanged(model)
                     formBuilder.onValueChanged(model)
                 }
             }
