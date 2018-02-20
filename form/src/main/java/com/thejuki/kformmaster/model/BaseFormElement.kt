@@ -18,6 +18,7 @@ import java.util.*
 open class BaseFormElement<T : Serializable>(var tag: Int = 0, var title: String? = null) : ViewModel, Parcelable {
 
     // class variables
+    internal var id: Int = 0 // Used internally to provide a Unique ID
     open var value: T? = null // value to be shown on right
         set(value) {
             field = value
@@ -99,12 +100,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = 0, var title: String
         return this.visible
     }
 
-    override fun toString(): String {
-        return "TAG: " + this.tag.toString() +
-                ", TITLE: " + this.title +
-                ", VALUE: " + this.value +
-                ", REQUIRED: " + this.required.toString()
-    }
+
 
     /**
      * Parcelable boilerplate
@@ -152,16 +148,20 @@ open class BaseFormElement<T : Serializable>(var tag: Int = 0, var title: String
     }
 
     override fun hashCode(): Int {
-        return tag
+        return id
     }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is BaseFormElement<*>) return false
 
-        if (tag != other.tag) return false
+        if (id != other.id) return false
 
         return true
+    }
+
+    override fun toString(): String {
+        return "FormElement(tag=$tag, title=$title, id=$id, value=$value, hint=$hint, error=$error, required=$required, visible=$visible)"
     }
 
     protected constructor(`in`: Parcel) : this() {

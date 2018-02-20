@@ -5,10 +5,14 @@ import android.content.Context
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
+import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
+import com.github.vivchar.rendererrecyclerviewadapter.ViewState
+import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPickerTimeElement
+import com.thejuki.kformmaster.state.FormPickerTimeViewState
 
 /**
  * Form Picker Time ViewBinder
@@ -19,7 +23,7 @@ import com.thejuki.kformmaster.model.FormPickerTimeElement
  * @version 1.0
  */
 class FormPickerTimeViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormPickerTimeElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element, FormPickerTimeElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -46,7 +50,15 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
                 false)
 
         setOnClickListener(editTextValue, itemView, timePickerDialog)
-    }
+    }, object : ViewStateProvider<FormPickerTimeElement, ViewHolder> {
+        override fun createViewStateID(model: FormPickerTimeElement): Int {
+            return model.id
+        }
+
+        override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
+            return FormPickerTimeViewState(holder)
+        }
+    })
 
     private fun timeDialogListener(model: FormPickerTimeElement): TimePickerDialog.OnTimeSetListener {
         return TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->

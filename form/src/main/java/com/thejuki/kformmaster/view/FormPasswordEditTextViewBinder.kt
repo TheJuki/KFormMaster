@@ -9,10 +9,14 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
+import com.github.vivchar.rendererrecyclerviewadapter.ViewState
+import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPasswordEditTextElement
+import com.thejuki.kformmaster.state.FormPasswordEditTextViewState
 
 /**
  * Form Password EditText ViewBinder
@@ -23,7 +27,7 @@ import com.thejuki.kformmaster.model.FormPasswordEditTextElement
  * @version 1.0
  */
 class FormPasswordEditTextViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormPasswordEditTextElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element, FormPasswordEditTextElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -70,7 +74,15 @@ class FormPasswordEditTextViewBinder(private val context: Context, private val f
 
             override fun afterTextChanged(editable: Editable) {}
         })
-    }
+    }, object : ViewStateProvider<FormPasswordEditTextElement<*>, ViewHolder> {
+        override fun createViewStateID(model: FormPasswordEditTextElement<*>): Int {
+            return model.id
+        }
+
+        override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
+            return FormPasswordEditTextViewState(holder)
+        }
+    })
 
     private fun setEditTextFocusEnabled(editTextValue: AppCompatEditText, itemView: View) {
         itemView.setOnClickListener {

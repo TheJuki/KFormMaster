@@ -90,6 +90,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
     }
 
     private fun setupForm() {
+        var count = Tag.values().size
         formBuilder = form(this, recyclerView, this) {
             header { title = getString(R.string.PersonalInfo) }
             email<String>(Email.ordinal) {

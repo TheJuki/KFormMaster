@@ -12,7 +12,6 @@ import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.view.*
 import java.util.*
 
-
 /**
  * Form Build Helper
  *
@@ -23,9 +22,12 @@ import java.util.*
  */
 class FormBuildHelper {
 
+    // Used for form models. Increments when a element is added
+    internal var lastId = 0
+
     private var formAdapter: RendererRecyclerViewAdapter? = null
 
-    var elements: ArrayList<BaseFormElement<*>> = arrayListOf()
+    internal var elements: ArrayList<BaseFormElement<*>> = arrayListOf()
 
     private var listener: OnFormElementValueChangedListener? = null
 
@@ -146,6 +148,9 @@ class FormBuildHelper {
      */
     fun addFormElements(formElements: List<BaseFormElement<*>>) {
         this.elements.addAll(formElements)
+        for (element in elements) {
+            element.id = ++lastId
+        }
         this.formAdapter!!.setItems(this.elements)
     }
 

@@ -4,10 +4,14 @@ import android.content.Context
 import android.support.v7.widget.AppCompatTextView
 import android.support.v7.widget.SwitchCompat
 import android.view.View
+import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
+import com.github.vivchar.rendererrecyclerviewadapter.ViewState
+import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormSwitchElement
+import com.thejuki.kformmaster.state.FormSwitchViewState
 
 /**
  * Form EditText Binder
@@ -18,7 +22,7 @@ import com.thejuki.kformmaster.model.FormSwitchElement
  * @version 1.0
  */
 class FormSwitchViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element_switch, FormSwitchElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element_switch, FormSwitchElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, null, itemView)
@@ -37,7 +41,15 @@ class FormSwitchViewBinder(private val context: Context, private val formBuilder
 
             formBuilder.onValueChanged(model)
         }
-    }
+    }, object : ViewStateProvider<FormSwitchElement<*>, ViewHolder> {
+        override fun createViewStateID(model: FormSwitchElement<*>): Int {
+            return model.id
+        }
+
+        override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
+            return FormSwitchViewState(holder)
+        }
+    })
 
     private fun setSwitchFocusEnabled(itemView: View, switch: SwitchCompat) {
         itemView.setOnClickListener {
