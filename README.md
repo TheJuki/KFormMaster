@@ -86,34 +86,6 @@ formBuilder = form(this, recyclerView) {
 }
 ```
 
-### Changelog
-
-#### v1.2.2
-1. Add View States to View Binders to save and restore their states
-2. Add missing model.valueChanged?.onValueChanged(model) to View Binders
-
-#### v1.2.1
-1. Resolve issue with RendererRecyclerViewAdapter library
-
-#### v1.2.0
-1. Update RendererRecyclerViewAdapter library
-2. Remove type from BaseFormElement as it is no longer needed
-3. Remove generic FormEditTextElement
-4. Add FormSingleLineEditTextElement (text), 
-    FormMultiLineEditTextElement (textArea), 
-    FormNumberEditTextElement (number), 
-    FormPasswordEditTextElement (password), 
-    and FormPhoneEditTextElement (phone)
-
-#### v1.1.0
-1. Add Kotlin DSL form builder
-2. Update examples to use new Kotlin DSL form builder
-
-#### v1.0.0
-1. Just released!
-2. Converted to Kotlin using the fork by [shaymargolis](https://github.com/shaymargolis/FormMaster).
-3. Added DateTime, Button, Switch, Slider, and Token AutoComplete using [TokenAutoComplete](https://github.com/splitwise/TokenAutoComplete).
-
 ## Reference
 
 ### Item Definition
@@ -389,8 +361,7 @@ You can contribute to the original Java library here: [FormMaster](https://githu
 OR
 You can submit pull requests or issues to this project to make this port even better!
 
-### Credits
-
+## Credits
 * The FormMaster library from adib2149 (https://github.com/adib2149/FormMaster) is the original project this Kotlin port is based on
 * The FormMaster fork from shaymargolis (https://github.com/shaymargolis/FormMaster) is used for the generics support and addition of the AutoComplete form element
 * The Renderer Recycler View Adapter library from vivchar (https://github.com/vivchar/RendererRecyclerViewAdapter) is used to support several types of cells
