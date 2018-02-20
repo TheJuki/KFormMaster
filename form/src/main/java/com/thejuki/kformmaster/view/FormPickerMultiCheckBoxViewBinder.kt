@@ -5,10 +5,14 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
+import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
+import com.github.vivchar.rendererrecyclerviewadapter.ViewState
+import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPickerMultiCheckBoxElement
+import com.thejuki.kformmaster.state.FormMultiLineEditTextViewState
 import java.util.*
 
 /**
@@ -20,7 +24,7 @@ import java.util.*
  * @version 1.0
  */
 class FormPickerMultiCheckBoxViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormPickerMultiCheckBoxElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element, FormPickerMultiCheckBoxElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -57,7 +61,7 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
             }
         }
 
-        editTextValue.setText(selectedItems)
+        editTextValue.setText(getSelectedItemsText(model))
 
         // prepare the dialog
         val alertDialog = AlertDialog.Builder(context)
@@ -82,11 +86,50 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
                     model.setOptionsSelected(selectedOptions)
                     model.setError(null)
                     formBuilder.onValueChanged(model)
-                    formBuilder.refreshView()
+                    model.valueChanged?.onValueChanged(model)
+                    editTextValue.setText(getSelectedItemsText(model))
+                    setError(textViewError, null)
                 }
                 .setNegativeButton(android.R.string.cancel) { _, _ -> }
                 .create()
 
         setOnClickListener(editTextValue, itemView, alertDialog)
+    }, object : ViewStateProvider<FormPickerMultiCheckBoxElement<*>, ViewHolder> {
+        override fun createViewStateID(model: FormPickerMultiCheckBoxElement<*>): Int {
+            return model.id
+        }
+
+        override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
+            return FormMultiLineEditTextViewState(holder)
+        }
+    })
+
+    private fun getSelectedItemsText(model: FormPickerMultiCheckBoxElement<*>): String {
+        val options = arrayOfNulls<CharSequence>(model.options?.size ?: 0)
+        val optionsSelected = BooleanArray(model.options?.size ?: 0)
+        val mSelectedItems = ArrayList<Int>()
+
+        for (i in model.options!!.indices) {
+            val obj = model.options!![i]
+
+            options[i] = obj.toString()
+            optionsSelected[i] = false
+
+            if (model.optionsSelected?.contains(obj) == true) {
+                optionsSelected[i] = true
+                mSelectedItems.add(i)
+            }
+        }
+
+        var selectedItems = ""
+        for (i in mSelectedItems.indices) {
+            selectedItems += options[mSelectedItems[i]]
+
+            if (i < mSelectedItems.size - 1) {
+                selectedItems += ", "
+            }
+        }
+
+        return selectedItems
     }
 }

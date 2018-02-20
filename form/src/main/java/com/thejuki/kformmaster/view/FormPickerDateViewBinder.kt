@@ -5,10 +5,14 @@ import android.content.Context
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
+import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
+import com.github.vivchar.rendererrecyclerviewadapter.ViewState
+import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPickerDateElement
+import com.thejuki.kformmaster.state.FormPickerDateViewState
 
 /**
  * Form Picker Date ViewBinder
@@ -19,7 +23,7 @@ import com.thejuki.kformmaster.model.FormPickerDateElement
  * @version 1.0
  */
 class FormPickerDateViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormPickerDateElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element, FormPickerDateElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -40,15 +44,25 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
         }
 
         val datePickerDialog = DatePickerDialog(context,
-                dateDialogListener(model),
+                dateDialogListener(model, editTextValue, textViewError),
                 model.value?.year!!,
                 model.value?.month!! - 1,
                 model.value?.dayOfMonth!!)
 
         setOnClickListener(editTextValue, itemView, datePickerDialog)
-    }
+    }, object : ViewStateProvider<FormPickerDateElement, ViewHolder> {
+        override fun createViewStateID(model: FormPickerDateElement): Int {
+            return model.id
+        }
 
-    private fun dateDialogListener(model: FormPickerDateElement): DatePickerDialog.OnDateSetListener {
+        override fun createViewState(holder: ViewHolder): ViewState<*> {
+            return FormPickerDateViewState(holder)
+        }
+    })
+
+    private fun dateDialogListener(model: FormPickerDateElement,
+                                   editTextValue: AppCompatEditText,
+                                   textViewError: AppCompatTextView): DatePickerDialog.OnDateSetListener {
         return DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             // get current form element, existing value and new value
             var dateChanged = false
@@ -66,7 +80,9 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
                 model.setError(null) // Reset after value change
                 model.valueChanged?.onValueChanged(model)
                 formBuilder.onValueChanged(model)
-                formBuilder.refreshView()
+
+                editTextValue.setText(model.valueAsString)
+                setError(textViewError, null)
             }
         }
     }

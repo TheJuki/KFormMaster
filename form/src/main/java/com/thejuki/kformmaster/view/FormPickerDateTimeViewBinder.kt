@@ -6,10 +6,14 @@ import android.content.Context
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
+import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
+import com.github.vivchar.rendererrecyclerviewadapter.ViewState
+import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPickerDateTimeElement
+import com.thejuki.kformmaster.state.FormPickerDateTimeViewState
 
 /**
  * Form Picker DateTime ViewBinder
@@ -20,7 +24,7 @@ import com.thejuki.kformmaster.model.FormPickerDateTimeElement
  * @version 1.0
  */
 class FormPickerDateTimeViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormPickerDateTimeElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element, FormPickerDateTimeElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -41,15 +45,25 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
         }
 
         val datePickerDialog = DatePickerDialog(context,
-                dateDialogListener(model),
+                dateDialogListener(model, editTextValue, textViewError),
                 model.value?.year!!,
                 model.value?.month!! - 1,
                 model.value?.dayOfMonth!!)
 
         setOnClickListener(editTextValue, itemView, datePickerDialog)
-    }
+    }, object : ViewStateProvider<FormPickerDateTimeElement, ViewHolder> {
+        override fun createViewStateID(model: FormPickerDateTimeElement): Int {
+            return model.id
+        }
 
-    private fun dateDialogListener(model: FormPickerDateTimeElement): DatePickerDialog.OnDateSetListener {
+        override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
+            return FormPickerDateTimeViewState(holder)
+        }
+    })
+
+    private fun dateDialogListener(model: FormPickerDateTimeElement,
+                                   editTextValue: AppCompatEditText,
+                                   textViewError: AppCompatTextView): DatePickerDialog.OnDateSetListener {
         return DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             // get current form element, existing value and new value
 
@@ -61,14 +75,16 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
             }
 
             // Now show time picker
-            TimePickerDialog(context, timeDialogListener(model),
+            TimePickerDialog(context, timeDialogListener(model, editTextValue, textViewError),
                     model.value!!.hourOfDay!!,
                     model.value!!.minute!!,
                     false).show()
         }
     }
 
-    private fun timeDialogListener(model: FormPickerDateTimeElement): TimePickerDialog.OnTimeSetListener {
+    private fun timeDialogListener(model: FormPickerDateTimeElement,
+                                   editTextValue: AppCompatEditText,
+                                   textViewError: AppCompatTextView): TimePickerDialog.OnTimeSetListener {
         return TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
             with(model.value)
             {
@@ -79,7 +95,9 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
             model.setError(null) // Reset after value change
             model.valueChanged?.onValueChanged(model)
             formBuilder.onValueChanged(model)
-            formBuilder.refreshView()
+
+            editTextValue.setText(model.valueAsString)
+            setError(textViewError, null)
         }
     }
 }

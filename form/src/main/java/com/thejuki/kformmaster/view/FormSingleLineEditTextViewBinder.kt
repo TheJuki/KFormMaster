@@ -8,10 +8,14 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
+import com.github.vivchar.rendererrecyclerviewadapter.ViewState
+import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormSingleLineEditTextElement
+import com.thejuki.kformmaster.state.FormSingleLineEditTextViewState
 
 /**
  * Form SingleLine EditText ViewBinder
@@ -22,7 +26,7 @@ import com.thejuki.kformmaster.model.FormSingleLineEditTextElement
  * @version 1.0
  */
 class FormSingleLineEditTextViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormSingleLineEditTextElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element, FormSingleLineEditTextElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -62,14 +66,22 @@ class FormSingleLineEditTextViewBinder(private val context: Context, private val
                     model.setValue(newValue)
                     model.setError(null)
                     setError(textViewError, null)
-
+                    model.valueChanged?.onValueChanged(model)
                     formBuilder.onValueChanged(model)
                 }
             }
 
             override fun afterTextChanged(editable: Editable) {}
         })
-    }
+    }, object : ViewStateProvider<FormSingleLineEditTextElement<*>, ViewHolder> {
+        override fun createViewStateID(model: FormSingleLineEditTextElement<*>): Int {
+            return model.id
+        }
+
+        override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
+            return FormSingleLineEditTextViewState(holder)
+        }
+    })
 
     private fun setEditTextFocusEnabled(editTextValue: AppCompatEditText, itemView: View) {
         itemView.setOnClickListener {

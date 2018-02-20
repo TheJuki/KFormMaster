@@ -9,10 +9,14 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
+import com.github.vivchar.rendererrecyclerviewadapter.ViewState
+import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPhoneEditTextElement
+import com.thejuki.kformmaster.state.FormPhoneEditTextViewState
 
 /**
  * Form Phone EditText ViewBinder
@@ -23,7 +27,7 @@ import com.thejuki.kformmaster.model.FormPhoneEditTextElement
  * @version 1.0
  */
 class FormPhoneEditTextViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormPhoneEditTextElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element, FormPhoneEditTextElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -63,14 +67,22 @@ class FormPhoneEditTextViewBinder(private val context: Context, private val form
                     model.setValue(newValue)
                     model.setError(null)
                     setError(textViewError, null)
-
+                    model.valueChanged?.onValueChanged(model)
                     formBuilder.onValueChanged(model)
                 }
             }
 
             override fun afterTextChanged(editable: Editable) {}
         })
-    }
+    }, object : ViewStateProvider<FormPhoneEditTextElement<*>, ViewHolder> {
+        override fun createViewStateID(model: FormPhoneEditTextElement<*>): Int {
+            return model.id
+        }
+
+        override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
+            return FormPhoneEditTextViewState(holder)
+        }
+    })
 
     private fun setEditTextFocusEnabled(editTextValue: AppCompatEditText, itemView: View) {
         itemView.setOnClickListener {

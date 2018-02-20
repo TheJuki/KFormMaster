@@ -13,7 +13,7 @@ import com.thejuki.kformmaster.model.BaseFormElement
  */
 class ElementDiffCallback : DiffCallback<BaseFormElement<*>>() {
     override fun areItemsTheSame(oldItem: BaseFormElement<*>, newItem: BaseFormElement<*>): Boolean {
-        return oldItem.tag == newItem.tag
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: BaseFormElement<*>, newItem: BaseFormElement<*>): Boolean {

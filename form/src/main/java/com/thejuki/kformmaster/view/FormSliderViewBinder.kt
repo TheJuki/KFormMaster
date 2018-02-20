@@ -4,10 +4,14 @@ import android.content.Context
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
 import android.widget.SeekBar
+import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
+import com.github.vivchar.rendererrecyclerviewadapter.ViewState
+import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormSliderElement
+import com.thejuki.kformmaster.state.FormSliderViewState
 import kotlin.math.roundToInt
 
 /**
@@ -19,7 +23,7 @@ import kotlin.math.roundToInt
  * @version 1.0
  */
 class FormSliderViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element_slider, FormSliderElement::class.java) { model, finder, _ ->
+    var viewBinder = ViewBinder(R.layout.form_element_slider, FormSliderElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -58,8 +62,19 @@ class FormSliderViewBinder(private val context: Context, private val formBuilder
 
                 model.setValue(roundedValue)
                 formBuilder.onValueChanged(model)
-                formBuilder.refreshView()
+
+                slider.progress = model.value as Int
+                progressValue.text = model.value.toString()
+                setError(textViewError, null)
             }
         })
-    }
+    }, object : ViewStateProvider<FormSliderElement, ViewHolder> {
+        override fun createViewStateID(model: FormSliderElement): Int {
+            return model.id
+        }
+
+        override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
+            return FormSliderViewState(holder)
+        }
+    })
 }
