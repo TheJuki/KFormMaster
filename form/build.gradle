@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 5
-        versionName "1.2.2"
+        versionCode 6
+        versionName "1.2.3"
     }
 
     buildTypes {
@@ -49,14 +49,14 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // Token Autocomplete
-    implementation "com.splitwise:tokenautocomplete:$tokenautocompleteVersion@aar"
+    compile "com.splitwise:tokenautocomplete:$tokenautocompleteVersion@aar"
 }
 
 publish {
     userOrg = 'thejuki'
     groupId = 'com.thejuki'
     artifactId = 'k-form-master'
-    publishVersion = '1.2.2'
+    publishVersion = '1.2.3'
     desc = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
     website = 'https://github.com/TheJuki/KFormMaster'
 }
