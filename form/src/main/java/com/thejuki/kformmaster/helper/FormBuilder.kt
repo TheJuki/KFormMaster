@@ -54,7 +54,7 @@ fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
 }
 
 /** Builder method to add a BaseFormElement */
-abstract class BaseElementBuilder<T: Serializable>(protected val tag: Int) : FieldBuilder {
+abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1) : FieldBuilder {
     var title: String? = null // title for the form element
     var type: Int = 0 // type for the form element
     var value: T? = null // value to be shown on right
@@ -70,7 +70,7 @@ abstract class BaseElementBuilder<T: Serializable>(protected val tag: Int) : Fie
 }
 
 /** Builder method to add a FormSingleLineEditTextElement */
-class SingleLineEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
+class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
     override fun build() =
             FormSingleLineEditTextElement(tag)
                     .setTitle(title.orEmpty())
@@ -83,7 +83,7 @@ class SingleLineEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
                     as FormSingleLineEditTextElement
 }
 
-fun FormBuildHelper.text(tag: Int, init: SingleLineEditTextBuilder.() -> Unit): FormSingleLineEditTextElement {
+fun FormBuildHelper.text(tag: Int = -1, init: SingleLineEditTextBuilder.() -> Unit): FormSingleLineEditTextElement {
     val element = SingleLineEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -91,7 +91,7 @@ fun FormBuildHelper.text(tag: Int, init: SingleLineEditTextBuilder.() -> Unit): 
 }
 
 /** Builder method to add a FormMultiLineEditTextElement */
-class MultiLineEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
+class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
     override fun build() =
             FormMultiLineEditTextElement(tag)
                     .setTitle(title.orEmpty())
@@ -104,7 +104,7 @@ class MultiLineEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
                     as FormMultiLineEditTextElement
 }
 
-fun FormBuildHelper.textArea(tag: Int, init: MultiLineEditTextBuilder.() -> Unit): FormMultiLineEditTextElement {
+fun FormBuildHelper.textArea(tag: Int = -1, init: MultiLineEditTextBuilder.() -> Unit): FormMultiLineEditTextElement {
     val element = MultiLineEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -112,7 +112,7 @@ fun FormBuildHelper.textArea(tag: Int, init: MultiLineEditTextBuilder.() -> Unit
 }
 
 /** Builder method to add a FormNumberEditTextElement */
-class NumberEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
+class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
     override fun build() =
             FormNumberEditTextElement(tag)
                     .setTitle(title.orEmpty())
@@ -125,7 +125,7 @@ class NumberEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
                     as FormNumberEditTextElement
 }
 
-fun FormBuildHelper.number(tag: Int, init: NumberEditTextBuilder.() -> Unit): FormNumberEditTextElement {
+fun FormBuildHelper.number(tag: Int = -1, init: NumberEditTextBuilder.() -> Unit): FormNumberEditTextElement {
     val element = NumberEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -133,7 +133,7 @@ fun FormBuildHelper.number(tag: Int, init: NumberEditTextBuilder.() -> Unit): Fo
 }
 
 /** Builder method to add a FormEmailEditTextElement */
-class EmailEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
+class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
     override fun build() =
             FormEmailEditTextElement(tag)
                     .setTitle(title.orEmpty())
@@ -146,7 +146,7 @@ class EmailEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
                     as FormEmailEditTextElement
 }
 
-fun FormBuildHelper.email(tag: Int, init: EmailEditTextBuilder.() -> Unit): FormEmailEditTextElement {
+fun FormBuildHelper.email(tag: Int = -1, init: EmailEditTextBuilder.() -> Unit): FormEmailEditTextElement {
     val element = EmailEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -154,7 +154,7 @@ fun FormBuildHelper.email(tag: Int, init: EmailEditTextBuilder.() -> Unit): Form
 }
 
 /** Builder method to add a FormPhoneEditTextElement */
-class PasswordEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
+class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
     override fun build() =
             FormPasswordEditTextElement(tag)
                     .setTitle(title.orEmpty())
@@ -167,7 +167,7 @@ class PasswordEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
                     as FormPasswordEditTextElement
 }
 
-fun FormBuildHelper.password(tag: Int, init: PasswordEditTextBuilder.() -> Unit): FormPasswordEditTextElement {
+fun FormBuildHelper.password(tag: Int = -1, init: PasswordEditTextBuilder.() -> Unit): FormPasswordEditTextElement {
     val element = PasswordEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -175,7 +175,7 @@ fun FormBuildHelper.password(tag: Int, init: PasswordEditTextBuilder.() -> Unit)
 }
 
 /** Builder method to add a FormEmailEditTextElement */
-class PhoneEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
+class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
     override fun build() =
             FormPhoneEditTextElement(tag)
                     .setTitle(title.orEmpty())
@@ -188,7 +188,7 @@ class PhoneEditTextBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
                     as FormPhoneEditTextElement
 }
 
-fun FormBuildHelper.phone(tag: Int, init: PhoneEditTextBuilder.() -> Unit): FormPhoneEditTextElement {
+fun FormBuildHelper.phone(tag: Int = -1, init: PhoneEditTextBuilder.() -> Unit): FormPhoneEditTextElement {
     val element = PhoneEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -196,7 +196,7 @@ fun FormBuildHelper.phone(tag: Int, init: PhoneEditTextBuilder.() -> Unit): Form
 }
 
 /** Builder method to add a FormAutoCompleteElement */
-class AutoCompleteBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+class AutoCompleteBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var arrayAdapter: ArrayAdapter<*>? = null
     var dropdownWidth: Int? = null
     override fun build() =
@@ -212,7 +212,8 @@ class AutoCompleteBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag
                     .setArrayAdapter(arrayAdapter)
                     .setDropdownWidth(dropdownWidth)
 }
-fun <T: Serializable> FormBuildHelper.autoComplete(tag: Int, init: AutoCompleteBuilder<T>.() -> Unit): FormAutoCompleteElement<T> {
+
+fun <T : Serializable> FormBuildHelper.autoComplete(tag: Int = -1, init: AutoCompleteBuilder<T>.() -> Unit): FormAutoCompleteElement<T> {
     val element = AutoCompleteBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -220,7 +221,7 @@ fun <T: Serializable> FormBuildHelper.autoComplete(tag: Int, init: AutoCompleteB
 }
 
 /** Builder method to add a FormTokenAutoCompleteElement */
-class AutoCompleteTokenBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+class AutoCompleteTokenBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var arrayAdapter: ArrayAdapter<*>? = null
     var dropdownWidth: Int? = null
     override fun build() =
@@ -236,7 +237,8 @@ class AutoCompleteTokenBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T
                     .setArrayAdapter(arrayAdapter)
                     .setDropdownWidth(dropdownWidth)
 }
-fun <T: Serializable> FormBuildHelper.autoCompleteToken(tag: Int, init: AutoCompleteTokenBuilder<T>.() -> Unit): FormTokenAutoCompleteElement<T> {
+
+fun <T : Serializable> FormBuildHelper.autoCompleteToken(tag: Int = -1, init: AutoCompleteTokenBuilder<T>.() -> Unit): FormTokenAutoCompleteElement<T> {
     val element = AutoCompleteTokenBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -244,7 +246,7 @@ fun <T: Serializable> FormBuildHelper.autoCompleteToken(tag: Int, init: AutoComp
 }
 
 /** Builder method to add a FormButtonElement */
-class ButtonBuilder(val tag: Int) : FieldBuilder {
+class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
     var value: String? = null
     var visible: Boolean = true
     var valueChanged: OnFormElementValueChangedListener? = null
@@ -256,7 +258,7 @@ class ButtonBuilder(val tag: Int) : FieldBuilder {
                     as FormButtonElement)
 }
 
-fun FormBuildHelper.button(tag: Int, init: ButtonBuilder.() -> Unit): FormButtonElement {
+fun FormBuildHelper.button(tag: Int = -1, init: ButtonBuilder.() -> Unit): FormButtonElement {
     val element = ButtonBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -264,7 +266,7 @@ fun FormBuildHelper.button(tag: Int, init: ButtonBuilder.() -> Unit): FormButton
 }
 
 /** Builder method to add a FormPickerDateElement */
-class DateBuilder(tag: Int) : BaseElementBuilder<FormPickerDateElement.DateHolder>(tag) {
+class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.DateHolder>(tag) {
     var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
     var dateValue: Date? = null
     override fun build() =
@@ -278,7 +280,8 @@ class DateBuilder(tag: Int) : BaseElementBuilder<FormPickerDateElement.DateHolde
                     .setValueChanged(valueChanged)
                     as FormPickerDateElement)
 }
-fun FormBuildHelper.date(tag: Int, init: DateBuilder.() -> Unit): FormPickerDateElement {
+
+fun FormBuildHelper.date(tag: Int = -1, init: DateBuilder.() -> Unit): FormPickerDateElement {
     val element = DateBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -286,7 +289,7 @@ fun FormBuildHelper.date(tag: Int, init: DateBuilder.() -> Unit): FormPickerDate
 }
 
 /** Builder method to add a FormPickerTimeElement */
-class TimeBuilder(tag: Int) : BaseElementBuilder<FormPickerDateElement.DateHolder>(tag) {
+class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.DateHolder>(tag) {
     var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
     var dateValue: Date? = null
     override fun build() =
@@ -300,7 +303,8 @@ class TimeBuilder(tag: Int) : BaseElementBuilder<FormPickerDateElement.DateHolde
                     .setValueChanged(valueChanged)
                     as FormPickerTimeElement)
 }
-fun FormBuildHelper.time(tag: Int, init: TimeBuilder.() -> Unit): FormPickerTimeElement {
+
+fun FormBuildHelper.time(tag: Int = -1, init: TimeBuilder.() -> Unit): FormPickerTimeElement {
     val element = TimeBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -308,7 +312,7 @@ fun FormBuildHelper.time(tag: Int, init: TimeBuilder.() -> Unit): FormPickerTime
 }
 
 /** Builder method to add a FormButtonElement */
-class DateTimeBuilder(tag: Int) : BaseElementBuilder<FormPickerDateElement.DateHolder>(tag) {
+class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.DateHolder>(tag) {
     var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
     var dateValue: Date? = null
     override fun build() =
@@ -322,7 +326,8 @@ class DateTimeBuilder(tag: Int) : BaseElementBuilder<FormPickerDateElement.DateH
                     .setValueChanged(valueChanged)
                     as FormPickerDateTimeElement)
 }
-fun FormBuildHelper.dateTime(tag: Int, init: DateTimeBuilder.() -> Unit): FormPickerDateTimeElement {
+
+fun FormBuildHelper.dateTime(tag: Int = -1, init: DateTimeBuilder.() -> Unit): FormPickerDateTimeElement {
     val element = DateTimeBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -330,7 +335,7 @@ fun FormBuildHelper.dateTime(tag: Int, init: DateTimeBuilder.() -> Unit): FormPi
 }
 
 /** Builder method to add a FormPickerDropDownElement */
-class DropDownBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+class DropDownBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var dialogTitle: String? = null
     var arrayAdapter: ArrayAdapter<*>? = null
     override fun build() =
@@ -347,7 +352,8 @@ class DropDownBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
                     .setDialogTitle(dialogTitle)
                     .setArrayAdapter(arrayAdapter)
 }
-fun <T: Serializable> FormBuildHelper.dropDown(tag: Int, init: DropDownBuilder<T>.() -> Unit): FormPickerDropDownElement<T> {
+
+fun <T : Serializable> FormBuildHelper.dropDown(tag: Int = -1, init: DropDownBuilder<T>.() -> Unit): FormPickerDropDownElement<T> {
     val element = DropDownBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -355,7 +361,7 @@ fun <T: Serializable> FormBuildHelper.dropDown(tag: Int, init: DropDownBuilder<T
 }
 
 /** Builder method to add a FormPickerMultiCheckBoxElement */
-class MultiCheckBoxBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+class MultiCheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var dialogTitle: String? = null
     override fun build() =
             (FormPickerMultiCheckBoxElement<T>(tag)
@@ -371,7 +377,8 @@ class MultiCheckBoxBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(ta
                     as FormPickerMultiCheckBoxElement<T>)
                     .setDialogTitle(dialogTitle)
 }
-fun <T: Serializable> FormBuildHelper.multiCheckBox(tag: Int, init: MultiCheckBoxBuilder<T>.() -> Unit): FormPickerMultiCheckBoxElement<T> {
+
+fun <T : Serializable> FormBuildHelper.multiCheckBox(tag: Int = -1, init: MultiCheckBoxBuilder<T>.() -> Unit): FormPickerMultiCheckBoxElement<T> {
     val element = MultiCheckBoxBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -379,7 +386,7 @@ fun <T: Serializable> FormBuildHelper.multiCheckBox(tag: Int, init: MultiCheckBo
 }
 
 /** Builder method to add a FormSwitchElement */
-class SwitchBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+class SwitchBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var onValue: T? = null
     var offValue: T? = null
     override fun build() =
@@ -395,7 +402,8 @@ class SwitchBuilder<T: Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
                     .setOnValue(onValue)
                     .setOffValue(offValue)
 }
-fun <T: Serializable> FormBuildHelper.switch(tag: Int, init: SwitchBuilder<T>.() -> Unit): FormSwitchElement<T> {
+
+fun <T : Serializable> FormBuildHelper.switch(tag: Int = -1, init: SwitchBuilder<T>.() -> Unit): FormSwitchElement<T> {
     val element = SwitchBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -403,7 +411,7 @@ fun <T: Serializable> FormBuildHelper.switch(tag: Int, init: SwitchBuilder<T>.()
 }
 
 /** Builder method to add a FormSwitchElement */
-class CheckBoxBuilder<T : Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+class CheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var checkedValue: T? = null
     var unCheckedValue: T? = null
     override fun build() =
@@ -420,7 +428,7 @@ class CheckBoxBuilder<T : Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
                     .setUnCheckedValue(unCheckedValue)
 }
 
-fun <T : Serializable> FormBuildHelper.checkBox(tag: Int, init: CheckBoxBuilder<T>.() -> Unit): FormCheckBoxElement<T> {
+fun <T : Serializable> FormBuildHelper.checkBox(tag: Int = -1, init: CheckBoxBuilder<T>.() -> Unit): FormCheckBoxElement<T> {
     val element = CheckBoxBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -428,7 +436,7 @@ fun <T : Serializable> FormBuildHelper.checkBox(tag: Int, init: CheckBoxBuilder<
 }
 
 /** Builder method to add a FormSwitchElement */
-class SliderBuilder(tag: Int) : BaseElementBuilder<Int>(tag) {
+class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
     var max: Int = 100
     var min: Int = 0
     var steps: Int = 1
@@ -446,7 +454,8 @@ class SliderBuilder(tag: Int) : BaseElementBuilder<Int>(tag) {
                     .setMin(min)
                     .setSteps(steps)
 }
-fun FormBuildHelper.slider(tag: Int, init: SliderBuilder.() -> Unit): FormSliderElement {
+
+fun FormBuildHelper.slider(tag: Int = -1, init: SliderBuilder.() -> Unit): FormSliderElement {
     val element = SliderBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)
@@ -454,7 +463,7 @@ fun FormBuildHelper.slider(tag: Int, init: SliderBuilder.() -> Unit): FormSlider
 }
 
 /** Builder method to add a FormTextViewElement */
-class TextViewBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
+class TextViewBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
     override fun build() =
             (FormTextViewElement(tag)
                     .setTitle(title.orEmpty())
@@ -463,7 +472,7 @@ class TextViewBuilder(tag: Int) : BaseElementBuilder<String>(tag) {
                     as FormTextViewElement)
 }
 
-fun FormBuildHelper.textView(tag: Int, init: TextViewBuilder.() -> Unit): FormTextViewElement {
+fun FormBuildHelper.textView(tag: Int = -1, init: TextViewBuilder.() -> Unit): FormTextViewElement {
     val element = TextViewBuilder(tag).apply(init).build()
     element.id = ++lastId
     elements.add(element)

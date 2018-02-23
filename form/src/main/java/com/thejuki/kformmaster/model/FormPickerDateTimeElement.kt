@@ -127,7 +127,7 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
         super.writeToParcel(dest, flags)
     }
 
-    constructor(tag: Int = 0) : super(tag)
+    constructor(tag: Int = -1) : super(tag)
 
     constructor(`in`: Parcel) : super(`in`) {}
 

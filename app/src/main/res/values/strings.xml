@@ -4,6 +4,7 @@
     <!-- Login -->
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="remember">Remember</string>
 
     <string name="email_hint">Enter Email</string>
     <string name="Phone">Phone</string>

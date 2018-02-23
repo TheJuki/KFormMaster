@@ -16,7 +16,7 @@ class FormHeader : BaseFormElement<String> {
     override val isHeader: Boolean
         get() = true
 
-    constructor(tag: Int = 0) : super(tag)
+    constructor(tag: Int = -1) : super(tag)
 
     /**
      * Parcelable boilerplate

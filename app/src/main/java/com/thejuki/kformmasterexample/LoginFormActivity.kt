@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.BaseFormElement
+import com.thejuki.kformmaster.model.FormCheckBoxElement
 import com.thejuki.kformmaster.model.FormEmailEditTextElement
 import com.thejuki.kformmaster.model.FormPasswordEditTextElement
 import com.thejuki.kformmasterexample.LoginFormActivity.Tag.Email
@@ -33,9 +34,14 @@ class LoginFormActivity : AppCompatActivity() {
         setupForm()
 
         buttonLogin.setOnClickListener {
-            val loginElement = formBuilder!!.getFormElement(Email.ordinal)!!.value as String
-            val passwordElement = formBuilder!!.getFormElement(Password.ordinal)!!.value as String
-            Toast.makeText(this@LoginFormActivity, "Do whatever you want with this data\n" + loginElement + "\n" + passwordElement, Toast.LENGTH_SHORT).show()
+            val loginElementValue = formBuilder!!.getFormElement(Email.ordinal)!!.value as String?
+            val passwordElementValue = formBuilder!!.getFormElement(Password.ordinal)!!.value as String?
+            val checkBoxElementValue = formBuilder!!.getElementAtIndex(2)!!.value as Boolean?
+            Toast.makeText(this@LoginFormActivity, "Do whatever you want with this data\n" +
+                    "$loginElementValue\n" +
+                    "$passwordElementValue\n" +
+                    checkBoxElementValue
+                    , Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -79,6 +85,10 @@ class LoginFormActivity : AppCompatActivity() {
         val passwordElement = FormPasswordEditTextElement(Password.ordinal)
                 .setTitle(getString(R.string.password))
         elements.add(passwordElement)
+
+        val checkBoxElement = FormCheckBoxElement<Boolean>()
+                .setTitle(getString(R.string.remember))
+        elements.add(checkBoxElement)
 
         formBuilder!!.addFormElements(elements)
         formBuilder!!.refreshView()

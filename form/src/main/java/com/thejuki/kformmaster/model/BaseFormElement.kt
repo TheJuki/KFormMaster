@@ -15,7 +15,7 @@ import java.util.*
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-open class BaseFormElement<T : Serializable>(var tag: Int = 0, var title: String? = null) : ViewModel, Parcelable {
+open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: String? = null) : ViewModel, Parcelable {
 
     // class variables
     internal var id: Int = 0 // Used internally to provide a Unique ID

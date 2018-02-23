@@ -15,7 +15,7 @@ import java.io.Serializable
  */
 class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
 
-    constructor(tag: Int = 0) : super(tag)
+    constructor(tag: Int = -1) : super(tag)
 
     /**
      * Override the default array adapter
