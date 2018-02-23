@@ -36,8 +36,8 @@ class FormTextViewViewBinder(private val context: Context, private val formBuild
         editTextValue.isEnabled = false
         editTextValue.setTextColor(ContextCompat.getColor(context, R.color.colorFormMasterElementTextDisabled))
         editTextValue.isFocusable = false
-    }, object : ViewStateProvider<FormTextViewElement<*>, ViewHolder> {
-        override fun createViewStateID(model: FormTextViewElement<*>): Int {
+    }, object : ViewStateProvider<FormTextViewElement, ViewHolder> {
+        override fun createViewStateID(model: FormTextViewElement): Int {
             return model.id
         }
 

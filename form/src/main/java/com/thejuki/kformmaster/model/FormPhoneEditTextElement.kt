@@ -3,8 +3,6 @@ package com.thejuki.kformmaster.model
 import android.os.Parcel
 import android.os.Parcelable
 
-import java.io.Serializable
-
 /**
  * Form Phone EditText Element
  *
@@ -13,7 +11,7 @@ import java.io.Serializable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPhoneEditTextElement<T : Serializable> : BaseFormElement<T> {
+class FormPhoneEditTextElement : BaseFormElement<String> {
 
     /**
      * Parcelable boilerplate
@@ -31,20 +29,16 @@ class FormPhoneEditTextElement<T : Serializable> : BaseFormElement<T> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
-        fun createInstance(): FormPhoneEditTextElement<String> {
+        fun createInstance(): FormPhoneEditTextElement {
             return FormPhoneEditTextElement()
         }
 
-        fun <T : Serializable> createGenericInstance(): FormPhoneEditTextElement<T> {
-            return FormPhoneEditTextElement()
-        }
-
-        val CREATOR: Parcelable.Creator<FormPhoneEditTextElement<*>> = object : Parcelable.Creator<FormPhoneEditTextElement<*>> {
-            override fun createFromParcel(source: Parcel): FormPhoneEditTextElement<*> {
-                return FormPhoneEditTextElement<Serializable>(source)
+        val CREATOR: Parcelable.Creator<FormPhoneEditTextElement> = object : Parcelable.Creator<FormPhoneEditTextElement> {
+            override fun createFromParcel(source: Parcel): FormPhoneEditTextElement {
+                return FormPhoneEditTextElement(source)
             }
 
-            override fun newArray(size: Int): Array<FormPhoneEditTextElement<*>?> {
+            override fun newArray(size: Int): Array<FormPhoneEditTextElement?> {
                 return arrayOfNulls(size)
             }
         }

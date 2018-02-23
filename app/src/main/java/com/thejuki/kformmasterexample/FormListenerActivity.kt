@@ -92,27 +92,27 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
     private fun setupForm() {
         formBuilder = form(this, recyclerView, this) {
             header { title = getString(R.string.PersonalInfo) }
-            email<String>(Email.ordinal) {
+            email(Email.ordinal) {
                 title = getString(R.string.email)
                 hint = getString(R.string.email_hint)
             }
-            password<String>(Password.ordinal) {
+            password(Password.ordinal) {
                 title = getString(R.string.password)
             }
-            phone<String>(Phone.ordinal) {
+            phone(Phone.ordinal) {
                 title = getString(R.string.Phone)
                 value = "+8801712345678"
             }
             header { title = getString(R.string.FamilyInfo) }
-            text<String>(Location.ordinal) {
+            text(Location.ordinal) {
                 title = getString(R.string.Location)
                 value = "Dhaka"
             }
-            textArea<String>(Address.ordinal) {
+            textArea(Address.ordinal) {
                 title = getString(R.string.Address)
                 value = ""
             }
-            number<String>(ZipCode.ordinal) {
+            number(ZipCode.ordinal) {
                 title = getString(R.string.ZipCode)
                 value = "1000"
             }
@@ -160,7 +160,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
                 hint = "Try \"Apple May\""
             }
-            textView<String>(TextViewElement.ordinal) {
+            textView(TextViewElement.ordinal) {
                 title = getString(R.string.TextView)
                 value = "This is readonly!"
             }
@@ -178,7 +178,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                 max = 100
                 steps = 20
             }
-            button<String>(ButtonElement.ordinal) {
+            button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)
                 valueChanged = object : OnFormElementValueChangedListener {
                     override fun onValueChanged(formElement: BaseFormElement<*>) {

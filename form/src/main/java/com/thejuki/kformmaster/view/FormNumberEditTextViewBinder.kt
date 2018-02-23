@@ -74,8 +74,8 @@ class FormNumberEditTextViewBinder(private val context: Context, private val for
 
             override fun afterTextChanged(editable: Editable) {}
         })
-    }, object : ViewStateProvider<FormNumberEditTextElement<*>, ViewHolder> {
-        override fun createViewStateID(model: FormNumberEditTextElement<*>): Int {
+    }, object : ViewStateProvider<FormNumberEditTextElement, ViewHolder> {
+        override fun createViewStateID(model: FormNumberEditTextElement): Int {
             return model.id
         }
 

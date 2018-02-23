@@ -3,8 +3,6 @@ package com.thejuki.kformmaster.model
 import android.os.Parcel
 import android.os.Parcelable
 
-import java.io.Serializable
-
 /**
  * Form MultiLine EditText Element
  *
@@ -13,7 +11,7 @@ import java.io.Serializable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormMultiLineEditTextElement<T : Serializable> : BaseFormElement<T> {
+class FormMultiLineEditTextElement : BaseFormElement<String> {
 
     /**
      * Parcelable boilerplate
@@ -31,20 +29,16 @@ class FormMultiLineEditTextElement<T : Serializable> : BaseFormElement<T> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
-        fun createInstance(): FormMultiLineEditTextElement<String> {
+        fun createInstance(): FormMultiLineEditTextElement {
             return FormMultiLineEditTextElement()
         }
 
-        fun <T : Serializable> createGenericInstance(): FormMultiLineEditTextElement<T> {
-            return FormMultiLineEditTextElement()
-        }
-
-        val CREATOR: Parcelable.Creator<FormMultiLineEditTextElement<*>> = object : Parcelable.Creator<FormMultiLineEditTextElement<*>> {
-            override fun createFromParcel(source: Parcel): FormMultiLineEditTextElement<*> {
-                return FormMultiLineEditTextElement<Serializable>(source)
+        val CREATOR: Parcelable.Creator<FormMultiLineEditTextElement> = object : Parcelable.Creator<FormMultiLineEditTextElement> {
+            override fun createFromParcel(source: Parcel): FormMultiLineEditTextElement {
+                return FormMultiLineEditTextElement(source)
             }
 
-            override fun newArray(size: Int): Array<FormMultiLineEditTextElement<*>?> {
+            override fun newArray(size: Int): Array<FormMultiLineEditTextElement?> {
                 return arrayOfNulls(size)
             }
         }

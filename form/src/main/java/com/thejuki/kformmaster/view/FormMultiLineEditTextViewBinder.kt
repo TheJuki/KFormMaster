@@ -74,8 +74,8 @@ class FormMultiLineEditTextViewBinder(private val context: Context, private val 
 
             override fun afterTextChanged(editable: Editable) {}
         })
-    }, object : ViewStateProvider<FormMultiLineEditTextElement<*>, ViewHolder> {
-        override fun createViewStateID(model: FormMultiLineEditTextElement<*>): Int {
+    }, object : ViewStateProvider<FormMultiLineEditTextElement, ViewHolder> {
+        override fun createViewStateID(model: FormMultiLineEditTextElement): Int {
             return model.id
         }
 

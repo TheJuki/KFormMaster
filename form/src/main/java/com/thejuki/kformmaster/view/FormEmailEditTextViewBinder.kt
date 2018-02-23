@@ -74,8 +74,8 @@ class FormEmailEditTextViewBinder(private val context: Context, private val form
 
             override fun afterTextChanged(editable: Editable) {}
         })
-    }, object : ViewStateProvider<FormEmailEditTextElement<*>, ViewHolder> {
-        override fun createViewStateID(model: FormEmailEditTextElement<*>): Int {
+    }, object : ViewStateProvider<FormEmailEditTextElement, ViewHolder> {
+        override fun createViewStateID(model: FormEmailEditTextElement): Int {
             return model.id
         }
 

@@ -33,12 +33,6 @@ class FormHeader : BaseFormElement<String> {
 
     companion object {
 
-        /**
-         * static method to create instance with title
-         *
-         * @param title
-         * @return
-         */
         fun createInstance(title: String): FormHeader {
             val formHeader = FormHeader()
             formHeader.setTitle(title)

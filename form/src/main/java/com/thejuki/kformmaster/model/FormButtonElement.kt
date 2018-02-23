@@ -3,8 +3,6 @@ package com.thejuki.kformmaster.model
 import android.os.Parcel
 import android.os.Parcelable
 
-import java.io.Serializable
-
 /**
  * Form Button Element
  *
@@ -13,7 +11,7 @@ import java.io.Serializable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormButtonElement<T : Serializable> : BaseFormElement<T> {
+class FormButtonElement : BaseFormElement<String> {
 
     /**
      * Parcelable boilerplate
@@ -31,20 +29,16 @@ class FormButtonElement<T : Serializable> : BaseFormElement<T> {
     protected constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
-        fun createInstance(): FormButtonElement<String> {
+        fun createInstance(): FormButtonElement {
             return FormButtonElement()
         }
 
-        fun <T : Serializable> createGenericInstance(): FormButtonElement<T> {
-            return FormButtonElement()
-        }
-
-        val CREATOR: Parcelable.Creator<FormButtonElement<*>> = object : Parcelable.Creator<FormButtonElement<*>> {
-            override fun createFromParcel(source: Parcel): FormButtonElement<*> {
-                return FormButtonElement<Serializable>(source)
+        val CREATOR: Parcelable.Creator<FormButtonElement> = object : Parcelable.Creator<FormButtonElement> {
+            override fun createFromParcel(source: Parcel): FormButtonElement {
+                return FormButtonElement(source)
             }
 
-            override fun newArray(size: Int): Array<FormButtonElement<*>?> {
+            override fun newArray(size: Int): Array<FormButtonElement?> {
                 return arrayOfNulls(size)
             }
         }

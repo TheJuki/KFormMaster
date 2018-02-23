@@ -73,8 +73,8 @@ class FormSingleLineEditTextViewBinder(private val context: Context, private val
 
             override fun afterTextChanged(editable: Editable) {}
         })
-    }, object : ViewStateProvider<FormSingleLineEditTextElement<*>, ViewHolder> {
-        override fun createViewStateID(model: FormSingleLineEditTextElement<*>): Int {
+    }, object : ViewStateProvider<FormSingleLineEditTextElement, ViewHolder> {
+        override fun createViewStateID(model: FormSingleLineEditTextElement): Int {
             return model.id
         }
 

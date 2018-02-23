@@ -3,8 +3,6 @@ package com.thejuki.kformmaster.model
 import android.os.Parcel
 import android.os.Parcelable
 
-import java.io.Serializable
-
 /**
  * Form Password EditText Element
  *
@@ -13,7 +11,7 @@ import java.io.Serializable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPasswordEditTextElement<T : Serializable> : BaseFormElement<T> {
+class FormPasswordEditTextElement : BaseFormElement<String> {
 
     /**
      * Parcelable boilerplate
@@ -31,20 +29,16 @@ class FormPasswordEditTextElement<T : Serializable> : BaseFormElement<T> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
-        fun createInstance(): FormPasswordEditTextElement<String> {
+        fun createInstance(): FormPasswordEditTextElement {
             return FormPasswordEditTextElement()
         }
 
-        fun <T : Serializable> createGenericInstance(): FormPasswordEditTextElement<T> {
-            return FormPasswordEditTextElement()
-        }
-
-        val CREATOR: Parcelable.Creator<FormPasswordEditTextElement<*>> = object : Parcelable.Creator<FormPasswordEditTextElement<*>> {
-            override fun createFromParcel(source: Parcel): FormPasswordEditTextElement<*> {
-                return FormPasswordEditTextElement<Serializable>(source)
+        val CREATOR: Parcelable.Creator<FormPasswordEditTextElement> = object : Parcelable.Creator<FormPasswordEditTextElement> {
+            override fun createFromParcel(source: Parcel): FormPasswordEditTextElement {
+                return FormPasswordEditTextElement(source)
             }
 
-            override fun newArray(size: Int): Array<FormPasswordEditTextElement<*>?> {
+            override fun newArray(size: Int): Array<FormPasswordEditTextElement?> {
                 return arrayOfNulls(size)
             }
         }

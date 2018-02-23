@@ -72,11 +72,11 @@ class LoginFormActivity : AppCompatActivity() {
 
         val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
-        val emailElement = FormEmailEditTextElement<String>(Email.ordinal)
+        val emailElement = FormEmailEditTextElement(Email.ordinal)
                 .setTitle(getString(R.string.email))
         elements.add(emailElement)
 
-        val passwordElement = FormPasswordEditTextElement<String>(Password.ordinal)
+        val passwordElement = FormPasswordEditTextElement(Password.ordinal)
                 .setTitle(getString(R.string.password))
         elements.add(passwordElement)
 

@@ -114,7 +114,6 @@ class FormPickerDateElement : FormPickerElement<FormPickerDateElement.DateHolder
 
     companion object {
 
-
         fun createDateInstance(): FormPickerDateElement {
             return FormPickerDateElement()
         }

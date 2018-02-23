@@ -3,8 +3,6 @@ package com.thejuki.kformmaster.model
 import android.os.Parcel
 import android.os.Parcelable
 
-import java.io.Serializable
-
 /**
  * Form SingleLine EditText Element
  *
@@ -13,7 +11,7 @@ import java.io.Serializable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormSingleLineEditTextElement<T : Serializable> : BaseFormElement<T> {
+class FormSingleLineEditTextElement : BaseFormElement<String> {
 
     /**
      * Parcelable boilerplate
@@ -31,20 +29,16 @@ class FormSingleLineEditTextElement<T : Serializable> : BaseFormElement<T> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
-        fun createInstance(): FormSingleLineEditTextElement<String> {
+        fun createInstance(): FormSingleLineEditTextElement {
             return FormSingleLineEditTextElement()
         }
 
-        fun <T : Serializable> createGenericInstance(): FormSingleLineEditTextElement<T> {
-            return FormSingleLineEditTextElement()
-        }
-
-        val CREATOR: Parcelable.Creator<FormSingleLineEditTextElement<*>> = object : Parcelable.Creator<FormSingleLineEditTextElement<*>> {
-            override fun createFromParcel(source: Parcel): FormSingleLineEditTextElement<*> {
-                return FormSingleLineEditTextElement<Serializable>(source)
+        val CREATOR: Parcelable.Creator<FormSingleLineEditTextElement> = object : Parcelable.Creator<FormSingleLineEditTextElement> {
+            override fun createFromParcel(source: Parcel): FormSingleLineEditTextElement {
+                return FormSingleLineEditTextElement(source)
             }
 
-            override fun newArray(size: Int): Array<FormSingleLineEditTextElement<*>?> {
+            override fun newArray(size: Int): Array<FormSingleLineEditTextElement?> {
                 return arrayOfNulls(size)
             }
         }

@@ -32,8 +32,8 @@ class FormButtonViewBinder(private val context: Context, private val formBuilder
             model.valueChanged?.onValueChanged(model)
             formBuilder.onValueChanged(model)
         }
-    }, object : ViewStateProvider<FormButtonElement<*>, ViewHolder> {
-        override fun createViewStateID(model: FormButtonElement<*>): Int {
+    }, object : ViewStateProvider<FormButtonElement, ViewHolder> {
+        override fun createViewStateID(model: FormButtonElement): Int {
             return model.id
         }
 

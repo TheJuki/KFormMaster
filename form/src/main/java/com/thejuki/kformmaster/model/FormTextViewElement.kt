@@ -13,7 +13,7 @@ import java.io.Serializable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormTextViewElement<T : Serializable> : BaseFormElement<T> {
+class FormTextViewElement : BaseFormElement<String> {
 
     /**
      * Parcelable boilerplate
@@ -31,20 +31,20 @@ class FormTextViewElement<T : Serializable> : BaseFormElement<T> {
     protected constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
-        fun createInstance(): FormTextViewElement<String> {
+        fun createInstance(): FormTextViewElement {
             return FormTextViewElement()
         }
 
-        fun <T : Serializable> createGenericInstance(): FormTextViewElement<T> {
+        fun <T : Serializable> createGenericInstance(): FormTextViewElement {
             return FormTextViewElement()
         }
 
-        val CREATOR: Parcelable.Creator<FormTextViewElement<*>> = object : Parcelable.Creator<FormTextViewElement<*>> {
-            override fun createFromParcel(source: Parcel): FormTextViewElement<*> {
-                return FormTextViewElement<Serializable>(source)
+        val CREATOR: Parcelable.Creator<FormTextViewElement> = object : Parcelable.Creator<FormTextViewElement> {
+            override fun createFromParcel(source: Parcel): FormTextViewElement {
+                return FormTextViewElement(source)
             }
 
-            override fun newArray(size: Int): Array<FormTextViewElement<*>?> {
+            override fun newArray(size: Int): Array<FormTextViewElement?> {
                 return arrayOfNulls(size)
             }
         }

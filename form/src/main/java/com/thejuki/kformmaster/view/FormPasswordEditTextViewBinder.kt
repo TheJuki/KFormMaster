@@ -74,8 +74,8 @@ class FormPasswordEditTextViewBinder(private val context: Context, private val f
 
             override fun afterTextChanged(editable: Editable) {}
         })
-    }, object : ViewStateProvider<FormPasswordEditTextElement<*>, ViewHolder> {
-        override fun createViewStateID(model: FormPasswordEditTextElement<*>): Int {
+    }, object : ViewStateProvider<FormPasswordEditTextElement, ViewHolder> {
+        override fun createViewStateID(model: FormPasswordEditTextElement): Int {
             return model.id
         }
 
