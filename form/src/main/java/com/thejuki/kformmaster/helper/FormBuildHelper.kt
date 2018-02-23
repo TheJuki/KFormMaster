@@ -110,6 +110,9 @@ class FormBuildHelper {
         // Switch
         this.formAdapter!!.registerRenderer(FormSwitchViewBinder(context, this).viewBinder)
 
+        // CheckBox
+        this.formAdapter!!.registerRenderer(FormCheckBoxViewBinder(context, this).viewBinder)
+
         // Slider
         this.formAdapter!!.registerRenderer(FormSliderViewBinder(context, this).viewBinder)
 

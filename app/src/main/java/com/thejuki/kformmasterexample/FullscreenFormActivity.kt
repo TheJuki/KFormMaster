@@ -87,6 +87,7 @@ class FullscreenFormActivity : AppCompatActivity() {
         TextViewElement,
         SwitchElement,
         SliderElement,
+        CheckBoxElement,
     }
 
     private fun setupForm() {
@@ -183,6 +184,12 @@ class FullscreenFormActivity : AppCompatActivity() {
                 min = 0
                 max = 100
                 steps = 20
+            }
+            checkBox<Boolean>(CheckBoxElement.ordinal) {
+                title = getString(R.string.CheckBox)
+                value = true
+                checkedValue = true
+                unCheckedValue = false
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)

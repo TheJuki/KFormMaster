@@ -87,6 +87,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
         TextViewElement,
         SwitchElement,
         SliderElement,
+        CheckBoxElement,
     }
 
     private fun setupForm() {
@@ -177,6 +178,12 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                 min = 0
                 max = 100
                 steps = 20
+            }
+            checkBox<Boolean>(CheckBoxElement.ordinal) {
+                title = getString(R.string.CheckBox)
+                value = true
+                checkedValue = true
+                unCheckedValue = false
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)

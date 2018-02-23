@@ -15,7 +15,7 @@ import com.thejuki.kformmaster.state.FormSliderViewState
 import kotlin.math.roundToInt
 
 /**
- * Form EditText Binder
+ * Form Slider Binder
  *
  * View Binder for [FormSliderElement]
  *

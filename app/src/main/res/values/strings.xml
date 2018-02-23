@@ -20,6 +20,7 @@
     <string name="Button">Button</string>
     <string name="Switch">Switch</string>
     <string name="Slider">Slider</string>
+    <string name="CheckBox">CheckBox</string>
     <string name="TextView">Text View</string>
 
     <string name="Confirm">Clear Date field?</string>

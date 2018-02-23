@@ -403,6 +403,31 @@ fun <T: Serializable> FormBuildHelper.switch(tag: Int, init: SwitchBuilder<T>.()
 }
 
 /** Builder method to add a FormSwitchElement */
+class CheckBoxBuilder<T : Serializable>(tag: Int) : BaseElementBuilder<T>(tag) {
+    var checkedValue: T? = null
+    var unCheckedValue: T? = null
+    override fun build() =
+            (FormCheckBoxElement<T>(tag)
+                    .setTitle(title.orEmpty())
+                    .setValue(value)
+                    .setHint(hint)
+                    .setError(error)
+                    .setRequired(required)
+                    .setVisible(visible)
+                    .setValueChanged(valueChanged)
+                    as FormCheckBoxElement<T>)
+                    .setCheckedValue(checkedValue)
+                    .setUnCheckedValue(unCheckedValue)
+}
+
+fun <T : Serializable> FormBuildHelper.checkBox(tag: Int, init: CheckBoxBuilder<T>.() -> Unit): FormCheckBoxElement<T> {
+    val element = CheckBoxBuilder<T>(tag).apply(init).build()
+    element.id = ++lastId
+    elements.add(element)
+    return element
+}
+
+/** Builder method to add a FormSwitchElement */
 class SliderBuilder(tag: Int) : BaseElementBuilder<Int>(tag) {
     var max: Int = 100
     var min: Int = 0
