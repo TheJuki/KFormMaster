@@ -86,8 +86,12 @@ class LoginFormActivity : AppCompatActivity() {
                 .setTitle(getString(R.string.password))
         elements.add(passwordElement)
 
-        val checkBoxElement = FormCheckBoxElement<Boolean>()
+        val checkBoxElement = (FormCheckBoxElement<Boolean>()
                 .setTitle(getString(R.string.remember))
+                .setValue(false)
+                as FormCheckBoxElement<Boolean>)
+                .setCheckedValue(true)
+                .setUnCheckedValue(false)
         elements.add(checkBoxElement)
 
         formBuilder!!.addFormElements(elements)

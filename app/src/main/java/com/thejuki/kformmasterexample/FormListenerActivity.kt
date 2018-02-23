@@ -93,7 +93,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
     private fun setupForm() {
         formBuilder = form(this, recyclerView, this) {
             header { title = getString(R.string.PersonalInfo) }
-            email {
+            email(Email.ordinal) {
                 title = getString(R.string.email)
                 hint = getString(R.string.email_hint)
             }
