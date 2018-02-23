@@ -209,6 +209,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                 }
             }
         }
+        formBuilder!!.isValidForm
     }
 
     override fun onValueChanged(formElement: BaseFormElement<*>) {

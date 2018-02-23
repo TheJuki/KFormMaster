@@ -20,6 +20,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
 
+typealias OnFormElementValueChangedListener = (BaseFormElement<*>) -> Unit
+
 /**
  * Fullscreen Form Activity
  *
@@ -91,7 +93,8 @@ class FullscreenFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        val listener = object : OnFormElementValueChangedListener {
+        val listener: OnFormElementValueChangedListener = object : OnFormElementValueChangedListener {
+
             override fun onValueChanged(formElement: BaseFormElement<*>) {
 
             }

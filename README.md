@@ -61,11 +61,11 @@ formBuilder!!.attachRecyclerView(this, recyclerView)
 val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
 // Declare form elements
-val emailElement = FormEmailEditTextElement<String>(Email.ordinal)
+val emailElement = FormEmailEditTextElement(Email.ordinal)
         .setTitle(getString(R.string.email))
 elements.add(emailElement)
 
-val passwordElement = FormPasswordEditTextElement<String>(Password.ordinal)
+val passwordElement = FormPasswordEditTextElement(Password.ordinal)
         .setTitle(getString(R.string.password))
 elements.add(passwordElement)
 
@@ -77,10 +77,10 @@ formBuilder!!.refreshView()
 * Step 2 (With DSL). Add the Form Elements programmatically in your activity
 ```kotlin
 formBuilder = form(this, recyclerView) {
-    email<String>(Email.ordinal) {
+    email(Email.ordinal) {
         title = getString(R.string.email)
     }
-    password<String>(Password.ordinal) {
+    password(Password.ordinal) {
         title = getString(R.string.password)
     }
 }
@@ -99,7 +99,7 @@ val header = FormHeader.createInstance(getString(R.string.HeaderString))
  
 **General object format**
 ```kotlin
-val element = Form[Type]Element<T: Serializable>(TAG_NAME: Int) // Tag is required. It is recommended to use an Enum's ordinal.
+val element = Form[Type]Element<T: Serializable>(TAG_NAME: Int) // Tag is optional. It is recommended to use an Enum's ordinal.
     .setTitle("Pick your favourite fruit") // setting title
     .setValue("Banana") // setting value of the field, if any
     .setOptions(fruits) // setting pickable options, if any
@@ -128,6 +128,7 @@ private enum class Tag {
     TextViewElement,
     SwitchElement,
     SliderElement,
+    CheckBoxElement,
 }
 
 // Example Picker object
@@ -165,36 +166,36 @@ formBuilder = form(this@ActivityName, recyclerView, listener) {
     header { title = getString(R.string.PersonalInfo) }
 
     // Email EditText
-   email<String>(Email.ordinal) {
+    email(Email.ordinal) {
         title = getString(R.string.email)
         hint = getString(R.string.email_hint)
     }
 
     // Password EditText
-    password<String>(Password.ordinal) {
+    password(Password.ordinal) {
         title = getString(R.string.password)
     }
 
     // Phone EditText
-    phone<String>(Phone.ordinal) {
+    phone(Phone.ordinal) {
         title = getString(R.string.Phone)
         value = "+8801712345678"
     }
 
     // Singleline text EditText
-    text<String>(Location.ordinal) {
+    text(Location.ordinal) {
         title = getString(R.string.Location)
         value = "Dhaka"
     }
 
     // Multiline EditText
-    textArea<String>(Address.ordinal) {
+    textArea(Address.ordinal) {
         title = getString(R.string.Address)
         value = ""
     }
 
     // Number EditText
-    number<String>(ZipCode.ordinal) {
+    number(ZipCode.ordinal) {
         title = getString(R.string.ZipCode)
         value = "1000"
     }
@@ -255,7 +256,7 @@ formBuilder = form(this@ActivityName, recyclerView, listener) {
     }
 
     // Text View
-    textView<String>(TextViewElement.ordinal) {
+    textView(TextViewElement.ordinal) {
         title = getString(R.string.TextView)
         value = "This is readonly!"
     }
@@ -277,8 +278,16 @@ formBuilder = form(this@ActivityName, recyclerView, listener) {
         steps = 20
     }
 
+    // CheckBox
+    checkBox<Boolean>(CheckBoxElement.ordinal) {
+                title = getString(R.string.CheckBox)
+                value = true
+                checkedValue = true
+                unCheckedValue = false
+            }
+
     // Button
-    button<String>(ButtonElement.ordinal) {
+    button(ButtonElement.ordinal) {
         value = getString(R.string.Button)
         valueChanged = object : OnFormElementValueChangedListener {
             override fun onValueChanged(formElement: BaseFormElement<*>) {
@@ -323,11 +332,16 @@ Use the unique tag assigned earlier to retrieve value (See examples in this repo
 val element = formBuilder!!.getFormElement(Email.ordinal)
 val value: String = element?.value as String
 ```
+Use the added index of the element instead if you did not assign a tag.
+```kotlin
+val element = formBuilder!!.getElementAtIndex(2)
+val value: String = element?.value as String
+```
 
 ### Check if form is valid
-Use this method if you need to check whether the required elements of the form is completed
+Use this variable (method in Java) if you need to check whether the required elements of the form are completed
 ```kotlin
-formBuilder.isValidForm() // returns boolean whether the form is valid or not
+formBuilder.isValidForm // returns Boolean whether the form is valid or not
 ```
 
 ### Form accent color change

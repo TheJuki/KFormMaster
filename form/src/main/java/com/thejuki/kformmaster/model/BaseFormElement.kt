@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
+import com.thejuki.kformmaster.observable.StandardObservableProperty
 import java.io.Serializable
 import java.util.*
 
@@ -19,11 +20,9 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
 
     // class variables
     internal var id: Int = 0 // Used internally to provide a Unique ID
-    open var value: T? = null // value to be shown on right
-        set(value) {
-            field = value
-            valueChanged?.onValueChanged(this)
-        }
+    var valueObservable = StandardObservableProperty(null)
+    open var value: T? by valueObservable // value to be shown on right
+
     var options: List<T>? = null // list of options for single and multi picker
         get() = field ?: ArrayList()
     var optionsSelected: List<T>? = null // list of selected options for single and multi picker
