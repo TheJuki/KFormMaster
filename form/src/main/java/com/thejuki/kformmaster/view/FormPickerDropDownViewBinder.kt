@@ -53,7 +53,6 @@ class FormPickerDropDownViewBinder(private val context: Context, private val for
                         model.setValue(model.arrayAdapter!!.getItem(which))
                         model.setError(null) // Reset after value change
                         setError(textViewError, null) // Reset after value change
-                        model.valueChanged?.onValueChanged(model)
                         formBuilder.onValueChanged(model)
 
                         editTextValue.setText(model.valueAsString)
@@ -68,7 +67,6 @@ class FormPickerDropDownViewBinder(private val context: Context, private val for
                         model.setValue(model.options!![which])
                         model.setError(null) // Reset after value change
                         setError(textViewError, null) // Reset after value change
-                        model.valueChanged?.onValueChanged(model)
                         formBuilder.onValueChanged(model)
 
                         editTextValue.setText(model.valueAsString)

@@ -78,7 +78,6 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
             if (dateChanged)
             {
                 model.setError(null) // Reset after value change
-                model.valueChanged?.onValueChanged(model)
                 formBuilder.onValueChanged(model)
 
                 editTextValue.setText(model.valueAsString)

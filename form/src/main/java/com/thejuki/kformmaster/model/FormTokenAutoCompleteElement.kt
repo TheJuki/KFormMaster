@@ -15,8 +15,6 @@ import java.io.Serializable
  */
 class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
 
-    constructor(tag: Int = -1) : super(tag)
-
     /**
      * Override the default array adapter
      * This is useful for a custom asynchronous adapter
@@ -49,9 +47,11 @@ class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
         super.writeToParcel(dest, flags)
     }
 
-    protected constructor(`in`: Parcel) : super(`in`) {
+    constructor() : super()
 
-    }
+    constructor(tag: Int = -1) : super(tag)
+
+    protected constructor(`in`: Parcel) : super(`in`)
 
     companion object {
 

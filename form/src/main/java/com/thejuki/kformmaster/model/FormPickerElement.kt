@@ -25,7 +25,9 @@ open class FormPickerElement<T : Serializable> : BaseFormElement<T> {
         super.writeToParcel(dest, flags)
     }
 
-    constructor(tag: Int = -1) : super(tag)
+    constructor() : super()
+
+    constructor(tag: Int) : super(tag)
 
     protected constructor(`in`: Parcel) : super(`in`) {}
 

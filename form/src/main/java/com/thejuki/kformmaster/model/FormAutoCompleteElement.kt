@@ -16,7 +16,9 @@ import java.util.*
  */
 class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
 
-    constructor(tag: Int = -1) : super(tag)
+    constructor() : super()
+
+    constructor(tag: Int) : super(tag)
 
     /**
      * Because the written text in the EditText not always matched the

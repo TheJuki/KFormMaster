@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         buttonFormListenerActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FormListenerActivity::class.java)) }
 
+        buttonFormListenerJavaActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FormListenerJavaActivity::class.java)) }
+
         buttonLoginActivity.setOnClickListener { startActivity(Intent(this@MainActivity, LoginFormActivity::class.java)) }
     }
 }

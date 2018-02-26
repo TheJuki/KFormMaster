@@ -4,9 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
-import com.thejuki.kformmaster.observable.StandardObservableProperty
 import java.io.Serializable
 import java.util.*
+import kotlin.properties.Delegates
 
 /**
  * Base Form Element
@@ -18,28 +18,77 @@ import java.util.*
  */
 open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: String? = null) : ViewModel, Parcelable {
 
-    // class variables
-    internal var id: Int = 0 // Used internally to provide a Unique ID
-    var valueObservable = StandardObservableProperty(null)
-    open var value: T? by valueObservable // value to be shown on right
+    /**
+     * Form Element Unique ID
+     */
+    internal var id: Int = 0
 
-    var options: List<T>? = null // list of options for single and multi picker
+    /**
+     * Form Element Value Observers
+     */
+    val valueObservers = mutableListOf<(T?) -> Unit>()
+
+    /**
+     * Form Element Value
+     */
+    open var value: T? by Delegates.observable<T?>(null) { prop, old, new ->
+        valueObservers.forEach { it(new) }
+    }
+
+    /**
+     * Form Element Options
+     */
+    var options: List<T>? = null
         get() = field ?: ArrayList()
-    var optionsSelected: List<T>? = null // list of selected options for single and multi picker
+
+    /**
+     * Form Element Options Selected
+     * NOTE: When using MultiCheckBox, this is the Form Element Value
+     */
+    var optionsSelected: List<T>? = null
         get() = field ?: ArrayList()
-    var hint: String? = null // value to be shown if value is null
+
+    /**
+     * Form Element Hint
+     */
+    var hint: String? = null
+
+    /**
+     * Form Element Error
+     */
     var error: String? = null
-    var required: Boolean = false // value to set is the field is required
+
+    /**
+     * Form Element Required
+     */
+    var required: Boolean = false
+
+    /**
+     * Form Element Visibility
+     */
     var visible: Boolean = true
+
+    /**
+     * Form Element Value Changed Listener
+     */
+    @Deprecated(
+            message = "As of v2.0.0, valueObservers has been added and should be used instead.",
+            replaceWith = ReplaceWith("valueObservers.add({ println(it) })")
+    )
     var valueChanged: OnFormElementValueChangedListener? = null
 
+    /**
+     * Form Element Value String value
+     */
     val valueAsString: String
         get() = if (this.value == null) "" else this.value!!.toString()
 
+    /**
+     * Form Element Value Observers
+     */
     open val isHeader: Boolean
         get() = false
 
-    // getters and setters
     fun setTag(mTag: Int): BaseFormElement<T> {
         this.tag = mTag
         return this
@@ -86,6 +135,16 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
         return this
     }
 
+    fun addValueObserver(observer: (T?) -> Unit): BaseFormElement<T> {
+        this.valueObservers.add(observer)
+        return this
+    }
+
+    fun addAllValueObservers(observers: List<(T?) -> Unit>): BaseFormElement<T> {
+        this.valueObservers.addAll(observers)
+        return this
+    }
+
     fun setOptionsSelected(mOptionsSelected: List<Any>): BaseFormElement<T> {
         this.optionsSelected = mOptionsSelected as List<T>
         return this
@@ -98,8 +157,6 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     fun isVisible(): Boolean {
         return this.visible
     }
-
-
 
     /**
      * Parcelable boilerplate

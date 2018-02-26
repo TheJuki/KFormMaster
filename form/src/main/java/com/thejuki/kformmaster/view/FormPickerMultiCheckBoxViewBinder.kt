@@ -86,7 +86,6 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
                     model.setOptionsSelected(selectedOptions)
                     model.setError(null)
                     formBuilder.onValueChanged(model)
-                    model.valueChanged?.onValueChanged(model)
                     editTextValue.setText(getSelectedItemsText(model))
                     setError(textViewError, null)
                 }

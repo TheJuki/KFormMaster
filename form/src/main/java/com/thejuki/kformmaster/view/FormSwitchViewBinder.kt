@@ -38,7 +38,6 @@ class FormSwitchViewBinder(private val context: Context, private val formBuilder
             } else {
                 model.setValue(model.offValue)
             }
-            model.valueChanged?.onValueChanged(model)
             formBuilder.onValueChanged(model)
         }
     }, object : ViewStateProvider<FormSwitchElement<*>, ViewHolder> {

@@ -38,7 +38,6 @@ class FormCheckBoxViewBinder(private val context: Context, private val formBuild
             } else {
                 model.setValue(model.unCheckedValue)
             }
-            model.valueChanged?.onValueChanged(model)
             formBuilder.onValueChanged(model)
         }
     }, object : ViewStateProvider<FormCheckBoxElement<*>, ViewHolder> {
