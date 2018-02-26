@@ -51,7 +51,7 @@ import kotlin.Unit;
 
 /**
  * Form Listener Java Activity
- * <p>
+ *
  * Java version of FormListenerActivity
  * OnFormElementValueChangedListener is overridden at the activity level
  *

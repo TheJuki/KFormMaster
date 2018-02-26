@@ -12,23 +12,29 @@
 
 This library aids in building bigger forms on-the-fly. Forms with large number of elements can easily be added programmatically within a few minutes.
 
-
 ## Features
 - Easily build big and bigger forms with minimal effort
 - Fast color change as needed
 - Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster)
 
+## Version 2 Changes
+- The email, password, phone, text, textArea, number, textView, and button elements no longer take a <T: Serializable> as they only deal with Strings
+- Deprecated valueChanged in BaseFormElement
+- Added valueObservers in BaseFormElement to replace valueChanged with a list of Observers when the element value changes (See updated Examples)
+
+## Java Compatibility
+- This library was ported from Java and is still compatibile with Java code
+- See [Java Example](https://github.com/TheJuki/KFormMaster/blob/master/app/src/main/java/com/thejuki/kformmasterexample/FormListenerJavaActivity.java)
 
 ## Installation
 Add this in your app's **build.gradle** file:
 ```
 ext {
-    kFormMasterVersion = '1.2.3'
+    kFormMasterVersion = '2.0.0'
 }
 
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 ```
-
 
 ## How to use
 * Step 1. Add a Recyclerview anywhere in the layout where you want your list to be shown (If confused, look at the examples in this repo).
@@ -104,7 +110,7 @@ val element = Form[Type]Element<T: Serializable>(TAG_NAME: Int) // Tag is option
     .setValue("Banana") // setting value of the field, if any
     .setOptions(fruits) // setting pickable options, if any
     .setHint("e.g. banana, guava etc") // setting hints, if any
-    .setRequired(false); // marking if the form element is required to be filled to make the form valid, include if needed
+    .setRequired(false) // marking if the form element is required to be filled to make the form valid, include if needed
 ```
 
 **Samples:**
@@ -289,26 +295,24 @@ formBuilder = form(this@ActivityName, recyclerView, listener) {
     // Button
     button(ButtonElement.ordinal) {
         value = getString(R.string.Button)
-        valueChanged = object : OnFormElementValueChangedListener {
-            override fun onValueChanged(formElement: BaseFormElement<*>) {
-                val confirmAlert = AlertDialog.Builder(this@ActivityName).create()
-                confirmAlert.setTitle(this@ActivityName.getString(R.string.Confirm))
-                confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@ActivityName.getString(android.R.string.ok), { _, _ ->
-                    // Could be used to clear another field:
-                    val dateToDeleteElement = formBuilder!!.getFormElement(Tag.Date.ordinal)
-                    // Display current date
-                    Toast.makeText(this@ActivityName,
-                            (dateToDeleteElement!!.value as FormPickerDateElement.DateHolder).getTime().toString(),
-                            Toast.LENGTH_SHORT).show()
-                    (dateToDeleteElement.value as FormPickerDateElement.DateHolder).useCurrentDate()
-                    formBuilder!!.onValueChanged(dateToDeleteElement)
-                    formBuilder!!.refreshView()
-                })
-                confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@ActivityName.getString(android.R.string.cancel), { _, _ ->
-                })
-                confirmAlert.show()
-            }
-        }
+        valueObservers.add({ newValue, element ->
+            val confirmAlert = AlertDialog.Builder(this@PartialScreenFormActivity).create()
+            confirmAlert.setTitle(this@PartialScreenFormActivity.getString(R.string.Confirm))
+            confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@PartialScreenFormActivity.getString(android.R.string.ok), { _, _ ->
+                // Could be used to clear another field:
+                val dateToDeleteElement = formBuilder!!.getFormElement(Tag.Date.ordinal)
+                // Display current date
+                Toast.makeText(this@PartialScreenFormActivity,
+                        (dateToDeleteElement!!.value as FormPickerDateElement.DateHolder).getTime().toString(),
+                        Toast.LENGTH_SHORT).show()
+                (dateToDeleteElement.value as FormPickerDateElement.DateHolder).useCurrentDate()
+                formBuilder!!.onValueChanged(dateToDeleteElement)
+                formBuilder!!.refreshView()
+            })
+            confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@PartialScreenFormActivity.getString(android.R.string.cancel), { _, _ ->
+            })
+            confirmAlert.show()
+        })
     }
 }
 ```
@@ -316,14 +320,12 @@ formBuilder = form(this@ActivityName, recyclerView, listener) {
 ### Set form element value change listener to get changed value instantly
 While creating a new instance of FormBuildHelper, add a listener in the constructor
 
-Have a look at the example code for details
-
 ```kotlin
 var formBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListener {
     override fun onValueChanged(formElement: BaseFormElement<*>) {
          // do anything here with formElement.value
     }
-})
+}, findViewById(R.id.recyclerView))
 ```
 
 ### Get value for unique form elements
