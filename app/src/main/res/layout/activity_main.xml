@@ -25,6 +25,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/buttonFormListenerJavaActivity"
+        android:text="@string/form_with_listener_java" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/buttonLoginActivity"
         android:text="@string/sample_login_form" />
 

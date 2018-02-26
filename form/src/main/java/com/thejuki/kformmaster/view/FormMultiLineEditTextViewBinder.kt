@@ -67,7 +67,6 @@ class FormMultiLineEditTextViewBinder(private val context: Context, private val 
                     model.setValue(newValue)
                     model.setError(null)
                     setError(textViewError, null)
-                    model.valueChanged?.onValueChanged(model)
                     formBuilder.onValueChanged(model)
                 }
             }

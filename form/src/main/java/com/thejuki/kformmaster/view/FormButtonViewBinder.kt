@@ -29,7 +29,7 @@ class FormButtonViewBinder(private val context: Context, private val formBuilder
         button.text = model.valueAsString
 
         button.setOnClickListener {
-            model.valueChanged?.onValueChanged(model)
+            model.setValue(model.value)
             formBuilder.onValueChanged(model)
         }
     }, object : ViewStateProvider<FormButtonElement, ViewHolder> {

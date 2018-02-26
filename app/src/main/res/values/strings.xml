@@ -37,6 +37,7 @@
     <string name="full_screen_form">Full screen form</string>
     <string name="partial_screen_form">Partial screen form</string>
     <string name="form_with_listener">Form with listener</string>
+    <string name="form_with_listener_java">Form with listener (Java)</string>
     <string name="sample_login_form">Sample login form</string>
     <string name="login_to_our_portal">Login to our portal</string>
     <string name="login">login</string>

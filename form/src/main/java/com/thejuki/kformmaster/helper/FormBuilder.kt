@@ -41,8 +41,7 @@ interface FieldBuilder {
 }
 
 /** Builder method to add a header */
-class HeaderBuilder() : FieldBuilder {
-    var title: String = ""
+class HeaderBuilder(var title: String = "") : FieldBuilder {
     override fun build() =
             FormHeader.createInstance(title)
 }
@@ -66,7 +65,12 @@ abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1)
     var error: String? = null
     var required: Boolean = false // value to set is the field is required
     var visible: Boolean = true
+    @Deprecated(
+            message = "As of v2.0.0, valueObservers has been added and should be used instead.",
+            replaceWith = ReplaceWith("valueObservers.add({ println(it) })")
+    )
     var valueChanged: OnFormElementValueChangedListener? = null
+    val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
 }
 
 /** Builder method to add a FormSingleLineEditTextElement */
@@ -80,6 +84,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormSingleLineEditTextElement
 }
 
@@ -101,6 +106,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormMultiLineEditTextElement
 }
 
@@ -122,6 +128,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormNumberEditTextElement
 }
 
@@ -143,6 +150,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormEmailEditTextElement
 }
 
@@ -164,6 +172,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormPasswordEditTextElement
 }
 
@@ -185,6 +194,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormPhoneEditTextElement
 }
 
@@ -208,6 +218,7 @@ class AutoCompleteBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormAutoCompleteElement<T>)
                     .setArrayAdapter(arrayAdapter)
                     .setDropdownWidth(dropdownWidth)
@@ -233,6 +244,7 @@ class AutoCompleteTokenBuilder<T : Serializable>(tag: Int = -1) : BaseElementBui
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormTokenAutoCompleteElement<T>)
                     .setArrayAdapter(arrayAdapter)
                     .setDropdownWidth(dropdownWidth)
@@ -249,12 +261,18 @@ fun <T : Serializable> FormBuildHelper.autoCompleteToken(tag: Int = -1, init: Au
 class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
     var value: String? = null
     var visible: Boolean = true
+    @Deprecated(
+            message = "As of v2.0.0, valueObservers has been added and should be used instead.",
+            replaceWith = ReplaceWith("valueObservers.add({ println(it) })")
+    )
     var valueChanged: OnFormElementValueChangedListener? = null
+    val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
     override fun build() =
             (FormButtonElement(tag)
                     .setValue(value)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormButtonElement)
 }
 
@@ -278,6 +296,7 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormPickerDateElement)
 }
 
@@ -289,7 +308,7 @@ fun FormBuildHelper.date(tag: Int = -1, init: DateBuilder.() -> Unit): FormPicke
 }
 
 /** Builder method to add a FormPickerTimeElement */
-class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.DateHolder>(tag) {
+class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.TimeHolder>(tag) {
     var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
     var dateValue: Date? = null
     override fun build() =
@@ -301,6 +320,7 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormPickerTimeElement)
 }
 
@@ -312,7 +332,7 @@ fun FormBuildHelper.time(tag: Int = -1, init: TimeBuilder.() -> Unit): FormPicke
 }
 
 /** Builder method to add a FormButtonElement */
-class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.DateHolder>(tag) {
+class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElement.DateTimeHolder>(tag) {
     var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
     var dateValue: Date? = null
     override fun build() =
@@ -324,6 +344,7 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormPickerDateTimeElement)
 }
 
@@ -348,6 +369,7 @@ class DropDownBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
                     .setVisible(visible)
                     .setOptions(options?: ArrayList())
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormPickerDropDownElement<T>)
                     .setDialogTitle(dialogTitle)
                     .setArrayAdapter(arrayAdapter)
@@ -374,6 +396,7 @@ class MultiCheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder
                     .setOptions(options?: ArrayList())
                     .setOptionsSelected(optionsSelected?: ArrayList())
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormPickerMultiCheckBoxElement<T>)
                     .setDialogTitle(dialogTitle)
 }
@@ -398,6 +421,7 @@ class SwitchBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormSwitchElement<T>)
                     .setOnValue(onValue)
                     .setOffValue(offValue)
@@ -423,6 +447,7 @@ class CheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormCheckBoxElement<T>)
                     .setCheckedValue(checkedValue)
                     .setUnCheckedValue(unCheckedValue)
@@ -449,6 +474,7 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                     .setRequired(required)
                     .setVisible(visible)
                     .setValueChanged(valueChanged)
+                    .addAllValueObservers(valueObservers)
                     as FormSliderElement)
                     .setMax(max)
                     .setMin(min)

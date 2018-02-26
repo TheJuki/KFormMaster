@@ -24,6 +24,8 @@ class FormEmailEditTextElement : BaseFormElement<String> {
         super.writeToParcel(dest, flags)
     }
 
+    constructor() : super()
+
     constructor(tag: Int = -1) : super(tag)
 
     constructor(`in`: Parcel) : super(`in`) {}

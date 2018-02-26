@@ -75,7 +75,6 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
 
             if (timeChanged) {
                 model.setError(null) // Reset after value change
-                model.valueChanged?.onValueChanged(model)
                 formBuilder.onValueChanged(model)
 
                 editTextValue.setText(model.valueAsString)
