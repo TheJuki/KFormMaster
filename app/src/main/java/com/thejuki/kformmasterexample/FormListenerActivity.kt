@@ -187,7 +187,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)
-                valueObservers.add({
+                valueObservers.add({ newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@FormListenerActivity).create()
                     confirmAlert.setTitle(this@FormListenerActivity.getString(R.string.Confirm))
                     confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormListenerActivity.getString(android.R.string.ok), { _, _ ->

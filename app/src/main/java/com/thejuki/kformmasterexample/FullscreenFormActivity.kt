@@ -194,7 +194,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)
-                valueObservers.add({
+                valueObservers.add({ newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@FullscreenFormActivity).create()
                     confirmAlert.setTitle(this@FullscreenFormActivity.getString(R.string.Confirm))
                     confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FullscreenFormActivity.getString(android.R.string.ok), { _, _ ->

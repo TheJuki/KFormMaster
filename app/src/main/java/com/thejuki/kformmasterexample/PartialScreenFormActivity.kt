@@ -194,7 +194,7 @@ class PartialScreenFormActivity : AppCompatActivity() {
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)
-                valueObservers.add({
+                valueObservers.add({ newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@PartialScreenFormActivity).create()
                     confirmAlert.setTitle(this@PartialScreenFormActivity.getString(R.string.Confirm))
                     confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@PartialScreenFormActivity.getString(android.R.string.ok), { _, _ ->

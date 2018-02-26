@@ -26,13 +26,13 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     /**
      * Form Element Value Observers
      */
-    val valueObservers = mutableListOf<(T?) -> Unit>()
+    val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
 
     /**
      * Form Element Value
      */
-    open var value: T? by Delegates.observable<T?>(null) { prop, old, new ->
-        valueObservers.forEach { it(new) }
+    open var value: T? by Delegates.observable<T?>(null) { _, _, newValue ->
+        valueObservers.forEach { it(newValue, this) }
     }
 
     /**
@@ -135,12 +135,12 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
         return this
     }
 
-    fun addValueObserver(observer: (T?) -> Unit): BaseFormElement<T> {
+    fun addValueObserver(observer: (T?, BaseFormElement<T>) -> Unit): BaseFormElement<T> {
         this.valueObservers.add(observer)
         return this
     }
 
-    fun addAllValueObservers(observers: List<(T?) -> Unit>): BaseFormElement<T> {
+    fun addAllValueObservers(observers: List<(T?, BaseFormElement<T>) -> Unit>): BaseFormElement<T> {
         this.valueObservers.addAll(observers)
         return this
     }

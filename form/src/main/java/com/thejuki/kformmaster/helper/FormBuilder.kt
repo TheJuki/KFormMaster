@@ -41,8 +41,7 @@ interface FieldBuilder {
 }
 
 /** Builder method to add a header */
-class HeaderBuilder() : FieldBuilder {
-    var title: String = ""
+class HeaderBuilder(var title: String = "") : FieldBuilder {
     override fun build() =
             FormHeader.createInstance(title)
 }
@@ -71,7 +70,7 @@ abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1)
             replaceWith = ReplaceWith("valueObservers.add({ println(it) })")
     )
     var valueChanged: OnFormElementValueChangedListener? = null
-    val valueObservers = mutableListOf<(T?) -> Unit>()
+    val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
 }
 
 /** Builder method to add a FormSingleLineEditTextElement */
@@ -267,7 +266,7 @@ class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
             replaceWith = ReplaceWith("valueObservers.add({ println(it) })")
     )
     var valueChanged: OnFormElementValueChangedListener? = null
-    val valueObservers = mutableListOf<(String?) -> Unit>()
+    val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
     override fun build() =
             (FormButtonElement(tag)
                     .setValue(value)
