@@ -287,11 +287,11 @@ formBuilder = form(this@ActivityName, recyclerView, listener) {
 
     // CheckBox
     checkBox<Boolean>(CheckBoxElement.ordinal) {
-                title = getString(R.string.CheckBox)
-                value = true
-                checkedValue = true
-                unCheckedValue = false
-            }
+        title = getString(R.string.CheckBox)
+        value = true
+        checkedValue = true
+        unCheckedValue = false
+    }
 
     // Button
     button(ButtonElement.ordinal) {
