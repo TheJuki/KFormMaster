@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/2.0.0)
+- Added CheckBox element
+- The email, password, phone, text, textArea, number, textView, and button elements no longer take a <T: Serializable> as they only deal with Strings
+- Deprecated valueChanged in BaseFormElement
+- Added valueObservers in BaseFormElement to replace valueChanged with a list of Observers when the element value changes (See updated Examples)
+
 ## [1.2.3](https://github.com/TheJuki/KFormMaster/releases/tag/1.2.3)
 - Fixed issue with tokenautocomplete
 
