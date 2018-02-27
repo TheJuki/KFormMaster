@@ -20,5 +20,11 @@ before_install:
 - yes | sdkmanager "platforms;android-27"
 - chmod +x gradlew
 
+before_script:
+  - echo no | android create avd --force -n test -t android-26 --abi armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
