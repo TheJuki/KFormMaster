@@ -2,6 +2,7 @@
 
 [ ![Download](https://api.bintray.com/packages/thejuki/maven/k-form-master/images/download.svg) ](https://bintray.com/thejuki/maven/k-form-master/_latestVersion)
 [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
+[![Build Status](https://travis-ci.org/TheJuki/KFormMaster.svg?branch=master)](https://travis-ci.org/TheJuki/KFormMaster)
 
 > Easily build generic forms with minimal effort (A Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster))
 
