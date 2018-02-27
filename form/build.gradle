@@ -14,6 +14,7 @@ android {
         targetSdkVersion 27
         versionCode 7
         versionName "2.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -40,6 +41,9 @@ ext {
     supportVersion = '27.0.2'
     rendererRecyclerViewAdapterVersion = '2.5.0'
     tokenautocompleteVersion = '2.0.8'
+    junitVersion = '4.12'
+    testRunnerVersion = '1.0.1'
+    testExpressoVersion = '3.0.1'
 }
 
 dependencies {
@@ -50,6 +54,11 @@ dependencies {
 
     // Token Autocomplete
     compile "com.splitwise:tokenautocomplete:$tokenautocompleteVersion@aar"
+
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$testExpressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$testExpressoVersion"
 }
 
 publish {
