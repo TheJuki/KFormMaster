@@ -73,7 +73,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
      */
     @Deprecated(
             message = "As of v2.0.0, valueObservers has been added and should be used instead.",
-            replaceWith = ReplaceWith("valueObservers.add({ println(it) })")
+            replaceWith = ReplaceWith("valueObservers.add({ newValue, element -> println(newValue) })")
     )
     var valueChanged: OnFormElementValueChangedListener? = null
 

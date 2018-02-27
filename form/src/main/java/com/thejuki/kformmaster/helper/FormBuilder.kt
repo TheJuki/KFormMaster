@@ -67,7 +67,7 @@ abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1)
     var visible: Boolean = true
     @Deprecated(
             message = "As of v2.0.0, valueObservers has been added and should be used instead.",
-            replaceWith = ReplaceWith("valueObservers.add({ println(it) })")
+            replaceWith = ReplaceWith("valueObservers.add({ newValue, element -> println(newValue) })")
     )
     var valueChanged: OnFormElementValueChangedListener? = null
     val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
@@ -263,7 +263,7 @@ class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
     var visible: Boolean = true
     @Deprecated(
             message = "As of v2.0.0, valueObservers has been added and should be used instead.",
-            replaceWith = ReplaceWith("valueObservers.add({ println(it) })")
+            replaceWith = ReplaceWith("valueObservers.add({ newValue, element -> println(newValue) })")
     )
     var valueChanged: OnFormElementValueChangedListener? = null
     val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
@@ -434,7 +434,7 @@ fun <T : Serializable> FormBuildHelper.switch(tag: Int = -1, init: SwitchBuilder
     return element
 }
 
-/** Builder method to add a FormSwitchElement */
+/** Builder method to add a FormCheckBoxElement */
 class CheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var checkedValue: T? = null
     var unCheckedValue: T? = null
@@ -460,7 +460,7 @@ fun <T : Serializable> FormBuildHelper.checkBox(tag: Int = -1, init: CheckBoxBui
     return element
 }
 
-/** Builder method to add a FormSwitchElement */
+/** Builder method to add a FormSliderElement */
 class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
     var max: Int = 100
     var min: Int = 0
