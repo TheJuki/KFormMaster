@@ -9,10 +9,11 @@ android:
     - platform-tools
     - tools
     - build-tools-27.0.3
+    - android-22
     - android-27
     - platform-tools
     - extra-android-support
-    - sys-img-armeabi-v7a-android-27
+    - sys-img-armeabi-v7a-android-22
 
 sudo: true
 
@@ -21,7 +22,7 @@ before_install:
   - chmod +x gradlew
 
 before_script:
-  - echo no | android create avd --force -n test -t android-27 --abi armeabi-v7a
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
