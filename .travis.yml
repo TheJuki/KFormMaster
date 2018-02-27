@@ -8,13 +8,17 @@ android:
     - tools
     - platform-tools
     - tools
-    - build-tools-26.0.2
-    - android-26
+    - build-tools-27.0.3
+    - android-27
     - platform-tools
     - extra-android-support
     - sys-img-armeabi-v7a-android-26
 
 sudo: true
+
+before_install:
+- yes | sdkmanager "platforms;android-27"
+- chmod +x gradlew
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
