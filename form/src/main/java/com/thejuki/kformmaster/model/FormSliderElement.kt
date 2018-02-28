@@ -5,7 +5,7 @@ import android.os.Parcel
 /**
  * Form Slider Element
  *
- * Form element for SeekBar
+ * Form element for AppCompatSeekBar
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

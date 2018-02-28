@@ -1,5 +1,7 @@
 package com.thejuki.kformmaster
 
+import android.support.test.espresso.matcher.BoundedMatcher
+import android.support.v7.widget.AppCompatSeekBar
 import android.view.View
 import android.widget.TextView
 import org.hamcrest.Description
@@ -38,4 +40,13 @@ fun hasTextViewSingleLine() =
             }
 
             override fun matchesSafely(view: View) = (view as? TextView)?.maxLines == 1
+        }
+
+fun withProgress(expectedProgress: Int) =
+        object : BoundedMatcher<View, AppCompatSeekBar>(AppCompatSeekBar::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("SeekBar with progress: $expectedProgress")
+            }
+
+            override fun matchesSafely(seekBar: AppCompatSeekBar) = seekBar.progress == expectedProgress
         }

@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster.view
 
 import android.content.Context
+import android.support.v7.widget.AppCompatSeekBar
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
 import android.widget.SeekBar
@@ -29,7 +30,7 @@ class FormSliderViewBinder(private val context: Context, private val formBuilder
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
-        val slider = finder.find(R.id.formElementValue) as SeekBar
+        val slider = finder.find(R.id.formElementValue) as AppCompatSeekBar
         val progressValue = finder.find(R.id.formElementProgress) as AppCompatTextView
 
         if (model.value == null) {

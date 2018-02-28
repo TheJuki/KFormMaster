@@ -51,7 +51,7 @@ import kotlin.Unit;
 
 /**
  * Form Listener Java Activity
- *
+ * <p>
  * Java version of FormListenerActivity
  * OnFormElementValueChangedListener is overridden at the activity level
  *
@@ -124,38 +124,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
 
         List<BaseFormElement<?>> elements = new ArrayList<>();
 
-        elements.add(new HeaderBuilder(getString(R.string.PersonalInfo)).build());
-
-        EmailEditTextBuilder email = new EmailEditTextBuilder(Tag.Email.ordinal());
-        email.setTitle(getString(R.string.email));
-        email.setHint(getString(R.string.email_hint));
-        elements.add(email.build());
-
-        PasswordEditTextBuilder password = new PasswordEditTextBuilder(Tag.Password.ordinal());
-        password.setTitle(getString(R.string.password));
-        elements.add(password.build());
-
-        PhoneEditTextBuilder phone = new PhoneEditTextBuilder(Tag.Phone.ordinal());
-        phone.setTitle(getString(R.string.Phone));
-        phone.setValue("+8801712345678");
-        elements.add(phone.build());
-
-        elements.add(new HeaderBuilder(getString(R.string.FamilyInfo)).build());
-
-        SingleLineEditTextBuilder text = new SingleLineEditTextBuilder(Tag.Location.ordinal());
-        text.setTitle(getString(R.string.Location));
-        text.setValue("Dhaka");
-        elements.add(text.build());
-
-        MultiLineEditTextBuilder textArea = new MultiLineEditTextBuilder(Tag.Address.ordinal());
-        textArea.setTitle(getString(R.string.Address));
-        textArea.setValue("");
-        elements.add(textArea.build());
-
-        NumberEditTextBuilder number = new NumberEditTextBuilder(Tag.ZipCode.ordinal());
-        number.setTitle(getString(R.string.ZipCode));
-        number.setValue("1000");
-        elements.add(number.build());
+        addEditTexts(elements);
 
         elements.add(new HeaderBuilder(getString(R.string.Schedule)).build());
 
@@ -269,6 +238,41 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
 
         formBuilder.addFormElements(elements);
         formBuilder.refreshView();
+    }
+
+    private void addEditTexts(List<BaseFormElement<?>> elements) {
+        elements.add(new HeaderBuilder(getString(R.string.PersonalInfo)).build());
+
+        EmailEditTextBuilder email = new EmailEditTextBuilder(Tag.Email.ordinal());
+        email.setTitle(getString(R.string.email));
+        email.setHint(getString(R.string.email_hint));
+        elements.add(email.build());
+
+        PasswordEditTextBuilder password = new PasswordEditTextBuilder(Tag.Password.ordinal());
+        password.setTitle(getString(R.string.password));
+        elements.add(password.build());
+
+        PhoneEditTextBuilder phone = new PhoneEditTextBuilder(Tag.Phone.ordinal());
+        phone.setTitle(getString(R.string.Phone));
+        phone.setValue("+8801712345678");
+        elements.add(phone.build());
+
+        elements.add(new HeaderBuilder(getString(R.string.FamilyInfo)).build());
+
+        SingleLineEditTextBuilder text = new SingleLineEditTextBuilder(Tag.Location.ordinal());
+        text.setTitle(getString(R.string.Location));
+        text.setValue("Dhaka");
+        elements.add(text.build());
+
+        MultiLineEditTextBuilder textArea = new MultiLineEditTextBuilder(Tag.Address.ordinal());
+        textArea.setTitle(getString(R.string.Address));
+        textArea.setValue("");
+        elements.add(textArea.build());
+
+        NumberEditTextBuilder number = new NumberEditTextBuilder(Tag.ZipCode.ordinal());
+        number.setTitle(getString(R.string.ZipCode));
+        number.setValue("1000");
+        elements.add(number.build());
     }
 
     @Override

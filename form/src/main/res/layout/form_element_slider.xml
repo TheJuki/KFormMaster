@@ -43,7 +43,7 @@
 
     </LinearLayout>
 
-    <SeekBar
+    <android.support.v7.widget.AppCompatSeekBar
         android:id="@+id/formElementValue"
         android:max="100"
         android:layout_marginTop="10dp"
