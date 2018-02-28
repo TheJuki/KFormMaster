@@ -5,6 +5,7 @@ import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
+import android.text.InputType
 import android.view.View
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
@@ -34,6 +35,8 @@ class FormPickerDropDownViewBinder(private val context: Context, private val for
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
+
+        editTextValue.setRawInputType(InputType.TYPE_NULL)
 
         // reformat the options in format needed
         val options = arrayOfNulls<CharSequence>(model.options?.size ?: 0)

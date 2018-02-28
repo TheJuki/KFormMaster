@@ -69,6 +69,7 @@ class FormActivityTest : AppCompatActivity() {
     )
 
     private enum class Tag {
+        Hidden,
         Email,
         Phone,
         Location,
@@ -91,7 +92,6 @@ class FormActivityTest : AppCompatActivity() {
 
     private fun setupForm() {
         val listener: OnFormElementValueChangedListener = object : OnFormElementValueChangedListener {
-
             override fun onValueChanged(formElement: BaseFormElement<*>) {
 
             }
@@ -211,6 +211,10 @@ class FormActivityTest : AppCompatActivity() {
                     })
                     confirmAlert.show()
                 })
+            }
+            text(Hidden.ordinal) {
+                title = "Hidden"
+                visible = false
             }
         }
     }

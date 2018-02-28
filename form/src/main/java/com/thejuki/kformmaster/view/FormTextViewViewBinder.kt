@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
+import android.text.InputType
 import android.view.View
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
@@ -36,6 +37,8 @@ class FormTextViewViewBinder(private val context: Context, private val formBuild
         editTextValue.isEnabled = false
         editTextValue.setTextColor(ContextCompat.getColor(context, R.color.colorFormMasterElementTextDisabled))
         editTextValue.isFocusable = false
+        editTextValue.setRawInputType(InputType.TYPE_NULL)
+
     }, object : ViewStateProvider<FormTextViewElement, ViewHolder> {
         override fun createViewStateID(model: FormTextViewElement): Int {
             return model.id

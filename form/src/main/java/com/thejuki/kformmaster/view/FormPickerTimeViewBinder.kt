@@ -4,6 +4,7 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
+import android.text.InputType
 import android.view.View
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
@@ -33,6 +34,8 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
+
+        editTextValue.setRawInputType(InputType.TYPE_NULL)
 
         // If no value is set by the user, create a new instance of TimeHolder
         with(model.value)

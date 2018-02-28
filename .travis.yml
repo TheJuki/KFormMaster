@@ -11,7 +11,6 @@ android:
     - build-tools-27.0.3
     - android-22
     - android-27
-    - platform-tools
     - extra-android-support
     - sys-img-armeabi-v7a-android-22
 
