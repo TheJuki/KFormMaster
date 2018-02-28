@@ -1,11 +1,14 @@
-# K(otlin)-Form-Master
+![KFormMaster: Generic form builder in Kotlin](KFormMaster.png)
 
-[![Build Status](https://travis-ci.org/TheJuki/KFormMaster.svg?branch=master)](https://travis-ci.org/TheJuki/KFormMaster)
-[![codecov](https://codecov.io/gh/TheJuki/KFormMaster/branch/master/graph/badge.svg)](https://codecov.io/gh/TheJuki/KFormMaster)
-[![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
-[ ![Download](https://api.bintray.com/packages/thejuki/maven/k-form-master/images/download.svg) ](https://bintray.com/thejuki/maven/k-form-master/_latestVersion)
+<p align="center">
+<a href="https://travis-ci.org/TheJuki/KFormMaster"><img src="https://travis-ci.org/TheJuki/KFormMaster.svg?branch=master" alt="Build status" /></a>
+<a href="https://codecov.io/gh/TheJuki/KFormMaster"><img src="https://codecov.io/gh/TheJuki/KFormMaster/branch/master/graph/badge.svg" alt="codecov" /></a>
+<a href="https://android-arsenal.com/api?level=15"><img src="https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat" alt="API" /></a>
+<a href="https://android-arsenal.com/details/1/6761"><img src="https://img.shields.io/badge/Android%20Arsenal-KFormMaster-brightgreen.svg?style=flat" border="0" alt="Android Arsenal"></a>
+<a href="https://bintray.com/thejuki/maven/k-form-master/_latestVersion"><img src="https://api.bintray.com/packages/thejuki/maven/k-form-master/images/download.svg" alt="Download" /></a>
+</p>
 
-> Easily build generic forms with minimal effort (A Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster))
+This is a Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster)
 
 ## Examples
 | [Full Screen](https://github.com/TheJuki/KFormMaster/blob/master/app/src/main/java/com/thejuki/kformmasterexample/FullscreenFormActivity.kt) | [Partial Screen](https://github.com/TheJuki/KFormMaster/blob/master/app/src/main/java/com/thejuki/kformmasterexample/PartialScreenFormActivity.kt) | [Login](https://github.com/TheJuki/KFormMaster/blob/master/app/src/main/java/com/thejuki/kformmasterexample/LoginFormActivity.kt) |
