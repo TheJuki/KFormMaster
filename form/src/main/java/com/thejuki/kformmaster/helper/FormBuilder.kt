@@ -53,7 +53,7 @@ fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
 }
 
 /** Builder method to add a BaseFormElement */
-abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1, protected var title: String? = null) : FieldBuilder {
+abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1, var title: String? = null) : FieldBuilder {
     /**
      * Form Element Value
      */
