@@ -1,5 +1,10 @@
 # Change Log
 
+## [2.0.1](https://github.com/TheJuki/KFormMaster/releases/tag/2.0.1)
+- Add better comments
+- Remove redundant View States
+- Add Instrumented Tests
+
 ## [2.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/2.0.0)
 - Added CheckBox element
 - Element tags are now optional
