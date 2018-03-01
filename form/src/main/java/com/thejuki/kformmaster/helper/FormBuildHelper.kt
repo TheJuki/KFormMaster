@@ -102,12 +102,7 @@ class FormBuildHelper {
         this.formAdapter.registerRenderer(FormHeaderViewBinder(context, this).viewBinder)
 
         // Edit Texts
-        this.formAdapter.registerRenderer(FormSingleLineEditTextViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormMultiLineEditTextViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormNumberEditTextViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormEmailEditTextViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPhoneEditTextViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPasswordEditTextViewBinder(context, this).viewBinder)
+        registerEdiTexts(context)
 
         // AutoCompletes
         this.formAdapter.registerRenderer(FormAutoCompleteViewBinder(context, this).viewBinder)
@@ -126,16 +121,31 @@ class FormBuildHelper {
         this.formAdapter.registerRenderer(FormSliderViewBinder(context, this).viewBinder)
 
         // Pickers
-        this.formAdapter.registerRenderer(FormPickerDateViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPickerTimeViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPickerDateTimeViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPickerMultiCheckBoxViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPickerDropDownViewBinder(context, this).viewBinder)
+        registerPickers(context)
 
         // Text View
         this.formAdapter.registerRenderer(FormTextViewViewBinder(context, this).viewBinder)
 
         this.listener = listener
+    }
+
+    private fun registerEdiTexts(context: Context)
+    {
+        this.formAdapter.registerRenderer(FormSingleLineEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormMultiLineEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormNumberEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormEmailEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormPhoneEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormPasswordEditTextViewBinder(context, this).viewBinder)
+    }
+
+    private fun registerPickers(context: Context)
+    {
+        this.formAdapter.registerRenderer(FormPickerDateViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormPickerTimeViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormPickerDateTimeViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormPickerMultiCheckBoxViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormPickerDropDownViewBinder(context, this).viewBinder)
     }
 
     /**

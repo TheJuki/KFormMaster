@@ -54,6 +54,7 @@ import kotlin.Unit;
  * <p>
  * Java version of FormListenerActivity
  * OnFormElementValueChangedListener is overridden at the activity level
+ * </p>
  *
  * @author <strong>TheJuki</strong> <a href="https://github.com/TheJuki">GitHub</a>
  * @version 1.0
@@ -126,6 +127,54 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
 
         addEditTexts(elements);
 
+        addDateAndTime(elements);
+
+        addPickers(elements);
+
+        addAutoComplete(elements);
+
+        addMarkComplete(elements);
+
+        formBuilder.addFormElements(elements);
+        formBuilder.refreshView();
+    }
+
+    private void addEditTexts(List<BaseFormElement<?>> elements) {
+        elements.add(new HeaderBuilder(getString(R.string.PersonalInfo)).build());
+
+        EmailEditTextBuilder email = new EmailEditTextBuilder(Tag.Email.ordinal());
+        email.setTitle(getString(R.string.email));
+        email.setHint(getString(R.string.email_hint));
+        elements.add(email.build());
+
+        PasswordEditTextBuilder password = new PasswordEditTextBuilder(Tag.Password.ordinal());
+        password.setTitle(getString(R.string.password));
+        elements.add(password.build());
+
+        PhoneEditTextBuilder phone = new PhoneEditTextBuilder(Tag.Phone.ordinal());
+        phone.setTitle(getString(R.string.Phone));
+        phone.setValue("+8801712345678");
+        elements.add(phone.build());
+
+        elements.add(new HeaderBuilder(getString(R.string.FamilyInfo)).build());
+
+        SingleLineEditTextBuilder text = new SingleLineEditTextBuilder(Tag.Location.ordinal());
+        text.setTitle(getString(R.string.Location));
+        text.setValue("Dhaka");
+        elements.add(text.build());
+
+        MultiLineEditTextBuilder textArea = new MultiLineEditTextBuilder(Tag.Address.ordinal());
+        textArea.setTitle(getString(R.string.Address));
+        textArea.setValue("");
+        elements.add(textArea.build());
+
+        NumberEditTextBuilder number = new NumberEditTextBuilder(Tag.ZipCode.ordinal());
+        number.setTitle(getString(R.string.ZipCode));
+        number.setValue("1000");
+        elements.add(number.build());
+    }
+
+    private void addDateAndTime(List<BaseFormElement<?>> elements) {
         elements.add(new HeaderBuilder(getString(R.string.Schedule)).build());
 
         DateBuilder date = new DateBuilder(Tag.Date.ordinal());
@@ -145,7 +194,9 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         dateTime.setDateValue(new Date());
         dateTime.setDateFormat(new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US));
         elements.add(dateTime.build());
+    }
 
+    private void addPickers(List<BaseFormElement<?>> elements) {
         elements.add(new HeaderBuilder(getString(R.string.PreferredItems)).build());
 
         DropDownBuilder<ListItem> dropDown = new DropDownBuilder<>(Tag.SingleItem.ordinal());
@@ -161,7 +212,9 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         multiCheckBox.setOptions(fruits);
         multiCheckBox.setOptionsSelected(Collections.singletonList(new ListItem(1L, "Banana")));
         elements.add(multiCheckBox.build());
+    }
 
+    private void addAutoComplete(List<BaseFormElement<?>> elements) {
         AutoCompleteBuilder<ContactItem> autoComplete = new AutoCompleteBuilder<>(Tag.AutoCompleteElement.ordinal());
         autoComplete.setTitle(getString(R.string.AutoComplete));
         autoComplete.setArrayAdapter(new ContactAutoCompleteAdapter(this,
@@ -183,7 +236,9 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         textView.setTitle(getString(R.string.TextView));
         textView.setValue("This is readonly!");
         elements.add(textView.build());
+    }
 
+    private void addMarkComplete(List<BaseFormElement<?>> elements) {
         elements.add(new HeaderBuilder(getString(R.string.MarkComplete)).build());
 
         SwitchBuilder<String> switchElement = new SwitchBuilder<>(Tag.SwitchElement.ordinal());
@@ -235,44 +290,6 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
             return Unit.INSTANCE;
         });
         elements.add(button.build());
-
-        formBuilder.addFormElements(elements);
-        formBuilder.refreshView();
-    }
-
-    private void addEditTexts(List<BaseFormElement<?>> elements) {
-        elements.add(new HeaderBuilder(getString(R.string.PersonalInfo)).build());
-
-        EmailEditTextBuilder email = new EmailEditTextBuilder(Tag.Email.ordinal());
-        email.setTitle(getString(R.string.email));
-        email.setHint(getString(R.string.email_hint));
-        elements.add(email.build());
-
-        PasswordEditTextBuilder password = new PasswordEditTextBuilder(Tag.Password.ordinal());
-        password.setTitle(getString(R.string.password));
-        elements.add(password.build());
-
-        PhoneEditTextBuilder phone = new PhoneEditTextBuilder(Tag.Phone.ordinal());
-        phone.setTitle(getString(R.string.Phone));
-        phone.setValue("+8801712345678");
-        elements.add(phone.build());
-
-        elements.add(new HeaderBuilder(getString(R.string.FamilyInfo)).build());
-
-        SingleLineEditTextBuilder text = new SingleLineEditTextBuilder(Tag.Location.ordinal());
-        text.setTitle(getString(R.string.Location));
-        text.setValue("Dhaka");
-        elements.add(text.build());
-
-        MultiLineEditTextBuilder textArea = new MultiLineEditTextBuilder(Tag.Address.ordinal());
-        textArea.setTitle(getString(R.string.Address));
-        textArea.setValue("");
-        elements.add(textArea.build());
-
-        NumberEditTextBuilder number = new NumberEditTextBuilder(Tag.ZipCode.ordinal());
-        number.setTitle(getString(R.string.ZipCode));
-        number.setValue("1000");
-        elements.add(number.build());
     }
 
     @Override
