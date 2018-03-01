@@ -93,15 +93,6 @@ abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1,
     var visible: Boolean = true
 
     /**
-     * Form Element Value Changed Listener
-     */
-    @Deprecated(
-            message = "As of v2.0.0, valueObservers has been added and should be used instead.",
-            replaceWith = ReplaceWith("valueObservers.add({ newValue, element -> println(newValue) })")
-    )
-    var valueChanged: OnFormElementValueChangedListener? = null
-
-    /**
      * Form Element Value Observers
      */
     val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
@@ -117,11 +108,11 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormSingleLineEditTextElement
 }
 
+/** FormBuildHelper extension to add a FormSingleLineEditTextElement */
 fun FormBuildHelper.text(tag: Int = -1, init: SingleLineEditTextBuilder.() -> Unit): FormSingleLineEditTextElement {
     val element = SingleLineEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -139,11 +130,11 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormMultiLineEditTextElement
 }
 
+/** FormBuildHelper extension to add a FormMultiLineEditTextElement */
 fun FormBuildHelper.textArea(tag: Int = -1, init: MultiLineEditTextBuilder.() -> Unit): FormMultiLineEditTextElement {
     val element = MultiLineEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -161,11 +152,11 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormNumberEditTextElement
 }
 
+/** FormBuildHelper extension to add a FormNumberEditTextElement */
 fun FormBuildHelper.number(tag: Int = -1, init: NumberEditTextBuilder.() -> Unit): FormNumberEditTextElement {
     val element = NumberEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -183,11 +174,11 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormEmailEditTextElement
 }
 
+/** FormBuildHelper extension to add a FormEmailEditTextElement */
 fun FormBuildHelper.email(tag: Int = -1, init: EmailEditTextBuilder.() -> Unit): FormEmailEditTextElement {
     val element = EmailEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -205,11 +196,11 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormPasswordEditTextElement
 }
 
+/** FormBuildHelper extension to add a PasswordEditTextBuilder */
 fun FormBuildHelper.password(tag: Int = -1, init: PasswordEditTextBuilder.() -> Unit): FormPasswordEditTextElement {
     val element = PasswordEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -227,11 +218,11 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormPhoneEditTextElement
 }
 
+/** FormBuildHelper extension to add a FormPhoneEditTextElement */
 fun FormBuildHelper.phone(tag: Int = -1, init: PhoneEditTextBuilder.() -> Unit): FormPhoneEditTextElement {
     val element = PhoneEditTextBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -251,13 +242,13 @@ class AutoCompleteBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormAutoCompleteElement<T>)
                     .setArrayAdapter(arrayAdapter)
                     .setDropdownWidth(dropdownWidth)
 }
 
+/** FormBuildHelper extension to add a FormAutoCompleteElement */
 fun <T : Serializable> FormBuildHelper.autoComplete(tag: Int = -1, init: AutoCompleteBuilder<T>.() -> Unit): FormAutoCompleteElement<T> {
     val element = AutoCompleteBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
@@ -277,13 +268,13 @@ class AutoCompleteTokenBuilder<T : Serializable>(tag: Int = -1) : BaseElementBui
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormTokenAutoCompleteElement<T>)
                     .setArrayAdapter(arrayAdapter)
                     .setDropdownWidth(dropdownWidth)
 }
 
+/** FormBuildHelper extension to add a FormTokenAutoCompleteElement */
 fun <T : Serializable> FormBuildHelper.autoCompleteToken(tag: Int = -1, init: AutoCompleteTokenBuilder<T>.() -> Unit): FormTokenAutoCompleteElement<T> {
     val element = AutoCompleteTokenBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
@@ -295,21 +286,16 @@ fun <T : Serializable> FormBuildHelper.autoCompleteToken(tag: Int = -1, init: Au
 class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
     var value: String? = null
     var visible: Boolean = true
-    @Deprecated(
-            message = "As of v2.0.0, valueObservers has been added and should be used instead.",
-            replaceWith = ReplaceWith("valueObservers.add({ newValue, element -> println(newValue) })")
-    )
-    var valueChanged: OnFormElementValueChangedListener? = null
     val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
     override fun build() =
             (FormButtonElement(tag)
                     .setValue(value)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormButtonElement)
 }
 
+/** FormBuildHelper extension to add a FormButtonElement */
 fun FormBuildHelper.button(tag: Int = -1, init: ButtonBuilder.() -> Unit): FormButtonElement {
     val element = ButtonBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -329,11 +315,11 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormPickerDateElement)
 }
 
+/** FormBuildHelper extension to add a FormPickerDateElement */
 fun FormBuildHelper.date(tag: Int = -1, init: DateBuilder.() -> Unit): FormPickerDateElement {
     val element = DateBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -353,11 +339,11 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.Time
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormPickerTimeElement)
 }
 
+/** FormBuildHelper extension to add a FormPickerTimeElement */
 fun FormBuildHelper.time(tag: Int = -1, init: TimeBuilder.() -> Unit): FormPickerTimeElement {
     val element = TimeBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -377,11 +363,11 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElem
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormPickerDateTimeElement)
 }
 
+/** FormBuildHelper extension to add a FormPickerDateTimeElement */
 fun FormBuildHelper.dateTime(tag: Int = -1, init: DateTimeBuilder.() -> Unit): FormPickerDateTimeElement {
     val element = DateTimeBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -402,13 +388,13 @@ class DropDownBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
                     .setRequired(required)
                     .setVisible(visible)
                     .setOptions(options?: ArrayList())
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormPickerDropDownElement<T>)
                     .setDialogTitle(dialogTitle)
                     .setArrayAdapter(arrayAdapter)
 }
 
+/** FormBuildHelper extension to add a FormPickerDropDownElement */
 fun <T : Serializable> FormBuildHelper.dropDown(tag: Int = -1, init: DropDownBuilder<T>.() -> Unit): FormPickerDropDownElement<T> {
     val element = DropDownBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
@@ -429,12 +415,12 @@ class MultiCheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder
                     .setVisible(visible)
                     .setOptions(options?: ArrayList())
                     .setOptionsSelected(optionsSelected?: ArrayList())
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormPickerMultiCheckBoxElement<T>)
                     .setDialogTitle(dialogTitle)
 }
 
+/** FormBuildHelper extension to add a FormPickerMultiCheckBoxElement */
 fun <T : Serializable> FormBuildHelper.multiCheckBox(tag: Int = -1, init: MultiCheckBoxBuilder<T>.() -> Unit): FormPickerMultiCheckBoxElement<T> {
     val element = MultiCheckBoxBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
@@ -454,13 +440,13 @@ class SwitchBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormSwitchElement<T>)
                     .setOnValue(onValue)
                     .setOffValue(offValue)
 }
 
+/** FormBuildHelper extension to add a FormSwitchElement */
 fun <T : Serializable> FormBuildHelper.switch(tag: Int = -1, init: SwitchBuilder<T>.() -> Unit): FormSwitchElement<T> {
     val element = SwitchBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
@@ -480,13 +466,13 @@ class CheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormCheckBoxElement<T>)
                     .setCheckedValue(checkedValue)
                     .setUnCheckedValue(unCheckedValue)
 }
 
+/** FormBuildHelper extension to add a FormCheckBoxElement */
 fun <T : Serializable> FormBuildHelper.checkBox(tag: Int = -1, init: CheckBoxBuilder<T>.() -> Unit): FormCheckBoxElement<T> {
     val element = CheckBoxBuilder<T>(tag).apply(init).build()
     element.id = ++lastId
@@ -507,7 +493,6 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                     .setError(error)
                     .setRequired(required)
                     .setVisible(visible)
-                    .setValueChanged(valueChanged)
                     .addAllValueObservers(valueObservers)
                     as FormSliderElement)
                     .setMax(max)
@@ -515,6 +500,7 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                     .setSteps(steps)
 }
 
+/** FormBuildHelper extension to add a FormSliderElement */
 fun FormBuildHelper.slider(tag: Int = -1, init: SliderBuilder.() -> Unit): FormSliderElement {
     val element = SliderBuilder(tag).apply(init).build()
     element.id = ++lastId
@@ -532,6 +518,7 @@ class TextViewBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     as FormTextViewElement)
 }
 
+/** FormBuildHelper extension to add a FormTextViewElement */
 fun FormBuildHelper.textView(tag: Int = -1, init: TextViewBuilder.() -> Unit): FormTextViewElement {
     val element = TextViewBuilder(tag).apply(init).build()
     element.id = ++lastId

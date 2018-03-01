@@ -13,7 +13,14 @@ import java.io.Serializable
  */
 open class FormSwitchElement<T : Serializable> : BaseFormElement<T> {
 
+    /**
+     * Sets value to this when on
+     */
     var onValue: T? = null
+
+    /**
+     * Sets value to this when off
+     */
     var offValue: T? = null
 
     fun isOn(): Boolean {

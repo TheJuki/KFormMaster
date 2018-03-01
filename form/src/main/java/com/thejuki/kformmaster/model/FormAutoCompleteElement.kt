@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.widget.ArrayAdapter
 import java.io.Serializable
-import java.util.*
 
 /**
  * Form AutoComplete Element
@@ -25,11 +24,6 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
      * Values in options array, we keep the TypedString: what the user typed.
      */
     var typedString: String? = null
-    /**
-     * To determine what strings can be typed, we keep a set of the options
-     * converted to strings
-     */
-    private var mStringOptions: HashSet<String>? = null
 
     /**
      * Override the default array adapter
@@ -41,9 +35,6 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
      * Override the default dropdown width
      */
     var dropdownWidth: Int? = null
-
-    val stringOptions: Set<String>
-        get() = mStringOptions ?: HashSet<String>()
 
     fun setArrayAdapter(arrayAdapter: ArrayAdapter<*>?): FormAutoCompleteElement<T> {
         this.arrayAdapter = arrayAdapter
@@ -61,15 +52,6 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
         return super.setValue(mValue)
     }
 
-    override fun setOptions(mOptions: List<T>): FormAutoCompleteElement<T> {
-        super.setOptions(mOptions)
-        mStringOptions = HashSet()
-        for (i in mOptions) {
-            mStringOptions!!.add(i.toString())
-        }
-        return this
-    }
-
     /**
      * Parcelable boilerplate
      */
@@ -80,12 +62,10 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
     override fun writeToParcel(dest: Parcel, flags: Int) {
         super.writeToParcel(dest, flags)
         dest.writeString(this.typedString)
-        dest.writeSerializable(this.mStringOptions)
     }
 
     protected constructor(`in`: Parcel) : super(`in`) {
         this.typedString = `in`.readString()
-        this.mStringOptions = `in`.readSerializable() as HashSet<String>
     }
 
     companion object {

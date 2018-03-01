@@ -36,7 +36,7 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
 
         val autoCompleteTextView = finder.find(R.id.formElementValue) as AppCompatAutoCompleteTextView
 
-        if (model.valueAsString != model.typedString) { // If the typedString is not one of the values, keep it
+        if (model.valueAsString != model.typedString) {
             autoCompleteTextView.setText(model.typedString)
         } else {
             autoCompleteTextView.setText(model.valueAsString)

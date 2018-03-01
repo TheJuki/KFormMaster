@@ -13,7 +13,14 @@ import java.io.Serializable
  */
 open class FormCheckBoxElement<T : Serializable> : BaseFormElement<T> {
 
+    /**
+     * Sets value to this when checked
+     */
     var checkedValue: T? = null
+
+    /**
+     * Sets value to this when unchecked
+     */
     var unCheckedValue: T? = null
 
     fun isChecked(): Boolean {

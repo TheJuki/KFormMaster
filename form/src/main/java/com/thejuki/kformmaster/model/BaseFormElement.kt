@@ -3,7 +3,6 @@ package com.thejuki.kformmaster.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
-import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import java.io.Serializable
 import java.util.*
 import kotlin.properties.Delegates
@@ -31,7 +30,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     /**
      * Form Element Value
      */
-    open var value: T? by Delegates.observable<T?>(null) { _, _, newValue ->
+    var value: T? by Delegates.observable<T?>(null) { _, _, newValue ->
         valueObservers.forEach { it(newValue, this) }
     }
 
@@ -69,15 +68,6 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     var visible: Boolean = true
 
     /**
-     * Form Element Value Changed Listener
-     */
-    @Deprecated(
-            message = "As of v2.0.0, valueObservers has been added and should be used instead.",
-            replaceWith = ReplaceWith("valueObservers.add({ newValue, element -> println(newValue) })")
-    )
-    var valueChanged: OnFormElementValueChangedListener? = null
-
-    /**
      * Form Element Value String value
      */
     val valueAsString: String
@@ -99,9 +89,9 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
         return this
     }
 
+    @Suppress("UNCHECKED_CAST")
     open fun setValue(mValue: Any?): BaseFormElement<T> {
         this.value = mValue as T?
-        valueChanged?.onValueChanged(this)
         return this
     }
 
@@ -130,11 +120,6 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
         return this
     }
 
-    fun setValueChanged(mValueChanged: OnFormElementValueChangedListener?): BaseFormElement<T> {
-        this.valueChanged = mValueChanged
-        return this
-    }
-
     fun addValueObserver(observer: (T?, BaseFormElement<T>) -> Unit): BaseFormElement<T> {
         this.valueObservers.add(observer)
         return this
@@ -145,6 +130,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
         return this
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun setOptionsSelected(mOptionsSelected: List<Any>): BaseFormElement<T> {
         this.optionsSelected = mOptionsSelected as List<T>
         return this
@@ -176,7 +162,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
          */
 
         // options
-        if (options == null || options!!.size == 0) {
+        if (options == null || options!!.isEmpty()) {
             dest.writeInt(0)
         } else {
             dest.writeInt(options!!.size)
@@ -187,7 +173,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
         }
 
         // optionsSelected
-        if (optionsSelected == null || optionsSelected!!.size == 0) {
+        if (optionsSelected == null || optionsSelected!!.isEmpty()) {
             dest.writeInt(0)
         } else {
             dest.writeInt(optionsSelected!!.size)
@@ -223,6 +209,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     protected constructor(`in`: Parcel) : this() {
         this.tag = `in`.readInt()
         this.title = `in`.readString()
+        @Suppress("UNCHECKED_CAST")
         this.value = `in`.readSerializable() as T
 
         /*

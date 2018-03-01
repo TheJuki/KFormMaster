@@ -16,8 +16,16 @@ import java.io.Serializable
  */
 class FormPickerDropDownElement<T : Serializable> : FormPickerElement<T> {
 
+    /**
+     * Alert Dialog Title
+     * (optional - uses R.string.form_master_pick_one)
+     */
     var dialogTitle: String? = null
 
+    /**
+     * ArrayAdapter for Alert Dialog
+     * (optional - uses setItems(options))
+     */
     var arrayAdapter: ArrayAdapter<*>? = null
 
     fun setDialogTitle(dialogTitle: String?): FormPickerDropDownElement<T>

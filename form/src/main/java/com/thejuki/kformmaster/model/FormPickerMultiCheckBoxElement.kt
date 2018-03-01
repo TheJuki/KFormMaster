@@ -15,6 +15,10 @@ import java.io.Serializable
  */
 class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
 
+    /**
+     * Alert Dialog Title
+     * (optional - uses R.string.form_master_pick_one_or_more)
+     */
     var dialogTitle: String? = null
 
     fun setDialogTitle(dialogTitle: String?): FormPickerMultiCheckBoxElement<T>

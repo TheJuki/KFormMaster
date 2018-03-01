@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 8
-        versionName "2.0.1"
+        versionCode 9
+        versionName "2.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -51,6 +51,8 @@ ext {
     junitVersion = '4.12'
     testRunnerVersion = '1.0.1'
     testExpressoVersion = '3.0.1'
+    kotlintestVersion = '2.0.7'
+    mockitoVersion = '2.15.0'
 }
 
 dependencies {
@@ -63,6 +65,8 @@ dependencies {
     compile "com.splitwise:tokenautocomplete:$tokenautocompleteVersion@aar"
 
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "io.kotlintest:kotlintest:$kotlintestVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
     androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$testExpressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$testExpressoVersion"
@@ -72,7 +76,7 @@ publish {
     userOrg = 'thejuki'
     groupId = 'com.thejuki'
     artifactId = 'k-form-master'
-    publishVersion = '2.0.1'
+    publishVersion = '2.1.0'
     desc = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
     website = 'https://github.com/TheJuki/KFormMaster'
 }
