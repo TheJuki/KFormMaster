@@ -266,30 +266,33 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         ButtonBuilder button = new ButtonBuilder(Tag.ButtonElement.ordinal());
         button.setValue(getString(R.string.Button));
         button.getValueObservers().add((newValue, element) -> {
-            AlertDialog confirmAlert = new AlertDialog.Builder(this).create();
-            confirmAlert.setTitle(this.getString(R.string.Confirm));
-            confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this.getString(android.R.string.ok), (dialog, which) -> {
-                // Could be used to clear another field:
-                FormPickerDateElement dateToDeleteElement = (FormPickerDateElement) formBuilder.getFormElement(Tag.Date.ordinal());
-                // Display current date
-                if (dateToDeleteElement != null && dateToDeleteElement.getValue() != null) {
-                    Date dateToDelete = dateToDeleteElement.getValue().getTime();
-
-                    if (dateToDelete != null) {
-                        Toast.makeText(this, dateToDelete.toString(), Toast.LENGTH_SHORT).show();
-                        dateToDeleteElement.getValue().useCurrentDate();
-                        formBuilder.onValueChanged(dateToDeleteElement);
-                        formBuilder.refreshView();
-                    }
-                }
-            });
-            confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this.getString(android.R.string.cancel), (dialog, which) -> {
-            });
-            confirmAlert.show();
-
+            clearDate();
             return Unit.INSTANCE;
         });
         elements.add(button.build());
+    }
+
+    private void clearDate() {
+        AlertDialog confirmAlert = new AlertDialog.Builder(this).create();
+        confirmAlert.setTitle(this.getString(R.string.Confirm));
+        confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this.getString(android.R.string.ok), (dialog, which) -> {
+            // Could be used to clear another field:
+            FormPickerDateElement dateToDeleteElement = (FormPickerDateElement) formBuilder.getFormElement(Tag.Date.ordinal());
+            // Display current date
+            if (dateToDeleteElement != null && dateToDeleteElement.getValue() != null) {
+                Date dateToDelete = dateToDeleteElement.getValue().getTime();
+
+                if (dateToDelete != null) {
+                    Toast.makeText(this, dateToDelete.toString(), Toast.LENGTH_SHORT).show();
+                    dateToDeleteElement.getValue().useCurrentDate();
+                    formBuilder.onValueChanged(dateToDeleteElement);
+                    formBuilder.refreshView();
+                }
+            }
+        });
+        confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this.getString(android.R.string.cancel), (dialog, which) -> {
+        });
+        confirmAlert.show();
     }
 
     @Override

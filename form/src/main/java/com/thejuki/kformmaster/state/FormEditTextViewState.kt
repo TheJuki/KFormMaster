@@ -3,17 +3,16 @@ package com.thejuki.kformmaster.state
 import android.support.v7.widget.AppCompatEditText
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.thejuki.kformmaster.R
-import com.thejuki.kformmaster.model.FormSingleLineEditTextElement
 
 /**
- * Form SingleLine EditText ViewState
+ * Form EditText ViewState
  *
- * View State for [FormSingleLineEditTextElement]
+ * View State for any EditTextElement
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormSingleLineEditTextViewState(holder: ViewHolder) : BaseFormViewState(holder) {
+class FormEditTextViewState(holder: ViewHolder) : BaseFormViewState(holder) {
     private var value: String? = null
 
     init {

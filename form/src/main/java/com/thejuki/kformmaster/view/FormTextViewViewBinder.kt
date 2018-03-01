@@ -13,7 +13,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormTextViewElement
-import com.thejuki.kformmaster.state.FormTextViewViewState
+import com.thejuki.kformmaster.state.FormEditTextViewState
 
 /**
  * Form TextView ViewBinder
@@ -45,7 +45,7 @@ class FormTextViewViewBinder(private val context: Context, private val formBuild
         }
 
         override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormTextViewViewState(holder)
+            return FormEditTextViewState(holder)
         }
     })
 }

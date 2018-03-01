@@ -15,7 +15,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormSingleLineEditTextElement
-import com.thejuki.kformmaster.state.FormSingleLineEditTextViewState
+import com.thejuki.kformmaster.state.FormEditTextViewState
 
 /**
  * Form SingleLine EditText ViewBinder
@@ -78,7 +78,7 @@ class FormSingleLineEditTextViewBinder(private val context: Context, private val
         }
 
         override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormSingleLineEditTextViewState(holder)
+            return FormEditTextViewState(holder)
         }
     })
 

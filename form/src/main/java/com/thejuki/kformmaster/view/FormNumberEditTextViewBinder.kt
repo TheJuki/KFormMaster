@@ -16,7 +16,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormNumberEditTextElement
-import com.thejuki.kformmaster.state.FormNumberEditTextViewState
+import com.thejuki.kformmaster.state.FormEditTextViewState
 
 /**
  * Form Number EditText ViewBinder
@@ -79,7 +79,7 @@ class FormNumberEditTextViewBinder(private val context: Context, private val for
         }
 
         override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormNumberEditTextViewState(holder)
+            return FormEditTextViewState(holder)
         }
     })
 

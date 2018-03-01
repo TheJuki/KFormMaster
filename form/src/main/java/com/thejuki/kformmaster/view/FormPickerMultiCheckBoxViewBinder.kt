@@ -13,7 +13,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPickerMultiCheckBoxElement
-import com.thejuki.kformmaster.state.FormMultiLineEditTextViewState
+import com.thejuki.kformmaster.state.FormEditTextViewState
 import java.util.*
 
 /**
@@ -102,7 +102,7 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
         }
 
         override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormMultiLineEditTextViewState(holder)
+            return FormEditTextViewState(holder)
         }
     })
 

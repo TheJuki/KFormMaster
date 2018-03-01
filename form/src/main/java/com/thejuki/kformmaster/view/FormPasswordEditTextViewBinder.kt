@@ -16,7 +16,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPasswordEditTextElement
-import com.thejuki.kformmaster.state.FormPasswordEditTextViewState
+import com.thejuki.kformmaster.state.FormEditTextViewState
 
 /**
  * Form Password EditText ViewBinder
@@ -79,7 +79,7 @@ class FormPasswordEditTextViewBinder(private val context: Context, private val f
         }
 
         override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormPasswordEditTextViewState(holder)
+            return FormEditTextViewState(holder)
         }
     })
 

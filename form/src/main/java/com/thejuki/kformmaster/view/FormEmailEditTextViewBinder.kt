@@ -16,7 +16,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormEmailEditTextElement
-import com.thejuki.kformmaster.state.FormEmailEditTextViewState
+import com.thejuki.kformmaster.state.FormEditTextViewState
 
 /**
  * Form Email EditText ViewBinder
@@ -79,7 +79,7 @@ class FormEmailEditTextViewBinder(private val context: Context, private val form
         }
 
         override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormEmailEditTextViewState(holder)
+            return FormEditTextViewState(holder)
         }
     })
 

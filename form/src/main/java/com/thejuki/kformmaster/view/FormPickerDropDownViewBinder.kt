@@ -14,7 +14,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPickerDropDownElement
-import com.thejuki.kformmaster.state.FormPickerDropDownViewState
+import com.thejuki.kformmaster.state.FormEditTextViewState
 
 /**
  * Form Picker DropDown ViewBinder
@@ -85,7 +85,7 @@ class FormPickerDropDownViewBinder(private val context: Context, private val for
         }
 
         override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormPickerDropDownViewState(holder)
+            return FormEditTextViewState(holder)
         }
     })
 }

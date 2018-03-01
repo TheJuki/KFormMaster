@@ -15,7 +15,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormMultiLineEditTextElement
-import com.thejuki.kformmaster.state.FormMultiLineEditTextViewState
+import com.thejuki.kformmaster.state.FormEditTextViewState
 
 /**
  * Form MultiLine EditText ViewBinder
@@ -79,7 +79,7 @@ class FormMultiLineEditTextViewBinder(private val context: Context, private val 
         }
 
         override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormMultiLineEditTextViewState(holder)
+            return FormEditTextViewState(holder)
         }
     })
 

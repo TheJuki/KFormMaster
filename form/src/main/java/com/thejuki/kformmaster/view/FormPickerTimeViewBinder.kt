@@ -13,7 +13,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormPickerTimeElement
-import com.thejuki.kformmaster.state.FormPickerTimeViewState
+import com.thejuki.kformmaster.state.FormEditTextViewState
 
 /**
  * Form Picker Time ViewBinder
@@ -59,7 +59,7 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
         }
 
         override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormPickerTimeViewState(holder)
+            return FormEditTextViewState(holder)
         }
     })
 
