@@ -53,23 +53,57 @@ fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
 }
 
 /** Builder method to add a BaseFormElement */
-abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1) : FieldBuilder {
-    var title: String? = null // title for the form element
-    var type: Int = 0 // type for the form element
-    var value: T? = null // value to be shown on right
-    var options: List<T>? = null // list of options for single and multi picker
+abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1, protected var title: String? = null) : FieldBuilder {
+    /**
+     * Form Element Value
+     */
+    var value: T? = null
+
+    /**
+     * Form Element Options
+     */
+    var options: List<T>? = null
         get() = field ?: ArrayList()
-    var optionsSelected: List<T>? = null // list of selected options for single and multi picker
+
+    /**
+     * Form Element Options Selected
+     * NOTE: When using MultiCheckBox, this is the Form Element Value
+     */
+    var optionsSelected: List<T>? = null
         get() = field ?: ArrayList()
-    var hint: String? = null // value to be shown if value is null
+
+    /**
+     * Form Element Hint
+     */
+    var hint: String? = null
+
+    /**
+     * Form Element Error
+     */
     var error: String? = null
-    var required: Boolean = false // value to set is the field is required
+
+    /**
+     * Form Element Required
+     */
+    var required: Boolean = false
+
+    /**
+     * Form Element Visibility
+     */
     var visible: Boolean = true
+
+    /**
+     * Form Element Value Changed Listener
+     */
     @Deprecated(
             message = "As of v2.0.0, valueObservers has been added and should be used instead.",
             replaceWith = ReplaceWith("valueObservers.add({ newValue, element -> println(newValue) })")
     )
     var valueChanged: OnFormElementValueChangedListener? = null
+
+    /**
+     * Form Element Value Observers
+     */
     val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
 }
 
