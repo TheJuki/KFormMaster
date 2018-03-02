@@ -54,7 +54,7 @@ class FormPickerDropDownElement<T : Serializable> : FormPickerElement<T> {
 
     constructor(tag: Int) : super(tag)
 
-    protected constructor(`in`: Parcel) : super(`in`) {}
+    constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
         fun createInstance(): FormPickerDropDownElement<String> {

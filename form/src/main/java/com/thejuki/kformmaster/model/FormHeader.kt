@@ -31,7 +31,7 @@ class FormHeader : BaseFormElement<String> {
         super.writeToParcel(dest, flags)
     }
 
-    protected constructor(`in`: Parcel) : super(`in`) {}
+    constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
 

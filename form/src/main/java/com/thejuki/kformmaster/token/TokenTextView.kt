@@ -17,10 +17,9 @@ import com.thejuki.kformmaster.R
  */
 class TokenTextView : AppCompatTextView {
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
-
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     override fun setSelected(selected: Boolean) {
         super.setSelected(selected)

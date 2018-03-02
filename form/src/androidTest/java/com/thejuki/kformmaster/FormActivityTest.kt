@@ -158,7 +158,6 @@ class FormActivityTest : AppCompatActivity() {
                         android.R.layout.simple_list_item_1, defaultItems =
                 arrayListOf(ContactItem(id = 1, value = "", label = "Try \"Apple May\"")))
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
-                value = ContactItem(id = 1, value = "John Smith", label = "John Smith (Tester)")
             }
             autoCompleteToken<ArrayList<ContactItem>>(AutoCompleteTokenElement.ordinal) {
                 title = "AutoCompleteToken"

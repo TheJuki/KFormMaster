@@ -4,6 +4,7 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onData
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.typeText
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.PickerActions
 import android.support.test.espresso.contrib.RecyclerViewActions
@@ -12,14 +13,13 @@ import android.support.test.espresso.matcher.RootMatchers
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import android.support.v7.widget.AppCompatCheckBox
-import android.support.v7.widget.AppCompatEditText
-import android.support.v7.widget.AppCompatSeekBar
-import android.support.v7.widget.SwitchCompat
+import android.support.v7.widget.*
 import android.text.InputType
 import android.widget.DatePicker
 import android.widget.TimePicker
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
+import com.thejuki.kformmaster.item.ContactItem
+import com.thejuki.kformmaster.token.ItemsCompletionView
 import org.hamcrest.Matchers
 import org.hamcrest.Matchers.*
 import org.junit.Assert
@@ -172,6 +172,34 @@ class FormInstrumentedTest {
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed())).perform(PickerActions.setTime(12, 30))
         onView(withId(android.R.id.button1)).perform(click())
+    }
+
+    @Test
+    fun autoComplete_providesSuggestions_whenTextIsTyped() {
+        // Enter text in the autoComplete field, click on the suggestion, and verify it is displayed in the field
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<ViewHolder>(15, click()))
+
+        onView(withClassName(Matchers.equalTo(AppCompatAutoCompleteTextView::class.java.name)))
+                .perform(typeText("Kotlin"))
+        onData(equalTo(ContactItem(id = 3, value = "Kotlin Contact", label = "Kotlin Contact (Coder)")))
+                .inRoot(RootMatchers.isPlatformPopup()).perform(click())
+        onView(withText("Kotlin Contact (Coder)"))
+                .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun autoCompleteToken_providesSuggestions_whenTextIsTyped() {
+        // Enter text in the autoCompleteToken field, click on the suggestion, and verify it exists in the options list
+        val contactItem = ContactItem(id = 3, value = "Kotlin.Contact@mail.com", label = "Kotlin Contact (Coder)")
+
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<ViewHolder>(16, click()))
+
+        onView(withClassName(Matchers.equalTo(ItemsCompletionView::class.java.name)))
+                .perform(typeText("Kotlin"))
+        onData(equalTo(contactItem))
+                .inRoot(RootMatchers.isPlatformPopup()).perform(click())
+        onView(withClassName(Matchers.equalTo(ItemsCompletionView::class.java.name)))
+                .check(matches(hasItemsCompletionViewObject(contactItem)))
     }
 
     @Test

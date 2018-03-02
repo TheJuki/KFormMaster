@@ -23,11 +23,11 @@ class ItemsCompletionView : TokenCompleteTextView<Any> {
 
     private var testAccessibleInputConnection: InputConnection? = null
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {}
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 
     override fun getViewForObject(item: Any): View {
         val l = context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE) as LayoutInflater

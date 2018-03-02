@@ -51,7 +51,7 @@ class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
 
     constructor(tag: Int = -1) : super(tag)
 
-    protected constructor(`in`: Parcel) : super(`in`)
+    constructor(`in`: Parcel) : super(`in`)
 
     companion object {
 

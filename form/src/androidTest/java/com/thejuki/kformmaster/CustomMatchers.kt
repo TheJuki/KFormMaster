@@ -4,6 +4,7 @@ import android.support.test.espresso.matcher.BoundedMatcher
 import android.support.v7.widget.AppCompatSeekBar
 import android.view.View
 import android.widget.TextView
+import com.thejuki.kformmaster.token.ItemsCompletionView
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
 
@@ -49,4 +50,13 @@ fun withProgress(expectedProgress: Int) =
             }
 
             override fun matchesSafely(seekBar: AppCompatSeekBar) = seekBar.progress == expectedProgress
+        }
+
+fun <T> hasItemsCompletionViewObject(expectedObject: T) =
+        object : BoundedMatcher<View, ItemsCompletionView>(ItemsCompletionView::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("ItemsCompletionView with object: $expectedObject")
+            }
+
+            override fun matchesSafely(view: ItemsCompletionView) = view.objects.contains(expectedObject)
         }

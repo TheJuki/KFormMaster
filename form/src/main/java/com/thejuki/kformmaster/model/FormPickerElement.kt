@@ -29,7 +29,7 @@ open class FormPickerElement<T : Serializable> : BaseFormElement<T> {
 
     constructor(tag: Int) : super(tag)
 
-    protected constructor(`in`: Parcel) : super(`in`) {}
+    constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
         fun createInstance(): FormPickerElement<String> {

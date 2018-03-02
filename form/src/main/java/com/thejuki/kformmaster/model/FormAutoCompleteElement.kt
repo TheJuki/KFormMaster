@@ -64,7 +64,7 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
         dest.writeString(this.typedString)
     }
 
-    protected constructor(`in`: Parcel) : super(`in`) {
+    constructor(`in`: Parcel) : super(`in`) {
         this.typedString = `in`.readString()
     }
 

@@ -206,11 +206,11 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
         return "FormElement(tag=$tag, title=$title, id=$id, value=$value, hint=$hint, error=$error, required=$required, visible=$visible)"
     }
 
-    protected constructor(`in`: Parcel) : this() {
+    constructor(`in`: Parcel) : this() {
         this.tag = `in`.readInt()
         this.title = `in`.readString()
         @Suppress("UNCHECKED_CAST")
-        this.value = `in`.readSerializable() as T
+        this.value = `in`.readSerializable() as T?
 
         /*
          * We need special method to store array of generic objects

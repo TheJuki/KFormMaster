@@ -3,8 +3,6 @@ package com.thejuki.kformmaster.model
 import android.os.Parcel
 import android.os.Parcelable
 
-import java.io.Serializable
-
 /**
  * Form TextView Element
  *
@@ -30,14 +28,10 @@ class FormTextViewElement : BaseFormElement<String> {
 
     constructor(tag: Int) : super(tag)
 
-    protected constructor(`in`: Parcel) : super(`in`) {}
+    constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
         fun createInstance(): FormTextViewElement {
-            return FormTextViewElement()
-        }
-
-        fun <T : Serializable> createGenericInstance(): FormTextViewElement {
             return FormTextViewElement()
         }
 
