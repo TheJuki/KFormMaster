@@ -26,7 +26,7 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 ## Version 2 Changes
 - Element tags are now optional
 - The email, password, phone, text, textArea, number, textView, and button elements no longer take a <T: Serializable> as they only deal with Strings
-- Deprecated valueChanged in BaseFormElement
+- Removed valueChanged in BaseFormElement
 - Added valueObservers in BaseFormElement to replace valueChanged with a list of Observers when the element value changes (See updated Examples)
 
 ## Java Compatibility
@@ -37,7 +37,7 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 Add this in your app's **build.gradle** file:
 ```
 ext {
-    kFormMasterVersion = '2.0.1'
+    kFormMasterVersion = '2.1.0'
 }
 
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
