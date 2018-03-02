@@ -1,5 +1,10 @@
 # Change Log
 
+## [2.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/2.1.0)
+- Removed valueChanged in BaseFormElement
+- Added even more comments
+- Added Unit Test
+
 ## [2.0.1](https://github.com/TheJuki/KFormMaster/releases/tag/2.0.1)
 - Add better comments
 - Remove redundant View States
