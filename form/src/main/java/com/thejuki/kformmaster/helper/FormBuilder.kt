@@ -29,7 +29,8 @@ fun form(context: Context,
     val form = FormBuildHelper(
             context = context,
             listener = listener,
-            recyclerView = recyclerView
+            recyclerView = recyclerView,
+            cacheForm = cacheForm
     )
     form.init()
     form.setItems()
