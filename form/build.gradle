@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 9
-        versionName "2.1.0"
+        versionCode 10
+        versionName "2.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -76,7 +76,7 @@ publish {
     userOrg = 'thejuki'
     groupId = 'com.thejuki'
     artifactId = 'k-form-master'
-    publishVersion = '2.1.0'
+    publishVersion = '2.1.1'
     desc = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
     website = 'https://github.com/TheJuki/KFormMaster'
 }

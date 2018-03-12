@@ -97,7 +97,7 @@ class FormActivityTest : AppCompatActivity() {
             }
         }
 
-        formBuilder = form(this, recyclerView, listener) {
+        formBuilder = form(this, recyclerView, listener, false) {
             header { title = "Header 1" }
             email(Email.ordinal) {
                 title = "Email"

@@ -24,6 +24,7 @@ import kotlin.collections.ArrayList
 fun form(context: Context,
          recyclerView: RecyclerView,
          listener: OnFormElementValueChangedListener? = null,
+         cacheForm: Boolean = false,
          init: FormBuildHelper.() -> Unit): FormBuildHelper {
     val form = FormBuildHelper(
             context = context,

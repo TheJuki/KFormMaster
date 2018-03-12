@@ -91,7 +91,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
     }
 
     private fun setupForm() {
-        formBuilder = form(this, recyclerView, this) {
+        formBuilder = form(this, recyclerView, this, true) {
             header { title = getString(R.string.PersonalInfo) }
             email(Email.ordinal) {
                 title = getString(R.string.email)

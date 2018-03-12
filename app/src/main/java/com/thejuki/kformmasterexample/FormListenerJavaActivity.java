@@ -121,7 +121,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
     }
 
     private void setupForm() {
-        formBuilder = new FormBuildHelper(this, this, findViewById(R.id.recyclerView));
+        formBuilder = new FormBuildHelper(this, this, findViewById(R.id.recyclerView), true);
 
         List<BaseFormElement<?>> elements = new ArrayList<>();
 

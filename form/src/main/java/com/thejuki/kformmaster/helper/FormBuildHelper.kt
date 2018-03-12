@@ -33,6 +33,16 @@ class FormBuildHelper {
     private lateinit var formAdapter: RendererRecyclerViewAdapter
 
     /**
+     * RecyclerView instance
+     */
+    private lateinit var recyclerView: RecyclerView
+
+    /**
+     * Enable to cache all form elements in the [RecyclerView]
+     */
+    var cacheForm: Boolean = false
+
+    /**
      * Holds the form elements
      */
     internal var elements: ArrayList<BaseFormElement<*>> = arrayListOf()
@@ -64,10 +74,15 @@ class FormBuildHelper {
     }
 
     /**
-     * Creates a new FormBuildHelper using the Activity's [context], a form [listener], and a [recyclerView]
+     * Creates a new FormBuildHelper using the
+     * Activity's [context], a form [listener], a [recyclerView], and [cacheForm] property
      */
-    constructor(context: Context, listener: OnFormElementValueChangedListener? = null, recyclerView: RecyclerView? = null) {
+    constructor(context: Context,
+                listener: OnFormElementValueChangedListener? = null,
+                recyclerView: RecyclerView? = null,
+                cacheForm: Boolean = false) {
         initializeFormBuildHelper(context, listener)
+        this.cacheForm = cacheForm
 
         if(recyclerView != null)
         {
@@ -164,6 +179,7 @@ class FormBuildHelper {
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = formAdapter
         recyclerView.itemAnimator = DefaultItemAnimator()
+        this.recyclerView = recyclerView
     }
 
     /**
@@ -174,7 +190,7 @@ class FormBuildHelper {
         for (element in elements) {
             element.id = ++lastId
         }
-        this.formAdapter.setItems(this.elements)
+        setItems()
     }
 
     /**
@@ -183,6 +199,9 @@ class FormBuildHelper {
     internal fun setItems()
     {
         this.formAdapter.setItems(this.elements)
+        if (this.cacheForm) {
+            recyclerView.setItemViewCacheSize(this.elements.size)
+        }
     }
 
     /**

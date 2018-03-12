@@ -173,7 +173,7 @@ val listener = object : OnFormElementValueChangedListener {
     }
 }
 
-formBuilder = form(this@ActivityName, recyclerView, listener) {
+formBuilder = form(this@ActivityName, recyclerView, listener, cacheForm = true) {
 
     // Header
     header { title = getString(R.string.PersonalInfo) }
@@ -324,6 +324,9 @@ formBuilder = form(this@ActivityName, recyclerView, listener) {
 }
 ```
 
+### Cache Form Elements
+By default, RecyclerView will cache 2 views. By setting cacheForm = true in the FormBuildHelper, all form elements will be cached instead of recycled. Set this if you have a small form. 
+
 ### Set form element value change listener to get changed value instantly
 While creating a new instance of FormBuildHelper, add a listener in the constructor
 
@@ -332,7 +335,7 @@ var formBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListen
     override fun onValueChanged(formElement: BaseFormElement<*>) {
          // do anything here with formElement.value
     }
-}, findViewById(R.id.recyclerView))
+}, findViewById(R.id.recyclerView), cacheForm = true)
 ```
 
 ### Get value for unique form elements

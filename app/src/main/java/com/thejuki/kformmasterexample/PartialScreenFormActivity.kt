@@ -98,7 +98,7 @@ class PartialScreenFormActivity : AppCompatActivity() {
             }
         }
 
-        formBuilder = form(this, recyclerView, listener) {
+        formBuilder = form(this, recyclerView, listener, true) {
             header { title = getString(R.string.PersonalInfo) }
             email(Email.ordinal) {
                 title = getString(R.string.email)
