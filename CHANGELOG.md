@@ -1,5 +1,8 @@
 # Change Log
 
+## [2.1.1](https://github.com/TheJuki/KFormMaster/releases/tag/2.1.1)
+- Added cacheForm to FormBuildHelper. When set to true, the RecyclerView will cache all form element views instead of recycling them.
+
 ## [2.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/2.1.0)
 - Removed valueChanged in BaseFormElement
 - Added even more comments
