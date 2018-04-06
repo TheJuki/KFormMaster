@@ -395,7 +395,7 @@ You can submit pull requests or issues to this project to make this port even be
 
 ## BrowserStack
 <a href="http://browserstack.com/">
-<img src="browserstack-logo-600x315.png" alt="BrowserStack" style="width: 200px;"/>
+<img src="browserstack-logo-600x315.png" alt="BrowserStack" width="200px"/>
 </a>
 
 The App Automate feature of BrowserStack is used for Espresso testing of this library. The App Automate REST API is used to upload the example app and test app to test multiple devices in parallel.
