@@ -28,3 +28,9 @@ before_script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+addons:
+  browserstack:
+    username: "justinkirk2"
+    access_key:
+      secure: "rkPo92v/IiPhgc+9FV/rSbOWY9RT/nrIXfg+g3Ixq4ZRSkXh0LuNb2RvZuYPD4OxYAalHe0Li3K9LqsVnSbzuaDndz0d+abRiuBdI4KgfA+Oeg4w+9m++kbdmRe32vGV1JQZ6sqxKZXY2h75WTgiOrXUowWHzGNp6B+mXq61tck0X95mfo3giwnPZfc4uZSeGa34wevq5Jr/euGPA51ZuX41LYJ7SU7k5GtOpg4rc7vkcx5ZwAvuXjO+cwWdh/1/E/JaRn/x6eTy7Rh618MuTviq1CLV2tm0DZsmoO4KRWFHZE/YwRM73EGLXuTS1MfMyEDejKVQalrXGHlgJPPB1r6trnS7BEv2rQa2UZNxtS4n3Mmj3IKCa9HBCZvFpkPbQWlF30rAcXcozLtJmXQpU8FUMfVTuYqvoI3oO005VOxMwQ6FFMHsPtrTJnBgz46Mm8TMHAO9Z8YvgoeqVvVVKGc+B93u7/0Z/1DoGN3R95lHF9nLYZNuwSg/8RLXL5bPdx6IecZ0ORlmedp33y1VTQsyzhfO2IAv2l5295E7aafvckkUx6LakKnlDRLWkuHdVyUuwipIXpNDKMBktiJOqbSoOglg/bVSF83tS/NiHdRX+lmxqJhRLMQredHO6S8zRCFC+N9Rwx4QpoS8ZJZCaHkjfdfZTQMO9YBJAZQM1bU="
