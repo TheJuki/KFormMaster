@@ -393,6 +393,14 @@ You can submit pull requests or issues to this project to make this port even be
 * The Renderer Recycler View Adapter library from vivchar (https://github.com/vivchar/RendererRecyclerViewAdapter) is used to support several types of cells
 * The TokenAutoComplete library from splitwise (https://github.com/splitwise/TokenAutoComplete) is for the AutoCompleteToken form element
 
+## BrowserStack
+<a href="http://browserstack.com/">
+<img src="browserstack-logo-600x315.png" alt="BrowserStack" style="width: 200px;"/>
+</a>
+
+The App Automate feature of BrowserStack is used for Espresso testing of this library. The App Automate REST API is used to upload the example app and test app to test multiple devices in parallel.
+
+
 License
 -----------------
 The library is available as open source under the terms of the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
