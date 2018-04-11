@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.1.2](https://github.com/TheJuki/KFormMaster/releases/tag/2.1.2)
+- Added ability to add your own custom form elements in your project
+- Added example to show how to add a custom form element
+
 ## [2.1.1](https://github.com/TheJuki/KFormMaster/releases/tag/2.1.1)
 - Added cacheForm to FormBuildHelper. When set to true, the RecyclerView will cache all form element views instead of recycling them.
 
