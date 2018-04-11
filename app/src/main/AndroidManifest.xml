@@ -24,6 +24,7 @@
         <activity android:name=".LoginFormActivity" />
         <activity android:name=".FormListenerActivity" />
         <activity android:name=".FormListenerJavaActivity" />
+        <activity android:name=".CustomFormActivity" />
     </application>
 
 </manifest>

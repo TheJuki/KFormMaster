@@ -30,7 +30,7 @@ import java.util.Date
  */
 class FullscreenFormActivity : AppCompatActivity() {
 
-    private var formBuilder: FormBuildHelper? = null
+    private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -199,14 +199,14 @@ class FullscreenFormActivity : AppCompatActivity() {
                     confirmAlert.setTitle(this@FullscreenFormActivity.getString(R.string.Confirm))
                     confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FullscreenFormActivity.getString(android.R.string.ok), { _, _ ->
                         // Could be used to clear another field:
-                        val dateToDeleteElement = formBuilder!!.getFormElement(Tag.Date.ordinal)
+                        val dateToDeleteElement = formBuilder.getFormElement(Tag.Date.ordinal)
                         // Display current date
                         Toast.makeText(this@FullscreenFormActivity,
                                 (dateToDeleteElement!!.value as FormPickerDateElement.DateHolder).getTime().toString(),
                                 Toast.LENGTH_SHORT).show()
                         (dateToDeleteElement.value as FormPickerDateElement.DateHolder).useCurrentDate()
-                        formBuilder!!.onValueChanged(dateToDeleteElement)
-                        formBuilder!!.refreshView()
+                        formBuilder.onValueChanged(dateToDeleteElement)
+                        formBuilder.refreshView()
                     })
                     confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FullscreenFormActivity.getString(android.R.string.cancel), { _, _ ->
                     })

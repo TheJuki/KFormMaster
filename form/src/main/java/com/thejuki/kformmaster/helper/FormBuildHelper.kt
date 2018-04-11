@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.github.vivchar.rendererrecyclerviewadapter.RendererRecyclerViewAdapter
+import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.view.*
@@ -25,7 +26,7 @@ class FormBuildHelper {
     /**
      * Used for form models. Increments when a element is added.
      */
-    internal var lastId = 0
+    var lastId = 0
 
     /**
      * RendererRecyclerViewAdapter instance
@@ -45,7 +46,8 @@ class FormBuildHelper {
     /**
      * Holds the form elements
      */
-    internal var elements: ArrayList<BaseFormElement<*>> = arrayListOf()
+    var elements: ArrayList<BaseFormElement<*>> = arrayListOf()
+        internal set
 
     /**
      * Listener for when an element's value changes
@@ -117,7 +119,7 @@ class FormBuildHelper {
         this.formAdapter.registerRenderer(FormHeaderViewBinder(context, this).viewBinder)
 
         // Edit Texts
-        registerEdiTexts(context)
+        registerEditTexts(context)
 
         // AutoCompletes
         this.formAdapter.registerRenderer(FormAutoCompleteViewBinder(context, this).viewBinder)
@@ -144,7 +146,7 @@ class FormBuildHelper {
         this.listener = listener
     }
 
-    private fun registerEdiTexts(context: Context)
+    private fun registerEditTexts(context: Context)
     {
         this.formAdapter.registerRenderer(FormSingleLineEditTextViewBinder(context, this).viewBinder)
         this.formAdapter.registerRenderer(FormMultiLineEditTextViewBinder(context, this).viewBinder)
@@ -161,6 +163,13 @@ class FormBuildHelper {
         this.formAdapter.registerRenderer(FormPickerDateTimeViewBinder(context, this).viewBinder)
         this.formAdapter.registerRenderer(FormPickerMultiCheckBoxViewBinder(context, this).viewBinder)
         this.formAdapter.registerRenderer(FormPickerDropDownViewBinder(context, this).viewBinder)
+    }
+
+    /**
+     * Registers the custom [viewBinder]
+     */
+    fun registerCustomViewBinder(viewBinder: ViewBinder<*>) {
+        this.formAdapter.registerRenderer(viewBinder)
     }
 
     /**

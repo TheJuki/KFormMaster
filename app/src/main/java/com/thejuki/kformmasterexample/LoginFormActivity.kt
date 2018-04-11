@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_login_form.*
  */
 class LoginFormActivity : AppCompatActivity() {
 
-    private var formBuilder: FormBuildHelper? = null
+    private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +34,9 @@ class LoginFormActivity : AppCompatActivity() {
         setupForm()
 
         buttonLogin.setOnClickListener {
-            val loginElementValue = formBuilder!!.getFormElement(Email.ordinal)!!.value as String?
-            val passwordElementValue = formBuilder!!.getFormElement(Password.ordinal)!!.value as String?
-            val checkBoxElementValue = formBuilder!!.getElementAtIndex(2)!!.value as Boolean?
+            val loginElementValue = formBuilder.getFormElement(Email.ordinal)!!.value as String?
+            val passwordElementValue = formBuilder.getFormElement(Password.ordinal)!!.value as String?
+            val checkBoxElementValue = formBuilder.getElementAtIndex(2)!!.value as Boolean?
             Toast.makeText(this@LoginFormActivity, "Do whatever you want with this data\n" +
                     "$loginElementValue\n" +
                     "$passwordElementValue\n" +
@@ -74,7 +74,7 @@ class LoginFormActivity : AppCompatActivity() {
 
     private fun setupForm() {
         formBuilder = FormBuildHelper(this, cacheForm = true)
-        formBuilder!!.attachRecyclerView(this, recyclerView)
+        formBuilder.attachRecyclerView(this, recyclerView)
 
         val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
@@ -94,8 +94,8 @@ class LoginFormActivity : AppCompatActivity() {
                 .setUnCheckedValue(false)
         elements.add(checkBoxElement)
 
-        formBuilder!!.addFormElements(elements)
-        formBuilder!!.refreshView()
+        formBuilder.addFormElements(elements)
+        formBuilder.refreshView()
 
     }
 }

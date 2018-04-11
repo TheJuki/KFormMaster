@@ -23,9 +23,8 @@
     <string name="Slider">Slider</string>
     <string name="CheckBox">CheckBox</string>
     <string name="TextView">Text View</string>
-
+    <string name="Custom">Custom</string>
     <string name="Confirm">Clear Date field?</string>
-
     <string name="PersonalInfo">Personal Info</string>
     <string name="FamilyInfo">Family Info</string>
     <string name="Schedule">Schedule</string>
@@ -41,4 +40,6 @@
     <string name="sample_login_form">Sample login form</string>
     <string name="login_to_our_portal">Login to our portal</string>
     <string name="login">login</string>
+    <string name="custom_form">Custom form</string>
+    <string name="custom_footer">This is a custom field in the app project</string>
 </resources>

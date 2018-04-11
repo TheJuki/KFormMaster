@@ -20,7 +20,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     /**
      * Form Element Unique ID
      */
-    internal var id: Int = 0
+    var id: Int = 0
 
     /**
      * Form Element Value Observers
