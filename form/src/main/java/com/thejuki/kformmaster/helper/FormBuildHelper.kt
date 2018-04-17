@@ -64,7 +64,10 @@ class FormBuildHelper {
         get() {
             return (0 until this.formAdapter.itemCount)
                     .map { this.getElementAtIndex(it) }
-                    .none { !it!!.isHeader and it.isRequired() and (it.value != null) }
+                    .all {
+                        !it!!.isHeader && it.isRequired() && it.value != null &&
+                                (it.value !is String || !(it.value as? String).isNullOrEmpty())
+                    }
         }
 
     /**
