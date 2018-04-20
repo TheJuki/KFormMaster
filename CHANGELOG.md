@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.1.3](https://github.com/TheJuki/KFormMaster/releases/tag/2.1.3)
+- The isValidForm function now works correctly
+- The numbersOnly field has been added to FormNumberEditTextElement to prevent symbols from being entered. By default numbers and symbols are allowed.
+
 ## [2.1.2](https://github.com/TheJuki/KFormMaster/releases/tag/2.1.2)
 - Added ability to add your own custom form elements in your project
 - Added example to show how to add a custom form element
