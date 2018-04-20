@@ -82,6 +82,7 @@ class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder
             val calendar = Calendar.getInstance()
             this.hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
             this.minute = calendar.get(Calendar.MINUTE)
+            isEmptyTime = true
         }
 
         fun equals(another: TimeHolder): Boolean {

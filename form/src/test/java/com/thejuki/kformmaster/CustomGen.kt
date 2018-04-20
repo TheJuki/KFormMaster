@@ -5,6 +5,8 @@ import android.widget.ArrayAdapter
 import com.thejuki.kformmaster.model.*
 import io.kotlintest.mock.mock
 import io.kotlintest.properties.Gen
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Custom Gen
@@ -188,7 +190,7 @@ interface CustomGen {
                 val element = FormPickerDateElement()
                 element.title = Gen.string().generate()
                 element.hint = Gen.string().generate()
-                element.value = FormPickerDateElement.DateHolder()
+                element.value = FormPickerDateElement.DateHolder(Date(), SimpleDateFormat("MM/dd/yyyy", Locale.US))
                 return element
             }
         }
@@ -201,7 +203,7 @@ interface CustomGen {
                 val element = FormPickerTimeElement()
                 element.title = Gen.string().generate()
                 element.hint = Gen.string().generate()
-                element.value = FormPickerTimeElement.TimeHolder()
+                element.value = FormPickerTimeElement.TimeHolder(Date(), SimpleDateFormat("hh:mm a", Locale.US))
                 return element
             }
         }
@@ -214,7 +216,7 @@ interface CustomGen {
                 val element = FormPickerDateTimeElement()
                 element.title = Gen.string().generate()
                 element.hint = Gen.string().generate()
-                element.value = FormPickerDateTimeElement.DateTimeHolder()
+                element.value = FormPickerDateTimeElement.DateTimeHolder(Date(), SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US))
                 return element
             }
         }
