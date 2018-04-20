@@ -69,7 +69,7 @@ class FormPickerDateElement : FormPickerElement<FormPickerDateElement.DateHolder
         }
 
         fun getTime(): Date? {
-            if (year == null || month == null || dayOfMonth == null) {
+            if (isEmptyDate || year == null || month == null || dayOfMonth == null) {
                 return null
             }
             val calendar = Calendar.getInstance()
@@ -96,6 +96,9 @@ class FormPickerDateElement : FormPickerElement<FormPickerDateElement.DateHolder
                     another.dayOfMonth == this.dayOfMonth
         }
     }
+
+    override val isValid: Boolean
+        get() = !required || (value != null && value!!.getTime() != null)
 
     /**
      * Parcelable boilerplate

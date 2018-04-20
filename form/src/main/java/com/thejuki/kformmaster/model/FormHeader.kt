@@ -13,7 +13,7 @@ import android.os.Parcelable
  */
 class FormHeader : BaseFormElement<String> {
 
-    override val isHeader: Boolean
+    override val isValid: Boolean
         get() = true
 
     constructor() : super()

@@ -30,6 +30,8 @@
     <string name="Schedule">Schedule</string>
     <string name="PreferredItems">Preferred Items</string>
     <string name="MarkComplete">Mark Complete</string>
+    <string name="FormValid">Form is Valid</string>
+    <string name="FormInvalid">Form is Invalid!</string>
 
     <string name="this_is_a_big_pointless_place_holder">This is a big pointless place-holder</string>
     <string name="another_pointless_place_holder">Another pointless place-holder</string>
@@ -42,4 +44,5 @@
     <string name="login">login</string>
     <string name="custom_form">Custom form</string>
     <string name="custom_footer">This is a custom field in the app project</string>
+    <string name="validate">validate</string>
 </resources>

@@ -50,7 +50,7 @@ class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder
         }
 
         fun getTime(): Date? {
-            if (hourOfDay == null || minute == null) {
+            if (isEmptyTime || hourOfDay == null || minute == null) {
                 return null
             }
             val calendar = Calendar.getInstance()
@@ -90,6 +90,9 @@ class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder
                     another.hourOfDay == this.hourOfDay
         }
     }
+
+    override val isValid: Boolean
+        get() = !required || (value != null && value!!.getTime() != null)
 
     /**
      * Parcelable boilerplate

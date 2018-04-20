@@ -13,6 +13,9 @@ import android.os.Parcelable
  */
 class FormTextViewElement : BaseFormElement<String> {
 
+    override val isValid: Boolean
+        get() = true
+
     /**
      * Parcelable boilerplate
      */

@@ -80,7 +80,7 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
         }
 
         fun getTime(): Date? {
-            if (year == null || month == null || dayOfMonth == null ||
+            if (isEmptyDateTime || year == null || month == null || dayOfMonth == null ||
                     hourOfDay == null || minute == null) {
                 return null
             }
@@ -115,6 +115,9 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
                     another.hourOfDay == this.hourOfDay
         }
     }
+
+    override val isValid: Boolean
+        get() = !required || (value != null && value!!.getTime() != null)
 
     /**
      * Parcelable boilerplate

@@ -15,6 +15,9 @@ import java.io.Serializable
  */
 class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
 
+    override val isValid: Boolean
+        get() = !required || (value != null && value is List<*> && !(value!! as List<*>).isEmpty())
+
     /**
      * Override the default array adapter
      * This is useful for a custom asynchronous adapter

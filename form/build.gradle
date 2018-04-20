@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 10
-        versionName "2.1.2"
+        versionCode 11
+        versionName "2.1.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -58,11 +58,11 @@ ext {
 dependencies {
     implementation "com.android.support:appcompat-v7:$supportVersion",
             "com.android.support:recyclerview-v7:$supportVersion"
-    compile "com.github.vivchar:RendererRecyclerViewAdapter:$rendererRecyclerViewAdapterVersion"
+    api "com.github.vivchar:RendererRecyclerViewAdapter:$rendererRecyclerViewAdapterVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // Token Autocomplete
-    compile "com.splitwise:tokenautocomplete:$tokenautocompleteVersion@aar"
+    api "com.splitwise:tokenautocomplete:$tokenautocompleteVersion@aar"
 
     testImplementation "junit:junit:$junitVersion"
     testImplementation "io.kotlintest:kotlintest:$kotlintestVersion"

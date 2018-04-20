@@ -146,8 +146,9 @@ fun FormBuildHelper.textArea(tag: Int = -1, init: MultiLineEditTextBuilder.() ->
 
 /** Builder method to add a FormNumberEditTextElement */
 class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
+    var numbersOnly: Boolean = false
     override fun build() =
-            FormNumberEditTextElement(tag)
+            (FormNumberEditTextElement(tag)
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
@@ -155,7 +156,8 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setRequired(required)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
-                    as FormNumberEditTextElement
+                    as FormNumberEditTextElement)
+                    .setNumbersOnly(numbersOnly)
 }
 
 /** FormBuildHelper extension to add a FormNumberEditTextElement */
@@ -510,13 +512,17 @@ fun FormBuildHelper.slider(tag: Int = -1, init: SliderBuilder.() -> Unit): FormS
     return element
 }
 
-/** Builder method to add a FormTextViewElement */
-class TextViewBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
+class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
+    var title: String? = null
+    var value: String? = null
+    var visible: Boolean = true
+    val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
     override fun build() =
             (FormTextViewElement(tag)
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setVisible(visible)
+                    .addAllValueObservers(valueObservers)
                     as FormTextViewElement)
 }
 

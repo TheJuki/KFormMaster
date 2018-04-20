@@ -74,6 +74,13 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
         get() = if (this.value == null) "" else this.value!!.toString()
 
     /**
+     * Base validation
+     */
+    open val isValid: Boolean
+        get() = !required || (required && value != null &&
+                (value !is String || !(value as? String).isNullOrEmpty()))
+
+    /**
      * Form Element Value Observers
      */
     open val isHeader: Boolean
@@ -203,7 +210,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     }
 
     override fun toString(): String {
-        return "FormElement(tag=$tag, title=$title, id=$id, value=$value, hint=$hint, error=$error, required=$required, visible=$visible)"
+        return "FormElement(tag=$tag, title=$title, id=$id, value=$value, hint=$hint, error=$error, required=$required, isValid=$isValid, visible=$visible)"
     }
 
     constructor(`in`: Parcel) : this() {

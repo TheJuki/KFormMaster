@@ -15,6 +15,9 @@ import java.io.Serializable
  */
 class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
 
+    override val isValid: Boolean
+        get() = !required || (optionsSelected != null && !optionsSelected!!.isEmpty())
+
     /**
      * Alert Dialog Title
      * (optional - uses R.string.form_master_pick_one_or_more)

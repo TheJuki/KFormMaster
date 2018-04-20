@@ -51,7 +51,11 @@ class FormNumberEditTextViewBinder(private val context: Context, private val for
         }
 
         // Number
-        editTextValue.setRawInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
+        if (model.numbersOnly) {
+            editTextValue.inputType = InputType.TYPE_CLASS_NUMBER
+        } else {
+            editTextValue.setRawInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
+        }
 
         editTextValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}

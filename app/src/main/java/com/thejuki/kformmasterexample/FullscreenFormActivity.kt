@@ -3,6 +3,7 @@ package com.thejuki.kformmasterexample
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.Toast
@@ -41,14 +42,35 @@ class FullscreenFormActivity : AppCompatActivity() {
         setupForm()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.validate, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) =
+            when (item.itemId) {
+                R.id.action_validate -> {
+                    validate()
+                    true
+                }
+                android.R.id.home -> {
+                    onBackPressed()
+                    true
+                }
+                else -> super.onOptionsItemSelected(item)
             }
+
+    private fun validate() {
+        val alert = AlertDialog.Builder(this@FullscreenFormActivity).create()
+
+        if (formBuilder.isValidForm) {
+            alert.setTitle(this@FullscreenFormActivity.getString(R.string.FormValid))
+        } else {
+            alert.setTitle(this@FullscreenFormActivity.getString(R.string.FormInvalid))
         }
-        return super.onOptionsItemSelected(item)
+
+        alert.setButton(AlertDialog.BUTTON_POSITIVE, this@FullscreenFormActivity.getString(android.R.string.ok), { _, _ -> })
+        alert.show()
     }
 
     private fun setupToolBar() {
@@ -60,7 +82,6 @@ class FullscreenFormActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeButtonEnabled(true)
         }
-
     }
 
     private val fruits = listOf<ListItem>(ListItem(id = 1, name = "Banana"),
@@ -103,42 +124,52 @@ class FullscreenFormActivity : AppCompatActivity() {
             email(Email.ordinal) {
                 title = getString(R.string.email)
                 hint = getString(R.string.email_hint)
+                required = true
             }
             password(Password.ordinal) {
                 title = getString(R.string.password)
+                required = true
             }
             phone(Phone.ordinal) {
                 title = getString(R.string.Phone)
                 value = "+8801712345678"
+                required = true
             }
             header { title = getString(R.string.FamilyInfo) }
             text(Location.ordinal) {
                 title = getString(R.string.Location)
                 value = "Dhaka"
+                required = true
             }
             textArea(Address.ordinal) {
                 title = getString(R.string.Address)
                 value = ""
+                required = true
             }
             number(ZipCode.ordinal) {
                 title = getString(R.string.ZipCode)
                 value = "1000"
+                numbersOnly = true
+                required = true
             }
             header { title = getString(R.string.Schedule) }
             date(Tag.Date.ordinal) {
                 title = getString(R.string.Date)
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+                required = true
             }
             time(Time.ordinal) {
                 title = getString(R.string.Time)
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("hh:mm a", Locale.US)
+                required = true
             }
             dateTime(DateTime.ordinal) {
                 title = getString(R.string.DateTime)
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+                required = true
             }
             header { title = getString(R.string.PreferredItems) }
             dropDown<ListItem>(SingleItem.ordinal) {
@@ -146,12 +177,14 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dialogTitle = getString(R.string.SingleItem)
                 options = fruits
                 value = ListItem(id = 1, name = "Banana")
+                required = true
             }
             multiCheckBox<ListItem>(MultiItems.ordinal) {
                 title = getString(R.string.MultiItems)
                 dialogTitle = getString(R.string.MultiItems)
                 options = fruits
                 optionsSelected = listOf(ListItem(id = 1, name = "Banana"))
+                required = true
             }
             autoComplete<ContactItem>(AutoCompleteElement.ordinal) {
                 title = getString(R.string.AutoComplete)
@@ -160,6 +193,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 arrayListOf(ContactItem(id = 1, value = "", label = "Try \"Apple May\"")))
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
                 value = ContactItem(id = 1, value = "John Smith", label = "John Smith (Tester)")
+                required = true
             }
             autoCompleteToken<ArrayList<ContactItem>>(AutoCompleteTokenElement.ordinal) {
                 title = getString(R.string.AutoCompleteToken)
@@ -167,6 +201,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                         android.R.layout.simple_list_item_1)
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
                 hint = "Try \"Apple May\""
+                required = true
             }
             textView(TextViewElement.ordinal) {
                 title = getString(R.string.TextView)
@@ -178,6 +213,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = "Yes"
                 onValue = "Yes"
                 offValue = "No"
+                required = true
             }
             slider(SliderElement.ordinal) {
                 title = getString(R.string.Slider)
@@ -185,12 +221,14 @@ class FullscreenFormActivity : AppCompatActivity() {
                 min = 0
                 max = 100
                 steps = 20
+                required = true
             }
             checkBox<Boolean>(CheckBoxElement.ordinal) {
                 title = getString(R.string.CheckBox)
                 value = true
                 checkedValue = true
                 unCheckedValue = false
+                required = true
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)

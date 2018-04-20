@@ -14,6 +14,17 @@ import android.os.Parcelable
 class FormNumberEditTextElement : BaseFormElement<String> {
 
     /**
+     * By default, the number field can contain numbers and symbols (.,-).
+     * Set to true to only allow numbers.
+     */
+    var numbersOnly: Boolean = false
+
+    fun setNumbersOnly(numbersOnly: Boolean): FormNumberEditTextElement {
+        this.numbersOnly = numbersOnly
+        return this
+    }
+
+    /**
      * Parcelable boilerplate
      */
     override fun describeContents(): Int {

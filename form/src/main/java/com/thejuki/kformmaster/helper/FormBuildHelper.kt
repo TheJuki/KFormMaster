@@ -61,14 +61,7 @@ class FormBuildHelper {
      * - Value is not null
      */
     val isValidForm: Boolean
-        get() {
-            return (0 until this.formAdapter.itemCount)
-                    .map { this.getElementAtIndex(it) }
-                    .all {
-                        !it!!.isHeader && it.isRequired() && it.value != null &&
-                                (it.value !is String || !(it.value as? String).isNullOrEmpty())
-                    }
-        }
+        get() = this.elements.all { it.isValid }
 
     /**
      * Creates a new FormBuildHelper using the Activity's [context] only
