@@ -37,6 +37,8 @@ class FormMultiLineEditTextViewBinder(private val context: Context, private val 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
 
+        model.editView = editTextValue
+
         setEditTextFocusEnabled(editTextValue, itemView)
 
         editTextValue.setOnFocusChangeListener { _, hasFocus ->

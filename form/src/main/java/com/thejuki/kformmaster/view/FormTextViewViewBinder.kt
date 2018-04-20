@@ -39,6 +39,8 @@ class FormTextViewViewBinder(private val context: Context, private val formBuild
         editTextValue.isFocusable = false
         editTextValue.setRawInputType(InputType.TYPE_NULL)
 
+        model.editView = editTextValue
+
     }, object : ViewStateProvider<FormTextViewElement, ViewHolder> {
         override fun createViewStateID(model: FormTextViewElement): Int {
             return model.id

@@ -40,6 +40,8 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
 
         itemsCompletionView.hint = model.hint ?: ""
 
+        model.editView = itemsCompletionView
+
         setEditTextFocusEnabled(itemsCompletionView, itemView)
 
         val itemsAdapter = if (model.arrayAdapter != null)

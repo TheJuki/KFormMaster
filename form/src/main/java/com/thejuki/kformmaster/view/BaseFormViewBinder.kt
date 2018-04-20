@@ -21,13 +21,17 @@ abstract class BaseFormViewBinder {
                   textViewError: AppCompatTextView?,
                   itemView: View) {
 
+        formElement.itemView = itemView
+
         // Setup title and error if present
         if (textViewTitle != null) {
             textViewTitle.text = formElement.title
+            formElement.titleView = textViewTitle
         }
 
         if (textViewError != null) {
             setError(textViewError, formElement.error)
+            formElement.errorView = textViewError
         }
 
         if (formElement.isVisible()) {

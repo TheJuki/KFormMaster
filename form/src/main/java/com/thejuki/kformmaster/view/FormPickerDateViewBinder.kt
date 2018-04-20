@@ -37,6 +37,8 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
 
         editTextValue.setRawInputType(InputType.TYPE_NULL)
 
+        model.itemView = itemView
+
         // If no value is set by the user, create a new instance of DateHolder
         with(model.value)
         {

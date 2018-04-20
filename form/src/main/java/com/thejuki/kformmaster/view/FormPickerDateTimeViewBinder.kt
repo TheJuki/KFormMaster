@@ -36,6 +36,8 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
 
+        model.editView = editTextValue
+
         editTextValue.setRawInputType(InputType.TYPE_NULL)
 
         // If no value is set by the user, create a new instance of DateTimeHolder

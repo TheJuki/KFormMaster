@@ -24,6 +24,9 @@ class FormHeaderViewBinder(private val context: Context, private val formBuilder
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
 
         textViewTitle.text = model.title
+
+        model.titleView = textViewTitle
+
     }, object : ViewStateProvider<FormHeader, ViewHolder> {
         override fun createViewStateID(model: FormHeader): Int {
             return model.id

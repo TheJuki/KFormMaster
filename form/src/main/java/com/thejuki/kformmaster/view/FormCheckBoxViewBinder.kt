@@ -30,6 +30,8 @@ class FormCheckBoxViewBinder(private val context: Context, private val formBuild
         val checkBox = finder.find(R.id.formElementValue) as AppCompatCheckBox
         checkBox.isChecked = model.isChecked()
 
+        model.editView = checkBox
+
         setCheckBoxFocusEnabled(itemView, checkBox)
 
         checkBox.setOnCheckedChangeListener { _, isChecked ->

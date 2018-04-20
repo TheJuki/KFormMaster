@@ -2,6 +2,8 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.view.View
+import android.view.ViewGroup
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import java.io.Serializable
 import java.util.*
@@ -63,9 +65,50 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     var required: Boolean = false
 
     /**
+     * Form Element Item View
+     */
+    var itemView: View? = null
+
+    /**
+     * Form Element Edit View
+     */
+    var editView: View? = null
+
+    /**
+     * Form Element Title View
+     */
+    var titleView: View? = null
+
+    /**
+     * Form Element Error View
+     */
+    var errorView: View? = null
+
+    /**
      * Form Element Visibility
      */
     var visible: Boolean = true
+        set(value) {
+            field = value
+            if (value) {
+                itemView?.let {
+                    it.visibility = View.VISIBLE
+                    val params = it.layoutParams
+                    params.width = ViewGroup.LayoutParams.MATCH_PARENT
+                    params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    it.layoutParams = params
+                }
+
+            } else {
+                itemView?.let {
+                    it.visibility = View.GONE
+                    val params = it.layoutParams
+                    params.width = ViewGroup.LayoutParams.MATCH_PARENT
+                    params.height = 0
+                    it.layoutParams = params
+                }
+            }
+        }
 
     /**
      * Form Element Value String value

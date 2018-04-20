@@ -28,6 +28,8 @@ class FormButtonViewBinder(private val context: Context, private val formBuilder
         val button = finder.find(R.id.formElementValue) as Button
         button.text = model.valueAsString
 
+        model.editView = button
+
         button.setOnClickListener {
             model.setValue(model.value)
             formBuilder.onValueChanged(model)

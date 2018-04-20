@@ -30,6 +30,8 @@ class FormSwitchViewBinder(private val context: Context, private val formBuilder
         val switch = finder.find(R.id.formElementValue) as SwitchCompat
         switch.isChecked = model.isOn()
 
+        model.editView = switch
+
         setSwitchFocusEnabled(itemView, switch)
 
         switch.setOnCheckedChangeListener { _, isChecked ->
