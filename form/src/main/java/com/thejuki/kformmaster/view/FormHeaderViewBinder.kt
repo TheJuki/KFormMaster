@@ -32,7 +32,7 @@ class FormHeaderViewBinder(private val context: Context, private val formBuilder
 
                 val index = formBuilder.elements.indexOf(model) + 1
                 if (index != formBuilder.elements.size) {
-                    for (i in index..formBuilder.elements.size) {
+                    for (i in index until formBuilder.elements.size) {
                         if (formBuilder.elements[i] is FormHeader) {
                             break
                         }

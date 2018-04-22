@@ -21,7 +21,15 @@ import kotlin.properties.Delegates
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: String? = null) : ViewModel, Parcelable {
+open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Parcelable {
+
+    var title: String? = null
+        set(value) {
+            field = value
+            titleView?.let {
+                it.text = value
+            }
+        }
 
     /**
      * Form Element Unique ID
@@ -62,14 +70,6 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
      */
     var optionsSelected: List<T>? = null
         get() = field ?: ArrayList()
-        set(value) {
-            field = value
-            editView?.let {
-                if (it is TextView) {
-                    it.hint = hint
-                }
-            }
-        }
 
     /**
      * Form Element Hint
