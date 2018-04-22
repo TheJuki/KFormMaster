@@ -131,10 +131,12 @@ class FullscreenFormActivity : AppCompatActivity() {
             email(Email.ordinal) {
                 title = getString(R.string.email)
                 hint = getString(R.string.email_hint)
+                value = "mail@mail.com"
                 required = true
             }
             password(Password.ordinal) {
                 title = getString(R.string.password)
+                value = "Password123"
                 required = true
             }
             phone(Phone.ordinal) {
@@ -150,12 +152,12 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             textArea(Address.ordinal) {
                 title = getString(R.string.Address)
-                value = ""
+                value = "123 Street"
                 required = true
             }
             number(ZipCode.ordinal) {
                 title = getString(R.string.ZipCode)
-                value = "1000"
+                value = "123456"
                 numbersOnly = true
                 required = true
             }
@@ -211,6 +213,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                         android.R.layout.simple_list_item_1)
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
                 hint = "Try \"Apple May\""
+                value = arrayListOf(ContactItem(id = 1, value = "John.Smith@mail.com", label = "John Smith (Tester)"))
                 required = true
             }
             textView(TextViewElement.ordinal) {

@@ -19,7 +19,7 @@ import java.util.*
  */
 class FormPickerDateElement : FormPickerElement<FormPickerDateElement.DateHolder> {
 
-    fun clear() {
+    override fun clear() {
         this.value?.useCurrentDate()
         (this.editView as? TextView)?.text = ""
         this.valueObservers.forEach { it(this.value, this) }

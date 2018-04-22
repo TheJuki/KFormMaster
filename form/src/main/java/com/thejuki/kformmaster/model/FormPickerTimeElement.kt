@@ -18,7 +18,7 @@ import java.util.*
  */
 class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder> {
 
-    fun clear() {
+    override fun clear() {
         this.value?.useCurrentTime()
         (this.editView as? TextView)?.text = ""
         this.valueObservers.forEach { it(this.value, this) }

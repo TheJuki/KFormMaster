@@ -249,7 +249,6 @@ interface CustomGen {
          * Verifies some base form fields
          */
         fun verifyBaseFormElement(element: BaseFormElement<*>) =
-                !element.isHeader and
                         (element.value != null) and
                         (element.hint != null) and
                         !element.valueObservers.isEmpty() and

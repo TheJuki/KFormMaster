@@ -196,7 +196,6 @@ class FormBuildHelper {
             element.id = ++lastId
         }
         setItems()
-        formAdapter.notifyDataSetChanged()
     }
 
     /**
@@ -208,6 +207,14 @@ class FormBuildHelper {
         if (this.cacheForm) {
             recyclerView.setItemViewCacheSize(this.elements.size)
         }
+        this.formAdapter.notifyDataSetChanged()
+    }
+
+    /**
+     * Clears all form element values
+     */
+    fun clearAll() {
+        this.elements.forEach({ it.clear() })
     }
 
     /**

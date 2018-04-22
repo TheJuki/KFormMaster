@@ -16,6 +16,8 @@ class FormButtonElement : BaseFormElement<String> {
     override val isValid: Boolean
         get() = true
 
+    override fun clear() {}
+
     /**
      * Parcelable boilerplate
      */

@@ -163,10 +163,11 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
                 (value !is String || !(value as? String).isNullOrEmpty()))
 
     /**
-     * Form Element Value Observers
+     * Clear edit view
      */
-    open val isHeader: Boolean
-        get() = false
+    open fun clear() {
+        this.value = null
+    }
 
     fun setTag(mTag: Int): BaseFormElement<T> {
         this.tag = mTag

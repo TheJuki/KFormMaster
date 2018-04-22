@@ -30,7 +30,7 @@ import java.util.Date
  */
 class FormActivityTest : AppCompatActivity() {
 
-    private var formBuilder: FormBuildHelper? = null
+    private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -197,14 +197,13 @@ class FormActivityTest : AppCompatActivity() {
                     confirmAlert.setTitle("Confirm?")
                     confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormActivityTest.getString(android.R.string.ok), { _, _ ->
                         // Could be used to clear another field:
-                        val dateToDeleteElement = formBuilder!!.getFormElement(Tag.Date.ordinal)
+                        val dateToDeleteElement = formBuilder.getFormElement<FormPickerDateElement>(Tag.Date.ordinal)
                         // Display current date
                         Toast.makeText(this@FormActivityTest,
-                                (dateToDeleteElement!!.value as FormPickerDateElement.DateHolder).getTime().toString(),
+                                dateToDeleteElement.value?.getTime().toString(),
                                 Toast.LENGTH_SHORT).show()
-                        (dateToDeleteElement.value as FormPickerDateElement.DateHolder).useCurrentDate()
-                        formBuilder!!.onValueChanged(dateToDeleteElement)
-                        formBuilder!!.refreshView()
+                        dateToDeleteElement.clear()
+                        formBuilder.onValueChanged(dateToDeleteElement)
                     })
                     confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FormActivityTest.getString(android.R.string.cancel), { _, _ ->
                     })
