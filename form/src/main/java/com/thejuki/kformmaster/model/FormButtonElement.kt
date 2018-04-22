@@ -13,9 +13,15 @@ import android.os.Parcelable
  */
 class FormButtonElement : BaseFormElement<String> {
 
+    /**
+     * No validation needed
+     */
     override val isValid: Boolean
         get() = true
 
+    /**
+     * Nothing to clear
+     */
     override fun clear() {}
 
     /**
@@ -36,6 +42,9 @@ class FormButtonElement : BaseFormElement<String> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormButtonElement {
             return FormButtonElement()
         }

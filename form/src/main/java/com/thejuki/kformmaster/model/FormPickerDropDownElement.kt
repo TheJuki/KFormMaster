@@ -28,12 +28,17 @@ class FormPickerDropDownElement<T : Serializable> : FormPickerElement<T> {
      */
     var arrayAdapter: ArrayAdapter<*>? = null
 
-    fun setDialogTitle(dialogTitle: String?): FormPickerDropDownElement<T>
-    {
+    /**
+     * dialogTitle builder setter
+     */
+    fun setDialogTitle(dialogTitle: String?): FormPickerDropDownElement<T> {
         this.dialogTitle = dialogTitle
         return this
     }
 
+    /**
+     * arrayAdapter builder setter
+     */
     fun setArrayAdapter(arrayAdapter: ArrayAdapter<*>?): FormPickerDropDownElement<T> {
         this.arrayAdapter = arrayAdapter
         return this

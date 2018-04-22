@@ -37,17 +37,20 @@ fun form(context: Context,
     return form
 }
 
+/** FieldBuilder interface */
 interface FieldBuilder {
     fun build(): BaseFormElement<*>
 }
 
-/** Builder method to add a header */
+/** Builder method to add a FormHeader */
 class HeaderBuilder(var title: String = "") : FieldBuilder {
     var collapsible: Boolean = false
     override fun build() =
             FormHeader.createInstance(title)
                     .setCollapsible(collapsible)
 }
+
+/** FormBuildHelper extension to add a FormHeader */
 fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
     val element = HeaderBuilder().apply(init).build()
     element.id = ++lastId

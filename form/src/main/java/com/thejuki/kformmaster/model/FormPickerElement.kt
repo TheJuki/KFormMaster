@@ -32,10 +32,16 @@ open class FormPickerElement<T : Serializable> : BaseFormElement<T> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormPickerElement<String> {
             return FormPickerElement()
         }
 
+        /**
+         * Creates a generic instance
+         */
         fun <T : Serializable> createGenericInstance(): FormPickerElement<T> {
             return FormPickerElement()
         }

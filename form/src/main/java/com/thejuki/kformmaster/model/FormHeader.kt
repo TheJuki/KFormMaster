@@ -24,9 +24,15 @@ class FormHeader : BaseFormElement<String> {
      */
     var allCollapsed: Boolean = false
 
+    /**
+     * No validation needed
+     */
     override val isValid: Boolean
         get() = true
 
+    /**
+     * Collapsible builder setter
+     */
     fun setCollapsible(collapsible: Boolean): FormHeader {
         this.collapsible = collapsible
         return this
@@ -51,6 +57,9 @@ class FormHeader : BaseFormElement<String> {
 
     companion object {
 
+        /**
+         * Creates an instance
+         */
         fun createInstance(title: String): FormHeader {
             val formHeader = FormHeader()
             formHeader.setTitle(title)

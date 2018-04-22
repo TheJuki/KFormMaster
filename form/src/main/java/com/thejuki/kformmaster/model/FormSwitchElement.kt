@@ -29,20 +29,27 @@ open class FormSwitchElement<T : Serializable> : BaseFormElement<T> {
      */
     var offValue: T? = null
 
+    /**
+     * Indicates if the switch should be on
+     */
     fun isOn(): Boolean {
         if (onValue == null || value == null)
             return false
         return onValue!! == value!!
     }
 
-    fun setOnValue(onValue: T?): FormSwitchElement<T>
-    {
+    /**
+     * onValue builder setter
+     */
+    fun setOnValue(onValue: T?): FormSwitchElement<T> {
         this.onValue = onValue
         return this
     }
 
-    fun setOffValue(offValue: T?): FormSwitchElement<T>
-    {
+    /**
+     * offValue builder setter
+     */
+    fun setOffValue(offValue: T?): FormSwitchElement<T> {
         this.offValue = offValue
         return this
     }
@@ -65,10 +72,16 @@ open class FormSwitchElement<T : Serializable> : BaseFormElement<T> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormSwitchElement<String> {
             return FormSwitchElement()
         }
 
+        /**
+         * Creates a generic instance
+         */
         fun <T : Serializable> createGenericInstance(): FormSwitchElement<T> {
             return FormSwitchElement()
         }

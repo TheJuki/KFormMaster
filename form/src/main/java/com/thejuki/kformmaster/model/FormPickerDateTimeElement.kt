@@ -25,6 +25,11 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
         this.valueObservers.forEach { it(this.value, this) }
     }
 
+    /**
+     * DateTime Holder
+     *
+     * Holds the date fields for [FormPickerDateTimeElement]
+     */
     class DateTimeHolder : Serializable {
 
         var isEmptyDateTime: Boolean = false
@@ -143,7 +148,9 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
-
+        /**
+         * Creates an instance
+         */
         fun createDateTimeInstance(): FormPickerDateTimeElement {
             return FormPickerDateTimeElement()
         }

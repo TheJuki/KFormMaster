@@ -35,11 +35,17 @@ class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
      */
     var dropdownWidth: Int? = null
 
+    /**
+     * arrayAdapter builder setter
+     */
     fun setArrayAdapter(arrayAdapter: ArrayAdapter<*>?): FormTokenAutoCompleteElement<T> {
         this.arrayAdapter = arrayAdapter
         return this
     }
 
+    /**
+     * dropdownWidth builder setter
+     */
     fun setDropdownWidth(dropdownWidth: Int?): FormTokenAutoCompleteElement<T> {
         this.dropdownWidth = dropdownWidth
         return this
@@ -64,10 +70,16 @@ class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
 
     companion object {
 
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormTokenAutoCompleteElement<String> {
             return FormTokenAutoCompleteElement()
         }
 
+        /**
+         * Creates a generic instance
+         */
         fun <T : Serializable> createGenericInstance(): FormTokenAutoCompleteElement<T> {
             return FormTokenAutoCompleteElement()
         }

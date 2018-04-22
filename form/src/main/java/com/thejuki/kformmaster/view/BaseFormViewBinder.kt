@@ -17,6 +17,9 @@ import com.thejuki.kformmaster.model.BaseFormElement
  */
 abstract class BaseFormViewBinder {
 
+    /**
+     * Initializes the base form fields
+     */
     fun baseSetup(formElement: BaseFormElement<*>, textViewTitle: AppCompatTextView?,
                   textViewError: AppCompatTextView?,
                   itemView: View) {
@@ -43,6 +46,9 @@ abstract class BaseFormViewBinder {
         }
     }
 
+    /**
+     * Shows/Hides the [error]
+     */
     fun setError(textViewError: AppCompatTextView, error: String?) {
         if (error.isNullOrEmpty()) {
             textViewError.visibility = View.GONE
@@ -53,6 +59,9 @@ abstract class BaseFormViewBinder {
         textViewError.visibility = View.VISIBLE
     }
 
+    /**
+     * Shows the [dialog] when the form element is clicked
+     */
     fun setOnClickListener(editTextValue: AppCompatEditText, itemView: View, dialog: Dialog) {
         editTextValue.isFocusable = false
 

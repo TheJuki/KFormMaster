@@ -23,6 +23,9 @@ import kotlin.properties.Delegates
  */
 open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Parcelable {
 
+    /**
+     * Form Element Title
+     */
     var title: String? = null
         set(value) {
             field = value
@@ -175,57 +178,90 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
         this.value = null
     }
 
+    /**
+     * Tag builder setter
+     */
     fun setTag(mTag: Int): BaseFormElement<T> {
         this.tag = mTag
         return this
     }
 
+    /**
+     * Title builder setter
+     */
     fun setTitle(mTitle: String): BaseFormElement<T> {
         this.title = mTitle
         return this
     }
 
+    /**
+     * Value builder setter
+     */
     @Suppress("UNCHECKED_CAST")
     open fun setValue(mValue: Any?): BaseFormElement<T> {
         this.value = mValue as T?
         return this
     }
 
+    /**
+     * Hint builder setter
+     */
     fun setHint(mHint: String?): BaseFormElement<T> {
         this.hint = mHint
         return this
     }
 
+    /**
+     * Error builder setter
+     */
     fun setError(error: String?): BaseFormElement<T> {
         this.error = error
         return this
     }
 
+    /**
+     * Required builder setter
+     */
     fun setRequired(required: Boolean): BaseFormElement<T> {
         this.required = required
         return this
     }
 
+    /**
+     * Visible builder setter
+     */
     fun setVisible(visible: Boolean): BaseFormElement<T> {
         this.visible = visible
         return this
     }
 
+    /**
+     * Options builder setter
+     */
     open fun setOptions(mOptions: List<T>): BaseFormElement<T> {
         this.options = mOptions
         return this
     }
 
+    /**
+     * Adds a value observer
+     */
     fun addValueObserver(observer: (T?, BaseFormElement<T>) -> Unit): BaseFormElement<T> {
         this.valueObservers.add(observer)
         return this
     }
 
+    /**
+     * Adds a list of value observers
+     */
     fun addAllValueObservers(observers: List<(T?, BaseFormElement<T>) -> Unit>): BaseFormElement<T> {
         this.valueObservers.addAll(observers)
         return this
     }
 
+    /**
+     * Options Selected builder setter
+     */
     @Suppress("UNCHECKED_CAST")
     fun setOptionsSelected(mOptionsSelected: List<Any>): BaseFormElement<T> {
         this.optionsSelected = mOptionsSelected as List<T>
@@ -336,19 +372,14 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
     companion object {
 
         /**
-         * static method to create instance
-         *
-         * @return
+         * Creates an instance
          */
         fun createInstance(): BaseFormElement<String> {
             return BaseFormElement()
         }
 
         /**
-         * static method to create instance using
-         * custom generic value type
-         *
-         * @return
+         * Creates a generic instance
          */
         fun <T : Serializable> createGenericInstance(): BaseFormElement<T> {
             return BaseFormElement()

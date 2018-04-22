@@ -13,8 +13,14 @@ import android.os.Parcelable
  */
 class FormTextViewElement : BaseFormElement<String> {
 
+    /**
+     * Nothing to clear
+     */
     override fun clear() {}
 
+    /**
+     * No validation needed
+     */
     override val isValid: Boolean
         get() = true
 
@@ -36,6 +42,9 @@ class FormTextViewElement : BaseFormElement<String> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormTextViewElement {
             return FormTextViewElement()
         }
