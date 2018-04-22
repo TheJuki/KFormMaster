@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
@@ -67,6 +68,12 @@ class FullscreenFormActivity : AppCompatActivity() {
             alert.setTitle(this@FullscreenFormActivity.getString(R.string.FormValid))
         } else {
             alert.setTitle(this@FullscreenFormActivity.getString(R.string.FormInvalid))
+
+            formBuilder.elements.forEach({
+                if (1 == 1 || !it.isValid) {
+                    it.error = "This field is required!"
+                }
+            })
         }
 
         alert.setButton(AlertDialog.BUTTON_POSITIVE, this@FullscreenFormActivity.getString(android.R.string.ok), { _, _ -> })
@@ -158,27 +165,8 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
                 required = true
-            }
-            button(ButtonElement.ordinal) {
-                value = getString(R.string.Button)
                 valueObservers.add({ newValue, element ->
-                    val confirmAlert = AlertDialog.Builder(this@FullscreenFormActivity).create()
-                    confirmAlert.setTitle(this@FullscreenFormActivity.getString(R.string.Confirm))
-                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FullscreenFormActivity.getString(android.R.string.ok), { _, _ ->
-                        // Could be used to clear another field:
-                        val dateToDeleteElement = formBuilder.getFormElement(Tag.Date.ordinal)
-                        // Display current date
-                        Toast.makeText(this@FullscreenFormActivity,
-                                (dateToDeleteElement!!.value as FormPickerDateElement.DateHolder).getTime().toString(),
-                                Toast.LENGTH_SHORT).show()
-                        (dateToDeleteElement.value as FormPickerDateElement.DateHolder).useCurrentDate()
-                        formBuilder.onValueChanged(dateToDeleteElement)
-
-                        //formBuilder.refreshView()
-                    })
-                    confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FullscreenFormActivity.getString(android.R.string.cancel), { _, _ ->
-                    })
-                    confirmAlert.show()
+                    Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 })
             }
             time(Time.ordinal) {
@@ -186,7 +174,6 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("hh:mm a", Locale.US)
                 required = true
-                visible = false
             }
             dateTime(DateTime.ordinal) {
                 title = getString(R.string.DateTime)
@@ -253,7 +240,26 @@ class FullscreenFormActivity : AppCompatActivity() {
                 unCheckedValue = false
                 required = true
             }
-
+            button(ButtonElement.ordinal) {
+                value = getString(R.string.Button)
+                valueObservers.add({ newValue, element ->
+                    val confirmAlert = AlertDialog.Builder(this@FullscreenFormActivity).create()
+                    confirmAlert.setTitle(this@FullscreenFormActivity.getString(R.string.Confirm))
+                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FullscreenFormActivity.getString(android.R.string.ok), { _, _ ->
+                        // Could be used to clear another field:
+                        val dateToDeleteElement = formBuilder.getFormElement<FormPickerDateElement>(Tag.Date.ordinal)
+                        // Display current date
+                        Toast.makeText(this@FullscreenFormActivity,
+                                dateToDeleteElement.value?.getTime().toString(),
+                                Toast.LENGTH_SHORT).show()
+                        dateToDeleteElement.clear()
+                        formBuilder.onValueChanged(dateToDeleteElement)
+                    })
+                    confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FullscreenFormActivity.getString(android.R.string.cancel), { _, _ ->
+                    })
+                    confirmAlert.show()
+                })
+            }
         }
     }
 }

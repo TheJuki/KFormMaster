@@ -2,8 +2,11 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v7.widget.AppCompatTextView
+import android.support.v7.widget.SwitchCompat
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import java.io.Serializable
 import java.util.*
@@ -34,6 +37,11 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
      */
     var value: T? by Delegates.observable<T?>(null) { _, _, newValue ->
         valueObservers.forEach { it(newValue, this) }
+        editView?.let {
+            if (it is TextView && value is String && it !is SwitchCompat) {
+                it.text = value as? String
+            }
+        }
     }
 
     /**
@@ -48,16 +56,47 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
      */
     var optionsSelected: List<T>? = null
         get() = field ?: ArrayList()
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView) {
+                    it.hint = hint
+                }
+            }
+        }
 
     /**
      * Form Element Hint
      */
     var hint: String? = null
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView) {
+                    it.hint = hint
+                }
+            }
+        }
 
     /**
      * Form Element Error
      */
     var error: String? = null
+        set(value) {
+            field = value
+            if (value != null) {
+                errorView?.let {
+                    it.visibility = View.VISIBLE
+                    it.text = value
+                }
+
+            } else {
+                errorView?.let {
+                    it.visibility = View.GONE
+                    it.text = null
+                }
+            }
+        }
 
     /**
      * Form Element Required
@@ -77,12 +116,12 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     /**
      * Form Element Title View
      */
-    var titleView: View? = null
+    var titleView: AppCompatTextView? = null
 
     /**
      * Form Element Error View
      */
-    var errorView: View? = null
+    var errorView: AppCompatTextView? = null
 
     /**
      * Form Element Visibility

@@ -2,6 +2,7 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.widget.TextView
 
 import java.io.Serializable
 import java.text.DateFormat
@@ -17,6 +18,13 @@ import java.util.*
  * @version 1.0
  */
 class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.DateTimeHolder> {
+
+    fun clear() {
+        this.value?.useCurrentDate()
+        (this.editView as? TextView)?.text = ""
+        this.valueObservers.forEach { it(this.value, this) }
+    }
+
     class DateTimeHolder : Serializable {
 
         var isEmptyDateTime: Boolean = false
@@ -39,7 +47,7 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
             useCurrentDate()
         }
 
-        constructor(date: Date?, dateFormat: DateFormat) {
+        constructor(date: Date?, dateFormat: DateFormat = SimpleDateFormat.getDateInstance()) {
             if (date != null) {
                 val calendar = Calendar.getInstance()
                 calendar.time = date

@@ -99,7 +99,7 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
             }
             model.setError(null) // Reset after value change
             formBuilder.onValueChanged(model)
-
+            model.valueObservers.forEach { it(model.value, model) }
             editTextValue.setText(model.valueAsString)
             setError(textViewError, null)
         }

@@ -34,7 +34,6 @@ fun form(context: Context,
     )
     form.init()
     form.setItems()
-    form.refreshView()
     return form
 }
 
