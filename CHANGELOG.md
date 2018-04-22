@@ -1,5 +1,14 @@
 # Change Log
 
+## [3.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/3.0.0)
+- The title, edit, and error views are now accessible through the model classes
+- The refreshView() function has been removed (No longer needed)
+- The getFormElement() function now requires a type and returns a non-optional element
+- The form is now dynamic. The title, hint, value, error, visible, required fields can be changed at any time without refreshing the form manually.
+- The clear() function has been added to all form elements
+- The header can now collapse "child" elements when tapped (Set collapsible to true)
+- The FullscreenFormActivity example has been updated to test the new dynamic features
+
 ## [2.1.3](https://github.com/TheJuki/KFormMaster/releases/tag/2.1.3)
 - The isValidForm function now works correctly
 - The numbersOnly field has been added to FormNumberEditTextElement to prevent symbols from being entered. By default numbers and symbols are allowed.
