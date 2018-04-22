@@ -134,12 +134,12 @@ class FullscreenFormActivity : AppCompatActivity() {
         TextViewElement,
         SwitchElement,
         SliderElement,
-        CheckBoxElement,
+        CheckBoxElement
     }
 
     private fun setupForm() {
         formBuilder = form(this, recyclerView, cacheForm = true) {
-            header { title = getString(R.string.PersonalInfo) }
+            header { title = getString(R.string.PersonalInfo); collapsible = true }
             email(Email.ordinal) {
                 title = getString(R.string.email)
                 hint = getString(R.string.email_hint)
@@ -165,7 +165,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 })
             }
-            header { title = getString(R.string.FamilyInfo) }
+            header { title = getString(R.string.FamilyInfo); collapsible = true }
             text(Location.ordinal) {
                 title = getString(R.string.Location)
                 value = "Dhaka"
@@ -191,7 +191,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 })
             }
-            header { title = getString(R.string.Schedule) }
+            header { title = getString(R.string.Schedule); collapsible = true }
             date(Tag.Date.ordinal) {
                 title = getString(R.string.Date)
                 dateValue = Date()
@@ -219,7 +219,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 })
             }
-            header { title = getString(R.string.PreferredItems) }
+            header { title = getString(R.string.PreferredItems); collapsible = true }
             dropDown<ListItem>(SingleItem.ordinal) {
                 title = getString(R.string.SingleItem)
                 dialogTitle = getString(R.string.SingleItem)
@@ -268,7 +268,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.TextView)
                 value = "This is readonly!"
             }
-            header { title = getString(R.string.MarkComplete) }
+            header { title = getString(R.string.MarkComplete); collapsible = true }
             switch<String>(SwitchElement.ordinal) {
                 title = getString(R.string.Switch)
                 value = "Yes"

@@ -43,8 +43,10 @@ interface FieldBuilder {
 
 /** Builder method to add a header */
 class HeaderBuilder(var title: String = "") : FieldBuilder {
+    var collapsible: Boolean = false
     override fun build() =
             FormHeader.createInstance(title)
+                    .setCollapsible(collapsible)
 }
 fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
     val element = HeaderBuilder().apply(init).build()

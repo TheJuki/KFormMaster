@@ -26,6 +26,22 @@ class FormHeaderViewBinder(private val context: Context, private val formBuilder
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, null, itemView)
 
+        itemView.setOnClickListener {
+            if (model.collapsible) {
+                model.allCollapsed = !model.allCollapsed
+
+                val index = formBuilder.elements.indexOf(model) + 1
+                if (index != formBuilder.elements.size) {
+                    for (i in index..formBuilder.elements.size) {
+                        if (formBuilder.elements[i] is FormHeader) {
+                            break
+                        }
+                        formBuilder.elements[i].visible = !model.allCollapsed
+                    }
+                }
+            }
+        }
+
     }, object : ViewStateProvider<FormHeader, ViewHolder> {
         override fun createViewStateID(model: FormHeader): Int {
             return model.id
