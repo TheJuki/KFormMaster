@@ -24,6 +24,11 @@ class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder
         this.valueObservers.forEach { it(this.value, this) }
     }
 
+    /**
+     * Time Holder
+     *
+     * Holds the date fields for [FormPickerTimeElement]
+     */
     class TimeHolder : Serializable {
 
         var isEmptyTime: Boolean = false
@@ -120,7 +125,9 @@ class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
-
+        /**
+         * Creates an instance
+         */
         fun createTimeInstance(): FormPickerTimeElement {
             return FormPickerTimeElement()
         }

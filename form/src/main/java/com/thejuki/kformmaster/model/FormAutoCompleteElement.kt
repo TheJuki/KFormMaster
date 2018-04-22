@@ -42,16 +42,25 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
      */
     var dropdownWidth: Int? = null
 
+    /**
+     * arrayAdapter builder setter
+     */
     fun setArrayAdapter(arrayAdapter: ArrayAdapter<*>?): FormAutoCompleteElement<T> {
         this.arrayAdapter = arrayAdapter
         return this
     }
 
+    /**
+     * dropdownWidth builder setter
+     */
     fun setDropdownWidth(dropdownWidth: Int?): FormAutoCompleteElement<T> {
         this.dropdownWidth = dropdownWidth
         return this
     }
 
+    /**
+     * Sets the value and typedString
+     */
     override fun setValue(mValue: Any?): BaseFormElement<T> {
         typedString = mValue?.toString()
 
@@ -76,10 +85,16 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
 
     companion object {
 
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormAutoCompleteElement<String> {
             return FormAutoCompleteElement()
         }
 
+        /**
+         * Creates a generic instance
+         */
         fun <T : Serializable> createGenericInstance(): FormAutoCompleteElement<T> {
             return FormAutoCompleteElement()
         }

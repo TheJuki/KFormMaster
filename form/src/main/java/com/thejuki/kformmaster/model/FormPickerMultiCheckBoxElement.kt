@@ -28,8 +28,10 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
      */
     var dialogTitle: String? = null
 
-    fun setDialogTitle(dialogTitle: String?): FormPickerMultiCheckBoxElement<T>
-    {
+    /**
+     * dialogTitle builder setter
+     */
+    fun setDialogTitle(dialogTitle: String?): FormPickerMultiCheckBoxElement<T> {
         this.dialogTitle = dialogTitle
         return this
     }
@@ -52,10 +54,16 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormPickerMultiCheckBoxElement<String> {
             return FormPickerMultiCheckBoxElement()
         }
 
+        /**
+         * Creates a generic instance
+         */
         fun <T : Serializable> createGenericInstance(): FormPickerMultiCheckBoxElement<T> {
             return FormPickerMultiCheckBoxElement()
         }

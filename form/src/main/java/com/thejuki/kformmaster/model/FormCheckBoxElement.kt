@@ -29,17 +29,26 @@ open class FormCheckBoxElement<T : Serializable> : BaseFormElement<T> {
      */
     var unCheckedValue: T? = null
 
+    /**
+     * Indicates if the checkbox should be checked
+     */
     fun isChecked(): Boolean {
         if (checkedValue == null || value == null)
             return false
         return checkedValue!! == value!!
     }
 
+    /**
+     * checkedValue builder setter
+     */
     fun setCheckedValue(checkedValue: T?): FormCheckBoxElement<T> {
         this.checkedValue = checkedValue
         return this
     }
 
+    /**
+     * unCheckedValue builder setter
+     */
     fun setUnCheckedValue(unCheckedValue: T?): FormCheckBoxElement<T> {
         this.unCheckedValue = unCheckedValue
         return this
@@ -63,10 +72,16 @@ open class FormCheckBoxElement<T : Serializable> : BaseFormElement<T> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormCheckBoxElement<String> {
             return FormCheckBoxElement()
         }
 
+        /**
+         * Creates a generic instance
+         */
         fun <T : Serializable> createGenericInstance(): FormCheckBoxElement<T> {
             return FormCheckBoxElement()
         }

@@ -42,6 +42,9 @@ class FormNumberEditTextElement : BaseFormElement<String> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormNumberEditTextElement {
             return FormNumberEditTextElement()
         }

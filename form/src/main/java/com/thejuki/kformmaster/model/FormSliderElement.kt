@@ -43,20 +43,26 @@ open class FormSliderElement : BaseFormElement<Int> {
             return if (field <= 0) 1 else field
         }
 
-    fun setMax(max: Int): FormSliderElement
-    {
+    /**
+     * Max builder setter
+     */
+    fun setMax(max: Int): FormSliderElement {
         this.max = max
         return this
     }
 
-    fun setMin(min: Int): FormSliderElement
-    {
+    /**
+     * Min builder setter
+     */
+    fun setMin(min: Int): FormSliderElement {
         this.min = min
         return this
     }
 
-    fun setSteps(steps: Int): FormSliderElement
-    {
+    /**
+     * Steps builder setter
+     */
+    fun setSteps(steps: Int): FormSliderElement {
         this.steps = steps
         return this
     }
@@ -79,10 +85,16 @@ open class FormSliderElement : BaseFormElement<Int> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormSliderElement {
             return FormSliderElement()
         }
 
+        /**
+         * Creates a generic instance
+         */
         fun createGenericInstance(): FormSliderElement {
             return FormSliderElement()
         }

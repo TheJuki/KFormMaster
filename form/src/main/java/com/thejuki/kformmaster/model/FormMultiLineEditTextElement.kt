@@ -31,6 +31,9 @@ class FormMultiLineEditTextElement : BaseFormElement<String> {
     constructor(`in`: Parcel) : super(`in`) {}
 
     companion object {
+        /**
+         * Creates an instance
+         */
         fun createInstance(): FormMultiLineEditTextElement {
             return FormMultiLineEditTextElement()
         }
