@@ -13,6 +13,8 @@ import android.os.Parcelable
  */
 class FormTextViewElement : BaseFormElement<String> {
 
+    override fun clear() {}
+
     override val isValid: Boolean
         get() = true
 

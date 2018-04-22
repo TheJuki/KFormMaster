@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_show_hide"
+        android:icon="@drawable/ic_eye_white_24dp"
+        android:title="@string/show_hide"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:id="@+id/action_clear"
+        android:icon="@drawable/ic_clear_all_white_24dp"
+        android:title="@string/clear"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:id="@+id/action_validate"
+        android:icon="@drawable/ic_check_circle_white_24dp"
+        android:title="@string/validate"
+        app:showAsAction="ifRoom|collapseActionView" />
+</menu>

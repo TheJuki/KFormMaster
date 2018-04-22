@@ -35,6 +35,8 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
 
+        model.editView = editTextValue
+
         editTextValue.setRawInputType(InputType.TYPE_NULL)
 
         // If no value is set by the user, create a new instance of TimeHolder
@@ -79,7 +81,7 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
             if (timeChanged) {
                 model.setError(null) // Reset after value change
                 formBuilder.onValueChanged(model)
-
+                model.valueObservers.forEach { it(model.value, model) }
                 editTextValue.setText(model.valueAsString)
                 setError(textViewError, null)
             }

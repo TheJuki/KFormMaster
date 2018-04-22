@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster.model
 
 import android.os.Parcel
+import android.support.v7.widget.AppCompatSeekBar
 
 /**
  * Form Slider Element
@@ -11,6 +12,11 @@ import android.os.Parcel
  * @version 1.0
  */
 open class FormSliderElement : BaseFormElement<Int> {
+
+    override fun clear() {
+        this.value = min
+        (this.editView as? AppCompatSeekBar)?.progress = min
+    }
 
     /**
      * Maximum progress of the slider

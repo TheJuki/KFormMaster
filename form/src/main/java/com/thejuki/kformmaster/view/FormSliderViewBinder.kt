@@ -33,6 +33,8 @@ class FormSliderViewBinder(private val context: Context, private val formBuilder
         val slider = finder.find(R.id.formElementValue) as AppCompatSeekBar
         val progressValue = finder.find(R.id.formElementProgress) as AppCompatTextView
 
+        model.editView = slider
+
         if (model.value == null) {
             model.value = model.min
         }

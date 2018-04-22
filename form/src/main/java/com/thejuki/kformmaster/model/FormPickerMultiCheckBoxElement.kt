@@ -2,7 +2,6 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
-
 import java.io.Serializable
 
 /**
@@ -17,6 +16,11 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
 
     override val isValid: Boolean
         get() = !required || (optionsSelected != null && !optionsSelected!!.isEmpty())
+
+    override fun clear() {
+        super.clear()
+        this.optionsSelected = null
+    }
 
     /**
      * Alert Dialog Title

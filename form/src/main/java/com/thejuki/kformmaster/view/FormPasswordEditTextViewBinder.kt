@@ -38,6 +38,8 @@ class FormPasswordEditTextViewBinder(private val context: Context, private val f
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
 
+        model.editView = editTextValue
+
         setEditTextFocusEnabled(editTextValue, itemView)
 
         editTextValue.setOnFocusChangeListener { _, hasFocus ->

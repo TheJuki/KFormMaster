@@ -207,27 +207,28 @@ class FormBuildHelper {
         if (this.cacheForm) {
             recyclerView.setItemViewCacheSize(this.elements.size)
         }
+        this.formAdapter.notifyDataSetChanged()
     }
 
     /**
-     * Redraws the view
+     * Clears all form element values
      */
-    fun refreshView() {
-        this.formAdapter.notifyDataSetChanged()
+    fun clearAll() {
+        this.elements.forEach({ it.clear() })
     }
 
     /**
      * Gets a form element with the given [tag]
      */
-    fun getFormElement(tag: Int): BaseFormElement<*>? {
-
-        return this.elements.firstOrNull { !it.isHeader && it.tag == tag }
+    @Suppress("UNCHECKED_CAST")
+    fun <T : BaseFormElement<*>> getFormElement(tag: Int): T {
+        return this.elements.first { it.tag == tag } as T
     }
 
     /**
      * Gets a form element at the given [index]
      */
-    fun getElementAtIndex(index: Int): BaseFormElement<*>? {
+    fun getElementAtIndex(index: Int): BaseFormElement<*> {
         return this.elements[index]
 
     }

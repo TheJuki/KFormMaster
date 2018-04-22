@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster.model
 
 import android.os.Parcel
+import android.support.v7.widget.AppCompatCheckBox
 import java.io.Serializable
 
 /**
@@ -12,6 +13,11 @@ import java.io.Serializable
  * @version 1.0
  */
 open class FormCheckBoxElement<T : Serializable> : BaseFormElement<T> {
+
+    override fun clear() {
+        this.value = unCheckedValue
+        (this.editView as? AppCompatCheckBox)?.isChecked = false
+    }
 
     /**
      * Sets value to this when checked

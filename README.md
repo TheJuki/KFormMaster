@@ -23,11 +23,14 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 - Fast color change as needed
 - Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster)
 
-## Version 2 Changes
-- Element tags are now optional
-- The email, password, phone, text, textArea, number, textView, and button elements no longer take a <T: Serializable> as they only deal with Strings
-- Removed valueChanged in BaseFormElement
-- Added valueObservers in BaseFormElement to replace valueChanged with a list of Observers when the element value changes (See updated Examples)
+## Version 3 Changes
+- The title, edit, and error views are now accessible through the model classes
+- The refreshView() function has been removed (No longer needed)
+- The getFormElement() function now requires a type and returns a non-optional element
+- The form is now dynamic. The title, hint, value, error, visible, required fields can be changed at any time without refreshing the form manually.
+- The clear() function has been added to all form elements
+- The header can now collapse "child" elements when tapped (Set collapsible to true)
+- The FullscreenFormActivity example has been updated to test the new dynamic features
 
 ## Java Compatibility
 - This library was ported from Java and is still compatibile with Java code
@@ -37,7 +40,7 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 Add this in your app's **build.gradle** file:
 ```
 ext {
-    kFormMasterVersion = '2.1.3'
+  kFormMasterVersion = '3.0.0'
 }
 
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
@@ -69,7 +72,7 @@ implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 ```kotlin
 // Initialize variables
 formBuilder = FormBuildHelper(this)
-formBuilder!!.attachRecyclerView(this, recyclerView)
+formBuilder.attachRecyclerView(this, recyclerView)
 
 val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
@@ -82,9 +85,8 @@ val passwordElement = FormPasswordEditTextElement(Password.ordinal)
         .setTitle(getString(R.string.password))
 elements.add(passwordElement)
 
-// Add form elements and refresh the form list
-formBuilder!!.addFormElements(elements)
-formBuilder!!.refreshView()
+// Add form elements (Form is refreshed for you)
+formBuilder.addFormElements(elements)
 ```
 
 * Step 2 (With DSL). Add the Form Elements programmatically in your activity
@@ -307,14 +309,13 @@ formBuilder = form(this@ActivityName, recyclerView, listener, cacheForm = true) 
             confirmAlert.setTitle(this@PartialScreenFormActivity.getString(R.string.Confirm))
             confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@PartialScreenFormActivity.getString(android.R.string.ok), { _, _ ->
                 // Could be used to clear another field:
-                val dateToDeleteElement = formBuilder!!.getFormElement(Tag.Date.ordinal)
+                val dateToDeleteElement = formBuilder.getFormElement<FormPickerDateElement>(Tag.Date.ordinal)
                 // Display current date
-                Toast.makeText(this@PartialScreenFormActivity,
-                        (dateToDeleteElement!!.value as FormPickerDateElement.DateHolder).getTime().toString(),
+                Toast.makeText(this@FullscreenFormActivity,
+                        dateToDeleteElement.value?.getTime().toString(),
                         Toast.LENGTH_SHORT).show()
-                (dateToDeleteElement.value as FormPickerDateElement.DateHolder).useCurrentDate()
-                formBuilder!!.onValueChanged(dateToDeleteElement)
-                formBuilder!!.refreshView()
+                dateToDeleteElement.clear()
+                formBuilder.onValueChanged(dateToDeleteElement)
             })
             confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@PartialScreenFormActivity.getString(android.R.string.cancel), { _, _ ->
             })

@@ -35,10 +35,14 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
         val itemsCompletionView = finder.find(R.id.formElementValue) as ItemsCompletionView
 
         if (model.value != null) {
-            itemsCompletionView.objects?.addAll(model.value as List<*>)
+            (model.value as List<*>).forEach({
+                itemsCompletionView.addObject(it)
+            })
         }
 
         itemsCompletionView.hint = model.hint ?: ""
+
+        model.editView = itemsCompletionView
 
         setEditTextFocusEnabled(itemsCompletionView, itemView)
 

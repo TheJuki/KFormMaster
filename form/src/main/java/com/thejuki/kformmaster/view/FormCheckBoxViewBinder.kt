@@ -24,11 +24,14 @@ import com.thejuki.kformmaster.state.FormCheckBoxViewState
 class FormCheckBoxViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
     var viewBinder = ViewBinder(R.layout.form_element_checkbox, FormCheckBoxElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
+        val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
-        baseSetup(model, textViewTitle, null, itemView)
+        baseSetup(model, textViewTitle, textViewError, itemView)
 
         val checkBox = finder.find(R.id.formElementValue) as AppCompatCheckBox
         checkBox.isChecked = model.isChecked()
+
+        model.editView = checkBox
 
         setCheckBoxFocusEnabled(itemView, checkBox)
 
@@ -39,6 +42,7 @@ class FormCheckBoxViewBinder(private val context: Context, private val formBuild
                 model.setValue(model.unCheckedValue)
             }
             formBuilder.onValueChanged(model)
+            setError(textViewError, null)
         }
     }, object : ViewStateProvider<FormCheckBoxElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormCheckBoxElement<*>): Int {

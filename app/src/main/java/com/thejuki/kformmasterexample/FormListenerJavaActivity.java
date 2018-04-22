@@ -136,7 +136,6 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         addMarkComplete(elements);
 
         formBuilder.addFormElements(elements);
-        formBuilder.refreshView();
     }
 
     private void addEditTexts(List<BaseFormElement<?>> elements) {
@@ -277,16 +276,15 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         confirmAlert.setTitle(this.getString(R.string.Confirm));
         confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this.getString(android.R.string.ok), (dialog, which) -> {
             // Could be used to clear another field:
-            FormPickerDateElement dateToDeleteElement = (FormPickerDateElement) formBuilder.getFormElement(Tag.Date.ordinal());
+            FormPickerDateElement dateToDeleteElement = formBuilder.getFormElement(Tag.Date.ordinal());
             // Display current date
-            if (dateToDeleteElement != null && dateToDeleteElement.getValue() != null) {
+            if (dateToDeleteElement.getValue() != null) {
                 Date dateToDelete = dateToDeleteElement.getValue().getTime();
 
                 if (dateToDelete != null) {
                     Toast.makeText(this, dateToDelete.toString(), Toast.LENGTH_SHORT).show();
-                    dateToDeleteElement.getValue().useCurrentDate();
+                    dateToDeleteElement.clear();
                     formBuilder.onValueChanged(dateToDeleteElement);
-                    formBuilder.refreshView();
                 }
             }
         });

@@ -36,6 +36,8 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
 
+        model.editView = editTextValue
+
         editTextValue.setRawInputType(InputType.TYPE_NULL)
 
         // reformat the options in format needed

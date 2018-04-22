@@ -34,9 +34,9 @@ class LoginFormActivity : AppCompatActivity() {
         setupForm()
 
         buttonLogin.setOnClickListener {
-            val loginElementValue = formBuilder.getFormElement(Email.ordinal)!!.value as String?
-            val passwordElementValue = formBuilder.getFormElement(Password.ordinal)!!.value as String?
-            val checkBoxElementValue = formBuilder.getElementAtIndex(2)!!.value as Boolean?
+            val loginElementValue = formBuilder.getFormElement<FormEmailEditTextElement>(Email.ordinal).value as String?
+            val passwordElementValue = formBuilder.getFormElement<FormPasswordEditTextElement>(Password.ordinal).value as String?
+            val checkBoxElementValue = formBuilder.getElementAtIndex(2).value as Boolean?
             Toast.makeText(this@LoginFormActivity, "Do whatever you want with this data\n" +
                     "$loginElementValue\n" +
                     "$passwordElementValue\n" +
@@ -95,7 +95,6 @@ class LoginFormActivity : AppCompatActivity() {
         elements.add(checkBoxElement)
 
         formBuilder.addFormElements(elements)
-        formBuilder.refreshView()
 
     }
 }

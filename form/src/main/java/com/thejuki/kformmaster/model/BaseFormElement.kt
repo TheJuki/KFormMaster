@@ -2,6 +2,12 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v7.widget.AppCompatEditText
+import android.support.v7.widget.AppCompatTextView
+import android.support.v7.widget.SwitchCompat
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import java.io.Serializable
 import java.util.*
@@ -15,7 +21,15 @@ import kotlin.properties.Delegates
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: String? = null) : ViewModel, Parcelable {
+open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Parcelable {
+
+    var title: String? = null
+        set(value) {
+            field = value
+            titleView?.let {
+                it.text = value
+            }
+        }
 
     /**
      * Form Element Unique ID
@@ -32,6 +46,16 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
      */
     var value: T? by Delegates.observable<T?>(null) { _, _, newValue ->
         valueObservers.forEach { it(newValue, this) }
+        editView?.let {
+            if (it is AppCompatEditText && it.text.toString() != value as? String) {
+                it.setText(value as? String)
+
+            } else if (it is TextView && value is String &&
+                    it.text.toString() != value as? String &&
+                    it !is SwitchCompat) {
+                it.text = value as? String
+            }
+        }
     }
 
     /**
@@ -51,11 +75,34 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
      * Form Element Hint
      */
     var hint: String? = null
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView) {
+                    it.hint = hint
+                }
+            }
+        }
 
     /**
      * Form Element Error
      */
     var error: String? = null
+        set(value) {
+            field = value
+            if (value != null) {
+                errorView?.let {
+                    it.visibility = View.VISIBLE
+                    it.text = value
+                }
+
+            } else {
+                errorView?.let {
+                    it.visibility = View.GONE
+                    it.text = null
+                }
+            }
+        }
 
     /**
      * Form Element Required
@@ -63,9 +110,50 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     var required: Boolean = false
 
     /**
+     * Form Element Item View
+     */
+    var itemView: View? = null
+
+    /**
+     * Form Element Edit View
+     */
+    var editView: View? = null
+
+    /**
+     * Form Element Title View
+     */
+    var titleView: AppCompatTextView? = null
+
+    /**
+     * Form Element Error View
+     */
+    var errorView: AppCompatTextView? = null
+
+    /**
      * Form Element Visibility
      */
     var visible: Boolean = true
+        set(value) {
+            field = value
+            if (value) {
+                itemView?.let {
+                    it.visibility = View.VISIBLE
+                    val params = it.layoutParams
+                    params.width = ViewGroup.LayoutParams.MATCH_PARENT
+                    params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                    it.layoutParams = params
+                }
+
+            } else {
+                itemView?.let {
+                    it.visibility = View.GONE
+                    val params = it.layoutParams
+                    params.width = ViewGroup.LayoutParams.MATCH_PARENT
+                    params.height = 0
+                    it.layoutParams = params
+                }
+            }
+        }
 
     /**
      * Form Element Value String value
@@ -81,10 +169,11 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
                 (value !is String || !(value as? String).isNullOrEmpty()))
 
     /**
-     * Form Element Value Observers
+     * Clear edit view
      */
-    open val isHeader: Boolean
-        get() = false
+    open fun clear() {
+        this.value = null
+    }
 
     fun setTag(mTag: Int): BaseFormElement<T> {
         this.tag = mTag
@@ -141,14 +230,6 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     fun setOptionsSelected(mOptionsSelected: List<Any>): BaseFormElement<T> {
         this.optionsSelected = mOptionsSelected as List<T>
         return this
-    }
-
-    fun isRequired(): Boolean {
-        return this.required
-    }
-
-    fun isVisible(): Boolean {
-        return this.visible
     }
 
     /**

@@ -3,6 +3,7 @@ package com.thejuki.kformmaster.model
 import android.os.Parcel
 import android.os.Parcelable
 import android.widget.ArrayAdapter
+import com.thejuki.kformmaster.token.ItemsCompletionView
 import java.io.Serializable
 
 /**
@@ -17,6 +18,11 @@ class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
 
     override val isValid: Boolean
         get() = !required || (value != null && value is List<*> && !(value!! as List<*>).isEmpty())
+
+    override fun clear() {
+        this.value = null
+        (this.editView as? ItemsCompletionView)?.clear()
+    }
 
     /**
      * Override the default array adapter

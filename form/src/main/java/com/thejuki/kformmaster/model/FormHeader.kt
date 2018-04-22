@@ -13,8 +13,24 @@ import android.os.Parcelable
  */
 class FormHeader : BaseFormElement<String> {
 
+    /**
+     * Enable to collapse/un-collapse elements below the header
+     * when the header is tapped
+     */
+    var collapsible: Boolean = false
+
+    /**
+     * Indicates if elements under header are collapsed or not
+     */
+    var allCollapsed: Boolean = false
+
     override val isValid: Boolean
         get() = true
+
+    fun setCollapsible(collapsible: Boolean): FormHeader {
+        this.collapsible = collapsible
+        return this
+    }
 
     constructor() : super()
 
