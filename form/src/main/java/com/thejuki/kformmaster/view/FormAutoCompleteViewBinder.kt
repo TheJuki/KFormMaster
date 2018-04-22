@@ -36,8 +36,6 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
 
         val autoCompleteTextView = finder.find(R.id.formElementValue) as AppCompatAutoCompleteTextView
 
-        model.editView = autoCompleteTextView
-
         if (model.valueAsString != model.typedString) {
             autoCompleteTextView.setText(model.typedString)
         } else {
@@ -52,6 +50,8 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
 
         // Set threshold (the number of characters to type before the drop down is shown)
         autoCompleteTextView.threshold = 1
+
+        model.editView = autoCompleteTextView
 
         setEditTextFocusEnabled(autoCompleteTextView, itemView)
 

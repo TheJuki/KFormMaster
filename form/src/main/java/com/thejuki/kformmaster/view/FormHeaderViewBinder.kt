@@ -2,6 +2,7 @@ package com.thejuki.kformmaster.view
 
 import android.content.Context
 import android.support.v7.widget.AppCompatTextView
+import android.view.View
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
 import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
@@ -22,10 +23,8 @@ import com.thejuki.kformmaster.state.FormHeaderViewState
 class FormHeaderViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
     var viewBinder = ViewBinder(R.layout.form_element_header, FormHeader::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
-
-        textViewTitle.text = model.title
-
-        model.titleView = textViewTitle
+        val itemView = finder.getRootView() as View
+        baseSetup(model, textViewTitle, null, itemView)
 
     }, object : ViewStateProvider<FormHeader, ViewHolder> {
         override fun createViewStateID(model: FormHeader): Int {

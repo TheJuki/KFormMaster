@@ -34,7 +34,7 @@ abstract class BaseFormViewBinder {
             formElement.errorView = textViewError
         }
 
-        if (formElement.isVisible()) {
+        if (formElement.visible) {
             itemView.visibility = View.VISIBLE
             itemView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         } else {

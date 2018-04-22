@@ -44,5 +44,7 @@
     <string name="login">login</string>
     <string name="custom_form">Custom form</string>
     <string name="custom_footer">This is a custom field in the app project</string>
-    <string name="validate">validate</string>
+    <string name="validate">Validate</string>
+    <string name="clear">Clear</string>
+    <string name="show_hide">Show/Hide</string>
 </resources>

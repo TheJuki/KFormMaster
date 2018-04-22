@@ -2,6 +2,7 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v7.widget.AppCompatAutoCompleteTextView
 import android.widget.ArrayAdapter
 import java.io.Serializable
 
@@ -14,6 +15,11 @@ import java.io.Serializable
  * @version 1.0
  */
 class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
+
+    override fun clear() {
+        this.value = null
+        (this.editView as? AppCompatAutoCompleteTextView)?.setText("")
+    }
 
     constructor() : super()
 

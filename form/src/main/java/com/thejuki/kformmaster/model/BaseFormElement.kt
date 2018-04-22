@@ -2,6 +2,7 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.support.v7.widget.SwitchCompat
 import android.view.View
@@ -38,7 +39,12 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     var value: T? by Delegates.observable<T?>(null) { _, _, newValue ->
         valueObservers.forEach { it(newValue, this) }
         editView?.let {
-            if (it is TextView && value is String && it !is SwitchCompat) {
+            if (it is AppCompatEditText && it.text.toString() != value as? String) {
+                it.setText(value as? String)
+
+            } else if (it is TextView && value is String &&
+                    it.text.toString() != value as? String &&
+                    it !is SwitchCompat) {
                 it.text = value as? String
             }
         }
@@ -224,14 +230,6 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1, var title: Strin
     fun setOptionsSelected(mOptionsSelected: List<Any>): BaseFormElement<T> {
         this.optionsSelected = mOptionsSelected as List<T>
         return this
-    }
-
-    fun isRequired(): Boolean {
-        return this.required
-    }
-
-    fun isVisible(): Boolean {
-        return this.visible
     }
 
     /**
