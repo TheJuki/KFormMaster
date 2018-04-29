@@ -3,4 +3,5 @@
     <dimen name="headerTextSize">15sp</dimen>
     <dimen name="elementTextTitleSize">16sp</dimen>
     <dimen name="elementTextValueSize">16sp</dimen>
+    <dimen name="elementErrorTitleSize">16sp</dimen>
 </resources>
