@@ -172,19 +172,17 @@ class FormBuildHelper {
      * Attaches the given [recyclerView] to form
      */
     fun attachRecyclerView(context: Context, recyclerView: RecyclerView?) {
-        if (recyclerView == null) {
-            return
+        recyclerView?.let {
+            // Set up the RecyclerView with the adapter
+            it.layoutManager = LinearLayoutManager(context).apply {
+                orientation = LinearLayoutManager.VERTICAL
+                stackFromEnd = false
+                isAutoMeasureEnabled = false
+            }
+            it.adapter = formAdapter
+            it.itemAnimator = DefaultItemAnimator()
+            this.recyclerView = it
         }
-
-        // Set up the RecyclerView with the adapter
-        val linearLayoutManager = LinearLayoutManager(context)
-        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        linearLayoutManager.stackFromEnd = false
-
-        recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = formAdapter
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        this.recyclerView = recyclerView
     }
 
     /**
@@ -205,9 +203,13 @@ class FormBuildHelper {
     {
         this.formAdapter.setItems(this.elements)
         if (this.cacheForm) {
-            recyclerView.setItemViewCacheSize(this.elements.size)
+            this.recyclerView.setItemViewCacheSize(this.elements.size)
         }
         this.formAdapter.notifyDataSetChanged()
+
+        // Fix for actionNext
+        this.recyclerView.scrollToPosition(this.elements.size - 1)
+        this.recyclerView.scrollToPosition(0)
     }
 
     /**

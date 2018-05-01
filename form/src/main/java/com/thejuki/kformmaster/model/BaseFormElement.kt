@@ -2,6 +2,7 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v7.widget.AppCompatCheckBox
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.support.v7.widget.SwitchCompat
@@ -55,7 +56,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
 
             } else if (it is TextView && value is String &&
                     it.text.toString() != value as? String &&
-                    it !is SwitchCompat) {
+                    it !is SwitchCompat && it !is AppCompatCheckBox) {
                 it.text = value as? String
             }
         }

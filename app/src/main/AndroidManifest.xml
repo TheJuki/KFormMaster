@@ -25,6 +25,7 @@
         <activity android:name=".FormListenerActivity" />
         <activity android:name=".FormListenerJavaActivity" />
         <activity android:name=".CustomFormActivity" />
+        <activity android:name=".TestFormActivity" />
     </application>
 
 </manifest>
