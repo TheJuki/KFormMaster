@@ -7,6 +7,7 @@
 <a href="https://android-arsenal.com/api?level=15"><img src="https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat" alt="API" /></a>
 <a href="https://android-arsenal.com/details/1/6761"><img src="https://img.shields.io/badge/Android%20Arsenal-KFormMaster-brightgreen.svg?style=flat" border="0" alt="Android Arsenal"></a>
 <a href="https://bintray.com/thejuki/maven/k-form-master/_latestVersion"><img src="https://api.bintray.com/packages/thejuki/maven/k-form-master/images/download.svg" alt="Download" /></a>
+<a href="https://app.fossa.io/projects/git%2Bgithub.com%2FTheJuki%2FKFormMaster?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2FTheJuki%2FKFormMaster.svg?type=shield"/></a>
 </p>
 
 This is a Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster)
@@ -405,3 +406,7 @@ The App Automate feature of BrowserStack is used for Espresso testing of this li
 License
 -----------------
 The library is available as open source under the terms of the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTheJuki%2FKFormMaster.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FTheJuki%2FKFormMaster?ref=badge_large)
