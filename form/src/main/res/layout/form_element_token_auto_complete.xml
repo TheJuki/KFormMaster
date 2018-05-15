@@ -41,7 +41,7 @@
             android:imeOptions="actionNext"
             android:inputType="textNoSuggestions"
             android:maxLines="1"
-            android:textColor="@color/colorFormMasterElementTextValue"
+            android:textColor="@drawable/edit_text_selector"
             android:textSize="@dimen/elementTextValueSize"
             tools:text="Riddhiman Adib" />
 

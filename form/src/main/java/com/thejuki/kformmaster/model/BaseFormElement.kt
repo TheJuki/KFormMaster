@@ -117,16 +117,34 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
      * Form Element Item View
      */
     var itemView: View? = null
+        set(value) {
+            field = value
+            itemView?.let {
+                it.isEnabled = enabled
+            }
+        }
 
     /**
      * Form Element Edit View
      */
     var editView: View? = null
+        set(value) {
+            field = value
+            editView?.let {
+                it.isEnabled = enabled
+            }
+        }
 
     /**
      * Form Element Title View
      */
     var titleView: AppCompatTextView? = null
+        set(value) {
+            field = value
+            titleView?.let {
+                it.isEnabled = enabled
+            }
+        }
 
     /**
      * Form Element Error View
@@ -156,6 +174,23 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
                     params.height = 0
                     it.layoutParams = params
                 }
+            }
+        }
+
+    /**
+     * Form Element Enabled
+     */
+    var enabled: Boolean = true
+        set(value) {
+            field = value
+            itemView?.let {
+                it.isEnabled = value
+            }
+            titleView?.let {
+                it.isEnabled = value
+            }
+            editView?.let {
+                it.isEnabled = value
             }
         }
 
@@ -233,6 +268,14 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
      */
     fun setVisible(visible: Boolean): BaseFormElement<T> {
         this.visible = visible
+        return this
+    }
+
+    /**
+     * Enabled builder setter
+     */
+    fun setEnabled(enabled: Boolean): BaseFormElement<T> {
+        this.enabled = enabled
         return this
     }
 

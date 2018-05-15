@@ -37,7 +37,7 @@
             android:gravity="end"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:textColor="@color/colorFormMasterElementTextTitle"
+            android:textColor="@drawable/edit_text_selector"
             android:textSize="@dimen/elementTextTitleSize"
             tools:text="50.0" />
 

@@ -22,7 +22,7 @@
             android:id="@+id/formElementValue"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/colorFormMasterElementButtonText"
+            android:textColor="@drawable/button_selector"
             android:background="?android:attr/selectableItemBackground"
             android:textSize="@dimen/elementTextValueSize"
             tools:text="Edit Description"

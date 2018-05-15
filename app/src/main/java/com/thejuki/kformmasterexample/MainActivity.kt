@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        buttonFullScreenActivity.setOnClickListener { startActivity(Intent(this@MainActivity, TestFormActivity::class.java)) }
+        buttonFullScreenActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FullscreenFormActivity::class.java)) }
 
         buttonPartialScreenActivity.setOnClickListener { startActivity(Intent(this@MainActivity, PartialScreenFormActivity::class.java)) }
 

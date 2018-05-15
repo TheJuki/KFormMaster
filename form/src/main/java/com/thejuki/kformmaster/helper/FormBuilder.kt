@@ -99,6 +99,11 @@ abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1,
     var visible: Boolean = true
 
     /**
+     * Form Element Enabled
+     */
+    var enabled: Boolean = true
+
+    /**
      * Form Element Value Observers
      */
     val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
@@ -113,6 +118,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormSingleLineEditTextElement
@@ -135,6 +141,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormMultiLineEditTextElement
@@ -158,6 +165,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormNumberEditTextElement)
@@ -181,6 +189,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormEmailEditTextElement
@@ -203,6 +212,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormPasswordEditTextElement
@@ -225,6 +235,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormPhoneEditTextElement
@@ -249,6 +260,7 @@ class AutoCompleteBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormAutoCompleteElement<T>)
@@ -275,6 +287,7 @@ class AutoCompleteTokenBuilder<T : Serializable>(tag: Int = -1) : BaseElementBui
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormTokenAutoCompleteElement<T>)
@@ -294,11 +307,13 @@ fun <T : Serializable> FormBuildHelper.autoCompleteToken(tag: Int = -1, init: Au
 class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
     var value: String? = null
     var visible: Boolean = true
+    var enabled: Boolean = true
     val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
     override fun build() =
             (FormButtonElement(tag)
                     .setValue(value)
                     .setVisible(visible)
+                    .setEnabled(enabled)
                     .addAllValueObservers(valueObservers)
                     as FormButtonElement)
 }
@@ -322,6 +337,7 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormPickerDateElement)
@@ -346,6 +362,7 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.Time
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormPickerTimeElement)
@@ -370,6 +387,7 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElem
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormPickerDateTimeElement)
@@ -394,6 +412,7 @@ class DropDownBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .setOptions(options?: ArrayList())
                     .addAllValueObservers(valueObservers)
@@ -420,6 +439,7 @@ class MultiCheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .setOptions(options?: ArrayList())
                     .setOptionsSelected(optionsSelected?: ArrayList())
@@ -447,6 +467,7 @@ class SwitchBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormSwitchElement<T>)
@@ -473,6 +494,7 @@ class CheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormCheckBoxElement<T>)
@@ -500,6 +522,7 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                     .setHint(hint)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormSliderElement)
