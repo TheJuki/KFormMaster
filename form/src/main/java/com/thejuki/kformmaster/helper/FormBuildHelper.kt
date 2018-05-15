@@ -21,7 +21,16 @@ import java.util.*
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormBuildHelper {
+class FormBuildHelper
+@JvmOverloads constructor(context: Context, listener: OnFormElementValueChangedListener? = null, recyclerView: RecyclerView? = null, val cacheForm: Boolean = true, autoMeasureEnabled: Boolean = false) {
+
+    init {
+        initializeFormBuildHelper(context, listener)
+
+        if (recyclerView != null) {
+            attachRecyclerView(context, recyclerView, autoMeasureEnabled)
+        }
+    }
 
     /**
      * Used for form models. Increments when a element is added.
@@ -37,11 +46,6 @@ class FormBuildHelper {
      * RecyclerView instance
      */
     private lateinit var recyclerView: RecyclerView
-
-    /**
-     * Enable to cache all form elements in the [RecyclerView]
-     */
-    var cacheForm: Boolean = false
 
     /**
      * Holds the form elements
@@ -62,31 +66,6 @@ class FormBuildHelper {
      */
     val isValidForm: Boolean
         get() = this.elements.all { it.isValid }
-
-    /**
-     * Creates a new FormBuildHelper using the Activity's [context] only
-     * You must call attachRecyclerView afterward
-     */
-    constructor(context: Context) {
-        initializeFormBuildHelper(context, null)
-    }
-
-    /**
-     * Creates a new FormBuildHelper using the
-     * Activity's [context], a form [listener], a [recyclerView], and [cacheForm] property
-     */
-    constructor(context: Context,
-                listener: OnFormElementValueChangedListener? = null,
-                recyclerView: RecyclerView? = null,
-                cacheForm: Boolean = true) {
-        initializeFormBuildHelper(context, listener)
-        this.cacheForm = cacheForm
-
-        if(recyclerView != null)
-        {
-            attachRecyclerView(context, recyclerView)
-        }
-    }
 
     /**
      * Sets the given [error] on [textViewError]
@@ -142,8 +121,7 @@ class FormBuildHelper {
         this.listener = listener
     }
 
-    private fun registerEditTexts(context: Context)
-    {
+    private fun registerEditTexts(context: Context) {
         this.formAdapter.registerRenderer(FormSingleLineEditTextViewBinder(context, this).viewBinder)
         this.formAdapter.registerRenderer(FormMultiLineEditTextViewBinder(context, this).viewBinder)
         this.formAdapter.registerRenderer(FormNumberEditTextViewBinder(context, this).viewBinder)
@@ -152,8 +130,7 @@ class FormBuildHelper {
         this.formAdapter.registerRenderer(FormPasswordEditTextViewBinder(context, this).viewBinder)
     }
 
-    private fun registerPickers(context: Context)
-    {
+    private fun registerPickers(context: Context) {
         this.formAdapter.registerRenderer(FormPickerDateViewBinder(context, this).viewBinder)
         this.formAdapter.registerRenderer(FormPickerTimeViewBinder(context, this).viewBinder)
         this.formAdapter.registerRenderer(FormPickerDateTimeViewBinder(context, this).viewBinder)
@@ -171,13 +148,13 @@ class FormBuildHelper {
     /**
      * Attaches the given [recyclerView] to form
      */
-    fun attachRecyclerView(context: Context, recyclerView: RecyclerView?) {
+    fun attachRecyclerView(context: Context, recyclerView: RecyclerView?, autoMeasureEnabled: Boolean = false) {
         recyclerView?.let {
             // Set up the RecyclerView with the adapter
             it.layoutManager = LinearLayoutManager(context).apply {
                 orientation = LinearLayoutManager.VERTICAL
                 stackFromEnd = false
-                isAutoMeasureEnabled = false
+                isAutoMeasureEnabled = autoMeasureEnabled
             }
             it.adapter = formAdapter
             it.itemAnimator = DefaultItemAnimator()
@@ -199,17 +176,12 @@ class FormBuildHelper {
     /**
      * Sets the adapter items to the form elements
      */
-    internal fun setItems()
-    {
+    internal fun setItems() {
         this.formAdapter.setItems(this.elements)
         if (this.cacheForm) {
             this.recyclerView.setItemViewCacheSize(this.elements.size)
         }
         this.formAdapter.notifyDataSetChanged()
-
-        // Fix for actionNext
-        this.recyclerView.scrollToPosition(this.elements.size - 1)
-        this.recyclerView.scrollToPosition(0)
     }
 
     /**

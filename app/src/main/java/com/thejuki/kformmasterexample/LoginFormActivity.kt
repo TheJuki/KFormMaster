@@ -73,8 +73,9 @@ class LoginFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
+        // NOTE: Use autoMeasureEnabled when the layout_height of recyclerView is wrap_content
         formBuilder = FormBuildHelper(this, cacheForm = true)
-        formBuilder.attachRecyclerView(this, recyclerView)
+        formBuilder.attachRecyclerView(this, recyclerView, autoMeasureEnabled = true)
 
         val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
