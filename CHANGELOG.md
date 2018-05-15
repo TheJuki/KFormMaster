@@ -1,5 +1,8 @@
 # Change Log
 
+## [3.1.2](https://github.com/TheJuki/KFormMaster/releases/tag/3.1.2)
+- Fixes the month number used by the Date and DateTime elements
+
 ## [3.1.1](https://github.com/TheJuki/KFormMaster/releases/tag/3.1.1)
 - Add autoMeasureEnabled to FormBuildHelper constructor to fix a recylerview that uses wrap_content
 
