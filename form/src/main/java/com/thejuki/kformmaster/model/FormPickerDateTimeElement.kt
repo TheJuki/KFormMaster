@@ -98,7 +98,7 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
                 return null
             }
             val calendar = Calendar.getInstance()
-            calendar.set(year ?: 0, month ?: 0-1, dayOfMonth ?: 0)
+            calendar.set(year ?: 0, if ((month ?: 0) == 0) 0 else (month ?: 0) - 1, dayOfMonth ?: 0)
             calendar.set(Calendar.HOUR_OF_DAY, hourOfDay ?: 0)
             calendar.set(Calendar.MINUTE, minute ?: 0)
 
@@ -112,7 +112,7 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
                 return null
             }
             val calendar = Calendar.getInstance(zone, aLocale)
-            calendar.set(year ?: 0, month ?: 0-1, dayOfMonth ?: 0)
+            calendar.set(year ?: 0, if ((month ?: 0) == 0) 0 else (month ?: 0) - 1, dayOfMonth ?: 0)
             calendar.set(Calendar.HOUR_OF_DAY, hourOfDay ?: 0)
             calendar.set(Calendar.MINUTE, minute ?: 0)
 

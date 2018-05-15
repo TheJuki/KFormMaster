@@ -51,7 +51,7 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
         val datePickerDialog = DatePickerDialog(context,
                 dateDialogListener(model, editTextValue, textViewError),
                 model.value?.year ?: 0,
-                model.value?.month ?: 0-1,
+                if ((model.value?.month ?: 0) == 0) 0 else (model.value?.month ?: 0) - 1,
                 model.value?.dayOfMonth ?: 0)
 
         setOnClickListener(editTextValue, itemView, datePickerDialog)
