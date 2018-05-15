@@ -40,7 +40,7 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 Add this in your app's **build.gradle** file:
 ```
 ext {
-  kFormMasterVersion = '3.1.0'
+  kFormMasterVersion = '3.1.1'
 }
 
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
