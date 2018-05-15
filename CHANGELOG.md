@@ -1,7 +1,7 @@
 # Change Log
 
 ## [3.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/3.1.0)
-- Remove all uses of "!!" and replaced with "?" or "?.let" for safer code
+- Removed all uses of "!!" and replaced with "?" or "?.let" for safer code
 - reInitDialog() function added to DropDown and MultiCheckBox elements so that the options list can be changed dynamically. Resolves issue #17
 - Add "enabled" to form elements. Dynamically enable/disable any form element. Resolves issue #19.
 
