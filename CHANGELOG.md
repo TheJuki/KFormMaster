@@ -1,5 +1,8 @@
 # Change Log
 
+## [3.1.1](https://github.com/TheJuki/KFormMaster/releases/tag/3.1.1)
+- Add autoMeasureEnabled to FormBuildHelper constructor to fix a recylerview that uses wrap_content
+
 ## [3.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/3.1.0)
 - Removed all uses of "!!" and replaced with "?" or "?.let" for safer code
 - reInitDialog() function added to DropDown and MultiCheckBox elements so that the options list can be changed dynamically. Resolves issue #17
