@@ -1,8 +1,6 @@
 package com.thejuki.kformmaster.view
 
-import android.app.Dialog
 import android.content.Context
-import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.text.InputType
@@ -39,48 +37,10 @@ class FormPickerDropDownViewBinder(private val context: Context, private val for
         model.editView = editTextValue
 
         editTextValue.setRawInputType(InputType.TYPE_NULL)
+        editTextValue.isFocusable = false
 
-        // reformat the options in format needed
-        val options = arrayOfNulls<CharSequence>(model.options?.size ?: 0)
+        model.reInitDialog(context, formBuilder)
 
-        for (i in model.options!!.indices) {
-            options[i] = model.options!![i].toString()
-        }
-
-        // prepare the dialog
-        val alertDialog: Dialog?
-
-        if (model.arrayAdapter != null) {
-            alertDialog = AlertDialog.Builder(context)
-                    .setTitle(model.dialogTitle ?: context.getString(R.string.form_master_pick_one))
-                    .setAdapter(model.arrayAdapter, { _, which ->
-                        editTextValue.setText(model.arrayAdapter!!.getItem(which).toString())
-                        model.setValue(model.arrayAdapter!!.getItem(which))
-                        model.setError(null) // Reset after value change
-                        setError(textViewError, null) // Reset after value change
-                        formBuilder.onValueChanged(model)
-
-                        editTextValue.setText(model.valueAsString)
-                        setError(textViewError, null)
-                    })
-                    .create()
-        } else {
-            alertDialog = AlertDialog.Builder(context)
-                    .setTitle(model.dialogTitle ?: context.getString(R.string.form_master_pick_one))
-                    .setItems(options) { _, which ->
-                        editTextValue.setText(options[which])
-                        model.setValue(model.options!![which])
-                        model.setError(null) // Reset after value change
-                        setError(textViewError, null) // Reset after value change
-                        formBuilder.onValueChanged(model)
-
-                        editTextValue.setText(model.valueAsString)
-                        setError(textViewError, null)
-                    }
-                    .create()
-        }
-
-        setOnClickListener(editTextValue, itemView, alertDialog)
     }, object : ViewStateProvider<FormPickerDropDownElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormPickerDropDownElement<*>): Int {
             return model.id

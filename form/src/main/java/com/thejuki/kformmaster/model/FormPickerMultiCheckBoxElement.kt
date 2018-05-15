@@ -1,8 +1,15 @@
 package com.thejuki.kformmaster.model
 
+import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v7.app.AlertDialog
+import android.support.v7.widget.AppCompatEditText
+import android.view.View
+import com.thejuki.kformmaster.R
+import com.thejuki.kformmaster.helper.FormBuildHelper
 import java.io.Serializable
+import java.util.*
 
 /**
  * Form Picker MultiCheckBox Element
@@ -34,6 +41,106 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
     fun setDialogTitle(dialogTitle: String?): FormPickerMultiCheckBoxElement<T> {
         this.dialogTitle = dialogTitle
         return this
+    }
+
+    /**
+     * Re-initializes the dialog
+     * Should be called after the options list changes
+     */
+    fun reInitDialog(context: Context, formBuilder: FormBuildHelper) {
+        // reformat the options in format needed
+        val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
+        val optionsSelected = BooleanArray(this.options?.size ?: 0)
+        val mSelectedItems = ArrayList<Int>()
+
+        for (i in this.options!!.indices) {
+            val obj = this.options!![i]
+
+            options[i] = obj.toString()
+            optionsSelected[i] = false
+
+            if (this.optionsSelected?.contains(obj) == true) {
+                optionsSelected[i] = true
+                mSelectedItems.add(i)
+            }
+        }
+
+        var selectedItems = ""
+        for (i in mSelectedItems.indices) {
+            selectedItems += options[mSelectedItems[i]]
+
+            if (i < mSelectedItems.size - 1) {
+                selectedItems += ", "
+            }
+        }
+
+        val editTextView = this.editView as? AppCompatEditText
+
+        editTextView?.setText(getSelectedItemsText())
+
+        // prepare the dialog
+        val alertDialog = AlertDialog.Builder(context)
+                .setTitle(this.dialogTitle
+                        ?: context.getString(R.string.form_master_pick_one_or_more))
+                .setMultiChoiceItems(options, optionsSelected) { _, which, isChecked ->
+                    if (isChecked) {
+                        // If the user checked the item, add it to the selected items
+                        mSelectedItems.add(which)
+                    } else if (mSelectedItems.contains(which)) {
+                        // Else, if the item is already in the array, remove it
+                        mSelectedItems.remove(which)
+                    }
+                }
+                // Set the action buttons
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    val selectedOptions = mSelectedItems.indices
+                            .map { mSelectedItems[it] }
+                            .map { this.options!![it] }
+
+                    this.setOptionsSelected(selectedOptions)
+                    this.error = null
+                    formBuilder.onValueChanged(this)
+                    editTextView?.setText(getSelectedItemsText())
+                }
+                .setNegativeButton(android.R.string.cancel) { _, _ -> }
+                .create()
+
+        // display the dialog on click
+        val listener = View.OnClickListener {
+            alertDialog.show()
+        }
+
+        itemView?.setOnClickListener(listener)
+        editTextView?.setOnClickListener(listener)
+    }
+
+    private fun getSelectedItemsText(): String {
+        val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
+        val optionsSelected = BooleanArray(this.options?.size ?: 0)
+        val mSelectedItems = ArrayList<Int>()
+
+        for (i in this.options!!.indices) {
+            val obj = this.options!![i]
+
+            options[i] = obj.toString()
+            optionsSelected[i] = false
+
+            if (this.optionsSelected?.contains(obj) == true) {
+                optionsSelected[i] = true
+                mSelectedItems.add(i)
+            }
+        }
+
+        var selectedItems = ""
+        for (i in mSelectedItems.indices) {
+            selectedItems += options[mSelectedItems[i]]
+
+            if (i < mSelectedItems.size - 1) {
+                selectedItems += ", "
+            }
+        }
+
+        return selectedItems
     }
 
     /**

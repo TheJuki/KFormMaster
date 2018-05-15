@@ -78,7 +78,7 @@ class FormBuildHelper {
     constructor(context: Context,
                 listener: OnFormElementValueChangedListener? = null,
                 recyclerView: RecyclerView? = null,
-                cacheForm: Boolean = false) {
+                cacheForm: Boolean = true) {
         initializeFormBuildHelper(context, listener)
         this.cacheForm = cacheForm
 

@@ -40,7 +40,7 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 Add this in your app's **build.gradle** file:
 ```
 ext {
-  kFormMasterVersion = '3.0.0'
+  kFormMasterVersion = '3.1.0'
 }
 
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
@@ -326,7 +326,16 @@ formBuilder = form(this@ActivityName, recyclerView, listener, cacheForm = true) 
 ```
 
 ### Cache Form Elements
-By default, RecyclerView will cache 2 views. By setting cacheForm = true in the FormBuildHelper, all form elements will be cached instead of recycled. Set this if you have a small form. 
+By default, RecyclerView will cache 2 views. By setting cacheForm = true in the FormBuildHelper, all form elements will be cached instead of recycled.
+NOTE: This is enabled by default now.
+
+### Refresh Dropdown or MultiCheckBox options
+After changing the options in the model for a Dropdown or MultiCheckBox element, call the reInitDialog function.
+
+```kotlin
+element.options = listOf()
+element.reInitDialog(this /* context */, formBuilder)
+```
 
 ### Set form element value change listener to get changed value instantly
 While creating a new instance of FormBuildHelper, add a listener in the constructor
@@ -342,12 +351,12 @@ var formBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListen
 ### Get value for unique form elements
 Use the unique tag assigned earlier to retrieve value (See examples in this repo)
 ```kotlin
-val element = formBuilder!!.getFormElement(Email.ordinal)
-val value: String = element?.value as String
+val element = formBuilder.getFormElement<FormEmailEditTextElement>(Email.ordinal)
+val value: String = element.value
 ```
 Use the added index of the element instead if you did not assign a tag.
 ```kotlin
-val element = formBuilder!!.getElementAtIndex(2)
+val element = formBuilder.getElementAtIndex(2)
 val value: String = element?.value as String
 ```
 
