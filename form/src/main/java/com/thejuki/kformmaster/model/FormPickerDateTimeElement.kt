@@ -98,9 +98,9 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
                 return null
             }
             val calendar = Calendar.getInstance()
-            calendar.set(year!!, month!! - 1, dayOfMonth!!)
-            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay!!)
-            calendar.set(Calendar.MINUTE, minute!!)
+            calendar.set(year ?: 0, month ?: 0-1, dayOfMonth ?: 0)
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay ?: 0)
+            calendar.set(Calendar.MINUTE, minute ?: 0)
 
             return calendar.time
         }
@@ -112,9 +112,9 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
                 return null
             }
             val calendar = Calendar.getInstance(zone, aLocale)
-            calendar.set(year!!, month!! - 1, dayOfMonth!!)
-            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay!!)
-            calendar.set(Calendar.MINUTE, minute!!)
+            calendar.set(year ?: 0, month ?: 0-1, dayOfMonth ?: 0)
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay ?: 0)
+            calendar.set(Calendar.MINUTE, minute ?: 0)
 
             return calendar.time
         }
@@ -130,7 +130,7 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
     }
 
     override val isValid: Boolean
-        get() = !required || (value != null && value!!.getTime() != null)
+        get() = !required || (value != null && value?.getTime() != null)
 
     /**
      * Parcelable boilerplate

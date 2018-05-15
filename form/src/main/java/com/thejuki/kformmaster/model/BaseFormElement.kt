@@ -198,7 +198,7 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
      * Form Element Value String value
      */
     val valueAsString: String
-        get() = if (this.value == null) "" else this.value!!.toString()
+        get() = this.value?.toString() ?: ""
 
     /**
      * Base validation
@@ -330,25 +330,29 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
          */
 
         // options
-        if (options == null || options!!.isEmpty()) {
+        if (options == null || options?.isEmpty() == true) {
             dest.writeInt(0)
         } else {
-            dest.writeInt(options!!.size)
+            options?.let {
+                dest.writeInt(it.size)
 
-            val objectsType = options!![0].javaClass
-            dest.writeSerializable(objectsType)
-            dest.writeList(options)
+                val objectsType = it[0].javaClass
+                dest.writeSerializable(objectsType)
+                dest.writeList(it)
+            }
         }
 
         // optionsSelected
-        if (optionsSelected == null || optionsSelected!!.isEmpty()) {
+        if (optionsSelected == null || optionsSelected?.isEmpty() == true) {
             dest.writeInt(0)
         } else {
-            dest.writeInt(optionsSelected!!.size)
+            optionsSelected?.let {
+                dest.writeInt(it.size)
 
-            val objectsType = optionsSelected!![0].javaClass
-            dest.writeSerializable(objectsType)
-            dest.writeList(optionsSelected)
+                val objectsType = it[0].javaClass
+                dest.writeSerializable(objectsType)
+                dest.writeList(it)
+            }
         }
 
         dest.writeString(this.hint)

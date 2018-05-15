@@ -67,8 +67,8 @@ class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder
                 return null
             }
             val calendar = Calendar.getInstance()
-            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay!!)
-            calendar.set(Calendar.MINUTE, minute!!)
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay ?: 0)
+            calendar.set(Calendar.MINUTE, minute ?: 0)
 
             return calendar.time
         }
@@ -79,8 +79,8 @@ class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder
                 return null
             }
             val calendar = Calendar.getInstance(zone, aLocale)
-            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay!!)
-            calendar.set(Calendar.MINUTE, minute!!)
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay ?: 0)
+            calendar.set(Calendar.MINUTE, minute ?: 0)
 
             return calendar.time
         }
@@ -106,7 +106,7 @@ class FormPickerTimeElement : FormPickerElement<FormPickerTimeElement.TimeHolder
     }
 
     override val isValid: Boolean
-        get() = !required || (value != null && value!!.getTime() != null)
+        get() = !required || (value != null && value?.getTime() != null)
 
     /**
      * Parcelable boilerplate

@@ -62,8 +62,8 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
 
         autoCompleteTextView.setAdapter<ArrayAdapter<*>>(itemsAdapter)
 
-        if (model.dropdownWidth != null) {
-            autoCompleteTextView.dropDownWidth = model.dropdownWidth!!
+        model.dropdownWidth?.let {
+            autoCompleteTextView.dropDownWidth = it
         }
 
         autoCompleteTextView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, _, position, _ ->

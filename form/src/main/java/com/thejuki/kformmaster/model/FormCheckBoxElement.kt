@@ -35,7 +35,7 @@ open class FormCheckBoxElement<T : Serializable> : BaseFormElement<T> {
     fun isChecked(): Boolean {
         if (checkedValue == null || value == null)
             return false
-        return checkedValue!! == value!!
+        return checkedValue == value
     }
 
     /**

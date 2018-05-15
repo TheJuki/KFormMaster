@@ -43,7 +43,7 @@ class ContactAutoCompleteAdapter(context: Context, textViewResourceId: Int,
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             mConvertView = inflater.inflate(android.R.layout.simple_list_item_1, parent, false)
         }
-        (mConvertView!!.findViewById(android.R.id.text1) as TextView).text = getItem(position)!!.label
+        (mConvertView?.findViewById(android.R.id.text1) as TextView).text = getItem(position)?.label
         return mConvertView
     }
 

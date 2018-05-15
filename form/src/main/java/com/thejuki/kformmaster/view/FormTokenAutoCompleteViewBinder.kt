@@ -52,8 +52,8 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
             ArrayAdapter(context, android.R.layout.simple_list_item_1, model.options)
         itemsCompletionView.setAdapter<ArrayAdapter<*>>(itemsAdapter)
 
-        if (model.dropdownWidth != null) {
-            itemsCompletionView.dropDownWidth = model.dropdownWidth!!
+        model.dropdownWidth?.let {
+            itemsCompletionView.dropDownWidth = it
         }
 
         itemsCompletionView.setTokenClickStyle(TokenCompleteTextView.TokenClickStyle.Select)

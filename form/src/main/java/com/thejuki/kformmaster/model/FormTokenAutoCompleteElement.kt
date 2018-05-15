@@ -17,7 +17,7 @@ import java.io.Serializable
 class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
 
     override val isValid: Boolean
-        get() = !required || (value != null && value is List<*> && !(value!! as List<*>).isEmpty())
+        get() = !required || (value != null && value is List<*> && !(value as List<*>).isEmpty())
 
     override fun clear() {
         this.value = null

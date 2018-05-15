@@ -22,7 +22,7 @@ import java.util.*
 class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
 
     override val isValid: Boolean
-        get() = !required || (optionsSelected != null && !optionsSelected!!.isEmpty())
+        get() = !required || (optionsSelected != null && optionsSelected?.isEmpty() == false)
 
     override fun clear() {
         super.clear()
@@ -53,15 +53,17 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
         val optionsSelected = BooleanArray(this.options?.size ?: 0)
         val mSelectedItems = ArrayList<Int>()
 
-        for (i in this.options!!.indices) {
-            val obj = this.options!![i]
+        this.options?.let {
+            for (i in it.indices) {
+                val obj = it[i]
 
-            options[i] = obj.toString()
-            optionsSelected[i] = false
+                options[i] = obj.toString()
+                optionsSelected[i] = false
 
-            if (this.optionsSelected?.contains(obj) == true) {
-                optionsSelected[i] = true
-                mSelectedItems.add(i)
+                if (this.optionsSelected?.contains(obj) == true) {
+                    optionsSelected[i] = true
+                    mSelectedItems.add(i)
+                }
             }
         }
 
@@ -78,7 +80,6 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
 
         editTextView?.setText(getSelectedItemsText())
 
-        // prepare the dialog
         val alertDialog = AlertDialog.Builder(context)
                 .setTitle(this.dialogTitle
                         ?: context.getString(R.string.form_master_pick_one_or_more))
@@ -93,14 +94,16 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
                 }
                 // Set the action buttons
                 .setPositiveButton(android.R.string.ok) { _, _ ->
-                    val selectedOptions = mSelectedItems.indices
-                            .map { mSelectedItems[it] }
-                            .map { this.options!![it] }
+                    this.options?.let {
+                        val selectedOptions = mSelectedItems.indices
+                                .map { mSelectedItems[it] }
+                                .map { x -> it[x] }
 
-                    this.setOptionsSelected(selectedOptions)
-                    this.error = null
-                    formBuilder.onValueChanged(this)
-                    editTextView?.setText(getSelectedItemsText())
+                        this.setOptionsSelected(selectedOptions)
+                        this.error = null
+                        formBuilder.onValueChanged(this)
+                        editTextView?.setText(getSelectedItemsText())
+                    }
                 }
                 .setNegativeButton(android.R.string.cancel) { _, _ -> }
                 .create()
@@ -119,15 +122,17 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
         val optionsSelected = BooleanArray(this.options?.size ?: 0)
         val mSelectedItems = ArrayList<Int>()
 
-        for (i in this.options!!.indices) {
-            val obj = this.options!![i]
+        this.options?.let {
+            for (i in it.indices) {
+                val obj = it[i]
 
-            options[i] = obj.toString()
-            optionsSelected[i] = false
+                options[i] = obj.toString()
+                optionsSelected[i] = false
 
-            if (this.optionsSelected?.contains(obj) == true) {
-                optionsSelected[i] = true
-                mSelectedItems.add(i)
+                if (this.optionsSelected?.contains(obj) == true) {
+                    optionsSelected[i] = true
+                    mSelectedItems.add(i)
+                }
             }
         }
 

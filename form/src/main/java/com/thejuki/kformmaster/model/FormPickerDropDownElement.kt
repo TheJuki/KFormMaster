@@ -59,33 +59,39 @@ class FormPickerDropDownElement<T : Serializable> : FormPickerElement<T> {
         // reformat the options in format needed
         val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
 
-        for (i in this.options!!.indices) {
-            options[i] = this.options!![i].toString()
+        this.options?.let {
+            for (i in it.indices) {
+                options[i] = it[i].toString()
+            }
         }
 
-        // prepare the dialog
-        val alertDialog: Dialog?
+        var alertDialog: Dialog? = null
 
         val editTextView = this.editView as? AppCompatEditText
 
         if (this.arrayAdapter != null) {
-            alertDialog = AlertDialog.Builder(context)
-                    .setTitle(this.dialogTitle ?: context.getString(R.string.form_master_pick_one))
-                    .setAdapter(this.arrayAdapter, { _, which ->
-                        editTextView?.setText(this.arrayAdapter!!.getItem(which).toString())
-                        this.setValue(this.arrayAdapter!!.getItem(which))
-                        this.error = null
-                        formBuilder.onValueChanged(this)
+            this.arrayAdapter?.let {
+                alertDialog = AlertDialog.Builder(context)
+                        .setTitle(this.dialogTitle
+                                ?: context.getString(R.string.form_master_pick_one))
+                        .setAdapter(it, { _, which ->
+                            editTextView?.setText(it.getItem(which).toString())
+                            this.setValue(it.getItem(which))
+                            this.error = null
+                            formBuilder.onValueChanged(this)
 
-                        editTextView?.setText(this.valueAsString)
-                    })
-                    .create()
+                            editTextView?.setText(this.valueAsString)
+                        })
+                        .create()
+            }
         } else {
             alertDialog = AlertDialog.Builder(context)
                     .setTitle(this.dialogTitle ?: context.getString(R.string.form_master_pick_one))
                     .setItems(options) { _, which ->
                         editTextView?.setText(options[which])
-                        this.setValue(this.options!![which])
+                        this.options?.let {
+                            this.setValue(it[which])
+                        }
                         this.error = null
                         formBuilder.onValueChanged(this)
 
@@ -96,7 +102,7 @@ class FormPickerDropDownElement<T : Serializable> : FormPickerElement<T> {
 
         // display the dialog on click
         val listener = View.OnClickListener {
-            alertDialog.show()
+            alertDialog?.show()
         }
 
         itemView?.setOnClickListener(listener)

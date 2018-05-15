@@ -35,7 +35,7 @@ open class FormSwitchElement<T : Serializable> : BaseFormElement<T> {
     fun isOn(): Boolean {
         if (onValue == null || value == null)
             return false
-        return onValue!! == value!!
+        return onValue == value
     }
 
     /**
