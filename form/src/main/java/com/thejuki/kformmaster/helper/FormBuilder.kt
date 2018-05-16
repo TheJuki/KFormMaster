@@ -20,6 +20,9 @@ import kotlin.collections.ArrayList
  * @version 1.0
  */
 
+@DslMarker
+annotation class FormDsl
+
 /** Type-safe builder method to initialize the form */
 fun form(context: Context,
          recyclerView: RecyclerView,
@@ -51,6 +54,7 @@ class HeaderBuilder(var title: String = "") : FieldBuilder {
 }
 
 /** FormBuildHelper extension to add a FormHeader */
+@FormDsl
 fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
     val element = HeaderBuilder().apply(init).build()
     element.id = ++lastId
@@ -59,6 +63,7 @@ fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
 }
 
 /** Builder method to add a BaseFormElement */
+@FormDsl
 abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1, var title: String? = null) : FieldBuilder {
     /**
      * Form Element Value
