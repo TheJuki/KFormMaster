@@ -40,14 +40,14 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 Add this in your app's **build.gradle** file:
 ```
 ext {
-  kFormMasterVersion = '3.1.2'
+  kFormMasterVersion = '3.1.3'
 }
 
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 ```
 
 ## How to use
-* Step 1. Add a Recyclerview anywhere in the layout where you want your list to be shown (If confused, look at the examples in this repo).
+* Step 1. Add a RecyclerView anywhere in the layout where you want your list to be shown (If confused, look at the examples in this repo).
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>

@@ -150,6 +150,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.email)
                 hint = getString(R.string.email_hint)
                 value = "mail@mail.com"
+                rightToLeft = false
                 enabled = true
                 required = true
                 valueObservers.add({ newValue, element ->
@@ -160,6 +161,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.password)
                 value = "Password123"
                 required = true
+                rightToLeft = false
                 enabled = true
                 valueObservers.add({ newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
@@ -168,6 +170,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             phone(Phone.ordinal) {
                 title = getString(R.string.Phone)
                 value = "+8801712345678"
+                rightToLeft = false
                 required = true
                 enabled = true
                 valueObservers.add({ newValue, element ->
@@ -178,6 +181,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             text(Location.ordinal) {
                 title = getString(R.string.Location)
                 value = "Dhaka"
+                rightToLeft = false
                 required = true
                 enabled = true
                 valueObservers.add({ newValue, element ->
@@ -187,6 +191,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             textArea(Address.ordinal) {
                 title = getString(R.string.Address)
                 value = "123 Street"
+                rightToLeft = false
                 required = true
                 enabled = true
                 valueObservers.add({ newValue, element ->
@@ -197,6 +202,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.ZipCode)
                 value = "123456"
                 numbersOnly = true
+                rightToLeft = false
                 required = true
                 enabled = true
                 valueObservers.add({ newValue, element ->
@@ -209,6 +215,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
                 required = true
+                rightToLeft = false
                 enabled = true
                 valueObservers.add({ newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
@@ -219,6 +226,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("hh:mm a", Locale.US)
                 required = true
+                rightToLeft = false
                 enabled = true
                 valueObservers.add({ newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
@@ -229,6 +237,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
                 required = true
+                rightToLeft = false
                 enabled = true
                 valueObservers.add({ newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
@@ -240,6 +249,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dialogTitle = getString(R.string.SingleItem)
                 options = fruits
                 enabled = true
+                rightToLeft = false
                 value = ListItem(id = 1, name = "Banana")
                 required = true
                 valueObservers.add({ newValue, element ->
@@ -251,6 +261,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dialogTitle = getString(R.string.MultiItems)
                 options = fruits
                 enabled = true
+                rightToLeft = false
                 optionsSelected = listOf(ListItem(id = 1, name = "Banana"))
                 required = true
                 valueObservers.add({ newValue, element ->
@@ -265,6 +276,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
                 value = ContactItem(id = 1, value = "John Smith", label = "John Smith (Tester)")
                 enabled = true
+                rightToLeft = false
                 required = true
                 valueObservers.add({ newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
@@ -278,6 +290,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 hint = "Try \"Apple May\""
                 value = arrayListOf(ContactItem(id = 1, value = "John.Smith@mail.com", label = "John Smith (Tester)"))
                 required = true
+                rightToLeft = false
                 enabled = true
                 valueObservers.add({ newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
@@ -285,6 +298,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             textView(TextViewElement.ordinal) {
                 title = getString(R.string.TextView)
+                rightToLeft = false
                 value = "This is readonly!"
             }
             header { title = getString(R.string.MarkComplete); collapsible = true }

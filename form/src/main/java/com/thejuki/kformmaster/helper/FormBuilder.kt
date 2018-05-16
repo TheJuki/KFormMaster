@@ -84,6 +84,11 @@ abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1,
     var hint: String? = null
 
     /**
+     * Form Element RTL
+     */
+    var rightToLeft: Boolean = true
+
+    /**
      * Form Element Error
      */
     var error: String? = null
@@ -116,6 +121,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -139,6 +145,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -163,6 +170,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -187,6 +195,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -210,6 +219,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -233,6 +243,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -258,6 +269,7 @@ class AutoCompleteBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -285,6 +297,7 @@ class AutoCompleteTokenBuilder<T : Serializable>(tag: Int = -1) : BaseElementBui
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -335,6 +348,7 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     .setTitle(title.orEmpty())
                     .setValue(value?: FormPickerDateElement.DateHolder(dateValue, dateFormat))
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -360,6 +374,7 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.Time
                     .setTitle(title.orEmpty())
                     .setValue(value?: FormPickerTimeElement.TimeHolder(dateValue, dateFormat))
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -385,6 +400,7 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElem
                     .setTitle(title.orEmpty())
                     .setValue(value?: FormPickerDateTimeElement.DateTimeHolder(dateValue, dateFormat))
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -410,6 +426,7 @@ class DropDownBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -437,6 +454,7 @@ class MultiCheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -465,6 +483,7 @@ class SwitchBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -492,6 +511,7 @@ class CheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -520,6 +540,7 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -543,11 +564,13 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
     var title: String? = null
     var value: String? = null
     var visible: Boolean = true
+    var rightToLeft: Boolean = true
     val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
     override fun build() =
             (FormTextViewElement(tag)
                     .setTitle(title.orEmpty())
                     .setValue(value)
+                    .setRightToLeft(rightToLeft)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormTextViewElement)

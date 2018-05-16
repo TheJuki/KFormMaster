@@ -2,10 +2,8 @@ package com.thejuki.kformmaster.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import android.support.v7.widget.AppCompatCheckBox
-import android.support.v7.widget.AppCompatEditText
-import android.support.v7.widget.AppCompatTextView
-import android.support.v7.widget.SwitchCompat
+import android.support.v7.widget.*
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -89,6 +87,19 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
         }
 
     /**
+     * Form Element RTL
+     */
+    var rightToLeft: Boolean = true
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
+                    it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                }
+            }
+        }
+
+    /**
      * Form Element Error
      */
     var error: String? = null
@@ -132,6 +143,9 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
             field = value
             editView?.let {
                 it.isEnabled = enabled
+                if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
+                    it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                }
             }
         }
 
@@ -234,16 +248,24 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
      * Value builder setter
      */
     @Suppress("UNCHECKED_CAST")
-    open fun setValue(mValue: Any?): BaseFormElement<T> {
-        this.value = mValue as T?
+    open fun setValue(value: Any?): BaseFormElement<T> {
+        this.value = value as T?
         return this
     }
 
     /**
      * Hint builder setter
      */
-    fun setHint(mHint: String?): BaseFormElement<T> {
-        this.hint = mHint
+    fun setHint(hint: String?): BaseFormElement<T> {
+        this.hint = hint
+        return this
+    }
+
+    /**
+     * RTL builder setter
+     */
+    fun setRightToLeft(rightToLeft: Boolean): BaseFormElement<T> {
+        this.rightToLeft = rightToLeft
         return this
     }
 
@@ -307,8 +329,8 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
      * Options Selected builder setter
      */
     @Suppress("UNCHECKED_CAST")
-    fun setOptionsSelected(mOptionsSelected: List<Any>): BaseFormElement<T> {
-        this.optionsSelected = mOptionsSelected as List<T>
+    fun setOptionsSelected(optionsSelected: List<Any>): BaseFormElement<T> {
+        this.optionsSelected = optionsSelected as List<T>
         return this
     }
 
