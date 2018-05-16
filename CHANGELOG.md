@@ -1,5 +1,8 @@
 # Change Log
 
+## [3.1.3](https://github.com/TheJuki/KFormMaster/releases/tag/3.1.3)
+- Added rightToLeft (RTL) to form models. Set to false to set the edit text fields to display left to right.
+
 ## [3.1.2](https://github.com/TheJuki/KFormMaster/releases/tag/3.1.2)
 - Fixes the month number used by the Date and DateTime elements
 
