@@ -41,6 +41,7 @@ fun form(context: Context,
 }
 
 /** FieldBuilder interface */
+@FormDsl
 interface FieldBuilder {
     fun build(): BaseFormElement<*>
 }
@@ -54,7 +55,6 @@ class HeaderBuilder(var title: String = "") : FieldBuilder {
 }
 
 /** FormBuildHelper extension to add a FormHeader */
-@FormDsl
 fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
     val element = HeaderBuilder().apply(init).build()
     element.id = ++lastId
