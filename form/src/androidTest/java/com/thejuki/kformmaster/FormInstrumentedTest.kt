@@ -113,7 +113,7 @@ class FormInstrumentedTest {
         // Check Number type
         onView(withId(R.id.recyclerView)).perform(scrollToPosition<ViewHolder>(7))
         onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
-                hasTextViewInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)))
+                hasTextViewInputType(InputType.TYPE_CLASS_NUMBER)))
                 .check(matches(isDisplayed()))
     }
 
@@ -123,6 +123,14 @@ class FormInstrumentedTest {
         onView(withId(R.id.recyclerView)).perform(scrollToPosition<ViewHolder>(23))
         onView(withText("Hidden"))
                 .check(matches(not(isDisplayed())))
+    }
+
+    @Test
+    fun button_disabled_shouldDoNothing_whenClicked() {
+        // Click button to verify that nothing happens because it is disabled
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<ViewHolder>(24, click()))
+        onView(withId(R.id.recyclerView))
+                .check(matches(not(withText("Disabled?"))))
     }
 
     @Test

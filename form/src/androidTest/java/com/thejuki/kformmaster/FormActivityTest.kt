@@ -14,6 +14,7 @@ import com.thejuki.kformmaster.item.ContactItem
 import com.thejuki.kformmaster.item.ListItem
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
+import com.thejuki.kformmaster.model.FormButtonElement
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import kotlinx.android.synthetic.main.activity_form_test.*
 import java.text.SimpleDateFormat
@@ -70,6 +71,7 @@ class FormActivityTest : AppCompatActivity() {
 
     private enum class Tag {
         Hidden,
+        Disabled,
         Email,
         Phone,
         Location,
@@ -97,8 +99,8 @@ class FormActivityTest : AppCompatActivity() {
             }
         }
 
-        formBuilder = form(this, recyclerView, listener, false) {
-            header { title = "Header 1" }
+        formBuilder = form(this, recyclerView, listener, true) {
+            header { title = "Header 1"; collapsible = true }
             email(Email.ordinal) {
                 title = "Email"
                 hint = "Email Hint"
@@ -122,6 +124,7 @@ class FormActivityTest : AppCompatActivity() {
             number(ZipCode.ordinal) {
                 title = "ZipCode"
                 value = "1000"
+                numbersOnly = true
             }
             header { title = "Header 3" }
             date(Tag.Date.ordinal) {
@@ -144,6 +147,7 @@ class FormActivityTest : AppCompatActivity() {
                 title = "SingleItem"
                 dialogTitle = "SingleItem Dialog"
                 options = fruits
+                arrayAdapter = null
                 value = ListItem(id = 1, name = "Banana")
             }
             multiCheckBox<ListItem>(MultiItems.ordinal) {
@@ -196,14 +200,23 @@ class FormActivityTest : AppCompatActivity() {
                     val confirmAlert = AlertDialog.Builder(this@FormActivityTest).create()
                     confirmAlert.setTitle("Confirm?")
                     confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormActivityTest.getString(android.R.string.ok), { _, _ ->
-                        // Could be used to clear another field:
+                        // Get Form Element in two ways
                         val dateToDeleteElement = formBuilder.getFormElement<FormPickerDateElement>(Tag.Date.ordinal)
-                        // Display current date
-                        Toast.makeText(this@FormActivityTest,
-                                dateToDeleteElement.value?.getTime().toString(),
-                                Toast.LENGTH_SHORT).show()
                         dateToDeleteElement.clear()
                         formBuilder.onValueChanged(dateToDeleteElement)
+
+                        val dateToDeleteElementIndex = formBuilder.getElementAtIndex(9) as FormPickerDateElement
+                        dateToDeleteElementIndex.clear()
+                        formBuilder.onValueChanged(dateToDeleteElementIndex)
+
+                        // Display Valid Form
+                        Toast.makeText(this@FormActivityTest,
+                                formBuilder.isValidForm.toString(),
+                                Toast.LENGTH_SHORT).show()
+
+                        formBuilder.clearAll()
+
+                        formBuilder.setError(dateToDeleteElementIndex.errorView!!, "That's an error")
                     })
                     confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FormActivityTest.getString(android.R.string.cancel), { _, _ ->
                     })
@@ -215,5 +228,20 @@ class FormActivityTest : AppCompatActivity() {
                 visible = false
             }
         }
+
+        val disabledButton = FormButtonElement(Disabled.ordinal)
+                .setValue("Disabled Button")
+                .setVisible(true)
+                .setEnabled(false)
+                .addValueObserver({ _, _ ->
+                    val confirmAlert = AlertDialog.Builder(this@FormActivityTest).create()
+                    confirmAlert.setTitle("Disabled?")
+                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormActivityTest.getString(android.R.string.ok), { _, _ ->
+
+                    })
+                    confirmAlert.show()
+                })
+                as FormButtonElement
+        formBuilder.addFormElements(listOf(disabledButton))
     }
 }
