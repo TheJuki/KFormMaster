@@ -210,6 +210,7 @@ class FormInstrumentedTest {
                 .check(matches(hasItemsCompletionViewObject(contactItem)))
     }
 
+    /*
     @Test
     fun button_openDialog_whenClicked() {
         // Click button to verify the value observer Unit action works and displays an alert dialog
@@ -219,6 +220,7 @@ class FormInstrumentedTest {
                 .check(matches(isDisplayed()))
         onView(withId(android.R.id.button1)).perform(click())
     }
+    */
 
     @Test
     fun slider_changes_whenProgressed() {
