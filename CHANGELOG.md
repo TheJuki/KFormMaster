@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.2.0](https://github.com/TheJuki/KFormMaster/releases/tag/3.2.0)
+- Added maxLines to form models. Set to a number greater than 1 to increase the number of visible lines.
+- Merged PR #22 to fix the DSL Form Builder.
+
 ## [3.1.3](https://github.com/TheJuki/KFormMaster/releases/tag/3.1.3)
 - Added rightToLeft (RTL) to form models. Set to false to set the edit text fields to display left to right.
 
