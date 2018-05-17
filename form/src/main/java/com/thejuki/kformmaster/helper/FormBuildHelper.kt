@@ -21,6 +21,7 @@ import java.util.*
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
+@FormDsl
 class FormBuildHelper
 @JvmOverloads constructor(context: Context, listener: OnFormElementValueChangedListener? = null, recyclerView: RecyclerView? = null, val cacheForm: Boolean = true, autoMeasureEnabled: Boolean = false) {
 

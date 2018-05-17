@@ -20,6 +20,9 @@ import kotlin.collections.ArrayList
  * @version 1.0
  */
 
+@DslMarker
+annotation class FormDsl
+
 /** Type-safe builder method to initialize the form */
 fun form(context: Context,
          recyclerView: RecyclerView,
@@ -38,6 +41,7 @@ fun form(context: Context,
 }
 
 /** FieldBuilder interface */
+@FormDsl
 interface FieldBuilder {
     fun build(): BaseFormElement<*>
 }
@@ -59,6 +63,7 @@ fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
 }
 
 /** Builder method to add a BaseFormElement */
+@FormDsl
 abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1, var title: String? = null) : FieldBuilder {
     /**
      * Form Element Value
