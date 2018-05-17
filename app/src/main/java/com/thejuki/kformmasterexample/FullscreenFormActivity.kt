@@ -110,16 +110,11 @@ class FullscreenFormActivity : AppCompatActivity() {
         }
     }
 
-    private val fruits = listOf<ListItem>(ListItem(id = 1, name = "Banana"),
+    private val fruits = listOf(ListItem(id = 1, name = "Banana"),
             ListItem(id = 2, name = "Orange"),
             ListItem(id = 3, name = "Mango"),
-            ListItem(id = 4, name = "Guava")
-    )
-
-    private val nopes = listOf<ListItem>(ListItem(id = 1, name = "Nope 1"),
-            ListItem(id = 2, name = "Nope 2"),
-            ListItem(id = 3, name = "Nope 3"),
-            ListItem(id = 4, name = "Nope 4")
+            ListItem(id = 4, name = "Guava"),
+            ListItem(id = 5, name = "Apple")
     )
 
     private enum class Tag {
@@ -151,6 +146,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 hint = getString(R.string.email_hint)
                 value = "mail@mail.com"
                 rightToLeft = false
+                maxLines = 3
                 enabled = true
                 required = true
                 valueObservers.add({ newValue, element ->
@@ -171,6 +167,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.Phone)
                 value = "+8801712345678"
                 rightToLeft = false
+                maxLines = 3
                 required = true
                 enabled = true
                 valueObservers.add({ newValue, element ->
@@ -192,6 +189,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.Address)
                 value = "123 Street"
                 rightToLeft = false
+                maxLines = 2
                 required = true
                 enabled = true
                 valueObservers.add({ newValue, element ->
@@ -215,6 +213,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
                 required = true
+                maxLines = 1
                 rightToLeft = false
                 enabled = true
                 valueObservers.add({ newValue, element ->
@@ -226,6 +225,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("hh:mm a", Locale.US)
                 required = true
+                maxLines = 1
                 rightToLeft = false
                 enabled = true
                 valueObservers.add({ newValue, element ->
@@ -237,6 +237,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
                 required = true
+                maxLines = 1
                 rightToLeft = false
                 enabled = true
                 valueObservers.add({ newValue, element ->
@@ -250,6 +251,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 options = fruits
                 enabled = true
                 rightToLeft = false
+                maxLines = 3
                 value = ListItem(id = 1, name = "Banana")
                 required = true
                 valueObservers.add({ newValue, element ->
@@ -261,6 +263,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dialogTitle = getString(R.string.MultiItems)
                 options = fruits
                 enabled = true
+                maxLines = 3
                 rightToLeft = false
                 optionsSelected = listOf(ListItem(id = 1, name = "Banana"))
                 required = true
@@ -276,6 +279,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
                 value = ContactItem(id = 1, value = "John Smith", label = "John Smith (Tester)")
                 enabled = true
+                maxLines = 3
                 rightToLeft = false
                 required = true
                 valueObservers.add({ newValue, element ->
@@ -290,6 +294,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 hint = "Try \"Apple May\""
                 value = arrayListOf(ContactItem(id = 1, value = "John.Smith@mail.com", label = "John Smith (Tester)"))
                 required = true
+                maxLines = 3
                 rightToLeft = false
                 enabled = true
                 valueObservers.add({ newValue, element ->
@@ -299,6 +304,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             textView(TextViewElement.ordinal) {
                 title = getString(R.string.TextView)
                 rightToLeft = false
+                maxLines = 1
                 value = "This is readonly!"
             }
             header { title = getString(R.string.MarkComplete); collapsible = true }

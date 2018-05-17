@@ -87,6 +87,20 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
         }
 
     /**
+     * Form Element Max Lines
+     */
+    var maxLines: Int = 1
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
+                    it.setSingleLine(maxLines == 1)
+                    it.maxLines = maxLines
+                }
+            }
+        }
+
+    /**
      * Form Element RTL
      */
     var rightToLeft: Boolean = true
@@ -145,6 +159,8 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
                 it.isEnabled = enabled
                 if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                    it.setSingleLine(maxLines == 1)
+                    it.maxLines = maxLines
                 }
             }
         }
@@ -266,6 +282,14 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
      */
     fun setRightToLeft(rightToLeft: Boolean): BaseFormElement<T> {
         this.rightToLeft = rightToLeft
+        return this
+    }
+
+    /**
+     * Max Lines builder setter
+     */
+    fun setMaxLines(maxLines: Int): BaseFormElement<T> {
+        this.maxLines = maxLines
         return this
     }
 

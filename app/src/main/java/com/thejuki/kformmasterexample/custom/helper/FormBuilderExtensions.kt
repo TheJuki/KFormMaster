@@ -20,8 +20,11 @@ class CustomElementBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setHint(hint)
+                    .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
+                    .setEnabled(enabled)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormCustomElement

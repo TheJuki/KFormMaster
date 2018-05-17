@@ -94,6 +94,11 @@ abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1,
     var rightToLeft: Boolean = true
 
     /**
+     * Form Element Max Lines
+     */
+    var maxLines: Int = 1
+
+    /**
      * Form Element Error
      */
     var error: String? = null
@@ -127,6 +132,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -151,6 +157,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -176,6 +183,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -201,6 +209,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -225,6 +234,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -249,6 +259,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -275,6 +286,7 @@ class AutoCompleteBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -303,6 +315,7 @@ class AutoCompleteTokenBuilder<T : Serializable>(tag: Int = -1) : BaseElementBui
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -354,6 +367,7 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     .setValue(value?: FormPickerDateElement.DateHolder(dateValue, dateFormat))
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -380,6 +394,7 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.Time
                     .setValue(value?: FormPickerTimeElement.TimeHolder(dateValue, dateFormat))
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -406,6 +421,7 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElem
                     .setValue(value?: FormPickerDateTimeElement.DateTimeHolder(dateValue, dateFormat))
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -432,6 +448,7 @@ class DropDownBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -460,6 +477,7 @@ class MultiCheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -489,6 +507,7 @@ class SwitchBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -517,6 +536,7 @@ class CheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -546,6 +566,7 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                     .setValue(value)
                     .setHint(hint)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setError(error)
                     .setRequired(required)
                     .setEnabled(enabled)
@@ -570,12 +591,14 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
     var value: String? = null
     var visible: Boolean = true
     var rightToLeft: Boolean = true
+    var maxLines: Int = 1
     val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
     override fun build() =
             (FormTextViewElement(tag)
                     .setTitle(title.orEmpty())
                     .setValue(value)
                     .setRightToLeft(rightToLeft)
+                    .setMaxLines(maxLines)
                     .setVisible(visible)
                     .addAllValueObservers(valueObservers)
                     as FormTextViewElement)

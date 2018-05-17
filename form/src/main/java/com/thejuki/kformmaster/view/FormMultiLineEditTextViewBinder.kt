@@ -39,6 +39,12 @@ class FormMultiLineEditTextViewBinder(private val context: Context, private val 
 
         model.editView = editTextValue
 
+        // Initially use 4 lines
+        // unless a different number was provided
+        if (model.maxLines == 1) {
+            model.maxLines = 4
+        }
+
         setEditTextFocusEnabled(editTextValue, itemView)
 
         editTextValue.setOnFocusChangeListener { _, hasFocus ->
@@ -50,10 +56,6 @@ class FormMultiLineEditTextViewBinder(private val context: Context, private val 
                         R.color.colorFormMasterElementTextTitle))
             }
         }
-
-        // Multi Line
-        editTextValue.setSingleLine(false)
-        editTextValue.maxLines = 4
 
         editTextValue.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
