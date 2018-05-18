@@ -18,7 +18,49 @@
     </url>
         
     <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/header/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>https://thejuki.github.io/KFormMaster//element/singleLine/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/multiLine/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/email/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/password/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/number/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/phone/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/textView/</loc>
      <lastmod>2018-05-18</lastmod>
      <changefreq>daily</changefreq>
     </url>

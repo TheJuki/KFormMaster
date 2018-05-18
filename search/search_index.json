@@ -72,7 +72,7 @@
         },
         {
             "location": "/element/base/",
-            "text": "Common values used by multiple form elements are stored in the base form element model such as tag, title, and value.\n\n\n\n\nBase Value Requirements\n\n\nNone of the base values are required but providing a title is advised.\n\n\n\n\nTag\n\u00b6\n\n\nThe tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.\n\n\ntext\n(\n1\n)\n \n{\n\n\n\n}\n\n\nemail\n(\nTag\n.\nEmail\n.\nordinal\n)\n \n{\n\n\n\n}\n\n\n\n\n\n\nval\n \ntextElement\n \n=\n \nformBuilder\n.\ngetElementAtIndex\n(\n0\n)\n \nas\n \nFormSingleLineEditTextElement\n\n\nval\n \nemailElement\n \n=\n \nformBuilder\n.\ngetFormElement\n<\nFormEmailEditTextElement\n>(\nTag\n.\nEmail\n.\nordinal\n)\n\n\n\n\n\n\nTitle\n\u00b6\n\n\nThe title is the text displayed next to the value of the form element.\n\n\ntext\n \n{\n\n    \ntitle\n \n=\n \ngetString\n(\nR\n.\nstring\n.\ntitle\n)\n\n\n}\n\n\n\n\n\n\nValue\n\u00b6\n\n\nThe value is the value of the form element. Depending on the form element, this can be a String, Date, or an object of your choice.\n\n\ntext\n \n{\n\n    \nvalue\n \n=\n \n\"Hello World\"\n\n\n}\n\n\nautoComplete\n<\nContactItem\n>\n \n{\n\n    \nvalue\n \n=\n \nContactItem\n(\nid\n \n=\n \n1\n,\n \nvalue\n \n=\n \n\"John Smith\"\n)\n\n\n}\n\n\n\n\n\n\nValue Observers\n\u00b6\n\n\nThe list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.\n\n\ntext\n \n{\n\n    \nvalue\n \n=\n \n\"Hello World\"\n\n    \nvalueObservers\n.\nadd\n({\n \nnewValue\n,\n \nelement\n \n->\n\n        \nToast\n.\nmakeText\n(\nthis\n@FormActivity\n,\n \nnewValue\n,\n \nLENGTH_SHORT\n).\nshow\n()\n\n    \n})\n\n\n}\n\n\n\n\n\n\nOptions and Options Selected\n\u00b6\n\n\nThe list of options is used in the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. \nThe list of options selected is in the Form Picker MultiCheckBox Element. \n\n\nprivate\n \nval\n \nfruits\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n3\n,\n \nname\n \n=\n \n\"Mango\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n4\n,\n \nname\n \n=\n \n\"Guava\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n5\n,\n \nname\n \n=\n \n\"Apple\"\n)\n\n\n)\n\n\n\ndropDown\n<\nListItem\n>\n \n{\n\n    \noptions\n \n=\n \nfruits\n\n    \nvalue\n \n=\n \nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n)\n\n\n}\n\n\nmultiCheckBox\n<\nListItem\n>\n \n{\n\n    \noptions\n \n=\n \nfruits\n\n    \noptionsSelected\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n))\n\n\n}\n\n\n\n\n\n\nUpdating options later\n\u00b6\n\n\nAfter changing the options in the model for a Dropdown or MultiCheckBox element, call the reInitDialog function.\n\n\nelement\n.\noptions\n \n=\n \nlistOf\n()\n\n\nelement\n.\nreInitDialog\n(\nthis\n \n/* context */\n,\n \nformBuilder\n)\n\n\n\n\n\n\nHint\n\u00b6\n\n\nThe hint is the hint (or placeholder) of the value field.\n\n\ntext\n \n{\n\n    \nhint\n \n=\n \n\"Enter a name\"\n\n\n}\n\n\n\n\n\n\nMax Lines\n\u00b6\n\n\nBy default this is 1. TextArea defaults to 4.\nMax lines represents the number of lines the value field will display.\n\n\n\n\nUnsupported Fields\n\n\n\n\nPassword\n\n\nNumber\n\n\nText (Use TextArea instead)\n\n\n\n\n\n\ntextArea\n \n{\n\n    \nmaxLines\n \n=\n \n3\n\n\n}\n\n\n\n\n\n\nRight To Left (RTL)\n\u00b6\n\n\nBy default this is true.\nThis determines the gravity of the text in the value field.\n\n\ntext\n \n{\n\n    \nrightToLeft\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nError\n\u00b6\n\n\nThis is the error text displayed in red below the form element.\n\n\ntext\n \n{\n\n    \nerror\n \n=\n \n\"That's an error\"\n\n\n}\n\n\n\n\n\n\nRequired\n\u00b6\n\n\nBy default this is false.\nSetting required to true will cause FormBuildHelper.isValidForm to return false if a value is not set.\n\n\ntext\n \n{\n\n    \nrequired\n \n=\n \ntrue\n\n\n}\n\n\n\n\n\n\nVisible\n\u00b6\n\n\nBy default this is true.\nSetting visible to false will hide the form element.\n\n\ntext\n \n{\n\n    \nvisible\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nEnabled\n\u00b6\n\n\nBy default this is true.\nSetting enabled to false will disable the form element. This means that the click event will not fire when tapped, the text will be grayed out, and the value cannot be edited.\n\n\n\n\nText View\n\n\nUse the TextView element if you just want a simple uneditable text element.\n\n\n\n\ntext\n \n{\n\n    \nenabled\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nDynamic Views\n\u00b6\n\n\n\n\nNOTICE\n\n\nThe Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecylerView.",
+            "text": "Common values used by multiple form elements are stored in the base form element model such as tag, title, and value.\n\n\n\n\nBase Value Requirements\n\n\nNone of the base values are required but providing a title is advised.\n\n\n\n\nTag\n\u00b6\n\n\nThe tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.\n\n\ntext\n(\n1\n)\n \n{\n\n\n\n}\n\n\nemail\n(\nTag\n.\nEmail\n.\nordinal\n)\n \n{\n\n\n\n}\n\n\n\n\n\n\nval\n \ntextElement\n \n=\n \nformBuilder\n.\ngetElementAtIndex\n(\n0\n)\n \nas\n \nFormSingleLineEditTextElement\n\n\nval\n \nemailElement\n \n=\n \nformBuilder\n.\ngetFormElement\n<\nFormEmailEditTextElement\n>(\nTag\n.\nEmail\n.\nordinal\n)\n\n\n\n\n\n\nTitle\n\u00b6\n\n\nThe title is the text displayed next to the value of the form element.\n\n\ntext\n \n{\n\n    \ntitle\n \n=\n \ngetString\n(\nR\n.\nstring\n.\ntitle\n)\n\n\n}\n\n\n\n\n\n\nValue\n\u00b6\n\n\nThe value is the value of the form element. Depending on the form element, this can be a String, Date, or an object of your choice.\n\n\ntext\n \n{\n\n    \nvalue\n \n=\n \n\"Hello World\"\n\n\n}\n\n\nautoComplete\n<\nContactItem\n>\n \n{\n\n    \nvalue\n \n=\n \nContactItem\n(\nid\n \n=\n \n1\n,\n \nvalue\n \n=\n \n\"John Smith\"\n)\n\n\n}\n\n\n\n\n\n\nValue Observers\n\u00b6\n\n\nThe list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.\n\n\ntext\n \n{\n\n    \nvalue\n \n=\n \n\"Hello World\"\n\n    \nvalueObservers\n.\nadd\n({\n \nnewValue\n,\n \nelement\n \n->\n\n        \nToast\n.\nmakeText\n(\nthis\n@FormActivity\n,\n \nnewValue\n,\n \nLENGTH_SHORT\n).\nshow\n()\n\n    \n})\n\n\n}\n\n\n\n\n\n\nOptions and Options Selected\n\u00b6\n\n\nThe list of options is used in the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. \nThe list of options selected is used in the Form Picker MultiCheckBox Element. \n\n\nprivate\n \nval\n \nfruits\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n3\n,\n \nname\n \n=\n \n\"Mango\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n4\n,\n \nname\n \n=\n \n\"Guava\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n5\n,\n \nname\n \n=\n \n\"Apple\"\n)\n\n\n)\n\n\n\ndropDown\n<\nListItem\n>\n \n{\n\n    \noptions\n \n=\n \nfruits\n\n    \nvalue\n \n=\n \nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n)\n\n\n}\n\n\nmultiCheckBox\n<\nListItem\n>\n \n{\n\n    \noptions\n \n=\n \nfruits\n\n    \noptionsSelected\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n))\n\n\n}\n\n\n\n\n\n\nUpdating options later\n\u00b6\n\n\nAfter changing the options in the model for a Dropdown or MultiCheckBox element, call the reInitDialog function.\n\n\nelement\n.\noptions\n \n=\n \nlistOf\n()\n\n\nelement\n.\nreInitDialog\n(\nthis\n \n/* context */\n,\n \nformBuilder\n)\n\n\n\n\n\n\nHint\n\u00b6\n\n\nThe hint is the hint (or placeholder) of the value field.\n\n\ntext\n \n{\n\n    \nhint\n \n=\n \n\"Enter a name\"\n\n\n}\n\n\n\n\n\n\nMax Lines\n\u00b6\n\n\nBy default this is 1. TextArea defaults to 4.\nMax lines represents the number of lines the value field will display.\n\n\n\n\nUnsupported Fields\n\n\n\n\nPassword\n\n\nNumber\n\n\nText (Use TextArea instead)\n\n\n\n\n\n\ntextArea\n \n{\n\n    \nmaxLines\n \n=\n \n3\n\n\n}\n\n\n\n\n\n\nRight To Left (RTL)\n\u00b6\n\n\nBy default this is true.\nThis determines the gravity of the text in the value field.\n\n\ntext\n \n{\n\n    \nrightToLeft\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nError\n\u00b6\n\n\nThis is the error text displayed in red below the form element.\n\n\ntext\n \n{\n\n    \nerror\n \n=\n \n\"That's an error\"\n\n\n}\n\n\n\n\n\n\nRequired\n\u00b6\n\n\nBy default this is false.\nSetting required to true will cause FormBuildHelper.isValidForm to return false if a value is not set.\n\n\ntext\n \n{\n\n    \nrequired\n \n=\n \ntrue\n\n\n}\n\n\n\n\n\n\nVisible\n\u00b6\n\n\nBy default this is true.\nSetting visible to false will hide the form element.\n\n\ntext\n \n{\n\n    \nvisible\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nEnabled\n\u00b6\n\n\nBy default this is true.\nSetting enabled to false will disable the form element. This means that the click event will not fire when tapped, the text will be grayed out, and the value cannot be edited.\n\n\n\n\nText View\n\n\nUse the TextView element if you just want a simple uneditable text element.\n\n\n\n\ntext\n \n{\n\n    \nenabled\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nDynamic Views\n\u00b6\n\n\n\n\nNOTICE\n\n\nThe Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecylerView.",
             "title": "Base"
         },
         {
@@ -97,7 +97,7 @@
         },
         {
             "location": "/element/base/#options-and-options-selected",
-            "text": "The list of options is used in the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. \nThe list of options selected is in the Form Picker MultiCheckBox Element.   private   val   fruits   =   listOf ( ListItem ( id   =   1 ,   name   =   \"Banana\" ), \n     ListItem ( id   =   2 ,   name   =   \"Orange\" ), \n     ListItem ( id   =   3 ,   name   =   \"Mango\" ), \n     ListItem ( id   =   4 ,   name   =   \"Guava\" ), \n     ListItem ( id   =   5 ,   name   =   \"Apple\" )  )  dropDown < ListItem >   { \n     options   =   fruits \n     value   =   ListItem ( id   =   1 ,   name   =   \"Banana\" )  }  multiCheckBox < ListItem >   { \n     options   =   fruits \n     optionsSelected   =   listOf ( ListItem ( id   =   1 ,   name   =   \"Banana\" ))  }",
+            "text": "The list of options is used in the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. \nThe list of options selected is used in the Form Picker MultiCheckBox Element.   private   val   fruits   =   listOf ( ListItem ( id   =   1 ,   name   =   \"Banana\" ), \n     ListItem ( id   =   2 ,   name   =   \"Orange\" ), \n     ListItem ( id   =   3 ,   name   =   \"Mango\" ), \n     ListItem ( id   =   4 ,   name   =   \"Guava\" ), \n     ListItem ( id   =   5 ,   name   =   \"Apple\" )  )  dropDown < ListItem >   { \n     options   =   fruits \n     value   =   ListItem ( id   =   1 ,   name   =   \"Banana\" )  }  multiCheckBox < ListItem >   { \n     options   =   fruits \n     optionsSelected   =   listOf ( ListItem ( id   =   1 ,   name   =   \"Banana\" ))  }",
             "title": "Options and Options Selected"
         },
         {
@@ -146,6 +146,31 @@
             "title": "Dynamic Views"
         },
         {
+            "location": "/element/header/",
+            "text": "The Header element is used as a header row.\n\n\nCollapsible\n\u00b6\n\n\nBy default this is false.\nSetting this to true will allow the form header to \"collapse/uncollapse\" (Hide/Show) elements below it when tapped.\n\n\nheader\n \n{\n \ncollapsible\n \n=\n \ntrue\n \n}\n\n\n\n\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nheader\n \n{\n \ntitle\n \n=\n \n\"I'm a header row\"\n;\n \ncollapsible\n \n=\n \ntrue\n \n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nHeaderBuilder\n \nheader\n \n=\n \nnew\n \nHeaderBuilder\n(\n\"I'm a header row\"\n);\n\n\nelements\n.\nadd\n(\nheader\n.\nbuild\n());",
+            "title": "Header"
+        },
+        {
+            "location": "/element/header/#collapsible",
+            "text": "By default this is false.\nSetting this to true will allow the form header to \"collapse/uncollapse\" (Hide/Show) elements below it when tapped.  header   {   collapsible   =   true   }",
+            "title": "Collapsible"
+        },
+        {
+            "location": "/element/header/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/header/#kotlin",
+            "text": "header   {   title   =   \"I'm a header row\" ;   collapsible   =   true   }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/header/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  HeaderBuilder   header   =   new   HeaderBuilder ( \"I'm a header row\" );  elements . add ( header . build ());",
+            "title": "Java"
+        },
+        {
             "location": "/element/singleLine/",
             "text": "The Single Line form element is used for a single line value field.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\ntext\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n\"Example\"\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nSingleLineEditTextBuilder\n \ntext\n \n=\n \nnew\n \nSingleLineEditTextBuilder\n(\n1\n);\n\n\ntext\n.\nsetValue\n(\n\"Example\"\n);\n\n\nelements\n.\nadd\n(\ntext\n.\nbuild\n());",
             "title": "Single Line"
@@ -166,9 +191,174 @@
             "title": "Java"
         },
         {
+            "location": "/element/multiLine/",
+            "text": "The Multi Line form element is used for a multi line value field.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\ntextArea\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n\"Example\"\n\n    \nmaxLines\n \n=\n \n3\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nMultiLineEditTextBuilder\n \ntextArea\n \n=\n \nnew\n \nMultiLineEditTextBuilder\n(\n1\n);\n\n\ntextArea\n.\nsetValue\n(\n\"Example\"\n);\n\n\ntextArea\n.\nsetMaxLines\n(\n3\n);\n\n\nelements\n.\nadd\n(\ntextArea\n.\nbuild\n());",
+            "title": "Multi Line"
+        },
+        {
+            "location": "/element/multiLine/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/multiLine/#kotlin",
+            "text": "textArea ( 1 )   { \n     value   =   \"Example\" \n     maxLines   =   3  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/multiLine/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  MultiLineEditTextBuilder   textArea   =   new   MultiLineEditTextBuilder ( 1 );  textArea . setValue ( \"Example\" );  textArea . setMaxLines ( 3 );  elements . add ( textArea . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/email/",
+            "text": "The Email form element is used for an email address value field with the email keyboard layout.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nemail\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n\"example@example.com\"\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nEmailEditTextBuilder\n \nemail\n \n=\n \nnew\n \nEmailEditTextBuilder\n(\n1\n);\n\n\nemail\n.\nsetValue\n(\n\"example@example.com\"\n);\n\n\nelements\n.\nadd\n(\nemail\n.\nbuild\n());",
+            "title": "Email"
+        },
+        {
+            "location": "/element/email/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/email/#kotlin",
+            "text": "email ( 1 )   { \n     value   =   \"example@example.com\"  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/email/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  EmailEditTextBuilder   email   =   new   EmailEditTextBuilder ( 1 );  email . setValue ( \"example@example.com\" );  elements . add ( email . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/password/",
+            "text": "The Password form element is used for a password value field. This field is masked.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\npassword\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n\"hunter2\"\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nPasswordEditTextBuilder\n \npassword\n \n=\n \nnew\n \nPasswordEditTextBuilder\n(\n1\n);\n\n\npassword\n.\nsetValue\n(\n\"hunter2\"\n);\n\n\nelements\n.\nadd\n(\npassword\n.\nbuild\n());",
+            "title": "Password"
+        },
+        {
+            "location": "/element/password/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/password/#kotlin",
+            "text": "password ( 1 )   { \n     value   =   \"hunter2\"  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/password/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  PasswordEditTextBuilder   password   =   new   PasswordEditTextBuilder ( 1 );  password . setValue ( \"hunter2\" );  elements . add ( password . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/number/",
+            "text": "The Number element is used for a number value field with the number keyboard layout.\n\n\n\n\nNOTICE\n\n\nThe value is a String. It is up to you to convert the resulting value to a number if necessary.\n\n\n\n\nval\n \nnum\n:\n \nInt\n \n=\n \nnewValue\n?.\ntoInt\n()\n?:\n \n0\n\n\n\n\n\n\nNumbers Only\n\u00b6\n\n\nBy default this is false.\nSetting this to true will only allow numbers to be entered in the value field.\n\n\nnumber\n \n{\n\n    \nnumbersOnly\n \n=\n \ntrue\n\n\n}\n\n\n\n\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nnumber\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n1234\n\n    \nnumbersOnly\n \n=\n \ntrue\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nNumberEditTextBuilder\n \nnumber\n \n=\n \nnew\n \nNumberEditTextBuilder\n(\n1\n);\n\n\nnumber\n.\nsetValue\n(\n1234\n);\n\n\nnumber\n.\nsetNumbersOnly\n(\ntrue\n);\n\n\nelements\n.\nadd\n(\nnumber\n.\nbuild\n());",
+            "title": "Number"
+        },
+        {
+            "location": "/element/number/#numbers-only",
+            "text": "By default this is false.\nSetting this to true will only allow numbers to be entered in the value field.  number   { \n     numbersOnly   =   true  }",
+            "title": "Numbers Only"
+        },
+        {
+            "location": "/element/number/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/number/#kotlin",
+            "text": "number ( 1 )   { \n     value   =   1234 \n     numbersOnly   =   true  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/number/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  NumberEditTextBuilder   number   =   new   NumberEditTextBuilder ( 1 );  number . setValue ( 1234 );  number . setNumbersOnly ( true );  elements . add ( number . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/phone/",
+            "text": "The Phone form element is used for a phone number value field with the phone keyboard layout.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nphone\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n\"(555) 555-5555\"\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nPhoneEditTextBuilder\n \nphone\n \n=\n \nnew\n \nPhoneEditTextBuilder\n(\n1\n);\n\n\nphone\n.\nsetValue\n(\n\"(555) 555-5555\"\n);\n\n\nelements\n.\nadd\n(\nphone\n.\nbuild\n());",
+            "title": "Phone"
+        },
+        {
+            "location": "/element/phone/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/phone/#kotlin",
+            "text": "phone ( 1 )   { \n     value   =   \"(555) 555-5555\"  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/phone/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  PhoneEditTextBuilder   phone   =   new   PhoneEditTextBuilder ( 1 );  phone . setValue ( \"(555) 555-5555\" );  elements . add ( phone . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/textView/",
+            "text": "The Text View form element is used for a readonly text value field.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\ntextView\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n\"Example\"\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nTextViewBuilder\n \ntextView\n \n=\n \nnew\n \nTextViewBuilder\n(\n1\n);\n\n\ntextView\n.\nsetValue\n(\n\"Example\"\n);\n\n\nelements\n.\nadd\n(\ntextView\n.\nbuild\n());",
+            "title": "Text View"
+        },
+        {
+            "location": "/element/textView/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/textView/#kotlin",
+            "text": "textView ( 1 )   { \n     value   =   \"Example\"  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/textView/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  TextViewBuilder   textView   =   new   TextViewBuilder ( 1 );  textView . setValue ( \"Example\" );  elements . add ( textView . build ());",
+            "title": "Java"
+        },
+        {
             "location": "/about/contributing/",
-            "text": "../CONTRIBUTING.md",
+            "text": "Contributing\n\u00b6\n\n\nInterested in contributing to KFormMaster? Want to report a bug? Before\nyou do, please read the following guidelines.\n\n\nSubmission context\n\u00b6\n\n\nGot a question or problem?\n\u00b6\n\n\nFor quick questions there's no need to open an issue as you can reach us on\n\ngitter.im\n.\n\n\nFound a bug?\n\u00b6\n\n\nIf you found a bug in the source code, you can help us by submitting an issue\nto the \nissue tracker\n in our GitHub repository. Even better, you can submit\na Pull Request with a fix. However, before doing so, please read the\n\nsubmission guidelines\n.\n\n\nMissing a feature?\n\u00b6\n\n\nYou can request a new feature by submitting an issue to our GitHub Repository.\nIf you would like to implement a new feature, please submit an issue with a\nproposal for your work first. Please consider what kind of change\nit is:\n\n\n\n\n\n\nFor a \nmajor feature\n, first open an issue and outline your proposal so\n  that it can be discussed. This will also allow us to better coordinate our\n  efforts, prevent duplication of work, and help you to craft the change so\n  that it is successfully accepted into the project.\n\n\n\n\n\n\nSmall features and bugs\n can be crafted and directly submitted as a Pull\n  Request. However, there is no guarantee that your feature will make it into\n  the master, as it's always a matter of opinion whether it benefits the\n  overall functionality of the library.\n\n\n\n\n\n\nSubmission guidelines\n\u00b6\n\n\nSubmitting an issue\n\u00b6\n\n\nBefore you submit an issue, please search the issue tracker, maybe an issue for\nyour problem already exists and the discussion might inform you of workarounds\nreadily available.\n\n\nWe want to fix all the issues as soon as possible, but before fixing a bug we\nneed to reproduce and confirm it. In order to reproduce bugs we will\nsystematically ask you to provide a minimal reproduction scenario using the\ncustom issue template. Please stick to the issue template.\n\n\nUnfortunately we are not able to investigate / fix bugs without a minimal\nreproduction scenario, so if we don't hear back from you we may close the issue.\n\n\nSubmitting a Pull Request (PR)\n\u00b6\n\n\nSearch GitHub for an open or closed PR that relates to your submission. You\ndon't want to duplicate effort. If you do not find a related issue or PR,\ngo ahead.\n\n\n\n\n\n\nDevelopment\n: Fork the project and make your changes in a separate git branch and add descriptive messages to\n  your commits.\n\n\n\n\n\n\nBuild\n: Before submitting a pull requests, run a gradle build. This is\n  a mandatory requirement for your PR to get accepted, as the library should at\n  all times be installable through GitHub (Such as through https://jitpack.io/).\n\n\n\n\n\n\nPull Request\n: Send a PR to \nKFormMaster:master\n. If we\n  suggest changes, make the required updates, rebase your branch and push the\n  changes to your GitHub repository, which will automatically update your PR.\n\n\n\n\n\n\nAfter your PR is merged, you can safely delete your branch and pull the changes\nfrom the main (upstream) repository.",
             "title": "Contributing"
+        },
+        {
+            "location": "/about/contributing/#contributing",
+            "text": "Interested in contributing to KFormMaster? Want to report a bug? Before\nyou do, please read the following guidelines.",
+            "title": "Contributing"
+        },
+        {
+            "location": "/about/contributing/#submission-context",
+            "text": "",
+            "title": "Submission context"
+        },
+        {
+            "location": "/about/contributing/#got-a-question-or-problem",
+            "text": "For quick questions there's no need to open an issue as you can reach us on gitter.im .",
+            "title": "Got a question or problem?"
+        },
+        {
+            "location": "/about/contributing/#found-a-bug",
+            "text": "If you found a bug in the source code, you can help us by submitting an issue\nto the  issue tracker  in our GitHub repository. Even better, you can submit\na Pull Request with a fix. However, before doing so, please read the submission guidelines .",
+            "title": "Found a bug?"
+        },
+        {
+            "location": "/about/contributing/#missing-a-feature",
+            "text": "You can request a new feature by submitting an issue to our GitHub Repository.\nIf you would like to implement a new feature, please submit an issue with a\nproposal for your work first. Please consider what kind of change\nit is:    For a  major feature , first open an issue and outline your proposal so\n  that it can be discussed. This will also allow us to better coordinate our\n  efforts, prevent duplication of work, and help you to craft the change so\n  that it is successfully accepted into the project.    Small features and bugs  can be crafted and directly submitted as a Pull\n  Request. However, there is no guarantee that your feature will make it into\n  the master, as it's always a matter of opinion whether it benefits the\n  overall functionality of the library.",
+            "title": "Missing a feature?"
+        },
+        {
+            "location": "/about/contributing/#submission-guidelines",
+            "text": "",
+            "title": "Submission guidelines"
+        },
+        {
+            "location": "/about/contributing/#submitting-an-issue",
+            "text": "Before you submit an issue, please search the issue tracker, maybe an issue for\nyour problem already exists and the discussion might inform you of workarounds\nreadily available.  We want to fix all the issues as soon as possible, but before fixing a bug we\nneed to reproduce and confirm it. In order to reproduce bugs we will\nsystematically ask you to provide a minimal reproduction scenario using the\ncustom issue template. Please stick to the issue template.  Unfortunately we are not able to investigate / fix bugs without a minimal\nreproduction scenario, so if we don't hear back from you we may close the issue.",
+            "title": "Submitting an issue"
+        },
+        {
+            "location": "/about/contributing/#submitting-a-pull-request-pr",
+            "text": "Search GitHub for an open or closed PR that relates to your submission. You\ndon't want to duplicate effort. If you do not find a related issue or PR,\ngo ahead.    Development : Fork the project and make your changes in a separate git branch and add descriptive messages to\n  your commits.    Build : Before submitting a pull requests, run a gradle build. This is\n  a mandatory requirement for your PR to get accepted, as the library should at\n  all times be installable through GitHub (Such as through https://jitpack.io/).    Pull Request : Send a PR to  KFormMaster:master . If we\n  suggest changes, make the required updates, rebase your branch and push the\n  changes to your GitHub repository, which will automatically update your PR.    After your PR is merged, you can safely delete your branch and pull the changes\nfrom the main (upstream) repository.",
+            "title": "Submitting a Pull Request (PR)"
         },
         {
             "location": "/about/credits/",
