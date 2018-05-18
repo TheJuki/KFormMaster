@@ -1,0 +1,47 @@
+# Project information
+site_name: KFormMaster Docs
+site_description: Documentation for the KFormMaster Android library
+site_author: TheJuki
+site_url: https://thejuki.github.io/KFormMaster/
+
+# Repository
+repo_name: 'TheJuki/KFormMaster'
+repo_url: 'https://github.com/thejuki/KFormMaster'
+edit_uri: ""
+
+# Copyright
+copyright: 'Copyright &copy; 2018 TheJuki'
+
+# Configuration
+theme:
+  name: material
+  language: en
+  feature:
+    tabs: true
+  palette:
+    primary: indigo
+    accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
+  logo: 'images/KF.png'
+
+extra:
+  version: 3.2.0
+
+# Extensions
+markdown_extensions:
+  - codehilite
+  - admonition
+  - toc:
+      permalink: true
+
+# Page tree
+pages:
+  - Getting Started: index.md
+  - Form Elements:
+    - 'Base': 'element/base.md'
+    - 'Single Line': 'element/singleLine.md'
+  - About:
+    - 'Contributing': 'about/contributing.md'
+    - 'Credits': 'about/credits.md'
