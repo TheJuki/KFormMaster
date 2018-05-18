@@ -39,7 +39,7 @@ autoComplete<ContactItem> {
 ```
 
 ## Value Observers
-This list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.
+The list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.
 ```kotlin
 text {
     value = "Hello World"
@@ -75,3 +75,82 @@ After changing the options in the model for a Dropdown or MultiCheckBox element,
 element.options = listOf()
 element.reInitDialog(this /* context */, formBuilder)
 ```
+
+## Hint
+The hint is the hint (or placeholder) of the value field.
+```kotlin
+text {
+    hint = "Enter a name"
+}
+```
+
+## Max Lines
+By default this is 1. TextArea defaults to 4.
+Max lines represents the number of lines the value field will display.
+
+!!! error "Unsupported Fields"
+
+    * Password
+    * Number
+    * Text (Use TextArea instead)
+
+```kotlin
+textArea {
+    maxLines = 3
+}
+```
+
+## Right To Left (RTL)
+By default this is true.
+This determines the gravity of the text in the value field.
+```kotlin
+text {
+    rightToLeft = false
+}
+```
+
+## Error
+This is the error text displayed in red below the form element.
+```kotlin
+text {
+    error = "That's an error"
+}
+```
+
+## Required
+By default this is false.
+Setting required to true will cause FormBuildHelper.isValidForm to return false if a value is not set.
+```kotlin
+text {
+    required = true
+}
+```
+
+## Visible
+By default this is true.
+Setting visible to false will hide the form element.
+```kotlin
+text {
+    visible = false
+}
+```
+
+## Enabled
+By default this is true.
+Setting enabled to false will disable the form element. This means that the click event will not fire when tapped, the text will be grayed out, and the value cannot be edited.
+
+!!! info "Text View"
+
+    Use the TextView element if you just want a simple uneditable text element.
+
+```kotlin
+text {
+    enabled = false
+}
+```
+
+## Dynamic Views
+
+!!! note "NOTICE"
+
+    The Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecylerView.
