@@ -72,7 +72,7 @@
         },
         {
             "location": "/element/base/",
-            "text": "Common values used by multiple form elements are stored in the base form element model such as tag, title, and value.\n\n\n\n\nBase Value Requirements\n\n\nNone of the base values are required but providing a title is advised.\n\n\n\n\nTag\n\u00b6\n\n\nThe tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.\n\n\ntext\n(\n1\n)\n \n{\n\n\n\n}\n\n\nemail\n(\nTag\n.\nEmail\n.\nordinal\n)\n \n{\n\n\n\n}\n\n\n\n\n\n\nval\n \ntextElement\n \n=\n \nformBuilder\n.\ngetElementAtIndex\n(\n0\n)\n \nas\n \nFormSingleLineEditTextElement\n\n\nval\n \nemailElement\n \n=\n \nformBuilder\n.\ngetFormElement\n<\nFormEmailEditTextElement\n>(\nTag\n.\nEmail\n.\nordinal\n)\n\n\n\n\n\n\nTitle\n\u00b6\n\n\nThe title is the text displayed next to the value of the form element.\n\n\ntext\n \n{\n\n    \ntitle\n \n=\n \ngetString\n(\nR\n.\nstring\n.\ntitle\n)\n\n\n}\n\n\n\n\n\n\nValue\n\u00b6\n\n\nThe value is the value of the form element. Depending on the form element, this can be a String, Date, or an object of your choice.\n\n\ntext\n \n{\n\n    \nvalue\n \n=\n \n\"Hello World\"\n\n\n}\n\n\nautoComplete\n<\nContactItem\n>\n \n{\n\n    \nvalue\n \n=\n \nContactItem\n(\nid\n \n=\n \n1\n,\n \nvalue\n \n=\n \n\"John Smith\"\n)\n\n\n}\n\n\n\n\n\n\nValue Observers\n\u00b6\n\n\nThis list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.\n\n\ntext\n \n{\n\n    \nvalue\n \n=\n \n\"Hello World\"\n\n    \nvalueObservers\n.\nadd\n({\n \nnewValue\n,\n \nelement\n \n->\n\n        \nToast\n.\nmakeText\n(\nthis\n@FormActivity\n,\n \nnewValue\n,\n \nLENGTH_SHORT\n).\nshow\n()\n\n    \n})\n\n\n}\n\n\n\n\n\n\nOptions and Options Selected\n\u00b6\n\n\nThe list of options is used in the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. \nThe list of options selected is in the Form Picker MultiCheckBox Element. \n\n\nprivate\n \nval\n \nfruits\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n3\n,\n \nname\n \n=\n \n\"Mango\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n4\n,\n \nname\n \n=\n \n\"Guava\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n5\n,\n \nname\n \n=\n \n\"Apple\"\n)\n\n\n)\n\n\n\ndropDown\n<\nListItem\n>\n \n{\n\n    \noptions\n \n=\n \nfruits\n\n    \nvalue\n \n=\n \nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n)\n\n\n}\n\n\nmultiCheckBox\n<\nListItem\n>\n \n{\n\n    \noptions\n \n=\n \nfruits\n\n    \noptionsSelected\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n))\n\n\n}\n\n\n\n\n\n\nUpdating options later\n\u00b6\n\n\nAfter changing the options in the model for a Dropdown or MultiCheckBox element, call the reInitDialog function.\n\n\nelement\n.\noptions\n \n=\n \nlistOf\n()\n\n\nelement\n.\nreInitDialog\n(\nthis\n \n/* context */\n,\n \nformBuilder\n)",
+            "text": "Common values used by multiple form elements are stored in the base form element model such as tag, title, and value.\n\n\n\n\nBase Value Requirements\n\n\nNone of the base values are required but providing a title is advised.\n\n\n\n\nTag\n\u00b6\n\n\nThe tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.\n\n\ntext\n(\n1\n)\n \n{\n\n\n\n}\n\n\nemail\n(\nTag\n.\nEmail\n.\nordinal\n)\n \n{\n\n\n\n}\n\n\n\n\n\n\nval\n \ntextElement\n \n=\n \nformBuilder\n.\ngetElementAtIndex\n(\n0\n)\n \nas\n \nFormSingleLineEditTextElement\n\n\nval\n \nemailElement\n \n=\n \nformBuilder\n.\ngetFormElement\n<\nFormEmailEditTextElement\n>(\nTag\n.\nEmail\n.\nordinal\n)\n\n\n\n\n\n\nTitle\n\u00b6\n\n\nThe title is the text displayed next to the value of the form element.\n\n\ntext\n \n{\n\n    \ntitle\n \n=\n \ngetString\n(\nR\n.\nstring\n.\ntitle\n)\n\n\n}\n\n\n\n\n\n\nValue\n\u00b6\n\n\nThe value is the value of the form element. Depending on the form element, this can be a String, Date, or an object of your choice.\n\n\ntext\n \n{\n\n    \nvalue\n \n=\n \n\"Hello World\"\n\n\n}\n\n\nautoComplete\n<\nContactItem\n>\n \n{\n\n    \nvalue\n \n=\n \nContactItem\n(\nid\n \n=\n \n1\n,\n \nvalue\n \n=\n \n\"John Smith\"\n)\n\n\n}\n\n\n\n\n\n\nValue Observers\n\u00b6\n\n\nThe list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.\n\n\ntext\n \n{\n\n    \nvalue\n \n=\n \n\"Hello World\"\n\n    \nvalueObservers\n.\nadd\n({\n \nnewValue\n,\n \nelement\n \n->\n\n        \nToast\n.\nmakeText\n(\nthis\n@FormActivity\n,\n \nnewValue\n,\n \nLENGTH_SHORT\n).\nshow\n()\n\n    \n})\n\n\n}\n\n\n\n\n\n\nOptions and Options Selected\n\u00b6\n\n\nThe list of options is used in the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. \nThe list of options selected is in the Form Picker MultiCheckBox Element. \n\n\nprivate\n \nval\n \nfruits\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n3\n,\n \nname\n \n=\n \n\"Mango\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n4\n,\n \nname\n \n=\n \n\"Guava\"\n),\n\n    \nListItem\n(\nid\n \n=\n \n5\n,\n \nname\n \n=\n \n\"Apple\"\n)\n\n\n)\n\n\n\ndropDown\n<\nListItem\n>\n \n{\n\n    \noptions\n \n=\n \nfruits\n\n    \nvalue\n \n=\n \nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n)\n\n\n}\n\n\nmultiCheckBox\n<\nListItem\n>\n \n{\n\n    \noptions\n \n=\n \nfruits\n\n    \noptionsSelected\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n))\n\n\n}\n\n\n\n\n\n\nUpdating options later\n\u00b6\n\n\nAfter changing the options in the model for a Dropdown or MultiCheckBox element, call the reInitDialog function.\n\n\nelement\n.\noptions\n \n=\n \nlistOf\n()\n\n\nelement\n.\nreInitDialog\n(\nthis\n \n/* context */\n,\n \nformBuilder\n)\n\n\n\n\n\n\nHint\n\u00b6\n\n\nThe hint is the hint (or placeholder) of the value field.\n\n\ntext\n \n{\n\n    \nhint\n \n=\n \n\"Enter a name\"\n\n\n}\n\n\n\n\n\n\nMax Lines\n\u00b6\n\n\nBy default this is 1. TextArea defaults to 4.\nMax lines represents the number of lines the value field will display.\n\n\n\n\nUnsupported Fields\n\n\n\n\nPassword\n\n\nNumber\n\n\nText (Use TextArea instead)\n\n\n\n\n\n\ntextArea\n \n{\n\n    \nmaxLines\n \n=\n \n3\n\n\n}\n\n\n\n\n\n\nRight To Left (RTL)\n\u00b6\n\n\nBy default this is true.\nThis determines the gravity of the text in the value field.\n\n\ntext\n \n{\n\n    \nrightToLeft\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nError\n\u00b6\n\n\nThis is the error text displayed in red below the form element.\n\n\ntext\n \n{\n\n    \nerror\n \n=\n \n\"That's an error\"\n\n\n}\n\n\n\n\n\n\nRequired\n\u00b6\n\n\nBy default this is false.\nSetting required to true will cause FormBuildHelper.isValidForm to return false if a value is not set.\n\n\ntext\n \n{\n\n    \nrequired\n \n=\n \ntrue\n\n\n}\n\n\n\n\n\n\nVisible\n\u00b6\n\n\nBy default this is true.\nSetting visible to false will hide the form element.\n\n\ntext\n \n{\n\n    \nvisible\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nEnabled\n\u00b6\n\n\nBy default this is true.\nSetting enabled to false will disable the form element. This means that the click event will not fire when tapped, the text will be grayed out, and the value cannot be edited.\n\n\n\n\nText View\n\n\nUse the TextView element if you just want a simple uneditable text element.\n\n\n\n\ntext\n \n{\n\n    \nenabled\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nDynamic Views\n\u00b6\n\n\n\n\nNOTICE\n\n\nThe Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecylerView.",
             "title": "Base"
         },
         {
@@ -92,7 +92,7 @@
         },
         {
             "location": "/element/base/#value-observers",
-            "text": "This list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.  text   { \n     value   =   \"Hello World\" \n     valueObservers . add ({   newValue ,   element   -> \n         Toast . makeText ( this @FormActivity ,   newValue ,   LENGTH_SHORT ). show () \n     })  }",
+            "text": "The list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.  text   { \n     value   =   \"Hello World\" \n     valueObservers . add ({   newValue ,   element   -> \n         Toast . makeText ( this @FormActivity ,   newValue ,   LENGTH_SHORT ). show () \n     })  }",
             "title": "Value Observers"
         },
         {
@@ -106,14 +106,64 @@
             "title": "Updating options later"
         },
         {
+            "location": "/element/base/#hint",
+            "text": "The hint is the hint (or placeholder) of the value field.  text   { \n     hint   =   \"Enter a name\"  }",
+            "title": "Hint"
+        },
+        {
+            "location": "/element/base/#max-lines",
+            "text": "By default this is 1. TextArea defaults to 4.\nMax lines represents the number of lines the value field will display.   Unsupported Fields   Password  Number  Text (Use TextArea instead)    textArea   { \n     maxLines   =   3  }",
+            "title": "Max Lines"
+        },
+        {
+            "location": "/element/base/#right-to-left-rtl",
+            "text": "By default this is true.\nThis determines the gravity of the text in the value field.  text   { \n     rightToLeft   =   false  }",
+            "title": "Right To Left (RTL)"
+        },
+        {
+            "location": "/element/base/#error",
+            "text": "This is the error text displayed in red below the form element.  text   { \n     error   =   \"That's an error\"  }",
+            "title": "Error"
+        },
+        {
+            "location": "/element/base/#required",
+            "text": "By default this is false.\nSetting required to true will cause FormBuildHelper.isValidForm to return false if a value is not set.  text   { \n     required   =   true  }",
+            "title": "Required"
+        },
+        {
+            "location": "/element/base/#visible",
+            "text": "By default this is true.\nSetting visible to false will hide the form element.  text   { \n     visible   =   false  }",
+            "title": "Visible"
+        },
+        {
+            "location": "/element/base/#enabled",
+            "text": "By default this is true.\nSetting enabled to false will disable the form element. This means that the click event will not fire when tapped, the text will be grayed out, and the value cannot be edited.   Text View  Use the TextView element if you just want a simple uneditable text element.   text   { \n     enabled   =   false  }",
+            "title": "Enabled"
+        },
+        {
+            "location": "/element/base/#dynamic-views",
+            "text": "NOTICE  The Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecylerView.",
+            "title": "Dynamic Views"
+        },
+        {
             "location": "/element/singleLine/",
-            "text": "WIP\n\u00b6",
+            "text": "The Single Line form element is used for a single line value field.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\ntext\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n\"Example\"\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nSingleLineEditTextBuilder\n \ntext\n \n=\n \nnew\n \nSingleLineEditTextBuilder\n(\n1\n);\n\n\ntext\n.\nsetValue\n(\n\"Example\"\n);\n\n\nelements\n.\nadd\n(\ntext\n.\nbuild\n());",
             "title": "Single Line"
         },
         {
-            "location": "/element/singleLine/#wip",
+            "location": "/element/singleLine/#example",
             "text": "",
-            "title": "WIP"
+            "title": "Example"
+        },
+        {
+            "location": "/element/singleLine/#kotlin",
+            "text": "text ( 1 )   { \n     value   =   \"Example\"  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/singleLine/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  SingleLineEditTextBuilder   text   =   new   SingleLineEditTextBuilder ( 1 );  text . setValue ( \"Example\" );  elements . add ( text . build ());",
+            "title": "Java"
         },
         {
             "location": "/about/contributing/",
