@@ -41,7 +41,14 @@ pages:
   - Getting Started: index.md
   - Form Elements:
     - 'Base': 'element/base.md'
+    - 'Header': 'element/header.md'
     - 'Single Line': 'element/singleLine.md'
+    - 'Multi Line': 'element/multiLine.md'
+    - 'Email': 'element/email.md'
+    - 'Password': 'element/password.md'
+    - 'Number': 'element/number.md'
+    - 'Phone': 'element/phone.md'
+    - 'Text View': 'element/textView.md'
   - About:
     - 'Contributing': 'about/contributing.md'
     - 'Credits': 'about/credits.md'

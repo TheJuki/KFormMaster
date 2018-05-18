@@ -51,7 +51,7 @@ text {
 
 ## Options and Options Selected
 The list of options is used in the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. 
-The list of options selected is in the Form Picker MultiCheckBox Element. 
+The list of options selected is used in the Form Picker MultiCheckBox Element. 
 ```kotlin
 private val fruits = listOf(ListItem(id = 1, name = "Banana"),
     ListItem(id = 2, name = "Orange"),
