@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/base/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/singleLine/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//about/contributing/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//about/credits/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+</urlset>
