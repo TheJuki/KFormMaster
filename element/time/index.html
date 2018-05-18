@@ -13,7 +13,7 @@
         <meta name="description" content="Documentation for the KFormMaster Android library">
       
       
-        <link rel="canonical" href="https://thejuki.github.io/KFormMaster/element/password/">
+        <link rel="canonical" href="https://thejuki.github.io/KFormMaster/element/time/">
       
       
         <meta name="author" content="TheJuki">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Password - KFormMaster Docs</title>
+        <title>Time - KFormMaster Docs</title>
       
     
     
@@ -125,7 +125,7 @@
                 KFormMaster Docs
               </span>
               <span class="md-header-nav__topic">
-                Password
+                Time
               </span>
             
           
@@ -381,65 +381,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Password
-      </label>
-    
-    <a href="./" title="Password" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../password/" title="Password" class="md-nav__link">
       Password
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#example" title="Example" class="md-nav__link">
-    Example
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kotlin" title="Kotlin" class="md-nav__link">
-    Kotlin
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#java" title="Java" class="md-nav__link">
-    Java
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -495,11 +441,65 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../time/" title="Time" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Time
+      </label>
+    
+    <a href="./" title="Time" class="md-nav__link md-nav__link--active">
       Time
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kotlin" title="Kotlin" class="md-nav__link">
+    Kotlin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java" title="Java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -726,22 +726,24 @@
               
                 
                 
-                  <h1>Password</h1>
+                  <h1>Time</h1>
                 
-                <p>The Password form element is used for a password value field. This field is masked.</p>
+                <p>The Time form element is used for a time dialog.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">password</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;hunter2&quot;</span>
+<div class="codehilite"><pre><span></span><span class="n">time</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">dateValue</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
+    <span class="n">dateFormat</span> <span class="p">=</span> <span class="n">SimpleDateFormat</span><span class="p">(</span><span class="s">&quot;hh:mm a&quot;</span><span class="p">,</span> <span class="n">Locale</span><span class="p">.</span><span class="n">US</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">PasswordEditTextBuilder</span> <span class="n">password</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PasswordEditTextBuilder</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-<span class="n">password</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">&quot;hunter2&quot;</span><span class="o">);</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">password</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="n">TimeBuilder</span> <span class="n">time</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TimeBuilder</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">time</span><span class="o">.</span><span class="na">setDateValue</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+<span class="n">time</span><span class="o">.</span><span class="na">setDateFormat</span><span class="o">(</span><span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&quot;hh:mm a&quot;</span><span class="o">,</span> <span class="n">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">));</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">time</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
 </pre></div>
                 
                   
@@ -763,7 +765,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../email/" title="Email" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../date/" title="Date" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -772,19 +774,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Email
+                Date
               </span>
             </div>
           </a>
         
         
-          <a href="../number/" title="Number" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../dateTime/" title="DateTime" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Number
+                DateTime
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

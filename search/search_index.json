@@ -316,6 +316,226 @@
             "title": "Java"
         },
         {
+            "location": "/element/date/",
+            "text": "The Date form element is used for a date dialog.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\ndate\n(\n1\n)\n \n{\n\n    \ndateValue\n \n=\n \nDate\n()\n\n    \ndateFormat\n \n=\n \nSimpleDateFormat\n(\n\"MM/dd/yyyy\"\n,\n \nLocale\n.\nUS\n)\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nDateBuilder\n \ndate\n \n=\n \nnew\n \nDateBuilder\n(\n1\n);\n\n\ndate\n.\nsetDateValue\n(\nnew\n \nDate\n());\n\n\ndate\n.\nsetDateFormat\n(\nnew\n \nSimpleDateFormat\n(\n\"MM/dd/yyyy\"\n,\n \nLocale\n.\nUS\n));\n\n\nelements\n.\nadd\n(\ndate\n.\nbuild\n());",
+            "title": "Date"
+        },
+        {
+            "location": "/element/date/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/date/#kotlin",
+            "text": "date ( 1 )   { \n     dateValue   =   Date () \n     dateFormat   =   SimpleDateFormat ( \"MM/dd/yyyy\" ,   Locale . US )  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/date/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  DateBuilder   date   =   new   DateBuilder ( 1 );  date . setDateValue ( new   Date ());  date . setDateFormat ( new   SimpleDateFormat ( \"MM/dd/yyyy\" ,   Locale . US ));  elements . add ( date . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/time/",
+            "text": "The Time form element is used for a time dialog.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\ntime\n(\n1\n)\n \n{\n\n    \ndateValue\n \n=\n \nDate\n()\n\n    \ndateFormat\n \n=\n \nSimpleDateFormat\n(\n\"hh:mm a\"\n,\n \nLocale\n.\nUS\n)\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nTimeBuilder\n \ntime\n \n=\n \nnew\n \nTimeBuilder\n(\n1\n);\n\n\ntime\n.\nsetDateValue\n(\nnew\n \nDate\n());\n\n\ntime\n.\nsetDateFormat\n(\nnew\n \nSimpleDateFormat\n(\n\"hh:mm a\"\n,\n \nLocale\n.\nUS\n));\n\n\nelements\n.\nadd\n(\ntime\n.\nbuild\n());",
+            "title": "Time"
+        },
+        {
+            "location": "/element/time/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/time/#kotlin",
+            "text": "time ( 1 )   { \n     dateValue   =   Date () \n     dateFormat   =   SimpleDateFormat ( \"hh:mm a\" ,   Locale . US )  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/time/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  TimeBuilder   time   =   new   TimeBuilder ( 1 );  time . setDateValue ( new   Date ());  time . setDateFormat ( new   SimpleDateFormat ( \"hh:mm a\" ,   Locale . US ));  elements . add ( time . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/dateTime/",
+            "text": "The DateTime form element is used for a date and then time dialog. The date dialog is displayed first and then the time dialog is displayed.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\ndateTime\n(\n1\n)\n \n{\n\n    \ndateValue\n \n=\n \nDate\n()\n\n    \ndateFormat\n \n=\n \nSimpleDateFormat\n(\n\"MM/dd/yyyy hh:mm a\"\n,\n \nLocale\n.\nUS\n)\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nDateTimeBuilder\n \ndateTime\n \n=\n \nnew\n \nDateTimeBuilder\n(\n1\n);\n\n\ndateTime\n.\nsetDateValue\n(\nnew\n \nDate\n());\n\n\ndateTime\n.\nsetDateFormat\n(\nnew\n \nSimpleDateFormat\n(\n\"MM/dd/yyyy hh:mm a\"\n,\n \nLocale\n.\nUS\n));\n\n\nelements\n.\nadd\n(\ndateTime\n.\nbuild\n());",
+            "title": "DateTime"
+        },
+        {
+            "location": "/element/dateTime/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/dateTime/#kotlin",
+            "text": "dateTime ( 1 )   { \n     dateValue   =   Date () \n     dateFormat   =   SimpleDateFormat ( \"MM/dd/yyyy hh:mm a\" ,   Locale . US )  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/dateTime/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  DateTimeBuilder   dateTime   =   new   DateTimeBuilder ( 1 );  dateTime . setDateValue ( new   Date ());  dateTime . setDateFormat ( new   SimpleDateFormat ( \"MM/dd/yyyy hh:mm a\" ,   Locale . US ));  elements . add ( dateTime . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/dropdown/",
+            "text": "The DropDown form element is used for a single choice dialog.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\ndropDown\n<\nListItem\n>(\n1\n)\n \n{\n\n    \ndialogTitle\n \n=\n \n\"Select One\"\n\n    \noptions\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n \n                     \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n))\n\n    \nvalue\n \n=\n \nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n)\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nDropDownBuilder\n<\nListItem\n>\n \ndropDown\n \n=\n \nnew\n \nDropDownBuilder\n<>(\n1\n);\n\n\ndropDown\n.\nsetDialogTitle\n(\n\"Select One\"\n);\n\n\ndropDown\n.\nsetOptions\n(\nArrays\n.\nasList\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n),\n\n    \nnew\n \nListItem\n(\n2L\n,\n \n\"Orange\"\n)));\n\n\ndropDown\n.\nsetValue\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n));\n\n\nelements\n.\nadd\n(\ndropDown\n.\nbuild\n());",
+            "title": "Dropdown"
+        },
+        {
+            "location": "/element/dropdown/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/dropdown/#kotlin",
+            "text": "dropDown < ListItem >( 1 )   { \n     dialogTitle   =   \"Select One\" \n     options   =   listOf ( ListItem ( id   =   1 ,   name   =   \"Banana\" ),  \n                      ListItem ( id   =   2 ,   name   =   \"Orange\" )) \n     value   =   ListItem ( id   =   1 ,   name   =   \"Banana\" )  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/dropdown/#java",
+            "text": "DropDownBuilder < ListItem >   dropDown   =   new   DropDownBuilder <>( 1 );  dropDown . setDialogTitle ( \"Select One\" );  dropDown . setOptions ( Arrays . asList ( new   ListItem ( 1L ,   \"Banana\" ), \n     new   ListItem ( 2L ,   \"Orange\" )));  dropDown . setValue ( new   ListItem ( 1L ,   \"Banana\" ));  elements . add ( dropDown . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/multiCheckBox/",
+            "text": "The MultiCheckBox form element is used for a multiple choice dialog.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nmultiCheckBox\n<\nListItem\n>(\n1\n)\n \n{\n\n    \ndialogTitle\n \n=\n \n\"Select Multiple\"\n\n    \noptions\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n \n                     \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n))\n\n    \noptionsSelected\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n))\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nMultiCheckBoxBuilder\n<\nListItem\n>\n \nmultiCheckBox\n \n=\n \nnew\n \nMultiCheckBoxBuilder\n<>(\nTag\n.\nMultiItems\n.\nordinal\n());\n\n\nmultiCheckBox\n.\nsetDialogTitle\n(\n\"Select Multiple\"\n);\n\n\nmultiCheckBox\n.\nsetOptions\n(\nArrays\n.\nasList\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n),\n\n    \nnew\n \nListItem\n(\n2L\n,\n \n\"Orange\"\n)));\n\n\nmultiCheckBox\n.\nsetOptionsSelected\n(\nCollections\n.\nsingletonList\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n)));\n\n\nelements\n.\nadd\n(\nmultiCheckBox\n.\nbuild\n());",
+            "title": "MultiCheckBox"
+        },
+        {
+            "location": "/element/multiCheckBox/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/multiCheckBox/#kotlin",
+            "text": "multiCheckBox < ListItem >( 1 )   { \n     dialogTitle   =   \"Select Multiple\" \n     options   =   listOf ( ListItem ( id   =   1 ,   name   =   \"Banana\" ),  \n                      ListItem ( id   =   2 ,   name   =   \"Orange\" )) \n     optionsSelected   =   listOf ( ListItem ( id   =   1 ,   name   =   \"Banana\" ))  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/multiCheckBox/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  MultiCheckBoxBuilder < ListItem >   multiCheckBox   =   new   MultiCheckBoxBuilder <>( Tag . MultiItems . ordinal ());  multiCheckBox . setDialogTitle ( \"Select Multiple\" );  multiCheckBox . setOptions ( Arrays . asList ( new   ListItem ( 1L ,   \"Banana\" ), \n     new   ListItem ( 2L ,   \"Orange\" )));  multiCheckBox . setOptionsSelected ( Collections . singletonList ( new   ListItem ( 1L ,   \"Banana\" )));  elements . add ( multiCheckBox . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/autoComplete/",
+            "text": "The AutoComplete form element is used for an AutoComplete row.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nautoComplete\n<\nContactItem\n>(\n1\n)\n \n{\n\n    \narrayAdapter\n \n=\n \nContactAutoCompleteAdapter\n(\nthis\n@FullscreenFormActivity\n,\n\n                        \nandroid\n.\nR\n.\nlayout\n.\nsimple_list_item_1\n,\n \ndefaultItems\n \n=\n\n                            \narrayListOf\n(\nContactItem\n(\nid\n \n=\n \n1\n,\n \nvalue\n \n=\n \n\"\"\n,\n \nlabel\n \n=\n \n\"Try \\\"Apple May\\\"\"\n)))\n\n    \ndropdownWidth\n \n=\n \nViewGroup\n.\nLayoutParams\n.\nMATCH_PARENT\n\n    \nvalue\n \n=\n \nContactItem\n(\nid\n \n=\n \n1\n,\n \nvalue\n \n=\n \n\"John Smith\"\n,\n \nlabel\n \n=\n \n\"John Smith (Tester)\"\n)\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nAutoCompleteBuilder\n<\nContactItem\n>\n \nautoComplete\n \n=\n \nnew\n \nAutoCompleteBuilder\n<>(\n1\n);\n\n\nautoComplete\n.\nsetArrayAdapter\n(\nnew\n \nContactAutoCompleteAdapter\n(\nthis\n,\n\n    \nandroid\n.\nR\n.\nlayout\n.\nsimple_list_item_1\n,\n\n    \nnew\n \nArrayList\n<>(\nCollections\n.\nsingletonList\n(\nnew\n \nContactItem\n(\n1L\n,\n \n\"\"\n,\n \n\"Try \\\"Apple May\\\"\"\n)))));\n\n\nautoComplete\n.\nsetDropdownWidth\n(\nViewGroup\n.\nLayoutParams\n.\nMATCH_PARENT\n);\n\n\nautoComplete\n.\nsetValue\n(\nnew\n \nContactItem\n(\n1L\n,\n \n\"John Smith\"\n,\n \n\"John Smith (Tester)\"\n));\n\n\nelements\n.\nadd\n(\nautoComplete\n.\nbuild\n());",
+            "title": "AutoComplete"
+        },
+        {
+            "location": "/element/autoComplete/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/autoComplete/#kotlin",
+            "text": "autoComplete < ContactItem >( 1 )   { \n     arrayAdapter   =   ContactAutoCompleteAdapter ( this @FullscreenFormActivity , \n                         android . R . layout . simple_list_item_1 ,   defaultItems   = \n                             arrayListOf ( ContactItem ( id   =   1 ,   value   =   \"\" ,   label   =   \"Try \\\"Apple May\\\"\" ))) \n     dropdownWidth   =   ViewGroup . LayoutParams . MATCH_PARENT \n     value   =   ContactItem ( id   =   1 ,   value   =   \"John Smith\" ,   label   =   \"John Smith (Tester)\" )  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/autoComplete/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  AutoCompleteBuilder < ContactItem >   autoComplete   =   new   AutoCompleteBuilder <>( 1 );  autoComplete . setArrayAdapter ( new   ContactAutoCompleteAdapter ( this , \n     android . R . layout . simple_list_item_1 , \n     new   ArrayList <>( Collections . singletonList ( new   ContactItem ( 1L ,   \"\" ,   \"Try \\\"Apple May\\\"\" )))));  autoComplete . setDropdownWidth ( ViewGroup . LayoutParams . MATCH_PARENT );  autoComplete . setValue ( new   ContactItem ( 1L ,   \"John Smith\" ,   \"John Smith (Tester)\" ));  elements . add ( autoComplete . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/autoCompleteToken/",
+            "text": "The AutoCompleteToken form element is used for an AutoComplete row with multiple values represented as tokens.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nautoCompleteToken\n<\nArrayList\n<\nContactItem\n>>(\n1\n)\n \n{\n\n    \narrayAdapter\n \n=\n \nEmailAutoCompleteAdapter\n(\nthis\n@FormActivity\n,\n\n                        \nandroid\n.\nR\n.\nlayout\n.\nsimple_list_item_1\n)\n\n    \ndropdownWidth\n \n=\n \nViewGroup\n.\nLayoutParams\n.\nMATCH_PARENT\n\n    \nvalue\n \n=\n \narrayListOf\n(\nContactItem\n(\nid\n \n=\n \n1\n,\n \nvalue\n \n=\n \n\"John.Smith@mail.com\"\n,\n \nlabel\n \n=\n \n\"John Smith (Tester)\"\n))\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nAutoCompleteTokenBuilder\n<\nContactItem\n>\n \nautoCompleteToken\n \n=\n \nnew\n \nAutoCompleteTokenBuilder\n<>(\n1\n);\n\n\nautoCompleteToken\n.\nsetArrayAdapter\n(\nnew\n \nEmailAutoCompleteAdapter\n(\nthis\n,\n\n    \nandroid\n.\nR\n.\nlayout\n.\nsimple_list_item_1\n));\n\n\nautoCompleteToken\n.\nsetDropdownWidth\n(\nViewGroup\n.\nLayoutParams\n.\nMATCH_PARENT\n);\n\n\nelements\n.\nadd\n(\nautoCompleteToken\n.\nbuild\n());",
+            "title": "AutoCompleteToken"
+        },
+        {
+            "location": "/element/autoCompleteToken/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/autoCompleteToken/#kotlin",
+            "text": "autoCompleteToken < ArrayList < ContactItem >>( 1 )   { \n     arrayAdapter   =   EmailAutoCompleteAdapter ( this @FormActivity , \n                         android . R . layout . simple_list_item_1 ) \n     dropdownWidth   =   ViewGroup . LayoutParams . MATCH_PARENT \n     value   =   arrayListOf ( ContactItem ( id   =   1 ,   value   =   \"John.Smith@mail.com\" ,   label   =   \"John Smith (Tester)\" ))  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/autoCompleteToken/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  AutoCompleteTokenBuilder < ContactItem >   autoCompleteToken   =   new   AutoCompleteTokenBuilder <>( 1 );  autoCompleteToken . setArrayAdapter ( new   EmailAutoCompleteAdapter ( this , \n     android . R . layout . simple_list_item_1 ));  autoCompleteToken . setDropdownWidth ( ViewGroup . LayoutParams . MATCH_PARENT );  elements . add ( autoCompleteToken . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/switch/",
+            "text": "The Switch form element is used for a toggle switch row.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nswitch\n<\nString\n>(\n1\n)\n \n{\n\n   \nvalue\n \n=\n \n\"Yes\"\n\n   \nonValue\n \n=\n \n\"Yes\"\n\n   \noffValue\n \n=\n \n\"No\"\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nSwitchBuilder\n<\nString\n>\n \nswitchElement\n \n=\n \nnew\n \nSwitchBuilder\n<>(\n1\n);\n\n\nswitchElement\n.\nsetValue\n(\n\"Yes\"\n);\n\n\nswitchElement\n.\nsetOnValue\n(\n\"Yes\"\n);\n\n\nswitchElement\n.\nsetOffValue\n(\n\"No\"\n);\n\n\nelements\n.\nadd\n(\nswitchElement\n.\nbuild\n());",
+            "title": "Switch"
+        },
+        {
+            "location": "/element/switch/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/switch/#kotlin",
+            "text": "switch < String >( 1 )   { \n    value   =   \"Yes\" \n    onValue   =   \"Yes\" \n    offValue   =   \"No\"  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/switch/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  SwitchBuilder < String >   switchElement   =   new   SwitchBuilder <>( 1 );  switchElement . setValue ( \"Yes\" );  switchElement . setOnValue ( \"Yes\" );  switchElement . setOffValue ( \"No\" );  elements . add ( switchElement . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/slider/",
+            "text": "The Slider form element is used for a slider (SeekBar) row.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nslider\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n50\n\n    \nmin\n \n=\n \n0\n\n    \nmax\n \n=\n \n100\n\n    \nsteps\n \n=\n \n20\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nSliderBuilder\n \nslider\n \n=\n \nnew\n \nSliderBuilder\n(\n1\n);\n\n\nslider\n.\nsetValue\n(\n50\n);\n\n\nslider\n.\nsetMin\n(\n0\n);\n\n\nslider\n.\nsetMax\n(\n100\n);\n\n\nslider\n.\nsetSteps\n(\n20\n);\n\n\nelements\n.\nadd\n(\nslider\n.\nbuild\n());",
+            "title": "Slider"
+        },
+        {
+            "location": "/element/slider/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/slider/#kotlin",
+            "text": "slider ( 1 )   { \n     value   =   50 \n     min   =   0 \n     max   =   100 \n     steps   =   20  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/slider/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  SliderBuilder   slider   =   new   SliderBuilder ( 1 );  slider . setValue ( 50 );  slider . setMin ( 0 );  slider . setMax ( 100 );  slider . setSteps ( 20 );  elements . add ( slider . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/checkBox/",
+            "text": "The CheckBox form element is used for a checkbox row.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\ncheckBox\n<\nBoolean\n>(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \ntrue\n\n    \ncheckedValue\n \n=\n \ntrue\n\n    \nunCheckedValue\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nCheckBoxBuilder\n<\nBoolean\n>\n \ncheckBox\n \n=\n \nnew\n \nCheckBoxBuilder\n<>(\n1\n);\n\n\ncheckBox\n.\nsetValue\n(\ntrue\n);\n\n\ncheckBox\n.\nsetCheckedValue\n(\ntrue\n);\n\n\ncheckBox\n.\nsetUnCheckedValue\n(\nfalse\n);\n\n\nelements\n.\nadd\n(\ncheckBox\n.\nbuild\n());",
+            "title": "CheckBox"
+        },
+        {
+            "location": "/element/checkBox/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/checkBox/#kotlin",
+            "text": "checkBox < Boolean >( 1 )   { \n     value   =   true \n     checkedValue   =   true \n     unCheckedValue   =   false  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/checkBox/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  CheckBoxBuilder < Boolean >   checkBox   =   new   CheckBoxBuilder <>( 1 );  checkBox . setValue ( true );  checkBox . setCheckedValue ( true );  checkBox . setUnCheckedValue ( false );  elements . add ( checkBox . build ());",
+            "title": "Java"
+        },
+        {
+            "location": "/element/button/",
+            "text": "The Button form element is used for a button row. Click events can be caught with a valueObserver.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nbutton\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n\"Button Text\"\n\n    \nvalueObservers\n.\nadd\n({\n \n_\n,\n \n_\n \n->\n\n        \n// Nothing was changed but the button was tapped!\n\n    \n})\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nButtonBuilder\n \nbutton\n \n=\n \nnew\n \nButtonBuilder\n(\n1\n);\n\n\nbutton\n.\nsetValue\n(\n\"Button Text\"\n);\n\n\nbutton\n.\ngetValueObservers\n().\nadd\n((\nnewValue\n,\n \nelement\n)\n \n->\n \n{\n\n    \n// Nothing was changed but the button was tapped!\n\n    \nreturn\n \nUnit\n.\nINSTANCE\n;\n\n\n});\n\n\nelements\n.\nadd\n(\nbutton\n.\nbuild\n());",
+            "title": "Button"
+        },
+        {
+            "location": "/element/button/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/button/#kotlin",
+            "text": "button ( 1 )   { \n     value   =   \"Button Text\" \n     valueObservers . add ({   _ ,   _   -> \n         // Nothing was changed but the button was tapped! \n     })  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/button/#java",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  ButtonBuilder   button   =   new   ButtonBuilder ( 1 );  button . setValue ( \"Button Text\" );  button . getValueObservers (). add (( newValue ,   element )   ->   { \n     // Nothing was changed but the button was tapped! \n     return   Unit . INSTANCE ;  });  elements . add ( button . build ());",
+            "title": "Java"
+        },
+        {
             "location": "/about/contributing/",
             "text": "Contributing\n\u00b6\n\n\nInterested in contributing to KFormMaster? Want to report a bug? Before\nyou do, please read the following guidelines.\n\n\nSubmission context\n\u00b6\n\n\nGot a question or problem?\n\u00b6\n\n\nFor quick questions there's no need to open an issue as you can reach us on\n\ngitter.im\n.\n\n\nFound a bug?\n\u00b6\n\n\nIf you found a bug in the source code, you can help us by submitting an issue\nto the \nissue tracker\n in our GitHub repository. Even better, you can submit\na Pull Request with a fix. However, before doing so, please read the\n\nsubmission guidelines\n.\n\n\nMissing a feature?\n\u00b6\n\n\nYou can request a new feature by submitting an issue to our GitHub Repository.\nIf you would like to implement a new feature, please submit an issue with a\nproposal for your work first. Please consider what kind of change\nit is:\n\n\n\n\n\n\nFor a \nmajor feature\n, first open an issue and outline your proposal so\n  that it can be discussed. This will also allow us to better coordinate our\n  efforts, prevent duplication of work, and help you to craft the change so\n  that it is successfully accepted into the project.\n\n\n\n\n\n\nSmall features and bugs\n can be crafted and directly submitted as a Pull\n  Request. However, there is no guarantee that your feature will make it into\n  the master, as it's always a matter of opinion whether it benefits the\n  overall functionality of the library.\n\n\n\n\n\n\nSubmission guidelines\n\u00b6\n\n\nSubmitting an issue\n\u00b6\n\n\nBefore you submit an issue, please search the issue tracker, maybe an issue for\nyour problem already exists and the discussion might inform you of workarounds\nreadily available.\n\n\nWe want to fix all the issues as soon as possible, but before fixing a bug we\nneed to reproduce and confirm it. In order to reproduce bugs we will\nsystematically ask you to provide a minimal reproduction scenario using the\ncustom issue template. Please stick to the issue template.\n\n\nUnfortunately we are not able to investigate / fix bugs without a minimal\nreproduction scenario, so if we don't hear back from you we may close the issue.\n\n\nSubmitting a Pull Request (PR)\n\u00b6\n\n\nSearch GitHub for an open or closed PR that relates to your submission. You\ndon't want to duplicate effort. If you do not find a related issue or PR,\ngo ahead.\n\n\n\n\n\n\nDevelopment\n: Fork the project and make your changes in a separate git branch and add descriptive messages to\n  your commits.\n\n\n\n\n\n\nBuild\n: Before submitting a pull requests, run a gradle build. This is\n  a mandatory requirement for your PR to get accepted, as the library should at\n  all times be installable through GitHub (Such as through https://jitpack.io/).\n\n\n\n\n\n\nPull Request\n: Send a PR to \nKFormMaster:master\n. If we\n  suggest changes, make the required updates, rebase your branch and push the\n  changes to your GitHub repository, which will automatically update your PR.\n\n\n\n\n\n\nAfter your PR is merged, you can safely delete your branch and pull the changes\nfrom the main (upstream) repository.",
             "title": "Contributing"

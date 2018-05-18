@@ -13,7 +13,7 @@
         <meta name="description" content="Documentation for the KFormMaster Android library">
       
       
-        <link rel="canonical" href="https://thejuki.github.io/KFormMaster/element/password/">
+        <link rel="canonical" href="https://thejuki.github.io/KFormMaster/element/multiCheckBox/">
       
       
         <meta name="author" content="TheJuki">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Password - KFormMaster Docs</title>
+        <title>MultiCheckBox - KFormMaster Docs</title>
       
     
     
@@ -125,7 +125,7 @@
                 KFormMaster Docs
               </span>
               <span class="md-header-nav__topic">
-                Password
+                MultiCheckBox
               </span>
             
           
@@ -381,65 +381,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Password
-      </label>
-    
-    <a href="./" title="Password" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../password/" title="Password" class="md-nav__link">
       Password
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#example" title="Example" class="md-nav__link">
-    Example
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kotlin" title="Kotlin" class="md-nav__link">
-    Kotlin
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#java" title="Java" class="md-nav__link">
-    Java
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -531,11 +477,65 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../multiCheckBox/" title="MultiCheckBox" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        MultiCheckBox
+      </label>
+    
+    <a href="./" title="MultiCheckBox" class="md-nav__link md-nav__link--active">
       MultiCheckBox
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kotlin" title="Kotlin" class="md-nav__link">
+    Kotlin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java" title="Java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -726,22 +726,28 @@
               
                 
                 
-                  <h1>Password</h1>
+                  <h1>MultiCheckBox</h1>
                 
-                <p>The Password form element is used for a password value field. This field is masked.</p>
+                <p>The MultiCheckBox form element is used for a multiple choice dialog.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">password</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;hunter2&quot;</span>
+<div class="codehilite"><pre><span></span><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">dialogTitle</span> <span class="p">=</span> <span class="s">&quot;Select Multiple&quot;</span>
+    <span class="n">options</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span> 
+                     <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Orange&quot;</span><span class="p">))</span>
+    <span class="n">optionsSelected</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
 
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">PasswordEditTextBuilder</span> <span class="n">password</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PasswordEditTextBuilder</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-<span class="n">password</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">&quot;hunter2&quot;</span><span class="o">);</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">password</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="n">MultiCheckBoxBuilder</span><span class="o">&lt;</span><span class="n">ListItem</span><span class="o">&gt;</span> <span class="n">multiCheckBox</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MultiCheckBoxBuilder</span><span class="o">&lt;&gt;(</span><span class="n">Tag</span><span class="o">.</span><span class="na">MultiItems</span><span class="o">.</span><span class="na">ordinal</span><span class="o">());</span>
+<span class="n">multiCheckBox</span><span class="o">.</span><span class="na">setDialogTitle</span><span class="o">(</span><span class="s">&quot;Select Multiple&quot;</span><span class="o">);</span>
+<span class="n">multiCheckBox</span><span class="o">.</span><span class="na">setOptions</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span> <span class="n">ListItem</span><span class="o">(</span><span class="mi">1L</span><span class="o">,</span> <span class="s">&quot;Banana&quot;</span><span class="o">),</span>
+    <span class="k">new</span> <span class="n">ListItem</span><span class="o">(</span><span class="mi">2L</span><span class="o">,</span> <span class="s">&quot;Orange&quot;</span><span class="o">)));</span>
+<span class="n">multiCheckBox</span><span class="o">.</span><span class="na">setOptionsSelected</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="k">new</span> <span class="n">ListItem</span><span class="o">(</span><span class="mi">1L</span><span class="o">,</span> <span class="s">&quot;Banana&quot;</span><span class="o">)));</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">multiCheckBox</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
 </pre></div>
                 
                   
@@ -763,7 +769,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../email/" title="Email" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../dropdown/" title="Dropdown" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -772,19 +778,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Email
+                Dropdown
               </span>
             </div>
           </a>
         
         
-          <a href="../number/" title="Number" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../autoComplete/" title="AutoComplete" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Number
+                AutoComplete
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

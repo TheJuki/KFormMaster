@@ -65,6 +65,72 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/date/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/time/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/dateTime/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/dropdown/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/multiCheckBox/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/autoComplete/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/autoCompleteToken/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/switch/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/slider/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/checkBox/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster//element/button/</loc>
+     <lastmod>2018-05-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
