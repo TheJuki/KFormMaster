@@ -23,6 +23,9 @@ This library aids in building bigger forms on-the-fly. Forms with large number o
 - Fast color change as needed
 - Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster)
 
+## Documentation
+[https://thejuki.github.io/KFormMaster](https://thejuki.github.io/KFormMaster)
+
 ## Version 3 Changes
 - The title, edit, and error views are now accessible through the model classes
 - The refreshView() function has been removed (No longer needed)
