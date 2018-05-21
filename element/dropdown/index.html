@@ -99,7 +99,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#example" tabindex="1" class="md-skip">
+      <a href="#array-adapter" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -204,13 +204,16 @@
     <ul class="md-tabs__list">
       
         
-  <li class="md-tabs__item">
-    
-      <a href="../.." title="Getting Started" class="md-tabs__link">
-        Getting Started
-      </a>
-    
-  </li>
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../.." title="Home" class="md-tabs__link">
+          Home
+        </a>
+      
+    </li>
+  
 
       
         
@@ -220,6 +223,19 @@
       
         <a href="../base/" title="Form Elements" class="md-tabs__link md-tabs__link--active">
           Form Elements
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../custom/customize/" title="Custom" class="md-tabs__link">
+          Custom
         </a>
       
     </li>
@@ -289,10 +305,46 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Home
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Home
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
   <li class="md-nav__item">
     <a href="../.." title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../helper/" title="Form Build Helper" class="md-nav__link">
+      Form Build Helper
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -490,6 +542,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#array-adapter" title="Array Adapter" class="md-nav__link">
+    Array Adapter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dialog-title" title="Dialog Title" class="md-nav__link">
+    Dialog Title
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" title="Example" class="md-nav__link">
     Example
   </a>
@@ -626,10 +692,58 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
-      About
+      Custom
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        Custom
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../custom/customize/" title="Customize Form" class="md-nav__link">
+      Customize Form
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../custom/element/" title="Custom Element" class="md-nav__link">
+      Custom Element
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      About
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
         About
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -683,6 +797,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#array-adapter" title="Array Adapter" class="md-nav__link">
+    Array Adapter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dialog-title" title="Dialog Title" class="md-nav__link">
+    Dialog Title
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" title="Example" class="md-nav__link">
     Example
   </a>
@@ -729,6 +857,28 @@
                   <h1>Dropdown</h1>
                 
                 <p>The DropDown form element is used for a single choice dialog.</p>
+<h2 id="array-adapter">Array Adapter<a class="headerlink" href="#array-adapter" title="Permanent link">&para;</a></h2>
+<p>Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.</p>
+<div class="admonition note">
+<p class="admonition-title">NOTICE</p>
+<p>The ContactItem and ContactAutoCompleteAdapter classes are provided in the example app.</p>
+</div>
+<div class="codehilite"><pre><span></span><span class="n">dropDown</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">arrayAdapter</span> <span class="p">=</span> <span class="n">ContactAutoCompleteAdapter</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span>
+                        <span class="n">android</span><span class="p">.</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">simple_list_item_1</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="dialog-title">Dialog Title<a class="headerlink" href="#dialog-title" title="Permanent link">&para;</a></h2>
+<p>By default this is "Select One".
+Setting this will override the alert dialog title.</p>
+<div class="codehilite"><pre><span></span><span class="n">dropDown</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">dialogTitle</span> <span class="p">=</span> <span class="s">&quot;Select One&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">dropDown</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>

@@ -204,13 +204,16 @@
     <ul class="md-tabs__list">
       
         
-  <li class="md-tabs__item">
-    
-      <a href="../.." title="Getting Started" class="md-tabs__link">
-        Getting Started
-      </a>
-    
-  </li>
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../.." title="Home" class="md-tabs__link">
+          Home
+        </a>
+      
+    </li>
+  
 
       
         
@@ -220,6 +223,19 @@
       
         <a href="./" title="Form Elements" class="md-tabs__link md-tabs__link--active">
           Form Elements
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../custom/customize/" title="Custom" class="md-tabs__link">
+          Custom
         </a>
       
     </li>
@@ -289,10 +305,46 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Home
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Home
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
   <li class="md-nav__item">
     <a href="../.." title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../helper/" title="Form Build Helper" class="md-nav__link">
+      Form Build Helper
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -438,6 +490,20 @@
         <li class="md-nav__item">
   <a href="#enabled" title="Enabled" class="md-nav__link">
     Enabled
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clear-value" title="Clear value" class="md-nav__link">
+    Clear value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-the-value-valid" title="Is the value valid?" class="md-nav__link">
+    Is the value valid?
   </a>
   
 </li>
@@ -703,10 +769,58 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
-      About
+      Custom
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        Custom
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../custom/customize/" title="Customize Form" class="md-nav__link">
+      Customize Form
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../custom/element/" title="Custom Element" class="md-nav__link">
+      Custom Element
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      About
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
         About
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -852,6 +966,20 @@
         <li class="md-nav__item">
   <a href="#enabled" title="Enabled" class="md-nav__link">
     Enabled
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clear-value" title="Clear value" class="md-nav__link">
+    Clear value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#is-the-value-valid" title="Is the value valid?" class="md-nav__link">
+    Is the value valid?
   </a>
   
 </li>
@@ -1034,6 +1162,19 @@ Setting enabled to false will disable the form element. This means that the clic
 </pre></div>
 
 
+<h2 id="clear-value">Clear value<a class="headerlink" href="#clear-value" title="Permanent link">&para;</a></h2>
+<p>Clear the value of the element.</p>
+<div class="codehilite"><pre><span></span><span class="n">element</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+
+
+<h2 id="is-the-value-valid">Is the value valid?<a class="headerlink" href="#is-the-value-valid" title="Permanent link">&para;</a></h2>
+<p>isValid contains a getter that checks if the valid is valid. At the base level, this checks if the value is not null or empty.
+This is used by formBuilder.isValidForm.</p>
+<div class="codehilite"><pre><span></span><span class="n">element</span><span class="p">.</span><span class="n">isValid</span>
+</pre></div>
+
+
 <h2 id="dynamic-views">Dynamic Views<a class="headerlink" href="#dynamic-views" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">NOTICE</p>
@@ -1059,7 +1200,7 @@ Setting enabled to false will disable the form element. This means that the clic
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../.." title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../helper/" title="Form Build Helper" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1068,7 +1209,7 @@ Setting enabled to false will disable the form element. This means that the clic
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Getting Started
+                Form Build Helper
               </span>
             </div>
           </a>

@@ -99,7 +99,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
     
-      <a href="#example" tabindex="1" class="md-skip">
+      <a href="#date-value" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -204,13 +204,16 @@
     <ul class="md-tabs__list">
       
         
-  <li class="md-tabs__item">
-    
-      <a href="../.." title="Getting Started" class="md-tabs__link">
-        Getting Started
-      </a>
-    
-  </li>
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../.." title="Home" class="md-tabs__link">
+          Home
+        </a>
+      
+    </li>
+  
 
       
         
@@ -220,6 +223,19 @@
       
         <a href="../base/" title="Form Elements" class="md-tabs__link md-tabs__link--active">
           Form Elements
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../custom/customize/" title="Custom" class="md-tabs__link">
+          Custom
         </a>
       
     </li>
@@ -289,10 +305,46 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Home
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Home
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
   <li class="md-nav__item">
     <a href="../.." title="Getting Started" class="md-nav__link">
       Getting Started
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../helper/" title="Form Build Helper" class="md-nav__link">
+      Form Build Helper
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -478,6 +530,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#date-value" title="Date Value" class="md-nav__link">
+    Date Value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#date-format" title="Date Format" class="md-nav__link">
+    Date Format
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" title="Example" class="md-nav__link">
     Example
   </a>
@@ -626,10 +692,58 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
-      About
+      Custom
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        Custom
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../custom/customize/" title="Customize Form" class="md-nav__link">
+      Customize Form
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../custom/element/" title="Custom Element" class="md-nav__link">
+      Custom Element
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      About
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
         About
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -683,6 +797,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#date-value" title="Date Value" class="md-nav__link">
+    Date Value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#date-format" title="Date Format" class="md-nav__link">
+    Date Format
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" title="Example" class="md-nav__link">
     Example
   </a>
@@ -729,6 +857,17 @@
                   <h1>DateTime</h1>
                 
                 <p>The DateTime form element is used for a date and then time dialog. The date dialog is displayed first and then the time dialog is displayed.</p>
+<div class="admonition info">
+<p class="admonition-title">Value</p>
+<ul>
+<li>You can set value directly by creating a new instance of FormPickerDateTimeElement.DateTimeHolder. However, dateValue and dateFormat will create the instance for you.</li>
+<li>Call getTime() on value to get a Date object back.</li>
+</ul>
+</div>
+<h2 id="date-value">Date Value<a class="headerlink" href="#date-value" title="Permanent link">&para;</a></h2>
+<p>A java.util.Date value.</p>
+<h2 id="date-format">Date Format<a class="headerlink" href="#date-format" title="Permanent link">&para;</a></h2>
+<p>A java.text.DateFormat value. By default this is SimpleDateFormat.getDateInstance(). It is advised to provide your own format.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">dateTime</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
