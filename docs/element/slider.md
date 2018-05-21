@@ -1,5 +1,14 @@
 The Slider form element is used for a slider (SeekBar) row.
 
+## Min
+Min is the minimum number for the slider.
+
+## Max
+Max is the maximum number for the slider.
+
+## Steps
+Steps are the number of places in the slider. In the example, the slider will step from 0, 5, 10, 15...100. 
+
 ## Example
 
 ### Kotlin

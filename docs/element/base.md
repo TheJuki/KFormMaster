@@ -149,6 +149,19 @@ text {
 }
 ```
 
+## Clear value
+Clear the value of the element.
+```kotlin
+element.clear()
+```
+
+## Is the value valid?
+isValid contains a getter that checks if the valid is valid. At the base level, this checks if the value is not null or empty.
+This is used by formBuilder.isValidForm.
+```kotlin
+element.isValid
+```
+
 ## Dynamic Views
 
 !!! note "NOTICE"

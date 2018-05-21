@@ -1,11 +1,33 @@
 The AutoComplete form element is used for an AutoComplete row.
 
+## Array Adapter
+Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.
+
+!!! note "NOTICE"
+
+    The ContactItem and ContactAutoCompleteAdapter classes are provided in the example app.
+
+```kotlin
+autoComplete<ContactItem>(1) {
+    arrayAdapter = ContactAutoCompleteAdapter(this@FormActivity,
+                        android.R.layout.simple_list_item_1)
+}
+```
+
+## Dropdown Width
+This is the width of the dropdown list. ViewGroup.LayoutParams.MATCH_PARENT will use the form's width.
+```kotlin
+autoComplete<ContactItem>(1) {
+    dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
+}
+```
+
 ## Example
 
 ### Kotlin
 ```kotlin
 autoComplete<ContactItem>(1) {
-    arrayAdapter = ContactAutoCompleteAdapter(this@FullscreenFormActivity,
+    arrayAdapter = ContactAutoCompleteAdapter(this@FormActivity,
                         android.R.layout.simple_list_item_1, defaultItems =
                             arrayListOf(ContactItem(id = 1, value = "", label = "Try \"Apple May\"")))
     dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT

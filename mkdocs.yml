@@ -38,7 +38,9 @@ markdown_extensions:
 
 # Page tree
 pages:
-  - Getting Started: index.md
+  - Home: 
+    - 'Getting Started': 'index.md'
+    - 'Form Build Helper': 'helper.md'
   - Form Elements:
     - 'Base': 'element/base.md'
     - 'Header': 'element/header.md'
@@ -60,6 +62,9 @@ pages:
     - 'Slider': 'element/slider.md'
     - 'CheckBox': 'element/checkBox.md'
     - 'Button': 'element/button.md'
+  - Custom:
+    - 'Customize Form': 'custom/customize.md'
+    - 'Custom Element': 'custom/element.md'
   - About:
     - 'Contributing': 'about/contributing.md'
     - 'Credits': 'about/credits.md'

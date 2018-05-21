@@ -1,5 +1,28 @@
 The DropDown form element is used for a single choice dialog.
 
+## Array Adapter
+Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.
+
+!!! note "NOTICE"
+
+    The ContactItem and ContactAutoCompleteAdapter classes are provided in the example app.
+
+```kotlin
+dropDown<ContactItem>(1) {
+    arrayAdapter = ContactAutoCompleteAdapter(this@FormActivity,
+                        android.R.layout.simple_list_item_1)
+}
+```
+
+## Dialog Title
+By default this is "Select One".
+Setting this will override the alert dialog title.
+```kotlin
+dropDown<ListItem>(1) {
+    dialogTitle = "Select One"
+}
+```
+
 ## Example
 
 ### Kotlin

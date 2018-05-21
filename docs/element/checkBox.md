@@ -1,5 +1,8 @@
 The CheckBox form element is used for a checkbox row.
 
+## Checked and UnChecked Values
+The value is set to checkedValue when checked. The value is set to unCheckedValue when unChecked. 
+
 ## Example
 
 ### Kotlin
