@@ -403,6 +403,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#add-form-element" title="Add Form Element" class="md-nav__link">
+    Add Form Element
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-form-elements" title="Add Form Elements" class="md-nav__link">
+    Add Form Elements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-measure-enabled" title="Auto Measure Enabled" class="md-nav__link">
+    Auto Measure Enabled
+  </a>
+  
+</li>
+      
       
       
       
@@ -774,6 +795,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../about/license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -835,6 +868,27 @@
         <li class="md-nav__item">
   <a href="#clear-all-values" title="Clear all values" class="md-nav__link">
     Clear all values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-form-element" title="Add Form Element" class="md-nav__link">
+    Add Form Element
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-form-elements" title="Add Form Elements" class="md-nav__link">
+    Add Form Elements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-measure-enabled" title="Auto Measure Enabled" class="md-nav__link">
+    Auto Measure Enabled
   </a>
   
 </li>
@@ -901,6 +955,32 @@ NOTE: This is enabled by default.</p>
 <p>Clear all values of the form elements by calling clearAll().</p>
 <div class="codehilite"><pre><span></span><span class="n">formBuilder</span><span class="p">.</span><span class="n">clearAll</span><span class="p">()</span>
 </pre></div>
+
+
+<h3 id="add-form-element">Add Form Element<a class="headerlink" href="#add-form-element" title="Permanent link">&para;</a></h3>
+<p>Add one form element. Note that setItems() needs to be called afterward.</p>
+<div class="codehilite"><pre><span></span><span class="n">formBuilder</span><span class="p">.</span><span class="n">addFormElement</span><span class="p">(</span><span class="n">FormButtonElement</span><span class="p">())</span>
+<span class="n">formBuilder</span><span class="p">.</span><span class="n">setItems</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="add-form-elements">Add Form Elements<a class="headerlink" href="#add-form-elements" title="Permanent link">&para;</a></h3>
+<p>Add multiple form elements.</p>
+<div class="codehilite"><pre><span></span><span class="k">val</span> <span class="py">elements</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">BaseFormElement</span><span class="p">&lt;*&gt;&gt;</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">()</span>
+<span class="n">formBuilder</span><span class="p">.</span><span class="n">addFormElements</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="auto-measure-enabled">Auto Measure Enabled<a class="headerlink" href="#auto-measure-enabled" title="Permanent link">&para;</a></h3>
+<p>By default this is false.
+Enable autoMeasureEnabled when the layout_height of recyclerView is wrap_content such as the LoginFormActivity example.</p>
+<div class="codehilite"><pre><span></span><span class="n">formBuilder</span> <span class="p">=</span> <span class="n">FormBuildHelper</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recyclerView</span><span class="p">,</span> <span class="n">autoMeasureEnabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="n">formBuilder</span> <span class="p">=</span> <span class="n">FormBuildHelper</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+<span class="n">formBuilder</span><span class="p">.</span><span class="n">attachRecyclerView</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recyclerView</span><span class="p">,</span> <span class="n">autoMeasureEnabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
+</pre></div>
                 
                   
                 
@@ -958,7 +1038,7 @@ NOTE: This is enabled by default.</p>
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2018 TheJuki
+            Copyright &copy; 2018 Justin Kirk
           </div>
         
         powered by
