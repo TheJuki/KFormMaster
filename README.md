@@ -20,7 +20,7 @@ This is a Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster)
 [https://thejuki.github.io/KFormMaster](https://thejuki.github.io/KFormMaster)
 
 ## Java Compatibility
-- This library was ported from Java and is still compatibile with Java code
+- This library was ported from Java and is still compatible with Java code
 - See [Java Example](https://github.com/TheJuki/KFormMaster/blob/master/app/src/main/java/com/thejuki/kformmasterexample/FormListenerJavaActivity.java)
 
 ## Installation
