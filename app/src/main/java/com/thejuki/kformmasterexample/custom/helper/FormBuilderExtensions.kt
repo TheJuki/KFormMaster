@@ -16,24 +16,23 @@ import com.thejuki.kformmasterexample.custom.model.FormCustomElement
 /** Builder method to add a CustomElement */
 class CustomElementBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
     override fun build() =
-            FormCustomElement(tag)
-                    .setTitle(title.orEmpty())
-                    .setValue(value)
-                    .setHint(hint)
-                    .setRightToLeft(rightToLeft)
-                    .setMaxLines(maxLines)
-                    .setError(error)
-                    .setRequired(required)
-                    .setEnabled(enabled)
-                    .setVisible(visible)
-                    .addAllValueObservers(valueObservers)
-                    as FormCustomElement
+            FormCustomElement(tag).apply {
+                this@CustomElementBuilder.let {
+                    title = it.title.orEmpty()
+                    value = it.value
+                    hint = it.hint
+                    rightToLeft = it.rightToLeft
+                    maxLines = it.maxLines
+                    error = it.error
+                    required = it.required
+                    enabled = it.enabled
+                    visible = it.visible
+                    valueObservers.addAll(it.valueObservers)
+                }
+            }
 }
 
 /** FormBuildHelper extension to add a CustomElement */
 fun FormBuildHelper.customEx(tag: Int = -1, init: CustomElementBuilder.() -> Unit): FormCustomElement {
-    val element = CustomElementBuilder(tag).apply(init).build()
-    element.id = ++lastId
-    elements.add(element)
-    return element
+    return addFormElement(CustomElementBuilder(tag).apply(init).build())
 }

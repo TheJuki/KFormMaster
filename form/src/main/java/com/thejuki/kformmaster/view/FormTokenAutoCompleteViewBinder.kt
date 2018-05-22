@@ -70,8 +70,7 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
                         R.color.colorFormMasterElementTextTitle))
 
                 model.setValue(itemsCompletionView.objects)
-                model.setError(null)
-                setError(textViewError, null)
+                model.error = null
                 formBuilder.onValueChanged(model)
             }
         }

@@ -10,7 +10,7 @@ repo_url: 'https://github.com/thejuki/KFormMaster'
 edit_uri: ""
 
 # Copyright
-copyright: 'Copyright &copy; 2018 TheJuki'
+copyright: 'Copyright &copy; 2018 Justin Kirk'
 
 # Configuration
 theme:
@@ -68,3 +68,4 @@ pages:
   - About:
     - 'Contributing': 'about/contributing.md'
     - 'Credits': 'about/credits.md'
+    - 'License': 'about/license.md'

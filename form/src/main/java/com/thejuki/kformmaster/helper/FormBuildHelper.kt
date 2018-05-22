@@ -164,12 +164,23 @@ class FormBuildHelper
     }
 
     /**
+     * Adds the given [formElement] to the elements list returns it
+     */
+    fun <T : BaseFormElement<*>> addFormElement(formElement: T): T {
+        formElement.id = ++lastId
+        this.elements.add(formElement)
+        return formElement
+    }
+
+    /**
      * Adds the given [formElements] to the elements list and the adapter
      */
     fun addFormElements(formElements: List<BaseFormElement<*>>) {
         this.elements.addAll(formElements)
         for (element in elements) {
-            element.id = ++lastId
+            if (element.id == 0) {
+                element.id = ++lastId
+            }
         }
         setItems()
     }
@@ -177,7 +188,7 @@ class FormBuildHelper
     /**
      * Sets the adapter items to the form elements
      */
-    internal fun setItems() {
+    fun setItems() {
         this.formAdapter.setItems(this.elements)
         if (this.cacheForm) {
             this.recyclerView.setItemViewCacheSize(this.elements.size)

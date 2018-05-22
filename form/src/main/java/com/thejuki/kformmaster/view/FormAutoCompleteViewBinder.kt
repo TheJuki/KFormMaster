@@ -36,24 +36,23 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
 
         val autoCompleteTextView = finder.find(R.id.formElementValue) as AppCompatAutoCompleteTextView
 
-        if (model.valueAsString != model.typedString) {
-            autoCompleteTextView.setText(model.typedString)
-        } else {
-            autoCompleteTextView.setText(model.valueAsString)
-        }
         autoCompleteTextView.hint = model.hint ?: ""
-
-        // Select all text when focused for easy removal
-        if (autoCompleteTextView.text.isNotEmpty()) {
-            autoCompleteTextView.setSelectAllOnFocus(true)
-        }
 
         // Set threshold (the number of characters to type before the drop down is shown)
         autoCompleteTextView.threshold = 1
 
         model.editView = autoCompleteTextView
 
-        setEditTextFocusEnabled(autoCompleteTextView, itemView)
+        if (model.typedString != null) {
+            autoCompleteTextView.setText(model.typedString)
+        } else {
+            autoCompleteTextView.setText(model.valueAsString)
+        }
+
+        // Select all text when focused for easy removal
+        if (autoCompleteTextView.text.isNotEmpty()) {
+            autoCompleteTextView.setSelectAllOnFocus(true)
+        }
 
         val itemsAdapter = if (model.arrayAdapter != null)
             model.arrayAdapter
@@ -96,8 +95,7 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
                 // If field is blank set form value to null
                 if (charSequence.isBlank() && model.value != null) {
                     model.setValue(null)
-                    model.setError(null)
-                    setError(textViewError, null)
+                    model.error = null
                     formBuilder.onValueChanged(model)
                 }
             }

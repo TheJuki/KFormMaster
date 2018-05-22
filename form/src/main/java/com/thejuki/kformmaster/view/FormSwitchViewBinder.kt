@@ -42,7 +42,7 @@ class FormSwitchViewBinder(private val context: Context, private val formBuilder
                 model.setValue(model.offValue)
             }
             formBuilder.onValueChanged(model)
-            setError(textViewError, null)
+            model.error = null
         }
     }, object : ViewStateProvider<FormSwitchElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormSwitchElement<*>): Int {

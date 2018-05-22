@@ -68,7 +68,7 @@ class FormSliderViewBinder(private val context: Context, private val formBuilder
 
                 slider.progress = model.value as Int
                 progressValue.text = model.value.toString()
-                setError(textViewError, null)
+                model.error = null
             }
         })
     }, object : ViewStateProvider<FormSliderElement, ViewHolder> {

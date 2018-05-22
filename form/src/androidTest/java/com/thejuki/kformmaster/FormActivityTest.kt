@@ -242,6 +242,7 @@ class FormActivityTest : AppCompatActivity() {
                     confirmAlert.show()
                 })
                 as FormButtonElement
-        formBuilder.addFormElements(listOf(disabledButton))
+        formBuilder.addFormElement(disabledButton)
+        formBuilder.setItems()
     }
 }

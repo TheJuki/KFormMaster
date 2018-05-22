@@ -44,3 +44,29 @@ Clear all values of the form elements by calling clearAll().
 ```kotlin
 formBuilder.clearAll()
 ```
+
+### Add Form Element
+Add one form element. Note that setItems() needs to be called afterward.
+```kotlin
+formBuilder.addFormElement(FormButtonElement())
+formBuilder.setItems()
+```
+
+### Add Form Elements
+Add multiple form elements.
+```kotlin
+val elements: MutableList<BaseFormElement<*>> = mutableListOf()
+formBuilder.addFormElements(elements)
+```
+
+### Auto Measure Enabled
+By default this is false.
+Enable autoMeasureEnabled when the layout_height of recyclerView is wrap_content such as the LoginFormActivity example.
+```kotlin
+formBuilder = FormBuildHelper(this, recyclerView, autoMeasureEnabled = true)
+```
+
+```kotlin
+formBuilder = FormBuildHelper(this)
+formBuilder.attachRecyclerView(this, recyclerView, autoMeasureEnabled = true)
+```

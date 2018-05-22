@@ -42,7 +42,7 @@ class FormCheckBoxViewBinder(private val context: Context, private val formBuild
                 model.setValue(model.unCheckedValue)
             }
             formBuilder.onValueChanged(model)
-            setError(textViewError, null)
+            model.error = null
         }
     }, object : ViewStateProvider<FormCheckBoxElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormCheckBoxElement<*>): Int {

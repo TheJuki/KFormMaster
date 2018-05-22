@@ -275,7 +275,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.AutoComplete)
                 arrayAdapter = ContactAutoCompleteAdapter(this@FullscreenFormActivity,
                         android.R.layout.simple_list_item_1, defaultItems =
-                arrayListOf(ContactItem(id = 1, value = "", label = "Try \"Apple May\"")))
+                arrayListOf(ContactItem(id = 0, value = "", label = "Try \"Apple May\"")))
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
                 value = ContactItem(id = 1, value = "John Smith", label = "John Smith (Tester)")
                 enabled = true

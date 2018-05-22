@@ -71,8 +71,7 @@ class FormNumberEditTextViewBinder(private val context: Context, private val for
                 // trigger event only if the value is changed
                 if (currentValue != newValue) {
                     model.setValue(newValue)
-                    model.setError(null)
-                    setError(textViewError, null)
+                    model.error = null
                     formBuilder.onValueChanged(model)
                 }
             }
