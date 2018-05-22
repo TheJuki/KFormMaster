@@ -1,5 +1,10 @@
 # Change Log
 
+## [3.2.1](https://github.com/TheJuki/KFormMaster/releases/tag/3.2.1)
+- Fixed Autocomplete text not showing up when initialized with a value. 
+- Added addFormElement function to FormBuildHelper and use apply/let to reduce code in FormBuilder. 
+- Completed document on how to create a custom form element.
+
 ## [3.2.0](https://github.com/TheJuki/KFormMaster/releases/tag/3.2.0)
 - Added maxLines to form models. Set to a number greater than 1 to increase the number of visible lines.
 - Merged PR #22 to fix the DSL Form Builder.
