@@ -61,10 +61,10 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
     /**
      * Sets the value and typedString
      */
-    override fun setValue(mValue: Any?): BaseFormElement<T> {
-        typedString = mValue?.toString()
+    override fun setValue(value: Any?): BaseFormElement<T> {
+        typedString = value?.toString()
 
-        return super.setValue(mValue)
+        return super.setValue(value)
     }
 
     /**
