@@ -34,7 +34,6 @@ android {
     }
 
     testOptions {
-        execution 'ANDROID_TEST_ORCHESTRATOR'
         animationsDisabled true
 
         unitTests {
@@ -84,7 +83,6 @@ ext {
     testExpressoVersion = '3.0.1'
     kotlintestVersion = '2.0.7'
     mockitoVersion = '2.15.0'
-    orchestratorVersion = '1.0.2'
 }
 
 dependencies {
@@ -103,7 +101,6 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$testExpressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$testExpressoVersion"
-    androidTestUtil "com.android.support.test:orchestrator:$orchestratorVersion"
 }
 
 publish {
