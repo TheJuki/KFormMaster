@@ -1,5 +1,7 @@
 The CheckBox form element is used for a checkbox row.
 
+![Example](/images/CheckBox.PNG)
+
 ## Checked and UnChecked Values
 The value is set to checkedValue when checked. The value is set to unCheckedValue when unChecked. 
 

@@ -1,5 +1,7 @@
 The Header element is used as a header row.
 
+![Example](/images/Header.PNG)
+
 ## Collapsible
 By default this is false.
 Setting this to true will allow the form header to "collapse/uncollapse" (Hide/Show) elements below it when tapped.

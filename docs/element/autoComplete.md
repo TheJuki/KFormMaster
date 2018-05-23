@@ -1,5 +1,9 @@
 The AutoComplete form element is used for an AutoComplete row.
 
+![Example](/images/Autocomplete1.PNG)
+
+![Example](/images/Autocomplete2.PNG)
+
 ## Array Adapter
 Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.
 

@@ -1,5 +1,7 @@
 The Number element is used for a number value field with the number keyboard layout.
 
+![Example](/images/Number.PNG)
+
 !!! note "NOTICE"
 
     The value is a String. It is up to you to convert the resulting value to a number if necessary.

@@ -1,5 +1,7 @@
 The Text View form element is used for a readonly text value field.
 
+![Example](/images/TextView.PNG)
+
 ## Example
 
 ### Kotlin

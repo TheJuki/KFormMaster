@@ -1,5 +1,11 @@
 The DateTime form element is used for a date and then time dialog. The date dialog is displayed first and then the time dialog is displayed.
 
+![Example](/images/DateTime.PNG)
+
+<img src="/images/Date2.PNG" alt="Example" width="300px"/>
+
+<img src="/images/Time2.PNG" alt="Example" width="300px"/>
+
 !!! info "Value"
 
     * You can set value directly by creating a new instance of FormPickerDateTimeElement.DateTimeHolder. However, dateValue and dateFormat will create the instance for you.

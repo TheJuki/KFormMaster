@@ -1,5 +1,9 @@
 The Date form element is used for a date dialog.
 
+![Example](/images/Date1.PNG)
+
+<img src="/images/Date2.PNG" alt="Example" width="300px"/>
+
 !!! info "Value"
 
     * You can set value directly by creating a new instance of FormPickerDateElement.DateHolder. However, dateValue and dateFormat will create the instance for you.

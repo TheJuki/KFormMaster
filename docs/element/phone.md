@@ -1,5 +1,7 @@
 The Phone form element is used for a phone number value field with the phone keyboard layout.
 
+![Example](/images/Phone.PNG)
+
 ## Example
 
 ### Kotlin

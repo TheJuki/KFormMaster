@@ -1,5 +1,9 @@
 The DropDown form element is used for a single choice dialog.
 
+![Example](/images/Dropdown1.PNG)
+
+<img src="/images/Dropdown2.PNG" alt="Example" width="300px"/>
+
 ## Array Adapter
 Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.
 

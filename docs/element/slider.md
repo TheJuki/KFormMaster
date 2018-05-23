@@ -1,5 +1,7 @@
 The Slider form element is used for a slider (SeekBar) row.
 
+![Example](/images/Slider.PNG)
+
 ## Min
 Min is the minimum number for the slider.
 

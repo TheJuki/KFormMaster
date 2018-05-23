@@ -1,5 +1,9 @@
 The Time form element is used for a time dialog.
 
+![Example](/images/Time1.PNG)
+
+<img src="/images/Time2.PNG" alt="Example" width="300px"/>
+
 !!! info "Value"
 
     * You can set value directly by creating a new instance of FormPickerTimeElement.TimeHolder. However, dateValue and dateFormat will create the instance for you.
