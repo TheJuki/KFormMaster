@@ -2,7 +2,7 @@ The Date form element is used for a date dialog.
 
 ![Example](/images/Date1.PNG)
 
-<img src="/images/Date2.PNG" alt="Example" width="300px"/>
+<img src="../../images/Date2.PNG" alt="Example" width="300px"/>
 
 !!! info "Value"
 

@@ -2,9 +2,9 @@ The DateTime form element is used for a date and then time dialog. The date dial
 
 ![Example](/images/DateTime.PNG)
 
-<img src="/images/Date2.PNG" alt="Example" width="300px"/>
+<img src="../../images/Date2.PNG" alt="Example" width="300px"/>
 
-<img src="/images/Time2.PNG" alt="Example" width="300px"/>
+<img src="../../images/Time2.PNG" alt="Example" width="300px"/>
 
 !!! info "Value"
 

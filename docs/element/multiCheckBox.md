@@ -2,7 +2,7 @@ The MultiCheckBox form element is used for a multiple choice dialog.
 
 ![Example](/images/MultiCheckBox1.PNG)
 
-<img src="/images/MultiCheckBox2.PNG" alt="Example" width="300px"/>
+<img src="../../images/MultiCheckBox2.PNG" alt="Example" width="300px"/>
 
 ## Dialog Title
 By default this is "Pick one or more".
