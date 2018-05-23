@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.novoda.bintray-release'
-apply plugin: 'jacoco-android'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 27
@@ -33,11 +33,42 @@ android {
         abortOnError false
     }
 
-    jacocoAndroidUnitTestReport {
-        csv.enabled false
-        html.enabled true
-        xml.enabled true
+    testOptions {
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+        animationsDisabled true
+
+        unitTests {
+            includeAndroidResources = true
+        }
     }
+}
+
+jacoco {
+    toolVersion = "$jacocoVersion"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = [
+            '**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*', '**/*$[0-9].*'
+    ]
+    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+    ])
 }
 
 tasks.withType(Javadoc).all {
@@ -49,10 +80,11 @@ ext {
     rendererRecyclerViewAdapterVersion = '2.5.0'
     tokenautocompleteVersion = '2.0.8'
     junitVersion = '4.12'
-    testRunnerVersion = '1.0.1'
+    testRunnerVersion = '1.0.2'
     testExpressoVersion = '3.0.1'
     kotlintestVersion = '2.0.7'
     mockitoVersion = '2.15.0'
+    orchestratorVersion = '1.0.2'
 }
 
 dependencies {
@@ -71,6 +103,7 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$testExpressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$testExpressoVersion"
+    androidTestUtil "com.android.support.test:orchestrator:$orchestratorVersion"
 }
 
 publish {
