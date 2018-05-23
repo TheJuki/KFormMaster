@@ -15,7 +15,6 @@ android:
     - extra-android-support
     - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 before_script:
-  - ./gradlew build jacocoTestReport assembleAndroidTest
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
