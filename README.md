@@ -1,4 +1,4 @@
-<p align="center"><img src="https://s31.postimg.cc/stt7ldxff/LOGO_PROPOSAL_FOR_KFORMMASTER_2.jpg"></p>
+<p align="center"><img src="logo.jpeg"></p>
 
 <p align="center">
 <a href="https://travis-ci.org/TheJuki/KFormMaster"><img src="https://travis-ci.org/TheJuki/KFormMaster.svg?branch=master" alt="Build status" /></a>
