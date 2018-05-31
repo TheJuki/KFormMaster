@@ -1,15 +1,11 @@
 package com.thejuki.kformmaster.model
 
 import android.content.Context
-import android.os.Parcel
-import android.os.Parcelable
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
 import android.view.View
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
-import java.io.Serializable
-import java.util.*
 
 /**
  * Form Picker MultiCheckBox Element
@@ -19,14 +15,22 @@ import java.util.*
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
+class FormPickerMultiCheckBoxElement<T : List<*>> : FormPickerElement<T> {
 
     override val isValid: Boolean
-        get() = !required || (optionsSelected != null && optionsSelected?.isEmpty() == false)
+        get() = !required || (value != null && value is List<*> && !(value as List<*>).isEmpty())
 
-    override fun clear() {
-        super.clear()
-        this.optionsSelected = null
+    /**
+     * Form Element Options
+     */
+    var options: T? = null
+
+    /**
+     * Options builder setter
+     */
+    fun setOptions(options: T): BaseFormElement<T> {
+        this.options = options
+        return this
     }
 
     /**
@@ -60,7 +64,7 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
                 options[i] = obj.toString()
                 optionsSelected[i] = false
 
-                if (this.optionsSelected?.contains(obj) == true) {
+                if (this.value != null && this.value is List<*> && (this.value as List<*>).contains(obj)) {
                     optionsSelected[i] = true
                     mSelectedItems.add(i)
                 }
@@ -99,7 +103,7 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
                                 .map { mSelectedItems[it] }
                                 .map { x -> it[x] }
 
-                        this.setOptionsSelected(selectedOptions)
+                        this.setValue(selectedOptions)
                         this.error = null
                         formBuilder.onValueChanged(this)
                         editTextView?.setText(getSelectedItemsText())
@@ -129,7 +133,7 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
                 options[i] = obj.toString()
                 optionsSelected[i] = false
 
-                if (this.optionsSelected?.contains(obj) == true) {
+                if (this.value != null && this.value is List<*> && (this.value as List<*>).contains(obj)) {
                     optionsSelected[i] = true
                     mSelectedItems.add(i)
                 }
@@ -148,46 +152,7 @@ class FormPickerMultiCheckBoxElement<T : Serializable> : FormPickerElement<T> {
         return selectedItems
     }
 
-    /**
-     * Parcelable boilerplate
-     */
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        super.writeToParcel(dest, flags)
-    }
-
     constructor() : super()
 
     constructor(tag: Int) : super(tag)
-
-    constructor(`in`: Parcel) : super(`in`) {}
-
-    companion object {
-        /**
-         * Creates an instance
-         */
-        fun createInstance(): FormPickerMultiCheckBoxElement<String> {
-            return FormPickerMultiCheckBoxElement()
-        }
-
-        /**
-         * Creates a generic instance
-         */
-        fun <T : Serializable> createGenericInstance(): FormPickerMultiCheckBoxElement<T> {
-            return FormPickerMultiCheckBoxElement()
-        }
-
-        val CREATOR: Parcelable.Creator<FormPickerMultiCheckBoxElement<*>> = object : Parcelable.Creator<FormPickerMultiCheckBoxElement<*>> {
-            override fun createFromParcel(source: Parcel): FormPickerMultiCheckBoxElement<*> {
-                return FormPickerMultiCheckBoxElement<Serializable>(source)
-            }
-
-            override fun newArray(size: Int): Array<FormPickerMultiCheckBoxElement<*>?> {
-                return arrayOfNulls(size)
-            }
-        }
-    }
 }

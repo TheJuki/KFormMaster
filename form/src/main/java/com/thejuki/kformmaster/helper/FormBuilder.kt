@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView
 import android.widget.ArrayAdapter
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.*
-import java.io.Serializable
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,9 +48,14 @@ interface FieldBuilder {
 /** Builder method to add a FormHeader */
 class HeaderBuilder(var title: String = "") : FieldBuilder {
     var collapsible: Boolean = false
+    var tag: Int = -1
     override fun build() =
-            FormHeader.createInstance(title)
-                    .setCollapsible(collapsible)
+            FormHeader(tag).apply {
+                this@HeaderBuilder.let {
+                    title = it.title
+                    collapsible = it.collapsible
+                }
+            }
 }
 
 /** FormBuildHelper extension to add a FormHeader */
@@ -61,24 +65,11 @@ fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
 
 /** Builder method to add a BaseFormElement */
 @FormDsl
-abstract class BaseElementBuilder<T : Serializable>(protected val tag: Int = -1, var title: String? = null) : FieldBuilder {
+abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: String? = null) : FieldBuilder {
     /**
      * Form Element Value
      */
     var value: T? = null
-
-    /**
-     * Form Element Options
-     */
-    var options: List<T>? = null
-        get() = field ?: ArrayList()
-
-    /**
-     * Form Element Options Selected
-     * NOTE: When using MultiCheckBox, this is the Form Element Value
-     */
-    var optionsSelected: List<T>? = null
-        get() = field ?: ArrayList()
 
     /**
      * Form Element Hint
@@ -268,9 +259,10 @@ fun FormBuildHelper.phone(tag: Int = -1, init: PhoneEditTextBuilder.() -> Unit):
 }
 
 /** Builder method to add a FormAutoCompleteElement */
-class AutoCompleteBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
+class AutoCompleteBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var arrayAdapter: ArrayAdapter<*>? = null
     var dropdownWidth: Int? = null
+    var options: List<T>? = null
     override fun build() =
             FormAutoCompleteElement<T>(tag).apply {
                 this@AutoCompleteBuilder.let {
@@ -285,20 +277,22 @@ class AutoCompleteBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<
                     visible = it.visible
                     arrayAdapter = it.arrayAdapter
                     dropdownWidth = it.dropdownWidth
+                    options = it.options
                     valueObservers.addAll(it.valueObservers)
                 }
             }
 }
 
 /** FormBuildHelper extension to add a FormAutoCompleteElement */
-fun <T : Serializable> FormBuildHelper.autoComplete(tag: Int = -1, init: AutoCompleteBuilder<T>.() -> Unit): FormAutoCompleteElement<T> {
+fun <T> FormBuildHelper.autoComplete(tag: Int = -1, init: AutoCompleteBuilder<T>.() -> Unit): FormAutoCompleteElement<T> {
     return addFormElement(AutoCompleteBuilder<T>(tag).apply(init).build())
 }
 
 /** Builder method to add a FormTokenAutoCompleteElement */
-class AutoCompleteTokenBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
+class AutoCompleteTokenBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var arrayAdapter: ArrayAdapter<*>? = null
     var dropdownWidth: Int? = null
+    var options: T? = null
     override fun build() =
             FormTokenAutoCompleteElement<T>(tag).apply {
                 this@AutoCompleteTokenBuilder.let {
@@ -313,13 +307,14 @@ class AutoCompleteTokenBuilder<T : Serializable>(tag: Int = -1) : BaseElementBui
                     visible = it.visible
                     arrayAdapter = it.arrayAdapter
                     dropdownWidth = it.dropdownWidth
+                    options = it.options
                     valueObservers.addAll(it.valueObservers)
                 }
             }
 }
 
 /** FormBuildHelper extension to add a FormTokenAutoCompleteElement */
-fun <T : Serializable> FormBuildHelper.autoCompleteToken(tag: Int = -1, init: AutoCompleteTokenBuilder<T>.() -> Unit): FormTokenAutoCompleteElement<T> {
+fun <T : List<*>> FormBuildHelper.autoCompleteToken(tag: Int = -1, init: AutoCompleteTokenBuilder<T>.() -> Unit): FormTokenAutoCompleteElement<T> {
     return addFormElement(AutoCompleteTokenBuilder<T>(tag).apply(init).build())
 }
 
@@ -424,9 +419,10 @@ fun FormBuildHelper.dateTime(tag: Int = -1, init: DateTimeBuilder.() -> Unit): F
 }
 
 /** Builder method to add a FormPickerDropDownElement */
-class DropDownBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
+class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var dialogTitle: String? = null
     var arrayAdapter: ArrayAdapter<*>? = null
+    var options: List<T>? = null
     override fun build() =
             FormPickerDropDownElement<T>(tag).apply {
                 this@DropDownBuilder.let {
@@ -448,13 +444,14 @@ class DropDownBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
 }
 
 /** FormBuildHelper extension to add a FormPickerDropDownElement */
-fun <T : Serializable> FormBuildHelper.dropDown(tag: Int = -1, init: DropDownBuilder<T>.() -> Unit): FormPickerDropDownElement<T> {
+fun <T> FormBuildHelper.dropDown(tag: Int = -1, init: DropDownBuilder<T>.() -> Unit): FormPickerDropDownElement<T> {
     return addFormElement(DropDownBuilder<T>(tag).apply(init).build())
 }
 
 /** Builder method to add a FormPickerMultiCheckBoxElement */
-class MultiCheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
+class MultiCheckBoxBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var dialogTitle: String? = null
+    var options: T? = null
     override fun build() =
             FormPickerMultiCheckBoxElement<T>(tag).apply {
                 this@MultiCheckBoxBuilder.let {
@@ -467,8 +464,7 @@ class MultiCheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder
                     required = it.required
                     enabled = it.enabled
                     visible = it.visible
-                    options = it.options ?: ArrayList()
-                    optionsSelected = it.optionsSelected ?: ArrayList()
+                    options = it.options
                     dialogTitle = it.dialogTitle
                     valueObservers.addAll(it.valueObservers)
                 }
@@ -476,12 +472,12 @@ class MultiCheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder
 }
 
 /** FormBuildHelper extension to add a FormPickerMultiCheckBoxElement */
-fun <T : Serializable> FormBuildHelper.multiCheckBox(tag: Int = -1, init: MultiCheckBoxBuilder<T>.() -> Unit): FormPickerMultiCheckBoxElement<T> {
+fun <T : List<*>> FormBuildHelper.multiCheckBox(tag: Int = -1, init: MultiCheckBoxBuilder<T>.() -> Unit): FormPickerMultiCheckBoxElement<T> {
     return addFormElement(MultiCheckBoxBuilder<T>(tag).apply(init).build())
 }
 
 /** Builder method to add a FormSwitchElement */
-class SwitchBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
+class SwitchBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var onValue: T? = null
     var offValue: T? = null
     override fun build() =
@@ -501,12 +497,12 @@ class SwitchBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag
 }
 
 /** FormBuildHelper extension to add a FormSwitchElement */
-fun <T : Serializable> FormBuildHelper.switch(tag: Int = -1, init: SwitchBuilder<T>.() -> Unit): FormSwitchElement<T> {
+fun <T> FormBuildHelper.switch(tag: Int = -1, init: SwitchBuilder<T>.() -> Unit): FormSwitchElement<T> {
     return addFormElement(SwitchBuilder<T>(tag).apply(init).build())
 }
 
 /** Builder method to add a FormCheckBoxElement */
-class CheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
+class CheckBoxBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var checkedValue: T? = null
     var unCheckedValue: T? = null
     override fun build() =
@@ -526,7 +522,7 @@ class CheckBoxBuilder<T : Serializable>(tag: Int = -1) : BaseElementBuilder<T>(t
 }
 
 /** FormBuildHelper extension to add a FormCheckBoxElement */
-fun <T : Serializable> FormBuildHelper.checkBox(tag: Int = -1, init: CheckBoxBuilder<T>.() -> Unit): FormCheckBoxElement<T> {
+fun <T> FormBuildHelper.checkBox(tag: Int = -1, init: CheckBoxBuilder<T>.() -> Unit): FormCheckBoxElement<T> {
     return addFormElement(CheckBoxBuilder<T>(tag).apply(init).build())
 }
 

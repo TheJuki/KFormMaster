@@ -49,7 +49,7 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
         }
 
         val datePickerDialog = DatePickerDialog(context,
-                dateDialogListener(model, editTextValue, textViewError),
+                dateDialogListener(model, editTextValue),
                 model.value?.year ?: 0,
                 if ((model.value?.month ?: 0) == 0) 0 else (model.value?.month ?: 0) - 1,
                 model.value?.dayOfMonth ?: 0)
@@ -66,8 +66,7 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
     })
 
     private fun dateDialogListener(model: FormPickerDateElement,
-                                   editTextValue: AppCompatEditText,
-                                   textViewError: AppCompatTextView): DatePickerDialog.OnDateSetListener {
+                                   editTextValue: AppCompatEditText): DatePickerDialog.OnDateSetListener {
         return DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             // get current form element, existing value and new value
             var dateChanged = false

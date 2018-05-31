@@ -258,14 +258,14 @@ class FullscreenFormActivity : AppCompatActivity() {
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 })
             }
-            multiCheckBox<ListItem>(MultiItems.ordinal) {
+            multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
                 title = getString(R.string.MultiItems)
                 dialogTitle = getString(R.string.MultiItems)
                 options = fruits
                 enabled = true
                 maxLines = 3
                 rightToLeft = false
-                optionsSelected = listOf(ListItem(id = 1, name = "Banana"))
+                value = listOf(ListItem(id = 1, name = "Banana"))
                 required = true
                 valueObservers.add({ newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
@@ -286,7 +286,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 })
             }
-            autoCompleteToken<ArrayList<ContactItem>>(AutoCompleteTokenElement.ordinal) {
+            autoCompleteToken<List<ContactItem>>(AutoCompleteTokenElement.ordinal) {
                 title = getString(R.string.AutoCompleteToken)
                 arrayAdapter = EmailAutoCompleteAdapter(this@FullscreenFormActivity,
                         android.R.layout.simple_list_item_1)

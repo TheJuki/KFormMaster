@@ -1,8 +1,6 @@
 package com.thejuki.kformmaster.model
 
-import android.os.Parcel
 import android.support.v7.widget.SwitchCompat
-import java.io.Serializable
 
 /**
  * Form Switch Element
@@ -12,7 +10,7 @@ import java.io.Serializable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-open class FormSwitchElement<T : Serializable> : BaseFormElement<T> {
+open class FormSwitchElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     override fun clear() {
         this.value = offValue
@@ -52,38 +50,5 @@ open class FormSwitchElement<T : Serializable> : BaseFormElement<T> {
     fun setOffValue(offValue: T?): FormSwitchElement<T> {
         this.offValue = offValue
         return this
-    }
-
-    /**
-     * Parcelable boilerplate
-     */
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        super.writeToParcel(dest, flags)
-    }
-
-    constructor() : super()
-
-    constructor(tag: Int) : super(tag)
-
-    constructor(`in`: Parcel) : super(`in`) {}
-
-    companion object {
-        /**
-         * Creates an instance
-         */
-        fun createInstance(): FormSwitchElement<String> {
-            return FormSwitchElement()
-        }
-
-        /**
-         * Creates a generic instance
-         */
-        fun <T : Serializable> createGenericInstance(): FormSwitchElement<T> {
-            return FormSwitchElement()
-        }
     }
 }

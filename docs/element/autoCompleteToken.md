@@ -9,10 +9,10 @@ Set your custom AutoComplete adapter. It is up to you if you want to retrieve it
 
 !!! note "NOTICE"
 
-    The ContactItem and EmailAutoCompleteAdapter classes are provided in the example app.
+    The ContactItem and EmailAutoCompleteAdapter classes are provided in the example app. Your custom class just needs to override toString() to display in the dropdown.
 
 ```kotlin
-autoCompleteToken<ArrayList<ContactItem>>(1) {
+autoCompleteToken<List<ContactItem>>(1) {
     arrayAdapter = EmailAutoCompleteAdapter(this@FormActivity,
                         android.R.layout.simple_list_item_1)
 }
@@ -21,7 +21,7 @@ autoCompleteToken<ArrayList<ContactItem>>(1) {
 ## Dropdown Width
 This is the width of the dropdown list. ViewGroup.LayoutParams.MATCH_PARENT will use the form's width.
 ```kotlin
-autoCompleteToken<ArrayList<ContactItem>>(1) {
+autoCompleteToken<List<ContactItem>>(1) {
     dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
 }
 ```
@@ -30,7 +30,7 @@ autoCompleteToken<ArrayList<ContactItem>>(1) {
 
 ### Kotlin
 ```kotlin
-autoCompleteToken<ArrayList<ContactItem>>(1) {
+autoCompleteToken<List<ContactItem>>(1) {
     arrayAdapter = EmailAutoCompleteAdapter(this@FormActivity,
                         android.R.layout.simple_list_item_1)
     dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
@@ -41,7 +41,7 @@ autoCompleteToken<ArrayList<ContactItem>>(1) {
 ### Java
 ```java
 List<BaseFormElement<?>> elements = new ArrayList<>();
-AutoCompleteTokenBuilder<ContactItem> autoCompleteToken = new AutoCompleteTokenBuilder<>(1);
+AutoCompleteTokenBuilder<List<ContactItem>> autoCompleteToken = new AutoCompleteTokenBuilder<>(1);
 autoCompleteToken.setArrayAdapter(new EmailAutoCompleteAdapter(this,
     android.R.layout.simple_list_item_1));
 autoCompleteToken.setDropdownWidth(ViewGroup.LayoutParams.MATCH_PARENT);

@@ -1,10 +1,7 @@
 package com.thejuki.kformmaster.model
 
-import android.os.Parcel
-import android.os.Parcelable
 import android.support.v7.widget.AppCompatAutoCompleteTextView
 import android.widget.ArrayAdapter
-import java.io.Serializable
 
 /**
  * Form AutoComplete Element
@@ -14,16 +11,17 @@ import java.io.Serializable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
+class FormAutoCompleteElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     override fun clear() {
         this.value = null
         (this.editView as? AppCompatAutoCompleteTextView)?.setText("")
     }
 
-    constructor() : super()
-
-    constructor(tag: Int) : super(tag)
+    /**
+     * Form Element Options
+     */
+    var options: List<T>? = null
 
     /**
      * Because the written text in the EditText not always matched the
@@ -68,45 +66,10 @@ class FormAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
     }
 
     /**
-     * Parcelable boilerplate
+     * Options builder setter
      */
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        super.writeToParcel(dest, flags)
-        dest.writeString(this.typedString)
-    }
-
-    constructor(`in`: Parcel) : super(`in`) {
-        this.typedString = `in`.readString()
-    }
-
-    companion object {
-
-        /**
-         * Creates an instance
-         */
-        fun createInstance(): FormAutoCompleteElement<String> {
-            return FormAutoCompleteElement()
-        }
-
-        /**
-         * Creates a generic instance
-         */
-        fun <T : Serializable> createGenericInstance(): FormAutoCompleteElement<T> {
-            return FormAutoCompleteElement()
-        }
-
-        val CREATOR: Parcelable.Creator<FormAutoCompleteElement<*>> = object : Parcelable.Creator<FormAutoCompleteElement<*>> {
-            override fun createFromParcel(source: Parcel): FormAutoCompleteElement<*> {
-                return FormAutoCompleteElement<Serializable>(source)
-            }
-
-            override fun newArray(size: Int): Array<FormAutoCompleteElement<*>?> {
-                return arrayOfNulls(size)
-            }
-        }
+    fun setOptions(options: List<T>): BaseFormElement<T> {
+        this.options = options
+        return this
     }
 }

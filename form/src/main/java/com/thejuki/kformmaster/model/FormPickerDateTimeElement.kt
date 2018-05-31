@@ -1,9 +1,6 @@
 package com.thejuki.kformmaster.model
 
-import android.os.Parcel
-import android.os.Parcelable
 import android.widget.TextView
-
 import java.io.Serializable
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -17,7 +14,7 @@ import java.util.*
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.DateTimeHolder> {
+class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDateTimeElement.DateTimeHolder>(tag) {
 
     override fun clear() {
         this.value?.useCurrentDate()
@@ -131,38 +128,4 @@ class FormPickerDateTimeElement : FormPickerElement<FormPickerDateTimeElement.Da
 
     override val isValid: Boolean
         get() = !required || (value != null && value?.getTime() != null)
-
-    /**
-     * Parcelable boilerplate
-     */
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        super.writeToParcel(dest, flags)
-    }
-
-    constructor(tag: Int = -1) : super(tag)
-
-    constructor(`in`: Parcel) : super(`in`) {}
-
-    companion object {
-        /**
-         * Creates an instance
-         */
-        fun createDateTimeInstance(): FormPickerDateTimeElement {
-            return FormPickerDateTimeElement()
-        }
-
-        val CREATOR: Parcelable.Creator<FormPickerDateTimeElement> = object : Parcelable.Creator<FormPickerDateTimeElement> {
-            override fun createFromParcel(source: Parcel): FormPickerDateTimeElement {
-                return FormPickerDateTimeElement(source)
-            }
-
-            override fun newArray(size: Int): Array<FormPickerDateTimeElement?> {
-                return arrayOfNulls(size)
-            }
-        }
-    }
 }

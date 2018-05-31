@@ -49,7 +49,7 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
         }
 
         val timePickerDialog = TimePickerDialog(context,
-                timeDialogListener(model, editTextValue, textViewError),
+                timeDialogListener(model, editTextValue),
                 model.value?.hourOfDay ?: 0,
                 model.value?.minute ?: 0,
                 false)
@@ -66,8 +66,7 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
     })
 
     private fun timeDialogListener(model: FormPickerTimeElement,
-                                   editTextValue: AppCompatEditText,
-                                   textViewError: AppCompatTextView): TimePickerDialog.OnTimeSetListener {
+                                   editTextValue: AppCompatEditText): TimePickerDialog.OnTimeSetListener {
         return TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
             var timeChanged = false
             with(model.value)

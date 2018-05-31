@@ -147,11 +147,11 @@ class PartialScreenFormActivity : AppCompatActivity() {
                 options = fruits
                 value = ListItem(id = 1, name = "Banana")
             }
-            multiCheckBox<ListItem>(MultiItems.ordinal) {
+            multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
                 title = getString(R.string.MultiItems)
                 dialogTitle = getString(R.string.MultiItems)
                 options = fruits
-                optionsSelected = listOf(ListItem(id = 1, name = "Banana"))
+                value = listOf(ListItem(id = 1, name = "Banana"))
             }
             autoComplete<ContactItem>(AutoCompleteElement.ordinal) {
                 title = getString(R.string.AutoComplete)
@@ -161,7 +161,7 @@ class PartialScreenFormActivity : AppCompatActivity() {
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
                 value = ContactItem(id = 1, value = "John Smith", label = "John Smith (Tester)")
             }
-            autoCompleteToken<ArrayList<ContactItem>>(AutoCompleteTokenElement.ordinal) {
+            autoCompleteToken<List<ContactItem>>(AutoCompleteTokenElement.ordinal) {
                 title = getString(R.string.AutoCompleteToken)
                 arrayAdapter = EmailAutoCompleteAdapter(this@PartialScreenFormActivity,
                         android.R.layout.simple_list_item_1)

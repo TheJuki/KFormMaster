@@ -1,10 +1,7 @@
 package com.thejuki.kformmaster.model
 
-import android.os.Parcel
-import android.os.Parcelable
 import android.widget.ArrayAdapter
 import com.thejuki.kformmaster.token.ItemsCompletionView
-import java.io.Serializable
 
 /**
  * Form TokenAutoComplete Element
@@ -14,7 +11,7 @@ import java.io.Serializable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
+class FormTokenAutoCompleteElement<T : List<*>>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     override val isValid: Boolean
         get() = !required || (value != null && value is List<*> && !(value as List<*>).isEmpty())
@@ -23,6 +20,11 @@ class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
         this.value = null
         (this.editView as? ItemsCompletionView)?.clear()
     }
+
+    /**
+     * Form Element Options
+     */
+    var options: T? = null
 
     /**
      * Override the default array adapter
@@ -52,46 +54,10 @@ class FormTokenAutoCompleteElement<T : Serializable> : BaseFormElement<T> {
     }
 
     /**
-     * Parcelable boilerplate
+     * Options builder setter
      */
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        super.writeToParcel(dest, flags)
-    }
-
-    constructor() : super()
-
-    constructor(tag: Int = -1) : super(tag)
-
-    constructor(`in`: Parcel) : super(`in`)
-
-    companion object {
-
-        /**
-         * Creates an instance
-         */
-        fun createInstance(): FormTokenAutoCompleteElement<String> {
-            return FormTokenAutoCompleteElement()
-        }
-
-        /**
-         * Creates a generic instance
-         */
-        fun <T : Serializable> createGenericInstance(): FormTokenAutoCompleteElement<T> {
-            return FormTokenAutoCompleteElement()
-        }
-
-        val CREATOR: Parcelable.Creator<FormTokenAutoCompleteElement<*>> = object : Parcelable.Creator<FormTokenAutoCompleteElement<*>> {
-            override fun createFromParcel(source: Parcel): FormTokenAutoCompleteElement<*> {
-                return FormTokenAutoCompleteElement<Serializable>(source)
-            }
-
-            override fun newArray(size: Int): Array<FormTokenAutoCompleteElement<*>?> {
-                return arrayOfNulls(size)
-            }
-        }
+    fun setOptions(options: T): BaseFormElement<T> {
+        this.options = options
+        return this
     }
 }

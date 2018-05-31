@@ -9,7 +9,7 @@ Set your custom AutoComplete adapter. It is up to you if you want to retrieve it
 
 !!! note "NOTICE"
 
-    The ContactItem and ContactAutoCompleteAdapter classes are provided in the example app.
+    The ContactItem and ContactAutoCompleteAdapter classes are provided in the example app. Your custom class just needs to override toString() to display in the dropdown.
 
 ```kotlin
 autoComplete<ContactItem>(1) {

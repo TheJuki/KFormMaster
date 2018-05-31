@@ -198,18 +198,18 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
     private void addPickers(List<BaseFormElement<?>> elements) {
         elements.add(new HeaderBuilder(getString(R.string.PreferredItems)).build());
 
-        DropDownBuilder<ListItem> dropDown = new DropDownBuilder<>(Tag.SingleItem.ordinal());
+        DropDownBuilder<ListItem> dropDown = new DropDownBuilder<>();
         dropDown.setTitle(getString(R.string.SingleItem));
         dropDown.setDialogTitle(getString(R.string.SingleItem));
         dropDown.setOptions(fruits);
         dropDown.setValue(new ListItem(1L, "Banana"));
         elements.add(dropDown.build());
 
-        MultiCheckBoxBuilder<ListItem> multiCheckBox = new MultiCheckBoxBuilder<>(Tag.MultiItems.ordinal());
+        MultiCheckBoxBuilder<List<ListItem>> multiCheckBox = new MultiCheckBoxBuilder<>(Tag.MultiItems.ordinal());
         multiCheckBox.setTitle(getString(R.string.MultiItems));
         multiCheckBox.setDialogTitle(getString(R.string.MultiItems));
         multiCheckBox.setOptions(fruits);
-        multiCheckBox.setOptionsSelected(Collections.singletonList(new ListItem(1L, "Banana")));
+        multiCheckBox.setValue(Collections.singletonList(new ListItem(1L, "Banana")));
         elements.add(multiCheckBox.build());
     }
 
@@ -223,7 +223,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         autoComplete.setValue(new ContactItem(1L, "John Smith", "John Smith (Tester)"));
         elements.add(autoComplete.build());
 
-        AutoCompleteTokenBuilder<ContactItem> autoCompleteToken = new AutoCompleteTokenBuilder<>(Tag.AutoCompleteTokenElement.ordinal());
+        AutoCompleteTokenBuilder<List<ContactItem>> autoCompleteToken = new AutoCompleteTokenBuilder<>(Tag.AutoCompleteTokenElement.ordinal());
         autoCompleteToken.setTitle(getString(R.string.AutoCompleteToken));
         autoCompleteToken.setArrayAdapter(new EmailAutoCompleteAdapter(this,
                 android.R.layout.simple_list_item_1));
@@ -296,9 +296,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
     @Override
     public void onValueChanged(@NotNull BaseFormElement<?> formElement) {
         Toast.makeText(this,
-                (formElement.getValue() != null) ? formElement.getValue().toString() :
-                        (formElement.getOptionsSelected() != null) ?
-                                formElement.getOptionsSelected().toString() : "",
+                (formElement.getValue() != null) ? formElement.getValue().toString() : "",
                 Toast.LENGTH_SHORT).show();
     }
 }

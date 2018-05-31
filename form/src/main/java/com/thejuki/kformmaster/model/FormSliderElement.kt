@@ -1,6 +1,5 @@
 package com.thejuki.kformmaster.model
 
-import android.os.Parcel
 import android.support.v7.widget.AppCompatSeekBar
 
 /**
@@ -11,7 +10,7 @@ import android.support.v7.widget.AppCompatSeekBar
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-open class FormSliderElement : BaseFormElement<Int> {
+open class FormSliderElement(tag: Int = -1) : BaseFormElement<Int>(tag) {
 
     override fun clear() {
         this.value = min
@@ -65,38 +64,5 @@ open class FormSliderElement : BaseFormElement<Int> {
     fun setSteps(steps: Int): FormSliderElement {
         this.steps = steps
         return this
-    }
-
-    /**
-     * Parcelable boilerplate
-     */
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        super.writeToParcel(dest, flags)
-    }
-
-    constructor() : super()
-
-    constructor(tag: Int) : super(tag)
-
-    constructor(`in`: Parcel) : super(`in`) {}
-
-    companion object {
-        /**
-         * Creates an instance
-         */
-        fun createInstance(): FormSliderElement {
-            return FormSliderElement()
-        }
-
-        /**
-         * Creates a generic instance
-         */
-        fun createGenericInstance(): FormSliderElement {
-            return FormSliderElement()
-        }
     }
 }

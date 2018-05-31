@@ -2,16 +2,12 @@ package com.thejuki.kformmaster.model
 
 import android.app.Dialog
 import android.content.Context
-import android.os.Parcel
-import android.os.Parcelable
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
 import android.view.View
 import android.widget.ArrayAdapter
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
-
-import java.io.Serializable
 
 /**
  * Form Picker Dropdown Element
@@ -21,7 +17,12 @@ import java.io.Serializable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPickerDropDownElement<T : Serializable> : FormPickerElement<T> {
+class FormPickerDropDownElement<T> : FormPickerElement<T> {
+
+    /**
+     * Form Element Options
+     */
+    var options: List<T>? = null
 
     /**
      * Alert Dialog Title
@@ -48,6 +49,14 @@ class FormPickerDropDownElement<T : Serializable> : FormPickerElement<T> {
      */
     fun setArrayAdapter(arrayAdapter: ArrayAdapter<*>?): FormPickerDropDownElement<T> {
         this.arrayAdapter = arrayAdapter
+        return this
+    }
+
+    /**
+     * Options builder setter
+     */
+    fun setOptions(options: List<T>): BaseFormElement<T> {
+        this.options = options
         return this
     }
 
@@ -109,40 +118,7 @@ class FormPickerDropDownElement<T : Serializable> : FormPickerElement<T> {
         editTextView?.setOnClickListener(listener)
     }
 
-    /**
-     * Parcelable boilerplate
-     */
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        super.writeToParcel(dest, flags)
-    }
-
     constructor() : super()
 
     constructor(tag: Int) : super(tag)
-
-    constructor(`in`: Parcel) : super(`in`) {}
-
-    companion object {
-        fun createInstance(): FormPickerDropDownElement<String> {
-            return FormPickerDropDownElement()
-        }
-
-        fun <T : Serializable> createGenericInstance(): FormPickerDropDownElement<T> {
-            return FormPickerDropDownElement()
-        }
-
-        val CREATOR: Parcelable.Creator<FormPickerDropDownElement<*>> = object : Parcelable.Creator<FormPickerDropDownElement<*>> {
-            override fun createFromParcel(source: Parcel): FormPickerDropDownElement<*> {
-                return FormPickerDropDownElement<Serializable>(source)
-            }
-
-            override fun newArray(size: Int): Array<FormPickerDropDownElement<*>?> {
-                return arrayOfNulls(size)
-            }
-        }
-    }
 }

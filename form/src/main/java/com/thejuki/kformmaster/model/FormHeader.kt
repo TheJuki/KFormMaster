@@ -1,8 +1,5 @@
 package com.thejuki.kformmaster.model
 
-import android.os.Parcel
-import android.os.Parcelable
-
 /**
  * Form Header
  *
@@ -11,7 +8,7 @@ import android.os.Parcelable
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormHeader : BaseFormElement<String> {
+class FormHeader(tag: Int = -1) : BaseFormElement<String>(tag) {
 
     /**
      * Enable to collapse/un-collapse elements below the header
@@ -36,44 +33,5 @@ class FormHeader : BaseFormElement<String> {
     fun setCollapsible(collapsible: Boolean): FormHeader {
         this.collapsible = collapsible
         return this
-    }
-
-    constructor() : super()
-
-    constructor(tag: Int) : super(tag)
-
-    /**
-     * Parcelable boilerplate
-     */
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        super.writeToParcel(dest, flags)
-    }
-
-    constructor(`in`: Parcel) : super(`in`) {}
-
-    companion object {
-
-        /**
-         * Creates an instance
-         */
-        fun createInstance(title: String): FormHeader {
-            val formHeader = FormHeader()
-            formHeader.setTitle(title)
-            return formHeader
-        }
-
-        val CREATOR: Parcelable.Creator<FormHeader> = object : Parcelable.Creator<FormHeader> {
-            override fun createFromParcel(source: Parcel): FormHeader {
-                return FormHeader(source)
-            }
-
-            override fun newArray(size: Int): Array<FormHeader?> {
-                return arrayOfNulls(size)
-            }
-        }
     }
 }

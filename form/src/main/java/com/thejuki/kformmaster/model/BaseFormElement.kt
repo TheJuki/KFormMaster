@@ -1,15 +1,11 @@
 package com.thejuki.kformmaster.model
 
-import android.os.Parcel
-import android.os.Parcelable
 import android.support.v7.widget.*
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
-import java.io.Serializable
-import java.util.*
 import kotlin.properties.Delegates
 
 /**
@@ -20,7 +16,7 @@ import kotlin.properties.Delegates
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Parcelable {
+open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
 
     /**
      * Form Element Title
@@ -59,19 +55,6 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
             }
         }
     }
-
-    /**
-     * Form Element Options
-     */
-    var options: List<T>? = null
-        get() = field ?: ArrayList()
-
-    /**
-     * Form Element Options Selected
-     * NOTE: When using MultiCheckBox, this is the Form Element Value
-     */
-    var optionsSelected: List<T>? = null
-        get() = field ?: ArrayList()
 
     /**
      * Form Element Hint
@@ -326,14 +309,6 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
     }
 
     /**
-     * Options builder setter
-     */
-    open fun setOptions(mOptions: List<T>): BaseFormElement<T> {
-        this.options = mOptions
-        return this
-    }
-
-    /**
      * Adds a value observer
      */
     fun addValueObserver(observer: (T?, BaseFormElement<T>) -> Unit): BaseFormElement<T> {
@@ -347,64 +322,6 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
     fun addAllValueObservers(observers: List<(T?, BaseFormElement<T>) -> Unit>): BaseFormElement<T> {
         this.valueObservers.addAll(observers)
         return this
-    }
-
-    /**
-     * Options Selected builder setter
-     */
-    @Suppress("UNCHECKED_CAST")
-    fun setOptionsSelected(optionsSelected: List<Any>): BaseFormElement<T> {
-        this.optionsSelected = optionsSelected as List<T>
-        return this
-    }
-
-    /**
-     * Parcelable boilerplate
-     */
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeInt(this.tag)
-        dest.writeString(this.title)
-        dest.writeSerializable(this.value)
-
-        /*
-         * We need special method to store array of generic objects
-         * more here: https://stackoverflow.com/a/31979348/3625638
-         */
-
-        // options
-        if (options == null || options?.isEmpty() == true) {
-            dest.writeInt(0)
-        } else {
-            options?.let {
-                dest.writeInt(it.size)
-
-                val objectsType = it[0].javaClass
-                dest.writeSerializable(objectsType)
-                dest.writeList(it)
-            }
-        }
-
-        // optionsSelected
-        if (optionsSelected == null || optionsSelected?.isEmpty() == true) {
-            dest.writeInt(0)
-        } else {
-            optionsSelected?.let {
-                dest.writeInt(it.size)
-
-                val objectsType = it[0].javaClass
-                dest.writeSerializable(objectsType)
-                dest.writeList(it)
-            }
-        }
-
-        dest.writeString(this.hint)
-        dest.writeString(this.error)
-        dest.writeByte(if (this.required) 1.toByte() else 0.toByte())
-        dest.writeByte(if (this.visible) 1.toByte() else 0.toByte())
     }
 
     override fun hashCode(): Int {
@@ -422,71 +339,5 @@ open class BaseFormElement<T : Serializable>(var tag: Int = -1) : ViewModel, Par
 
     override fun toString(): String {
         return "FormElement(tag=$tag, title=$title, id=$id, value=$value, hint=$hint, error=$error, required=$required, isValid=$isValid, visible=$visible)"
-    }
-
-    constructor(`in`: Parcel) : this() {
-        this.tag = `in`.readInt()
-        this.title = `in`.readString()
-        @Suppress("UNCHECKED_CAST")
-        this.value = `in`.readSerializable() as T?
-
-        /*
-         * We need special method to store array of generic objects
-         * more here: https://stackoverflow.com/a/31979348/3625638
-         */
-
-        // options
-        val optionSize = `in`.readInt()
-        if (optionSize == 0) {
-            options = null
-        } else {
-            val type = `in`.readSerializable() as Class<*>
-
-            options = ArrayList(optionSize)
-            `in`.readList(options, type.classLoader)
-        }
-
-        // optionsSelected
-        val selectedOptionSize = `in`.readInt()
-        if (selectedOptionSize == 0) {
-            optionsSelected = null
-        } else {
-            val type = `in`.readSerializable() as Class<*>
-
-            optionsSelected = ArrayList(selectedOptionSize)
-            `in`.readList(optionsSelected, type.classLoader)
-        }
-
-        this.hint = `in`.readString()
-        this.error = `in`.readString()
-        this.required = `in`.readByte().toInt() != 0
-        this.visible = `in`.readByte().toInt() != 0
-    }
-
-    companion object {
-
-        /**
-         * Creates an instance
-         */
-        fun createInstance(): BaseFormElement<String> {
-            return BaseFormElement()
-        }
-
-        /**
-         * Creates a generic instance
-         */
-        fun <T : Serializable> createGenericInstance(): BaseFormElement<T> {
-            return BaseFormElement()
-        }
-
-        val CREATOR: Parcelable.Creator<BaseFormElement<*>> = object : Parcelable.Creator<BaseFormElement<*>> {
-            override fun createFromParcel(source: Parcel): BaseFormElement<*> {
-                return BaseFormElement<Serializable>(source)
-            }
-
-            override fun newArray(size: Int): Array<BaseFormElement<*>?> {
-                return arrayOfNulls(size)
-            }
-        }
     }
 }
