@@ -17,7 +17,7 @@ import com.thejuki.kformmaster.helper.FormBuildHelper
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPickerDropDownElement<T> : FormPickerElement<T> {
+class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
     /**
      * Form Element Options
@@ -117,8 +117,4 @@ class FormPickerDropDownElement<T> : FormPickerElement<T> {
         itemView?.setOnClickListener(listener)
         editTextView?.setOnClickListener(listener)
     }
-
-    constructor() : super()
-
-    constructor(tag: Int) : super(tag)
 }

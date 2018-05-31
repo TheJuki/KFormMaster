@@ -49,9 +49,8 @@ text {
 }
 ```
 
-## Options and Options Selected
-The list of options is used in the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. 
-The list of options selected is used in the Form Picker MultiCheckBox Element. 
+## Options
+The list of options is used in form elements such as the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. 
 ```kotlin
 private val fruits = listOf(ListItem(id = 1, name = "Banana"),
     ListItem(id = 2, name = "Orange"),
@@ -64,9 +63,9 @@ dropDown<ListItem> {
     options = fruits
     value = ListItem(id = 1, name = "Banana")
 }
-multiCheckBox<ListItem> {
+multiCheckBox<List<ListItem>> {
     options = fruits
-    optionsSelected = listOf(ListItem(id = 1, name = "Banana"))
+    value = listOf(ListItem(id = 1, name = "Banana"))
 }
 ```
 ### Updating options later

@@ -150,11 +150,11 @@ class FormActivityTest : AppCompatActivity() {
                 arrayAdapter = null
                 value = ListItem(id = 1, name = "Banana")
             }
-            multiCheckBox<ListItem>(MultiItems.ordinal) {
+            multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
                 title = "MultiItems"
                 dialogTitle = "MultiItems Dialog"
                 options = fruits
-                optionsSelected = listOf(ListItem(id = 1, name = "Banana"))
+                value = listOf(ListItem(id = 1, name = "Banana"))
             }
             autoComplete<ContactItem>(AutoCompleteElement.ordinal) {
                 title = "AutoComplete"
@@ -163,7 +163,7 @@ class FormActivityTest : AppCompatActivity() {
                 arrayListOf(ContactItem(id = 1, value = "", label = "Try \"Apple May\"")))
                 dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
             }
-            autoCompleteToken<ArrayList<ContactItem>>(AutoCompleteTokenElement.ordinal) {
+            autoCompleteToken<List<ContactItem>>(AutoCompleteTokenElement.ordinal) {
                 title = "AutoCompleteToken"
                 arrayAdapter = EmailAutoCompleteAdapter(this@FormActivityTest,
                         android.R.layout.simple_list_item_1)

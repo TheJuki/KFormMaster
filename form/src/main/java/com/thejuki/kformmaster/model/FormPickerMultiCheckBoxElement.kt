@@ -15,7 +15,7 @@ import com.thejuki.kformmaster.helper.FormBuildHelper
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPickerMultiCheckBoxElement<T : List<*>> : FormPickerElement<T> {
+class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
     override val isValid: Boolean
         get() = !required || (value != null && value?.isEmpty() == false)
@@ -151,8 +151,4 @@ class FormPickerMultiCheckBoxElement<T : List<*>> : FormPickerElement<T> {
 
         return selectedItems
     }
-
-    constructor() : super()
-
-    constructor(tag: Int) : super(tag)
 }

@@ -32,7 +32,7 @@ interface CustomGen {
          */
         fun formHeader() = object : Gen<FormHeader> {
             override fun generate(): FormHeader {
-                return FormHeader.createInstance(Gen.string().generate())
+                return FormHeader().apply { title = Gen.string().generate() }
             }
         }
 
@@ -102,7 +102,8 @@ interface CustomGen {
             override fun generate(): FormPickerDropDownElement<String> {
                 val element = generateBaseFields(FormPickerDropDownElement()) as FormPickerDropDownElement<String>
                 element.dialogTitle = Gen.string().generate()
-                element.arrayAdapter = null // Use .setItems(options)
+                element.arrayAdapter = null
+                element.options = Gen.list(Gen.string()).generate()
                 return element
             }
         }
@@ -110,10 +111,11 @@ interface CustomGen {
         /**
          * Generates a FormPickerMultiCheckBoxElement
          */
-        fun formPickerMultiCheckBoxElement() = object : Gen<FormPickerMultiCheckBoxElement<String>> {
-            override fun generate(): FormPickerMultiCheckBoxElement<String> {
-                val element = generateBaseFields(FormPickerMultiCheckBoxElement()) as FormPickerMultiCheckBoxElement<String>
+        fun formPickerMultiCheckBoxElement() = object : Gen<FormPickerMultiCheckBoxElement<List<String>>> {
+            override fun generate(): FormPickerMultiCheckBoxElement<List<String>> {
+                val element = generateBaseFieldsWithList(FormPickerMultiCheckBoxElement()) as FormPickerMultiCheckBoxElement<List<String>>
                 element.dialogTitle = Gen.string().generate()
+                element.options = Gen.list(Gen.string()).generate()
                 return element
             }
         }
@@ -126,6 +128,7 @@ interface CustomGen {
                 val element = generateBaseFields(FormAutoCompleteElement()) as FormAutoCompleteElement<String>
                 element.typedString = element.valueAsString
                 element.dropdownWidth = Gen.int().generate()
+                element.options = Gen.list(Gen.string()).generate()
                 element.arrayAdapter = ArrayAdapter(mock(), R.layout.simple_list_item_1, element.options)
                 return element
             }
@@ -134,10 +137,11 @@ interface CustomGen {
         /**
          * Generates a FormTokenAutoCompleteElement
          */
-        fun formTokenAutoCompleteElement() = object : Gen<FormTokenAutoCompleteElement<String>> {
-            override fun generate(): FormTokenAutoCompleteElement<String> {
-                val element = generateBaseFields(FormTokenAutoCompleteElement()) as FormTokenAutoCompleteElement<String>
+        fun formTokenAutoCompleteElement() = object : Gen<FormTokenAutoCompleteElement<List<String>>> {
+            override fun generate(): FormTokenAutoCompleteElement<List<String>> {
+                val element = generateBaseFieldsWithList(FormTokenAutoCompleteElement()) as FormTokenAutoCompleteElement<List<String>>
                 element.dropdownWidth = Gen.int().generate()
+                element.options = Gen.list(Gen.string()).generate()
                 element.arrayAdapter = ArrayAdapter(mock(), R.layout.simple_list_item_1, element.options)
                 return element
             }
@@ -244,18 +248,27 @@ interface CustomGen {
                         .setRightToLeft(Gen.bool().generate())
                         .setMaxLines(Gen.choose(1, 100).generate())
                         .setError(if (Gen.bool().generate()) Gen.string().generate() else null)
-                        .setOptions(Gen.list(Gen.string()).generate())
-                        .setOptionsSelected(Gen.list(Gen.string()).generate())
+                        .addValueObserver({ newValue, elementRef -> println("New Value = $newValue {$elementRef}") })
+
+        fun generateBaseFieldsWithList(element: BaseFormElement<List<String>>) =
+                element.setTitle(Gen.string().generate())
+                        .setValue(Gen.list(Gen.string()).generate())
+                        .setTag(Gen.int().generate())
+                        .setHint(Gen.string().generate())
+                        .setRequired(Gen.bool().generate())
+                        .setVisible(Gen.bool().generate())
+                        .setEnabled(Gen.bool().generate())
+                        .setRightToLeft(Gen.bool().generate())
+                        .setMaxLines(Gen.choose(1, 100).generate())
+                        .setError(if (Gen.bool().generate()) Gen.string().generate() else null)
                         .addValueObserver({ newValue, elementRef -> println("New Value = $newValue {$elementRef}") })
 
         /**
          * Verifies some base form fields
          */
         fun verifyBaseFormElement(element: BaseFormElement<*>) =
-                        (element.value != null) and
-                        (element.hint != null) and
-                        !element.valueObservers.isEmpty() and
-                        !(element.options?.isEmpty() ?: false) and
-                        !(element.optionsSelected?.isEmpty() ?: false)
+                (element.value != null) &&
+                        (element.hint != null) &&
+                        !element.valueObservers.isEmpty()
     }
 }
