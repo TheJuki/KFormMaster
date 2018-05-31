@@ -875,9 +875,9 @@
 <p>Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.</p>
 <div class="admonition note">
 <p class="admonition-title">NOTICE</p>
-<p>The ContactItem and EmailAutoCompleteAdapter classes are provided in the example app.</p>
+<p>The ContactItem and EmailAutoCompleteAdapter classes are provided in the example app. Your custom class just needs to override toString() to display in the dropdown.</p>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">autoCompleteToken</span><span class="p">&lt;</span><span class="n">ArrayList</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="n">autoCompleteToken</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">arrayAdapter</span> <span class="p">=</span> <span class="n">EmailAutoCompleteAdapter</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span>
                         <span class="n">android</span><span class="p">.</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">simple_list_item_1</span><span class="p">)</span>
 <span class="p">}</span>
@@ -886,7 +886,7 @@
 
 <h2 id="dropdown-width">Dropdown Width<a class="headerlink" href="#dropdown-width" title="Permanent link">&para;</a></h2>
 <p>This is the width of the dropdown list. ViewGroup.LayoutParams.MATCH_PARENT will use the form's width.</p>
-<div class="codehilite"><pre><span></span><span class="n">autoCompleteToken</span><span class="p">&lt;</span><span class="n">ArrayList</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="n">autoCompleteToken</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">dropdownWidth</span> <span class="p">=</span> <span class="n">ViewGroup</span><span class="p">.</span><span class="n">LayoutParams</span><span class="p">.</span><span class="n">MATCH_PARENT</span>
 <span class="p">}</span>
 </pre></div>
@@ -894,7 +894,7 @@
 
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">autoCompleteToken</span><span class="p">&lt;</span><span class="n">ArrayList</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="n">autoCompleteToken</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">arrayAdapter</span> <span class="p">=</span> <span class="n">EmailAutoCompleteAdapter</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span>
                         <span class="n">android</span><span class="p">.</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">simple_list_item_1</span><span class="p">)</span>
     <span class="n">dropdownWidth</span> <span class="p">=</span> <span class="n">ViewGroup</span><span class="p">.</span><span class="n">LayoutParams</span><span class="p">.</span><span class="n">MATCH_PARENT</span>
@@ -905,7 +905,7 @@
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">AutoCompleteTokenBuilder</span><span class="o">&lt;</span><span class="n">ContactItem</span><span class="o">&gt;</span> <span class="n">autoCompleteToken</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AutoCompleteTokenBuilder</span><span class="o">&lt;&gt;(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">AutoCompleteTokenBuilder</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ContactItem</span><span class="o">&gt;&gt;</span> <span class="n">autoCompleteToken</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AutoCompleteTokenBuilder</span><span class="o">&lt;&gt;(</span><span class="mi">1</span><span class="o">);</span>
 <span class="n">autoCompleteToken</span><span class="o">.</span><span class="na">setArrayAdapter</span><span class="o">(</span><span class="k">new</span> <span class="n">EmailAutoCompleteAdapter</span><span class="o">(</span><span class="k">this</span><span class="o">,</span>
     <span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">simple_list_item_1</span><span class="o">));</span>
 <span class="n">autoCompleteToken</span><span class="o">.</span><span class="na">setDropdownWidth</span><span class="o">(</span><span class="n">ViewGroup</span><span class="o">.</span><span class="na">LayoutParams</span><span class="o">.</span><span class="na">MATCH_PARENT</span><span class="o">);</span>

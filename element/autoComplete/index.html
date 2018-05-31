@@ -875,7 +875,7 @@
 <p>Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.</p>
 <div class="admonition note">
 <p class="admonition-title">NOTICE</p>
-<p>The ContactItem and ContactAutoCompleteAdapter classes are provided in the example app.</p>
+<p>The ContactItem and ContactAutoCompleteAdapter classes are provided in the example app. Your custom class just needs to override toString() to display in the dropdown.</p>
 </div>
 <div class="codehilite"><pre><span></span><span class="n">autoComplete</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">arrayAdapter</span> <span class="p">=</span> <span class="n">ContactAutoCompleteAdapter</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span>
