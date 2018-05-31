@@ -18,7 +18,7 @@ import com.thejuki.kformmaster.helper.FormBuildHelper
 class FormPickerMultiCheckBoxElement<T : List<*>> : FormPickerElement<T> {
 
     override val isValid: Boolean
-        get() = !required || (value != null && value is List<*> && !(value as List<*>).isEmpty())
+        get() = !required || (value != null && value?.isEmpty() == false)
 
     /**
      * Form Element Options
@@ -64,7 +64,7 @@ class FormPickerMultiCheckBoxElement<T : List<*>> : FormPickerElement<T> {
                 options[i] = obj.toString()
                 optionsSelected[i] = false
 
-                if (this.value != null && this.value is List<*> && (this.value as List<*>).contains(obj)) {
+                if (this.value?.contains(obj) == true) {
                     optionsSelected[i] = true
                     mSelectedItems.add(i)
                 }
@@ -133,7 +133,7 @@ class FormPickerMultiCheckBoxElement<T : List<*>> : FormPickerElement<T> {
                 options[i] = obj.toString()
                 optionsSelected[i] = false
 
-                if (this.value != null && this.value is List<*> && (this.value as List<*>).contains(obj)) {
+                if (this.value?.contains(obj) == true) {
                     optionsSelected[i] = true
                     mSelectedItems.add(i)
                 }
