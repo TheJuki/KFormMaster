@@ -1,5 +1,11 @@
 # Change Log
 
+## [4.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.0.0)
+- Removed Parcelable from form elements
+- Removed Serializable from form element
+- Removed optionsSelected from BaseFormElement. FormPickerMultiCheckBoxElement now uses 'value' instead of 'optionsSelected'. This fixes valueObservers for the FormPickerMultiCheckBoxElement.
+- FormPickerMultiCheckBoxElement and FormTokenAutoCompleteElement require a list of objects through <T: List<*>>
+
 ## [3.2.1](https://github.com/TheJuki/KFormMaster/releases/tag/3.2.1)
 - Fixed Autocomplete text not showing up when initialized with a value. 
 - Added addFormElement function to FormBuildHelper and use apply/let to reduce code in FormBuilder. 
