@@ -23,6 +23,16 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
      * Form Element Options
      */
     var options: List<T>? = null
+        set(value) {
+            field = value
+            reInitDialog()
+        }
+
+    /**
+     * Alert Dialog Builder
+     * Used to call reInitDialog without needing context again.
+     */
+    private var alertDialogBuilder: AlertDialog.Builder? = null
 
     /**
      * Alert Dialog Title
@@ -64,7 +74,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
-    fun reInitDialog(context: Context, formBuilder: FormBuildHelper) {
+    fun reInitDialog(context: Context? = null, formBuilder: FormBuildHelper? = null) {
         // reformat the options in format needed
         val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
 
@@ -78,35 +88,41 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
         val editTextView = this.editView as? AppCompatEditText
 
-        if (this.arrayAdapter != null) {
-            this.arrayAdapter?.let {
-                alertDialog = AlertDialog.Builder(context)
-                        .setTitle(this.dialogTitle
-                                ?: context.getString(R.string.form_master_pick_one))
-                        .setAdapter(it, { _, which ->
-                            editTextView?.setText(it.getItem(which).toString())
-                            this.setValue(it.getItem(which))
+        if (alertDialogBuilder == null && context != null) {
+            alertDialogBuilder = AlertDialog.Builder(context)
+            if (this.dialogTitle == null) {
+                this.dialogTitle = context.getString(R.string.form_master_pick_one)
+            }
+        }
+
+        alertDialogBuilder?.let {
+            if (this.arrayAdapter != null) {
+                this.arrayAdapter?.apply {
+                    it.setTitle(this@FormPickerDropDownElement.dialogTitle)
+                            .setAdapter(this, { _, which ->
+                                editTextView?.setText(this.getItem(which).toString())
+                                this@FormPickerDropDownElement.setValue(this.getItem(which))
+                                this@FormPickerDropDownElement.error = null
+                                formBuilder?.onValueChanged(this@FormPickerDropDownElement)
+
+                                editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
+                            })
+                }
+            } else {
+                it.setTitle(this.dialogTitle)
+                        .setItems(options) { _, which ->
+                            editTextView?.setText(options[which])
+                            this.options?.let {
+                                this.setValue(it[which])
+                            }
                             this.error = null
-                            formBuilder.onValueChanged(this)
+                            formBuilder?.onValueChanged(this)
 
                             editTextView?.setText(this.valueAsString)
-                        })
-                        .create()
-            }
-        } else {
-            alertDialog = AlertDialog.Builder(context)
-                    .setTitle(this.dialogTitle ?: context.getString(R.string.form_master_pick_one))
-                    .setItems(options) { _, which ->
-                        editTextView?.setText(options[which])
-                        this.options?.let {
-                            this.setValue(it[which])
                         }
-                        this.error = null
-                        formBuilder.onValueChanged(this)
+            }
 
-                        editTextView?.setText(this.valueAsString)
-                    }
-                    .create()
+            alertDialog = it.create()
         }
 
         // display the dialog on click
