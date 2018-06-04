@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.0.1](https://github.com/TheJuki/KFormMaster/releases/tag/4.0.1)
+- Calling reInitDialog() is no longer needed after changing the dropDown or multiCheckBox options. This also allows clear() to clear the selected options for multiCheckBox.
+
 ## [4.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.0.0)
 - Removed Parcelable from form elements
 - Removed Serializable from form element
