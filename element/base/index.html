@@ -628,6 +628,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../label/" title="Label" class="md-nav__link">
+      Label
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../date/" title="Date" class="md-nav__link">
       Date
     </a>
@@ -1025,7 +1037,10 @@
                 <p>Common values used by multiple form elements are stored in the base form element model such as tag, title, and value.</p>
 <div class="admonition info">
 <p class="admonition-title">Base Value Requirements</p>
-<p>None of the base values are required but providing a title is advised.</p>
+<ul>
+<li>None of the base values are required but providing a title is advised.</li>
+<li>Editable fields that require a keyboard change the form element value when they lose focus. Because of this, before validating or submitting a form, clear the focus of the form using <code>currentFocus?.clearFocus()</code> in your activity.</li>
+</ul>
 </div>
 <h2 id="tag">Tag<a class="headerlink" href="#tag" title="Permanent link">&para;</a></h2>
 <p>The tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.</p>
