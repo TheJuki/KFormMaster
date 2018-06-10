@@ -19,6 +19,7 @@ import com.thejuki.kformmaster.helper.DropDownBuilder;
 import com.thejuki.kformmaster.helper.EmailEditTextBuilder;
 import com.thejuki.kformmaster.helper.FormBuildHelper;
 import com.thejuki.kformmaster.helper.HeaderBuilder;
+import com.thejuki.kformmaster.helper.LabelBuilder;
 import com.thejuki.kformmaster.helper.MultiCheckBoxBuilder;
 import com.thejuki.kformmaster.helper.MultiLineEditTextBuilder;
 import com.thejuki.kformmaster.helper.NumberEditTextBuilder;
@@ -115,6 +116,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         AutoCompleteTokenElement,
         ButtonElement,
         TextViewElement,
+        LabelElement,
         SwitchElement,
         SliderElement,
         CheckBoxElement,
@@ -235,6 +237,10 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         textView.setTitle(getString(R.string.TextView));
         textView.setValue("This is readonly!");
         elements.add(textView.build());
+
+        LabelBuilder label = new LabelBuilder(Tag.LabelElement.ordinal());
+        label.setTitle(getString(R.string.Label));
+        elements.add(label.build());
     }
 
     private void addMarkComplete(List<BaseFormElement<?>> elements) {

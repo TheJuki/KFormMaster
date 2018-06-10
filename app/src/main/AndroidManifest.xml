@@ -25,6 +25,9 @@
         <activity android:name=".FormListenerActivity" />
         <activity android:name=".FormListenerJavaActivity" />
         <activity android:name=".CustomFormActivity" />
+        <activity
+            android:name=".FormTabbedActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TestFormActivity" />
     </application>
 

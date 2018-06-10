@@ -4,9 +4,7 @@ import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
-import android.text.Editable
 import android.text.InputType
-import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
@@ -49,31 +47,18 @@ class FormPasswordEditTextViewBinder(private val context: Context, private val f
             } else {
                 textViewTitle.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementTextTitle))
+
+                if (editTextValue.text.toString() != model.valueAsString) {
+                    model.setValue(editTextValue.text.toString())
+                    model.error = null
+                    formBuilder.onValueChanged(model)
+                }
             }
         }
 
         // Password
         editTextValue.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
-        editTextValue.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
-
-                // get current form element, existing value and new value
-                val currentValue = model.valueAsString
-                val newValue = charSequence.toString()
-
-                // trigger event only if the value is changed
-                if (currentValue != newValue) {
-                    model.setValue(newValue)
-                    model.error = null
-                    formBuilder.onValueChanged(model)
-                }
-            }
-
-            override fun afterTextChanged(editable: Editable) {}
-        })
     }, object : ViewStateProvider<FormPasswordEditTextElement, ViewHolder> {
         override fun createViewStateID(model: FormPasswordEditTextElement): Int {
             return model.id

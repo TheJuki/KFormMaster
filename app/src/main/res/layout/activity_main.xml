@@ -31,6 +31,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/buttonTabbedFormActivity"
+        android:text="@string/tabbed_form" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/buttonLoginActivity"
         android:text="@string/sample_login_form" />
 

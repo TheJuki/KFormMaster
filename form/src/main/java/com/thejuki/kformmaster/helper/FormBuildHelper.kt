@@ -94,6 +94,9 @@ class FormBuildHelper
         // Header
         this.formAdapter.registerRenderer(FormHeaderViewBinder(context, this).viewBinder)
 
+        // Label
+        this.formAdapter.registerRenderer(FormLabelViewBinder(context, this).viewBinder)
+
         // Edit Texts
         registerEditTexts(context)
 

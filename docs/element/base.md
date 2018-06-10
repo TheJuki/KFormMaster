@@ -2,7 +2,8 @@ Common values used by multiple form elements are stored in the base form element
 
 !!! info "Base Value Requirements"
 
-    None of the base values are required but providing a title is advised.
+    - None of the base values are required but providing a title is advised.
+    - Editable fields that require a keyboard change the form element value when they lose focus. Because of this, before validating or submitting a form, clear the focus of the form using `currentFocus?.clearFocus()` in your activity.
 
 ## Tag
 The tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.

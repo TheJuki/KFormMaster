@@ -4,8 +4,6 @@ import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatAutoCompleteTextView
 import android.support.v7.widget.AppCompatTextView
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
@@ -82,26 +80,14 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
             } else {
                 textViewTitle.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementTextTitle))
-            }
-        }
 
-        autoCompleteTextView.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
-                // Keep typed string
-                model.typedString = charSequence.toString()
-
-                // If field is blank set form value to null
-                if (charSequence.isBlank() && model.value != null) {
-                    model.setValue(null)
+                if (autoCompleteTextView.text.toString() != model.valueAsString) {
+                    model.setValue(autoCompleteTextView.text.toString())
                     model.error = null
                     formBuilder.onValueChanged(model)
                 }
             }
-
-            override fun afterTextChanged(editable: Editable) {}
-        })
+        }
     }, object : ViewStateProvider<FormAutoCompleteElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormAutoCompleteElement<*>): Int {
             return model.id

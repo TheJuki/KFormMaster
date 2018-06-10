@@ -51,6 +51,7 @@ pages:
     - 'Number': 'element/number.md'
     - 'Phone': 'element/phone.md'
     - 'Text View': 'element/textView.md'
+    - 'Label': 'element/label.md'
     - 'Date': 'element/date.md'
     - 'Time': 'element/time.md'
     - 'DateTime': 'element/dateTime.md'

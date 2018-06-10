@@ -553,6 +553,25 @@ fun FormBuildHelper.slider(tag: Int = -1, init: SliderBuilder.() -> Unit): FormS
     return addFormElement(SliderBuilder(tag).apply(init).build())
 }
 
+class LabelBuilder(val tag: Int = -1) : FieldBuilder {
+    var title: String? = null
+    var visible: Boolean = true
+    var rightToLeft: Boolean = true
+    override fun build() =
+            FormLabelElement(tag).apply {
+                this@LabelBuilder.let {
+                    title = it.title.orEmpty()
+                    visible = it.visible
+                    rightToLeft = it.rightToLeft
+                }
+            }
+}
+
+/** FormBuildHelper extension to add a FormLabelElement */
+fun FormBuildHelper.label(tag: Int = -1, init: LabelBuilder.() -> Unit): FormLabelElement {
+    return addFormElement(LabelBuilder(tag).apply(init).build())
+}
+
 class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
     var title: String? = null
     var value: String? = null

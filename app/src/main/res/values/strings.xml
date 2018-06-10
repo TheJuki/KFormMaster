@@ -7,6 +7,7 @@
     <string name="remember">Remember</string>
 
     <string name="email_hint">Enter Email</string>
+    <string name="form">Form</string>
     <string name="Phone">Phone</string>
     <string name="Location">Location</string>
     <string name="Address">Address</string>
@@ -23,6 +24,7 @@
     <string name="Slider">Slider</string>
     <string name="CheckBox">CheckBox</string>
     <string name="TextView">Text View</string>
+    <string name="Label">This is a label. The title takes up the whole row.</string>
     <string name="Custom">Custom</string>
     <string name="Confirm">Clear Date field?</string>
     <string name="PersonalInfo">Personal Info</string>
@@ -43,6 +45,7 @@
     <string name="login_to_our_portal">Login to our portal</string>
     <string name="login">login</string>
     <string name="custom_form">Custom form</string>
+    <string name="tabbed_form">Tabbed form</string>
     <string name="custom_footer">This is a custom field in the app project</string>
     <string name="validate">Validate</string>
     <string name="clear">Clear</string>

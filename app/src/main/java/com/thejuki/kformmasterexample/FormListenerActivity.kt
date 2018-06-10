@@ -85,9 +85,10 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
         AutoCompleteTokenElement,
         ButtonElement,
         TextViewElement,
+        LabelElement,
         SwitchElement,
         SliderElement,
-        CheckBoxElement,
+        CheckBoxElement
     }
 
     private fun setupForm() {
@@ -164,6 +165,10 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
             textView(TextViewElement.ordinal) {
                 title = getString(R.string.TextView)
                 value = "This is readonly!"
+            }
+            label(LabelElement.ordinal) {
+                title = getString(R.string.Label)
+                rightToLeft = false
             }
             header { title = getString(R.string.MarkComplete) }
             switch<String>(SwitchElement.ordinal) {
