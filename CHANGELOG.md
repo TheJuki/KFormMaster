@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.1.0)
+- Added Label form element
+- Editable fields that require a keyboard update the form element value when they lose focus. Because of this, before validating or submitting a form, clear the focus of the form using `currentFocus?.clearFocus()` in your activity.
+- Added Tabbed Form Fragment example.
+
 ## [4.0.1](https://github.com/TheJuki/KFormMaster/releases/tag/4.0.1)
 - Calling reInitDialog() is no longer needed after changing the dropDown or multiCheckBox options. This also allows clear() to clear the selected options for multiCheckBox.
 
