@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.2.1](https://github.com/TheJuki/KFormMaster/releases/tag/4.2.1)
+- Added [inputType](https://thejuki.github.io/KFormMaster/element/base/#input-type), [imeOptions](https://thejuki.github.io/KFormMaster/element/base/#ime-options), and [updateOnFocusChange](https://thejuki.github.io/KFormMaster/element/base/#update-on-focus-change) to BaseFormElement
+- Restored addTextChangedListener to update value as characters are typed by default. Added updateOnFocusChange to update on focus instead.
+- Fix #35 by letting the BaseFormElement handle enabled and visible values
+
 ## [4.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.1.0)
 - Added Label form element
 - Editable fields that require a keyboard update the form element value when they lose focus. Because of this, before validating or submitting a form, clear the focus of the form using `currentFocus?.clearFocus()` in your activity.
