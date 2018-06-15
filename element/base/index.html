@@ -430,18 +430,26 @@
     Options
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#updating-options-later" title="Updating options later" class="md-nav__link">
-    Updating options later
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-on-focus-change" title="Update On Focus Change" class="md-nav__link">
+    Update On Focus Change
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#input-type" title="Input Type" class="md-nav__link">
+    Input Type
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ime-options" title="IME Options" class="md-nav__link">
+    IME Options
+  </a>
   
 </li>
       
@@ -930,18 +938,26 @@
     Options
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#updating-options-later" title="Updating options later" class="md-nav__link">
-    Updating options later
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-on-focus-change" title="Update On Focus Change" class="md-nav__link">
+    Update On Focus Change
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#input-type" title="Input Type" class="md-nav__link">
+    Input Type
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ime-options" title="IME Options" class="md-nav__link">
+    IME Options
+  </a>
   
 </li>
       
@@ -1108,10 +1124,32 @@
 </pre></div>
 
 
-<h3 id="updating-options-later">Updating options later<a class="headerlink" href="#updating-options-later" title="Permanent link">&para;</a></h3>
-<p>After changing the options in the model for a Dropdown or MultiCheckBox element, call the reInitDialog function.</p>
-<div class="codehilite"><pre><span></span><span class="n">element</span><span class="p">.</span><span class="n">options</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">()</span>
-<span class="n">element</span><span class="p">.</span><span class="n">reInitDialog</span><span class="p">(</span><span class="k">this</span> <span class="cm">/* context */</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">)</span>
+<h2 id="update-on-focus-change">Update On Focus Change<a class="headerlink" href="#update-on-focus-change" title="Permanent link">&para;</a></h2>
+<p>By default this is false.
+An EditText will update the form value as characters are typed.
+Setting this to true will only update the value when focus is lost or if Done is tapped on the keyboard. (See IME Options)</p>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">updateOnFocusChange</span> <span class="p">=</span> <span class="k">true</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="input-type">Input Type<a class="headerlink" href="#input-type" title="Permanent link">&para;</a></h2>
+<p>By default this is set by the form element type.
+Setting this will override the EditText form element's Input Type.</p>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">inputType</span> <span class="p">=</span> <span class="n">InputType</span><span class="p">.</span><span class="n">TYPE_CLASS_TEXT</span> <span class="n">or</span> <span class="n">InputType</span><span class="p">.</span><span class="n">TYPE_TEXT_FLAG_NO_SUGGESTIONS</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="ime-options">IME Options<a class="headerlink" href="#ime-options" title="Permanent link">&para;</a></h2>
+<p>By default this is EditorInfo.IME_ACTION_NEXT.
+Setting this will override the EditText form element's IME Options.
+If EditorInfo.IME_ACTION_DONE is used, tapping Done on the keyboard will update the form element value.</p>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">imeOptions</span> <span class="p">=</span> <span class="n">EditorInfo</span><span class="p">.</span><span class="n">IME_ACTION_DONE</span>
+<span class="p">}</span>
 </pre></div>
 
 
