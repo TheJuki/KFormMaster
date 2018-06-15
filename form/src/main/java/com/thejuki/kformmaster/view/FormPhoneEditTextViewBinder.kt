@@ -1,12 +1,10 @@
 package com.thejuki.kformmaster.view
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.text.InputType
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
@@ -39,24 +37,6 @@ class FormPhoneEditTextViewBinder(private val context: Context, private val form
 
         model.editView = editTextValue
 
-        setEditTextFocusEnabled(editTextValue, itemView)
-
-        editTextValue.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                textViewTitle.setTextColor(ContextCompat.getColor(context,
-                        R.color.colorFormMasterElementFocusedTitle))
-            } else {
-                textViewTitle.setTextColor(ContextCompat.getColor(context,
-                        R.color.colorFormMasterElementTextTitle))
-
-                if (editTextValue.text.toString() != model.valueAsString) {
-                    model.setValue(editTextValue.text.toString())
-                    model.error = null
-                    formBuilder.onValueChanged(model)
-                }
-            }
-        }
-
         // Phone
         editTextValue.setRawInputType(InputType.TYPE_CLASS_PHONE or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
 
@@ -66,14 +46,10 @@ class FormPhoneEditTextViewBinder(private val context: Context, private val form
         // If imeOptions are provided, use them instead of actionNext
         model.imeOptions?.let { editTextValue.imeOptions = it }
 
-        editTextValue.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                model.setValue(editTextValue.text.toString())
-                model.error = null
-                formBuilder.onValueChanged(model)
-            }
-            false
-        }
+        setEditTextFocusEnabled(editTextValue, itemView)
+        setOnFocusChangeListener(context, model, formBuilder)
+        addTextChangedListener(model, formBuilder)
+        setOnEditorActionListener(model, formBuilder)
 
     }, object : ViewStateProvider<FormPhoneEditTextElement, ViewHolder> {
         override fun createViewStateID(model: FormPhoneEditTextElement): Int {

@@ -79,12 +79,6 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
             } else {
                 textViewTitle.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementTextTitle))
-
-                if (autoCompleteTextView.text.toString() != model.valueAsString) {
-                    model.setValue(autoCompleteTextView.text.toString())
-                    model.error = null
-                    formBuilder.onValueChanged(model)
-                }
             }
         }
     }, object : ViewStateProvider<FormAutoCompleteElement<*>, ViewHolder> {

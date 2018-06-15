@@ -124,6 +124,13 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var required: Boolean = false
 
     /**
+     * Form Element Update EditText value when focus is lost
+     * By default, an EditText will update the form value as characters are typed.
+     * Setting this to true will only update the value when focus is lost.
+     */
+    var updateOnFocusChange: Boolean = false
+
+    /**
      * Form Element [InputType]
      */
     var inputType: Int? = null
@@ -284,6 +291,14 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      */
     fun setHint(hint: String?): BaseFormElement<T> {
         this.hint = hint
+        return this
+    }
+
+    /**
+     * updateOnFocusChange builder setter
+     */
+    fun setUpdateOnFocusChange(updateOnFocusChange: Boolean): BaseFormElement<T> {
+        this.updateOnFocusChange = updateOnFocusChange
         return this
     }
 

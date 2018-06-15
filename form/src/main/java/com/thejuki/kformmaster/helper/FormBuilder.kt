@@ -119,6 +119,13 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
     var imeOptions: Int? = null
 
     /**
+     * Form Element Update EditText value when focus is lost
+     * By default, an EditText will update the form value as characters are typed.
+     * Setting this to true will only update the value when focus is lost.
+     */
+    var updateOnFocusChange: Boolean = false
+
+    /**
      * Form Element Value Observers
      */
     val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
@@ -140,6 +147,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     visible = it.visible
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -166,6 +174,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     visible = it.visible
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -194,6 +203,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     numbersOnly = it.numbersOnly
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -220,6 +230,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     visible = it.visible
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -246,6 +257,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     visible = it.visible
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -272,6 +284,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     visible = it.visible
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
             }
