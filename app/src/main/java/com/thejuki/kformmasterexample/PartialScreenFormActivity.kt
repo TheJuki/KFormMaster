@@ -63,7 +63,7 @@ class PartialScreenFormActivity : AppCompatActivity() {
 
     }
 
-    private val fruits = listOf<ListItem>(ListItem(id = 1, name = "Banana"),
+    private val fruits = listOf(ListItem(id = 1, name = "Banana"),
             ListItem(id = 2, name = "Orange"),
             ListItem(id = 3, name = "Mango"),
             ListItem(id = 4, name = "Guava")
@@ -199,10 +199,10 @@ class PartialScreenFormActivity : AppCompatActivity() {
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@PartialScreenFormActivity).create()
                     confirmAlert.setTitle(this@PartialScreenFormActivity.getString(R.string.Confirm))
-                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@PartialScreenFormActivity.getString(android.R.string.ok), { _, _ ->
+                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@PartialScreenFormActivity.getString(android.R.string.ok)) { _, _ ->
                         // Could be used to clear another field:
                         val dateToDeleteElement = formBuilder.getFormElement<FormPickerDateElement>(Tag.Date.ordinal)
                         // Display current date
@@ -211,11 +211,11 @@ class PartialScreenFormActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT).show()
                         dateToDeleteElement.clear()
                         formBuilder.onValueChanged(dateToDeleteElement)
-                    })
-                    confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@PartialScreenFormActivity.getString(android.R.string.cancel), { _, _ ->
-                    })
+                    }
+                    confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@PartialScreenFormActivity.getString(android.R.string.cancel)) { _, _ ->
+                    }
                     confirmAlert.show()
-                })
+                }
             }
         }
     }

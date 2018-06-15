@@ -1,9 +1,11 @@
 package com.thejuki.kformmaster.model
 
 import android.support.v7.widget.*
+import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import kotlin.properties.Delegates
@@ -122,6 +124,16 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var required: Boolean = false
 
     /**
+     * Form Element [InputType]
+     */
+    var inputType: Int? = null
+
+    /**
+     * Form Element [EditorInfo] imeOptions
+     */
+    var imeOptions: Int? = null
+
+    /**
      * Form Element Item View
      */
     var itemView: View? = null
@@ -129,6 +141,8 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             field = value
             itemView?.let {
                 it.isEnabled = enabled
+                // Trigger visibility
+                this.visible = this.visible
             }
         }
 
@@ -156,6 +170,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             field = value
             titleView?.let {
                 it.isEnabled = enabled
+                it.text = title
             }
         }
 
@@ -163,6 +178,18 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      * Form Element Error View
      */
     var errorView: AppCompatTextView? = null
+        set(value) {
+            field = value
+            errorView?.let {
+                if (error.isNullOrEmpty()) {
+                    it.visibility = View.GONE
+                    return
+                }
+
+                it.text = error
+                it.visibility = View.VISIBLE
+            }
+        }
 
     /**
      * Form Element Visibility
@@ -230,16 +257,16 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     /**
      * Tag builder setter
      */
-    fun setTag(mTag: Int): BaseFormElement<T> {
-        this.tag = mTag
+    fun setTag(tag: Int): BaseFormElement<T> {
+        this.tag = tag
         return this
     }
 
     /**
      * Title builder setter
      */
-    fun setTitle(mTitle: String): BaseFormElement<T> {
-        this.title = mTitle
+    fun setTitle(title: String): BaseFormElement<T> {
+        this.title = title
         return this
     }
 
@@ -257,6 +284,22 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      */
     fun setHint(hint: String?): BaseFormElement<T> {
         this.hint = hint
+        return this
+    }
+
+    /**
+     * [InputType] builder setter
+     */
+    fun setInputType(inputType: Int): BaseFormElement<T> {
+        this.inputType = inputType
+        return this
+    }
+
+    /**
+     * [EditorInfo] imeOptions builder setter
+     */
+    fun setImeOptions(imeOptions: Int): BaseFormElement<T> {
+        this.imeOptions = imeOptions
         return this
     }
 

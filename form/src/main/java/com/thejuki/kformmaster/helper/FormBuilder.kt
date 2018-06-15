@@ -2,6 +2,8 @@ package com.thejuki.kformmaster.helper
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.text.InputType
+import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.*
@@ -107,6 +109,16 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
     var enabled: Boolean = true
 
     /**
+     * Form Element [InputType]
+     */
+    var inputType: Int? = null
+
+    /**
+     * Form Element [EditorInfo] imeOptions
+     */
+    var imeOptions: Int? = null
+
+    /**
      * Form Element Value Observers
      */
     val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
@@ -126,6 +138,8 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     required = it.required
                     enabled = it.enabled
                     visible = it.visible
+                    inputType = it.inputType
+                    imeOptions = it.imeOptions
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -150,6 +164,8 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     required = it.required
                     enabled = it.enabled
                     visible = it.visible
+                    inputType = it.inputType
+                    imeOptions = it.imeOptions
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -176,6 +192,8 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     enabled = it.enabled
                     visible = it.visible
                     numbersOnly = it.numbersOnly
+                    inputType = it.inputType
+                    imeOptions = it.imeOptions
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -200,6 +218,8 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     required = it.required
                     enabled = it.enabled
                     visible = it.visible
+                    inputType = it.inputType
+                    imeOptions = it.imeOptions
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -224,6 +244,8 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     required = it.required
                     enabled = it.enabled
                     visible = it.visible
+                    inputType = it.inputType
+                    imeOptions = it.imeOptions
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -248,6 +270,8 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     required = it.required
                     enabled = it.enabled
                     visible = it.visible
+                    inputType = it.inputType
+                    imeOptions = it.imeOptions
                     valueObservers.addAll(it.valueObservers)
                 }
             }

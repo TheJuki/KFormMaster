@@ -4,10 +4,12 @@ import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.text.InputType
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
@@ -169,9 +171,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 3
                 enabled = true
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             password(Password.ordinal) {
                 title = getString(R.string.password)
@@ -179,9 +181,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = true
                 rightToLeft = false
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             phone(Phone.ordinal) {
                 title = getString(R.string.Phone)
@@ -190,9 +192,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 3
                 required = true
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             header { title = getString(R.string.FamilyInfo); collapsible = true }
             text(Location.ordinal) {
@@ -201,9 +203,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 required = true
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             textArea(Address.ordinal) {
                 title = getString(R.string.Address)
@@ -212,9 +214,11 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 2
                 required = true
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                imeOptions = EditorInfo.IME_ACTION_DONE
+                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             number(ZipCode.ordinal) {
                 title = getString(R.string.ZipCode)
@@ -223,9 +227,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 required = true
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             header { title = getString(R.string.Schedule); collapsible = true }
             date(Tag.Date.ordinal) {
@@ -236,9 +240,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 1
                 rightToLeft = false
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             time(Time.ordinal) {
                 title = getString(R.string.Time)
@@ -248,9 +252,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 1
                 rightToLeft = false
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             dateTime(DateTime.ordinal) {
                 title = getString(R.string.DateTime)
@@ -260,9 +264,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 1
                 rightToLeft = false
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             header { title = getString(R.string.PreferredItems); collapsible = true }
             dropDown<ListItem>(SingleItem.ordinal) {
@@ -274,9 +278,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 3
                 value = ListItem(id = 1, name = "Banana")
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
                 title = getString(R.string.MultiItems)
@@ -287,9 +291,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 value = listOf(ListItem(id = 1, name = "Banana"))
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             autoComplete<ContactItem>(AutoCompleteElement.ordinal) {
                 title = getString(R.string.AutoComplete)
@@ -302,9 +306,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 3
                 rightToLeft = false
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             autoCompleteToken<List<ContactItem>>(AutoCompleteTokenElement.ordinal) {
                 title = getString(R.string.AutoCompleteToken)
@@ -317,9 +321,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 3
                 rightToLeft = false
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             textView(TextViewElement.ordinal) {
                 title = getString(R.string.TextView)
@@ -339,9 +343,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 offValue = "No"
                 enabled = true
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             slider(SliderElement.ordinal) {
                 title = getString(R.string.Slider)
@@ -351,9 +355,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 steps = 20
                 enabled = true
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             checkBox<Boolean>(CheckBoxElement.ordinal) {
                 title = getString(R.string.CheckBox)
@@ -362,17 +366,17 @@ class FullscreenFormActivity : AppCompatActivity() {
                 unCheckedValue = false
                 required = true
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
-                })
+                }
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@FullscreenFormActivity).create()
                     confirmAlert.setTitle(this@FullscreenFormActivity.getString(R.string.Confirm))
-                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FullscreenFormActivity.getString(android.R.string.ok), { _, _ ->
+                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FullscreenFormActivity.getString(android.R.string.ok)) { _, _ ->
                         // Could be used to clear another field:
                         val dateToDeleteElement = formBuilder.getFormElement<FormPickerDateElement>(Tag.Date.ordinal)
                         // Display current date
@@ -381,11 +385,11 @@ class FullscreenFormActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT).show()
                         dateToDeleteElement.clear()
                         formBuilder.onValueChanged(dateToDeleteElement)
-                    })
-                    confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FullscreenFormActivity.getString(android.R.string.cancel), { _, _ ->
-                    })
+                    }
+                    confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FullscreenFormActivity.getString(android.R.string.cancel)) { _, _ ->
+                    }
                     confirmAlert.show()
-                })
+                }
             }
         }
     }

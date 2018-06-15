@@ -83,9 +83,9 @@ class FormFragment : Fragment() {
                 maxLines = 3
                 enabled = true
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             password(Password.ordinal) {
                 title = getString(R.string.password)
@@ -93,9 +93,9 @@ class FormFragment : Fragment() {
                 required = true
                 rightToLeft = false
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             phone(Phone.ordinal) {
                 title = getString(R.string.Phone)
@@ -104,9 +104,9 @@ class FormFragment : Fragment() {
                 maxLines = 3
                 required = true
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             header { title = getString(R.string.FamilyInfo); collapsible = true }
             text(Location.ordinal) {
@@ -115,9 +115,9 @@ class FormFragment : Fragment() {
                 rightToLeft = false
                 required = true
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             textArea(Address.ordinal) {
                 title = getString(R.string.Address)
@@ -126,9 +126,9 @@ class FormFragment : Fragment() {
                 maxLines = 2
                 required = true
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             number(ZipCode.ordinal) {
                 title = getString(R.string.ZipCode)
@@ -137,9 +137,9 @@ class FormFragment : Fragment() {
                 rightToLeft = false
                 required = true
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             header { title = getString(R.string.Schedule); collapsible = true }
             date(Tag.Date.ordinal) {
@@ -150,9 +150,9 @@ class FormFragment : Fragment() {
                 maxLines = 1
                 rightToLeft = false
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             time(Time.ordinal) {
                 title = getString(R.string.Time)
@@ -162,9 +162,9 @@ class FormFragment : Fragment() {
                 maxLines = 1
                 rightToLeft = false
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             dateTime(DateTime.ordinal) {
                 title = getString(R.string.DateTime)
@@ -174,9 +174,9 @@ class FormFragment : Fragment() {
                 maxLines = 1
                 rightToLeft = false
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             header { title = getString(R.string.PreferredItems); collapsible = true }
             dropDown<ListItem>(SingleItem.ordinal) {
@@ -188,9 +188,9 @@ class FormFragment : Fragment() {
                 maxLines = 3
                 value = ListItem(id = 1, name = "Banana")
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
                 title = getString(R.string.MultiItems)
@@ -201,9 +201,9 @@ class FormFragment : Fragment() {
                 rightToLeft = false
                 value = listOf(ListItem(id = 1, name = "Banana"))
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             autoComplete<ContactItem>(AutoCompleteElement.ordinal) {
                 title = getString(R.string.AutoComplete)
@@ -216,9 +216,9 @@ class FormFragment : Fragment() {
                 maxLines = 3
                 rightToLeft = false
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             autoCompleteToken<List<ContactItem>>(AutoCompleteTokenElement.ordinal) {
                 title = getString(R.string.AutoCompleteToken)
@@ -231,9 +231,9 @@ class FormFragment : Fragment() {
                 maxLines = 3
                 rightToLeft = false
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             textView(TextViewElement.ordinal) {
                 title = getString(R.string.TextView)
@@ -253,9 +253,9 @@ class FormFragment : Fragment() {
                 offValue = "No"
                 enabled = true
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             slider(SliderElement.ordinal) {
                 title = getString(R.string.Slider)
@@ -265,9 +265,9 @@ class FormFragment : Fragment() {
                 steps = 20
                 enabled = true
                 required = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             checkBox<Boolean>(CheckBoxElement.ordinal) {
                 title = getString(R.string.CheckBox)
@@ -276,17 +276,17 @@ class FormFragment : Fragment() {
                 unCheckedValue = false
                 required = true
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
-                })
+                }
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)
                 enabled = true
-                valueObservers.add({ newValue, element ->
+                valueObservers.add { newValue, element ->
                     val confirmAlert = AlertDialog.Builder(context).create()
                     confirmAlert.setTitle(context.getString(R.string.Confirm))
-                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, context.getString(android.R.string.ok), { _, _ ->
+                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, context.getString(android.R.string.ok)) { _, _ ->
                         // Could be used to clear another field:
                         val dateToDeleteElement = formBuilder.getFormElement<FormPickerDateElement>(Tag.Date.ordinal)
                         // Display current date
@@ -295,11 +295,11 @@ class FormFragment : Fragment() {
                                 Toast.LENGTH_SHORT).show()
                         dateToDeleteElement.clear()
                         formBuilder.onValueChanged(dateToDeleteElement)
-                    })
-                    confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, context.getString(android.R.string.cancel), { _, _ ->
-                    })
+                    }
+                    confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, context.getString(android.R.string.cancel)) { _, _ ->
+                    }
                     confirmAlert.show()
-                })
+                }
             }
         }
     }

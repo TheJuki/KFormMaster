@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
@@ -57,6 +58,21 @@ class FormSingleLineEditTextViewBinder(private val context: Context, private val
 
         // Single Line
         editTextValue.maxLines = 1
+
+        // If an InputType is provided, use it instead
+        model.inputType?.let { editTextValue.setRawInputType(it) }
+
+        // If imeOptions are provided, use them instead of actionNext
+        model.imeOptions?.let { editTextValue.imeOptions = it }
+
+        editTextValue.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                model.setValue(editTextValue.text.toString())
+                model.error = null
+                formBuilder.onValueChanged(model)
+            }
+            false
+        }
 
     }, object : ViewStateProvider<FormSingleLineEditTextElement, ViewHolder> {
         override fun createViewStateID(model: FormSingleLineEditTextElement): Int {

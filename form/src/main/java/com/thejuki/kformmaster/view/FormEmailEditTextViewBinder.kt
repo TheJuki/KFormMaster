@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.text.InputType
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
@@ -15,6 +16,7 @@ import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormEmailEditTextElement
 import com.thejuki.kformmaster.state.FormEditTextViewState
+
 
 /**
  * Form Email EditText ViewBinder
@@ -58,6 +60,21 @@ class FormEmailEditTextViewBinder(private val context: Context, private val form
 
         // Email
         editTextValue.setRawInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
+
+        // If an InputType is provided, use it instead
+        model.inputType?.let { editTextValue.setRawInputType(it) }
+
+        // If imeOptions are provided, use them instead of actionNext
+        model.imeOptions?.let { editTextValue.imeOptions = it }
+
+        editTextValue.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                model.setValue(editTextValue.text.toString())
+                model.error = null
+                formBuilder.onValueChanged(model)
+            }
+            false
+        }
 
     }, object : ViewStateProvider<FormEmailEditTextElement, ViewHolder> {
         override fun createViewStateID(model: FormEmailEditTextElement): Int {
