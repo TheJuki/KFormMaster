@@ -69,11 +69,34 @@ multiCheckBox<List<ListItem>> {
     value = listOf(ListItem(id = 1, name = "Banana"))
 }
 ```
-### Updating options later
-After changing the options in the model for a Dropdown or MultiCheckBox element, call the reInitDialog function.
+
+## Update On Focus Change
+By default this is false.
+An EditText will update the form value as characters are typed.
+Setting this to true will only update the value when focus is lost or if Done is tapped on the keyboard. (See IME Options)
 ```kotlin
-element.options = listOf()
-element.reInitDialog(this /* context */, formBuilder)
+text {
+    updateOnFocusChange = true
+}
+```
+
+## Input Type
+By default this is set by the form element type.
+Setting this will override the EditText form element's Input Type.
+```kotlin
+text {
+    inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
+}
+```
+
+## IME Options
+By default this is EditorInfo.IME_ACTION_NEXT.
+Setting this will override the EditText form element's IME Options.
+If EditorInfo.IME_ACTION_DONE is used, tapping Done on the keyboard will update the form element value.
+```kotlin
+text {
+    imeOptions = EditorInfo.IME_ACTION_DONE
+}
 ```
 
 ## Hint
