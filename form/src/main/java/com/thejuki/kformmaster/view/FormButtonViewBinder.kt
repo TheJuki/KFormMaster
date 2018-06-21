@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster.view
 
 import android.content.Context
+import android.support.annotation.LayoutRes
 import android.view.View
 import android.widget.Button
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
@@ -20,8 +21,9 @@ import com.thejuki.kformmaster.state.FormButtonViewState
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormButtonViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element_button, FormButtonElement::class.java, { model, finder, _ ->
+class FormButtonViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
+    var viewBinder = ViewBinder(layoutID
+            ?: R.layout.form_element_button, FormButtonElement::class.java, { model, finder, _ ->
         val itemView = finder.getRootView() as View
         baseSetup(model, null, null, itemView)
 
