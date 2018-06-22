@@ -135,7 +135,7 @@ class FormBuildHelper
     }
 
     private fun registerPickers(context: Context) {
-        this.formAdapter.registerRenderer(FormPickerDateViewBinder(context, this, formLayouts?.time).viewBinder)
+        this.formAdapter.registerRenderer(FormPickerDateViewBinder(context, this, formLayouts?.date).viewBinder)
         this.formAdapter.registerRenderer(FormPickerTimeViewBinder(context, this, formLayouts?.time).viewBinder)
         this.formAdapter.registerRenderer(FormPickerDateTimeViewBinder(context, this, formLayouts?.dateTime).viewBinder)
         this.formAdapter.registerRenderer(FormPickerMultiCheckBoxViewBinder(context, this, formLayouts?.multiCheckBox).viewBinder)
