@@ -307,8 +307,6 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
 
     @Override
     public void onValueChanged(@NotNull BaseFormElement<?> formElement) {
-        Toast.makeText(this,
-                (formElement.getValue() != null) ? formElement.getValue().toString() : "",
-                Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, formElement.getValueAsString(), Toast.LENGTH_SHORT).show();
     }
 }

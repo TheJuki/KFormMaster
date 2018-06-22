@@ -215,6 +215,6 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
     }
 
     override fun onValueChanged(formElement: BaseFormElement<*>) {
-        Toast.makeText(this, formElement.value?.toString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, formElement.valueAsString, Toast.LENGTH_SHORT).show()
     }
 }

@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmasterexample.FormTabbedActivity.Tabs.Form
 import com.thejuki.kformmasterexample.FormTabbedActivity.Tabs.values
 import com.thejuki.kformmasterexample.fragment.FormFragment
@@ -22,8 +21,6 @@ import kotlinx.android.synthetic.main.activity_tabbed_form.*
  * @version 1.0
  */
 class FormTabbedActivity : AppCompatActivity() {
-
-    private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

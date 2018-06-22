@@ -66,6 +66,7 @@ pages:
   - Custom:
     - 'Customize Form': 'custom/customize.md'
     - 'Custom Element': 'custom/element.md'
+    - 'Form Layouts': 'custom/formLayouts.md'
   - About:
     - 'Contributing': 'about/contributing.md'
     - 'Credits': 'about/credits.md'
