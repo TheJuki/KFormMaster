@@ -1,11 +1,8 @@
 package com.thejuki.kformmasterexample.custom.view
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
@@ -38,18 +35,6 @@ class CustomViewBinder(private val context: Context, private val formBuilder: Fo
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
 
-        setEditTextFocusEnabled(editTextValue, itemView)
-
-        editTextValue.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                textViewTitle.setTextColor(ContextCompat.getColor(context,
-                        R.color.colorFormMasterElementFocusedTitle))
-            } else {
-                textViewTitle.setTextColor(ContextCompat.getColor(context,
-                        R.color.colorFormMasterElementTextTitle))
-            }
-        }
-
         model.editView = editTextValue
 
         // Initially use 4 lines
@@ -58,25 +43,17 @@ class CustomViewBinder(private val context: Context, private val formBuilder: Fo
             model.maxLines = 4
         }
 
-        editTextValue.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+        // If an InputType is provided, use it instead
+        model.inputType?.let { editTextValue.setRawInputType(it) }
 
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
+        // If imeOptions are provided, use them instead of creating a new line
+        model.imeOptions?.let { editTextValue.imeOptions = it }
 
-                // get current form element, existing value and new value
-                val currentValue = model.valueAsString
-                val newValue = charSequence.toString()
+        setEditTextFocusEnabled(editTextValue, itemView)
+        setOnFocusChangeListener(context, model, formBuilder)
+        addTextChangedListener(model, formBuilder)
+        setOnEditorActionListener(model, formBuilder)
 
-                // trigger event only if the value is changed
-                if (currentValue != newValue) {
-                    model.setValue(newValue)
-                    model.error = null
-                    formBuilder.onValueChanged(model)
-                }
-            }
-
-            override fun afterTextChanged(editable: Editable) {}
-        })
     }, object : ViewStateProvider<FormCustomElement, ViewHolder> {
         override fun createViewStateID(model: FormCustomElement): Int {
             return model.id

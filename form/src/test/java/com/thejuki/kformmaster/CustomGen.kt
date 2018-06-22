@@ -96,6 +96,16 @@ interface CustomGen {
         }
 
         /**
+         * Generates a formLabelElement
+         */
+        fun formLabelElement() = object : Gen<FormLabelElement> {
+            override fun generate(): FormLabelElement {
+                return FormLabelElement()
+                        .setTitle(Gen.string().generate()) as FormLabelElement
+            }
+        }
+
+        /**
          * Generates a FormPickerDropDownElement
          */
         fun formPickerDropDownElement() = object : Gen<FormPickerDropDownElement<String>> {

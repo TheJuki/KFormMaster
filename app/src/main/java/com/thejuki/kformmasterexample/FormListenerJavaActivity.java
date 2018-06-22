@@ -18,6 +18,7 @@ import com.thejuki.kformmaster.helper.DateTimeBuilder;
 import com.thejuki.kformmaster.helper.DropDownBuilder;
 import com.thejuki.kformmaster.helper.EmailEditTextBuilder;
 import com.thejuki.kformmaster.helper.FormBuildHelper;
+import com.thejuki.kformmaster.helper.FormLayouts;
 import com.thejuki.kformmaster.helper.HeaderBuilder;
 import com.thejuki.kformmaster.helper.LabelBuilder;
 import com.thejuki.kformmaster.helper.MultiCheckBoxBuilder;
@@ -123,7 +124,12 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
     }
 
     private void setupForm() {
-        formBuilder = new FormBuildHelper(this, this, findViewById(R.id.recyclerView), true);
+        FormLayouts formLayouts = new FormLayouts();
+
+        // Uncomment to replace all text elements with the form_element_custom layout
+        //formLayouts.setText(R.layout.form_element_custom);
+
+        formBuilder = new FormBuildHelper(this, this, findViewById(R.id.recyclerView), true, formLayouts);
 
         List<BaseFormElement<?>> elements = new ArrayList<>();
 

@@ -3,9 +3,7 @@ package com.thejuki.kformmasterexample
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import com.thejuki.kformmaster.helper.FormBuildHelper
-import com.thejuki.kformmaster.helper.form
-import com.thejuki.kformmaster.helper.header
+import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmasterexample.custom.helper.customEx
@@ -67,12 +65,25 @@ class CustomFormActivity : AppCompatActivity() {
             }
         }
 
-        formBuilder = form(this, recyclerView, listener, true) {
+        /**
+         * This form displays a custom form element in two ways:
+         *
+         * CustomEx - An entire custom form element: Layout, View, Model, State, and Helper
+         * textArea (FormLayouts) - textArea elements will use the form_element_custom layout
+         */
+        formBuilder = form(this, recyclerView, listener, formLayouts = FormLayouts(
+                textArea = R.layout.form_element_custom
+        )) {
             header { title = getString(R.string.custom_form) }
             customEx(Tag.Custom.ordinal) {
-                title = getString(R.string.Custom)
+                title = getString(R.string.Custom_Element)
             }
-            header { title = getString(R.string.custom_footer) }
+            header { title = getString(R.string.custom_footer_1) }
+            textArea(Tag.Custom.ordinal) {
+                title = getString(R.string.Custom_Layout)
+                maxLines = 4
+            }
+            header { title = getString(R.string.custom_footer_2) }
         }
 
         // IMPORTANT: Register your custom view binder or you will get a RuntimeException

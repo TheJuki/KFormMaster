@@ -94,11 +94,11 @@ class FullscreenFormActivity : AppCompatActivity() {
     }
 
     private fun showHideAll() {
-        formBuilder.elements.forEach({
+        formBuilder.elements.forEach {
             if (it !is FormHeader) {
                 it.visible = !it.visible
             }
-        })
+        }
     }
 
     private fun validate() {
@@ -109,11 +109,11 @@ class FullscreenFormActivity : AppCompatActivity() {
         } else {
             alert.setTitle(this@FullscreenFormActivity.getString(R.string.FormInvalid))
 
-            formBuilder.elements.forEach({
+            formBuilder.elements.forEach {
                 if (!it.isValid) {
                     it.error = "This field is required!"
                 }
-            })
+            }
         }
 
         alert.setButton(AlertDialog.BUTTON_POSITIVE, this@FullscreenFormActivity.getString(android.R.string.ok), { _, _ -> })
@@ -161,7 +161,11 @@ class FullscreenFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        formBuilder = form(this, recyclerView, cacheForm = true) {
+        formBuilder = form(this, recyclerView,
+                formLayouts = FormLayouts(
+                        // Uncomment to replace all text elements with the form_element_custom layout
+                        //text = R.layout.form_element_custom
+                )) {
             header { title = getString(R.string.PersonalInfo); collapsible = true }
             email(Email.ordinal) {
                 title = getString(R.string.email)

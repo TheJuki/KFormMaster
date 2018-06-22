@@ -1,5 +1,6 @@
 package com.thejuki.kformmaster.model
 
+import android.content.res.ColorStateList
 import android.support.v7.widget.*
 import android.text.InputType
 import android.view.Gravity
@@ -180,6 +181,11 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 it.text = title
             }
         }
+
+    /**
+     * Form Element Title View Text Colors
+     */
+    var titleViewTextColors: ColorStateList? = null
 
     /**
      * Form Element Error View

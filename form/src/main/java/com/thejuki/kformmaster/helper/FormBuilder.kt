@@ -29,12 +29,14 @@ fun form(context: Context,
          recyclerView: RecyclerView,
          listener: OnFormElementValueChangedListener? = null,
          cacheForm: Boolean = true,
+         formLayouts: FormLayouts? = null,
          init: FormBuildHelper.() -> Unit): FormBuildHelper {
     val form = FormBuildHelper(
             context = context,
             listener = listener,
             recyclerView = recyclerView,
-            cacheForm = cacheForm
+            cacheForm = cacheForm,
+            formLayouts = formLayouts
     )
     form.init()
     form.setItems()

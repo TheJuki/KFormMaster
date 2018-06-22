@@ -11,4 +11,23 @@ import android.support.annotation.LayoutRes
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormLayouts(@LayoutRes val headerLayoutID: Int? = null)
+class FormLayouts(@LayoutRes var header: Int? = null,
+                  @LayoutRes var text: Int? = null,
+                  @LayoutRes var textArea: Int? = null,
+                  @LayoutRes var number: Int? = null,
+                  @LayoutRes var email: Int? = null,
+                  @LayoutRes var password: Int? = null,
+                  @LayoutRes var phone: Int? = null,
+                  @LayoutRes var autoComplete: Int? = null,
+                  @LayoutRes var autoCompleteToken: Int? = null,
+                  @LayoutRes var button: Int? = null,
+                  @LayoutRes var date: Int? = null,
+                  @LayoutRes var time: Int? = null,
+                  @LayoutRes var dateTime: Int? = null,
+                  @LayoutRes var dropDown: Int? = null,
+                  @LayoutRes var multiCheckBox: Int? = null,
+                  @LayoutRes var switch: Int? = null,
+                  @LayoutRes var checkBox: Int? = null,
+                  @LayoutRes var slider: Int? = null,
+                  @LayoutRes var label: Int? = null,
+                  @LayoutRes var textView: Int? = null)
