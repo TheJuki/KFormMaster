@@ -1,5 +1,11 @@
 # Change Log
 
+## [4.3.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.3.0)
+- Added FormLayouts class to override the default layouts used for all related form elements in the form. 
+  - Issue: #15 
+  - Pull Request: #36 
+- Added doc for FormLayouts: https://thejuki.github.io/KFormMaster/custom/formLayouts/
+
 ## [4.2.1](https://github.com/TheJuki/KFormMaster/releases/tag/4.2.1)
 - Added [inputType](https://thejuki.github.io/KFormMaster/element/base/#input-type), [imeOptions](https://thejuki.github.io/KFormMaster/element/base/#ime-options), and [updateOnFocusChange](https://thejuki.github.io/KFormMaster/element/base/#update-on-focus-change) to BaseFormElement
 - Restored addTextChangedListener to update value as characters are typed by default. Added updateOnFocusChange to update on focus instead.
