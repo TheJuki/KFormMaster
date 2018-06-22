@@ -34,6 +34,12 @@ class FormModelUnitTest : ShouldSpec() {
             }
         }
 
+        "Label" {
+            should("have valid formHeader") {
+                CustomGen.formLabelElement().generate().title shouldNotBe null
+            }
+        }
+
         "TextView" {
             should("have valid formTextViewElement") {
                 val element = CustomGen.formTextViewElement().generate()

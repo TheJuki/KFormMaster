@@ -3,6 +3,7 @@ package com.thejuki.kformmaster.view
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.support.annotation.LayoutRes
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.text.InputType
@@ -24,8 +25,9 @@ import com.thejuki.kformmaster.state.FormEditTextViewState
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPickerDateTimeViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormPickerDateTimeElement::class.java, { model, finder, _ ->
+class FormPickerDateTimeViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
+    var viewBinder = ViewBinder(layoutID
+            ?: R.layout.form_element, FormPickerDateTimeElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
@@ -50,7 +52,7 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
         }
 
         val datePickerDialog = DatePickerDialog(context,
-                dateDialogListener(model, editTextValue, textViewError),
+                dateDialogListener(model, editTextValue),
                 model.value?.year ?: 0,
                 if ((model.value?.month ?: 0) == 0) 0 else (model.value?.month ?: 0) - 1,
                 model.value?.dayOfMonth ?: 0)
@@ -67,8 +69,7 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
     })
 
     private fun dateDialogListener(model: FormPickerDateTimeElement,
-                                   editTextValue: AppCompatEditText,
-                                   textViewError: AppCompatTextView): DatePickerDialog.OnDateSetListener {
+                                   editTextValue: AppCompatEditText): DatePickerDialog.OnDateSetListener {
         return DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
             // get current form element, existing value and new value
 

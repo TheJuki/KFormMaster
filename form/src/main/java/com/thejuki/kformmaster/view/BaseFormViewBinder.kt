@@ -2,6 +2,7 @@ package com.thejuki.kformmaster.view
 
 import android.app.Dialog
 import android.content.Context
+import android.content.res.ColorStateList
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
@@ -54,13 +55,26 @@ abstract class BaseFormViewBinder {
      * Sets the focus changed listener on the editView to update the form element value
      */
     fun setOnFocusChangeListener(context: Context, formElement: BaseFormElement<*>, formBuilder: FormBuildHelper) {
+        if (formElement.titleViewTextColors == null) {
+            val states = arrayOf(intArrayOf(android.R.attr.state_focused), intArrayOf())
+            val colors = intArrayOf(ContextCompat.getColor(context,
+                    R.color.colorFormMasterElementFocusedTitle),
+                    formElement.titleView?.textColors?.getColorForState(intArrayOf(),
+                            (ContextCompat.getColor(context, R.color.colorFormMasterElementTextTitle)))
+                            ?: -1
+            )
+            formElement.titleViewTextColors = ColorStateList(states, colors)
+            formElement.titleView?.setTextColor(formElement.titleViewTextColors)
+        }
         formElement.editView?.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                formElement.titleView?.setTextColor(ContextCompat.getColor(context,
-                        R.color.colorFormMasterElementFocusedTitle))
+                formElement.titleView?.setTextColor(formElement.titleViewTextColors?.getColorForState(intArrayOf(android.R.attr.state_focused),
+                        (ContextCompat.getColor(context, R.color.colorFormMasterElementFocusedTitle)))
+                        ?: -1)
             } else {
-                formElement.titleView?.setTextColor(ContextCompat.getColor(context,
-                        R.color.colorFormMasterElementTextTitle))
+                formElement.titleView?.setTextColor(formElement.titleViewTextColors?.getColorForState(intArrayOf(),
+                        (ContextCompat.getColor(context, R.color.colorFormMasterElementTextTitle)))
+                        ?: -1)
 
                 (formElement.editView as? AppCompatEditText)?.let {
                     if (it.text.toString() != formElement.valueAsString) {

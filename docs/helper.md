@@ -59,14 +59,11 @@ val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 formBuilder.addFormElements(elements)
 ```
 
-### Auto Measure Enabled
-By default this is false.
-Enable autoMeasureEnabled when the layout_height of recyclerView is wrap_content such as the LoginFormActivity example.
-```kotlin
-formBuilder = FormBuildHelper(this, recyclerView, autoMeasureEnabled = true)
-```
+### Form Layouts
+Form Layouts override the default layouts used for all related form elements in the form.
 
 ```kotlin
-formBuilder = FormBuildHelper(this)
-formBuilder.attachRecyclerView(this, recyclerView, autoMeasureEnabled = true)
+ formBuilder = form(this, recyclerView, formLayouts = FormLayouts(
+                text = R.layout.form_element_custom,
+                textArea = R.layout.form_element_custom))
 ```

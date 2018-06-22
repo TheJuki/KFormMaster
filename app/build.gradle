@@ -34,7 +34,7 @@ tasks.withType(Javadoc).all {
 }
 
 ext {
-    supportVersion = '27.0.2'
+    supportVersion = '27.1.1'
 }
 
 dependencies {

@@ -19,6 +19,4 @@ class ElementDiffCallback : DiffCallback<BaseFormElement<*>>() {
     override fun areContentsTheSame(oldItem: BaseFormElement<*>, newItem: BaseFormElement<*>): Boolean {
         return oldItem == newItem
     }
-
-
 }

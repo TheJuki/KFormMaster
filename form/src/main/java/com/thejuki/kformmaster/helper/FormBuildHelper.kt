@@ -23,13 +23,13 @@ import java.util.*
  */
 @FormDsl
 class FormBuildHelper
-@JvmOverloads constructor(context: Context, listener: OnFormElementValueChangedListener? = null, recyclerView: RecyclerView? = null, val cacheForm: Boolean = true, autoMeasureEnabled: Boolean = false) {
+@JvmOverloads constructor(context: Context, listener: OnFormElementValueChangedListener? = null, recyclerView: RecyclerView? = null, val cacheForm: Boolean = true, val formLayouts: FormLayouts? = null) {
 
     init {
         initializeFormBuildHelper(context, listener)
 
         if (recyclerView != null) {
-            attachRecyclerView(context, recyclerView, autoMeasureEnabled)
+            attachRecyclerView(context, recyclerView)
         }
     }
 
@@ -92,54 +92,54 @@ class FormBuildHelper
         this.formAdapter.setDiffCallback(ElementDiffCallback())
 
         // Header
-        this.formAdapter.registerRenderer(FormHeaderViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormHeaderViewBinder(context, this, formLayouts?.header).viewBinder)
 
         // Label
-        this.formAdapter.registerRenderer(FormLabelViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormLabelViewBinder(context, this, formLayouts?.label).viewBinder)
 
         // Edit Texts
         registerEditTexts(context)
 
         // AutoCompletes
-        this.formAdapter.registerRenderer(FormAutoCompleteViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormTokenAutoCompleteViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormAutoCompleteViewBinder(context, this, formLayouts?.autoComplete).viewBinder)
+        this.formAdapter.registerRenderer(FormTokenAutoCompleteViewBinder(context, this, formLayouts?.autoCompleteToken).viewBinder)
 
         // Button
-        this.formAdapter.registerRenderer(FormButtonViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormButtonViewBinder(context, this, formLayouts?.button).viewBinder)
 
         // Switch
-        this.formAdapter.registerRenderer(FormSwitchViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormSwitchViewBinder(context, this, formLayouts?.switch).viewBinder)
 
         // CheckBox
-        this.formAdapter.registerRenderer(FormCheckBoxViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormCheckBoxViewBinder(context, this, formLayouts?.checkBox).viewBinder)
 
         // Slider
-        this.formAdapter.registerRenderer(FormSliderViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormSliderViewBinder(context, this, formLayouts?.slider).viewBinder)
 
         // Pickers
         registerPickers(context)
 
         // Text View
-        this.formAdapter.registerRenderer(FormTextViewViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormTextViewViewBinder(context, this, formLayouts?.textView).viewBinder)
 
         this.listener = listener
     }
 
     private fun registerEditTexts(context: Context) {
-        this.formAdapter.registerRenderer(FormSingleLineEditTextViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormMultiLineEditTextViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormNumberEditTextViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormEmailEditTextViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPhoneEditTextViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPasswordEditTextViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormSingleLineEditTextViewBinder(context, this, formLayouts?.text).viewBinder)
+        this.formAdapter.registerRenderer(FormMultiLineEditTextViewBinder(context, this, formLayouts?.textArea).viewBinder)
+        this.formAdapter.registerRenderer(FormNumberEditTextViewBinder(context, this, formLayouts?.number).viewBinder)
+        this.formAdapter.registerRenderer(FormEmailEditTextViewBinder(context, this, formLayouts?.email).viewBinder)
+        this.formAdapter.registerRenderer(FormPhoneEditTextViewBinder(context, this, formLayouts?.phone).viewBinder)
+        this.formAdapter.registerRenderer(FormPasswordEditTextViewBinder(context, this, formLayouts?.password).viewBinder)
     }
 
     private fun registerPickers(context: Context) {
-        this.formAdapter.registerRenderer(FormPickerDateViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPickerTimeViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPickerDateTimeViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPickerMultiCheckBoxViewBinder(context, this).viewBinder)
-        this.formAdapter.registerRenderer(FormPickerDropDownViewBinder(context, this).viewBinder)
+        this.formAdapter.registerRenderer(FormPickerDateViewBinder(context, this, formLayouts?.time).viewBinder)
+        this.formAdapter.registerRenderer(FormPickerTimeViewBinder(context, this, formLayouts?.time).viewBinder)
+        this.formAdapter.registerRenderer(FormPickerDateTimeViewBinder(context, this, formLayouts?.dateTime).viewBinder)
+        this.formAdapter.registerRenderer(FormPickerMultiCheckBoxViewBinder(context, this, formLayouts?.multiCheckBox).viewBinder)
+        this.formAdapter.registerRenderer(FormPickerDropDownViewBinder(context, this, formLayouts?.dropDown).viewBinder)
     }
 
     /**
@@ -152,13 +152,12 @@ class FormBuildHelper
     /**
      * Attaches the given [recyclerView] to form
      */
-    fun attachRecyclerView(context: Context, recyclerView: RecyclerView?, autoMeasureEnabled: Boolean = false) {
+    fun attachRecyclerView(context: Context, recyclerView: RecyclerView?) {
         recyclerView?.let {
             // Set up the RecyclerView with the adapter
             it.layoutManager = LinearLayoutManager(context).apply {
                 orientation = LinearLayoutManager.VERTICAL
                 stackFromEnd = false
-                isAutoMeasureEnabled = autoMeasureEnabled
             }
             it.adapter = formAdapter
             it.itemAnimator = DefaultItemAnimator()

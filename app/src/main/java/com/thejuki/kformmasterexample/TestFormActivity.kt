@@ -5,12 +5,8 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.thejuki.kformmaster.helper.FormBuildHelper
-import com.thejuki.kformmaster.helper.form
-import com.thejuki.kformmaster.helper.header
-import com.thejuki.kformmaster.helper.number
+import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.FormHeader
-import com.thejuki.kformmasterexample.item.ListItem
 import kotlinx.android.synthetic.main.activity_fullscreen_form.*
 
 /**
@@ -65,11 +61,11 @@ class TestFormActivity : AppCompatActivity() {
     }
 
     private fun showHideAll() {
-        formBuilder.elements.forEach({
+        formBuilder.elements.forEach {
             if (it !is FormHeader) {
                 it.visible = !it.visible
             }
-        })
+        }
     }
 
     private fun validate() {
@@ -80,11 +76,11 @@ class TestFormActivity : AppCompatActivity() {
         } else {
             alert.setTitle(this@TestFormActivity.getString(R.string.FormInvalid))
 
-            formBuilder.elements.forEach({
+            formBuilder.elements.forEach {
                 if (!it.isValid) {
                     it.error = "This field is required!"
                 }
-            })
+            }
         }
 
         alert.setButton(AlertDialog.BUTTON_POSITIVE, this@TestFormActivity.getString(android.R.string.ok), { _, _ -> })
@@ -102,14 +98,10 @@ class TestFormActivity : AppCompatActivity() {
         }
     }
 
-    private val fruits = listOf<ListItem>(ListItem(id = 1, name = "Banana"),
-            ListItem(id = 2, name = "Orange"),
-            ListItem(id = 3, name = "Mango"),
-            ListItem(id = 4, name = "Guava")
-    )
-
     private fun setupForm() {
-        formBuilder = form(this, recyclerView, cacheForm = true) {
+        formBuilder = form(this, recyclerView, formLayouts = FormLayouts(
+                number = R.layout.form_element_custom
+        )) {
             header { title = "A" }
             number {
                 title = "1"

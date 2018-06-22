@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster.view
 
 import android.content.Context
+import android.support.annotation.LayoutRes
 import android.support.v7.widget.AppCompatCheckBox
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
@@ -21,8 +22,9 @@ import com.thejuki.kformmaster.state.FormCheckBoxViewState
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormCheckBoxViewBinder(private val context: Context, private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element_checkbox, FormCheckBoxElement::class.java, { model, finder, _ ->
+class FormCheckBoxViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
+    var viewBinder = ViewBinder(layoutID
+            ?: R.layout.form_element_checkbox, FormCheckBoxElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
