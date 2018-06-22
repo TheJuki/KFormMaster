@@ -418,8 +418,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#auto-measure-enabled" title="Auto Measure Enabled" class="md-nav__link">
-    Auto Measure Enabled
+  <a href="#form-layouts" title="Form Layouts" class="md-nav__link">
+    Form Layouts
   </a>
   
 </li>
@@ -759,6 +759,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom/formLayouts/" title="Form Layouts" class="md-nav__link">
+      Form Layouts
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -899,8 +911,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#auto-measure-enabled" title="Auto Measure Enabled" class="md-nav__link">
-    Auto Measure Enabled
+  <a href="#form-layouts" title="Form Layouts" class="md-nav__link">
+    Form Layouts
   </a>
   
 </li>
@@ -983,15 +995,11 @@ NOTE: This is enabled by default.</p>
 </pre></div>
 
 
-<h3 id="auto-measure-enabled">Auto Measure Enabled<a class="headerlink" href="#auto-measure-enabled" title="Permanent link">&para;</a></h3>
-<p>By default this is false.
-Enable autoMeasureEnabled when the layout_height of recyclerView is wrap_content such as the LoginFormActivity example.</p>
-<div class="codehilite"><pre><span></span><span class="n">formBuilder</span> <span class="p">=</span> <span class="n">FormBuildHelper</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recyclerView</span><span class="p">,</span> <span class="n">autoMeasureEnabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
-</pre></div>
-
-
-<div class="codehilite"><pre><span></span><span class="n">formBuilder</span> <span class="p">=</span> <span class="n">FormBuildHelper</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
-<span class="n">formBuilder</span><span class="p">.</span><span class="n">attachRecyclerView</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recyclerView</span><span class="p">,</span> <span class="n">autoMeasureEnabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">)</span>
+<h3 id="form-layouts">Form Layouts<a class="headerlink" href="#form-layouts" title="Permanent link">&para;</a></h3>
+<p>Form Layouts override the default layouts used for all related form elements in the form.</p>
+<div class="codehilite"><pre><span></span> <span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recyclerView</span><span class="p">,</span> <span class="n">formLayouts</span> <span class="p">=</span> <span class="n">FormLayouts</span><span class="p">(</span>
+                <span class="n">text</span> <span class="p">=</span> <span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">,</span>
+                <span class="n">textArea</span> <span class="p">=</span> <span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">))</span>
 </pre></div>
                 
                   
