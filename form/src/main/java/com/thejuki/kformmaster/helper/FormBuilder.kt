@@ -460,6 +460,7 @@ fun FormBuildHelper.dateTime(tag: Int = -1, init: DateTimeBuilder.() -> Unit): F
 /** Builder method to add a FormPickerDropDownElement */
 class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var dialogTitle: String? = null
+    var dialogEmptyMessage: String? = null
     var arrayAdapter: ArrayAdapter<*>? = null
     var options: List<T>? = null
     override fun build() =
@@ -476,6 +477,7 @@ class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     visible = it.visible
                     options = it.options ?: ArrayList()
                     dialogTitle = it.dialogTitle
+                    dialogEmptyMessage = it.dialogEmptyMessage
                     arrayAdapter = it.arrayAdapter
                     valueObservers.addAll(it.valueObservers)
                 }
@@ -490,6 +492,7 @@ fun <T> FormBuildHelper.dropDown(tag: Int = -1, init: DropDownBuilder<T>.() -> U
 /** Builder method to add a FormPickerMultiCheckBoxElement */
 class MultiCheckBoxBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var dialogTitle: String? = null
+    var dialogEmptyMessage: String? = null
     var options: T? = null
     override fun build() =
             FormPickerMultiCheckBoxElement<T>(tag).apply {
@@ -505,6 +508,7 @@ class MultiCheckBoxBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(t
                     visible = it.visible
                     options = it.options
                     dialogTitle = it.dialogTitle
+                    dialogEmptyMessage = it.dialogEmptyMessage
                     valueObservers.addAll(it.valueObservers)
                 }
             }

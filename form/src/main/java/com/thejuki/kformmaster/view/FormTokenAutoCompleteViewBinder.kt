@@ -29,17 +29,17 @@ import com.tokenautocomplete.TokenCompleteTextView
 class FormTokenAutoCompleteViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
     var viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_token_auto_complete, FormTokenAutoCompleteElement::class.java, { model, finder, _ ->
-        val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
-        val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
+        val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
         val itemsCompletionView = finder.find(R.id.formElementValue) as ItemsCompletionView
 
         if (model.value != null) {
-            (model.value as List<*>).forEach({
+            (model.value as List<*>).forEach {
                 itemsCompletionView.addObject(it)
-            })
+            }
         }
 
         itemsCompletionView.hint = model.hint ?: ""
@@ -65,10 +65,10 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
 
         itemsCompletionView.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                textViewTitle.setTextColor(ContextCompat.getColor(context,
+                textViewTitle?.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementFocusedTitle))
             } else {
-                textViewTitle.setTextColor(ContextCompat.getColor(context,
+                textViewTitle?.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementTextTitle))
 
                 model.setValue(itemsCompletionView.objects)

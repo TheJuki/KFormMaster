@@ -24,7 +24,7 @@ import com.thejuki.kformmaster.state.FormHeaderViewState
 class FormHeaderViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
     var viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_header, FormHeader::class.java, { model, finder, _ ->
-        val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
+        val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, null, itemView)
 

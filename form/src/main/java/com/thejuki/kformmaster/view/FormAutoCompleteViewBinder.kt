@@ -29,8 +29,8 @@ import com.thejuki.kformmaster.state.FormAutoCompleteViewState
 class FormAutoCompleteViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
     var viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_auto_complete, FormAutoCompleteElement::class.java, { model, finder, _ ->
-        val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
-        val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
+        val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
@@ -76,10 +76,10 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
 
         autoCompleteTextView.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                textViewTitle.setTextColor(ContextCompat.getColor(context,
+                textViewTitle?.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementFocusedTitle))
             } else {
-                textViewTitle.setTextColor(ContextCompat.getColor(context,
+                textViewTitle?.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementTextTitle))
             }
         }

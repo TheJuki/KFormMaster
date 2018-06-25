@@ -4,10 +4,13 @@ import android.app.Dialog
 import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
+import android.view.Gravity
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
+
 
 /**
  * Form Picker Dropdown Element
@@ -41,6 +44,12 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
     var dialogTitle: String? = null
 
     /**
+     * Alert Dialog Empty Message
+     * (optional - uses R.string.form_master_empty)
+     */
+    var dialogEmptyMessage: String? = null
+
+    /**
      * ArrayAdapter for Alert Dialog
      * (optional - uses setItems(options))
      */
@@ -51,6 +60,14 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
      */
     fun setDialogTitle(dialogTitle: String?): FormPickerDropDownElement<T> {
         this.dialogTitle = dialogTitle
+        return this
+    }
+
+    /**
+     * dialogEmptyMessage builder setter
+     */
+    fun setDialogEmptyMessage(dialogEmptyMessage: String?): FormPickerDropDownElement<T> {
+        this.dialogEmptyMessage = dialogEmptyMessage
         return this
     }
 
@@ -93,33 +110,42 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
             if (this.dialogTitle == null) {
                 this.dialogTitle = context.getString(R.string.form_master_pick_one)
             }
+            if (this.dialogEmptyMessage == null) {
+                this.dialogEmptyMessage = context.getString(R.string.form_master_empty)
+            }
         }
 
         alertDialogBuilder?.let {
             if (this.arrayAdapter != null) {
                 this.arrayAdapter?.apply {
                     it.setTitle(this@FormPickerDropDownElement.dialogTitle)
-                            .setAdapter(this, { _, which ->
+                            .setMessage(null)
+                            .setAdapter(this) { _, which ->
                                 editTextView?.setText(this.getItem(which).toString())
                                 this@FormPickerDropDownElement.setValue(this.getItem(which))
                                 this@FormPickerDropDownElement.error = null
                                 formBuilder?.onValueChanged(this@FormPickerDropDownElement)
 
                                 editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
-                            })
+                            }
                 }
             } else {
-                it.setTitle(this.dialogTitle)
-                        .setItems(options) { _, which ->
-                            editTextView?.setText(options[which])
-                            this.options?.let {
-                                this.setValue(it[which])
-                            }
-                            this.error = null
-                            formBuilder?.onValueChanged(this)
+                if (this.options?.isEmpty() == true) {
+                    it.setTitle(this.dialogTitle).setMessage(dialogEmptyMessage)
+                } else {
+                    it.setTitle(this.dialogTitle)
+                            .setMessage(null)
+                            .setItems(options) { _, which ->
+                                editTextView?.setText(options[which])
+                                this.options?.let {
+                                    this.setValue(it[which])
+                                }
+                                this.error = null
+                                formBuilder?.onValueChanged(this)
 
-                            editTextView?.setText(this.valueAsString)
-                        }
+                                editTextView?.setText(this.valueAsString)
+                            }
+                }
             }
 
             alertDialog = it.create()
@@ -128,6 +154,11 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
         // display the dialog on click
         val listener = View.OnClickListener {
             alertDialog?.show()
+
+            if (this.options?.isEmpty() == true) {
+                val messageView = alertDialog?.findViewById(android.R.id.message) as? TextView
+                messageView?.gravity = Gravity.CENTER
+            }
         }
 
         itemView?.setOnClickListener(listener)

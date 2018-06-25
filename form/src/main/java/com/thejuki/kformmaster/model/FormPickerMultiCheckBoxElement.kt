@@ -3,7 +3,9 @@ package com.thejuki.kformmaster.model
 import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
+import android.view.Gravity
 import android.view.View
+import android.widget.TextView
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 
@@ -55,6 +57,12 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
     var dialogTitle: String? = null
 
     /**
+     * Alert Dialog Empty Message
+     * (optional - uses R.string.form_master_empty)
+     */
+    var dialogEmptyMessage: String? = null
+
+    /**
      * dialogTitle builder setter
      */
     fun setDialogTitle(dialogTitle: String?): FormPickerMultiCheckBoxElement<T> {
@@ -104,39 +112,55 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
             if (this.dialogTitle == null) {
                 this.dialogTitle = context.getString(R.string.form_master_pick_one_or_more)
             }
+            if (this.dialogEmptyMessage == null) {
+                this.dialogEmptyMessage = context.getString(R.string.form_master_empty)
+            }
         }
 
         alertDialogBuilder?.let {
-            it.setTitle(this.dialogTitle)
-                    .setMultiChoiceItems(options, optionsSelected) { _, which, isChecked ->
-                        if (isChecked) {
-                            // If the user checked the item, add it to the selected items
-                            mSelectedItems.add(which)
-                        } else if (mSelectedItems.contains(which)) {
-                            // Else, if the item is already in the array, remove it
-                            mSelectedItems.remove(which)
+            if (this.options?.isEmpty() == true) {
+                it.setTitle(this.dialogTitle)
+                        .setMessage(dialogEmptyMessage)
+                        .setPositiveButton(null, null)
+                        .setNegativeButton(null, null)
+            } else {
+                it.setTitle(this.dialogTitle)
+                        .setMessage(null)
+                        .setMultiChoiceItems(options, optionsSelected) { _, which, isChecked ->
+                            if (isChecked) {
+                                // If the user checked the item, add it to the selected items
+                                mSelectedItems.add(which)
+                            } else if (mSelectedItems.contains(which)) {
+                                // Else, if the item is already in the array, remove it
+                                mSelectedItems.remove(which)
+                            }
                         }
-                    }
-                    // Set the action buttons
-                    .setPositiveButton(android.R.string.ok) { _, _ ->
-                        this.options?.let {
-                            val selectedOptions = mSelectedItems.indices
-                                    .map { mSelectedItems[it] }
-                                    .map { x -> it[x] }
+                        // Set the action buttons
+                        .setPositiveButton(android.R.string.ok) { _, _ ->
+                            this.options?.let {
+                                val selectedOptions = mSelectedItems.indices
+                                        .map { mSelectedItems[it] }
+                                        .map { x -> it[x] }
 
-                            this.setValue(selectedOptions)
-                            this.error = null
-                            formBuilder?.onValueChanged(this)
-                            editTextView?.setText(getSelectedItemsText())
+                                this.setValue(selectedOptions)
+                                this.error = null
+                                formBuilder?.onValueChanged(this)
+                                editTextView?.setText(getSelectedItemsText())
+                            }
                         }
-                    }
-                    .setNegativeButton(android.R.string.cancel) { _, _ -> }
+                        .setNegativeButton(android.R.string.cancel) { _, _ -> }
+            }
 
             val alertDialog = it.create()
 
             // display the dialog on click
             val listener = View.OnClickListener {
                 alertDialog.show()
+
+                if (this.options?.isEmpty() == true) {
+                    val messageView = alertDialog?.findViewById(android.R.id.message) as? TextView
+                    messageView?.gravity = Gravity.CENTER
+                }
             }
 
             itemView?.setOnClickListener(listener)

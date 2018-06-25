@@ -27,8 +27,8 @@ import com.thejuki.kformmaster.state.FormEditTextViewState
 class FormPasswordEditTextViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
     var viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element, FormPasswordEditTextElement::class.java, { model, finder, _ ->
-        val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
-        val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
+        val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 

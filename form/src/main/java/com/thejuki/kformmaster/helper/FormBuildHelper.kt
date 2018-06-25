@@ -202,7 +202,7 @@ class FormBuildHelper
      * Clears all form element values
      */
     fun clearAll() {
-        this.elements.forEach({ it.clear() })
+        this.elements.forEach { it.clear() }
     }
 
     /**
