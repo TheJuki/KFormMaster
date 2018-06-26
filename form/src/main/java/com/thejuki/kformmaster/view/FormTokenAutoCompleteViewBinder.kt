@@ -27,7 +27,7 @@ import com.tokenautocomplete.TokenCompleteTextView
  * @version 1.0
  */
 class FormTokenAutoCompleteViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(layoutID
+    val viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_token_auto_complete, FormTokenAutoCompleteElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView

@@ -3,9 +3,7 @@ package com.thejuki.kformmaster.model
 import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
-import android.view.Gravity
 import android.view.View
-import android.widget.TextView
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 
@@ -156,11 +154,6 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
             // display the dialog on click
             val listener = View.OnClickListener {
                 alertDialog.show()
-
-                if (this.options?.isEmpty() == true) {
-                    val messageView = alertDialog?.findViewById(android.R.id.message) as? TextView
-                    messageView?.gravity = Gravity.CENTER
-                }
             }
 
             itemView?.setOnClickListener(listener)
