@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.4.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.4.0)
+- The title and error views are now optional. This allows your custom layout to not need a title and error view.
+- Empty dialog added to dropDown or multiCheckBox elements for when the options list is empty or null.
+- Confirm dialog added to picker elements for when an editable element contains a value and needs to be confirmed before editing the value by clicking on it.
+
 ## [4.3.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.3.0)
 - Added FormLayouts class to override the default layouts used for all related form elements in the form. 
   - Issue: #15 
