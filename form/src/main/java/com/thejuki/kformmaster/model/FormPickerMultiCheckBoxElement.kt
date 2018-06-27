@@ -113,16 +113,22 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
             if (this.dialogEmptyMessage == null) {
                 this.dialogEmptyMessage = context.getString(R.string.form_master_empty)
             }
+            if (this.confirmTitle == null) {
+                this.confirmTitle = context.getString(R.string.form_master_confirm_title)
+            }
+            if (this.confirmMessage == null) {
+                this.confirmMessage = context.getString(R.string.form_master_confirm_message)
+            }
         }
 
-        alertDialogBuilder?.let {
+        alertDialogBuilder?.let { builder ->
             if (this.options?.isEmpty() == true) {
-                it.setTitle(this.dialogTitle)
+                builder.setTitle(this.dialogTitle)
                         .setMessage(dialogEmptyMessage)
                         .setPositiveButton(null, null)
                         .setNegativeButton(null, null)
             } else {
-                it.setTitle(this.dialogTitle)
+                builder.setTitle(this.dialogTitle)
                         .setMessage(null)
                         .setMultiChoiceItems(options, optionsSelected) { _, which, isChecked ->
                             if (isChecked) {
@@ -149,11 +155,22 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
                         .setNegativeButton(android.R.string.cancel) { _, _ -> }
             }
 
-            val alertDialog = it.create()
+            val alertDialog = builder.create()
 
             // display the dialog on click
             val listener = View.OnClickListener {
-                alertDialog.show()
+                if (!confirmEdit) {
+                    alertDialog.show()
+                } else if (confirmEdit && value != null) {
+                    builder.setTitle(confirmTitle)
+                            .setMessage(confirmMessage)
+                            // Set the action buttons
+                            .setPositiveButton(android.R.string.ok) { _, _ ->
+                                alertDialog.show()
+                            }
+                            .setNegativeButton(android.R.string.cancel) { _, _ -> }
+                            .show()
+                }
             }
 
             itemView?.setOnClickListener(listener)

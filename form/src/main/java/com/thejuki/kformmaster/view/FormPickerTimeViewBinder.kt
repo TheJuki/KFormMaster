@@ -56,7 +56,7 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
                 model.value?.minute ?: 0,
                 false)
 
-        setOnClickListener(editTextValue, itemView, timePickerDialog)
+        setOnClickListener(context, model, itemView, timePickerDialog)
     }, object : ViewStateProvider<FormPickerTimeElement, ViewHolder> {
         override fun createViewStateID(model: FormPickerTimeElement): Int {
             return model.id

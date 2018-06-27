@@ -1,6 +1,5 @@
 package com.thejuki.kformmaster.model
 
-import android.app.Dialog
 import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
@@ -99,8 +98,6 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
             }
         }
 
-        var alertDialog: Dialog? = null
-
         val editTextView = this.editView as? AppCompatEditText
 
         if (alertDialogBuilder == null && context != null) {
@@ -111,12 +108,18 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
             if (this.dialogEmptyMessage == null) {
                 this.dialogEmptyMessage = context.getString(R.string.form_master_empty)
             }
+            if (this.confirmTitle == null) {
+                this.confirmTitle = context.getString(R.string.form_master_confirm_title)
+            }
+            if (this.confirmMessage == null) {
+                this.confirmMessage = context.getString(R.string.form_master_confirm_message)
+            }
         }
 
-        alertDialogBuilder?.let {
+        alertDialogBuilder?.let { builder ->
             if (this.arrayAdapter != null) {
                 this.arrayAdapter?.apply {
-                    it.setTitle(this@FormPickerDropDownElement.dialogTitle)
+                    builder.setTitle(this@FormPickerDropDownElement.dialogTitle)
                             .setMessage(null)
                             .setAdapter(this) { _, which ->
                                 editTextView?.setText(this.getItem(which).toString())
@@ -129,9 +132,9 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                 }
             } else {
                 if (this.options?.isEmpty() == true) {
-                    it.setTitle(this.dialogTitle).setMessage(dialogEmptyMessage)
+                    builder.setTitle(this.dialogTitle).setMessage(dialogEmptyMessage)
                 } else {
-                    it.setTitle(this.dialogTitle)
+                    builder.setTitle(this.dialogTitle)
                             .setMessage(null)
                             .setItems(options) { _, which ->
                                 editTextView?.setText(options[which])
@@ -146,15 +149,26 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                 }
             }
 
-            alertDialog = it.create()
-        }
+            val alertDialog = builder.create()
 
-        // display the dialog on click
-        val listener = View.OnClickListener {
-            alertDialog?.show()
-        }
+            // display the dialog on click
+            val listener = View.OnClickListener {
+                if (!confirmEdit) {
+                    alertDialog.show()
+                } else if (confirmEdit && value != null) {
+                    builder.setTitle(confirmTitle)
+                            .setMessage(confirmMessage)
+                            // Set the action buttons
+                            .setPositiveButton(android.R.string.ok) { _, _ ->
+                                alertDialog.show()
+                            }
+                            .setNegativeButton(android.R.string.cancel) { _, _ -> }
+                            .show()
+                }
+            }
 
-        itemView?.setOnClickListener(listener)
-        editTextView?.setOnClickListener(listener)
+            itemView?.setOnClickListener(listener)
+            editTextView?.setOnClickListener(listener)
+        }
     }
 }
