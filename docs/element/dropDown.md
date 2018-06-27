@@ -27,6 +27,15 @@ dropDown<ListItem>(1) {
 }
 ```
 
+## Dialog Empty Message
+By default this is "Empty".
+Setting this will override the alert dialog message when the options list is empty or null.
+```kotlin
+dropDown<ListItem>(1) {
+    dialogEmptyMessage = "Nothing to see here"
+}
+```
+
 ## Example
 
 ### Kotlin

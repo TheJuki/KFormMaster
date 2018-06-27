@@ -172,6 +172,34 @@ text {
 }
 ```
 
+## Confirm Edit
+By default this is false.
+Setting confirmEdit to true will display an alert dialog confirming if the user wishes to edit the value if a current value exists.
+Currently, this only applies to the picker elements that display a dialog.
+```kotlin
+date {
+    confirmEdit = true
+}
+```
+
+## Confirm Title
+By default this is "Confirm Edit".
+Setting this will override the confirm edit dialog title.
+```kotlin
+date {
+    confirmTitle = "Really edit this?"
+}
+```
+
+## Confirm Message
+By default this is "Edit this value?".
+Setting this will override the confirm edit dialog message.
+```kotlin
+date {
+    confirmMessage = "Are you ABSOLUTELY sure?"
+}
+```
+
 ## Clear value
 Clear the value of the element.
 ```kotlin
