@@ -78,6 +78,8 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
         val optionsSelected = BooleanArray(this.options?.size ?: 0)
         val mSelectedItems = ArrayList<Int>()
 
+        lateinit var alertDialog: AlertDialog
+
         this.options?.let {
             for (i in it.indices) {
                 val obj = it[i]
@@ -155,27 +157,25 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
                         .setNegativeButton(android.R.string.cancel) { _, _ -> }
             }
 
-            val alertDialog = builder.create()
-
-            // display the dialog on click
-            val listener = View.OnClickListener {
-                if (!confirmEdit) {
-                    alertDialog.show()
-                } else if (confirmEdit && value != null) {
-                    builder.setTitle(confirmTitle)
-                            .setMessage(confirmMessage)
-                            // Set the action buttons
-                            .setPositiveButton(android.R.string.ok) { _, _ ->
-                                alertDialog.show()
-                            }
-                            .setNegativeButton(android.R.string.cancel) { _, _ -> }
-                            .show()
-                }
-            }
-
-            itemView?.setOnClickListener(listener)
-            editTextView?.setOnClickListener(listener)
+            alertDialog = builder.create()
         }
+
+        // display the dialog on click
+        val listener = View.OnClickListener {
+            if (!confirmEdit || value == null || value?.isEmpty() == true) {
+                alertDialog.show()
+            } else if (confirmEdit && value != null) {
+                alertDialogBuilder
+                        ?.setTitle(confirmTitle)
+                        ?.setMessage(confirmMessage)
+                        ?.setPositiveButton(android.R.string.ok) { _, _ ->
+                            alertDialog.show()
+                        }?.setNegativeButton(android.R.string.cancel) { _, _ -> }?.show()
+            }
+        }
+
+        itemView?.setOnClickListener(listener)
+        editTextView?.setOnClickListener(listener)
     }
 
     private fun getSelectedItemsText(): String {

@@ -45,7 +45,7 @@ abstract class BaseFormViewBinder {
 
         // display the dialog on click
         val listener = View.OnClickListener {
-            if (!formElement.confirmEdit) {
+            if (!formElement.confirmEdit || formElement.valueAsString.isEmpty()) {
                 dialog.show()
             } else if (formElement.confirmEdit && formElement.value != null) {
                 AlertDialog.Builder(context)

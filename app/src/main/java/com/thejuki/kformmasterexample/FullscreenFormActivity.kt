@@ -283,6 +283,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 options = fruits
                 enabled = true
                 rightToLeft = false
+                dialogEmptyMessage = "This is Empty!"
                 confirmEdit = true
                 maxLines = 3
                 value = ListItem(id = 1, name = "Banana")

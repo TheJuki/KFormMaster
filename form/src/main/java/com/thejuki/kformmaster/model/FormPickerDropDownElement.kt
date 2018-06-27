@@ -98,6 +98,8 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
             }
         }
 
+        lateinit var alertDialog: AlertDialog
+
         val editTextView = this.editView as? AppCompatEditText
 
         if (alertDialogBuilder == null && context != null) {
@@ -116,10 +118,10 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
             }
         }
 
-        alertDialogBuilder?.let { builder ->
+        alertDialogBuilder?.let {
             if (this.arrayAdapter != null) {
                 this.arrayAdapter?.apply {
-                    builder.setTitle(this@FormPickerDropDownElement.dialogTitle)
+                    it.setTitle(this@FormPickerDropDownElement.dialogTitle)
                             .setMessage(null)
                             .setAdapter(this) { _, which ->
                                 editTextView?.setText(this.getItem(which).toString())
@@ -132,9 +134,9 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                 }
             } else {
                 if (this.options?.isEmpty() == true) {
-                    builder.setTitle(this.dialogTitle).setMessage(dialogEmptyMessage)
+                    it.setTitle(this.dialogTitle).setMessage(dialogEmptyMessage)
                 } else {
-                    builder.setTitle(this.dialogTitle)
+                    it.setTitle(this.dialogTitle)
                             .setMessage(null)
                             .setItems(options) { _, which ->
                                 editTextView?.setText(options[which])
@@ -149,26 +151,24 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                 }
             }
 
-            val alertDialog = builder.create()
-
-            // display the dialog on click
-            val listener = View.OnClickListener {
-                if (!confirmEdit) {
-                    alertDialog.show()
-                } else if (confirmEdit && value != null) {
-                    builder.setTitle(confirmTitle)
-                            .setMessage(confirmMessage)
-                            // Set the action buttons
-                            .setPositiveButton(android.R.string.ok) { _, _ ->
-                                alertDialog.show()
-                            }
-                            .setNegativeButton(android.R.string.cancel) { _, _ -> }
-                            .show()
-                }
-            }
-
-            itemView?.setOnClickListener(listener)
-            editTextView?.setOnClickListener(listener)
+            alertDialog = it.create()
         }
+
+        // display the dialog on click
+        val listener = View.OnClickListener {
+            if (!confirmEdit || valueAsString.isEmpty()) {
+                alertDialog.show()
+            } else if (confirmEdit && value != null) {
+                alertDialogBuilder
+                        ?.setTitle(confirmTitle)
+                        ?.setMessage(confirmMessage)
+                        ?.setPositiveButton(android.R.string.ok) { _, _ ->
+                            alertDialog.show()
+                        }?.setNegativeButton(android.R.string.cancel) { _, _ -> }?.show()
+            }
+        }
+
+        itemView?.setOnClickListener(listener)
+        editTextView?.setOnClickListener(listener)
     }
 }
