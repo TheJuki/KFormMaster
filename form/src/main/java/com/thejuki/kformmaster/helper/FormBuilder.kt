@@ -101,6 +101,21 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
     var required: Boolean = false
 
     /**
+     * Form Element Confirm Edit dialog should be shown before editing an element
+     */
+    var confirmEdit: Boolean = false
+
+    /**
+     * Form Element Confirm Edit dialog title
+     */
+    var confirmTitle: String? = null
+
+    /**
+     * Form Element Confirm Edit dialog message
+     */
+    var confirmMessage: String? = null
+
+    /**
      * Form Element Visibility
      */
     var visible: Boolean = true
@@ -392,6 +407,9 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
+                    confirmEdit = it.confirmEdit
+                    confirmTitle = it.confirmTitle
+                    confirmMessage = it.confirmMessage
                     required = it.required
                     enabled = it.enabled
                     visible = it.visible
@@ -417,6 +435,9 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.Time
                     hint = it.hint
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
+                    confirmEdit = it.confirmEdit
+                    confirmTitle = it.confirmTitle
+                    confirmMessage = it.confirmMessage
                     error = it.error
                     required = it.required
                     enabled = it.enabled
@@ -443,6 +464,9 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElem
                     hint = it.hint
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
+                    confirmEdit = it.confirmEdit
+                    confirmTitle = it.confirmTitle
+                    confirmMessage = it.confirmMessage
                     error = it.error
                     required = it.required
                     enabled = it.enabled
@@ -473,6 +497,9 @@ class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     maxLines = it.maxLines
                     error = it.error
                     required = it.required
+                    confirmEdit = it.confirmEdit
+                    confirmTitle = it.confirmTitle
+                    confirmMessage = it.confirmMessage
                     enabled = it.enabled
                     visible = it.visible
                     options = it.options ?: ArrayList()
@@ -504,6 +531,9 @@ class MultiCheckBoxBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(t
                     maxLines = it.maxLines
                     error = it.error
                     required = it.required
+                    confirmEdit = it.confirmEdit
+                    confirmTitle = it.confirmTitle
+                    confirmMessage = it.confirmMessage
                     enabled = it.enabled
                     visible = it.visible
                     options = it.options

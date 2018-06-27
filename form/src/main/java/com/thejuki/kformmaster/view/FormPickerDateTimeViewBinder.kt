@@ -57,7 +57,7 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
                 if ((model.value?.month ?: 0) == 0) 0 else (model.value?.month ?: 0) - 1,
                 model.value?.dayOfMonth ?: 0)
 
-        setOnClickListener(editTextValue, itemView, datePickerDialog)
+        setOnClickListener(context, model, itemView, datePickerDialog)
     }, object : ViewStateProvider<FormPickerDateTimeElement, ViewHolder> {
         override fun createViewStateID(model: FormPickerDateTimeElement): Int {
             return model.id

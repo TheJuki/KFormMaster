@@ -1,6 +1,5 @@
 package com.thejuki.kformmaster.model
 
-import android.app.Dialog
 import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
@@ -99,7 +98,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
             }
         }
 
-        var alertDialog: Dialog? = null
+        lateinit var alertDialog: AlertDialog
 
         val editTextView = this.editView as? AppCompatEditText
 
@@ -110,6 +109,12 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
             }
             if (this.dialogEmptyMessage == null) {
                 this.dialogEmptyMessage = context.getString(R.string.form_master_empty)
+            }
+            if (this.confirmTitle == null) {
+                this.confirmTitle = context.getString(R.string.form_master_confirm_title)
+            }
+            if (this.confirmMessage == null) {
+                this.confirmMessage = context.getString(R.string.form_master_confirm_message)
             }
         }
 
@@ -151,7 +156,16 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
         // display the dialog on click
         val listener = View.OnClickListener {
-            alertDialog?.show()
+            if (!confirmEdit || valueAsString.isEmpty()) {
+                alertDialog.show()
+            } else if (confirmEdit && value != null) {
+                alertDialogBuilder
+                        ?.setTitle(confirmTitle)
+                        ?.setMessage(confirmMessage)
+                        ?.setPositiveButton(android.R.string.ok) { _, _ ->
+                            alertDialog.show()
+                        }?.setNegativeButton(android.R.string.cancel) { _, _ -> }?.show()
+            }
         }
 
         itemView?.setOnClickListener(listener)

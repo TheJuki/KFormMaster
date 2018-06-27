@@ -125,6 +125,21 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var required: Boolean = false
 
     /**
+     * Form Element Confirm Edit dialog should be shown before editing an element
+     */
+    var confirmEdit: Boolean = false
+
+    /**
+     * Form Element Confirm Edit dialog title
+     */
+    var confirmTitle: String? = null
+
+    /**
+     * Form Element Confirm Edit dialog message
+     */
+    var confirmMessage: String? = null
+
+    /**
      * Form Element Update EditText value when focus is lost
      * By default, an EditText will update the form value as characters are typed.
      * Setting this to true will only update the value when focus is lost.
@@ -353,6 +368,14 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      */
     fun setRequired(required: Boolean): BaseFormElement<T> {
         this.required = required
+        return this
+    }
+
+    /**
+     * Confirm Edit builder setter
+     */
+    fun setConfirmEdit(confirmEdit: Boolean): BaseFormElement<T> {
+        this.confirmEdit = confirmEdit
         return this
     }
 

@@ -78,6 +78,8 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
         val optionsSelected = BooleanArray(this.options?.size ?: 0)
         val mSelectedItems = ArrayList<Int>()
 
+        lateinit var alertDialog: AlertDialog
+
         this.options?.let {
             for (i in it.indices) {
                 val obj = it[i]
@@ -113,16 +115,22 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
             if (this.dialogEmptyMessage == null) {
                 this.dialogEmptyMessage = context.getString(R.string.form_master_empty)
             }
+            if (this.confirmTitle == null) {
+                this.confirmTitle = context.getString(R.string.form_master_confirm_title)
+            }
+            if (this.confirmMessage == null) {
+                this.confirmMessage = context.getString(R.string.form_master_confirm_message)
+            }
         }
 
-        alertDialogBuilder?.let {
+        alertDialogBuilder?.let { builder ->
             if (this.options?.isEmpty() == true) {
-                it.setTitle(this.dialogTitle)
+                builder.setTitle(this.dialogTitle)
                         .setMessage(dialogEmptyMessage)
                         .setPositiveButton(null, null)
                         .setNegativeButton(null, null)
             } else {
-                it.setTitle(this.dialogTitle)
+                builder.setTitle(this.dialogTitle)
                         .setMessage(null)
                         .setMultiChoiceItems(options, optionsSelected) { _, which, isChecked ->
                             if (isChecked) {
@@ -149,16 +157,25 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
                         .setNegativeButton(android.R.string.cancel) { _, _ -> }
             }
 
-            val alertDialog = it.create()
-
-            // display the dialog on click
-            val listener = View.OnClickListener {
-                alertDialog.show()
-            }
-
-            itemView?.setOnClickListener(listener)
-            editTextView?.setOnClickListener(listener)
+            alertDialog = builder.create()
         }
+
+        // display the dialog on click
+        val listener = View.OnClickListener {
+            if (!confirmEdit || value == null || value?.isEmpty() == true) {
+                alertDialog.show()
+            } else if (confirmEdit && value != null) {
+                alertDialogBuilder
+                        ?.setTitle(confirmTitle)
+                        ?.setMessage(confirmMessage)
+                        ?.setPositiveButton(android.R.string.ok) { _, _ ->
+                            alertDialog.show()
+                        }?.setNegativeButton(android.R.string.cancel) { _, _ -> }?.show()
+            }
+        }
+
+        itemView?.setOnClickListener(listener)
+        editTextView?.setOnClickListener(listener)
     }
 
     private fun getSelectedItemsText(): String {

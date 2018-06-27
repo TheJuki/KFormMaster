@@ -243,6 +243,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
                 required = true
                 maxLines = 1
+                confirmEdit = true
                 rightToLeft = false
                 enabled = true
                 valueObservers.add { newValue, element ->
@@ -255,6 +256,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateFormat = SimpleDateFormat("hh:mm a", Locale.US)
                 required = true
                 maxLines = 1
+                confirmEdit = true
                 rightToLeft = false
                 enabled = true
                 valueObservers.add { newValue, element ->
@@ -267,6 +269,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
                 required = true
                 maxLines = 1
+                confirmEdit = true
                 rightToLeft = false
                 enabled = true
                 valueObservers.add { newValue, element ->
@@ -280,6 +283,8 @@ class FullscreenFormActivity : AppCompatActivity() {
                 options = fruits
                 enabled = true
                 rightToLeft = false
+                dialogEmptyMessage = "This is Empty!"
+                confirmEdit = true
                 maxLines = 3
                 value = ListItem(id = 1, name = "Banana")
                 required = true
@@ -293,6 +298,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 options = fruits
                 enabled = true
                 maxLines = 3
+                confirmEdit = true
                 rightToLeft = false
                 value = listOf(ListItem(id = 1, name = "Banana"))
                 required = true

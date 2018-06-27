@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.res.ColorStateList
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.text.Editable
@@ -39,16 +40,30 @@ abstract class BaseFormViewBinder {
     /**
      * Shows the [dialog] when the form element is clicked
      */
-    fun setOnClickListener(editTextValue: AppCompatEditText, itemView: View, dialog: Dialog) {
-        editTextValue.isFocusable = false
+    fun setOnClickListener(context: Context, formElement: BaseFormElement<*>, itemView: View, dialog: Dialog) {
+        formElement.editView?.isFocusable = false
 
         // display the dialog on click
         val listener = View.OnClickListener {
-            dialog.show()
+            if (!formElement.confirmEdit || formElement.valueAsString.isEmpty()) {
+                dialog.show()
+            } else if (formElement.confirmEdit && formElement.value != null) {
+                AlertDialog.Builder(context)
+                        .setTitle(formElement.confirmTitle
+                                ?: context.getString(R.string.form_master_confirm_title))
+                        .setMessage(formElement.confirmMessage
+                                ?: context.getString(R.string.form_master_confirm_message))
+                        // Set the action buttons
+                        .setPositiveButton(android.R.string.ok) { _, _ ->
+                            dialog.show()
+                        }
+                        .setNegativeButton(android.R.string.cancel) { _, _ -> }
+                        .show()
+            }
         }
 
         itemView.setOnClickListener(listener)
-        editTextValue.setOnClickListener(listener)
+        formElement.editView?.setOnClickListener(listener)
     }
 
     /**
