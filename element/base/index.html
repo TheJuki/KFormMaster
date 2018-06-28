@@ -489,6 +489,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#clearable" title="Clearable" class="md-nav__link">
+    Clearable
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#visible" title="Visible" class="md-nav__link">
     Visible
   </a>
@@ -1030,6 +1037,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#clearable" title="Clearable" class="md-nav__link">
+    Clearable
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#visible" title="Visible" class="md-nav__link">
     Visible
   </a>
@@ -1254,6 +1268,22 @@ This determines the gravity of the text in the value field.</p>
 Setting required to true will cause FormBuildHelper.isValidForm to return false if a value is not set.</p>
 <div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
     <span class="n">required</span> <span class="p">=</span> <span class="k">true</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="clearable">Clearable<a class="headerlink" href="#clearable" title="Permanent link">&para;</a></h2>
+<p>By default this is false.
+Setting this to true will display a clear button (X) to set the value to null.</p>
+<div class="admonition error">
+<p class="admonition-title">Unsupported Fields</p>
+<ul>
+<li>AutoComplete</li>
+<li>AutoCompleteToken</li>
+</ul>
+</div>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">clearable</span> <span class="p">=</span> <span class="k">true</span>
 <span class="p">}</span>
 </pre></div>
 
