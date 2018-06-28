@@ -149,6 +149,21 @@ text {
 }
 ```
 
+## Clearable
+By default this is false.
+Setting this to true will display a clear button (X) to set the value to null.
+
+!!! error "Unsupported Fields"
+
+    * AutoComplete
+    * AutoCompleteToken
+
+```kotlin
+text {
+    clearable = true
+}
+```
+
 ## Visible
 By default this is true.
 Setting visible to false will hide the form element.
