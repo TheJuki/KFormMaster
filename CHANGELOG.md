@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.5.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.5.0)
+- Added clearable to most form elements. Setting this to true will display a clear button (X) to set the value to null.
+
 ## [4.4.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.4.0)
 - The title and error views are now optional. This allows your custom layout to not need a title and error view.
 - Empty dialog added to dropDown or multiCheckBox elements for when the options list is empty or null.
