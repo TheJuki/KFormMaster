@@ -125,6 +125,20 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var required: Boolean = false
 
     /**
+     * Form Element Clearable
+     * Setting this to true will display a clear button (X) to set the value to null.
+     */
+    var clearable: Boolean = false
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is com.thejuki.kformmaster.widget.ClearableEditText) {
+                    it.displayClear = value
+                }
+            }
+        }
+
+    /**
      * Form Element Confirm Edit dialog should be shown before editing an element
      */
     var confirmEdit: Boolean = false
@@ -280,6 +294,14 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      */
     open fun clear() {
         this.value = null
+    }
+
+    /**
+     * Clearable builder setter
+     */
+    fun setTag(clearable: Boolean): BaseFormElement<T> {
+        this.clearable = clearable
+        return this
     }
 
     /**

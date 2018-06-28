@@ -101,6 +101,12 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
     var required: Boolean = false
 
     /**
+     * Form Element Clearable
+     * Setting this to true will display a clear button (X) to set the value to null.
+     */
+    var clearable: Boolean = false
+
+    /**
      * Form Element Confirm Edit dialog should be shown before editing an element
      */
     var confirmEdit: Boolean = false
@@ -164,6 +170,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     visible = it.visible
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
@@ -191,6 +198,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     visible = it.visible
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
@@ -220,6 +228,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     numbersOnly = it.numbersOnly
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
@@ -247,6 +256,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     visible = it.visible
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
@@ -274,6 +284,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     visible = it.visible
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
@@ -301,6 +312,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     visible = it.visible
                     inputType = it.inputType
                     imeOptions = it.imeOptions
+                    clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                 }
@@ -413,6 +425,7 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     required = it.required
                     enabled = it.enabled
                     visible = it.visible
+                    clearable = it.clearable
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -442,6 +455,7 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.Time
                     required = it.required
                     enabled = it.enabled
                     visible = it.visible
+                    clearable = it.clearable
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -471,6 +485,7 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElem
                     required = it.required
                     enabled = it.enabled
                     visible = it.visible
+                    clearable = it.clearable
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -506,6 +521,7 @@ class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     dialogTitle = it.dialogTitle
                     dialogEmptyMessage = it.dialogEmptyMessage
                     arrayAdapter = it.arrayAdapter
+                    clearable = it.clearable
                     valueObservers.addAll(it.valueObservers)
                 }
             }
@@ -538,6 +554,7 @@ class MultiCheckBoxBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(t
                     visible = it.visible
                     options = it.options
                     dialogTitle = it.dialogTitle
+                    clearable = it.clearable
                     dialogEmptyMessage = it.dialogEmptyMessage
                     valueObservers.addAll(it.valueObservers)
                 }

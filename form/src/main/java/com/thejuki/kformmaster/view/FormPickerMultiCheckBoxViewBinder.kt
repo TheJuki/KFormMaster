@@ -2,7 +2,6 @@ package com.thejuki.kformmaster.view
 
 import android.content.Context
 import android.support.annotation.LayoutRes
-import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.text.InputType
 import android.view.View
@@ -31,10 +30,11 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
-        val editTextValue = finder.find(R.id.formElementValue) as AppCompatEditText
+        val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
+        editTextValue.alwaysShowClear = true
 
         model.editView = editTextValue
 
@@ -42,6 +42,7 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
         editTextValue.isFocusable = false
 
         model.reInitDialog(context, formBuilder)
+        setClearableListener(model)
 
     }, object : ViewStateProvider<FormPickerMultiCheckBoxElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormPickerMultiCheckBoxElement<*>): Int {

@@ -33,10 +33,11 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
-        val editTextValue = finder.find(R.id.formElementValue) as AppCompatEditText
+        val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
+        editTextValue.alwaysShowClear = true
 
         model.editView = editTextValue
 
@@ -58,6 +59,8 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
                 model.value?.dayOfMonth ?: 0)
 
         setOnClickListener(context, model, itemView, datePickerDialog)
+        setClearableListener(model)
+
     }, object : ViewStateProvider<FormPickerDateTimeElement, ViewHolder> {
         override fun createViewStateID(model: FormPickerDateTimeElement): Int {
             return model.id

@@ -32,10 +32,11 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
-        val editTextValue = finder.find(R.id.formElementValue) as AppCompatEditText
+        val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
+        editTextValue.alwaysShowClear = true
 
         editTextValue.setRawInputType(InputType.TYPE_NULL)
 
@@ -57,6 +58,8 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
                 model.value?.dayOfMonth ?: 0)
 
         setOnClickListener(context, model, itemView, datePickerDialog)
+        setClearableListener(model)
+
     }, object : ViewStateProvider<FormPickerDateElement, ViewHolder> {
         override fun createViewStateID(model: FormPickerDateElement): Int {
             return model.id

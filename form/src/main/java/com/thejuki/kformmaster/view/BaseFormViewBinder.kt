@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.BaseFormElement
+import com.thejuki.kformmaster.widget.ClearableEditText
 
 /**
  * Base Form ViewBinder
@@ -35,6 +36,22 @@ abstract class BaseFormViewBinder {
         formElement.itemView = itemView
         formElement.titleView = textViewTitle
         formElement.errorView = textViewError
+    }
+
+    /**
+     * Sets the [ClearableEditText.Listener] to clear the form element
+     */
+    fun setClearableListener(formElement: BaseFormElement<*>) {
+        formElement.editView?.let {
+            if (it is com.thejuki.kformmaster.widget.ClearableEditText) {
+                it.displayClear = formElement.clearable
+                it.setListener(object : ClearableEditText.Listener {
+                    override fun didClearText() {
+                        formElement.clear()
+                    }
+                })
+            }
+        }
     }
 
     /**

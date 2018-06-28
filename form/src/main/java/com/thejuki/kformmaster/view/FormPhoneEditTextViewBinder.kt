@@ -32,7 +32,7 @@ class FormPhoneEditTextViewBinder(private val context: Context, private val form
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
-        val editTextValue = finder.find(R.id.formElementValue) as AppCompatEditText
+        val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
@@ -52,6 +52,7 @@ class FormPhoneEditTextViewBinder(private val context: Context, private val form
         setOnFocusChangeListener(context, model, formBuilder)
         addTextChangedListener(model, formBuilder)
         setOnEditorActionListener(model, formBuilder)
+        setClearableListener(model)
 
     }, object : ViewStateProvider<FormPhoneEditTextElement, ViewHolder> {
         override fun createViewStateID(model: FormPhoneEditTextElement): Int {

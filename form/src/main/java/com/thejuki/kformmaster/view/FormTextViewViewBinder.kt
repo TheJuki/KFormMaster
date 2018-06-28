@@ -3,7 +3,6 @@ package com.thejuki.kformmaster.view
 import android.content.Context
 import android.support.annotation.LayoutRes
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.AppCompatEditText
 import android.support.v7.widget.AppCompatTextView
 import android.text.InputType
 import android.view.View
@@ -32,7 +31,7 @@ class FormTextViewViewBinder(private val context: Context, private val formBuild
         val itemView = finder.getRootView() as View
         baseSetup(model, textViewTitle, textViewError, itemView)
 
-        val editTextValue = finder.find(R.id.formElementValue) as AppCompatEditText
+        val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
@@ -40,6 +39,7 @@ class FormTextViewViewBinder(private val context: Context, private val formBuild
         editTextValue.setTextColor(ContextCompat.getColor(context, R.color.colorFormMasterElementTextDisabled))
         editTextValue.isFocusable = false
         editTextValue.setRawInputType(InputType.TYPE_NULL)
+        editTextValue.setIconLocation(null)
 
         model.editView = editTextValue
 

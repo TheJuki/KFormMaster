@@ -175,6 +175,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 3
                 enabled = true
                 required = true
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -185,6 +186,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = true
                 rightToLeft = false
                 enabled = true
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -196,6 +198,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 3
                 required = true
                 enabled = true
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -207,6 +210,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 required = true
                 enabled = true
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -221,6 +225,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 updateOnFocusChange = true
                 imeOptions = EditorInfo.IME_ACTION_DONE
                 inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -232,6 +237,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 required = true
                 enabled = true
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -246,6 +252,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 confirmEdit = true
                 rightToLeft = false
                 enabled = true
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -259,6 +266,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 confirmEdit = true
                 rightToLeft = false
                 enabled = true
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -272,6 +280,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 confirmEdit = true
                 rightToLeft = false
                 enabled = true
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -288,6 +297,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 3
                 value = ListItem(id = 1, name = "Banana")
                 required = true
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -302,6 +312,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 value = listOf(ListItem(id = 1, name = "Banana"))
                 required = true
+                clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
