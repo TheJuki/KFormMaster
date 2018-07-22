@@ -38,13 +38,13 @@ class FormSwitchViewBinder(private val context: Context, private val formBuilder
         setSwitchFocusEnabled(itemView, switch)
 
         switch.setOnCheckedChangeListener { _, isChecked ->
+            model.error = null
             if (isChecked) {
                 model.setValue(model.onValue)
             } else {
                 model.setValue(model.offValue)
             }
             formBuilder.onValueChanged(model)
-            model.error = null
         }
     }, object : ViewStateProvider<FormSwitchElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormSwitchElement<*>): Int {

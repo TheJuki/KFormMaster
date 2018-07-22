@@ -124,9 +124,9 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                     it.setTitle(this@FormPickerDropDownElement.dialogTitle)
                             .setMessage(null)
                             .setAdapter(this) { _, which ->
+                                this@FormPickerDropDownElement.error = null
                                 editTextView?.setText(this.getItem(which).toString())
                                 this@FormPickerDropDownElement.setValue(this.getItem(which))
-                                this@FormPickerDropDownElement.error = null
                                 formBuilder?.onValueChanged(this@FormPickerDropDownElement)
 
                                 editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
@@ -139,11 +139,11 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                     it.setTitle(this.dialogTitle)
                             .setMessage(null)
                             .setItems(options) { _, which ->
+                                this.error = null
                                 editTextView?.setText(options[which])
                                 this.options?.let {
                                     this.setValue(it[which])
                                 }
-                                this.error = null
                                 formBuilder?.onValueChanged(this)
 
                                 editTextView?.setText(this.valueAsString)

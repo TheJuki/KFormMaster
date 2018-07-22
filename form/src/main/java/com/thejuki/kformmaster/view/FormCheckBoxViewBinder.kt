@@ -38,13 +38,13 @@ class FormCheckBoxViewBinder(private val context: Context, private val formBuild
         setCheckBoxFocusEnabled(itemView, checkBox)
 
         checkBox.setOnCheckedChangeListener { _, isChecked ->
+            model.error = null
             if (isChecked) {
                 model.setValue(model.checkedValue)
             } else {
                 model.setValue(model.unCheckedValue)
             }
             formBuilder.onValueChanged(model)
-            model.error = null
         }
     }, object : ViewStateProvider<FormCheckBoxElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormCheckBoxElement<*>): Int {

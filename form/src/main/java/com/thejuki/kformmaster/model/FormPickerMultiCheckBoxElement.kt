@@ -148,8 +148,8 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
                                         .map { mSelectedItems[it] }
                                         .map { x -> it[x] }
 
-                                this.setValue(selectedOptions)
                                 this.error = null
+                                this.setValue(selectedOptions)
                                 formBuilder?.onValueChanged(this)
                                 editTextView?.setText(getSelectedItemsText())
                             }

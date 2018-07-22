@@ -66,8 +66,8 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
         }
 
         autoCompleteTextView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, _, position, _ ->
-            model.setValue(adapterView.getItemAtPosition(position))
             model.error = null
+            model.setValue(adapterView.getItemAtPosition(position))
 
             formBuilder.onValueChanged(model)
         }

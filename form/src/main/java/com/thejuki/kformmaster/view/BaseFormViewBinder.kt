@@ -110,8 +110,8 @@ abstract class BaseFormViewBinder {
 
                 (formElement.editView as? AppCompatEditText)?.let {
                     if (it.text.toString() != formElement.valueAsString) {
-                        formElement.setValue(it.text.toString())
                         formElement.error = null
+                        formElement.setValue(it.text.toString())
                         formBuilder.onValueChanged(formElement)
                     }
                 }
@@ -135,8 +135,8 @@ abstract class BaseFormViewBinder {
 
                     // trigger event only if the value is changed
                     if (currentValue != newValue) {
-                        formElement.setValue(newValue)
                         formElement.error = null
+                        formElement.setValue(newValue)
                         formBuilder.onValueChanged(formElement)
                     }
                 }
@@ -152,8 +152,8 @@ abstract class BaseFormViewBinder {
     fun setOnEditorActionListener(formElement: BaseFormElement<*>, formBuilder: FormBuildHelper) {
         (formElement.editView as? AppCompatEditText)?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                formElement.setValue((formElement.editView as? AppCompatEditText)?.text.toString())
                 formElement.error = null
+                formElement.setValue((formElement.editView as? AppCompatEditText)?.text.toString())
                 formBuilder.onValueChanged(formElement)
             }
             false
