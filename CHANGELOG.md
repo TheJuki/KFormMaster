@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.5.1](https://github.com/TheJuki/KFormMaster/releases/tag/4.5.0)
+- Move model.error = null when the value changes for an element to before model.setValue
+
 ## [4.5.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.5.0)
 - Added clearable to most form elements. Setting this to true will display a clear button (X) to set the value to null.
 
