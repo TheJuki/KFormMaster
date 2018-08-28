@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.6.1](https://github.com/TheJuki/KFormMaster/releases/tag/4.6.1)
+- Fix Segmented Element (Generate an ID for each dynamic radio button)
+
 ## [4.6.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.6.0)
 - Add new Segmented element
 
