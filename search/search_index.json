@@ -671,6 +671,31 @@
             "title": "Java"
         },
         {
+            "location": "/element/segmented/",
+            "text": "The Segmented form element is used for a radio group.\n\n\n\n\n\n\nNOTICE\n\n\nThe ListItem class is provided in the example app. Your custom class just needs to override toString() to display in the segmented group.\n\n\n\n\nHorizontal\n\u00b6\n\n\nBy default this is true.\nSetting this to false will stack the radio buttons vertically.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \nhorizontal\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \noptions\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n \n                     \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n))\n\n    \nvalue\n \n=\n \nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n)\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nSegmentedBuilder\n<\nListItem\n>\n \nsegmented\n \n=\n \nnew\n \nSegmentedBuilder\n<>(\n1\n);\n\n\nsegmented\n.\nsetOptions\n(\nArrays\n.\nasList\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n),\n\n    \nnew\n \nListItem\n(\n2L\n,\n \n\"Orange\"\n)));\n\n\nsegmented\n.\nsetValue\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n));\n\n\nelements\n.\nadd\n(\nsegmented\n.\nbuild\n());",
+            "title": "Segmented"
+        },
+        {
+            "location": "/element/segmented/#horizontal",
+            "text": "By default this is true.\nSetting this to false will stack the radio buttons vertically.  segmented < ListItem >( 1 )   { \n     horizontal   =   false  }",
+            "title": "Horizontal"
+        },
+        {
+            "location": "/element/segmented/#example",
+            "text": "",
+            "title": "Example"
+        },
+        {
+            "location": "/element/segmented/#kotlin",
+            "text": "segmented < ListItem >( 1 )   { \n     options   =   listOf ( ListItem ( id   =   1 ,   name   =   \"Banana\" ),  \n                      ListItem ( id   =   2 ,   name   =   \"Orange\" )) \n     value   =   ListItem ( id   =   1 ,   name   =   \"Banana\" )  }",
+            "title": "Kotlin"
+        },
+        {
+            "location": "/element/segmented/#java",
+            "text": "SegmentedBuilder < ListItem >   segmented   =   new   SegmentedBuilder <>( 1 );  segmented . setOptions ( Arrays . asList ( new   ListItem ( 1L ,   \"Banana\" ), \n     new   ListItem ( 2L ,   \"Orange\" )));  segmented . setValue ( new   ListItem ( 1L ,   \"Banana\" ));  elements . add ( segmented . build ());",
+            "title": "Java"
+        },
+        {
             "location": "/element/button/",
             "text": "The Button form element is used for a button row. Click events can be caught with a valueObserver.\n\n\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nbutton\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n\"Button Text\"\n\n    \nvalueObservers\n.\nadd\n({\n \n_\n,\n \n_\n \n->\n\n        \n// Nothing was changed but the button was tapped!\n\n    \n})\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nButtonBuilder\n \nbutton\n \n=\n \nnew\n \nButtonBuilder\n(\n1\n);\n\n\nbutton\n.\nsetValue\n(\n\"Button Text\"\n);\n\n\nbutton\n.\ngetValueObservers\n().\nadd\n((\nnewValue\n,\n \nelement\n)\n \n->\n \n{\n\n    \n// Nothing was changed but the button was tapped!\n\n    \nreturn\n \nUnit\n.\nINSTANCE\n;\n\n\n});\n\n\nelements\n.\nadd\n(\nbutton\n.\nbuild\n());",
             "title": "Button"
@@ -692,12 +717,12 @@
         },
         {
             "location": "/custom/customize/",
-            "text": "Form accent color change\n\u00b6\n\n\nIf you want to change the colors, just override the colors in your \ncolors.xml\n file:\n\n\n<color\n \nname=\n\"colorFormMasterHeaderBackground\"\n>\n#DDDDDD\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterHeaderText\"\n>\n#000000\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementBackground\"\n>\n#FFFFFF\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementTextTitle\"\n>\n#222222\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementErrorTitle\"\n>\n#FF0000\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementTextValue\"\n>\n#000000\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementButtonText\"\n>\n#42A5F5\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementFocusedTitle\"\n>\n#0277bd\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementTextDisabled\"\n>\n#757575\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterDivider\"\n>\n#DDDDDD\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementToken\"\n>\n#f5f5f5\n</color>\n\n\n\n\n\n\nForm UI change\n\u00b6\n\n\nIf you want to change how the forms look, just override a form_element XML in your project.\n\n\nJust make sure to keep the ID name the same as it is in the library for the components.\n\n\nandroid\n:\nid\n=\n\"@+id/formElementTitle\"\n\n\nandroid\n:\nid\n=\n\"@+id/formElementValue\"\n\n\n...",
+            "text": "Form accent color change\n\u00b6\n\n\nIf you want to change the colors, just override the colors in your \ncolors.xml\n file:\n\n\n<color\n \nname=\n\"colorFormMasterHeaderBackground\"\n>\n#DDDDDD\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterHeaderText\"\n>\n#000000\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementBackground\"\n>\n#FFFFFF\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementTextTitle\"\n>\n#222222\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementErrorTitle\"\n>\n#FF0000\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementTextValue\"\n>\n#000000\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementButtonText\"\n>\n#42A5F5\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementFocusedTitle\"\n>\n#0277bd\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementTextDisabled\"\n>\n#757575\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterDivider\"\n>\n#DDDDDD\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementToken\"\n>\n#f5f5f5\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementRadioSelected\"\n>\n#42A5F5\n</color>\n\n\n<color\n \nname=\n\"colorFormMasterElementRadioUnSelected\"\n>\n#FFFFFF\n</color>\n\n\n\n\n\n\nForm UI change\n\u00b6\n\n\nIf you want to change how the forms look, just override a form_element XML in your project.\n\n\nJust make sure to keep the ID name the same as it is in the library for the components.\n\n\nandroid\n:\nid\n=\n\"@+id/formElementTitle\"\n\n\nandroid\n:\nid\n=\n\"@+id/formElementValue\"\n\n\n...",
             "title": "Customize Form"
         },
         {
             "location": "/custom/customize/#form-accent-color-change",
-            "text": "If you want to change the colors, just override the colors in your  colors.xml  file:  <color   name= \"colorFormMasterHeaderBackground\" > #DDDDDD </color>  <color   name= \"colorFormMasterHeaderText\" > #000000 </color>  <color   name= \"colorFormMasterElementBackground\" > #FFFFFF </color>  <color   name= \"colorFormMasterElementTextTitle\" > #222222 </color>  <color   name= \"colorFormMasterElementErrorTitle\" > #FF0000 </color>  <color   name= \"colorFormMasterElementTextValue\" > #000000 </color>  <color   name= \"colorFormMasterElementButtonText\" > #42A5F5 </color>  <color   name= \"colorFormMasterElementFocusedTitle\" > #0277bd </color>  <color   name= \"colorFormMasterElementTextDisabled\" > #757575 </color>  <color   name= \"colorFormMasterDivider\" > #DDDDDD </color>  <color   name= \"colorFormMasterElementToken\" > #f5f5f5 </color>",
+            "text": "If you want to change the colors, just override the colors in your  colors.xml  file:  <color   name= \"colorFormMasterHeaderBackground\" > #DDDDDD </color>  <color   name= \"colorFormMasterHeaderText\" > #000000 </color>  <color   name= \"colorFormMasterElementBackground\" > #FFFFFF </color>  <color   name= \"colorFormMasterElementTextTitle\" > #222222 </color>  <color   name= \"colorFormMasterElementErrorTitle\" > #FF0000 </color>  <color   name= \"colorFormMasterElementTextValue\" > #000000 </color>  <color   name= \"colorFormMasterElementButtonText\" > #42A5F5 </color>  <color   name= \"colorFormMasterElementFocusedTitle\" > #0277bd </color>  <color   name= \"colorFormMasterElementTextDisabled\" > #757575 </color>  <color   name= \"colorFormMasterDivider\" > #DDDDDD </color>  <color   name= \"colorFormMasterElementToken\" > #f5f5f5 </color>  <color   name= \"colorFormMasterElementRadioSelected\" > #42A5F5 </color>  <color   name= \"colorFormMasterElementRadioUnSelected\" > #FFFFFF </color>",
             "title": "Form accent color change"
         },
         {
