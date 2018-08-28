@@ -90,6 +90,7 @@ class FormActivityTest : AppCompatActivity() {
         SwitchElement,
         SliderElement,
         CheckBoxElement,
+        SegmentedElement
     }
 
     private fun setupForm() {
@@ -194,12 +195,17 @@ class FormActivityTest : AppCompatActivity() {
                 checkedValue = true
                 unCheckedValue = false
             }
+            segmented<ListItem>(SegmentedElement.ordinal) {
+                title = "Segmented"
+                options = fruits
+                value = ListItem(id = 1, name = "Banana")
+            }
             button(ButtonElement.ordinal) {
                 value = "Button"
-                valueObservers.add({ _, _ ->
+                valueObservers.add { _, _ ->
                     val confirmAlert = AlertDialog.Builder(this@FormActivityTest).create()
                     confirmAlert.setTitle("Confirm?")
-                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormActivityTest.getString(android.R.string.ok), { _, _ ->
+                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormActivityTest.getString(android.R.string.ok)) { _, _ ->
                         // Get Form Element in two ways
                         val dateToDeleteElement = formBuilder.getFormElement<FormPickerDateElement>(Tag.Date.ordinal)
                         dateToDeleteElement.clear()
@@ -217,11 +223,11 @@ class FormActivityTest : AppCompatActivity() {
                         formBuilder.clearAll()
 
                         formBuilder.setError(dateToDeleteElementIndex.errorView!!, "That's an error")
-                    })
-                    confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FormActivityTest.getString(android.R.string.cancel), { _, _ ->
-                    })
+                    }
+                    confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FormActivityTest.getString(android.R.string.cancel)) { _, _ ->
+                    }
                     confirmAlert.show()
-                })
+                }
             }
             text(Hidden.ordinal) {
                 title = "Hidden"
@@ -233,14 +239,14 @@ class FormActivityTest : AppCompatActivity() {
                 .setValue("Disabled Button")
                 .setVisible(true)
                 .setEnabled(false)
-                .addValueObserver({ _, _ ->
+                .addValueObserver { _, _ ->
                     val confirmAlert = AlertDialog.Builder(this@FormActivityTest).create()
                     confirmAlert.setTitle("Disabled?")
-                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormActivityTest.getString(android.R.string.ok), { _, _ ->
+                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormActivityTest.getString(android.R.string.ok)) { _, _ ->
 
-                    })
+                    }
                     confirmAlert.show()
-                })
+                }
                 as FormButtonElement
         formBuilder.addFormElement(disabledButton)
         formBuilder.setItems()

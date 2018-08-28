@@ -106,6 +106,18 @@ interface CustomGen {
         }
 
         /**
+         * Generates a FormSegmentedElement
+         */
+        fun formSegmentedElement() = object : Gen<FormSegmentedElement<String>> {
+            override fun generate(): FormSegmentedElement<String> {
+                val element = generateBaseFields(FormSegmentedElement()) as FormSegmentedElement<String>
+                element.horizontal = Gen.bool().generate()
+                element.options = Gen.list(Gen.string()).generate()
+                return element
+            }
+        }
+
+        /**
          * Generates a FormPickerDropDownElement
          */
         fun formPickerDropDownElement() = object : Gen<FormPickerDropDownElement<String>> {
@@ -258,7 +270,7 @@ interface CustomGen {
                         .setRightToLeft(Gen.bool().generate())
                         .setMaxLines(Gen.choose(1, 100).generate())
                         .setError(if (Gen.bool().generate()) Gen.string().generate() else null)
-                        .addValueObserver({ newValue, elementRef -> println("New Value = $newValue {$elementRef}") })
+                        .addValueObserver { newValue, elementRef -> println("New Value = $newValue {$elementRef}") }
 
         fun generateBaseFieldsWithList(element: BaseFormElement<List<String>>) =
                 element.setTitle(Gen.string().generate())
@@ -271,7 +283,7 @@ interface CustomGen {
                         .setRightToLeft(Gen.bool().generate())
                         .setMaxLines(Gen.choose(1, 100).generate())
                         .setError(if (Gen.bool().generate()) Gen.string().generate() else null)
-                        .addValueObserver({ newValue, elementRef -> println("New Value = $newValue {$elementRef}") })
+                        .addValueObserver { newValue, elementRef -> println("New Value = $newValue {$elementRef}") }
 
         /**
          * Verifies some base form fields
