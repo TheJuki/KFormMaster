@@ -31,8 +31,6 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
 
         val segmented = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.SegmentedGroup
 
-        // segmented.set ???
-
         model.editView = segmented
 
         segmented.setOnCheckedChangeListener { _, checkedId ->
@@ -40,10 +38,12 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
             if (checkedId < 0) {
                 model.setValue(null)
             } else {
-                model.setValue(model.options?.get(checkedId))
+                model.setValue(model.options?.get(checkedId - 100))
             }
             formBuilder.onValueChanged(model)
         }
+
+        model.reInitGroup(context, formBuilder)
 
     }, object : ViewStateProvider<FormSegmentedElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormSegmentedElement<*>): Int {
