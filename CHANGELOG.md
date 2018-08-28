@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.6.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.6.0)
+- Add new Segmented element
+
 ## [4.5.1](https://github.com/TheJuki/KFormMaster/releases/tag/4.5.0)
 - Move model.error = null when the value changes for an element to before model.setValue
 
