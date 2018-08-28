@@ -113,6 +113,9 @@ class FormBuildHelper
         // CheckBox
         this.formAdapter.registerRenderer(FormCheckBoxViewBinder(context, this, formLayouts?.checkBox).viewBinder)
 
+        // Segmented
+        this.formAdapter.registerRenderer(FormSegmentedViewBinder(context, this, formLayouts?.segmented).viewBinder)
+
         // Slider
         this.formAdapter.registerRenderer(FormSliderViewBinder(context, this, formLayouts?.slider).viewBinder)
 

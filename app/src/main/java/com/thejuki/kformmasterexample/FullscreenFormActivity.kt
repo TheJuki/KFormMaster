@@ -157,7 +157,8 @@ class FullscreenFormActivity : AppCompatActivity() {
         LabelElement,
         SwitchElement,
         SliderElement,
-        CheckBoxElement
+        CheckBoxElement,
+        SegmentedElement
     }
 
     private fun setupForm() {
@@ -388,6 +389,17 @@ class FullscreenFormActivity : AppCompatActivity() {
                 unCheckedValue = false
                 required = true
                 enabled = true
+                valueObservers.add { newValue, element ->
+                    Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
+                }
+            }
+            segmented<ListItem>(SegmentedElement.ordinal) {
+                title = getString(R.string.Segmented)
+                options = fruits
+                enabled = true
+                rightToLeft = false
+                value = ListItem(id = 1, name = "Banana")
+                required = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }

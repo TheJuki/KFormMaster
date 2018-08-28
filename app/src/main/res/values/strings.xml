@@ -24,6 +24,7 @@
     <string name="Slider">Slider</string>
     <string name="CheckBox">CheckBox</string>
     <string name="TextView">Text View</string>
+    <string name="Segmented">Segmented</string>
     <string name="Label">This is a label. The title takes up the whole row.</string>
     <string name="Custom_Element">Custom Element</string>
     <string name="Custom_Layout">Custom Layout</string>
