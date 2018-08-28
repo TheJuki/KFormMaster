@@ -120,15 +120,29 @@ class FormInstrumentedTest {
     @Test
     fun text_shouldNotBeDisplayed_whenVisibleIsFalse() {
         // Text element's visible property is set to false and should not show up on the form
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<ViewHolder>(23))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<ViewHolder>(24))
         onView(withText("Hidden"))
                 .check(matches(not(isDisplayed())))
     }
 
     @Test
+    fun segmented_changes_whenClicked() {
+        // Select "Mango"
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<ViewHolder>(22))
+        onView(withId(100)).check(matches(isChecked()))
+        onView(withId(102)).perform(click())
+
+        // Check each RadioButton
+        onView(withId(100)).check(matches(isNotChecked()))
+        onView(withId(101)).check(matches(isNotChecked()))
+        onView(withId(102)).check(matches(isChecked()))
+        onView(withId(103)).check(matches(isNotChecked()))
+    }
+
+    @Test
     fun button_disabled_shouldDoNothing_whenClicked() {
         // Click button to verify that nothing happens because it is disabled
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<ViewHolder>(24, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<ViewHolder>(25, click()))
         onView(withId(R.id.recyclerView))
                 .check(matches(not(withText("Disabled?"))))
     }
@@ -214,7 +228,7 @@ class FormInstrumentedTest {
     @Test
     fun button_openDialog_whenClicked() {
         // Click button to verify the value observer Unit action works and displays an alert dialog
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<ViewHolder>(22, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<ViewHolder>(23, click()))
         onView(withText("Confirm?"))
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed()))

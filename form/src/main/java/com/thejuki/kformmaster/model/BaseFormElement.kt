@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
+import com.thejuki.kformmaster.widget.SegmentedGroup
 import kotlin.properties.Delegates
 
 /**
@@ -55,6 +56,8 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     it.text.toString() != value as? String &&
                     it !is SwitchCompat && it !is AppCompatCheckBox) {
                 it.text = value as? String
+            } else if (it is SegmentedGroup) {
+                it.checkChild(value as? String)
             }
         }
     }
@@ -94,6 +97,8 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             field = value
             editView?.let {
                 if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
+                    it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                } else if (it is SegmentedGroup) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                 }
             }
@@ -195,6 +200,8 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                     it.setSingleLine(maxLines == 1)
                     it.maxLines = maxLines
+                } else if (it is SegmentedGroup) {
+                    it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                 }
             }
         }

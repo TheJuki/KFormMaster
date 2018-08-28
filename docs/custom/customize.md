@@ -12,6 +12,8 @@ If you want to change the colors, just override the colors in your **colors.xml*
 <color name="colorFormMasterElementTextDisabled">#757575</color>
 <color name="colorFormMasterDivider">#DDDDDD</color>
 <color name="colorFormMasterElementToken">#f5f5f5</color>
+<color name="colorFormMasterElementRadioSelected">#42A5F5</color>
+<color name="colorFormMasterElementRadioUnSelected">#FFFFFF</color>
 ```
 
 ### Form UI change

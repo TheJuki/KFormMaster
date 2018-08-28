@@ -88,7 +88,8 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
         LabelElement,
         SwitchElement,
         SliderElement,
-        CheckBoxElement
+        CheckBoxElement,
+        SegmentedElement
     }
 
     private fun setupForm() {
@@ -189,6 +190,11 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                 value = true
                 checkedValue = true
                 unCheckedValue = false
+            }
+            segmented<ListItem>(SegmentedElement.ordinal) {
+                title = getString(R.string.Segmented)
+                options = fruits
+                value = ListItem(id = 1, name = "Banana")
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)

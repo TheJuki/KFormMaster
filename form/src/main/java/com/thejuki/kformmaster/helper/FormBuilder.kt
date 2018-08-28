@@ -566,6 +566,32 @@ fun <T : List<*>> FormBuildHelper.multiCheckBox(tag: Int = -1, init: MultiCheckB
     return addFormElement(MultiCheckBoxBuilder<T>(tag).apply(init).build())
 }
 
+/** Builder method to add a FormSegmentedElement */
+class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
+    var options: List<T>? = null
+    var horizontal: Boolean = true
+    override fun build() =
+            FormSegmentedElement<T>(tag).apply {
+                this@SegmentedBuilder.let {
+                    title = it.title.orEmpty()
+                    value = it.value
+                    rightToLeft = it.rightToLeft
+                    error = it.error
+                    required = it.required
+                    enabled = it.enabled
+                    visible = it.visible
+                    horizontal = it.horizontal
+                    options = it.options ?: ArrayList()
+                    valueObservers.addAll(it.valueObservers)
+                }
+            }
+}
+
+/** FormBuildHelper extension to add a FormSegmentedElement */
+fun <T> FormBuildHelper.segmented(tag: Int = -1, init: SegmentedBuilder<T>.() -> Unit): FormSegmentedElement<T> {
+    return addFormElement(SegmentedBuilder<T>(tag).apply(init).build())
+}
+
 /** Builder method to add a FormSwitchElement */
 class SwitchBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var onValue: T? = null

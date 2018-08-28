@@ -61,6 +61,10 @@ class FormModelUnitTest : ShouldSpec() {
         }
 
         "MarkComplete" {
+            should("have valid formSegmentedElement") {
+                val element = CustomGen.formSegmentedElement().generate()
+                CustomGen.verifyBaseFormElement(element) shouldBe true
+            }
             should("have valid formCheckBoxElement") {
                 val element = CustomGen.formCheckBoxElement().generate()
                 (element.checkedValue == element.value) shouldBe element.isChecked()

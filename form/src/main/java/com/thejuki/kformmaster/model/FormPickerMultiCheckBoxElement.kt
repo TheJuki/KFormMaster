@@ -43,7 +43,7 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
     /**
      * Options builder setter
      */
-    fun setOptions(options: T): BaseFormElement<T> {
+    fun setOptions(options: T): FormPickerMultiCheckBoxElement<T> {
         this.options = options
         return this
     }

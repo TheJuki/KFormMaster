@@ -62,6 +62,7 @@ pages:
     - 'Switch': 'element/switch.md'
     - 'Slider': 'element/slider.md'
     - 'CheckBox': 'element/checkBox.md'
+    - 'Segmented': 'element/segmented.md'
     - 'Button': 'element/button.md'
   - Custom:
     - 'Customize Form': 'custom/customize.md'
