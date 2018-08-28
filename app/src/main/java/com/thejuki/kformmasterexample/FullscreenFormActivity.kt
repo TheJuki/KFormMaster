@@ -395,9 +395,10 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             segmented<ListItem>(SegmentedElement.ordinal) {
                 title = getString(R.string.Segmented)
-                options = listOf(ListItem(id = 1, name = "Banana"), ListItem(id = 2, name = "Orange"))
+                options = fruits
                 enabled = true
                 rightToLeft = false
+                horizontal = true
                 value = ListItem(id = 1, name = "Banana")
                 required = true
                 valueObservers.add { newValue, element ->

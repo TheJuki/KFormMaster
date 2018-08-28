@@ -3,11 +3,7 @@ package com.thejuki.kformmaster.widget
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
-import android.graphics.drawable.StateListDrawable
-import android.graphics.drawable.TransitionDrawable
+import android.graphics.drawable.*
 import android.os.Build
 import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
@@ -19,8 +15,7 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import com.thejuki.kformmaster.R
-
-import java.util.HashMap
+import java.util.*
 
 /**
  * Segmented Group
@@ -32,6 +27,8 @@ import java.util.HashMap
  * @version 1.0
  */
 class SegmentedGroup : RadioGroup {
+
+    var holdup: Boolean = false
 
     private var mMarginDp: Int = 0
     private var mTintColor: Int = 0
@@ -111,6 +108,25 @@ class SegmentedGroup : RadioGroup {
 
     fun setUnCheckedTintColor(unCheckedTintColor: Int) {
         mUnCheckedTintColor = unCheckedTintColor
+        updateBackground()
+    }
+
+    fun checkChild(value: String?) {
+        if (holdup) {
+            holdup = false
+            return
+        }
+        for (i in 0 until this.childCount) {
+            val child = this.getChildAt(i)
+            if (child is RadioButton) {
+                child.isChecked = child.text == value
+            }
+        }
+        updateBackground()
+    }
+
+    fun clear() {
+        clearCheck()
         updateBackground()
     }
 

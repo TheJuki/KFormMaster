@@ -56,7 +56,7 @@ class FormTokenAutoCompleteElement<T : List<*>>(tag: Int = -1) : BaseFormElement
     /**
      * Options builder setter
      */
-    fun setOptions(options: T): BaseFormElement<T> {
+    fun setOptions(options: T): FormTokenAutoCompleteElement<T> {
         this.options = options
         return this
     }

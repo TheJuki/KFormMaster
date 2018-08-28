@@ -34,6 +34,7 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
         model.editView = segmented
 
         segmented.setOnCheckedChangeListener { _, checkedId ->
+            segmented.holdup = true
             model.error = null
             if (checkedId < 0) {
                 model.setValue(null)
@@ -43,7 +44,7 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
             formBuilder.onValueChanged(model)
         }
 
-        model.reInitGroup(context, formBuilder)
+        model.reInitGroup(context)
 
     }, object : ViewStateProvider<FormSegmentedElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormSegmentedElement<*>): Int {

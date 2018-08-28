@@ -31,7 +31,7 @@
             android:textSize="@dimen/elementTextTitleSize"
             tools:text="Personal Info" />
 
-        <android.support.v7.widget.AppCompatEditText
+        <com.thejuki.kformmaster.widget.ClearableEditText
             android:id="@+id/formElementValue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

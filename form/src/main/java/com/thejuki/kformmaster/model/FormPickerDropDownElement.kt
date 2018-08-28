@@ -79,7 +79,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
     /**
      * Options builder setter
      */
-    fun setOptions(options: List<T>): BaseFormElement<T> {
+    fun setOptions(options: List<T>): FormPickerDropDownElement<T> {
         this.options = options
         return this
     }

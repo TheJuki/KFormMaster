@@ -26,6 +26,7 @@ import com.thejuki.kformmaster.helper.MultiLineEditTextBuilder;
 import com.thejuki.kformmaster.helper.NumberEditTextBuilder;
 import com.thejuki.kformmaster.helper.PasswordEditTextBuilder;
 import com.thejuki.kformmaster.helper.PhoneEditTextBuilder;
+import com.thejuki.kformmaster.helper.SegmentedBuilder;
 import com.thejuki.kformmaster.helper.SingleLineEditTextBuilder;
 import com.thejuki.kformmaster.helper.SliderBuilder;
 import com.thejuki.kformmaster.helper.SwitchBuilder;
@@ -121,6 +122,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         SwitchElement,
         SliderElement,
         CheckBoxElement,
+        SegmentedElement
     }
 
     private void setupForm() {
@@ -273,6 +275,12 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         checkBox.setCheckedValue(true);
         checkBox.setUnCheckedValue(false);
         elements.add(checkBox.build());
+
+        SegmentedBuilder<ListItem> segmented = new SegmentedBuilder<>(Tag.SegmentedElement.ordinal());
+        segmented.setTitle(getString(R.string.Segmented));
+        segmented.setOptions(fruits);
+        segmented.setValue(new ListItem(1L, "Banana"));
+        elements.add(segmented.build());
 
         ButtonBuilder button = new ButtonBuilder(Tag.ButtonElement.ordinal());
         button.setValue(getString(R.string.Button));

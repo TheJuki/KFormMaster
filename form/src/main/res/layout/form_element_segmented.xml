@@ -31,33 +31,33 @@
             android:textSize="@dimen/elementTextTitleSize"
             tools:text="Personal Info" />
 
-        <com.thejuki.kformmaster.widget.SegmentedGroup
-            xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/formElementValue"
+    </LinearLayout>
+
+    <com.thejuki.kformmaster.widget.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/formElementValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@null"
+        android:orientation="horizontal"
+        android:gravity="end"
+        segmentedgroup:sc_border_width="2dp"
+        segmentedgroup:sc_corner_radius="10dp">
+
+        <RadioButton
+            android:id="@+id/button21"
+            style="@style/RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@null"
-            android:orientation="horizontal"
-            segmentedgroup:sc_border_width="2dp"
-            segmentedgroup:sc_corner_radius="10dp">
+            tools:text="One" />
 
-            <RadioButton
-                android:id="@+id/button21"
-                style="@style/RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="One" />
-
-            <RadioButton
-                android:id="@+id/button22"
-                style="@style/RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Two" />
-        </com.thejuki.kformmaster.widget.SegmentedGroup>
-
-    </LinearLayout>
+        <RadioButton
+            android:id="@+id/button22"
+            style="@style/RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Two" />
+    </com.thejuki.kformmaster.widget.SegmentedGroup>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/formElementError"

@@ -12,5 +12,5 @@
     <color name="colorFormMasterDivider">#DDDDDD</color>
     <color name="colorFormMasterElementToken">#f5f5f5</color>
     <color name="colorFormMasterElementRadioSelected">#42A5F5</color>
-    <color name="colorFormMasterElementRadioUnSelected">#e0e0e0</color>
+    <color name="colorFormMasterElementRadioUnSelected">#FFFFFF</color>
 </resources>

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import com.thejuki.kformmaster.R
-import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.widget.SegmentedGroup
 
 
@@ -19,6 +18,16 @@ import com.thejuki.kformmaster.widget.SegmentedGroup
  */
 class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
+    override fun clear() {
+        this.value = null
+        (this.editView as? SegmentedGroup)?.clear()
+    }
+
+    /**
+     * Disable to stack the radio buttons vertically
+     */
+    var horizontal: Boolean = true
+
     /**
      * Form Element Options
      */
@@ -31,8 +40,16 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     /**
      * Options builder setter
      */
-    fun setOptions(options: List<T>): BaseFormElement<T> {
+    fun setOptions(options: List<T>): FormSegmentedElement<T> {
         this.options = options
+        return this
+    }
+
+    /**
+     * Horizontal builder setter
+     */
+    fun setHorizontal(horizontal: Boolean): FormSegmentedElement<T> {
+        this.horizontal = horizontal
         return this
     }
 
@@ -40,10 +57,10 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
      * Re-initializes the group
      * Should be called after the options list changes
      */
-    fun reInitGroup(context: Context? = null, formBuilder: FormBuildHelper? = null) {
+    fun reInitGroup(context: Context? = null) {
         editView?.let {
             if (it is SegmentedGroup) {
-                it.orientation = LinearLayout.HORIZONTAL
+                it.orientation = if (this@FormSegmentedElement.horizontal) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL
                 it.removeAllViews()
 
                 options?.apply {
