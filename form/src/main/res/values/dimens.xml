@@ -4,4 +4,6 @@
     <dimen name="elementTextTitleSize">16sp</dimen>
     <dimen name="elementTextValueSize">16sp</dimen>
     <dimen name="elementErrorTitleSize">16sp</dimen>
+    <dimen name="elementRadioCornerRadius">5dp</dimen>
+    <dimen name="elementRadioStrokeBorder">1dp</dimen>
 </resources>
