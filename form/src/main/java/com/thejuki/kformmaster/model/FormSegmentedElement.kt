@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster.model
 
 import android.content.Context
+import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RadioButton
@@ -63,15 +64,13 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                 it.orientation = if (this@FormSegmentedElement.horizontal) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL
                 it.removeAllViews()
 
-                options?.apply {
-                    for ((index, value) in this.withIndex()) {
-                        val rb = LayoutInflater.from(context).inflate(R.layout.template_radiobutton, null) as RadioButton
-                        rb.text = value.toString()
-                        rb.id = 100 + index
-                        rb.isChecked = value == this@FormSegmentedElement.value
+                options?.forEach { item ->
+                    val rb = LayoutInflater.from(context).inflate(R.layout.template_radiobutton, null) as RadioButton
+                    rb.text = item.toString()
+                    rb.id = ViewCompat.generateViewId()
+                    rb.isChecked = item == this@FormSegmentedElement.value
 
-                        it.addView(rb)
-                    }
+                    it.addView(rb)
                 }
 
                 it.updateBackground()

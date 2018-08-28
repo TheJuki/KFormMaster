@@ -28,7 +28,7 @@ import java.util.*
  */
 class SegmentedGroup : RadioGroup {
 
-    var holdup: Boolean = false
+    var holdup: Boolean = true
 
     private var mMarginDp: Int = 0
     private var mTintColor: Int = 0

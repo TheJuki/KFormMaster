@@ -5,6 +5,8 @@ import android.support.test.espresso.ViewAction
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.v7.widget.AppCompatSeekBar
 import android.view.View
+import android.widget.RadioButton
+import com.thejuki.kformmaster.widget.SegmentedGroup
 import org.hamcrest.Matcher
 
 /**
@@ -28,5 +30,23 @@ fun setProgress(progress: Int) =
             override fun perform(uiController: UiController?, view: View?) {
                 val seekBar = view as AppCompatSeekBar
                 seekBar.progress = progress
+            }
+        }
+
+fun setRadioButtonCheck(index: Int) =
+        object : ViewAction {
+            override fun getDescription(): String {
+                return "Set a radio button check"
+            }
+
+            override fun getConstraints(): Matcher<View> {
+                return ViewMatchers.isAssignableFrom(SegmentedGroup::class.java)
+            }
+
+            override fun perform(uiController: UiController?, view: View?) {
+                val radioGroup = view as SegmentedGroup
+                val radioButton = radioGroup.getChildAt(index) as RadioButton
+                radioGroup.clearCheck()
+                radioButton.isChecked = true
             }
         }

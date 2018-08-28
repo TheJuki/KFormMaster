@@ -33,15 +33,20 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
 
         model.editView = segmented
 
-        segmented.setOnCheckedChangeListener { _, checkedId ->
-            segmented.holdup = true
-            model.error = null
-            if (checkedId < 0) {
-                model.setValue(null)
+        segmented.setOnCheckedChangeListener { group, checkedId ->
+            if (!segmented.holdup) {
+                segmented.holdup = true
+                val index = group.indexOfChild(group.findViewById(checkedId))
+                model.error = null
+                if (index < 0) {
+                    model.setValue(null)
+                } else {
+                    model.setValue(model.options?.get(index))
+                }
+                formBuilder.onValueChanged(model)
             } else {
-                model.setValue(model.options?.get(checkedId - 100))
+                segmented.holdup = false
             }
-            formBuilder.onValueChanged(model)
         }
 
         model.reInitGroup(context)

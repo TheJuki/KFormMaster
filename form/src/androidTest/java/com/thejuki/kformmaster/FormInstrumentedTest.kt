@@ -20,6 +20,7 @@ import android.widget.TimePicker
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.thejuki.kformmaster.item.ContactItem
 import com.thejuki.kformmaster.token.ItemsCompletionView
+import com.thejuki.kformmaster.widget.SegmentedGroup
 import org.hamcrest.Matchers
 import org.hamcrest.Matchers.*
 import org.junit.Assert
@@ -129,14 +130,22 @@ class FormInstrumentedTest {
     fun segmented_changes_whenClicked() {
         // Select "Mango"
         onView(withId(R.id.recyclerView)).perform(scrollToPosition<ViewHolder>(22))
-        onView(withId(100)).check(matches(isChecked()))
-        onView(withId(102)).perform(click())
+
+        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+                .check(matches(hasRadioButtonCheck(0)))
+
+        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+                .perform(setRadioButtonCheck(2))
 
         // Check each RadioButton
-        onView(withId(100)).check(matches(isNotChecked()))
-        onView(withId(101)).check(matches(isNotChecked()))
-        onView(withId(102)).check(matches(isChecked()))
-        onView(withId(103)).check(matches(isNotChecked()))
+        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+                .check(matches(not(hasRadioButtonCheck(0))))
+        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+                .check(matches(not(hasRadioButtonCheck(1))))
+        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+                .check(matches(hasRadioButtonCheck(2)))
+        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+                .check(matches(not(hasRadioButtonCheck(3))))
     }
 
     @Test

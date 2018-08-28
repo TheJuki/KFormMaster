@@ -3,8 +3,10 @@ package com.thejuki.kformmaster
 import android.support.test.espresso.matcher.BoundedMatcher
 import android.support.v7.widget.AppCompatSeekBar
 import android.view.View
+import android.widget.RadioButton
 import android.widget.TextView
 import com.thejuki.kformmaster.token.ItemsCompletionView
+import com.thejuki.kformmaster.widget.SegmentedGroup
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
 
@@ -50,6 +52,18 @@ fun withProgress(expectedProgress: Int) =
             }
 
             override fun matchesSafely(seekBar: AppCompatSeekBar) = seekBar.progress == expectedProgress
+        }
+
+fun hasRadioButtonCheck(index: Int) =
+        object : BoundedMatcher<View, SegmentedGroup>(SegmentedGroup::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("RadioButton with index: $index")
+            }
+
+            override fun matchesSafely(radioGroup: SegmentedGroup): Boolean {
+                val radioButton = radioGroup.getChildAt(index) as RadioButton
+                return radioButton.isChecked
+            }
         }
 
 fun <T> hasItemsCompletionViewObject(expectedObject: T) =
