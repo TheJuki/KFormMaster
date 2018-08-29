@@ -1,7 +1,6 @@
 package com.thejuki.kformmaster.helper
 
 import android.content.Context
-import android.graphics.Color
 import android.support.annotation.ColorInt
 import android.support.v7.widget.RecyclerView
 import android.text.InputType
@@ -577,16 +576,17 @@ class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     /**
      * SegmentedGroup properties
      */
-    var marginDp: Int = -1
+    var marginDp: Int? = null
     @ColorInt
-    var tintColor: Int = -1
+    var tintColor: Int? = null
     @ColorInt
-    var unCheckedTintColor: Int = -1
+    var unCheckedTintColor: Int? = null
     @ColorInt
-    var checkedTextColor = Color.WHITE
-    var cornerRadius: Float = -1f
-    var textSize: Float = -1f
-    var padding: Int = -1
+    var checkedTextColor: Int? = null
+    var cornerRadius: Float? = null
+    // Text Size (In SP)
+    var textSize: Float? = null
+    var padding: Int? = null
 
     override fun build() =
             FormSegmentedElement<T>(tag).apply {
@@ -606,6 +606,8 @@ class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     unCheckedTintColor = it.unCheckedTintColor
                     checkedTextColor = it.checkedTextColor
                     cornerRadius = it.cornerRadius
+                    textSize = it.textSize
+                    padding = it.padding
 
                     options = it.options ?: ArrayList()
                     valueObservers.addAll(it.valueObservers)

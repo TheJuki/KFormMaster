@@ -1,6 +1,7 @@
 package com.thejuki.kformmasterexample
 
 import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -400,6 +401,13 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 horizontal = true
                 fillSpace = true
+                marginDp = 5
+                tintColor = Color.parseColor("#FF4081")
+                unCheckedTintColor = Color.WHITE
+                checkedTextColor = Color.WHITE
+                cornerRadius = 0f
+                textSize = 12f
+                padding = 2
                 value = ListItem(id = 1, name = "Banana")
                 required = true
                 valueObservers.add { newValue, element ->

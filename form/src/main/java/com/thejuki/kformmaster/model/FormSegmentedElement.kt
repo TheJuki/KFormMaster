@@ -1,7 +1,6 @@
 package com.thejuki.kformmaster.model
 
 import android.content.Context
-import android.graphics.Color
 import android.support.annotation.ColorInt
 import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
@@ -54,11 +53,11 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     /**
      * Margin for each radio button (stroke)
      */
-    var marginDp: Int = -1
+    var marginDp: Int? = null
         set(value) {
             field = value
             editView?.let {
-                if (it is SegmentedGroup) {
+                if (it is SegmentedGroup && value != null) {
                     it.setMarginDp(value)
                 }
             }
@@ -68,11 +67,11 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
      * Tint color for each radio button
      */
     @ColorInt
-    var tintColor: Int = -1
+    var tintColor: Int? = null
         set(value) {
             field = value
             editView?.let {
-                if (it is SegmentedGroup) {
+                if (it is SegmentedGroup && value != null) {
                     it.setTintColor(value)
                 }
             }
@@ -82,11 +81,11 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
      * Unchecked tint color for each radio button
      */
     @ColorInt
-    var unCheckedTintColor: Int = -1
+    var unCheckedTintColor: Int? = null
         set(value) {
             field = value
             editView?.let {
-                if (it is SegmentedGroup) {
+                if (it is SegmentedGroup && value != null) {
                     it.setUnCheckedTintColor(value)
                 }
             }
@@ -96,11 +95,11 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
      * Checked text color for each radio button
      */
     @ColorInt
-    var checkedTextColor = Color.WHITE
+    var checkedTextColor: Int? = null
         set(value) {
             field = value
             editView?.let {
-                if (it is SegmentedGroup) {
+                if (it is SegmentedGroup && value != null) {
                     it.setCheckedTextColor(value)
                 }
             }
@@ -109,11 +108,11 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     /**
      * Corner radius for each radio button
      */
-    var cornerRadius: Float = -1f
+    var cornerRadius: Float? = null
         set(value) {
             field = value
             editView?.let {
-                if (it is SegmentedGroup) {
+                if (it is SegmentedGroup && value != null) {
                     it.setCornerRadius(value)
                 }
             }
@@ -122,11 +121,11 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     /**
      * Text Size (In SP) for each radio button
      */
-    var textSize: Float = -1f
+    var textSize: Float? = null
         set(value) {
             field = value
             editView?.let {
-                if (it is SegmentedGroup) {
+                if (it is SegmentedGroup && value != null) {
                     it.setTextSize(value)
                 }
             }
@@ -135,11 +134,11 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     /**
      * Padding for each radio button
      */
-    var padding: Int = -1
+    var padding: Int? = null
         set(value) {
             field = value
             editView?.let {
-                if (it is SegmentedGroup) {
+                if (it is SegmentedGroup && value != null) {
                     it.setPadding(value)
                 }
             }
