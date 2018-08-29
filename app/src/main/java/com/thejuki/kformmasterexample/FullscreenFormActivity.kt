@@ -399,6 +399,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 enabled = true
                 rightToLeft = false
                 horizontal = true
+                fillSpace = true
                 value = ListItem(id = 1, name = "Banana")
                 required = true
                 valueObservers.add { newValue, element ->

@@ -570,6 +570,7 @@ fun <T : List<*>> FormBuildHelper.multiCheckBox(tag: Int = -1, init: MultiCheckB
 class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var options: List<T>? = null
     var horizontal: Boolean = true
+    var fillSpace: Boolean = false
     override fun build() =
             FormSegmentedElement<T>(tag).apply {
                 this@SegmentedBuilder.let {
@@ -581,6 +582,7 @@ class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     enabled = it.enabled
                     visible = it.visible
                     horizontal = it.horizontal
+                    fillSpace = it.fillSpace
                     options = it.options ?: ArrayList()
                     valueObservers.addAll(it.valueObservers)
                 }

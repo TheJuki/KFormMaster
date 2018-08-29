@@ -5,6 +5,7 @@ import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.widget.SegmentedGroup
 
@@ -28,6 +29,11 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
      * Disable to stack the radio buttons vertically
      */
     var horizontal: Boolean = true
+
+    /**
+     * Enable to fill the whole width
+     */
+    var fillSpace: Boolean = false
 
     /**
      * Form Element Options
@@ -55,6 +61,14 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     }
 
     /**
+     * Fill Space builder setter
+     */
+    fun setFillSpace(fillSpace: Boolean): FormSegmentedElement<T> {
+        this.fillSpace = fillSpace
+        return this
+    }
+
+    /**
      * Re-initializes the group
      * Should be called after the options list changes
      */
@@ -70,7 +84,13 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                     rb.id = ViewCompat.generateViewId()
                     rb.isChecked = item == this@FormSegmentedElement.value
 
-                    it.addView(rb)
+                    if (fillSpace) {
+                        it.addView(rb, RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT,
+                                RadioGroup.LayoutParams.WRAP_CONTENT,
+                                1.0f))
+                    } else {
+                        it.addView(rb)
+                    }
                 }
 
                 it.updateBackground()
