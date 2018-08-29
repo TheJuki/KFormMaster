@@ -33,6 +33,10 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
 
         model.editView = segmented
 
+        model.titleView?.let {
+            it.visibility = if (model.title.isNullOrEmpty()) View.GONE else View.VISIBLE
+        }
+
         segmented.setOnCheckedChangeListener { group, checkedId ->
             if (!segmented.holdup) {
                 segmented.holdup = true

@@ -30,6 +30,9 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             field = value
             titleView?.let {
                 it.text = value
+                if (editView != null && editView is SegmentedGroup) {
+                    it.visibility = if (value.isNullOrEmpty()) View.GONE else View.VISIBLE
+                }
             }
         }
 
