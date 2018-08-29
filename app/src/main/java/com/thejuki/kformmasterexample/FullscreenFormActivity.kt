@@ -398,7 +398,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 options = fruits
                 enabled = true
                 rightToLeft = false
-                horizontal = false
+                horizontal = true
                 fillSpace = true
                 value = ListItem(id = 1, name = "Banana")
                 required = true

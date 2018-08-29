@@ -85,7 +85,7 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                     rb.isChecked = item == this@FormSegmentedElement.value
 
                     if (fillSpace) {
-                        it.addView(rb, RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT,
+                        it.addView(rb, RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT,
                                 RadioGroup.LayoutParams.WRAP_CONTENT,
                                 1.0f))
                     } else {
