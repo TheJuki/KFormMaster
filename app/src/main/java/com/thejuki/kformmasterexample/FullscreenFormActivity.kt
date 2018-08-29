@@ -372,10 +372,10 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             slider(SliderElement.ordinal) {
                 title = getString(R.string.Slider)
-                value = 50
-                min = 0
-                max = 100
-                steps = 20
+                value = 100
+                min = 100
+                max = 1000
+                incrementBy = 50
                 enabled = true
                 required = true
                 valueObservers.add { newValue, element ->
@@ -398,7 +398,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 options = fruits
                 enabled = true
                 rightToLeft = false
-                horizontal = true
+                horizontal = false
                 fillSpace = true
                 value = ListItem(id = 1, name = "Banana")
                 required = true

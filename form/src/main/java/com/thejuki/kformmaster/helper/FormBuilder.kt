@@ -648,7 +648,8 @@ fun <T> FormBuildHelper.checkBox(tag: Int = -1, init: CheckBoxBuilder<T>.() -> U
 class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
     var max: Int = 100
     var min: Int = 0
-    var steps: Int = 1
+    var steps: Int? = null
+    var incrementBy: Int? = null
     override fun build() =
             FormSliderElement(tag).apply {
                 this@SliderBuilder.let {
@@ -661,6 +662,7 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                     max = it.max
                     min = it.min
                     steps = it.steps
+                    incrementBy = it.incrementBy
                     valueObservers.addAll(it.valueObservers)
                 }
             }

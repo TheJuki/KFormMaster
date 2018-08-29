@@ -52,12 +52,26 @@ class FormSliderViewBinder(private val context: Context, private val formBuilder
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 val sliderValue = seekBar?.progress ?: 0
-                val steps: Double = model.steps.toDouble()
+                var roundedValue: Int = 0
                 val maximumValue: Double = model.max.toDouble()
                 val minimumValue: Double = model.min.toDouble()
-                val stepValue: Int = ((sliderValue - minimumValue) / (maximumValue - minimumValue) * steps).roundToInt()
-                val stepAmount: Int = ((maximumValue - minimumValue) / steps).roundToInt()
-                var roundedValue: Int = stepValue * stepAmount + model.min
+
+                if (model.steps != null) {
+                    model.steps?.let {
+                        val steps: Double = it.toDouble()
+                        val stepValue: Int = ((sliderValue - minimumValue) / (maximumValue - minimumValue) * steps).roundToInt()
+                        val stepAmount: Int = ((maximumValue - minimumValue) / steps).roundToInt()
+                        roundedValue = stepValue * stepAmount + model.min
+                    }
+                } else if (model.steps == null && model.incrementBy != null) {
+                    model.incrementBy?.let {
+                        val offset = minimumValue % it
+                        val stepValue: Int = ((sliderValue - offset) / it).roundToInt()
+                        roundedValue = stepValue * it + offset.roundToInt()
+                    }
+                } else if (model.steps == null && model.incrementBy == null) {
+                    roundedValue = sliderValue
+                }
 
                 if (roundedValue < model.min) {
                     roundedValue = model.min

@@ -34,7 +34,7 @@ class FormBuildHelper
     }
 
     /**
-     * Used for form models. Increments when a element is added.
+     * Used for form models. Increments when an element is added.
      */
     var lastId = 0
 

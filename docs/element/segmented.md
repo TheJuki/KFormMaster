@@ -15,6 +15,15 @@ segmented<ListItem>(1) {
 }
 ```
 
+## Fill Space
+By default this is false.
+Setting this to true will fill the whole width.
+```kotlin
+segmented<ListItem>(1) {
+    fillSpace = true
+}
+```
+
 ## Example
 
 ### Kotlin

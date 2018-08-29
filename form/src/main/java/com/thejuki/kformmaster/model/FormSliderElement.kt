@@ -34,12 +34,23 @@ open class FormSliderElement(tag: Int = -1) : BaseFormElement<Int>(tag) {
         }
 
     /**
+     * Increments of the slider
+     * NOTE: steps must be null. Use steps or incrementBy, not both.
+     * Ex. An increment by of 5 with max of 100 would increment by 5's: 0, 5, 10, 15, 20, 25,... to 100
+     */
+    var incrementBy: Int? = null
+        get() {
+            return if (field != null && field ?: 0 <= 0) 1 else field
+        }
+
+    /**
      * Steps of the slider
+     * NOTE: incrementBy must be null. Use steps or incrementBy, not both.
      * Ex. 20 steps with max of 100 would step 0, 5, 10, 15, 20, 25,... to 100
      */
-    var steps: Int = 1
+    var steps: Int? = null
         get() {
-            return if (field <= 0) 1 else field
+            return if (field != null && field ?: 0 <= 0) 1 else field
         }
 
     /**
@@ -63,6 +74,14 @@ open class FormSliderElement(tag: Int = -1) : BaseFormElement<Int>(tag) {
      */
     fun setSteps(steps: Int): FormSliderElement {
         this.steps = steps
+        return this
+    }
+
+    /**
+     * Increment By builder setter
+     */
+    fun setIncrementBy(incrementBy: Int): FormSliderElement {
+        this.incrementBy = incrementBy
         return this
     }
 }
