@@ -32,6 +32,8 @@ class SegmentedGroup : RadioGroup {
 
     private var mMarginDp: Int = 0
     private var mTintColor: Int = 0
+    private var mTextSize: Float = 0f
+    private var mPadding: Int = 0
     private var mUnCheckedTintColor: Int = 0
     private var mCheckedTextColor = Color.WHITE
     private val mLayoutSelector: LayoutSelector by lazy {
@@ -47,6 +49,8 @@ class SegmentedGroup : RadioGroup {
         mUnCheckedTintColor = ResourcesCompat.getColor(resources, R.color.colorFormMasterElementRadioUnSelected, null)
         mMarginDp = resources.getDimension(R.dimen.elementRadioStrokeBorder).toInt()
         mCornerRadius = resources.getDimension(R.dimen.elementRadioCornerRadius)
+        mTextSize = resources.getDimension(R.dimen.elementTextValueSize)
+        mPadding = resources.getDimension(R.dimen.elementRadioPadding).toInt()
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
@@ -54,6 +58,8 @@ class SegmentedGroup : RadioGroup {
         mUnCheckedTintColor = ResourcesCompat.getColor(resources, R.color.colorFormMasterElementRadioUnSelected, null)
         mMarginDp = resources.getDimension(R.dimen.elementRadioStrokeBorder).toInt()
         mCornerRadius = resources.getDimension(R.dimen.elementRadioCornerRadius)
+        mTextSize = resources.getDimension(R.dimen.elementTextValueSize)
+        mPadding = resources.getDimension(R.dimen.elementRadioPadding).toInt()
         initAttrs(attrs)
     }
 
@@ -72,6 +78,14 @@ class SegmentedGroup : RadioGroup {
             mCornerRadius = typedArray.getDimension(
                     R.styleable.SegmentedGroup_sc_corner_radius,
                     resources.getDimension(R.dimen.elementRadioCornerRadius))
+
+            mPadding = typedArray.getDimension(
+                    R.styleable.SegmentedGroup_sc_padding,
+                    resources.getDimension(R.dimen.elementRadioPadding)).toInt()
+
+            mTextSize = typedArray.getDimension(
+                    R.styleable.SegmentedGroup_sc_text_size,
+                    resources.getDimension(R.dimen.elementTextValueSize))
 
             mTintColor = typedArray.getColor(
                     R.styleable.SegmentedGroup_sc_tint_color,
@@ -95,19 +109,57 @@ class SegmentedGroup : RadioGroup {
         updateBackground()
     }
 
+    fun setProperties(marginDp: Int, cornerRadius: Float, tintColor: Int,
+                      checkedTextColor: Int, unCheckedTintColor: Int,
+                      padding: Int, textSize: Float) {
+        mCheckedTextColor = checkedTextColor
+
+        if (marginDp >= 0)
+            mMarginDp = marginDp
+        if (cornerRadius >= 0)
+            mCornerRadius = cornerRadius
+        if (tintColor >= 0)
+            mTintColor = tintColor
+        if (unCheckedTintColor >= 0)
+            mUnCheckedTintColor = unCheckedTintColor
+        if (padding >= 0)
+            mPadding = padding
+        if (textSize > 0)
+            mTextSize = spToPx(textSize)
+    }
+
+    fun setMarginDp(marginDp: Int) {
+        mMarginDp = marginDp
+        updateBackground()
+    }
+
+    fun setCornerRadius(cornerRadius: Float) {
+        mCornerRadius = cornerRadius
+        updateBackground()
+    }
+
     fun setTintColor(tintColor: Int) {
         mTintColor = tintColor
         updateBackground()
     }
 
-    fun setTintColor(tintColor: Int, checkedTextColor: Int) {
-        mTintColor = tintColor
+    fun setCheckedTextColor(checkedTextColor: Int) {
         mCheckedTextColor = checkedTextColor
         updateBackground()
     }
 
     fun setUnCheckedTintColor(unCheckedTintColor: Int) {
         mUnCheckedTintColor = unCheckedTintColor
+        updateBackground()
+    }
+
+    fun setPadding(padding: Int) {
+        mPadding = padding
+        updateBackground()
+    }
+
+    fun setTextSize(textSize: Float) {
+        mTextSize = spToPx(textSize)
         updateBackground()
     }
 
@@ -159,6 +211,8 @@ class SegmentedGroup : RadioGroup {
         val colorStateList = ColorStateList(arrayOf(intArrayOf(-android.R.attr.state_checked), intArrayOf(android.R.attr.state_checked)),
                 intArrayOf(mTintColor, mCheckedTextColor))
         (view as Button).setTextColor(colorStateList)
+        view.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize)
+        view.setPadding(mPadding, mPadding, mPadding, mPadding)
 
         //Redraw with tint color
         val checkedDrawable = ResourcesCompat.getDrawable(resources, checked, null)?.mutate()
@@ -210,6 +264,10 @@ class SegmentedGroup : RadioGroup {
 
             mCheckedChangeListener?.onCheckedChanged(group, checkedId)
         }
+    }
+
+    private fun spToPx(sp: Float): Float {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.resources.displayMetrics)
     }
 
     override fun onViewRemoved(child: View) {

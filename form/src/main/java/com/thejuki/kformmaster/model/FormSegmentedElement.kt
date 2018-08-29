@@ -1,6 +1,8 @@
 package com.thejuki.kformmaster.model
 
 import android.content.Context
+import android.graphics.Color
+import android.support.annotation.ColorInt
 import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -42,6 +44,105 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
         set(value) {
             field = value
             reInitGroup()
+        }
+
+    /**
+     * SegmentedGroup properties
+     */
+
+
+    /**
+     * Margin for each radio button (stroke)
+     */
+    var marginDp: Int = -1
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is SegmentedGroup) {
+                    it.setMarginDp(value)
+                }
+            }
+        }
+
+    /**
+     * Tint color for each radio button
+     */
+    @ColorInt
+    var tintColor: Int = -1
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is SegmentedGroup) {
+                    it.setTintColor(value)
+                }
+            }
+        }
+
+    /**
+     * Unchecked tint color for each radio button
+     */
+    @ColorInt
+    var unCheckedTintColor: Int = -1
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is SegmentedGroup) {
+                    it.setUnCheckedTintColor(value)
+                }
+            }
+        }
+
+    /**
+     * Checked text color for each radio button
+     */
+    @ColorInt
+    var checkedTextColor = Color.WHITE
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is SegmentedGroup) {
+                    it.setCheckedTextColor(value)
+                }
+            }
+        }
+
+    /**
+     * Corner radius for each radio button
+     */
+    var cornerRadius: Float = -1f
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is SegmentedGroup) {
+                    it.setCornerRadius(value)
+                }
+            }
+        }
+
+    /**
+     * Text Size (In SP) for each radio button
+     */
+    var textSize: Float = -1f
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is SegmentedGroup) {
+                    it.setTextSize(value)
+                }
+            }
+        }
+
+    /**
+     * Padding for each radio button
+     */
+    var padding: Int = -1
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is SegmentedGroup) {
+                    it.setPadding(value)
+                }
+            }
         }
 
     /**

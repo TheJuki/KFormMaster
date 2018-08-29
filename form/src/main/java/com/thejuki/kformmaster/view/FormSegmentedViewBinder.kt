@@ -37,6 +37,9 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
             it.visibility = if (model.title.isNullOrEmpty()) View.GONE else View.VISIBLE
         }
 
+        segmented.setProperties(model.marginDp, model.cornerRadius, model.tintColor,
+                model.checkedTextColor, model.unCheckedTintColor, model.padding, model.textSize)
+
         segmented.setOnCheckedChangeListener { group, checkedId ->
             if (!segmented.holdup) {
                 segmented.holdup = true
