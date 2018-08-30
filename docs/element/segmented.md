@@ -24,6 +24,69 @@ segmented<ListItem>(1) {
 }
 ```
 
+## Tint Color
+By default this is the value of R.color.colorFormMasterElementRadioSelected.
+Setting this will set the tint color for each radio button.
+```kotlin
+segmented<ListItem>(1) {
+    tintColor = 5
+}
+```
+
+## Margin (Stroke)
+By default this is the value of R.dimen.elementRadioStrokeBorder.
+Setting this will set the margin (stroke) for each radio button.
+```kotlin
+segmented<ListItem>(1) {
+    marginDp = 5
+}
+```
+
+## Unchecked Tint Color
+By default this is the value of R.color.colorFormMasterElementRadioUnSelected.
+Setting this will set the unchecked tint color for each radio button.
+```kotlin
+segmented<ListItem>(1) {
+    unCheckedTintColor = 5
+}
+```
+
+## Checked Text Color
+By default this is the value of R.color.colorFormMasterElementRadioSelected.
+Setting this will set the checked text color for each radio button.
+```kotlin
+segmented<ListItem>(1) {
+    checkedTextColor = 5
+}
+```
+
+## Corner Radius
+By default this is the value of R.dimen.elementRadioCornerRadius.
+Setting this will set the corner radius for each radio button.
+```kotlin
+segmented<ListItem>(1) {
+    cornerRadius = 5
+}
+```
+
+## Text Size
+By default this is the value of R.dimen.elementTextValueSize.
+Setting this will set the text size (In SP) for each radio button.
+```kotlin
+segmented<ListItem>(1) {
+    textSize = 5
+}
+```
+
+## Padding
+By default this is the value of R.dimen.elementRadioPadding.
+Setting this will set the padding for each radio button.
+```kotlin
+segmented<ListItem>(1) {
+    padding = 5
+}
+```
+
 ## Example
 
 ### Kotlin
