@@ -677,7 +677,7 @@
         },
         {
             "location": "/element/segmented/",
-            "text": "The Segmented form element is used for a radio group.\n\n\n\n\n\n\nNOTICE\n\n\nThe ListItem class is provided in the example app. Your custom class just needs to override toString() to display in the segmented group.\n\n\n\n\nHorizontal\n\u00b6\n\n\nBy default this is true.\nSetting this to false will stack the radio buttons vertically.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \nhorizontal\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nFill Space\n\u00b6\n\n\nBy default this is false.\nSetting this to true will fill the whole width.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \nfillSpace\n \n=\n \ntrue\n\n\n}\n\n\n\n\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \noptions\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n \n                     \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n))\n\n    \nvalue\n \n=\n \nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n)\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nSegmentedBuilder\n<\nListItem\n>\n \nsegmented\n \n=\n \nnew\n \nSegmentedBuilder\n<>(\n1\n);\n\n\nsegmented\n.\nsetOptions\n(\nArrays\n.\nasList\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n),\n\n    \nnew\n \nListItem\n(\n2L\n,\n \n\"Orange\"\n)));\n\n\nsegmented\n.\nsetValue\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n));\n\n\nelements\n.\nadd\n(\nsegmented\n.\nbuild\n());",
+            "text": "The Segmented form element is used for a radio group.\n\n\n\n\n\n\nNOTICE\n\n\nThe ListItem class is provided in the example app. Your custom class just needs to override toString() to display in the segmented group.\n\n\n\n\nHorizontal\n\u00b6\n\n\nBy default this is true.\nSetting this to false will stack the radio buttons vertically.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \nhorizontal\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nFill Space\n\u00b6\n\n\nBy default this is false.\nSetting this to true will fill the whole width.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \nfillSpace\n \n=\n \ntrue\n\n\n}\n\n\n\n\n\n\nTint Color\n\u00b6\n\n\nBy default this is the value of R.color.colorFormMasterElementRadioSelected.\nSetting this will set the tint color for each radio button.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \ntintColor\n \n=\n \n5\n\n\n}\n\n\n\n\n\n\nMargin (Stroke)\n\u00b6\n\n\nBy default this is the value of R.dimen.elementRadioStrokeBorder.\nSetting this will set the margin (stroke) for each radio button.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \nmarginDp\n \n=\n \n5\n\n\n}\n\n\n\n\n\n\nUnchecked Tint Color\n\u00b6\n\n\nBy default this is the value of R.color.colorFormMasterElementRadioUnSelected.\nSetting this will set the unchecked tint color for each radio button.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \nunCheckedTintColor\n \n=\n \n5\n\n\n}\n\n\n\n\n\n\nChecked Text Color\n\u00b6\n\n\nBy default this is the value of R.color.colorFormMasterElementRadioSelected.\nSetting this will set the checked text color for each radio button.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \ncheckedTextColor\n \n=\n \n5\n\n\n}\n\n\n\n\n\n\nCorner Radius\n\u00b6\n\n\nBy default this is the value of R.dimen.elementRadioCornerRadius.\nSetting this will set the corner radius for each radio button.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \ncornerRadius\n \n=\n \n5\n\n\n}\n\n\n\n\n\n\nText Size\n\u00b6\n\n\nBy default this is the value of R.dimen.elementTextValueSize.\nSetting this will set the text size (In SP) for each radio button.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \ntextSize\n \n=\n \n5\n\n\n}\n\n\n\n\n\n\nPadding\n\u00b6\n\n\nBy default this is the value of R.dimen.elementRadioPadding.\nSetting this will set the padding for each radio button.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \npadding\n \n=\n \n5\n\n\n}\n\n\n\n\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \noptions\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n \n                     \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n))\n\n    \nvalue\n \n=\n \nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n)\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nSegmentedBuilder\n<\nListItem\n>\n \nsegmented\n \n=\n \nnew\n \nSegmentedBuilder\n<>(\n1\n);\n\n\nsegmented\n.\nsetOptions\n(\nArrays\n.\nasList\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n),\n\n    \nnew\n \nListItem\n(\n2L\n,\n \n\"Orange\"\n)));\n\n\nsegmented\n.\nsetValue\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n));\n\n\nelements\n.\nadd\n(\nsegmented\n.\nbuild\n());",
             "title": "Segmented"
         },
         {
@@ -689,6 +689,41 @@
             "location": "/element/segmented/#fill-space",
             "text": "By default this is false.\nSetting this to true will fill the whole width.  segmented < ListItem >( 1 )   { \n     fillSpace   =   true  }",
             "title": "Fill Space"
+        },
+        {
+            "location": "/element/segmented/#tint-color",
+            "text": "By default this is the value of R.color.colorFormMasterElementRadioSelected.\nSetting this will set the tint color for each radio button.  segmented < ListItem >( 1 )   { \n     tintColor   =   5  }",
+            "title": "Tint Color"
+        },
+        {
+            "location": "/element/segmented/#margin-stroke",
+            "text": "By default this is the value of R.dimen.elementRadioStrokeBorder.\nSetting this will set the margin (stroke) for each radio button.  segmented < ListItem >( 1 )   { \n     marginDp   =   5  }",
+            "title": "Margin (Stroke)"
+        },
+        {
+            "location": "/element/segmented/#unchecked-tint-color",
+            "text": "By default this is the value of R.color.colorFormMasterElementRadioUnSelected.\nSetting this will set the unchecked tint color for each radio button.  segmented < ListItem >( 1 )   { \n     unCheckedTintColor   =   5  }",
+            "title": "Unchecked Tint Color"
+        },
+        {
+            "location": "/element/segmented/#checked-text-color",
+            "text": "By default this is the value of R.color.colorFormMasterElementRadioSelected.\nSetting this will set the checked text color for each radio button.  segmented < ListItem >( 1 )   { \n     checkedTextColor   =   5  }",
+            "title": "Checked Text Color"
+        },
+        {
+            "location": "/element/segmented/#corner-radius",
+            "text": "By default this is the value of R.dimen.elementRadioCornerRadius.\nSetting this will set the corner radius for each radio button.  segmented < ListItem >( 1 )   { \n     cornerRadius   =   5  }",
+            "title": "Corner Radius"
+        },
+        {
+            "location": "/element/segmented/#text-size",
+            "text": "By default this is the value of R.dimen.elementTextValueSize.\nSetting this will set the text size (In SP) for each radio button.  segmented < ListItem >( 1 )   { \n     textSize   =   5  }",
+            "title": "Text Size"
+        },
+        {
+            "location": "/element/segmented/#padding",
+            "text": "By default this is the value of R.dimen.elementRadioPadding.\nSetting this will set the padding for each radio button.  segmented < ListItem >( 1 )   { \n     padding   =   5  }",
+            "title": "Padding"
         },
         {
             "location": "/element/segmented/#example",
