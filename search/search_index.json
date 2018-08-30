@@ -612,7 +612,7 @@
         },
         {
             "location": "/element/slider/",
-            "text": "The Slider form element is used for a slider (SeekBar) row.\n\n\n\n\nMin\n\u00b6\n\n\nMin is the minimum number for the slider.\n\n\nMax\n\u00b6\n\n\nMax is the maximum number for the slider.\n\n\nSteps\n\u00b6\n\n\nSteps are the number of places in the slider. In the example, the slider will step from 0, 5, 10, 15...100. \n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nslider\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n50\n\n    \nmin\n \n=\n \n0\n\n    \nmax\n \n=\n \n100\n\n    \nsteps\n \n=\n \n20\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nSliderBuilder\n \nslider\n \n=\n \nnew\n \nSliderBuilder\n(\n1\n);\n\n\nslider\n.\nsetValue\n(\n50\n);\n\n\nslider\n.\nsetMin\n(\n0\n);\n\n\nslider\n.\nsetMax\n(\n100\n);\n\n\nslider\n.\nsetSteps\n(\n20\n);\n\n\nelements\n.\nadd\n(\nslider\n.\nbuild\n());",
+            "text": "The Slider form element is used for a slider (SeekBar) row.\n\n\n\n\nMin\n\u00b6\n\n\nMin is the minimum number for the slider.\n\n\nMax\n\u00b6\n\n\nMax is the maximum number for the slider.\n\n\nSteps\n\u00b6\n\n\nSteps are the number of places in the slider. In the example, the slider will step from 0, 5, 10, 15...100. \nNOTE: incrementBy must be null. Use steps or incrementBy, not both.\n\n\nIncrementBy\n\u00b6\n\n\nIncrement by is the number to increase the value by. In the example, the slider will step from 0, 5, 10, 15...100. \nNOTE: steps must be null. Use steps or incrementBy, not both.\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nslider\n(\n1\n)\n \n{\n\n    \nvalue\n \n=\n \n50\n\n    \nmin\n \n=\n \n0\n\n    \nmax\n \n=\n \n100\n\n    \nsteps\n \n=\n \n20\n \n// or incrementBy = 5\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nList\n<\nBaseFormElement\n<?>>\n \nelements\n \n=\n \nnew\n \nArrayList\n<>();\n\n\nSliderBuilder\n \nslider\n \n=\n \nnew\n \nSliderBuilder\n(\n1\n);\n\n\nslider\n.\nsetValue\n(\n50\n);\n\n\nslider\n.\nsetMin\n(\n0\n);\n\n\nslider\n.\nsetMax\n(\n100\n);\n\n\nslider\n.\nsetSteps\n(\n20\n);\n \n// or slider.setIncrementBy(5);\n\n\nelements\n.\nadd\n(\nslider\n.\nbuild\n());",
             "title": "Slider"
         },
         {
@@ -627,8 +627,13 @@
         },
         {
             "location": "/element/slider/#steps",
-            "text": "Steps are the number of places in the slider. In the example, the slider will step from 0, 5, 10, 15...100.",
+            "text": "Steps are the number of places in the slider. In the example, the slider will step from 0, 5, 10, 15...100. \nNOTE: incrementBy must be null. Use steps or incrementBy, not both.",
             "title": "Steps"
+        },
+        {
+            "location": "/element/slider/#incrementby",
+            "text": "Increment by is the number to increase the value by. In the example, the slider will step from 0, 5, 10, 15...100. \nNOTE: steps must be null. Use steps or incrementBy, not both.",
+            "title": "IncrementBy"
         },
         {
             "location": "/element/slider/#example",
@@ -637,12 +642,12 @@
         },
         {
             "location": "/element/slider/#kotlin",
-            "text": "slider ( 1 )   { \n     value   =   50 \n     min   =   0 \n     max   =   100 \n     steps   =   20  }",
+            "text": "slider ( 1 )   { \n     value   =   50 \n     min   =   0 \n     max   =   100 \n     steps   =   20   // or incrementBy = 5  }",
             "title": "Kotlin"
         },
         {
             "location": "/element/slider/#java",
-            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  SliderBuilder   slider   =   new   SliderBuilder ( 1 );  slider . setValue ( 50 );  slider . setMin ( 0 );  slider . setMax ( 100 );  slider . setSteps ( 20 );  elements . add ( slider . build ());",
+            "text": "List < BaseFormElement <?>>   elements   =   new   ArrayList <>();  SliderBuilder   slider   =   new   SliderBuilder ( 1 );  slider . setValue ( 50 );  slider . setMin ( 0 );  slider . setMax ( 100 );  slider . setSteps ( 20 );   // or slider.setIncrementBy(5);  elements . add ( slider . build ());",
             "title": "Java"
         },
         {
@@ -672,13 +677,18 @@
         },
         {
             "location": "/element/segmented/",
-            "text": "The Segmented form element is used for a radio group.\n\n\n\n\n\n\nNOTICE\n\n\nThe ListItem class is provided in the example app. Your custom class just needs to override toString() to display in the segmented group.\n\n\n\n\nHorizontal\n\u00b6\n\n\nBy default this is true.\nSetting this to false will stack the radio buttons vertically.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \nhorizontal\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \noptions\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n \n                     \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n))\n\n    \nvalue\n \n=\n \nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n)\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nSegmentedBuilder\n<\nListItem\n>\n \nsegmented\n \n=\n \nnew\n \nSegmentedBuilder\n<>(\n1\n);\n\n\nsegmented\n.\nsetOptions\n(\nArrays\n.\nasList\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n),\n\n    \nnew\n \nListItem\n(\n2L\n,\n \n\"Orange\"\n)));\n\n\nsegmented\n.\nsetValue\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n));\n\n\nelements\n.\nadd\n(\nsegmented\n.\nbuild\n());",
+            "text": "The Segmented form element is used for a radio group.\n\n\n\n\n\n\nNOTICE\n\n\nThe ListItem class is provided in the example app. Your custom class just needs to override toString() to display in the segmented group.\n\n\n\n\nHorizontal\n\u00b6\n\n\nBy default this is true.\nSetting this to false will stack the radio buttons vertically.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \nhorizontal\n \n=\n \nfalse\n\n\n}\n\n\n\n\n\n\nFill Space\n\u00b6\n\n\nBy default this is false.\nSetting this to true will fill the whole width.\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \nfillSpace\n \n=\n \ntrue\n\n\n}\n\n\n\n\n\n\nExample\n\u00b6\n\n\nKotlin\n\u00b6\n\n\nsegmented\n<\nListItem\n>(\n1\n)\n \n{\n\n    \noptions\n \n=\n \nlistOf\n(\nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n),\n \n                     \nListItem\n(\nid\n \n=\n \n2\n,\n \nname\n \n=\n \n\"Orange\"\n))\n\n    \nvalue\n \n=\n \nListItem\n(\nid\n \n=\n \n1\n,\n \nname\n \n=\n \n\"Banana\"\n)\n\n\n}\n\n\n\n\n\n\nJava\n\u00b6\n\n\nSegmentedBuilder\n<\nListItem\n>\n \nsegmented\n \n=\n \nnew\n \nSegmentedBuilder\n<>(\n1\n);\n\n\nsegmented\n.\nsetOptions\n(\nArrays\n.\nasList\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n),\n\n    \nnew\n \nListItem\n(\n2L\n,\n \n\"Orange\"\n)));\n\n\nsegmented\n.\nsetValue\n(\nnew\n \nListItem\n(\n1L\n,\n \n\"Banana\"\n));\n\n\nelements\n.\nadd\n(\nsegmented\n.\nbuild\n());",
             "title": "Segmented"
         },
         {
             "location": "/element/segmented/#horizontal",
             "text": "By default this is true.\nSetting this to false will stack the radio buttons vertically.  segmented < ListItem >( 1 )   { \n     horizontal   =   false  }",
             "title": "Horizontal"
+        },
+        {
+            "location": "/element/segmented/#fill-space",
+            "text": "By default this is false.\nSetting this to true will fill the whole width.  segmented < ListItem >( 1 )   { \n     fillSpace   =   true  }",
+            "title": "Fill Space"
         },
         {
             "location": "/element/segmented/#example",

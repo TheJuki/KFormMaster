@@ -635,6 +635,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#incrementby" title="IncrementBy" class="md-nav__link">
+    IncrementBy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" title="Example" class="md-nav__link">
     Example
   </a>
@@ -873,6 +880,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#incrementby" title="IncrementBy" class="md-nav__link">
+    IncrementBy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" title="Example" class="md-nav__link">
     Example
   </a>
@@ -925,14 +939,18 @@
 <h2 id="max">Max<a class="headerlink" href="#max" title="Permanent link">&para;</a></h2>
 <p>Max is the maximum number for the slider.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
-<p>Steps are the number of places in the slider. In the example, the slider will step from 0, 5, 10, 15...100. </p>
+<p>Steps are the number of places in the slider. In the example, the slider will step from 0, 5, 10, 15...100. 
+NOTE: incrementBy must be null. Use steps or incrementBy, not both.</p>
+<h2 id="incrementby">IncrementBy<a class="headerlink" href="#incrementby" title="Permanent link">&para;</a></h2>
+<p>Increment by is the number to increase the value by. In the example, the slider will step from 0, 5, 10, 15...100. 
+NOTE: steps must be null. Use steps or incrementBy, not both.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">slider</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">value</span> <span class="p">=</span> <span class="m">50</span>
     <span class="n">min</span> <span class="p">=</span> <span class="m">0</span>
     <span class="n">max</span> <span class="p">=</span> <span class="m">100</span>
-    <span class="n">steps</span> <span class="p">=</span> <span class="m">20</span>
+    <span class="n">steps</span> <span class="p">=</span> <span class="m">20</span> <span class="c1">// or incrementBy = 5</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -943,7 +961,7 @@
 <span class="n">slider</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
 <span class="n">slider</span><span class="o">.</span><span class="na">setMin</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
 <span class="n">slider</span><span class="o">.</span><span class="na">setMax</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-<span class="n">slider</span><span class="o">.</span><span class="na">setSteps</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
+<span class="n">slider</span><span class="o">.</span><span class="na">setSteps</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span> <span class="c1">// or slider.setIncrementBy(5);</span>
 <span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">slider</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
 </pre></div>
                 
