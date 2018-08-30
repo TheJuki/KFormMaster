@@ -1,5 +1,10 @@
 # Change Log
 
+## [4.6.2](https://github.com/TheJuki/KFormMaster/releases/tag/4.6.2)
+- Add fillSpace property to Segmented Element
+- Add multiple style properties to Segmented Element
+- Add incrementBy property to slider
+
 ## [4.6.1](https://github.com/TheJuki/KFormMaster/releases/tag/4.6.1)
 - Fix Segmented Element (Generate an ID for each dynamic radio button)
 
