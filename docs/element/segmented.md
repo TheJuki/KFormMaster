@@ -29,7 +29,7 @@ By default this is the value of R.color.colorFormMasterElementRadioSelected.
 Setting this will set the tint color for each radio button.
 ```kotlin
 segmented<ListItem>(1) {
-    tintColor = 5
+    tintColor = Color.BLUE
 }
 ```
 
@@ -47,7 +47,7 @@ By default this is the value of R.color.colorFormMasterElementRadioUnSelected.
 Setting this will set the unchecked tint color for each radio button.
 ```kotlin
 segmented<ListItem>(1) {
-    unCheckedTintColor = 5
+    unCheckedTintColor = Color.WHITE
 }
 ```
 
@@ -56,7 +56,7 @@ By default this is the value of R.color.colorFormMasterElementRadioSelected.
 Setting this will set the checked text color for each radio button.
 ```kotlin
 segmented<ListItem>(1) {
-    checkedTextColor = 5
+    checkedTextColor = Color.WHITE
 }
 ```
 
@@ -65,7 +65,7 @@ By default this is the value of R.dimen.elementRadioCornerRadius.
 Setting this will set the corner radius for each radio button.
 ```kotlin
 segmented<ListItem>(1) {
-    cornerRadius = 5
+    cornerRadius = 5f
 }
 ```
 
@@ -74,7 +74,7 @@ By default this is the value of R.dimen.elementTextValueSize.
 Setting this will set the text size (In SP) for each radio button.
 ```kotlin
 segmented<ListItem>(1) {
-    textSize = 5
+    textSize = 12f
 }
 ```
 
