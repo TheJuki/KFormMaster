@@ -163,6 +163,36 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
      * Form Element Value Observers
      */
     val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
+
+    /**
+     * Form Element Background Color
+     */
+    @ColorInt
+    var backgroundColor: Int? = null
+
+    /**
+     * Form Element Title Text Color
+     */
+    @ColorInt
+    var titleTextColor: Int? = null
+
+    /**
+     * Form Element Title Text Color (When Focused)
+     */
+    @ColorInt
+    var titleFocusedTextColor: Int? = null
+
+    /**
+     * Form Element Value Text Color
+     */
+    @ColorInt
+    var valueTextColor: Int? = null
+
+    /**
+     * Form Element Error Text Color
+     */
+    @ColorInt
+    var errorTextColor: Int? = null
 }
 
 /** Builder method to add a FormSingleLineEditTextElement */
@@ -186,6 +216,12 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -216,6 +252,12 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -248,6 +290,12 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -278,6 +326,12 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -308,6 +362,12 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -338,6 +398,12 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     clearable = it.clearable
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -369,6 +435,12 @@ class AutoCompleteBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     dropdownWidth = it.dropdownWidth
                     options = it.options
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -400,6 +472,12 @@ class AutoCompleteTokenBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<
                     dropdownWidth = it.dropdownWidth
                     options = it.options
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -416,6 +494,10 @@ class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
     var enabled: Boolean = true
     var displayDivider: Boolean = true
     val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
+    @ColorInt
+    var backgroundColor: Int? = null
+    @ColorInt
+    var valueTextColor: Int? = null
     override fun build() =
             FormButtonElement(tag).apply {
                 this@ButtonBuilder.let {
@@ -424,6 +506,9 @@ class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
                     enabled = it.enabled
                     visible = it.visible
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    valueTextColor = it.valueTextColor
                 }
             }
 }
@@ -455,6 +540,12 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     visible = it.visible
                     clearable = it.clearable
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -486,6 +577,12 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.Time
                     visible = it.visible
                     clearable = it.clearable
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -517,6 +614,12 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElem
                     visible = it.visible
                     clearable = it.clearable
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -554,6 +657,12 @@ class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     arrayAdapter = it.arrayAdapter
                     clearable = it.clearable
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -589,6 +698,12 @@ class MultiCheckBoxBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(t
                     clearable = it.clearable
                     dialogEmptyMessage = it.dialogEmptyMessage
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -643,6 +758,12 @@ class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
 
                     options = it.options ?: ArrayList()
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -669,6 +790,11 @@ class SwitchBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     onValue = it.onValue
                     offValue = it.offValue
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -695,6 +821,11 @@ class CheckBoxBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     checkedValue = it.checkedValue
                     unCheckedValue = it.unCheckedValue
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -725,6 +856,11 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                     steps = it.steps
                     incrementBy = it.incrementBy
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -739,6 +875,16 @@ class LabelBuilder(val tag: Int = -1) : FieldBuilder {
     var visible: Boolean = true
     var rightToLeft: Boolean = true
     var displayDivider: Boolean = true
+    @ColorInt
+    var backgroundColor: Int? = null
+    @ColorInt
+    var titleTextColor: Int? = null
+    @ColorInt
+    var titleFocusedTextColor: Int? = null
+    @ColorInt
+    var valueTextColor: Int? = null
+    @ColorInt
+    var errorTextColor: Int? = null
     override fun build() =
             FormLabelElement(tag).apply {
                 this@LabelBuilder.let {
@@ -746,6 +892,12 @@ class LabelBuilder(val tag: Int = -1) : FieldBuilder {
                     visible = it.visible
                     displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
@@ -763,6 +915,17 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
     var maxLines: Int = 1
     var displayDivider: Boolean = true
     val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
+
+    @ColorInt
+    var backgroundColor: Int? = null
+    @ColorInt
+    var titleTextColor: Int? = null
+    @ColorInt
+    var titleFocusedTextColor: Int? = null
+    @ColorInt
+    var valueTextColor: Int? = null
+    @ColorInt
+    var errorTextColor: Int? = null
     override fun build() =
             FormTextViewElement(tag).apply {
                 this@TextViewBuilder.let {
@@ -773,6 +936,12 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }

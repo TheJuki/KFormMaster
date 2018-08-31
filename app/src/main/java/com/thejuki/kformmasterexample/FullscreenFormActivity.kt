@@ -177,6 +177,11 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 maxLines = 3
                 maxLength = 100
+                backgroundColor = Color.WHITE
+                titleTextColor = Color.BLACK
+                titleFocusedTextColor = Color.parseColor("#FF4081")
+                valueTextColor = Color.BLACK
+                errorTextColor = Color.RED
                 enabled = true
                 required = true
                 clearable = true

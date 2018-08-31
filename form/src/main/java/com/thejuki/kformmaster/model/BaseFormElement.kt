@@ -1,6 +1,6 @@
 package com.thejuki.kformmaster.model
 
-import android.content.res.ColorStateList
+import android.support.annotation.ColorInt
 import android.support.v7.widget.*
 import android.text.InputFilter
 import android.text.InputType
@@ -128,6 +128,70 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
         }
 
     /**
+     * Form Element Background Color
+     */
+    @ColorInt
+    var backgroundColor: Int? = null
+        set(value) {
+            field = value
+            itemView?.let {
+                if (backgroundColor != null) {
+                    it.setBackgroundColor(backgroundColor ?: 0)
+                }
+            }
+        }
+
+    /**
+     * Form Element Title Text Color (When Focused)
+     */
+    @ColorInt
+    var titleFocusedTextColor: Int? = null
+
+    /**
+     * Form Element Title Text Color
+     */
+    @ColorInt
+    var titleTextColor: Int? = null
+        set(value) {
+            field = value
+            titleView?.let {
+                if (titleTextColor != null) {
+                    it.setTextColor(titleTextColor ?: 0)
+                }
+            }
+        }
+
+    /**
+     * Form Element Value Text Color
+     */
+    @ColorInt
+    var valueTextColor: Int? = null
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView) {
+                    if (valueTextColor != null) {
+                        it.setTextColor(valueTextColor ?: 0)
+                    }
+                }
+            }
+        }
+
+    /**
+     * Form Element Error Text Color
+     */
+    @ColorInt
+    var errorTextColor: Int? = null
+        set(value) {
+            field = value
+            errorView?.let {
+                if (errorTextColor != null) {
+                    it.setTextColor(errorTextColor ?: 0)
+                }
+            }
+        }
+
+    /**
      * Form Element Error
      */
     var error: String? = null
@@ -219,6 +283,10 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 it.isEnabled = enabled
                 // Trigger visibility
                 this.visible = this.visible
+
+                if (backgroundColor != null) {
+                    it.setBackgroundColor(backgroundColor ?: 0)
+                }
             }
         }
 
@@ -241,6 +309,13 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                         } else {
                             it.filters = arrayOf<InputFilter>()
                         }
+                    }
+                    if (valueTextColor != null) {
+                        it.setTextColor(valueTextColor ?: 0)
+                    }
+                } else if (it is AppCompatButton) {
+                    if (valueTextColor != null) {
+                        it.setTextColor(valueTextColor ?: 0)
                     }
                 } else if (it is SegmentedGroup) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
@@ -268,13 +343,11 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             titleView?.let {
                 it.isEnabled = enabled
                 it.text = title
+                if (titleTextColor != null) {
+                    it.setTextColor(titleTextColor ?: 0)
+                }
             }
         }
-
-    /**
-     * Form Element Title View Text Colors
-     */
-    var titleViewTextColors: ColorStateList? = null
 
     /**
      * Form Element Error View
@@ -283,6 +356,10 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
         set(value) {
             field = value
             errorView?.let {
+                if (errorTextColor != null) {
+                    it.setTextColor(errorTextColor ?: 0)
+                }
+
                 if (error.isNullOrEmpty()) {
                     it.visibility = View.GONE
                     return
@@ -522,6 +599,46 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      */
     fun addAllValueObservers(observers: List<(T?, BaseFormElement<T>) -> Unit>): BaseFormElement<T> {
         this.valueObservers.addAll(observers)
+        return this
+    }
+
+    /**
+     * Title Text Color builder setter
+     */
+    fun setTitleTextColor(@ColorInt titleTextColor: Int?): BaseFormElement<T> {
+        this.titleTextColor = titleTextColor
+        return this
+    }
+
+    /**
+     * Title Focused Text Color builder setter
+     */
+    fun setTitleFocusedTextColor(@ColorInt titleFocusedTextColor: Int?): BaseFormElement<T> {
+        this.titleFocusedTextColor = titleFocusedTextColor
+        return this
+    }
+
+    /**
+     * Value Text Color builder setter
+     */
+    fun setValueTextColor(@ColorInt valueTextColor: Int?): BaseFormElement<T> {
+        this.valueTextColor = valueTextColor
+        return this
+    }
+
+    /**
+     * Background Color builder setter
+     */
+    fun setBackgroundColor(@ColorInt backgroundColor: Int?): BaseFormElement<T> {
+        this.backgroundColor = backgroundColor
+        return this
+    }
+
+    /**
+     * Error Text Color builder setter
+     */
+    fun setErrorTextColor(@ColorInt errorTextColor: Int?): BaseFormElement<T> {
+        this.errorTextColor = errorTextColor
         return this
     }
 

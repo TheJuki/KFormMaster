@@ -161,6 +161,62 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     }
 
     /**
+     * Margin DP builder setter
+     */
+    fun setMarginDp(marginDp: Int?): FormSegmentedElement<T> {
+        this.marginDp = marginDp
+        return this
+    }
+
+    /**
+     * Tint Color builder setter
+     */
+    fun setTintColor(@ColorInt tintColor: Int?): FormSegmentedElement<T> {
+        this.tintColor = tintColor
+        return this
+    }
+
+    /**
+     * Unchecked Tint Color builder setter
+     */
+    fun setUnCheckedTintColor(@ColorInt unCheckedTintColor: Int?): FormSegmentedElement<T> {
+        this.unCheckedTintColor = unCheckedTintColor
+        return this
+    }
+
+    /**
+     * Checked Text Color builder setter
+     */
+    fun setCheckedTextColor(@ColorInt checkedTextColor: Int?): FormSegmentedElement<T> {
+        this.checkedTextColor = checkedTextColor
+        return this
+    }
+
+    /**
+     * Corner Radius builder setter
+     */
+    fun setCornerRadius(cornerRadius: Float?): FormSegmentedElement<T> {
+        this.cornerRadius = cornerRadius
+        return this
+    }
+
+    /**
+     * Text Size builder setter
+     */
+    fun setTextSize(textSize: Float?): FormSegmentedElement<T> {
+        this.textSize = textSize
+        return this
+    }
+
+    /**
+     * Padding builder setter
+     */
+    fun setPadding(padding: Int?): FormSegmentedElement<T> {
+        this.padding = padding
+        return this
+    }
+
+    /**
      * Fill Space builder setter
      */
     fun setFillSpace(fillSpace: Boolean): FormSegmentedElement<T> {
