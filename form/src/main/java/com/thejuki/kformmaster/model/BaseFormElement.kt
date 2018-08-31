@@ -2,6 +2,7 @@ package com.thejuki.kformmaster.model
 
 import android.content.res.ColorStateList
 import android.support.v7.widget.*
+import android.text.InputFilter
 import android.text.InputType
 import android.view.Gravity
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.TextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import com.thejuki.kformmaster.widget.SegmentedGroup
 import kotlin.properties.Delegates
+
 
 /**
  * Base Form Element
@@ -74,6 +76,24 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             editView?.let {
                 if (it is TextView) {
                     it.hint = hint
+                }
+            }
+        }
+
+    /**
+     * Form Element Max Length
+     */
+    var maxLength: Int? = null
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton &&
+                        it !is SwitchCompat && it !is AppCompatAutoCompleteTextView) {
+                    if (maxLength != null) {
+                        it.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength ?: 0))
+                    } else {
+                        it.filters = arrayOf<InputFilter>()
+                    }
                 }
             }
         }
@@ -214,6 +234,14 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                     it.setSingleLine(maxLines == 1)
                     it.maxLines = maxLines
+                    if (it !is AppCompatAutoCompleteTextView) {
+                        if (maxLength != null) {
+                            it.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength
+                                    ?: 0))
+                        } else {
+                            it.filters = arrayOf<InputFilter>()
+                        }
+                    }
                 } else if (it is SegmentedGroup) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                 }
@@ -398,6 +426,14 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      */
     fun setRightToLeft(rightToLeft: Boolean): BaseFormElement<T> {
         this.rightToLeft = rightToLeft
+        return this
+    }
+
+    /**
+     * Max Length builder setter
+     */
+    fun setMaxLength(maxLength: Int): BaseFormElement<T> {
+        this.maxLength = maxLength
         return this
     }
 

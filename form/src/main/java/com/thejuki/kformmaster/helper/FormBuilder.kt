@@ -87,6 +87,11 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
     var rightToLeft: Boolean = true
 
     /**
+     * Form Element Max Length
+     */
+    var maxLength: Int? = null
+
+    /**
      * Form Element Max Lines
      */
     var maxLines: Int = 1
@@ -169,6 +174,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -198,6 +204,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -228,6 +235,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -258,6 +266,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -287,6 +296,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -316,6 +326,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error

@@ -176,6 +176,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = "mail@mail.com"
                 rightToLeft = false
                 maxLines = 3
+                maxLength = 100
                 enabled = true
                 required = true
                 clearable = true
@@ -188,6 +189,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = "Password123"
                 displayDivider = false
                 required = true
+                maxLength = 100
                 rightToLeft = false
                 enabled = true
                 clearable = true
@@ -200,6 +202,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = "+8801712345678"
                 rightToLeft = false
                 displayDivider = false
+                maxLength = 100
                 maxLines = 3
                 required = true
                 enabled = true
@@ -214,6 +217,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = "Dhaka"
                 rightToLeft = false
                 displayDivider = false
+                maxLength = 100
                 required = true
                 enabled = true
                 clearable = true
@@ -227,6 +231,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 displayDivider = false
                 maxLines = 2
+                maxLength = 100
                 required = true
                 enabled = true
                 updateOnFocusChange = true
@@ -239,10 +244,11 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             number(ZipCode.ordinal) {
                 title = getString(R.string.ZipCode)
-                value = "123456"
+                value = "12345"
                 numbersOnly = true
                 rightToLeft = false
                 displayDivider = false
+                maxLength = 5
                 required = true
                 enabled = true
                 clearable = true

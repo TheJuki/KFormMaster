@@ -107,6 +107,21 @@ text {
 }
 ```
 
+## Max Length
+By default this is null which means that there is no max text length.
+Max length represents the number of characters the value field will allow.
+
+!!! error "Unsupported Fields"
+
+    * AutoComplete
+    * AutoCompleteToken
+
+```kotlin
+text {
+    maxLength = 10
+}
+```
+
 ## Max Lines
 By default this is 1. TextArea defaults to 4.
 Max lines represents the number of lines the value field will display.
