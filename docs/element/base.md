@@ -239,6 +239,60 @@ date {
 }
 ```
 
+## Background Color
+By default this is the value of R.Color.colorFormMasterElementBackground.
+Setting this will override the background color.
+```kotlin
+text {
+    backgroundColor = Color.WHITE
+}
+```
+
+## Title Text Color
+By default this is the value of R.Color.colorFormMasterElementTextTitle.
+Setting this will override the title text color.
+```kotlin
+text {
+    titleTextColor = Color.BLACK
+}
+```
+
+## Title Focused Text Color
+By default this is the value of R.Color.colorFormMasterElementFocusedTitle.
+Setting this will override the title text (when focused) color.
+```kotlin
+text {
+    titleFocusedTextColor = Color.BLACK
+}
+```
+
+## Value Text Color
+By default this is the value of R.Color.colorFormMasterElementTextValue.
+Setting this will override the value text color.
+```kotlin
+text {
+    valueTextColor = Color.BLACK
+}
+```
+
+## Error Text Color
+By default this is the value of R.Color.colorFormMasterElementErrorTitle.
+Setting this will override the error text color.
+```kotlin
+text {
+    errorTextColor = Color.BLACK
+}
+```
+
+## Hint Text Color
+By default this is the value of R.Color.colorFormMasterElementHint.
+Setting this will override the hint text color.
+```kotlin
+text {
+    hintTextColor = Color.BLACK
+}
+```
+
 ## Clear value
 Clear the value of the element.
 ```kotlin

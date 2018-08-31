@@ -182,6 +182,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 titleFocusedTextColor = Color.parseColor("#FF4081")
                 valueTextColor = Color.BLACK
                 errorTextColor = Color.RED
+                hintTextColor = Color.BLUE
                 enabled = true
                 required = true
                 clearable = true

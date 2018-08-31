@@ -162,6 +162,22 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
         }
 
     /**
+     * Form Element Hint Text Color
+     */
+    @ColorInt
+    var hintTextColor: Int? = null
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView) {
+                    if (hintTextColor != null) {
+                        it.setHintTextColor(hintTextColor ?: 0)
+                    }
+                }
+            }
+        }
+
+    /**
      * Form Element Value Text Color
      */
     @ColorInt
@@ -312,6 +328,9 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     }
                     if (valueTextColor != null) {
                         it.setTextColor(valueTextColor ?: 0)
+                    }
+                    if (hintTextColor != null) {
+                        it.setHintTextColor(hintTextColor ?: 0)
                     }
                 } else if (it is AppCompatButton) {
                     if (valueTextColor != null) {
@@ -599,6 +618,14 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      */
     fun addAllValueObservers(observers: List<(T?, BaseFormElement<T>) -> Unit>): BaseFormElement<T> {
         this.valueObservers.addAll(observers)
+        return this
+    }
+
+    /**
+     * Hint Text Color builder setter
+     */
+    fun setHintTextColor(@ColorInt hintTextColor: Int?): BaseFormElement<T> {
+        this.hintTextColor = hintTextColor
         return this
     }
 

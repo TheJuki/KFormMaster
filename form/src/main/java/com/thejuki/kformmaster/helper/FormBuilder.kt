@@ -171,6 +171,12 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
     var backgroundColor: Int? = null
 
     /**
+     * Form Element Hint Text Color
+     */
+    @ColorInt
+    var hintTextColor: Int? = null
+
+    /**
      * Form Element Title Text Color
      */
     @ColorInt
@@ -218,6 +224,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
                     titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
@@ -254,6 +261,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
                     titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
@@ -292,6 +300,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
                     titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
@@ -328,6 +337,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
                     titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
@@ -364,6 +374,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
                     titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
@@ -400,6 +411,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
                     titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
@@ -437,6 +449,7 @@ class AutoCompleteBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
                     titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
@@ -474,6 +487,7 @@ class AutoCompleteTokenBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
                     titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
@@ -542,8 +556,8 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
                     errorTextColor = it.errorTextColor
                 }
@@ -579,8 +593,8 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.Time
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
                     errorTextColor = it.errorTextColor
                 }
@@ -616,8 +630,8 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElem
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
                     errorTextColor = it.errorTextColor
                 }
@@ -659,8 +673,8 @@ class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
                     errorTextColor = it.errorTextColor
                 }
@@ -700,8 +714,8 @@ class MultiCheckBoxBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(t
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
                     titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
                     errorTextColor = it.errorTextColor
                 }
@@ -761,8 +775,6 @@ class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     // Colors
                     backgroundColor = it.backgroundColor
                     titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
                     errorTextColor = it.errorTextColor
                 }
             }
@@ -793,7 +805,6 @@ class SwitchBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     // Colors
                     backgroundColor = it.backgroundColor
                     titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
                     errorTextColor = it.errorTextColor
                 }
             }
@@ -824,7 +835,6 @@ class CheckBoxBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     // Colors
                     backgroundColor = it.backgroundColor
                     titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
                     errorTextColor = it.errorTextColor
                 }
             }
@@ -859,7 +869,6 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                     // Colors
                     backgroundColor = it.backgroundColor
                     titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
                     errorTextColor = it.errorTextColor
                 }
             }
@@ -895,7 +904,6 @@ class LabelBuilder(val tag: Int = -1) : FieldBuilder {
                     // Colors
                     backgroundColor = it.backgroundColor
                     titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
                     valueTextColor = it.valueTextColor
                     errorTextColor = it.errorTextColor
                 }

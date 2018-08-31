@@ -6,6 +6,7 @@ If you want to change the colors, just override the colors in your **colors.xml*
 <color name="colorFormMasterElementBackground">#FFFFFF</color>
 <color name="colorFormMasterElementTextTitle">#222222</color>
 <color name="colorFormMasterElementErrorTitle">#FF0000</color>
+<color name="colorFormMasterElementHint">#a8a8a8</color>
 <color name="colorFormMasterElementTextValue">#000000</color>
 <color name="colorFormMasterElementButtonText">#42A5F5</color>
 <color name="colorFormMasterElementFocusedTitle">#0277bd</color>

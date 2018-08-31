@@ -43,6 +43,7 @@
             android:inputType="textNoSuggestions"
             android:maxLines="1"
             android:textColor="@drawable/edit_text_selector"
+            android:textColorHint="@color/colorFormMasterElementHint"
             android:textSize="@dimen/elementTextValueSize"
             tools:text="Riddhiman Adib" />
 
