@@ -147,6 +147,17 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
         }
 
     /**
+     * Form Element Display divider line before the element
+     */
+    var displayDivider: Boolean = true
+        set(value) {
+            field = value
+            dividerView?.let {
+                it.visibility = if (displayDivider) View.VISIBLE else View.GONE
+            }
+        }
+
+    /**
      * Form Element Confirm Edit dialog should be shown before editing an element
      */
     var confirmEdit: Boolean = false
@@ -206,6 +217,17 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 } else if (it is SegmentedGroup) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                 }
+            }
+        }
+
+    /**
+     * Form Element Divider View
+     */
+    var dividerView: View? = null
+        set(value) {
+            field = value
+            dividerView?.let {
+                it.visibility = if (displayDivider) View.VISIBLE else View.GONE
             }
         }
 
@@ -404,10 +426,34 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     }
 
     /**
+     * Confirm Display Divider builder setter
+     */
+    fun setDisplayDivider(displayDivider: Boolean): BaseFormElement<T> {
+        this.displayDivider = displayDivider
+        return this
+    }
+
+    /**
      * Confirm Edit builder setter
      */
     fun setConfirmEdit(confirmEdit: Boolean): BaseFormElement<T> {
         this.confirmEdit = confirmEdit
+        return this
+    }
+
+    /**
+     * Confirm Edit Title builder setter
+     */
+    fun setConfirmTitle(confirmTitle: String): BaseFormElement<T> {
+        this.confirmTitle = confirmTitle
+        return this
+    }
+
+    /**
+     * Confirm Edit Message builder setter
+     */
+    fun setConfirmMessage(confirmMessage: String): BaseFormElement<T> {
+        this.confirmMessage = confirmMessage
         return this
     }
 

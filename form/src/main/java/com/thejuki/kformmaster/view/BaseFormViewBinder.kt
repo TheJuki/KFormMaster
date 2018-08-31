@@ -29,11 +29,12 @@ abstract class BaseFormViewBinder {
     /**
      * Initializes the base form fields
      */
-    fun baseSetup(formElement: BaseFormElement<*>, textViewTitle: AppCompatTextView?,
+    fun baseSetup(formElement: BaseFormElement<*>, dividerView: View?, textViewTitle: AppCompatTextView?,
                   textViewError: AppCompatTextView?,
                   itemView: View) {
 
         formElement.itemView = itemView
+        formElement.dividerView = dividerView
         formElement.titleView = textViewTitle
         formElement.errorView = textViewError
     }

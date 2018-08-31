@@ -187,6 +187,15 @@ text {
 }
 ```
 
+## Display Divider
+By default this is true.
+Setting displayDivider to false will hide the divider line displayed before the element.
+```kotlin
+text {
+    displayDivider = true
+}
+```
+
 ## Confirm Edit
 By default this is false.
 Setting confirmEdit to true will display an alert dialog confirming if the user wishes to edit the value if a current value exists.

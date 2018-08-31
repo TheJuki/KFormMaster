@@ -108,6 +108,11 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
     var clearable: Boolean = false
 
     /**
+     * Form Element Display divider line before the element
+     */
+    var displayDivider: Boolean = true
+
+    /**
      * Form Element Confirm Edit dialog should be shown before editing an element
      */
     var confirmEdit: Boolean = false
@@ -163,6 +168,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     title = it.title.orEmpty()
                     value = it.value
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -191,6 +197,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     title = it.title.orEmpty()
                     value = it.value
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -220,6 +227,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     title = it.title.orEmpty()
                     value = it.value
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -249,6 +257,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     title = it.title.orEmpty()
                     value = it.value
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -277,6 +286,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     title = it.title.orEmpty()
                     value = it.value
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -305,6 +315,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     title = it.title.orEmpty()
                     value = it.value
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -336,6 +347,7 @@ class AutoCompleteBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     title = it.title.orEmpty()
                     value = it.value
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -366,6 +378,7 @@ class AutoCompleteTokenBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<
                     title = it.title.orEmpty()
                     value = it.value
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -390,11 +403,13 @@ class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
     var value: String? = null
     var visible: Boolean = true
     var enabled: Boolean = true
+    var displayDivider: Boolean = true
     val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
     override fun build() =
             FormButtonElement(tag).apply {
                 this@ButtonBuilder.let {
                     value = it.value
+                    displayDivider = it.displayDivider
                     enabled = it.enabled
                     visible = it.visible
                     valueObservers.addAll(it.valueObservers)
@@ -417,6 +432,7 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     title = it.title.orEmpty()
                     value = it.value ?: FormPickerDateElement.DateHolder(it.dateValue, it.dateFormat)
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -447,6 +463,7 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.Time
                     title = it.title.orEmpty()
                     value = it.value ?: FormPickerTimeElement.TimeHolder(it.dateValue, it.dateFormat)
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     confirmEdit = it.confirmEdit
@@ -477,6 +494,7 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElem
                     title = it.title.orEmpty()
                     value = it.value ?: FormPickerDateTimeElement.DateTimeHolder(it.dateValue, it.dateFormat)
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     confirmEdit = it.confirmEdit
@@ -509,6 +527,7 @@ class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     title = it.title.orEmpty()
                     value = it.value
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -544,6 +563,7 @@ class MultiCheckBoxBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(t
                     title = it.title.orEmpty()
                     value = it.value
                     hint = it.hint
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -594,6 +614,7 @@ class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     title = it.title.orEmpty()
                     value = it.value
                     rightToLeft = it.rightToLeft
+                    displayDivider = it.displayDivider
                     error = it.error
                     required = it.required
                     enabled = it.enabled
@@ -629,6 +650,7 @@ class SwitchBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                 this@SwitchBuilder.let {
                     title = it.title.orEmpty()
                     value = it.value
+                    displayDivider = it.displayDivider
                     error = it.error
                     required = it.required
                     enabled = it.enabled
@@ -654,6 +676,7 @@ class CheckBoxBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                 this@CheckBoxBuilder.let {
                     title = it.title.orEmpty()
                     value = it.value
+                    displayDivider = it.displayDivider
                     error = it.error
                     required = it.required
                     enabled = it.enabled
@@ -681,6 +704,7 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                 this@SliderBuilder.let {
                     title = it.title.orEmpty()
                     value = it.value
+                    displayDivider = it.displayDivider
                     error = it.error
                     required = it.required
                     enabled = it.enabled
@@ -703,11 +727,13 @@ class LabelBuilder(val tag: Int = -1) : FieldBuilder {
     var title: String? = null
     var visible: Boolean = true
     var rightToLeft: Boolean = true
+    var displayDivider: Boolean = true
     override fun build() =
             FormLabelElement(tag).apply {
                 this@LabelBuilder.let {
                     title = it.title.orEmpty()
                     visible = it.visible
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                 }
             }
@@ -724,6 +750,7 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
     var visible: Boolean = true
     var rightToLeft: Boolean = true
     var maxLines: Int = 1
+    var displayDivider: Boolean = true
     val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
     override fun build() =
             FormTextViewElement(tag).apply {
@@ -731,6 +758,7 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
                     title = it.title.orEmpty()
                     value = it.value
                     visible = it.visible
+                    displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     valueObservers.addAll(it.valueObservers)

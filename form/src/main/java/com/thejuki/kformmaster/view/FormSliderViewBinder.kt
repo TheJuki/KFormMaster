@@ -29,8 +29,9 @@ class FormSliderViewBinder(private val context: Context, private val formBuilder
             ?: R.layout.form_element_slider, FormSliderElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
+        val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, textViewTitle, textViewError, itemView)
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView)
 
         val slider = finder.find(R.id.formElementValue) as AppCompatSeekBar
         val progressValue = finder.find(R.id.formElementProgress) as AppCompatTextView

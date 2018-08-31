@@ -25,8 +25,9 @@ class FormLabelViewBinder(private val context: Context, private val formBuilder:
     val viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_label, FormLabelElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, textViewTitle, null, itemView)
+        baseSetup(model, dividerView, textViewTitle, null, itemView)
 
     }, object : ViewStateProvider<FormLabelElement, ViewHolder> {
         override fun createViewStateID(model: FormLabelElement): Int {

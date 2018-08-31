@@ -26,7 +26,7 @@ class FormHeaderViewBinder(private val context: Context, private val formBuilder
             ?: R.layout.form_element_header, FormHeader::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
         val itemView = finder.getRootView() as View
-        baseSetup(model, textViewTitle, null, itemView)
+        baseSetup(model, null, textViewTitle, null, itemView)
 
         itemView.setOnClickListener {
             if (model.collapsible) {

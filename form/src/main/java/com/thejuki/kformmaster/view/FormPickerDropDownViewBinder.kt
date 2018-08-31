@@ -27,8 +27,9 @@ class FormPickerDropDownViewBinder(private val context: Context, private val for
             ?: R.layout.form_element, FormPickerDropDownElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
+        val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, textViewTitle, textViewError, itemView)
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView)
 
         val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
 

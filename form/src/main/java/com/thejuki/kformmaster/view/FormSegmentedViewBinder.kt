@@ -26,8 +26,9 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
             ?: R.layout.form_element_segmented, FormSegmentedElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
+        val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, textViewTitle, textViewError, itemView)
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView)
 
         val segmented = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.SegmentedGroup
 

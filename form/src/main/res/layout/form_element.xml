@@ -8,6 +8,7 @@
     android:paddingBottom="16dp">
 
     <View
+        android:id="@+id/formElementDivider"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginLeft="16dp"

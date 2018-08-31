@@ -171,6 +171,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             header { title = getString(R.string.PersonalInfo); collapsible = true }
             email(Email.ordinal) {
                 title = getString(R.string.email)
+                displayDivider = false
                 hint = getString(R.string.email_hint)
                 value = "mail@mail.com"
                 rightToLeft = false
@@ -185,6 +186,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             password(Password.ordinal) {
                 title = getString(R.string.password)
                 value = "Password123"
+                displayDivider = false
                 required = true
                 rightToLeft = false
                 enabled = true
@@ -197,6 +199,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.Phone)
                 value = "+8801712345678"
                 rightToLeft = false
+                displayDivider = false
                 maxLines = 3
                 required = true
                 enabled = true
@@ -210,6 +213,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.Location)
                 value = "Dhaka"
                 rightToLeft = false
+                displayDivider = false
                 required = true
                 enabled = true
                 clearable = true
@@ -221,6 +225,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.Address)
                 value = "123 Street"
                 rightToLeft = false
+                displayDivider = false
                 maxLines = 2
                 required = true
                 enabled = true
@@ -237,6 +242,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = "123456"
                 numbersOnly = true
                 rightToLeft = false
+                displayDivider = false
                 required = true
                 enabled = true
                 clearable = true
@@ -252,6 +258,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = true
                 maxLines = 1
                 confirmEdit = true
+                displayDivider = false
                 rightToLeft = false
                 enabled = true
                 clearable = true
@@ -266,6 +273,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = true
                 maxLines = 1
                 confirmEdit = true
+                displayDivider = false
                 rightToLeft = false
                 enabled = true
                 clearable = true
@@ -281,6 +289,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 1
                 confirmEdit = true
                 rightToLeft = false
+                displayDivider = false
                 enabled = true
                 clearable = true
                 valueObservers.add { newValue, element ->
@@ -297,6 +306,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dialogEmptyMessage = "This is Empty!"
                 confirmEdit = true
                 maxLines = 3
+                displayDivider = false
                 value = ListItem(id = 1, name = "Banana")
                 required = true
                 clearable = true
@@ -312,6 +322,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 3
                 confirmEdit = true
                 rightToLeft = false
+                displayDivider = false
                 value = listOf(ListItem(id = 1, name = "Banana"))
                 required = true
                 clearable = true
@@ -328,6 +339,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = ContactItem(id = 1, value = "John Smith", label = "John Smith (Tester)")
                 enabled = true
                 maxLines = 3
+                displayDivider = false
                 rightToLeft = false
                 required = true
                 valueObservers.add { newValue, element ->
@@ -344,6 +356,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = true
                 maxLines = 3
                 rightToLeft = false
+                displayDivider = false
                 enabled = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
@@ -354,10 +367,12 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 maxLines = 1
                 value = "This is readonly!"
+                displayDivider = false
             }
             label(LabelElement.ordinal) {
                 title = getString(R.string.Label)
                 rightToLeft = false
+                displayDivider = false
             }
             header { title = getString(R.string.MarkComplete); collapsible = true }
             switch<String>(SwitchElement.ordinal) {
@@ -365,6 +380,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = "Yes"
                 onValue = "Yes"
                 offValue = "No"
+                displayDivider = false
                 enabled = true
                 required = true
                 valueObservers.add { newValue, element ->
@@ -376,6 +392,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = 100
                 min = 100
                 max = 1000
+                displayDivider = false
                 incrementBy = 50
                 enabled = true
                 required = true
@@ -388,6 +405,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = true
                 checkedValue = true
                 unCheckedValue = false
+                displayDivider = false
                 required = true
                 enabled = true
                 valueObservers.add { newValue, element ->
@@ -402,6 +420,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 horizontal = true
                 fillSpace = true
                 marginDp = 5
+                displayDivider = false
                 tintColor = Color.parseColor("#FF4081")
                 unCheckedTintColor = Color.WHITE
                 checkedTextColor = Color.WHITE
@@ -416,6 +435,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)
+                displayDivider = false
                 enabled = true
                 valueObservers.add { newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@FullscreenFormActivity).create()
