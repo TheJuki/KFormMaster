@@ -42,7 +42,7 @@
     
     
       
-        <title>dropDown - KFormMaster Docs</title>
+        <title>Dropdown - KFormMaster Docs</title>
       
     
     
@@ -130,7 +130,7 @@
                 KFormMaster Docs
               </span>
               <span class="md-header-nav__topic">
-                dropDown
+                Dropdown
               </span>
             
           
@@ -202,7 +202,9 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -224,7 +226,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../base/" title="Form Elements" class="md-tabs__link">
+        <a href="../base/" title="Form Elements" class="md-tabs__link md-tabs__link--active">
           Form Elements
         </a>
       
@@ -355,10 +357,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Form Elements
@@ -530,11 +534,86 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../dropdown.md" title="Dropdown" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Dropdown
+      </label>
+    
+    <a href="./" title="Dropdown" class="md-nav__link md-nav__link--active">
       Dropdown
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#array-adapter" title="Array Adapter" class="md-nav__link">
+    Array Adapter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dialog-title" title="Dialog Title" class="md-nav__link">
+    Dialog Title
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dialog-empty-message" title="Dialog Empty Message" class="md-nav__link">
+    Dialog Empty Message
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kotlin" title="Kotlin" class="md-nav__link">
+    Kotlin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java" title="Java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -842,7 +921,7 @@
               
                 
                 
-                  <h1>dropDown</h1>
+                  <h1>Dropdown</h1>
                 
                 <p>The DropDown form element is used for a single choice dialog.</p>
 <p><img alt="Example" src="../../images/Dropdown1.PNG" /></p>
@@ -913,6 +992,41 @@ Setting this will override the alert dialog message when the options list is emp
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../dateTime/" title="DateTime" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                DateTime
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../multiCheckBox/" title="MultiCheckBox" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                MultiCheckBox
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
