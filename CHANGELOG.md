@@ -1,5 +1,12 @@
 # Change Log
 
+## [4.7.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.7.0)
+- #44 Update Seekbar value when the progress changed during the slide. 
+- #45 Add Divider view as a dynamic View. Add displayDivider as a base property. 
+- #46 Add maxLength as a base property. 
+- #47 Add clearOnFocus as a base property. 
+- #48 Add colors as base properties. 
+
 ## [4.6.2](https://github.com/TheJuki/KFormMaster/releases/tag/4.6.2)
 - Add fillSpace property to Segmented Element
 - Add multiple style properties to Segmented Element
