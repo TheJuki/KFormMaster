@@ -113,6 +113,12 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
     var clearable: Boolean = false
 
     /**
+     * Form Element Clear on Focus
+     * Setting this to true will clear the text value of the form element when focused.
+     */
+    var clearOnFocus: Boolean = false
+
+    /**
      * Form Element Display divider line before the element
      */
     var displayDivider: Boolean = true
@@ -220,6 +226,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     inputType = it.inputType
                     imeOptions = it.imeOptions
                     clearable = it.clearable
+                    clearOnFocus = it.clearOnFocus
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -257,6 +264,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     inputType = it.inputType
                     imeOptions = it.imeOptions
                     clearable = it.clearable
+                    clearOnFocus = it.clearOnFocus
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -296,6 +304,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     inputType = it.inputType
                     imeOptions = it.imeOptions
                     clearable = it.clearable
+                    clearOnFocus = it.clearOnFocus
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -333,6 +342,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     inputType = it.inputType
                     imeOptions = it.imeOptions
                     clearable = it.clearable
+                    clearOnFocus = it.clearOnFocus
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -370,6 +380,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     inputType = it.inputType
                     imeOptions = it.imeOptions
                     clearable = it.clearable
+                    clearOnFocus = it.clearOnFocus
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -407,6 +418,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     inputType = it.inputType
                     imeOptions = it.imeOptions
                     clearable = it.clearable
+                    clearOnFocus = it.clearOnFocus
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors

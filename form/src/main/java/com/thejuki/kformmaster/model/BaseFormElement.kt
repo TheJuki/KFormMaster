@@ -247,6 +247,12 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
         }
 
     /**
+     * Form Element Clear on Focus
+     * Setting this to true will clear the text value of the form element when focused.
+     */
+    var clearOnFocus: Boolean = false
+
+    /**
      * Form Element Display divider line before the element
      */
     var displayDivider: Boolean = true
@@ -562,6 +568,22 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      */
     fun setDisplayDivider(displayDivider: Boolean): BaseFormElement<T> {
         this.displayDivider = displayDivider
+        return this
+    }
+
+    /**
+     * Clearable builder setter
+     */
+    fun setClearable(clearable: Boolean): BaseFormElement<T> {
+        this.clearable = clearable
+        return this
+    }
+
+    /**
+     * Clear On Focus builder setter
+     */
+    fun setClearOnFocus(clearOnFocus: Boolean): BaseFormElement<T> {
+        this.clearOnFocus = clearOnFocus
         return this
     }
 

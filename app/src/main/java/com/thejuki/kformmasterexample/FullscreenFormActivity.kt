@@ -186,6 +186,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 enabled = true
                 required = true
                 clearable = true
+                clearOnFocus = false
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -199,6 +200,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 enabled = true
                 clearable = true
+                clearOnFocus = false
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -213,6 +215,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = true
                 enabled = true
                 clearable = true
+                clearOnFocus = false
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -227,6 +230,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = true
                 enabled = true
                 clearable = true
+                clearOnFocus = false
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -244,6 +248,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 imeOptions = EditorInfo.IME_ACTION_DONE
                 inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
                 clearable = true
+                clearOnFocus = false
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
@@ -258,6 +263,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = true
                 enabled = true
                 clearable = true
+                clearOnFocus = false
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }

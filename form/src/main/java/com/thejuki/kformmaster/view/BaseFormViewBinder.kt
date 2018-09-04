@@ -100,6 +100,10 @@ abstract class BaseFormViewBinder {
 
         formElement.editView?.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
+                if (formElement.clearOnFocus) {
+                    formElement.value = null
+                }
+
                 formElement.titleView?.setTextColor(formElement.titleFocusedTextColor
                         ?: (ContextCompat.getColor(context, R.color.colorFormMasterElementFocusedTitle)))
             } else {
