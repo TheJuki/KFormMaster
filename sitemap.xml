@@ -1,200 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//</loc>
+     <loc>https://thejuki.github.io/KFormMaster/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//helper/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/helper/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//about/contributing/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/base/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//about/credits/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/header/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//about/license/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/singleLine/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
-    
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//custom/customize/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/multiLine/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//custom/element/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/email/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//custom/formLayouts/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/password/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
-    
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/autoComplete/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/number/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/autoCompleteToken/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/phone/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/base/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/textView/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/button/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/label/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/checkBox/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/date/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/date/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/time/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/dateTime/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/dateTime/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/dropDown/</loc>
+     <loc></loc>
+     
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://thejuki.github.io/KFormMaster/element/multiCheckBox/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/email/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/autoComplete/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/header/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/autoCompleteToken/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/label/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/switch/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/multiCheckBox/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/slider/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/multiLine/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/checkBox/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/number/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/segmented/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/password/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/element/button/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/phone/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/custom/customize/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/segmented/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/custom/element/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/singleLine/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/custom/formLayouts/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/slider/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/about/contributing/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/switch/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/about/credits/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/textView/</loc>
+     <loc>https://thejuki.github.io/KFormMaster/about/license/</loc>
      <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    <url>
-     <loc>https://thejuki.github.io/KFormMaster//element/time/</loc>
-     <lastmod>2018-09-04</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
 </urlset>
