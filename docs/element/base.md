@@ -179,6 +179,21 @@ text {
 }
 ```
 
+## Clear On Focus
+By default this is false.
+Setting this to true will clear the text value of the form element when focused.
+
+!!! error "Unsupported Fields"
+
+    * AutoComplete
+    * AutoCompleteToken
+
+```kotlin
+text {
+    clearOnFocus = true
+}
+```
+
 ## Visible
 By default this is true.
 Setting visible to false will hide the form element.
