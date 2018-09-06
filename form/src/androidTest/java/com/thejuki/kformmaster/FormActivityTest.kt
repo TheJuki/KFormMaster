@@ -235,19 +235,20 @@ class FormActivityTest : AppCompatActivity() {
             }
         }
 
-        val disabledButton = FormButtonElement(Disabled.ordinal)
-                .setValue("Disabled Button")
-                .setVisible(true)
-                .setEnabled(false)
-                .addValueObserver { _, _ ->
-                    val confirmAlert = AlertDialog.Builder(this@FormActivityTest).create()
-                    confirmAlert.setTitle("Disabled?")
-                    confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormActivityTest.getString(android.R.string.ok)) { _, _ ->
+        val disabledButton = FormButtonElement(Disabled.ordinal).apply {
+            value = "Disabled Button"
+            visible = true
+            enabled = false
+            addValueObserver { _, _ ->
+                val confirmAlert = AlertDialog.Builder(this@FormActivityTest).create()
+                confirmAlert.setTitle("Disabled?")
+                confirmAlert.setButton(AlertDialog.BUTTON_POSITIVE, this@FormActivityTest.getString(android.R.string.ok)) { _, _ ->
 
-                    }
-                    confirmAlert.show()
                 }
-                as FormButtonElement
+                confirmAlert.show()
+            }
+        }
+
         formBuilder.addFormElement(disabledButton)
         formBuilder.setItems()
     }
