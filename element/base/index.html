@@ -1269,6 +1269,19 @@
 <li>Editable fields that require a keyboard change the form element value when they lose focus. Because of this, before validating or submitting a form, clear the focus of the form using <code>currentFocus?.clearFocus()</code> in your activity.</li>
 </ul>
 </div>
+<div class="admonition info">
+<p class="admonition-title">Setting Colors</p>
+<ul>
+<li>Setting the form element colors requires a Color Int</li>
+<li>R.color.name is a Color Res and you must get the Color Int using ResourcesCompat.getColor() or similar</li>
+<li>Examples:<ul>
+<li>Color.WHITE</li>
+<li>Color.parseColor("#FF4081")</li>
+<li>ResourcesCompat.getColor(resources, R.color.name, null) </li>
+</ul>
+</li>
+</ul>
+</div>
 <h2 id="tag">Tag<a class="headerlink" href="#tag" title="Permanent link">&para;</a></h2>
 <p>The tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.</p>
 <div class="codehilite"><pre><span></span><span class="n">text</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>

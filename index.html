@@ -898,12 +898,16 @@ implementation &quot;com.thejuki:k-form-master:$kFormMasterVersion&quot;
 <span class="k">val</span> <span class="py">elements</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">BaseFormElement</span><span class="p">&lt;*&gt;&gt;</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">()</span>
 
 <span class="c1">// Declare form elements</span>
-<span class="k">val</span> <span class="py">emailElement</span> <span class="p">=</span> <span class="n">FormEmailEditTextElement</span><span class="p">(</span><span class="n">Email</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span>
-        <span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">email</span><span class="p">))</span>
+<span class="k">val</span> <span class="py">emailElement</span> <span class="p">=</span> <span class="n">FormEmailEditTextElement</span><span class="p">(</span><span class="n">Email</span><span class="p">.</span><span class="n">ordinal</span><span class="p">).</span><span class="n">apply</span> <span class="p">{</span>
+    <span class="n">title</span> <span class="p">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+<span class="p">}</span>
+
 <span class="n">elements</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">emailElement</span><span class="p">)</span>
 
-<span class="k">val</span> <span class="py">passwordElement</span> <span class="p">=</span> <span class="n">FormPasswordEditTextElement</span><span class="p">(</span><span class="n">Password</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span>
-        <span class="p">.</span><span class="n">setTitle</span><span class="p">(</span><span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">password</span><span class="p">))</span>
+<span class="k">val</span> <span class="py">passwordElement</span> <span class="p">=</span> <span class="n">FormPasswordEditTextElement</span><span class="p">(</span><span class="n">Password</span><span class="p">.</span><span class="n">ordinal</span><span class="p">).</span><span class="n">apply</span> <span class="p">{</span>
+    <span class="n">title</span> <span class="p">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">password</span><span class="p">)</span>
+<span class="p">}</span>
+
 <span class="n">elements</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">passwordElement</span><span class="p">)</span>
 
 <span class="c1">// Add form elements (Form is refreshed for you)</span>
