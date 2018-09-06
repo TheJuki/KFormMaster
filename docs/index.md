@@ -39,12 +39,16 @@ formBuilder.attachRecyclerView(this, recyclerView)
 val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
 // Declare form elements
-val emailElement = FormEmailEditTextElement(Email.ordinal)
-        .setTitle(getString(R.string.email))
+val emailElement = FormEmailEditTextElement(Email.ordinal).apply {
+    title = getString(R.string.email)
+}
+
 elements.add(emailElement)
 
-val passwordElement = FormPasswordEditTextElement(Password.ordinal)
-        .setTitle(getString(R.string.password))
+val passwordElement = FormPasswordEditTextElement(Password.ordinal).apply {
+    title = getString(R.string.password)
+}
+
 elements.add(passwordElement)
 
 // Add form elements (Form is refreshed for you)

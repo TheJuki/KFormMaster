@@ -89,9 +89,10 @@ interface CustomGen {
          */
         fun formTextViewElement() = object : Gen<FormTextViewElement> {
             override fun generate(): FormTextViewElement {
-                return FormTextViewElement()
-                        .setTitle(Gen.string().generate())
-                        .setValue(Gen.string().generate()) as FormTextViewElement
+                return FormTextViewElement().apply {
+                    title = Gen.string().generate()
+                    value = Gen.string().generate()
+                }
             }
         }
 
@@ -100,8 +101,9 @@ interface CustomGen {
          */
         fun formLabelElement() = object : Gen<FormLabelElement> {
             override fun generate(): FormLabelElement {
-                return FormLabelElement()
-                        .setTitle(Gen.string().generate()) as FormLabelElement
+                return FormLabelElement().apply {
+                    title = Gen.string().generate()
+                }
             }
         }
 
@@ -260,30 +262,32 @@ interface CustomGen {
          * Generates base form field values
          */
         fun generateBaseFields(element: BaseFormElement<String>) =
-                element.setTitle(Gen.string().generate())
-                        .setValue(Gen.string().generate())
-                        .setTag(Gen.int().generate())
-                        .setHint(Gen.string().generate())
-                        .setRequired(Gen.bool().generate())
-                        .setVisible(Gen.bool().generate())
-                        .setEnabled(Gen.bool().generate())
-                        .setRightToLeft(Gen.bool().generate())
-                        .setMaxLines(Gen.choose(1, 100).generate())
-                        .setError(if (Gen.bool().generate()) Gen.string().generate() else null)
-                        .addValueObserver { newValue, elementRef -> println("New Value = $newValue {$elementRef}") }
+                element.apply {
+                    title = Gen.string().generate()
+                    value = Gen.string().generate()
+                    tag = Gen.int().generate()
+                    hint = Gen.string().generate()
+                    visible = Gen.bool().generate()
+                    enabled = Gen.bool().generate()
+                    rightToLeft = Gen.bool().generate()
+                    maxLines = Gen.choose(1, 100).generate()
+                    error = if (Gen.bool().generate()) Gen.string().generate() else null
+                    valueObservers.add { newValue, elementRef -> println("New Value = $newValue {$elementRef}") }
+                }
 
         fun generateBaseFieldsWithList(element: BaseFormElement<List<String>>) =
-                element.setTitle(Gen.string().generate())
-                        .setValue(Gen.list(Gen.string()).generate())
-                        .setTag(Gen.int().generate())
-                        .setHint(Gen.string().generate())
-                        .setRequired(Gen.bool().generate())
-                        .setVisible(Gen.bool().generate())
-                        .setEnabled(Gen.bool().generate())
-                        .setRightToLeft(Gen.bool().generate())
-                        .setMaxLines(Gen.choose(1, 100).generate())
-                        .setError(if (Gen.bool().generate()) Gen.string().generate() else null)
-                        .addValueObserver { newValue, elementRef -> println("New Value = $newValue {$elementRef}") }
+                element.apply {
+                    title = Gen.string().generate()
+                    value = Gen.list(Gen.string()).generate()
+                    tag = Gen.int().generate()
+                    hint = Gen.string().generate()
+                    visible = Gen.bool().generate()
+                    enabled = Gen.bool().generate()
+                    rightToLeft = Gen.bool().generate()
+                    maxLines = Gen.choose(1, 100).generate()
+                    error = if (Gen.bool().generate()) Gen.string().generate() else null
+                    valueObservers.add { newValue, elementRef -> println("New Value = $newValue {$elementRef}") }
+                }
 
         /**
          * Verifies some base form fields
