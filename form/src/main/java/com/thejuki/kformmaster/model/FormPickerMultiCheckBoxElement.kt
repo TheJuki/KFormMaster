@@ -41,14 +41,6 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
     private var alertDialogBuilder: AlertDialog.Builder? = null
 
     /**
-     * Options builder setter
-     */
-    fun setOptions(options: T): FormPickerMultiCheckBoxElement<T> {
-        this.options = options
-        return this
-    }
-
-    /**
      * Alert Dialog Title
      * (optional - uses R.string.form_master_pick_one_or_more)
      */
@@ -59,14 +51,6 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
      * (optional - uses R.string.form_master_empty)
      */
     var dialogEmptyMessage: String? = null
-
-    /**
-     * dialogTitle builder setter
-     */
-    fun setDialogTitle(dialogTitle: String?): FormPickerMultiCheckBoxElement<T> {
-        this.dialogTitle = dialogTitle
-        return this
-    }
 
     /**
      * Re-initializes the dialog
@@ -143,10 +127,10 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
                         }
                         // Set the action buttons
                         .setPositiveButton(android.R.string.ok) { _, _ ->
-                            this.options?.let {
+                            this.options?.let { option ->
                                 val selectedOptions = mSelectedItems.indices
                                         .map { mSelectedItems[it] }
-                                        .map { x -> it[x] }
+                                        .map { x -> option[x] }
 
                                 this.error = null
                                 this.setValue(selectedOptions)

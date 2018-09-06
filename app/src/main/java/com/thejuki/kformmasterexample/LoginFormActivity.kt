@@ -79,19 +79,18 @@ class LoginFormActivity : AppCompatActivity() {
         val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
         val emailElement = FormEmailEditTextElement(Email.ordinal)
-                .setTitle(getString(R.string.email))
+        emailElement.title = getString(R.string.email)
         elements.add(emailElement)
 
         val passwordElement = FormPasswordEditTextElement(Password.ordinal)
-                .setTitle(getString(R.string.password))
+        passwordElement.title = getString(R.string.password)
         elements.add(passwordElement)
 
-        val checkBoxElement = (FormCheckBoxElement<Boolean>()
-                .setTitle(getString(R.string.remember))
-                .setValue(false)
-                as FormCheckBoxElement<Boolean>)
-                .setCheckedValue(true)
-                .setUnCheckedValue(false)
+        val checkBoxElement = FormCheckBoxElement<Boolean>()
+        checkBoxElement.title = getString(R.string.remember)
+        checkBoxElement.value = false
+        checkBoxElement.checkedValue = true
+        checkBoxElement.unCheckedValue = false
         elements.add(checkBoxElement)
 
         formBuilder.addFormElements(elements)

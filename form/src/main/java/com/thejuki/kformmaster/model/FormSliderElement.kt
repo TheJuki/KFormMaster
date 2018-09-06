@@ -52,36 +52,4 @@ open class FormSliderElement(tag: Int = -1) : BaseFormElement<Int>(tag) {
         get() {
             return if (field != null && field ?: 0 <= 0) 1 else field
         }
-
-    /**
-     * Max builder setter
-     */
-    fun setMax(max: Int): FormSliderElement {
-        this.max = max
-        return this
-    }
-
-    /**
-     * Min builder setter
-     */
-    fun setMin(min: Int): FormSliderElement {
-        this.min = min
-        return this
-    }
-
-    /**
-     * Steps builder setter
-     */
-    fun setSteps(steps: Int): FormSliderElement {
-        this.steps = steps
-        return this
-    }
-
-    /**
-     * Increment By builder setter
-     */
-    fun setIncrementBy(incrementBy: Int): FormSliderElement {
-        this.incrementBy = incrementBy
-        return this
-    }
 }

@@ -36,28 +36,4 @@ class FormTokenAutoCompleteElement<T : List<*>>(tag: Int = -1) : BaseFormElement
      * Override the default dropdown width
      */
     var dropdownWidth: Int? = null
-
-    /**
-     * arrayAdapter builder setter
-     */
-    fun setArrayAdapter(arrayAdapter: ArrayAdapter<*>?): FormTokenAutoCompleteElement<T> {
-        this.arrayAdapter = arrayAdapter
-        return this
-    }
-
-    /**
-     * dropdownWidth builder setter
-     */
-    fun setDropdownWidth(dropdownWidth: Int?): FormTokenAutoCompleteElement<T> {
-        this.dropdownWidth = dropdownWidth
-        return this
-    }
-
-    /**
-     * Options builder setter
-     */
-    fun setOptions(options: T): FormTokenAutoCompleteElement<T> {
-        this.options = options
-        return this
-    }
 }

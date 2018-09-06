@@ -26,12 +26,4 @@ class FormHeader(tag: Int = -1) : BaseFormElement<String>(tag) {
      */
     override val isValid: Boolean
         get() = true
-
-    /**
-     * Collapsible builder setter
-     */
-    fun setCollapsible(collapsible: Boolean): FormHeader {
-        this.collapsible = collapsible
-        return this
-    }
 }

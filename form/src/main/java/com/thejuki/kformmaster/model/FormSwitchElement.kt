@@ -35,20 +35,4 @@ open class FormSwitchElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
             return false
         return onValue == value
     }
-
-    /**
-     * onValue builder setter
-     */
-    fun setOnValue(onValue: T?): FormSwitchElement<T> {
-        this.onValue = onValue
-        return this
-    }
-
-    /**
-     * offValue builder setter
-     */
-    fun setOffValue(offValue: T?): FormSwitchElement<T> {
-        this.offValue = offValue
-        return this
-    }
 }

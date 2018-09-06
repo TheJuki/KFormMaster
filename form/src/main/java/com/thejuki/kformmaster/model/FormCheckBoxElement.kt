@@ -35,20 +35,4 @@ open class FormCheckBoxElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
             return false
         return checkedValue == value
     }
-
-    /**
-     * checkedValue builder setter
-     */
-    fun setCheckedValue(checkedValue: T?): FormCheckBoxElement<T> {
-        this.checkedValue = checkedValue
-        return this
-    }
-
-    /**
-     * unCheckedValue builder setter
-     */
-    fun setUnCheckedValue(unCheckedValue: T?): FormCheckBoxElement<T> {
-        this.unCheckedValue = unCheckedValue
-        return this
-    }
 }

@@ -5,6 +5,15 @@ Common values used by multiple form elements are stored in the base form element
     - None of the base values are required but providing a title is advised.
     - Editable fields that require a keyboard change the form element value when they lose focus. Because of this, before validating or submitting a form, clear the focus of the form using `currentFocus?.clearFocus()` in your activity.
 
+!!! info "Setting Colors"
+
+    - Setting the form element colors requires a Color Int
+    - R.color.name is a Color Res and you must get the Color Int using ResourcesCompat.getColor() or similar
+    - Examples:
+        - Color.WHITE
+        - Color.parseColor("#FF4081")
+        - ResourcesCompat.getColor(resources, R.color.name, null) 
+
 ## Tag
 The tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.
 ```kotlin

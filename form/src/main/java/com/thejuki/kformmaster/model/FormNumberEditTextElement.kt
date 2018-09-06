@@ -15,9 +15,4 @@ class FormNumberEditTextElement(tag: Int = -1) : BaseFormElement<String>(tag) {
      * Set to true to only allow numbers.
      */
     var numbersOnly: Boolean = false
-
-    fun setNumbersOnly(numbersOnly: Boolean): FormNumberEditTextElement {
-        this.numbersOnly = numbersOnly
-        return this
-    }
 }

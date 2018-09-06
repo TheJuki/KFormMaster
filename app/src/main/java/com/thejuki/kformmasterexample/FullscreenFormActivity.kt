@@ -3,6 +3,7 @@ package com.thejuki.kformmasterexample
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.InputType
@@ -181,7 +182,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 titleTextColor = Color.BLACK
                 titleFocusedTextColor = Color.parseColor("#FF4081")
                 valueTextColor = Color.BLACK
-                errorTextColor = Color.RED
+                errorTextColor = ResourcesCompat.getColor(resources, R.color.colorFormMasterElementErrorTitle, null)
                 hintTextColor = Color.BLUE
                 enabled = true
                 required = true

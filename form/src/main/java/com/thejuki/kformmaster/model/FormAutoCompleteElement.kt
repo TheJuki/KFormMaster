@@ -41,35 +41,11 @@ class FormAutoCompleteElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     var dropdownWidth: Int? = null
 
     /**
-     * arrayAdapter builder setter
-     */
-    fun setArrayAdapter(arrayAdapter: ArrayAdapter<*>?): FormAutoCompleteElement<T> {
-        this.arrayAdapter = arrayAdapter
-        return this
-    }
-
-    /**
-     * dropdownWidth builder setter
-     */
-    fun setDropdownWidth(dropdownWidth: Int?): FormAutoCompleteElement<T> {
-        this.dropdownWidth = dropdownWidth
-        return this
-    }
-
-    /**
      * Sets the value and typedString
      */
     override fun setValue(value: Any?): BaseFormElement<T> {
         typedString = value?.toString()
 
         return super.setValue(value)
-    }
-
-    /**
-     * Options builder setter
-     */
-    fun setOptions(options: List<T>): BaseFormElement<T> {
-        this.options = options
-        return this
     }
 }

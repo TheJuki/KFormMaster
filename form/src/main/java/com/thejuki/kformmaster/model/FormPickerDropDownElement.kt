@@ -53,38 +53,6 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
     var arrayAdapter: ArrayAdapter<*>? = null
 
     /**
-     * dialogTitle builder setter
-     */
-    fun setDialogTitle(dialogTitle: String?): FormPickerDropDownElement<T> {
-        this.dialogTitle = dialogTitle
-        return this
-    }
-
-    /**
-     * dialogEmptyMessage builder setter
-     */
-    fun setDialogEmptyMessage(dialogEmptyMessage: String?): FormPickerDropDownElement<T> {
-        this.dialogEmptyMessage = dialogEmptyMessage
-        return this
-    }
-
-    /**
-     * arrayAdapter builder setter
-     */
-    fun setArrayAdapter(arrayAdapter: ArrayAdapter<*>?): FormPickerDropDownElement<T> {
-        this.arrayAdapter = arrayAdapter
-        return this
-    }
-
-    /**
-     * Options builder setter
-     */
-    fun setOptions(options: List<T>): FormPickerDropDownElement<T> {
-        this.options = options
-        return this
-    }
-
-    /**
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
@@ -141,8 +109,8 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                             .setItems(options) { _, which ->
                                 this.error = null
                                 editTextView?.setText(options[which])
-                                this.options?.let {
-                                    this.setValue(it[which])
+                                this.options?.let { option ->
+                                    this.setValue(option[which])
                                 }
                                 formBuilder?.onValueChanged(this)
 

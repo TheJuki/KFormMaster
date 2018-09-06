@@ -1,5 +1,6 @@
 package com.thejuki.kformmasterexample
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -77,11 +78,13 @@ class CustomFormActivity : AppCompatActivity() {
             header { title = getString(R.string.custom_form) }
             customEx(Tag.Custom.ordinal) {
                 title = getString(R.string.Custom_Element)
+                titleTextColor = Color.WHITE
             }
             header { title = getString(R.string.custom_footer_1) }
             textArea(Tag.Custom.ordinal) {
                 title = getString(R.string.Custom_Layout)
                 maxLines = 4
+                titleTextColor = Color.WHITE
             }
             header { title = getString(R.string.custom_footer_2) }
         }

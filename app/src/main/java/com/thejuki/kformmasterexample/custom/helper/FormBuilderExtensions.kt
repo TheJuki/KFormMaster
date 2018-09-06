@@ -28,6 +28,13 @@ class CustomElementBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     enabled = it.enabled
                     visible = it.visible
                     valueObservers.addAll(it.valueObservers)
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    hintTextColor = it.hintTextColor
+                    titleTextColor = it.titleTextColor
+                    titleFocusedTextColor = it.titleFocusedTextColor
+                    valueTextColor = it.valueTextColor
+                    errorTextColor = it.errorTextColor
                 }
             }
 }
