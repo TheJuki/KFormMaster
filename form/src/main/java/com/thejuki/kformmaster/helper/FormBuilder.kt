@@ -4,6 +4,8 @@ import android.content.Context
 import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
+import androidx.annotation.ColorInt
+import androidx.recyclerview.widget.RecyclerView
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.*
 import java.text.DateFormat

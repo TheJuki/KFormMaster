@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmasterexample.FormListenerActivity.Tag.*
+import com.thejuki.kformmasterexample.R.id.recyclerView
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
 import com.thejuki.kformmasterexample.item.ContactItem

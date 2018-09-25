@@ -2,9 +2,15 @@ package com.thejuki.kformmasterexample
 
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import com.google.android.material.tabs.TabLayout
 import com.thejuki.kformmasterexample.FormTabbedActivity.Tabs.Form
 import com.thejuki.kformmasterexample.FormTabbedActivity.Tabs.values
 import com.thejuki.kformmasterexample.fragment.FormFragment
+import kotlinx.android.synthetic.main.activity_tabbed_form.*
 
 /**
  * Form Tabbed Activity

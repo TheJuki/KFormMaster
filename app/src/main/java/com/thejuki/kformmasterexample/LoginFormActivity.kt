@@ -3,6 +3,7 @@ package com.thejuki.kformmasterexample
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.model.FormCheckBoxElement
@@ -10,6 +11,7 @@ import com.thejuki.kformmaster.model.FormEmailEditTextElement
 import com.thejuki.kformmaster.model.FormPasswordEditTextElement
 import com.thejuki.kformmasterexample.LoginFormActivity.Tag.Email
 import com.thejuki.kformmasterexample.LoginFormActivity.Tag.Password
+import kotlinx.android.synthetic.main.activity_login_form.*
 
 /**
  * Login Form Activity

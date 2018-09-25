@@ -2,6 +2,10 @@ package com.thejuki.kformmaster
 
 import android.view.View
 import android.widget.RadioButton
+import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.matcher.ViewMatchers
 import com.thejuki.kformmaster.widget.SegmentedGroup
 import org.hamcrest.Matcher
 

@@ -2,6 +2,10 @@ package com.thejuki.kformmaster.helper
 
 import android.content.Context
 import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.vivchar.rendererrecyclerviewadapter.RendererRecyclerViewAdapter
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
@@ -155,7 +159,7 @@ class FormBuildHelper
         recyclerView?.let {
             // Set up the RecyclerView with the adapter
             it.layoutManager = LinearLayoutManager(context).apply {
-                orientation = LinearLayoutManager.VERTICAL
+                orientation = RecyclerView.VERTICAL
                 stackFromEnd = false
             }
             it.adapter = formAdapter

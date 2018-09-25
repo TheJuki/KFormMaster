@@ -10,6 +10,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.View.OnTouchListener
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat
 import com.thejuki.kformmaster.R
 
 /**
@@ -113,7 +115,7 @@ class ClearableEditText : AppCompatEditText, OnTouchListener, OnFocusChangeListe
     override fun onFocusChange(v: View, hasFocus: Boolean) {
         if (!alwaysShowClear) {
             if (hasFocus) {
-                setClearIconVisible(displayClear && text.isNotEmpty())
+                setClearIconVisible(displayClear && (text ?: "").isNotEmpty())
             } else {
                 setClearIconVisible(false)
             }
@@ -123,7 +125,7 @@ class ClearableEditText : AppCompatEditText, OnTouchListener, OnFocusChangeListe
     }
 
     override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
-        setClearIconVisible(displayClear && text.isNotEmpty())
+        setClearIconVisible(displayClear && (text ?: "").isNotEmpty())
     }
 
     override fun setCompoundDrawables(left: Drawable?, top: Drawable?, right: Drawable?, bottom: Drawable?) {

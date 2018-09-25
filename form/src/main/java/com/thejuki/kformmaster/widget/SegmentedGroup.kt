@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import androidx.core.content.res.ResourcesCompat
 import com.thejuki.kformmaster.R
 import java.util.*
 

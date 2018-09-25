@@ -12,10 +12,14 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.FormHeader
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmasterexample.FullscreenFormActivity.Tag.*
+import com.thejuki.kformmasterexample.R.id.recyclerView
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
 import com.thejuki.kformmasterexample.item.ContactItem

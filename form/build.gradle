@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: "guru.stefma.bintrayrelease"
 apply plugin: 'jacoco'
 
 android {
@@ -80,8 +80,8 @@ ext {
     rendererRecyclerViewAdapterVersion = '2.5.0'
     tokenautocompleteVersion = '2.0.8'
     junitVersion = '4.12'
-    testRunnerVersion = '1.0.2'
-    testExpressoVersion = '3.0.1'
+    testRunnerVersion = '1.1.0-alpha4'
+    testExpressoVersion = '3.1.0-alpha4'
     kotlintestVersion = '2.0.7'
     mockitoVersion = '2.15.0'
 }
@@ -100,16 +100,17 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     testImplementation "io.kotlintest:kotlintest:$kotlintestVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0-alpha4'
+    androidTestImplementation "androidx.test:rules:$testRunnerVersion"
+    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$testExpressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$testExpressoVersion"
 }
 
+version = "5.1.0"
+group = "com.thejuki"
 publish {
     userOrg = 'thejuki'
-    groupId = 'com.thejuki'
     artifactId = 'k-form-master'
-    publishVersion = '5.1.0'
     desc = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
     website = 'https://github.com/TheJuki/KFormMaster'
 }

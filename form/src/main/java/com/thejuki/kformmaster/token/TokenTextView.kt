@@ -3,6 +3,7 @@ package com.thejuki.kformmaster.token
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatTextView
 import com.thejuki.kformmaster.R
 
 /**
