@@ -12,7 +12,7 @@
         android:text="@string/this_is_a_big_pointless_place_holder"
         android:gravity="center" />
 
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"

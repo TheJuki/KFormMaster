@@ -5,7 +5,6 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.*
 import android.os.Build
-import android.support.v4.content.res.ResourcesCompat
 import android.util.AttributeSet
 import android.util.StateSet
 import android.util.TypedValue

@@ -1,8 +1,6 @@
 package com.thejuki.kformmasterexample.custom.view
 
 import android.content.Context
-import android.support.v7.widget.AppCompatEditText
-import android.support.v7.widget.AppCompatTextView
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder

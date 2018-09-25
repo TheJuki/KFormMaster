@@ -23,7 +23,7 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/formElementTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:textSize="@dimen/elementTextTitleSize"
             tools:text="Personal Info" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/formElementProgress"
             android:layout_width="0dp"
             android:gravity="end"
@@ -44,7 +44,7 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.AppCompatSeekBar
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/formElementValue"
         android:max="100"
         android:layout_marginTop="10dp"
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/formElementError"
         android:layout_width="match_parent"
         android:layout_height="0dp"

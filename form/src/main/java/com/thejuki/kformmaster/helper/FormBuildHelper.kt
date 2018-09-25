@@ -1,10 +1,6 @@
 package com.thejuki.kformmaster.helper
 
 import android.content.Context
-import android.support.v7.widget.AppCompatTextView
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.github.vivchar.rendererrecyclerviewadapter.RendererRecyclerViewAdapter
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder

@@ -1,8 +1,6 @@
 package com.thejuki.kformmaster
 
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.Toast
@@ -16,7 +14,6 @@ import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.model.FormButtonElement
 import com.thejuki.kformmaster.model.FormPickerDateElement
-import kotlinx.android.synthetic.main.activity_form_test.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date

@@ -1,7 +1,5 @@
 package com.thejuki.kformmaster.model
 
-import android.support.annotation.ColorInt
-import android.support.v7.widget.*
 import android.text.InputFilter
 import android.text.InputType
 import android.view.Gravity

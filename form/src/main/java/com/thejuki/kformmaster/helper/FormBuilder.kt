@@ -1,8 +1,6 @@
 package com.thejuki.kformmaster.helper
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.v7.widget.RecyclerView
 import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter

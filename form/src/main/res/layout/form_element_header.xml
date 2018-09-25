@@ -9,7 +9,7 @@
     android:background="@color/colorFormMasterHeaderBackground"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/formElementTitle"

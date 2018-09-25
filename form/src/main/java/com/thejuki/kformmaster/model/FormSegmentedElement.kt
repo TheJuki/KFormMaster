@@ -1,8 +1,6 @@
 package com.thejuki.kformmaster.model
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RadioButton

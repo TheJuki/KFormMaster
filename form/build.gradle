@@ -5,14 +5,14 @@ apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'jacoco'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 26
-        versionName "5.0.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        targetSdkVersion 28
+        versionCode 27
+        versionName "5.1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -75,7 +75,8 @@ tasks.withType(Javadoc).all {
 }
 
 ext {
-    supportVersion = '27.1.1'
+    androidxVersion = '1.0.0'
+    materialVersion = '1.0.0'
     rendererRecyclerViewAdapterVersion = '2.5.0'
     tokenautocompleteVersion = '2.0.8'
     junitVersion = '4.12'
@@ -86,9 +87,9 @@ ext {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$supportVersion",
-            "com.android.support:design:$supportVersion",
-            "com.android.support:recyclerview-v7:$supportVersion"
+    implementation "androidx.appcompat:appcompat:$androidxVersion",
+            "com.google.android.material:material:$materialVersion",
+            "androidx.recyclerview:recyclerview:$androidxVersion"
     api "com.github.vivchar:RendererRecyclerViewAdapter:$rendererRecyclerViewAdapterVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
@@ -99,16 +100,16 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     testImplementation "io.kotlintest:kotlintest:$kotlintestVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
-    androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$testExpressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$testExpressoVersion"
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0-alpha4'
 }
 
 publish {
     userOrg = 'thejuki'
     groupId = 'com.thejuki'
     artifactId = 'k-form-master'
-    publishVersion = '5.0.0'
+    publishVersion = '5.1.0'
     desc = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
     website = 'https://github.com/TheJuki/KFormMaster'
 }

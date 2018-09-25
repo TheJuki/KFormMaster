@@ -1,7 +1,6 @@
 package com.thejuki.kformmasterexample
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.Toast
 import com.thejuki.kformmaster.helper.FormBuildHelper
@@ -11,7 +10,6 @@ import com.thejuki.kformmaster.model.FormEmailEditTextElement
 import com.thejuki.kformmaster.model.FormPasswordEditTextElement
 import com.thejuki.kformmasterexample.LoginFormActivity.Tag.Email
 import com.thejuki.kformmasterexample.LoginFormActivity.Tag.Password
-import kotlinx.android.synthetic.main.activity_login_form.*
 
 /**
  * Login Form Activity
