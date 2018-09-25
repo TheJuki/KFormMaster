@@ -3,6 +3,9 @@ package com.thejuki.kformmaster.view
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.LayoutRes
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatTextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
 import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
@@ -68,7 +71,7 @@ class FormMultiLineEditTextViewBinder(private val context: Context, private val 
         itemView.setOnClickListener {
             editTextValue.requestFocus()
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            editTextValue.setSelection(editTextValue.text.length)
+            editTextValue.setSelection(editTextValue.text?.length ?: 0)
             imm.showSoftInput(editTextValue, InputMethodManager.SHOW_IMPLICIT)
         }
     }

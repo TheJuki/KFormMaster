@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster.model
 
 import android.widget.ArrayAdapter
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 
 /**
  * Form AutoComplete Element

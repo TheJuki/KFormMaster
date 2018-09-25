@@ -1,8 +1,10 @@
 package com.thejuki.kformmaster.model
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.View
 import android.widget.ArrayAdapter
+import androidx.appcompat.widget.AppCompatEditText
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 
@@ -91,7 +93,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                             .setMessage(null)
                             .setAdapter(this) { _, which ->
                                 this@FormPickerDropDownElement.error = null
-                                editTextView?.setText(this.getItem(which).toString())
+                                editTextView?.setText(this.getItem(which)?.toString())
                                 this@FormPickerDropDownElement.setValue(this.getItem(which))
                                 formBuilder?.onValueChanged(this@FormPickerDropDownElement)
 

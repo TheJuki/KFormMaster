@@ -1,5 +1,6 @@
 package com.thejuki.kformmaster.state
 
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.model.FormAutoCompleteElement

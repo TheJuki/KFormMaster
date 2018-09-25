@@ -5,6 +5,9 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.text.InputType
 import android.view.View
+import androidx.annotation.LayoutRes
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatTextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
 import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider

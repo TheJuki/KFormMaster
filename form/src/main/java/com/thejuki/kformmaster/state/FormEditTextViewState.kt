@@ -1,5 +1,6 @@
 package com.thejuki.kformmaster.state
 
+import androidx.appcompat.widget.AppCompatEditText
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.thejuki.kformmaster.R
 

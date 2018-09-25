@@ -2,6 +2,8 @@ package com.thejuki.kformmaster.model
 
 import android.content.Context
 import android.view.View
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatEditText
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 
