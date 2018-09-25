@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.thejuki.kformmaster.FormActivityTest.Tag.*
-import com.thejuki.kformmaster.R.id.recyclerView
 import com.thejuki.kformmaster.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmaster.adapter.EmailAutoCompleteAdapter
 import com.thejuki.kformmaster.helper.*
@@ -17,6 +16,7 @@ import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.model.FormButtonElement
 import com.thejuki.kformmaster.model.FormPickerDateElement
+import kotlinx.android.synthetic.main.activity_form_test.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date

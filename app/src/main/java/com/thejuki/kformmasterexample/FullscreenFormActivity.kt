@@ -19,11 +19,11 @@ import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.FormHeader
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmasterexample.FullscreenFormActivity.Tag.*
-import com.thejuki.kformmasterexample.R.id.recyclerView
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
 import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
+import kotlinx.android.synthetic.main.activity_fullscreen_form.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date

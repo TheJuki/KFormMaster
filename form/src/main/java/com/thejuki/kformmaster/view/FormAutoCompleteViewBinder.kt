@@ -58,7 +58,7 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
         val itemsAdapter = if (model.arrayAdapter != null)
             model.arrayAdapter
         else
-            ArrayAdapter(context, android.R.layout.simple_list_item_1, model.options)
+            ArrayAdapter(context, android.R.layout.simple_list_item_1, model.options ?: listOf())
 
         autoCompleteTextView.setAdapter<ArrayAdapter<*>>(itemsAdapter)
 
@@ -101,7 +101,7 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
                 autoCompleteTextView.selectAll()
             }
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            autoCompleteTextView.setSelection(autoCompleteTextView.text.length)
+            autoCompleteTextView.setSelection(autoCompleteTextView.text?.length ?: 0)
             imm.showSoftInput(autoCompleteTextView, InputMethodManager.SHOW_IMPLICIT)
         }
     }

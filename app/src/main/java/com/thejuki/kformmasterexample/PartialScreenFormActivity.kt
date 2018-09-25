@@ -11,11 +11,11 @@ import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmasterexample.PartialScreenFormActivity.Tag.*
-import com.thejuki.kformmasterexample.R.id.recyclerView
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
 import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
+import kotlinx.android.synthetic.main.activity_partial_screen_form.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date

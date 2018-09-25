@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
-import com.thejuki.kformmasterexample.R.id.recyclerView
 import com.thejuki.kformmasterexample.custom.helper.customEx
 import com.thejuki.kformmasterexample.custom.view.CustomViewBinder
+import kotlinx.android.synthetic.main.activity_fullscreen_form.*
 
 /**
  * Custom Form Activity

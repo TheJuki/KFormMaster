@@ -69,7 +69,7 @@ class CustomViewBinder(private val context: Context, private val formBuilder: Fo
         itemView.setOnClickListener {
             editTextValue.requestFocus()
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            editTextValue.setSelection(editTextValue.text.length)
+            editTextValue.setSelection(editTextValue.text?.length ?: 0)
             imm.showSoftInput(editTextValue, InputMethodManager.SHOW_IMPLICIT)
         }
     }
