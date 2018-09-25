@@ -90,7 +90,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$androidxVersion",
             "com.google.android.material:material:$materialVersion",
             "androidx.recyclerview:recyclerview:$androidxVersion"
-    api "com.github.vivchar:RendererRecyclerViewAdapter:$rendererRecyclerViewAdapterVersion"
+    api 'com.github.TheJuki:RendererRecyclerViewAdapter:AndroidX-SNAPSHOT'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
