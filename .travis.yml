@@ -22,6 +22,8 @@ before_script:
 sudo: true
 before_install:
   - yes | sdkmanager "platforms;android-28"
+  - yes | sdkmanager "build-tools;28.0.2"
+  - yes | sdkmanager "build-tools;28.0.3"
   - chmod +x gradlew
 after_success:
   - bash <(curl -s https://codecov.io/bash)
