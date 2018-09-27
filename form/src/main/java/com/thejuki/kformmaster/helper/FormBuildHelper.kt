@@ -88,7 +88,7 @@ class FormBuildHelper
 
         // Initialize form adapter
         this.elements = ArrayList()
-        this.formAdapter = RendererRecyclerViewAdapter(context)
+        this.formAdapter = RendererRecyclerViewAdapter()
         this.formAdapter.setDiffCallback(ElementDiffCallback())
 
         // Header
