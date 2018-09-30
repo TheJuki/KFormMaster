@@ -58,7 +58,7 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
         val itemsAdapter = if (model.arrayAdapter != null)
             model.arrayAdapter
         else
-            ArrayAdapter(context, android.R.layout.simple_list_item_1, model.options)
+            ArrayAdapter(context, android.R.layout.simple_list_item_1, model.options ?: listOf())
 
         autoCompleteTextView.setAdapter<ArrayAdapter<*>>(itemsAdapter)
 

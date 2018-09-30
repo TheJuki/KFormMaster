@@ -52,7 +52,7 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
         val itemsAdapter = if (model.arrayAdapter != null)
             model.arrayAdapter
         else
-            ArrayAdapter(context, android.R.layout.simple_list_item_1, model.options)
+            ArrayAdapter(context, android.R.layout.simple_list_item_1, model.options ?: listOf())
         itemsCompletionView.setAdapter<ArrayAdapter<*>>(itemsAdapter)
 
         model.dropdownWidth?.let {

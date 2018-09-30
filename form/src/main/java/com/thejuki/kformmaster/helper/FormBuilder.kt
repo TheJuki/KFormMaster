@@ -661,6 +661,7 @@ class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     var dialogEmptyMessage: String? = null
     var arrayAdapter: ArrayAdapter<*>? = null
     var options: List<T>? = null
+    var displayRadioButtons: Boolean = false
     override fun build() =
             FormPickerDropDownElement<T>(tag).apply {
                 this@DropDownBuilder.let {
@@ -682,6 +683,7 @@ class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     dialogEmptyMessage = it.dialogEmptyMessage
                     arrayAdapter = it.arrayAdapter
                     clearable = it.clearable
+                    displayRadioButtons = it.displayRadioButtons
                     valueObservers.addAll(it.valueObservers)
                     // Colors
                     backgroundColor = it.backgroundColor

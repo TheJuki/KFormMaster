@@ -5,11 +5,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.thejuki.kformmasterexample"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 8
         versionName "3.0.0"
     }
@@ -34,7 +34,7 @@ tasks.withType(Javadoc).all {
 }
 
 ext {
-    supportVersion = '27.1.1'
+    supportVersion = '28.0.0'
 }
 
 dependencies {

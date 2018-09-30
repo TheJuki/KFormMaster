@@ -28,6 +28,16 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
             reInitDialog()
         }
 
+    override fun clear() {
+        super.clear()
+        reInitDialog()
+    }
+
+    /**
+     * Enable to display the radio buttons
+     */
+    var displayRadioButtons: Boolean = false
+
     /**
      * Alert Dialog Builder
      * Used to call reInitDialog without needing context again.
@@ -59,6 +69,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
     fun reInitDialog(context: Context? = null, formBuilder: FormBuildHelper? = null) {
         // reformat the options in format needed
         val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
+        val selectedIndex: Int = this.options?.indexOf(this.value) ?: -1
 
         this.options?.let {
             for (i in it.indices) {
@@ -91,31 +102,62 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                 this.arrayAdapter?.apply {
                     it.setTitle(this@FormPickerDropDownElement.dialogTitle)
                             .setMessage(null)
-                            .setAdapter(this) { _, which ->
-                                this@FormPickerDropDownElement.error = null
-                                editTextView?.setText(this.getItem(which).toString())
-                                this@FormPickerDropDownElement.setValue(this.getItem(which))
-                                formBuilder?.onValueChanged(this@FormPickerDropDownElement)
+                            .setPositiveButton(null, null)
+                            .setNegativeButton(null, null)
 
-                                editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
-                            }
+                    if (displayRadioButtons) {
+                        it.setSingleChoiceItems(this, selectedIndex) { dialogInterface, which ->
+                            this@FormPickerDropDownElement.error = null
+                            editTextView?.setText(this.getItem(which)?.toString())
+                            this@FormPickerDropDownElement.setValue(this.getItem(which))
+                            formBuilder?.onValueChanged(this@FormPickerDropDownElement)
+
+                            editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
+                            dialogInterface.dismiss()
+                        }
+                    } else {
+                        it.setAdapter(this) { _, which ->
+                            this@FormPickerDropDownElement.error = null
+                            editTextView?.setText(this.getItem(which)?.toString())
+                            this@FormPickerDropDownElement.setValue(this.getItem(which))
+                            formBuilder?.onValueChanged(this@FormPickerDropDownElement)
+
+                            editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
+                        }
+                    }
                 }
             } else {
                 if (this.options?.isEmpty() == true) {
                     it.setTitle(this.dialogTitle).setMessage(dialogEmptyMessage)
                 } else {
-                    it.setTitle(this.dialogTitle)
-                            .setMessage(null)
-                            .setItems(options) { _, which ->
-                                this.error = null
-                                editTextView?.setText(options[which])
-                                this.options?.let { option ->
-                                    this.setValue(option[which])
-                                }
-                                formBuilder?.onValueChanged(this)
+                    it.setTitle(this.dialogTitle).setMessage(null)
+                            .setPositiveButton(null, null)
+                            .setNegativeButton(null, null)
 
-                                editTextView?.setText(this.valueAsString)
+                    if (displayRadioButtons) {
+                        it.setSingleChoiceItems(options, selectedIndex) { dialogInterface, which ->
+                            this.error = null
+                            editTextView?.setText(options[which])
+                            this.options?.let { option ->
+                                this.setValue(option[which])
                             }
+                            formBuilder?.onValueChanged(this)
+
+                            editTextView?.setText(this.valueAsString)
+                            dialogInterface.dismiss()
+                        }
+                    } else {
+                        it.setItems(options) { _, which ->
+                            this.error = null
+                            editTextView?.setText(options[which])
+                            this.options?.let { option ->
+                                this.setValue(option[which])
+                            }
+                            formBuilder?.onValueChanged(this)
+
+                            editTextView?.setText(this.valueAsString)
+                        }
+                    }
                 }
             }
 

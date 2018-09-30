@@ -115,7 +115,7 @@ class ClearableEditText : AppCompatEditText, OnTouchListener, OnFocusChangeListe
     override fun onFocusChange(v: View, hasFocus: Boolean) {
         if (!alwaysShowClear) {
             if (hasFocus) {
-                setClearIconVisible(displayClear && text.isNotEmpty())
+                setClearIconVisible(displayClear && (text?.isNotEmpty() ?: false))
             } else {
                 setClearIconVisible(false)
             }
@@ -125,7 +125,7 @@ class ClearableEditText : AppCompatEditText, OnTouchListener, OnFocusChangeListe
     }
 
     override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
-        setClearIconVisible(displayClear && text.isNotEmpty())
+        setClearIconVisible(displayClear && (text?.isNotEmpty() ?: false))
     }
 
     override fun setCompoundDrawables(left: Drawable?, top: Drawable?, right: Drawable?, bottom: Drawable?) {
