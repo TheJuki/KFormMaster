@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.0.1](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.1)
+- Add displayRadioButtons to FormPickerDropDownElement
+- Use Android SDK 28
+- Still using Android support version 27.1.1. The AndroidX branch uses the AndroidX support version 1.0.0
+
+## [5.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.0)
+- This is a major change. Removed all setter builder methods to fix compatibility with Java. #49 
+- Using "apply" will work as an alternative to using the builders and DSL. However, using the Form DSL is recommended.
+
 ## [4.7.0](https://github.com/TheJuki/KFormMaster/releases/tag/4.7.0)
 - #44 Update Seekbar value when the progress changed during the slide. 
 - #45 Add Divider view as a dynamic View. Add displayDivider as a base property. 
