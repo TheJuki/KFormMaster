@@ -18,6 +18,15 @@ dropDown<ContactItem>(1) {
 }
 ```
 
+## displayRadioButtons
+By default this is false.
+Enable to display the radio buttons
+```kotlin
+dropDown<ListItem>(1) {
+    displayRadioButtons = true
+}
+```
+
 ## Dialog Title
 By default this is "Select One".
 Setting this will override the alert dialog title.
