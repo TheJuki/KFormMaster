@@ -22,7 +22,6 @@ android {
         }
         debug {
             testCoverageEnabled true
-            minifyEnabled true
         }
     }
     compileOptions {
@@ -76,7 +75,7 @@ tasks.withType(Javadoc).all {
 }
 
 ext {
-    supportVersion = '28.0.0'
+    supportVersion = '27.1.1'
     rendererRecyclerViewAdapterVersion = '2.5.0'
     tokenautocompleteVersion = '2.0.8'
     junitVersion = '4.12'
