@@ -14,6 +14,7 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.drawable.DrawableCompat
 import com.thejuki.kformmaster.R
 import java.util.*
 
@@ -221,6 +222,13 @@ class SegmentedGroup : RadioGroup {
             val colorStateList = ColorStateList(arrayOf(intArrayOf(-android.R.attr.state_checked), intArrayOf(android.R.attr.state_checked)),
                     intArrayOf(mTintColor, mCheckedTextColor))
             (view as Button).setTextColor(colorStateList)
+
+            view.compoundDrawables.iterator().forEach { drawable ->
+                drawable?.let {
+                    DrawableCompat.setTintList(it.mutate(), colorStateList)
+                }
+            }
+
             view.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize)
             view.setPadding(mPadding, mPadding, mPadding, mPadding)
 

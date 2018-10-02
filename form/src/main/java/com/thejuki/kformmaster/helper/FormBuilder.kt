@@ -761,6 +761,7 @@ class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
     // Text Size (In SP)
     var textSize: Float? = null
     var padding: Int? = null
+    var drawableDirection: FormSegmentedElement.DrawableDirection = FormSegmentedElement.DrawableDirection.Top
 
     override fun build() =
             FormSegmentedElement<T>(tag).apply {
@@ -776,6 +777,7 @@ class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     horizontal = it.horizontal
                     fillSpace = it.fillSpace
 
+                    drawableDirection = it.drawableDirection
                     marginDp = it.marginDp
                     tintColor = it.tintColor
                     unCheckedTintColor = it.unCheckedTintColor

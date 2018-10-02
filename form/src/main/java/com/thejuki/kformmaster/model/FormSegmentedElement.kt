@@ -8,6 +8,7 @@ import android.widget.RadioGroup
 import androidx.annotation.ColorInt
 import androidx.core.view.ViewCompat
 import com.thejuki.kformmaster.R
+import com.thejuki.kformmaster.widget.SegmentedDrawable
 import com.thejuki.kformmaster.widget.SegmentedGroup
 
 
@@ -25,6 +26,21 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
         this.value = null
         (this.editView as? SegmentedGroup)?.clear()
     }
+
+    /**
+     * Drawable Direction
+     */
+    enum class DrawableDirection {
+        Left,
+        Right,
+        Top,
+        Bottom
+    }
+
+    /**
+     * Drawable direction of the drawable in [SegmentedDrawable]
+     */
+    var drawableDirection: DrawableDirection = DrawableDirection.Top
 
     /**
      * Disable to stack the radio buttons vertically
@@ -159,6 +175,18 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                     rb.text = item.toString()
                     rb.id = ViewCompat.generateViewId()
                     rb.isChecked = item == this@FormSegmentedElement.value
+
+                    if (item is SegmentedDrawable) {
+                        rb.setCompoundDrawablesWithIntrinsicBounds(
+                                if (drawableDirection == DrawableDirection.Left) (item.drawable
+                                        ?: 0) else 0,
+                                if (drawableDirection == DrawableDirection.Top) (item.drawable
+                                        ?: 0) else 0,
+                                if (drawableDirection == DrawableDirection.Right) (item.drawable
+                                        ?: 0) else 0,
+                                if (drawableDirection == DrawableDirection.Bottom) (item.drawable
+                                        ?: 0) else 0)
+                    }
 
                     if (fillSpace) {
                         it.addView(rb, RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT,

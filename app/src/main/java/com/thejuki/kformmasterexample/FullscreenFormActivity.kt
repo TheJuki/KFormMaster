@@ -18,11 +18,13 @@ import androidx.core.content.res.ResourcesCompat
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.FormHeader
 import com.thejuki.kformmaster.model.FormPickerDateElement
+import com.thejuki.kformmaster.model.FormSegmentedElement
 import com.thejuki.kformmasterexample.FullscreenFormActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
 import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
+import com.thejuki.kformmasterexample.item.SegmentedListItem
 import kotlinx.android.synthetic.main.activity_fullscreen_form.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -138,6 +140,13 @@ class FullscreenFormActivity : AppCompatActivity() {
             ListItem(id = 3, name = "Mango"),
             ListItem(id = 4, name = "Guava"),
             ListItem(id = 5, name = "Apple")
+    )
+
+    private val fruitsSegmented = listOf(SegmentedListItem(id = 1, name = "Banana"),
+            SegmentedListItem(id = 2, name = "Orange"),
+            SegmentedListItem(id = 3, name = "Mango"),
+            SegmentedListItem(id = 4, name = "Guava"),
+            SegmentedListItem(id = 5, name = "Apple")
     )
 
     private enum class Tag {
@@ -432,9 +441,16 @@ class FullscreenFormActivity : AppCompatActivity() {
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
             }
-            segmented<ListItem>(SegmentedElement.ordinal) {
+            segmented<SegmentedListItem>(SegmentedElement.ordinal) {
+                // Set the drawables
+                fruitsSegmented[0].drawable = R.drawable.ic_check_circle_white_24dp
+                fruitsSegmented[1].drawable = R.drawable.ic_close_black_24dp
+                fruitsSegmented[2].drawable = R.drawable.ic_clear_all_white_24dp
+                fruitsSegmented[3].drawable = R.drawable.ic_close_black_24dp
+                fruitsSegmented[4].drawable = R.drawable.ic_clear_all_white_24dp
+
                 title = getString(R.string.Segmented)
-                options = fruits
+                options = fruitsSegmented
                 enabled = true
                 rightToLeft = false
                 horizontal = true
@@ -446,8 +462,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 checkedTextColor = Color.WHITE
                 cornerRadius = 0f
                 textSize = 12f
-                padding = 2
-                value = ListItem(id = 1, name = "Banana")
+                padding = 10
+                drawableDirection = FormSegmentedElement.DrawableDirection.Top
+                value = fruitsSegmented[0]
                 required = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
