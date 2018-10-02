@@ -225,7 +225,7 @@ class SegmentedGroup : RadioGroup {
 
             view.compoundDrawables.iterator().forEach { drawable ->
                 drawable?.let {
-                    DrawableCompat.setTintList(it, colorStateList)
+                    DrawableCompat.setTintList(it.mutate(), colorStateList)
                 }
             }
 
