@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.*
 import android.os.Build
 import android.support.v4.content.res.ResourcesCompat
+import android.support.v4.graphics.drawable.DrawableCompat
 import android.util.AttributeSet
 import android.util.StateSet
 import android.util.TypedValue
@@ -221,6 +222,13 @@ class SegmentedGroup : RadioGroup {
             val colorStateList = ColorStateList(arrayOf(intArrayOf(-android.R.attr.state_checked), intArrayOf(android.R.attr.state_checked)),
                     intArrayOf(mTintColor, mCheckedTextColor))
             (view as Button).setTextColor(colorStateList)
+
+            view.compoundDrawables.iterator().forEach { drawable ->
+                drawable?.let {
+                    DrawableCompat.setTintList(it, colorStateList)
+                }
+            }
+
             view.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize)
             view.setPadding(mPadding, mPadding, mPadding, mPadding)
 
