@@ -13,7 +13,7 @@ import com.thejuki.kformmaster.widget.SegmentedDrawable
  */
 data class SegmentedListItem(val id: Long? = null,
                              val name: String? = null,
-                             @DrawableRes override var drawable: Int? = 0
+                             @DrawableRes override var drawableRes: Int? = 0
 ) : SegmentedDrawable {
     override fun toString(): String {
         return name.orEmpty()
