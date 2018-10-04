@@ -7,6 +7,7 @@ import android.support.v7.widget.AppCompatTextView
 import android.text.InputType
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
 import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
@@ -29,10 +30,11 @@ class FormEmailEditTextViewBinder(private val context: Context, private val form
     val viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element, FormEmailEditTextElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView)
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
 
         val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
 

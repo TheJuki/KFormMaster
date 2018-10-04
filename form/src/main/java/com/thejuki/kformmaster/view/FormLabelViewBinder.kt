@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.annotation.LayoutRes
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
+import android.widget.LinearLayout
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
 import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
@@ -25,9 +26,10 @@ class FormLabelViewBinder(private val context: Context, private val formBuilder:
     val viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_label, FormLabelElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, null, itemView)
+        baseSetup(model, dividerView, textViewTitle, null, itemView, mainViewLayout)
 
     }, object : ViewStateProvider<FormLabelElement, ViewHolder> {
         override fun createViewStateID(model: FormLabelElement): Int {

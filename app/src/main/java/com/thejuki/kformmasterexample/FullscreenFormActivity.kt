@@ -19,6 +19,7 @@ import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.FormHeader
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmaster.model.FormSegmentedElement
+import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmasterexample.FullscreenFormActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
@@ -402,11 +403,12 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 displayDivider = false
             }
-            header { title = getString(R.string.MarkComplete); collapsible = true }
+            header { title = getString(R.string.MarkComplete); collapsible = true; margins = FormElementMargins(0, 0, 0, 0) }
             switch<String>(SwitchElement.ordinal) {
                 title = getString(R.string.Switch)
                 value = "Yes"
                 onValue = "Yes"
+                margins = FormElementMargins(0, 0, 0, 0)
                 offValue = "No"
                 displayDivider = false
                 enabled = true
@@ -451,9 +453,12 @@ class FullscreenFormActivity : AppCompatActivity() {
                 options = fruitsSegmented
                 enabled = true
                 rightToLeft = false
+                displayTitle = true
                 horizontal = true
                 fillSpace = true
                 marginDp = 5
+                margins = FormElementMargins(16, 16, 16, 0)
+                layoutPaddingBottom = 16
                 displayDivider = false
                 tintColor = Color.parseColor("#FF4081")
                 unCheckedTintColor = Color.WHITE

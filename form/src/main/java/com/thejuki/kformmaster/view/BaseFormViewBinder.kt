@@ -16,6 +16,7 @@ import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.widget.ClearableEditText
 
+
 /**
  * Base Form ViewBinder
  *
@@ -31,12 +32,13 @@ abstract class BaseFormViewBinder {
      */
     fun baseSetup(formElement: BaseFormElement<*>, dividerView: View?, textViewTitle: AppCompatTextView?,
                   textViewError: AppCompatTextView?,
-                  itemView: View) {
+                  itemView: View, mainViewLayout: View?) {
 
         formElement.itemView = itemView
         formElement.dividerView = dividerView
         formElement.titleView = textViewTitle
         formElement.errorView = textViewError
+        formElement.mainLayoutView = mainViewLayout
     }
 
     /**

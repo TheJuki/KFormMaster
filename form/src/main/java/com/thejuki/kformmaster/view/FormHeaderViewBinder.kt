@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.annotation.LayoutRes
 import android.support.v7.widget.AppCompatTextView
 import android.view.View
+import android.widget.LinearLayout
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
 import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
@@ -25,8 +26,9 @@ class FormHeaderViewBinder(private val context: Context, private val formBuilder
     val viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_header, FormHeader::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val itemView = finder.getRootView() as View
-        baseSetup(model, null, textViewTitle, null, itemView)
+        baseSetup(model, null, textViewTitle, null, itemView, mainViewLayout)
 
         itemView.setOnClickListener {
             if (model.collapsible) {

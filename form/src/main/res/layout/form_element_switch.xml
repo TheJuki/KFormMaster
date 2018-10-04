@@ -14,6 +14,7 @@
         android:background="@color/colorFormMasterDivider" />
 
     <LinearLayout
+        android:id="@+id/formElementMainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
@@ -34,16 +35,16 @@
             android:layout_weight="3"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:gravity="end"
-            android:paddingLeft="16dp"
-            android:paddingStart="16dp"
-            android:paddingRight="16dp"
-            android:paddingEnd="16dp">
+            android:gravity="end">
 
             <android.support.v7.widget.SwitchCompat
                 android:id="@+id/formElementValue"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp" />
 
         </LinearLayout>
 
