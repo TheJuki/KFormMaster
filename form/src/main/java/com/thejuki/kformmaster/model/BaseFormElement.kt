@@ -147,16 +147,16 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      * Form Element Margins
      * By default, this will use layout_margin values in the XML
      */
-    var formElementMargins: FormElementMargins? = null
+    var margins: FormElementMargins? = null
         set(value) {
             field = value
             editView?.let {
-                if (it is SwitchCompat || it is com.thejuki.kformmaster.widget.SegmentedGroup || it is AppCompatSeekBar) {
-                    if (formElementMargins != null) {
-                        it.setMargins(formElementMargins?.left ?: 0,
-                                formElementMargins?.top ?: 0,
-                                formElementMargins?.right ?: 0,
-                                formElementMargins?.bottom ?: 0)
+                if (it is com.thejuki.kformmaster.widget.SegmentedGroup) {
+                    if (margins != null) {
+                        it.setMargins(margins?.left ?: 0,
+                                margins?.top ?: 0,
+                                margins?.right ?: 0,
+                                margins?.bottom ?: 0)
                     }
                 }
             }
@@ -406,14 +406,11 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     }
                 } else if (it is SegmentedGroup) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
-                }
-
-                if (it is SwitchCompat || it is com.thejuki.kformmaster.widget.SegmentedGroup || it is AppCompatSeekBar) {
-                    if (formElementMargins != null) {
-                        it.setMargins(formElementMargins?.left ?: 0,
-                                formElementMargins?.top ?: 0,
-                                formElementMargins?.right ?: 0,
-                                formElementMargins?.bottom ?: 0)
+                    if (margins != null) {
+                        it.setMargins(margins?.left ?: 0,
+                                margins?.top ?: 0,
+                                margins?.right ?: 0,
+                                margins?.bottom ?: 0)
                     }
                 }
             }
@@ -445,8 +442,11 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 it.visibility = if (displayTitle) View.VISIBLE else View.GONE
 
                 if (this is FormHeader) {
-                    if (layoutPaddingBottom != null) {
-                        it.setPadding(0, 0, 0, layoutPaddingBottom ?: 0)
+                    if (margins != null) {
+                        it.setMargins(margins?.left ?: 0,
+                                margins?.top ?: 0,
+                                margins?.right ?: 0,
+                                margins?.bottom ?: 0)
                     }
                 }
             }
@@ -480,11 +480,11 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
         set(value) {
             field = value
             mainLayoutView?.let {
-                if (formElementMargins != null) {
-                    it.setMargins(formElementMargins?.left ?: 0,
-                            formElementMargins?.top ?: 0,
-                            formElementMargins?.right ?: 0,
-                            formElementMargins?.bottom ?: 0)
+                if (margins != null) {
+                    it.setMargins(margins?.left ?: 0,
+                            margins?.top ?: 0,
+                            margins?.right ?: 0,
+                            margins?.bottom ?: 0)
                 }
             }
         }

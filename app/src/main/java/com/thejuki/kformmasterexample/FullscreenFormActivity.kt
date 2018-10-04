@@ -403,12 +403,11 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 displayDivider = false
             }
-            header { title = getString(R.string.MarkComplete); collapsible = true; margins = FormElementMargins(0, 0, 0, 0) }
+            header { title = getString(R.string.MarkComplete); collapsible = true }
             switch<String>(SwitchElement.ordinal) {
                 title = getString(R.string.Switch)
                 value = "Yes"
                 onValue = "Yes"
-                margins = FormElementMargins(0, 0, 0, 0)
                 offValue = "No"
                 displayDivider = false
                 enabled = true
