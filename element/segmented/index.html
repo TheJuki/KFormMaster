@@ -657,6 +657,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#drawable-direction" title="Drawable Direction" class="md-nav__link">
+    Drawable Direction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tint-color" title="Tint Color" class="md-nav__link">
     Tint Color
   </a>
@@ -913,6 +920,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#drawable-direction" title="Drawable Direction" class="md-nav__link">
+    Drawable Direction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tint-color" title="Tint Color" class="md-nav__link">
     Tint Color
   </a>
@@ -1013,6 +1027,13 @@
 <p class="admonition-title">NOTICE</p>
 <p>The ListItem class is provided in the example app. Your custom class just needs to override toString() to display in the segmented group.</p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">SegmentedDrawable</p>
+<p>The SegmentedDrawable interface must be implemented by your custom class to provide the drawableRes.</p>
+<ul>
+<li>Example: fruitsSegmented[0].drawableRes = R.drawable.icons8_banana</li>
+</ul>
+</div>
 <h2 id="horizontal">Horizontal<a class="headerlink" href="#horizontal" title="Permanent link">&para;</a></h2>
 <p>By default this is true.
 Setting this to false will stack the radio buttons vertically.</p>
@@ -1027,6 +1048,15 @@ Setting this to false will stack the radio buttons vertically.</p>
 Setting this to true will fill the whole width.</p>
 <div class="codehilite"><pre><span></span><span class="n">segmented</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">fillSpace</span> <span class="p">=</span> <span class="k">true</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="drawable-direction">Drawable Direction<a class="headerlink" href="#drawable-direction" title="Permanent link">&para;</a></h2>
+<p>By default this is DrawableDirection.Top.
+Setting this will change where the drawable is displayed relative to the text.</p>
+<div class="codehilite"><pre><span></span><span class="n">segmented</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">drawableDirection</span> <span class="p">=</span> <span class="n">FormSegmentedElement</span><span class="p">.</span><span class="n">DrawableDirection</span><span class="p">.</span><span class="n">Top</span>
 <span class="p">}</span>
 </pre></div>
 
