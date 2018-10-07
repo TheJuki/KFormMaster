@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
+import com.thejuki.kformmaster.extensions.dpToPx
 import com.thejuki.kformmaster.extensions.setMargins
 import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
@@ -138,7 +139,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             field = value
             itemView?.let {
                 if (layoutPaddingBottom != null) {
-                    it.setPadding(0, 0, 0, layoutPaddingBottom ?: 0)
+                    it.setPadding(0, 0, 0, layoutPaddingBottom.dpToPx())
                 }
             }
         }
@@ -153,22 +154,42 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             editView?.let {
                 if (it is com.thejuki.kformmaster.widget.SegmentedGroup) {
                     if (margins != null) {
-                        it.setMargins(margins?.left ?: 0,
-                                margins?.top ?: 0,
-                                margins?.right ?: 0,
-                                margins?.bottom ?: 0)
+                        it.setMargins(margins?.left.dpToPx(),
+                                margins?.top.dpToPx(),
+                                margins?.right.dpToPx(),
+                                margins?.bottom.dpToPx())
                     }
                 }
             }
-            mainLayoutView?.let {
-                if (layoutPaddingBottom != null) {
-                    it.setPadding(0, 0, 0, layoutPaddingBottom ?: 0)
+            if (editView == null || !(editView is SwitchCompat || editView is AppCompatCheckBox)) {
+                mainLayoutView?.let {
+                    if (margins != null) {
+                        it.setMargins(margins?.left.dpToPx(),
+                                margins?.top.dpToPx(),
+                                margins?.right.dpToPx(),
+                                margins?.bottom.dpToPx())
+                    }
+                }
+            }
+            // Switch and CheckBox are special. To keep the ripple the correct height,
+            // set the padding instead of the margins.
+            else if (editView is SwitchCompat || editView is AppCompatCheckBox) {
+                mainLayoutView?.let {
+                    if (margins != null) {
+                        it.setPadding(margins?.left.dpToPx(),
+                                margins?.top.dpToPx(),
+                                margins?.right.dpToPx(),
+                                margins?.bottom.dpToPx())
+                    }
                 }
             }
             if (this is FormHeader) {
                 titleView?.let {
-                    if (layoutPaddingBottom != null) {
-                        it.setPadding(0, 0, 0, layoutPaddingBottom ?: 0)
+                    if (margins != null) {
+                        it.setMargins(margins?.left.dpToPx(),
+                                margins?.top.dpToPx(),
+                                margins?.right.dpToPx(),
+                                margins?.bottom.dpToPx())
                     }
                 }
             }
@@ -369,7 +390,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 }
 
                 if (layoutPaddingBottom != null) {
-                    it.setPadding(0, 0, 0, layoutPaddingBottom ?: 0)
+                    it.setPadding(0, 0, 0, layoutPaddingBottom.dpToPx())
                 }
             }
         }
@@ -407,10 +428,10 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 } else if (it is SegmentedGroup) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                     if (margins != null) {
-                        it.setMargins(margins?.left ?: 0,
-                                margins?.top ?: 0,
-                                margins?.right ?: 0,
-                                margins?.bottom ?: 0)
+                        it.setMargins(margins?.left.dpToPx(),
+                                margins?.top.dpToPx(),
+                                margins?.right.dpToPx(),
+                                margins?.bottom.dpToPx())
                     }
                 }
             }
@@ -443,10 +464,10 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
 
                 if (this is FormHeader) {
                     if (margins != null) {
-                        it.setMargins(margins?.left ?: 0,
-                                margins?.top ?: 0,
-                                margins?.right ?: 0,
-                                margins?.bottom ?: 0)
+                        it.setMargins(margins?.left.dpToPx(),
+                                margins?.top.dpToPx(),
+                                margins?.right.dpToPx(),
+                                margins?.bottom.dpToPx())
                     }
                 }
             }
@@ -479,12 +500,26 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var mainLayoutView: View? = null
         set(value) {
             field = value
-            mainLayoutView?.let {
-                if (margins != null) {
-                    it.setMargins(margins?.left ?: 0,
-                            margins?.top ?: 0,
-                            margins?.right ?: 0,
-                            margins?.bottom ?: 0)
+            if (editView == null || !(editView is SwitchCompat || editView is AppCompatCheckBox)) {
+                mainLayoutView?.let {
+                    if (margins != null) {
+                        it.setMargins(margins?.left.dpToPx(),
+                                margins?.top.dpToPx(),
+                                margins?.right.dpToPx(),
+                                margins?.bottom.dpToPx())
+                    }
+                }
+            }
+            // Switch and CheckBox are special. To keep the ripple the correct height,
+            // set the padding instead of the margins.
+            else if (editView is SwitchCompat || editView is AppCompatCheckBox) {
+                mainLayoutView?.let {
+                    if (margins != null) {
+                        it.setPadding(margins?.left.dpToPx(),
+                                margins?.top.dpToPx(),
+                                margins?.right.dpToPx(),
+                                margins?.bottom.dpToPx())
+                    }
                 }
             }
         }

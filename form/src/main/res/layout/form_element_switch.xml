@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
+        android:padding="16dp"
         android:orientation="horizontal">
 
         <android.support.v7.widget.AppCompatTextView
@@ -27,7 +28,6 @@
             android:id="@+id/formElementTitle"
             tools:text="Personal Info"
             android:textSize="@dimen/elementTextTitleSize"
-            android:padding="16dp"
             android:textColor="@color/colorFormMasterElementTextTitle" />
 
         <LinearLayout
@@ -40,11 +40,8 @@
             <android.support.v7.widget.SwitchCompat
                 android:id="@+id/formElementValue"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginEnd="16dp" />
+                android:paddingBottom="8dp"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

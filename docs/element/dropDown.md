@@ -18,7 +18,7 @@ dropDown<ContactItem>(1) {
 }
 ```
 
-## displayRadioButtons
+## Display Radio Buttons
 By default this is false.
 Enable to display the radio buttons
 ```kotlin
