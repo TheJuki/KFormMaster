@@ -30,10 +30,11 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
     val viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_auto_complete, FormAutoCompleteElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView)
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
 
         val autoCompleteTextView = finder.find(R.id.formElementValue) as AppCompatAutoCompleteTextView
 

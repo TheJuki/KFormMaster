@@ -178,13 +178,13 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
                     if (item is SegmentedDrawable) {
                         rb.setCompoundDrawablesWithIntrinsicBounds(
-                                if (drawableDirection == DrawableDirection.Left) (item.drawable
+                                if (drawableDirection == DrawableDirection.Left) (item.drawableRes
                                         ?: 0) else 0,
-                                if (drawableDirection == DrawableDirection.Top) (item.drawable
+                                if (drawableDirection == DrawableDirection.Top) (item.drawableRes
                                         ?: 0) else 0,
-                                if (drawableDirection == DrawableDirection.Right) (item.drawable
+                                if (drawableDirection == DrawableDirection.Right) (item.drawableRes
                                         ?: 0) else 0,
-                                if (drawableDirection == DrawableDirection.Bottom) (item.drawable
+                                if (drawableDirection == DrawableDirection.Bottom) (item.drawableRes
                                         ?: 0) else 0)
                     }
 

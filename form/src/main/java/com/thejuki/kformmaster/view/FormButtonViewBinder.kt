@@ -26,7 +26,7 @@ class FormButtonViewBinder(private val context: Context, private val formBuilder
             ?: R.layout.form_element_button, FormButtonElement::class.java, { model, finder, _ ->
         val itemView = finder.getRootView() as View
         val dividerView = finder.find(R.id.formElementDivider) as? View
-        baseSetup(model, dividerView, null, null, itemView)
+        baseSetup(model, dividerView, null, null, itemView, null)
 
         val button = finder.find(R.id.formElementValue) as Button
         button.text = model.valueAsString

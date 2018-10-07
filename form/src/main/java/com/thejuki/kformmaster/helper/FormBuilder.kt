@@ -8,6 +8,7 @@ import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.*
+import com.thejuki.kformmaster.widget.FormElementMargins
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -54,11 +55,13 @@ interface FieldBuilder {
 class HeaderBuilder(var title: String = "") : FieldBuilder {
     var collapsible: Boolean = false
     var tag: Int = -1
+    var margins: FormElementMargins? = null
     override fun build() =
             FormHeader(tag).apply {
                 this@HeaderBuilder.let {
                     title = it.title
                     collapsible = it.collapsible
+                    margins = it.margins
                 }
             }
 }
@@ -122,6 +125,23 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
      * Form Element Display divider line before the element
      */
     var displayDivider: Boolean = true
+
+    /**
+     * Form Element Display Title besides the value field
+     */
+    var displayTitle: Boolean = true
+
+    /**
+     * Form Element layout Padding Bottom
+     * By default, this will use android:paddingBottom in the XML
+     */
+    var layoutPaddingBottom: Int? = null
+
+    /**
+     * Form Element Margins
+     * By default, this will use layout_margin values in the XML
+     */
+    var margins: FormElementMargins? = null
 
     /**
      * Form Element Confirm Edit dialog should be shown before editing an element
@@ -216,6 +236,9 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
@@ -254,6 +277,9 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
@@ -293,6 +319,9 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
@@ -332,6 +361,9 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
@@ -370,6 +402,9 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
@@ -408,6 +443,9 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     maxLength = it.maxLength
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
@@ -449,6 +487,9 @@ class AutoCompleteBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -487,6 +528,9 @@ class AutoCompleteTokenBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -524,6 +568,7 @@ class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
     var backgroundColor: Int? = null
     @ColorInt
     var valueTextColor: Int? = null
+
     override fun build() =
             FormButtonElement(tag).apply {
                 this@ButtonBuilder.let {
@@ -555,6 +600,9 @@ class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.Date
                     value = it.value ?: FormPickerDateElement.DateHolder(it.dateValue, it.dateFormat)
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -592,6 +640,9 @@ class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.Time
                     value = it.value ?: FormPickerTimeElement.TimeHolder(it.dateValue, it.dateFormat)
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     confirmEdit = it.confirmEdit
@@ -629,6 +680,9 @@ class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElem
                     value = it.value ?: FormPickerDateTimeElement.DateTimeHolder(it.dateValue, it.dateFormat)
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     confirmEdit = it.confirmEdit
@@ -669,6 +723,9 @@ class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -712,6 +769,9 @@ class MultiCheckBoxBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(t
                     value = it.value
                     hint = it.hint
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     error = it.error
@@ -770,6 +830,9 @@ class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     value = it.value
                     rightToLeft = it.rightToLeft
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     error = it.error
                     required = it.required
                     enabled = it.enabled
@@ -811,6 +874,9 @@ class SwitchBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     title = it.title.orEmpty()
                     value = it.value
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     error = it.error
                     required = it.required
                     enabled = it.enabled
@@ -841,6 +907,9 @@ class CheckBoxBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
                     title = it.title.orEmpty()
                     value = it.value
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     error = it.error
                     required = it.required
                     enabled = it.enabled
@@ -873,6 +942,9 @@ class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
                     title = it.title.orEmpty()
                     value = it.value
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.margins
                     error = it.error
                     required = it.required
                     enabled = it.enabled
@@ -905,11 +977,13 @@ class LabelBuilder(val tag: Int = -1) : FieldBuilder {
     @ColorInt
     var titleTextColor: Int? = null
     @ColorInt
-    var titleFocusedTextColor: Int? = null
-    @ColorInt
     var valueTextColor: Int? = null
     @ColorInt
     var errorTextColor: Int? = null
+
+    var layoutPaddingBottom: Int? = null
+    var formElementMargins: FormElementMargins? = null
+
     override fun build() =
             FormLabelElement(tag).apply {
                 this@LabelBuilder.let {
@@ -922,6 +996,9 @@ class LabelBuilder(val tag: Int = -1) : FieldBuilder {
                     titleTextColor = it.titleTextColor
                     valueTextColor = it.valueTextColor
                     errorTextColor = it.errorTextColor
+
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.formElementMargins
                 }
             }
 }
@@ -936,6 +1013,7 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
     var value: String? = null
     var visible: Boolean = true
     var rightToLeft: Boolean = true
+    var displayTitle: Boolean = true
     var maxLines: Int = 1
     var displayDivider: Boolean = true
     val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
@@ -950,6 +1028,10 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
     var valueTextColor: Int? = null
     @ColorInt
     var errorTextColor: Int? = null
+
+    var layoutPaddingBottom: Int? = null
+    var formElementMargins: FormElementMargins? = null
+
     override fun build() =
             FormTextViewElement(tag).apply {
                 this@TextViewBuilder.let {
@@ -957,6 +1039,9 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
                     value = it.value
                     visible = it.visible
                     displayDivider = it.displayDivider
+                    displayTitle = it.displayTitle
+                    layoutPaddingBottom = it.layoutPaddingBottom
+                    margins = it.formElementMargins
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     valueObservers.addAll(it.valueObservers)

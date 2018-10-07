@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.*
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
+import com.thejuki.kformmaster.extensions.setMargins
+import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
 import kotlin.properties.Delegates
 
@@ -123,6 +125,51 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                 } else if (it is SegmentedGroup) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                }
+            }
+        }
+
+    /**
+     * Form Element layout Padding Bottom
+     * By default, this will use android:paddingBottom in the XML
+     */
+    var layoutPaddingBottom: Int? = null
+        set(value) {
+            field = value
+            itemView?.let {
+                if (layoutPaddingBottom != null) {
+                    it.setPadding(0, 0, 0, layoutPaddingBottom ?: 0)
+                }
+            }
+        }
+
+    /**
+     * Form Element Margins
+     * By default, this will use layout_margin values in the XML
+     */
+    var margins: FormElementMargins? = null
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is com.thejuki.kformmaster.widget.SegmentedGroup) {
+                    if (margins != null) {
+                        it.setMargins(margins?.left ?: 0,
+                                margins?.top ?: 0,
+                                margins?.right ?: 0,
+                                margins?.bottom ?: 0)
+                    }
+                }
+            }
+            mainLayoutView?.let {
+                if (layoutPaddingBottom != null) {
+                    it.setPadding(0, 0, 0, layoutPaddingBottom ?: 0)
+                }
+            }
+            if (this is FormHeader) {
+                titleView?.let {
+                    if (layoutPaddingBottom != null) {
+                        it.setPadding(0, 0, 0, layoutPaddingBottom ?: 0)
+                    }
                 }
             }
         }
@@ -264,6 +311,17 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
         }
 
     /**
+     * Form Element Display Title besides the value field
+     */
+    var displayTitle: Boolean = true
+        set(value) {
+            field = value
+            titleView?.let {
+                it.visibility = if (displayTitle) View.VISIBLE else View.GONE
+            }
+        }
+
+    /**
      * Form Element Confirm Edit dialog should be shown before editing an element
      */
     var confirmEdit: Boolean = false
@@ -309,6 +367,10 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 if (backgroundColor != null) {
                     it.setBackgroundColor(backgroundColor ?: 0)
                 }
+
+                if (layoutPaddingBottom != null) {
+                    it.setPadding(0, 0, 0, layoutPaddingBottom ?: 0)
+                }
             }
         }
 
@@ -344,6 +406,12 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     }
                 } else if (it is SegmentedGroup) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                    if (margins != null) {
+                        it.setMargins(margins?.left ?: 0,
+                                margins?.top ?: 0,
+                                margins?.right ?: 0,
+                                margins?.bottom ?: 0)
+                    }
                 }
             }
         }
@@ -371,6 +439,16 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 if (titleTextColor != null) {
                     it.setTextColor(titleTextColor ?: 0)
                 }
+                it.visibility = if (displayTitle) View.VISIBLE else View.GONE
+
+                if (this is FormHeader) {
+                    if (margins != null) {
+                        it.setMargins(margins?.left ?: 0,
+                                margins?.top ?: 0,
+                                margins?.right ?: 0,
+                                margins?.bottom ?: 0)
+                    }
+                }
             }
         }
 
@@ -392,6 +470,22 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
 
                 it.text = error
                 it.visibility = View.VISIBLE
+            }
+        }
+
+    /**
+     * Form Element Main Layout View
+     */
+    var mainLayoutView: View? = null
+        set(value) {
+            field = value
+            mainLayoutView?.let {
+                if (margins != null) {
+                    it.setMargins(margins?.left ?: 0,
+                            margins?.top ?: 0,
+                            margins?.right ?: 0,
+                            margins?.bottom ?: 0)
+                }
             }
         }
 

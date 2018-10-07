@@ -19,6 +19,7 @@ import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.FormHeader
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmaster.model.FormSegmentedElement
+import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmasterexample.FullscreenFormActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
@@ -144,9 +145,8 @@ class FullscreenFormActivity : AppCompatActivity() {
 
     private val fruitsSegmented = listOf(SegmentedListItem(id = 1, name = "Banana"),
             SegmentedListItem(id = 2, name = "Orange"),
-            SegmentedListItem(id = 3, name = "Mango"),
-            SegmentedListItem(id = 4, name = "Guava"),
-            SegmentedListItem(id = 5, name = "Apple")
+            SegmentedListItem(id = 3, name = "Avocado"),
+            SegmentedListItem(id = 4, name = "Apple")
     )
 
     private enum class Tag {
@@ -443,19 +443,21 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             segmented<SegmentedListItem>(SegmentedElement.ordinal) {
                 // Set the drawables
-                fruitsSegmented[0].drawable = R.drawable.ic_check_circle_white_24dp
-                fruitsSegmented[1].drawable = R.drawable.ic_close_black_24dp
-                fruitsSegmented[2].drawable = R.drawable.ic_clear_all_white_24dp
-                fruitsSegmented[3].drawable = R.drawable.ic_close_black_24dp
-                fruitsSegmented[4].drawable = R.drawable.ic_clear_all_white_24dp
+                fruitsSegmented[0].drawableRes = R.drawable.icons8_banana
+                fruitsSegmented[1].drawableRes = R.drawable.icons8_orange
+                fruitsSegmented[2].drawableRes = R.drawable.icons8_avocado
+                fruitsSegmented[3].drawableRes = R.drawable.icons8_apple
 
                 title = getString(R.string.Segmented)
                 options = fruitsSegmented
                 enabled = true
                 rightToLeft = false
+                displayTitle = true
                 horizontal = true
                 fillSpace = true
                 marginDp = 5
+                margins = FormElementMargins(16, 16, 16, 0)
+                layoutPaddingBottom = 16
                 displayDivider = false
                 tintColor = Color.parseColor("#FF4081")
                 unCheckedTintColor = Color.WHITE

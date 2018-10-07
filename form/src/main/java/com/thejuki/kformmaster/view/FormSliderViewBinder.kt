@@ -2,6 +2,7 @@ package com.thejuki.kformmaster.view
 
 import android.content.Context
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.SeekBar
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatSeekBar
@@ -28,10 +29,11 @@ class FormSliderViewBinder(private val context: Context, private val formBuilder
     val viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_slider, FormSliderElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView)
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
 
         val slider = finder.find(R.id.formElementValue) as AppCompatSeekBar
         val progressValue = finder.find(R.id.formElementProgress) as AppCompatTextView

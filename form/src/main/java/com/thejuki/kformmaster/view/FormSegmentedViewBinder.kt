@@ -25,18 +25,15 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
     val viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_segmented, FormSegmentedElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView)
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
 
         val segmented = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.SegmentedGroup
 
         model.editView = segmented
-
-        model.titleView?.let {
-            it.visibility = if (model.title.isNullOrEmpty()) View.GONE else View.VISIBLE
-        }
 
         segmented.setProperties(model.marginDp, model.cornerRadius, model.tintColor,
                 model.checkedTextColor, model.unCheckedTintColor, model.padding, model.textSize)

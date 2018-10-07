@@ -26,10 +26,11 @@ class FormCheckBoxViewBinder(private val context: Context, private val formBuild
     val viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_checkbox, FormCheckBoxElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as? AppCompatTextView
+        val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView)
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
 
         val checkBox = finder.find(R.id.formElementValue) as AppCompatCheckBox
         checkBox.isChecked = model.isChecked()

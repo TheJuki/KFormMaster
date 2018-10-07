@@ -12,6 +12,6 @@ import com.thejuki.kformmaster.model.FormSegmentedElement
  */
 interface SegmentedDrawable {
 
-    var drawable: Int?
+    var drawableRes: Int?
 
 }
