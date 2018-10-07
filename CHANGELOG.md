@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.0.2](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.2)
+- #57 Set the [drawableRes](https://thejuki.github.io/KFormMaster/element/segmented/#drawable-direction) for each item in the Segmented element group
+- #58 Added [layoutPaddingBottom](https://thejuki.github.io/KFormMaster/element/base/#layout-padding-bottom-dp), [displayTitle](https://thejuki.github.io/KFormMaster/element/base/#display-title), and [margins](https://thejuki.github.io/KFormMaster/element/base/#margins-dp) to the base form element 
+
 ## [5.0.1](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.1)
 - Add displayRadioButtons to FormPickerDropDownElement
 - Use Android SDK 28
