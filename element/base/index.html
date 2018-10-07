@@ -536,6 +536,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#display-title" title="Display Title" class="md-nav__link">
+    Display Title
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-padding-bottom-dp" title="Layout Padding Bottom (DP)" class="md-nav__link">
+    Layout Padding Bottom (DP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#margins-dp" title="Margins (DP)" class="md-nav__link">
+    Margins (DP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#confirm-edit" title="Confirm Edit" class="md-nav__link">
     Confirm Edit
   </a>
@@ -1159,6 +1180,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#display-title" title="Display Title" class="md-nav__link">
+    Display Title
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-padding-bottom-dp" title="Layout Padding Bottom (DP)" class="md-nav__link">
+    Layout Padding Bottom (DP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#margins-dp" title="Margins (DP)" class="md-nav__link">
+    Margins (DP)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#confirm-edit" title="Confirm Edit" class="md-nav__link">
     Confirm Edit
   </a>
@@ -1507,6 +1549,37 @@ Setting displayDivider to false will hide the divider line displayed before the 
 </pre></div>
 
 
+<h2 id="display-title">Display Title<a class="headerlink" href="#display-title" title="Permanent link">&para;</a></h2>
+<p>By default this is true.
+Setting displayTitle to false will hide the title.</p>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">displayTitle</span> <span class="p">=</span> <span class="k">true</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="layout-padding-bottom-dp">Layout Padding Bottom (DP)<a class="headerlink" href="#layout-padding-bottom-dp" title="Permanent link">&para;</a></h2>
+<p>By default, this will use android:paddingBottom in the XML.
+Setting layoutPaddingBottom will override the bottom padding of the form element.</p>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">layoutPaddingBottom</span> <span class="p">=</span> <span class="m">0</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="margins-dp">Margins (DP)<a class="headerlink" href="#margins-dp" title="Permanent link">&para;</a></h2>
+<p>By default, this will use layout_margin values in the XML.
+Setting margins will override the margins of the form element.</p>
+<div class="admonition info">
+<p class="admonition-title">FormElementMargins</p>
+<p>FormElementMargins is a simple class to set all margins.</p>
+</div>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">margins</span> <span class="p">=</span> <span class="n">FormElementMargins</span><span class="p">(</span><span class="cm">/* Left */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Top */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Right */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Bottom */</span> <span class="m">0</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <h2 id="confirm-edit">Confirm Edit<a class="headerlink" href="#confirm-edit" title="Permanent link">&para;</a></h2>
 <p>By default this is false.
 Setting confirmEdit to true will display an alert dialog confirming if the user wishes to edit the value if a current value exists.
@@ -1605,7 +1678,7 @@ This is used by formBuilder.isValidForm.</p>
 <h2 id="dynamic-views">Dynamic Views<a class="headerlink" href="#dynamic-views" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">NOTICE</p>
-<p>The Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecylerView.</p>
+<p>The Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecyclerView.</p>
 </div>
                 
                   
