@@ -14,7 +14,7 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.content.drawable.DrawableCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.thejuki.kformmaster.R
 import java.util.*
 

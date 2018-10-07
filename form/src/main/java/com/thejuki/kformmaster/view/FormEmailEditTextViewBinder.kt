@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.InputType
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView

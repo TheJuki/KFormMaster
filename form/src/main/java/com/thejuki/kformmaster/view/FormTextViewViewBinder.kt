@@ -3,6 +3,7 @@ package com.thejuki.kformmaster.view
 import android.content.Context
 import android.text.InputType
 import android.view.View
+import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat

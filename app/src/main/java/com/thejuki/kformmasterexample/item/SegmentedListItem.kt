@@ -1,6 +1,6 @@
 package com.thejuki.kformmasterexample.item
 
-import android.support.annotation.DrawableRes
+import androidx.annotation.DrawableRes
 import com.thejuki.kformmaster.widget.SegmentedDrawable
 
 /**
