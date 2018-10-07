@@ -14,9 +14,11 @@
         android:background="@color/colorFormMasterDivider" />
 
     <LinearLayout
+        android:id="@+id/formElementMainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
+        android:padding="16dp"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -26,20 +28,14 @@
             android:id="@+id/formElementTitle"
             tools:text="Personal Info"
             android:textSize="@dimen/elementTextTitleSize"
-            android:padding="16dp"
             android:textColor="@color/colorFormMasterElementTextTitle" />
 
         <LinearLayout
-            android:id="@+id/formElementMainLayout"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:gravity="end"
-            android:paddingLeft="16dp"
-            android:paddingStart="16dp"
-            android:paddingRight="16dp"
-            android:paddingEnd="16dp">
+            android:gravity="end">
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/formElementValue"

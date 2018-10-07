@@ -3,7 +3,7 @@ package com.thejuki.kformmaster.widget
 /**
  * Form Element Margins
  *
- * A simple class to set the margins of an element
+ * A simple class to set the margins (DP) of an element
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0

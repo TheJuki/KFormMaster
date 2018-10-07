@@ -132,13 +132,13 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
     var displayTitle: Boolean = true
 
     /**
-     * Form Element layout Padding Bottom
+     * Form Element layout Padding Bottom (DP)
      * By default, this will use android:paddingBottom in the XML
      */
     var layoutPaddingBottom: Int? = null
 
     /**
-     * Form Element Margins
+     * Form Element Margins (DP)
      * By default, this will use layout_margin values in the XML
      */
     var margins: FormElementMargins? = null
@@ -982,7 +982,7 @@ class LabelBuilder(val tag: Int = -1) : FieldBuilder {
     var errorTextColor: Int? = null
 
     var layoutPaddingBottom: Int? = null
-    var formElementMargins: FormElementMargins? = null
+    var margins: FormElementMargins? = null
 
     override fun build() =
             FormLabelElement(tag).apply {
@@ -998,7 +998,7 @@ class LabelBuilder(val tag: Int = -1) : FieldBuilder {
                     errorTextColor = it.errorTextColor
 
                     layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.formElementMargins
+                    margins = it.margins
                 }
             }
 }
@@ -1030,7 +1030,7 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
     var errorTextColor: Int? = null
 
     var layoutPaddingBottom: Int? = null
-    var formElementMargins: FormElementMargins? = null
+    var margins: FormElementMargins? = null
 
     override fun build() =
             FormTextViewElement(tag).apply {
@@ -1041,7 +1041,7 @@ class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
                     displayDivider = it.displayDivider
                     displayTitle = it.displayTitle
                     layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.formElementMargins
+                    margins = it.margins
                     rightToLeft = it.rightToLeft
                     maxLines = it.maxLines
                     valueObservers.addAll(it.valueObservers)

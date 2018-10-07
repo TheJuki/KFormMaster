@@ -235,6 +235,38 @@ text {
 }
 ```
 
+## Display Title
+By default this is true.
+Setting displayTitle to false will hide the title.
+```kotlin
+text {
+    displayTitle = true
+}
+```
+
+## Layout Padding Bottom (DP)
+By default, this will use android:paddingBottom in the XML.
+Setting layoutPaddingBottom will override the bottom padding of the form element.
+```kotlin
+text {
+    layoutPaddingBottom = 0
+}
+```
+
+## Margins (DP)
+By default, this will use layout_margin values in the XML.
+Setting margins will override the margins of the form element.
+
+!!! info "FormElementMargins"
+
+    FormElementMargins is a simple class to set all margins.
+
+```kotlin
+text {
+    margins = FormElementMargins(/* Left */ 16, /* Top */ 16, /* Right */ 16, /* Bottom */ 0)
+}
+```
+
 ## Confirm Edit
 By default this is false.
 Setting confirmEdit to true will display an alert dialog confirming if the user wishes to edit the value if a current value exists.
@@ -334,4 +366,4 @@ element.isValid
 
 !!! note "NOTICE"
 
-    The Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecylerView.
+    The Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecyclerView.
