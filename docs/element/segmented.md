@@ -2,6 +2,8 @@ The Segmented form element is used for a radio group.
 
 ![Example](/images/Segmented.PNG)
 
+<img src="../../images/Segmented2.PNG" alt="Example" width="500px"/>
+
 !!! note "NOTICE"
 
     The ListItem class is provided in the example app. Your custom class just needs to override toString() to display in the segmented group.
