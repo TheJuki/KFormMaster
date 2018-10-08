@@ -2,9 +2,17 @@ The Segmented form element is used for a radio group.
 
 ![Example](/images/Segmented.PNG)
 
+<img src="../../images/Segmented2.PNG" alt="Example" width="500px"/>
+
 !!! note "NOTICE"
 
     The ListItem class is provided in the example app. Your custom class just needs to override toString() to display in the segmented group.
+
+!!! info "SegmentedDrawable"
+
+    The SegmentedDrawable interface must be implemented by your custom class to provide the drawableRes.
+    
+    - Example: fruitsSegmented[0].drawableRes = R.drawable.icons8_banana
 
 ## Horizontal
 By default this is true.
@@ -21,6 +29,15 @@ Setting this to true will fill the whole width.
 ```kotlin
 segmented<ListItem>(1) {
     fillSpace = true
+}
+```
+
+## Drawable Direction
+By default this is DrawableDirection.Top.
+Setting this will change where the drawable is displayed relative to the text.
+```kotlin
+segmented<ListItem>(1) {
+    drawableDirection = FormSegmentedElement.DrawableDirection.Top
 }
 ```
 
