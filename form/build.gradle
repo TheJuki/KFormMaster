@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: "guru.stefma.bintrayrelease"
 apply plugin: 'jacoco'
 
 android {
@@ -10,14 +10,14 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 26
+        versionCode 28
         versionName "5.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -105,12 +105,11 @@ dependencies {
 }
 
 publish {
+    version = "5.0.3"
+    group = "com.thejuki"
     userOrg = 'thejuki'
-    groupId = 'com.thejuki'
     artifactId = 'k-form-master'
-    publishVersion = '5.0.3'
     desc = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
     website = 'https://github.com/TheJuki/KFormMaster'
 }
-
 
