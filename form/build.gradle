@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: "guru.stefma.bintrayrelease"
+apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'jacoco'
 
 android {
@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 27
-        versionName "5.0.2"
+        versionCode 26
+        versionName "5.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -105,10 +105,10 @@ dependencies {
 }
 
 publish {
-    version = "5.0.2"
-    group = "com.thejuki"
     userOrg = 'thejuki'
+    groupId = 'com.thejuki'
     artifactId = 'k-form-master'
+    publishVersion = '5.0.3'
     desc = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
     website = 'https://github.com/TheJuki/KFormMaster'
 }
