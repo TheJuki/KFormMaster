@@ -38,7 +38,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.3, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.0.3, mkdocs-material-3.0.4">
     
     
       
@@ -60,8 +60,8 @@
       <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
-      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
       
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
@@ -369,13 +369,6 @@
         <li class="md-nav__item">
   <a href="#cache-form-elements" title="Cache Form Elements" class="md-nav__link">
     Cache Form Elements
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#refresh-dropdown-or-multicheckbox-options" title="Refresh Dropdown or MultiCheckBox options" class="md-nav__link">
-    Refresh Dropdown or MultiCheckBox options
   </a>
   
 </li>
@@ -879,13 +872,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#refresh-dropdown-or-multicheckbox-options" title="Refresh Dropdown or MultiCheckBox options" class="md-nav__link">
-    Refresh Dropdown or MultiCheckBox options
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#set-form-element-value-change-listener-to-get-changed-value-instantly" title="Set form element value change listener to get changed value instantly" class="md-nav__link">
     Set form element value change listener to get changed value instantly
   </a>
@@ -956,13 +942,6 @@
                 <h3 id="cache-form-elements">Cache Form Elements<a class="headerlink" href="#cache-form-elements" title="Permanent link">&para;</a></h3>
 <p>By default, RecyclerView will cache 2 views. By setting cacheForm = true in the FormBuildHelper, all form elements will be cached instead of recycled.
 NOTE: This is enabled by default.</p>
-<h3 id="refresh-dropdown-or-multicheckbox-options">Refresh Dropdown or MultiCheckBox options<a class="headerlink" href="#refresh-dropdown-or-multicheckbox-options" title="Permanent link">&para;</a></h3>
-<p>After changing the options in the model for a Dropdown or MultiCheckBox element, call the reInitDialog function.</p>
-<div class="codehilite"><pre><span></span><span class="n">element</span><span class="p">.</span><span class="n">options</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">()</span>
-<span class="n">element</span><span class="p">.</span><span class="n">reInitDialog</span><span class="p">(</span><span class="k">this</span> <span class="cm">/* context */</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">)</span>
-</pre></div>
-
-
 <h3 id="set-form-element-value-change-listener-to-get-changed-value-instantly">Set form element value change listener to get changed value instantly<a class="headerlink" href="#set-form-element-value-change-listener-to-get-changed-value-instantly" title="Permanent link">&para;</a></h3>
 <p>While creating a new instance of FormBuildHelper, add a listener in the constructor.</p>
 <div class="codehilite"><pre><span></span><span class="k">var</span> <span class="py">formBuilder</span> <span class="p">=</span> <span class="n">FormBuildHelper</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">object</span> <span class="err">: </span><span class="nc">OnFormElementValueChangedListener</span> <span class="p">{</span>
