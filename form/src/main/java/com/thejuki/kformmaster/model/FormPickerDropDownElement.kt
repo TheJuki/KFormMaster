@@ -1,6 +1,5 @@
 package com.thejuki.kformmaster.model
 
-import android.content.Context
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatEditText
 import android.view.View
@@ -66,7 +65,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
-    fun reInitDialog(context: Context? = null, formBuilder: FormBuildHelper? = null) {
+    fun reInitDialog(formBuilder: FormBuildHelper? = null) {
         // reformat the options in format needed
         val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
         val selectedIndex: Int = this.options?.indexOf(this.value) ?: -1
@@ -81,19 +80,19 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
         val editTextView = this.editView as? AppCompatEditText
 
-        if (alertDialogBuilder == null && context != null) {
-            alertDialogBuilder = AlertDialog.Builder(context)
+        if (alertDialogBuilder == null && editTextView?.context != null) {
+            alertDialogBuilder = AlertDialog.Builder(editTextView.context)
             if (this.dialogTitle == null) {
-                this.dialogTitle = context.getString(R.string.form_master_pick_one)
+                this.dialogTitle = editTextView.context.getString(R.string.form_master_pick_one)
             }
             if (this.dialogEmptyMessage == null) {
-                this.dialogEmptyMessage = context.getString(R.string.form_master_empty)
+                this.dialogEmptyMessage = editTextView.context.getString(R.string.form_master_empty)
             }
             if (this.confirmTitle == null) {
-                this.confirmTitle = context.getString(R.string.form_master_confirm_title)
+                this.confirmTitle = editTextView.context.getString(R.string.form_master_confirm_title)
             }
             if (this.confirmMessage == null) {
-                this.confirmMessage = context.getString(R.string.form_master_confirm_message)
+                this.confirmMessage = editTextView.context.getString(R.string.form_master_confirm_message)
             }
         }
 

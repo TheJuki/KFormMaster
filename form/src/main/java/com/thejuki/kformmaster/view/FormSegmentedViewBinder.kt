@@ -55,7 +55,7 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
             }
         }
 
-        model.reInitGroup(context)
+        model.reInitGroup()
 
     }, object : ViewStateProvider<FormSegmentedElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormSegmentedElement<*>): Int {

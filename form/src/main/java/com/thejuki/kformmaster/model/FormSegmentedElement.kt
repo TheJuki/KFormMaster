@@ -1,6 +1,5 @@
 package com.thejuki.kformmaster.model
 
-import android.content.Context
 import android.support.annotation.ColorInt
 import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
@@ -164,14 +163,14 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
      * Re-initializes the group
      * Should be called after the options list changes
      */
-    fun reInitGroup(context: Context? = null) {
+    fun reInitGroup() {
         editView?.let {
             if (it is SegmentedGroup) {
                 it.orientation = if (this@FormSegmentedElement.horizontal) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL
                 it.removeAllViews()
 
                 options?.forEach { item ->
-                    val rb = LayoutInflater.from(context).inflate(R.layout.template_radiobutton, null) as RadioButton
+                    val rb = LayoutInflater.from(it.context).inflate(R.layout.template_radiobutton, null) as RadioButton
                     rb.text = item.toString()
                     rb.id = ViewCompat.generateViewId()
                     rb.isChecked = item == this@FormSegmentedElement.value
