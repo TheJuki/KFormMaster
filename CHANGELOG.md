@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.0.4](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.4)
+- #60 Fix issue with reInitGroup(). The context can be retrieved from editView
+
 ## [5.0.3](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.3)
 - I removed version 5.0.1 and 5.0.2 from Bintray. I left minifyEnabled enabled for the release build and it was causing issues. 
 
