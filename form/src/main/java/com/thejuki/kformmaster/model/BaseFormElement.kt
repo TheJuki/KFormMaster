@@ -65,7 +65,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     it !is SwitchCompat && it !is AppCompatCheckBox) {
                 it.text = value as? String
             } else if (it is SegmentedGroup) {
-                it.checkChild(value as? String)
+                it.checkChild(value?.toString())
             }
         }
     }
