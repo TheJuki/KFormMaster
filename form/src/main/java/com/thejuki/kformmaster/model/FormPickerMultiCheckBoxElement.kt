@@ -56,7 +56,7 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
-    fun reInitDialog(context: Context? = null, formBuilder: FormBuildHelper? = null) {
+    fun reInitDialog(formBuilder: FormBuildHelper? = null) {
         // reformat the options in format needed
         val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
         val optionsSelected = BooleanArray(this.options?.size ?: 0)
@@ -91,19 +91,19 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
 
         editTextView?.setText(getSelectedItemsText())
 
-        if (alertDialogBuilder == null && context != null) {
-            alertDialogBuilder = AlertDialog.Builder(context)
+        if (alertDialogBuilder == null && editTextView?.context != null) {
+            alertDialogBuilder = AlertDialog.Builder(editTextView.context)
             if (this.dialogTitle == null) {
-                this.dialogTitle = context.getString(R.string.form_master_pick_one_or_more)
+                this.dialogTitle = editTextView.context.getString(R.string.form_master_pick_one_or_more)
             }
             if (this.dialogEmptyMessage == null) {
-                this.dialogEmptyMessage = context.getString(R.string.form_master_empty)
+                this.dialogEmptyMessage = editTextView.context.getString(R.string.form_master_empty)
             }
             if (this.confirmTitle == null) {
-                this.confirmTitle = context.getString(R.string.form_master_confirm_title)
+                this.confirmTitle = editTextView.context.getString(R.string.form_master_confirm_title)
             }
             if (this.confirmMessage == null) {
-                this.confirmMessage = context.getString(R.string.form_master_confirm_message)
+                this.confirmMessage = editTextView.context.getString(R.string.form_master_confirm_message)
             }
         }
 

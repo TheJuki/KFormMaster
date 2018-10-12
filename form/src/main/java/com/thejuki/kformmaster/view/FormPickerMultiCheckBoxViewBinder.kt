@@ -44,7 +44,7 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
         editTextValue.setRawInputType(InputType.TYPE_NULL)
         editTextValue.isFocusable = false
 
-        model.reInitDialog(context, formBuilder)
+        model.reInitDialog(formBuilder)
         setClearableListener(model)
 
     }, object : ViewStateProvider<FormPickerMultiCheckBoxElement<*>, ViewHolder> {

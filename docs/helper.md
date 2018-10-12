@@ -2,14 +2,6 @@
 By default, RecyclerView will cache 2 views. By setting cacheForm = true in the FormBuildHelper, all form elements will be cached instead of recycled.
 NOTE: This is enabled by default.
 
-### Refresh Dropdown or MultiCheckBox options
-After changing the options in the model for a Dropdown or MultiCheckBox element, call the reInitDialog function.
-
-```kotlin
-element.options = listOf()
-element.reInitDialog(this /* context */, formBuilder)
-```
-
 ### Set form element value change listener to get changed value instantly
 While creating a new instance of FormBuildHelper, add a listener in the constructor.
 

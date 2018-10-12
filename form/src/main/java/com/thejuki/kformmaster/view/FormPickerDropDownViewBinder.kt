@@ -44,7 +44,7 @@ class FormPickerDropDownViewBinder(private val context: Context, private val for
         editTextValue.setRawInputType(InputType.TYPE_NULL)
         editTextValue.isFocusable = false
 
-        model.reInitDialog(context, formBuilder)
+        model.reInitDialog(formBuilder)
         setClearableListener(model)
 
     }, object : ViewStateProvider<FormPickerDropDownElement<*>, ViewHolder> {
