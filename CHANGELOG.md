@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.0.5](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.5)
+- #60 Fix set value for the FormSegmentedElement
+
 ## [5.0.4](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.4)
 - #60 Fix issue with reInitGroup(). The context can be retrieved from editView
 
