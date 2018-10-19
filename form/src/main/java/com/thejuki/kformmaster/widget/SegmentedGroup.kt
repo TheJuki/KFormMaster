@@ -229,6 +229,12 @@ class SegmentedGroup : RadioGroup {
                 }
             }
 
+            if (view is RadioButtonCenter) {
+                view.buttonCenterDrawable?.let {
+                    DrawableCompat.setTintList(it.mutate(), colorStateList)
+                }
+            }
+
             view.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize)
             view.setPadding(mPadding, mPadding, mPadding, mPadding)
 
