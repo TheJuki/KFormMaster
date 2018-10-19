@@ -1,12 +1,13 @@
 package com.thejuki.kformmaster.model
 
 import android.support.annotation.ColorInt
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.ViewCompat
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import com.thejuki.kformmaster.R
+import com.thejuki.kformmaster.widget.RadioButtonCenter
 import com.thejuki.kformmaster.widget.SegmentedDrawable
 import com.thejuki.kformmaster.widget.SegmentedGroup
 
@@ -33,7 +34,8 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
         Left,
         Right,
         Top,
-        Bottom
+        Bottom,
+        Center
     }
 
     /**
@@ -170,21 +172,27 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                 it.removeAllViews()
 
                 options?.forEach { item ->
-                    val rb = LayoutInflater.from(it.context).inflate(R.layout.template_radiobutton, null) as RadioButton
+                    val rb = LayoutInflater.from(it.context).inflate(R.layout.template_radiobutton_center, null) as RadioButtonCenter
                     rb.text = item.toString()
                     rb.id = ViewCompat.generateViewId()
                     rb.isChecked = item == this@FormSegmentedElement.value
 
                     if (item is SegmentedDrawable) {
-                        rb.setCompoundDrawablesWithIntrinsicBounds(
-                                if (drawableDirection == DrawableDirection.Left) (item.drawableRes
-                                        ?: 0) else 0,
-                                if (drawableDirection == DrawableDirection.Top) (item.drawableRes
-                                        ?: 0) else 0,
-                                if (drawableDirection == DrawableDirection.Right) (item.drawableRes
-                                        ?: 0) else 0,
-                                if (drawableDirection == DrawableDirection.Bottom) (item.drawableRes
-                                        ?: 0) else 0)
+                        if (drawableDirection == DrawableDirection.Center) {
+                            rb.text = null
+                            rb.buttonCenterDrawable = ResourcesCompat.getDrawable(it.context.resources, item.drawableRes
+                                    ?: 0, null)?.mutate()
+                        } else {
+                            rb.setCompoundDrawablesWithIntrinsicBounds(
+                                    if (drawableDirection == DrawableDirection.Left) (item.drawableRes
+                                            ?: 0) else 0,
+                                    if (drawableDirection == DrawableDirection.Top) (item.drawableRes
+                                            ?: 0) else 0,
+                                    if (drawableDirection == DrawableDirection.Right) (item.drawableRes
+                                            ?: 0) else 0,
+                                    if (drawableDirection == DrawableDirection.Bottom) (item.drawableRes
+                                            ?: 0) else 0)
+                        }
                     }
 
                     if (fillSpace) {
