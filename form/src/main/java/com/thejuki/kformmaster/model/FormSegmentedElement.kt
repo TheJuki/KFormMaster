@@ -33,7 +33,8 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
         Left,
         Right,
         Top,
-        Bottom
+        Bottom,
+        Center
     }
 
     /**
@@ -176,15 +177,22 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                     rb.isChecked = item == this@FormSegmentedElement.value
 
                     if (item is SegmentedDrawable) {
-                        rb.setCompoundDrawablesWithIntrinsicBounds(
-                                if (drawableDirection == DrawableDirection.Left) (item.drawableRes
-                                        ?: 0) else 0,
-                                if (drawableDirection == DrawableDirection.Top) (item.drawableRes
-                                        ?: 0) else 0,
-                                if (drawableDirection == DrawableDirection.Right) (item.drawableRes
-                                        ?: 0) else 0,
-                                if (drawableDirection == DrawableDirection.Bottom) (item.drawableRes
-                                        ?: 0) else 0)
+                        if (drawableDirection == DrawableDirection.Center) {
+                            rb.buttonDrawable = null
+                            rb.text = null
+                            rb.setCompoundDrawablesWithIntrinsicBounds(item.drawableRes
+                                    ?: 0, 0, 0, 0)
+                        } else {
+                            rb.setCompoundDrawablesWithIntrinsicBounds(
+                                    if (drawableDirection == DrawableDirection.Left) (item.drawableRes
+                                            ?: 0) else 0,
+                                    if (drawableDirection == DrawableDirection.Top) (item.drawableRes
+                                            ?: 0) else 0,
+                                    if (drawableDirection == DrawableDirection.Right) (item.drawableRes
+                                            ?: 0) else 0,
+                                    if (drawableDirection == DrawableDirection.Bottom) (item.drawableRes
+                                            ?: 0) else 0)
+                        }
                     }
 
                     if (fillSpace) {
