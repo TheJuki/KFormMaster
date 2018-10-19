@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.RadioButton
-import com.thejuki.kformmaster.R
 
 /**
  * RadioButton Center
@@ -19,34 +18,28 @@ import com.thejuki.kformmaster.R
  */
 class RadioButtonCenter(context: Context, attrs: AttributeSet) : RadioButton(context, attrs) {
 
-    var buttonCenterDrawable: Drawable
-
-    init {
-        val a = context.obtainStyledAttributes(attrs, R.styleable.RadioButtonCenter, 0, 0)
-        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-        buttonCenterDrawable = a.getDrawable(R.styleable.RadioButtonCenter_android_button)
-        setButtonDrawable(android.R.color.transparent)
-        a.recycle()
-    }
+    var buttonCenterDrawable: Drawable? = null
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        buttonCenterDrawable.state = drawableState
-        val verticalGravity = gravity and Gravity.VERTICAL_GRAVITY_MASK
-        val height = buttonCenterDrawable.intrinsicHeight
+        buttonCenterDrawable?.let {
+            it.state = drawableState
+            val verticalGravity = gravity and Gravity.VERTICAL_GRAVITY_MASK
+            val height = it.intrinsicHeight
 
-        var y = 0
+            var y = 0
 
-        when (verticalGravity) {
-            Gravity.BOTTOM -> y = getHeight() - height
-            Gravity.CENTER_VERTICAL -> y = (getHeight() - height) / 2
+            when (verticalGravity) {
+                Gravity.BOTTOM -> y = getHeight() - height
+                Gravity.CENTER_VERTICAL -> y = (getHeight() - height) / 2
+            }
+
+            val buttonWidth = it.intrinsicWidth
+            val buttonLeft = (width - buttonWidth) / 2
+            it.setBounds(buttonLeft, y, buttonLeft + buttonWidth, y + height)
+            it.draw(canvas)
         }
-
-        val buttonWidth = buttonCenterDrawable.intrinsicWidth
-        val buttonLeft = (width - buttonWidth) / 2
-        buttonCenterDrawable.setBounds(buttonLeft, y, buttonLeft + buttonWidth, y + height)
-        buttonCenterDrawable.draw(canvas)
     }
 
 }

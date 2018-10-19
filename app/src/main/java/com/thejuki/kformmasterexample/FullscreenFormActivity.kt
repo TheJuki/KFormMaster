@@ -465,7 +465,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 cornerRadius = 0f
                 textSize = 12f
                 padding = 10
-                drawableDirection = FormSegmentedElement.DrawableDirection.Center
+                drawableDirection = FormSegmentedElement.DrawableDirection.Top
                 value = fruitsSegmented[0]
                 required = true
                 valueObservers.add { newValue, element ->
