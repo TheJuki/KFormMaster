@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.0.6](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.6)
+- #62 Add ability to center a drawable in the FormSegmentedElement radio buttons
+
 ## [5.0.5](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.5)
 - #60 Fix set value for the FormSegmentedElement
 
