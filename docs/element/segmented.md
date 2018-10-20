@@ -35,6 +35,11 @@ segmented<ListItem>(1) {
 ## Drawable Direction
 By default this is DrawableDirection.Top.
 Setting this will change where the drawable is displayed relative to the text.
+
+!!! info "Center"
+
+    DrawableDirection.Center will center the drawable. This also removes the text.
+
 ```kotlin
 segmented<ListItem>(1) {
     drawableDirection = FormSegmentedElement.DrawableDirection.Top
