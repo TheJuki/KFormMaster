@@ -77,11 +77,12 @@ tasks.withType(Javadoc).all {
 ext {
     androidxVersion = '1.0.0'
     materialVersion = '1.0.0'
-    rendererRecyclerViewAdapterVersion = '2.7.0'
+    rendererRecyclerViewAdapterVersion = '2.7.0-SNAPSHOT'
     tokenautocompleteVersion = '2.0.8'
     junitVersion = '4.12'
-    testRunnerVersion = '1.1.0-alpha4'
-    testExpressoVersion = '3.1.0-alpha4'
+    testRulesVersion = '1.1.0-beta02'
+    testExtJunitVersion = '1.0.0-beta02'
+    testExpressoVersion = '3.1.0-beta02'
     kotlintestVersion = '2.0.7'
     mockitoVersion = '2.15.0'
 }
@@ -100,8 +101,8 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     testImplementation "io.kotlintest:kotlintest:$kotlintestVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
-    androidTestImplementation "androidx.test:rules:$testRunnerVersion"
-    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+    androidTestImplementation "androidx.test.ext:junit:$testExtJunitVersion"
+    androidTestImplementation "androidx.test:rules:$testRulesVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$testExpressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$testExpressoVersion"
 }

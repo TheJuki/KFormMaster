@@ -8,7 +8,7 @@ buildscript {
         google()
         jcenter()
         repositories {
-            maven { url 'https://oss.sonatype.org/content/groups/staging/' }
+            maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
         }
     }
     dependencies {
@@ -24,7 +24,7 @@ allprojects {
         google()
         jcenter()
         repositories {
-            maven { url 'https://oss.sonatype.org/content/groups/staging/' }
+            maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
         }
     }
 }

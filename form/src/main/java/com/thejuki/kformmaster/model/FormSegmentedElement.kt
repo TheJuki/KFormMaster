@@ -1,10 +1,10 @@
 package com.thejuki.kformmaster.model
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RadioGroup
 import androidx.annotation.ColorInt
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.widget.RadioButtonCenter

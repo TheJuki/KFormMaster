@@ -5,7 +5,6 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.appcompat.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.InstrumentationRegistry
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -16,14 +15,13 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import com.thejuki.kformmaster.item.ContactItem
 import com.thejuki.kformmaster.token.ItemsCompletionView
 import com.thejuki.kformmaster.widget.SegmentedGroup
 import org.hamcrest.Matchers
 import org.hamcrest.Matchers.*
-import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -42,13 +40,6 @@ class FormInstrumentedTest {
     @Rule
     @JvmField
     val mActivityRule = ActivityTestRule<FormActivityTest>(FormActivityTest::class.java)
-
-    @Test
-    fun useAppContext() {
-        // Context of the app under test
-        val appContext = InstrumentationRegistry.getTargetContext()
-        Assert.assertEquals("com.thejuki.kformmaster.test", appContext.packageName)
-    }
 
     @Test
     fun header_isDisplayed() {
