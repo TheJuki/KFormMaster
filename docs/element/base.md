@@ -156,6 +156,15 @@ text {
 }
 ```
 
+## Center Text
+By default this is false.
+This uses the Center gravity for the text in the value field.
+```kotlin
+text {
+    centerText = true
+}
+```
+
 ## Error
 This is the error text displayed in red below the form element.
 ```kotlin

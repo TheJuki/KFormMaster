@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatEditText
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
+import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 
 
 /**
@@ -63,6 +64,11 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
     var arrayAdapter: ArrayAdapter<*>? = null
 
     /**
+     * Hold the [OnFormElementValueChangedListener] from [FormBuildHelper]
+     */
+    private var listener: OnFormElementValueChangedListener? = null
+
+    /**
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
@@ -75,6 +81,10 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
             for (i in it.indices) {
                 options[i] = it[i].toString()
             }
+        }
+
+        if (formBuilder != null) {
+            listener = formBuilder.listener
         }
 
         lateinit var alertDialog: AlertDialog
@@ -110,7 +120,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                             this@FormPickerDropDownElement.error = null
                             editTextView?.setText(this.getItem(which)?.toString())
                             this@FormPickerDropDownElement.setValue(this.getItem(which))
-                            formBuilder?.onValueChanged(this@FormPickerDropDownElement)
+                            listener?.onValueChanged(this@FormPickerDropDownElement)
 
                             editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
                             dialogInterface.dismiss()
@@ -120,7 +130,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                             this@FormPickerDropDownElement.error = null
                             editTextView?.setText(this.getItem(which)?.toString())
                             this@FormPickerDropDownElement.setValue(this.getItem(which))
-                            formBuilder?.onValueChanged(this@FormPickerDropDownElement)
+                            listener?.onValueChanged(this@FormPickerDropDownElement)
 
                             editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
                         }
@@ -141,7 +151,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                             this.options?.let { option ->
                                 this.setValue(option[which])
                             }
-                            formBuilder?.onValueChanged(this)
+                            listener?.onValueChanged(this)
 
                             editTextView?.setText(this.valueAsString)
                             dialogInterface.dismiss()
@@ -153,7 +163,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                             this.options?.let { option ->
                                 this.setValue(option[which])
                             }
-                            formBuilder?.onValueChanged(this)
+                            listener?.onValueChanged(this)
 
                             editTextView?.setText(this.valueAsString)
                         }

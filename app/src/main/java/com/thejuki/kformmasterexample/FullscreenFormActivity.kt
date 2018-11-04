@@ -178,9 +178,16 @@ class FullscreenFormActivity : AppCompatActivity() {
                         // Uncomment to replace all text elements with the form_element_custom layout
                         //text = R.layout.form_element_custom
                 )) {
-            header { title = getString(R.string.PersonalInfo); collapsible = true }
+            header {
+                title = getString(R.string.PersonalInfo)
+                collapsible = true
+                backgroundColor = Color.parseColor("#DDDDDD")
+                titleTextColor = Color.BLACK
+                centerText = true
+            }
             email(Email.ordinal) {
                 title = getString(R.string.email)
+                centerText = true
                 displayDivider = false
                 hint = getString(R.string.email_hint)
                 value = "mail@mail.com"
@@ -402,6 +409,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.Label)
                 rightToLeft = false
                 displayDivider = false
+                centerText = true
             }
             header { title = getString(R.string.MarkComplete); collapsible = true }
             switch<String>(SwitchElement.ordinal) {

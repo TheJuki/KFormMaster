@@ -56,12 +56,23 @@ class HeaderBuilder(var title: String = "") : FieldBuilder {
     var collapsible: Boolean = false
     var tag: Int = -1
     var margins: FormElementMargins? = null
+    @ColorInt
+    var backgroundColor: Int? = null
+    @ColorInt
+    var titleTextColor: Int? = null
+    var centerText: Boolean = false
+    var rightToLeft: Boolean = true
     override fun build() =
             FormHeader(tag).apply {
                 this@HeaderBuilder.let {
                     title = it.title
                     collapsible = it.collapsible
                     margins = it.margins
+                    rightToLeft = it.rightToLeft
+                    // Colors
+                    backgroundColor = it.backgroundColor
+                    titleTextColor = it.titleTextColor
+                    centerText = it.centerText
                 }
             }
 }
@@ -159,6 +170,11 @@ abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: Str
     var confirmMessage: String? = null
 
     /**
+     * Form Element Center the text
+     */
+    var centerText: Boolean = false
+
+    /**
      * Form Element Visibility
      */
     var visible: Boolean = true
@@ -250,6 +266,7 @@ class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag)
                     imeOptions = it.imeOptions
                     clearable = it.clearable
                     clearOnFocus = it.clearOnFocus
+                    centerText = it.centerText
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -291,6 +308,7 @@ class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) 
                     imeOptions = it.imeOptions
                     clearable = it.clearable
                     clearOnFocus = it.clearOnFocus
+                    centerText = it.centerText
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -334,6 +352,7 @@ class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     imeOptions = it.imeOptions
                     clearable = it.clearable
                     clearOnFocus = it.clearOnFocus
+                    centerText = it.centerText
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -375,6 +394,7 @@ class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     imeOptions = it.imeOptions
                     clearable = it.clearable
                     clearOnFocus = it.clearOnFocus
+                    centerText = it.centerText
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -416,6 +436,7 @@ class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     imeOptions = it.imeOptions
                     clearable = it.clearable
                     clearOnFocus = it.clearOnFocus
+                    centerText = it.centerText
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -457,6 +478,7 @@ class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
                     imeOptions = it.imeOptions
                     clearable = it.clearable
                     clearOnFocus = it.clearOnFocus
+                    centerText = it.centerText
                     updateOnFocusChange = it.updateOnFocusChange
                     valueObservers.addAll(it.valueObservers)
                     // Colors
@@ -983,6 +1005,7 @@ class LabelBuilder(val tag: Int = -1) : FieldBuilder {
 
     var layoutPaddingBottom: Int? = null
     var margins: FormElementMargins? = null
+    var centerText: Boolean = false
 
     override fun build() =
             FormLabelElement(tag).apply {
@@ -991,6 +1014,7 @@ class LabelBuilder(val tag: Int = -1) : FieldBuilder {
                     visible = it.visible
                     displayDivider = it.displayDivider
                     rightToLeft = it.rightToLeft
+                    centerText = it.centerText
                     // Colors
                     backgroundColor = it.backgroundColor
                     titleTextColor = it.titleTextColor
