@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 28
-        versionName "5.0.6"
+        versionCode 29
+        versionName "5.0.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -105,7 +105,7 @@ dependencies {
 }
 
 publish {
-    version = "5.0.6"
+    version = "5.0.7"
     group = "com.thejuki"
     userOrg = 'thejuki'
     artifactId = 'k-form-master'

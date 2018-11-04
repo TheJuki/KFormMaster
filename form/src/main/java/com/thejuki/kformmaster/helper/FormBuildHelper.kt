@@ -57,7 +57,7 @@ class FormBuildHelper
     /**
      * Listener for when an element's value changes
      */
-    private var listener: OnFormElementValueChangedListener? = null
+    internal var listener: OnFormElementValueChangedListener? = null
 
     /**
      * Checks if the form is valid

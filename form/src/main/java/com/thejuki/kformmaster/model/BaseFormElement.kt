@@ -358,6 +358,24 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var confirmMessage: String? = null
 
     /**
+     * Form Element Center the text
+     */
+    var centerText: Boolean = false
+        set(value) {
+            field = value
+
+            editView?.let {
+                if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
+                    if (centerText) {
+                        it.gravity = Gravity.CENTER
+                    } else {
+                        it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                    }
+                }
+            }
+        }
+
+    /**
      * Form Element Update EditText value when focus is lost
      * By default, an EditText will update the form value as characters are typed.
      * Setting this to true will only update the value when focus is lost.
@@ -404,7 +422,11 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             editView?.let {
                 it.isEnabled = enabled
                 if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
-                    it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                    if (centerText) {
+                        it.gravity = Gravity.CENTER
+                    } else {
+                        it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                    }
                     it.setSingleLine(maxLines == 1)
                     it.maxLines = maxLines
                     if (it !is AppCompatAutoCompleteTextView) {
@@ -462,12 +484,17 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 }
                 it.visibility = if (displayTitle) View.VISIBLE else View.GONE
 
-                if (this is FormHeader) {
+                if (this is FormHeader || this is FormLabelElement) {
                     if (margins != null) {
                         it.setMargins(margins?.left.dpToPx(),
                                 margins?.top.dpToPx(),
                                 margins?.right.dpToPx(),
                                 margins?.bottom.dpToPx())
+                    }
+                    if (centerText) {
+                        it.gravity = Gravity.CENTER
+                    } else {
+                        it.gravity = if (rightToLeft) Gravity.START else Gravity.END
                     }
                 }
             }

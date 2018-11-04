@@ -5,6 +5,7 @@ import android.support.v7.widget.AppCompatEditText
 import android.view.View
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
+import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 
 /**
  * Form Picker MultiCheckBox Element
@@ -52,6 +53,11 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
     var dialogEmptyMessage: String? = null
 
     /**
+     * Hold the [OnFormElementValueChangedListener] from [FormBuildHelper]
+     */
+    private var listener: OnFormElementValueChangedListener? = null
+
+    /**
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
@@ -75,6 +81,10 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
                     mSelectedItems.add(i)
                 }
             }
+        }
+
+        if (formBuilder != null) {
+            listener = formBuilder.listener
         }
 
         var selectedItems = ""
@@ -133,7 +143,7 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
 
                                 this.error = null
                                 this.setValue(selectedOptions)
-                                formBuilder?.onValueChanged(this)
+                                listener?.onValueChanged(this)
                                 editTextView?.setText(getSelectedItemsText())
                             }
                         }
