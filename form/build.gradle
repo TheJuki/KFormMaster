@@ -76,7 +76,7 @@ tasks.withType(Javadoc).all {
 
 ext {
     supportVersion = '27.1.1'
-    rendererRecyclerViewAdapterVersion = '2.5.0'
+    rendererRecyclerViewAdapterVersion = '2.6.0'
     tokenautocompleteVersion = '2.0.8'
     junitVersion = '4.12'
     testRunnerVersion = '1.0.2'
