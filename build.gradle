@@ -2,7 +2,7 @@
 
 buildscript {
     ext.kotlin_version = '1.2.71'
-    ext.jacocoVersion = '0.8.1'
+    ext.jacocoVersion = '0.8.2'
 
     repositories {
         google()
