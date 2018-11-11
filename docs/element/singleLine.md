@@ -5,6 +5,7 @@ The Single Line form element is used for a single line value field.
 ## Example
 
 ### Kotlin
+
 ```kotlin
 text(1) {
     value = "Example"
@@ -12,9 +13,10 @@ text(1) {
 ```
 
 ### Java
+
 ```java
 List<BaseFormElement<?>> elements = new ArrayList<>();
-SingleLineEditTextBuilder text = new SingleLineEditTextBuilder(1);
+FormSingleLineEditTextElement text = new FormSingleLineEditTextElement(1);
 text.setValue("Example");
-elements.add(text.build());
+elements.add(text);
 ```

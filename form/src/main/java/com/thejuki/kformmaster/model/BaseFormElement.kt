@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import com.thejuki.kformmaster.extensions.dpToPx
 import com.thejuki.kformmaster.extensions.setMargins
+import com.thejuki.kformmaster.helper.FormDsl
 import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
 import kotlin.properties.Delegates
@@ -25,6 +26,7 @@ import kotlin.properties.Delegates
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
+@FormDsl
 open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
 
     /**

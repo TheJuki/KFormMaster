@@ -3,11 +3,13 @@ The Switch form element is used for a toggle switch row.
 ![Example](/images/Switch.PNG)
 
 ## On and Off Values
-The value is set to onValue when checked. The value is set to offValue when unChecked. 
+
+The value is set to onValue when checked. The value is set to offValue when unChecked.
 
 ## Example
 
 ### Kotlin
+
 ```kotlin
 switch<String>(1) {
    value = "Yes"
@@ -17,11 +19,12 @@ switch<String>(1) {
 ```
 
 ### Java
+
 ```java
 List<BaseFormElement<?>> elements = new ArrayList<>();
-SwitchBuilder<String> switchElement = new SwitchBuilder<>(1);
+FormSwitchElement<String> switchElement = new FormSwitchElement<>(1);
 switchElement.setValue("Yes");
 switchElement.setOnValue("Yes");
 switchElement.setOffValue("No");
-elements.add(switchElement.build());
+elements.add(switchElement);
 ```

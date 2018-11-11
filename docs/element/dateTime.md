@@ -12,14 +12,17 @@ The DateTime form element is used for a date and then time dialog. The date dial
     * Call getTime() on value to get a Date object back.
 
 ## Date Value
+
 A java.util.Date value.
 
 ## Date Format
+
 A java.text.DateFormat value. By default this is SimpleDateFormat.getDateInstance(). It is advised to provide your own format.
 
 ## Example
 
 ### Kotlin
+
 ```kotlin
 dateTime(1) {
     dateValue = Date()
@@ -28,10 +31,11 @@ dateTime(1) {
 ```
 
 ### Java
+
 ```java
 List<BaseFormElement<?>> elements = new ArrayList<>();
-DateTimeBuilder dateTime = new DateTimeBuilder(1);
+FormPickerDateTimeElement dateTime = new FormPickerDateTimeElement(1);
 dateTime.setDateValue(new Date());
 dateTime.setDateFormat(new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US));
-elements.add(dateTime.build());
+elements.add(dateTime);
 ```

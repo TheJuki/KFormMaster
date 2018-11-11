@@ -1,6 +1,5 @@
 package com.thejuki.kformmasterexample.custom.helper
 
-import com.thejuki.kformmaster.helper.BaseElementBuilder
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmasterexample.custom.model.FormCustomElement
 
@@ -13,33 +12,7 @@ import com.thejuki.kformmasterexample.custom.model.FormCustomElement
  * @version 1.0
  */
 
-/** Builder method to add a CustomElement */
-class CustomElementBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
-    override fun build() =
-            FormCustomElement(tag).apply {
-                this@CustomElementBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
-}
-
-/** FormBuildHelper extension to add a CustomElement */
-fun FormBuildHelper.customEx(tag: Int = -1, init: CustomElementBuilder.() -> Unit): FormCustomElement {
-    return addFormElement(CustomElementBuilder(tag).apply(init).build())
+/** FormBuildHelper extension to add a FormCustomElement */
+fun FormBuildHelper.customEx(tag: Int = -1, init: FormCustomElement.() -> Unit): FormCustomElement {
+    return addFormElement(FormCustomElement(tag).apply(init))
 }

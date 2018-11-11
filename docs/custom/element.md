@@ -1,7 +1,9 @@
 It's possible to create your own form element. Here is what is needed.
 
 ### Form Element Layout
+
 Create a new XML layout file. We'll name it form_element_custom.xml.
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -69,7 +71,9 @@ Create a new XML layout file. We'll name it form_element_custom.xml.
 ```
 
 ### Form Element Model
+
 Note that a new model does not need to contain a body if BaseFormElement provides everything you need.
+
 ```kotlin
 class FormCustomElement: BaseFormElement<String> {
     constructor() : super()
@@ -78,7 +82,9 @@ class FormCustomElement: BaseFormElement<String> {
 ```
 
 ### Optional: Form Builder Extension
+
 Create a FormBuildHelper DSL method and builder class for your custom form model.
+
 ```kotlin
 /** Builder method to add a CustomElement */
 class CustomElementBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
@@ -101,12 +107,14 @@ class CustomElementBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
 
 /** FormBuildHelper extension to add a CustomElement */
 fun FormBuildHelper.customEx(tag: Int = -1, init: CustomElementBuilder.() -> Unit): FormCustomElement {
-    return addFormElement(CustomElementBuilder(tag).apply(init).build())
+    return addFormElement(CustomElementBuilder(tag).apply(init))
 }
 ```
 
 ### Optional: Form Element View State
+
 Create a view state class your custom form element value.
+
 ```kotlin
 class FormCustomViewState(holder: ViewHolder) : BaseFormViewState(holder) {
     private var value: String? = null
@@ -124,22 +132,23 @@ class FormCustomViewState(holder: ViewHolder) : BaseFormViewState(holder) {
 ```
 
 ### Form Element View Binder
+
 Create a view binder for your custom form element.
 
 !!! note "ViewBinder"
 
     * layoutID parameter - Form element layout name
     * type parameter - Form element model class (ModelName::class.java)
-    * binder parameter: 
+    * binder parameter:
         - model is a form element instance model
         - finder can find views or set fields of a view using its ID
         - payloads can be replaced with "_" as it is not used
     * viewStateProvider parameter - Form element view state provider
 
 ```kotlin
-class CustomViewBinder(private val context: Context, 
+class CustomViewBinder(private val context: Context,
 private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element_custom, 
+    var viewBinder = ViewBinder(R.layout.form_element_custom,
     FormCustomElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
@@ -182,7 +191,7 @@ private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
 
                 // trigger event only if the value is changed
                 if (currentValue != newValue) {
-                    // NOTE: Use setValue() 
+                    // NOTE: Use setValue()
                     // as this will suppress the unchecked cast
                     model.setValue(newValue)
                     model.error = null
@@ -214,6 +223,7 @@ private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
 ```
 
 ### Use your Custom Form Element
+
 Create a form activity for your custom form element.
 
 !!! error "IMPORTANT"

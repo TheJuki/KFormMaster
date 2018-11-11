@@ -16,6 +16,16 @@ import java.util.*
  */
 class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeElement.TimeHolder>(tag) {
 
+    /**
+     * Date Format part of TimeHolder
+     */
+    var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
+
+    /**
+     * Date Value part of TimeHolder
+     */
+    var dateValue: Date? = null
+
     override fun clear() {
         this.value?.useCurrentTime()
         (this.editView as? TextView)?.text = ""

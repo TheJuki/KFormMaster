@@ -11,12 +11,14 @@ The Segmented form element is used for a radio group.
 !!! info "SegmentedDrawable"
 
     The SegmentedDrawable interface must be implemented by your custom class to provide the drawableRes.
-    
+
     - Example: fruitsSegmented[0].drawableRes = R.drawable.icons8_banana
 
 ## Horizontal
+
 By default this is true.
 Setting this to false will stack the radio buttons vertically.
+
 ```kotlin
 segmented<ListItem>(1) {
     horizontal = false
@@ -24,8 +26,10 @@ segmented<ListItem>(1) {
 ```
 
 ## Fill Space
+
 By default this is false.
 Setting this to true will fill the whole width.
+
 ```kotlin
 segmented<ListItem>(1) {
     fillSpace = true
@@ -33,6 +37,7 @@ segmented<ListItem>(1) {
 ```
 
 ## Drawable Direction
+
 By default this is DrawableDirection.Top.
 Setting this will change where the drawable is displayed relative to the text.
 
@@ -47,8 +52,10 @@ segmented<ListItem>(1) {
 ```
 
 ## Tint Color
+
 By default this is the value of R.color.colorFormMasterElementRadioSelected.
 Setting this will set the tint color for each radio button.
+
 ```kotlin
 segmented<ListItem>(1) {
     tintColor = Color.BLUE
@@ -56,8 +63,10 @@ segmented<ListItem>(1) {
 ```
 
 ## Margin (Stroke)
+
 By default this is the value of R.dimen.elementRadioStrokeBorder.
 Setting this will set the margin (stroke) for each radio button.
+
 ```kotlin
 segmented<ListItem>(1) {
     marginDp = 5
@@ -65,8 +74,10 @@ segmented<ListItem>(1) {
 ```
 
 ## Unchecked Tint Color
+
 By default this is the value of R.color.colorFormMasterElementRadioUnSelected.
 Setting this will set the unchecked tint color for each radio button.
+
 ```kotlin
 segmented<ListItem>(1) {
     unCheckedTintColor = Color.WHITE
@@ -74,8 +85,10 @@ segmented<ListItem>(1) {
 ```
 
 ## Checked Text Color
+
 By default this is the value of R.color.colorFormMasterElementRadioSelected.
 Setting this will set the checked text color for each radio button.
+
 ```kotlin
 segmented<ListItem>(1) {
     checkedTextColor = Color.WHITE
@@ -83,8 +96,10 @@ segmented<ListItem>(1) {
 ```
 
 ## Corner Radius
+
 By default this is the value of R.dimen.elementRadioCornerRadius.
 Setting this will set the corner radius for each radio button.
+
 ```kotlin
 segmented<ListItem>(1) {
     cornerRadius = 5f
@@ -92,8 +107,10 @@ segmented<ListItem>(1) {
 ```
 
 ## Text Size
+
 By default this is the value of R.dimen.elementTextValueSize.
 Setting this will set the text size (In SP) for each radio button.
+
 ```kotlin
 segmented<ListItem>(1) {
     textSize = 12f
@@ -101,8 +118,10 @@ segmented<ListItem>(1) {
 ```
 
 ## Padding
+
 By default this is the value of R.dimen.elementRadioPadding.
 Setting this will set the padding for each radio button.
+
 ```kotlin
 segmented<ListItem>(1) {
     padding = 5
@@ -112,19 +131,22 @@ segmented<ListItem>(1) {
 ## Example
 
 ### Kotlin
+
 ```kotlin
 segmented<ListItem>(1) {
-    options = listOf(ListItem(id = 1, name = "Banana"), 
+    options = listOf(ListItem(id = 1, name = "Banana"),
                      ListItem(id = 2, name = "Orange"))
     value = ListItem(id = 1, name = "Banana")
 }
 ```
 
 ### Java
+
 ```java
-SegmentedBuilder<ListItem> segmented = new SegmentedBuilder<>(1);
+List<BaseFormElement<?>> elements = new ArrayList<>();
+FormSegmentedElement<ListItem> segmented = new FormSegmentedElement<>(1);
 segmented.setOptions(Arrays.asList(new ListItem(1L, "Banana"),
     new ListItem(2L, "Orange")));
 segmented.setValue(new ListItem(1L, "Banana"));
-elements.add(segmented.build());
+elements.add(segmented);
 ```

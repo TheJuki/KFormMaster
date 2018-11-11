@@ -5,6 +5,7 @@ The Label form element is used for a title only field.
 ## Example
 
 ### Kotlin
+
 ```kotlin
 label(1) {
     title = "This is a label. The title takes up the whole row."
@@ -12,9 +13,10 @@ label(1) {
 ```
 
 ### Java
+
 ```java
 List<BaseFormElement<?>> elements = new ArrayList<>();
-LabelBuilder label = new LabelBuilder(1);
+FormLabelElement label = new FormLabelElement(1);
 label.setTitle("This is a label. The title takes up the whole row.");
-elements.add(label.build());
+elements.add(label);
 ```

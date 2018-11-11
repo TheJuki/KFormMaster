@@ -5,6 +5,7 @@ The DropDown form element is used for a single choice dialog.
 <img src="../../images/Dropdown2.PNG" alt="Example" width="300px"/>
 
 ## Array Adapter
+
 Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.
 
 !!! note "NOTICE"
@@ -19,8 +20,10 @@ dropDown<ContactItem>(1) {
 ```
 
 ## Display Radio Buttons
+
 By default this is false.
 Enable to display the radio buttons
+
 ```kotlin
 dropDown<ListItem>(1) {
     displayRadioButtons = true
@@ -28,8 +31,10 @@ dropDown<ListItem>(1) {
 ```
 
 ## Dialog Title
+
 By default this is "Select One".
 Setting this will override the alert dialog title.
+
 ```kotlin
 dropDown<ListItem>(1) {
     dialogTitle = "Select One"
@@ -37,8 +42,10 @@ dropDown<ListItem>(1) {
 ```
 
 ## Dialog Empty Message
+
 By default this is "Empty".
 Setting this will override the alert dialog message when the options list is empty or null.
+
 ```kotlin
 dropDown<ListItem>(1) {
     dialogEmptyMessage = "Nothing to see here"
@@ -48,21 +55,23 @@ dropDown<ListItem>(1) {
 ## Example
 
 ### Kotlin
+
 ```kotlin
 dropDown<ListItem>(1) {
     dialogTitle = "Select One"
-    options = listOf(ListItem(id = 1, name = "Banana"), 
+    options = listOf(ListItem(id = 1, name = "Banana"),
                      ListItem(id = 2, name = "Orange"))
     value = ListItem(id = 1, name = "Banana")
 }
 ```
 
 ### Java
+
 ```java
-DropDownBuilder<ListItem> dropDown = new DropDownBuilder<>(1);
+FormPickerDropDownElement<ListItem> dropDown = new FormPickerDropDownElement<>(1);
 dropDown.setDialogTitle("Select One");
 dropDown.setOptions(Arrays.asList(new ListItem(1L, "Banana"),
     new ListItem(2L, "Orange")));
 dropDown.setValue(new ListItem(1L, "Banana"));
-elements.add(dropDown.build());
+elements.add(dropDown);
 ```

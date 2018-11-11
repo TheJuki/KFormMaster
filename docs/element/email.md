@@ -5,6 +5,7 @@ The Email form element is used for an email address value field with the email k
 ## Example
 
 ### Kotlin
+
 ```kotlin
 email(1) {
     value = "example@example.com"
@@ -12,9 +13,10 @@ email(1) {
 ```
 
 ### Java
+
 ```java
 List<BaseFormElement<?>> elements = new ArrayList<>();
-EmailEditTextBuilder email = new EmailEditTextBuilder(1);
+FormEmailEditTextElement email = new FormEmailEditTextElement(1);
 email.setValue("example@example.com");
-elements.add(email.build());
+elements.add(email);
 ```

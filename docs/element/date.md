@@ -10,14 +10,17 @@ The Date form element is used for a date dialog.
     * Call getTime() on value to get a Date object back.
 
 ## Date Value
+
 A java.util.Date value.
 
 ## Date Format
+
 A java.text.DateFormat value. By default this is SimpleDateFormat.getDateInstance(). It is advised to provide your own format.
 
 ## Example
 
 ### Kotlin
+
 ```kotlin
 date(1) {
     dateValue = Date()
@@ -26,10 +29,11 @@ date(1) {
 ```
 
 ### Java
+
 ```java
 List<BaseFormElement<?>> elements = new ArrayList<>();
-DateBuilder date = new DateBuilder(1);
+FormPickerDateElement date = new FormPickerDateElement(1);
 date.setDateValue(new Date());
 date.setDateFormat(new SimpleDateFormat("MM/dd/yyyy", Locale.US));
-elements.add(date.build());
+elements.add(date);
 ```

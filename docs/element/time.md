@@ -10,14 +10,17 @@ The Time form element is used for a time dialog.
     * Call getTime() on value to get a Date object back.
 
 ## Date Value
+
 A java.util.Date value.
 
 ## Date Format
+
 A java.text.DateFormat value. By default this is SimpleDateFormat.getDateInstance(). It is advised to provide your own format.
 
 ## Example
 
 ### Kotlin
+
 ```kotlin
 time(1) {
     dateValue = Date()
@@ -26,10 +29,11 @@ time(1) {
 ```
 
 ### Java
+
 ```java
 List<BaseFormElement<?>> elements = new ArrayList<>();
-TimeBuilder time = new TimeBuilder(1);
+FormPickerTimeElement time = new FormPickerTimeElement(1);
 time.setDateValue(new Date());
 time.setDateFormat(new SimpleDateFormat("hh:mm a", Locale.US));
-elements.add(time.build());
+elements.add(time);
 ```
