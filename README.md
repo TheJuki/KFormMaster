@@ -33,11 +33,9 @@ ext {
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 ```
 
-## Version 4 Changes
-- Removed Parcelable from form elements
-- Removed Serializable from form element <T>
-- Removed optionsSelected from BaseFormElement. FormPickerMultiCheckBoxElement now uses 'value' instead of 'optionsSelected'.
-- FormPickerMultiCheckBoxElement and FormTokenAutoCompleteElement require a list of objects through <T: List<*>>
+## Version 6 Changes
+- Removed Form Element Builder Classes
+- Migration Guide: https://thejuki.github.io/KFormMaster/migrateBuilder/
 
 ## BrowserStack
 <a href="http://browserstack.com/">
