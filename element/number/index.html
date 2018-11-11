@@ -348,6 +348,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-nav__link">
+      Migrate from Builders
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -925,10 +937,10 @@ Setting this to true will only allow numbers to be entered in the value field.</
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">NumberEditTextBuilder</span> <span class="n">number</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NumberEditTextBuilder</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">FormNumberEditTextElement</span> <span class="n">number</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormNumberEditTextElement</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
 <span class="n">number</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="mi">1234</span><span class="o">);</span>
 <span class="n">number</span><span class="o">.</span><span class="na">setNumbersOnly</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">number</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">number</span><span class="o">);</span>
 </pre></div>
                 
                   

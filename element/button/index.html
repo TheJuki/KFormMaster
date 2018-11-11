@@ -348,6 +348,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-nav__link">
+      Migrate from Builders
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -896,13 +908,13 @@
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">ButtonBuilder</span> <span class="n">button</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ButtonBuilder</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">FormButtonElement</span> <span class="n">button</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormButtonElement</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
 <span class="n">button</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">&quot;Button Text&quot;</span><span class="o">);</span>
 <span class="n">button</span><span class="o">.</span><span class="na">getValueObservers</span><span class="o">().</span><span class="na">add</span><span class="o">((</span><span class="n">newValue</span><span class="o">,</span> <span class="n">element</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
     <span class="c1">// Nothing was changed but the button was tapped!</span>
     <span class="k">return</span> <span class="n">Unit</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">;</span>
 <span class="o">});</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">button</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">button</span><span class="o">);</span>
 </pre></div>
                 
                   

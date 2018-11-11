@@ -348,6 +348,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-nav__link">
+      Migrate from Builders
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -935,10 +947,10 @@
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">DateTimeBuilder</span> <span class="n">dateTime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTimeBuilder</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">FormPickerDateTimeElement</span> <span class="n">dateTime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormPickerDateTimeElement</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
 <span class="n">dateTime</span><span class="o">.</span><span class="na">setDateValue</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
 <span class="n">dateTime</span><span class="o">.</span><span class="na">setDateFormat</span><span class="o">(</span><span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&quot;MM/dd/yyyy hh:mm a&quot;</span><span class="o">,</span> <span class="n">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">));</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">dateTime</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">dateTime</span><span class="o">);</span>
 </pre></div>
                 
                   

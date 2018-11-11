@@ -348,6 +348,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-nav__link">
+      Migrate from Builders
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -417,6 +429,20 @@
         <li class="md-nav__item">
   <a href="#collapsible" title="Collapsible" class="md-nav__link">
     Collapsible
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-collapsed" title="All Collapsed" class="md-nav__link">
+    All Collapsed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-all-collapsed-later" title="Set All Collapsed Later" class="md-nav__link">
+    Set All Collapsed Later
   </a>
   
 </li>
@@ -850,6 +876,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#all-collapsed" title="All Collapsed" class="md-nav__link">
+    All Collapsed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-all-collapsed-later" title="Set All Collapsed Later" class="md-nav__link">
+    Set All Collapsed Later
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" title="Example" class="md-nav__link">
     Example
   </a>
@@ -904,6 +944,28 @@ Setting this to true will allow the form header to "collapse/uncollapse" (Hide/S
 </pre></div>
 
 
+<h2 id="all-collapsed">All Collapsed<a class="headerlink" href="#all-collapsed" title="Permanent link">&para;</a></h2>
+<p>By default this is false.
+This indicates if elements under the form header are collapsed or not.</p>
+<div class="codehilite"><pre><span></span><span class="n">header</span> <span class="p">{</span> <span class="n">allCollapsed</span> <span class="p">=</span> <span class="k">true</span> <span class="p">}</span>
+</pre></div>
+
+
+<h2 id="set-all-collapsed-later">Set All Collapsed Later<a class="headerlink" href="#set-all-collapsed-later" title="Permanent link">&para;</a></h2>
+<p>Use setAllCollapsed(collapse, formBuilder) to collapse/uncollapse elements after initialization.
+Collapse or uncollapse all elements under the header until the next header.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Reverse Collapse</span>
+<span class="n">header</span><span class="p">.</span><span class="n">setAllCollapsed</span><span class="p">(!</span><span class="n">header</span><span class="p">.</span><span class="n">allCollapsed</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">)</span>
+
+<span class="c1">// Reverse Collapse for all headers</span>
+<span class="n">formBuilder</span><span class="p">.</span><span class="n">elements</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">it</span> <span class="k">is</span> <span class="n">FormHeader</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">it</span><span class="p">.</span><span class="n">setAllCollapsed</span><span class="p">(!</span><span class="n">it</span><span class="p">.</span><span class="n">allCollapsed</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">header</span> <span class="p">{</span> <span class="n">title</span> <span class="p">=</span> <span class="s">&quot;I&#39;m a header row&quot;</span><span class="p">;</span> <span class="n">collapsible</span> <span class="p">=</span> <span class="k">true</span> <span class="p">}</span>
@@ -912,8 +974,8 @@ Setting this to true will allow the form header to "collapse/uncollapse" (Hide/S
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">HeaderBuilder</span> <span class="n">header</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HeaderBuilder</span><span class="o">(</span><span class="s">&quot;I&#39;m a header row&quot;</span><span class="o">);</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">header</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="n">FormHeader</span> <span class="n">header</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormHeader</span><span class="o">(</span><span class="s">&quot;I&#39;m a header row&quot;</span><span class="o">);</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">header</span><span class="o">);</span>
 </pre></div>
                 
                   

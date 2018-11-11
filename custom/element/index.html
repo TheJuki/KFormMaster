@@ -348,6 +348,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-nav__link">
+      Migrate from Builders
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1012,7 +1024,7 @@
 
 <span class="cm">/** FormBuildHelper extension to add a CustomElement */</span>
 <span class="k">fun</span> <span class="nf">FormBuildHelper</span><span class="p">.</span><span class="n">customEx</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">,</span> <span class="n">init</span><span class="p">:</span> <span class="n">CustomElementBuilder</span><span class="p">.()</span> <span class="p">-&gt;</span> <span class="n">Unit</span><span class="p">):</span> <span class="n">FormCustomElement</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">addFormElement</span><span class="p">(</span><span class="n">CustomElementBuilder</span><span class="p">(</span><span class="n">tag</span><span class="p">).</span><span class="n">apply</span><span class="p">(</span><span class="n">init</span><span class="p">).</span><span class="n">build</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">addFormElement</span><span class="p">(</span><span class="n">CustomElementBuilder</span><span class="p">(</span><span class="n">tag</span><span class="p">).</span><span class="n">apply</span><span class="p">(</span><span class="n">init</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -1042,7 +1054,7 @@
 <ul>
 <li>layoutID parameter - Form element layout name</li>
 <li>type parameter - Form element model class (ModelName::class.java)</li>
-<li>binder parameter: <ul>
+<li>binder parameter:<ul>
 <li>model is a form element instance model</li>
 <li>finder can find views or set fields of a view using its ID</li>
 <li>payloads can be replaced with "_" as it is not used</li>
@@ -1051,9 +1063,9 @@
 <li>viewStateProvider parameter - Form element view state provider</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">CustomViewBinder</span><span class="p">(</span><span class="k">private</span> <span class="k">val</span> <span class="py">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> 
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">CustomViewBinder</span><span class="p">(</span><span class="k">private</span> <span class="k">val</span> <span class="py">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span>
 <span class="k">private</span> <span class="k">val</span> <span class="py">formBuilder</span><span class="p">:</span> <span class="n">FormBuildHelper</span><span class="p">)</span> <span class="p">:</span> <span class="n">BaseFormViewBinder</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">var</span> <span class="py">viewBinder</span> <span class="p">=</span> <span class="n">ViewBinder</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">,</span> 
+    <span class="k">var</span> <span class="py">viewBinder</span> <span class="p">=</span> <span class="n">ViewBinder</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">,</span>
     <span class="n">FormCustomElement</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">,</span> <span class="p">{</span> <span class="n">model</span><span class="p">,</span> <span class="n">finder</span><span class="p">,</span> <span class="n">_</span> <span class="p">-&gt;</span>
         <span class="k">val</span> <span class="py">textViewTitle</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementTitle</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatTextView</span>
         <span class="k">val</span> <span class="py">textViewError</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementError</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatTextView</span>
@@ -1096,7 +1108,7 @@
 
                 <span class="c1">// trigger event only if the value is changed</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">currentValue</span> <span class="p">!=</span> <span class="n">newValue</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="c1">// NOTE: Use setValue() </span>
+                    <span class="c1">// NOTE: Use setValue()</span>
                     <span class="c1">// as this will suppress the unchecked cast</span>
                     <span class="n">model</span><span class="p">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">newValue</span><span class="p">)</span>
                     <span class="n">model</span><span class="p">.</span><span class="n">error</span> <span class="p">=</span> <span class="k">null</span>

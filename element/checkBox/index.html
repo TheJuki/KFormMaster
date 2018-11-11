@@ -348,6 +348,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-nav__link">
+      Migrate from Builders
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -898,7 +910,7 @@
                 <p>The CheckBox form element is used for a checkbox row.</p>
 <p><img alt="Example" src="../../images/CheckBox.PNG" /></p>
 <h2 id="checked-and-unchecked-values">Checked and UnChecked Values<a class="headerlink" href="#checked-and-unchecked-values" title="Permanent link">&para;</a></h2>
-<p>The value is set to checkedValue when checked. The value is set to unCheckedValue when unChecked. </p>
+<p>The value is set to checkedValue when checked. The value is set to unCheckedValue when unChecked.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">checkBox</span><span class="p">&lt;</span><span class="n">Boolean</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
@@ -911,11 +923,11 @@
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">CheckBoxBuilder</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">checkBox</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CheckBoxBuilder</span><span class="o">&lt;&gt;(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">FormCheckBoxElement</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">checkBox</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormCheckBoxElement</span><span class="o">&lt;&gt;(</span><span class="mi">1</span><span class="o">);</span>
 <span class="n">checkBox</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 <span class="n">checkBox</span><span class="o">.</span><span class="na">setCheckedValue</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 <span class="n">checkBox</span><span class="o">.</span><span class="na">setUnCheckedValue</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">checkBox</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">checkBox</span><span class="o">);</span>
 </pre></div>
                 
                   

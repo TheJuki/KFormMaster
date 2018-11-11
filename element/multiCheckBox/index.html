@@ -348,6 +348,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-nav__link">
+      Migrate from Builders
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -938,7 +950,7 @@ Setting this will override the alert dialog message when the options list is emp
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">dialogTitle</span> <span class="p">=</span> <span class="s">&quot;Pick one or more&quot;</span>
-    <span class="n">options</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span> 
+    <span class="n">options</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span>
                      <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Orange&quot;</span><span class="p">))</span>
     <span class="n">value</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">))</span>
 <span class="p">}</span>
@@ -947,12 +959,12 @@ Setting this will override the alert dialog message when the options list is emp
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">MultiCheckBoxBuilder</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ListItem</span><span class="o">&gt;&gt;</span> <span class="n">multiCheckBox</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MultiCheckBoxBuilder</span><span class="o">&lt;&gt;(</span><span class="n">Tag</span><span class="o">.</span><span class="na">MultiItems</span><span class="o">.</span><span class="na">ordinal</span><span class="o">());</span>
+<span class="n">FormPickerMultiCheckBoxElement</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ListItem</span><span class="o">&gt;&gt;</span> <span class="n">multiCheckBox</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormPickerMultiCheckBoxElement</span><span class="o">&lt;&gt;(</span><span class="n">Tag</span><span class="o">.</span><span class="na">MultiItems</span><span class="o">.</span><span class="na">ordinal</span><span class="o">());</span>
 <span class="n">multiCheckBox</span><span class="o">.</span><span class="na">setDialogTitle</span><span class="o">(</span><span class="s">&quot;Pick one or more&quot;</span><span class="o">);</span>
 <span class="n">multiCheckBox</span><span class="o">.</span><span class="na">setOptions</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span> <span class="n">ListItem</span><span class="o">(</span><span class="mi">1L</span><span class="o">,</span> <span class="s">&quot;Banana&quot;</span><span class="o">),</span>
     <span class="k">new</span> <span class="n">ListItem</span><span class="o">(</span><span class="mi">2L</span><span class="o">,</span> <span class="s">&quot;Orange&quot;</span><span class="o">)));</span>
 <span class="n">multiCheckBox</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="k">new</span> <span class="n">ListItem</span><span class="o">(</span><span class="mi">1L</span><span class="o">,</span> <span class="s">&quot;Banana&quot;</span><span class="o">)));</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">multiCheckBox</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">multiCheckBox</span><span class="o">);</span>
 </pre></div>
                 
                   

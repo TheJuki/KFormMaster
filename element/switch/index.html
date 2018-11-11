@@ -348,6 +348,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-nav__link">
+      Migrate from Builders
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -898,7 +910,7 @@
                 <p>The Switch form element is used for a toggle switch row.</p>
 <p><img alt="Example" src="../../images/Switch.PNG" /></p>
 <h2 id="on-and-off-values">On and Off Values<a class="headerlink" href="#on-and-off-values" title="Permanent link">&para;</a></h2>
-<p>The value is set to onValue when checked. The value is set to offValue when unChecked. </p>
+<p>The value is set to onValue when checked. The value is set to offValue when unChecked.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">switch</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
@@ -911,11 +923,11 @@
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">SwitchBuilder</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">switchElement</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwitchBuilder</span><span class="o">&lt;&gt;(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">FormSwitchElement</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">switchElement</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormSwitchElement</span><span class="o">&lt;&gt;(</span><span class="mi">1</span><span class="o">);</span>
 <span class="n">switchElement</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">&quot;Yes&quot;</span><span class="o">);</span>
 <span class="n">switchElement</span><span class="o">.</span><span class="na">setOnValue</span><span class="o">(</span><span class="s">&quot;Yes&quot;</span><span class="o">);</span>
 <span class="n">switchElement</span><span class="o">.</span><span class="na">setOffValue</span><span class="o">(</span><span class="s">&quot;No&quot;</span><span class="o">);</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">switchElement</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">switchElement</span><span class="o">);</span>
 </pre></div>
                 
                   

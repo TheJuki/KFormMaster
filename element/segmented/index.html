@@ -348,6 +348,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-nav__link">
+      Migrate from Builders
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1132,7 +1144,7 @@ Setting this will set the padding for each radio button.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">segmented</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">options</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span> 
+    <span class="n">options</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span>
                      <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Orange&quot;</span><span class="p">))</span>
     <span class="n">value</span> <span class="p">=</span> <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">)</span>
 <span class="p">}</span>
@@ -1140,11 +1152,12 @@ Setting this will set the padding for each radio button.</p>
 
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">SegmentedBuilder</span><span class="o">&lt;</span><span class="n">ListItem</span><span class="o">&gt;</span> <span class="n">segmented</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SegmentedBuilder</span><span class="o">&lt;&gt;(</span><span class="mi">1</span><span class="o">);</span>
+<div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">FormSegmentedElement</span><span class="o">&lt;</span><span class="n">ListItem</span><span class="o">&gt;</span> <span class="n">segmented</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormSegmentedElement</span><span class="o">&lt;&gt;(</span><span class="mi">1</span><span class="o">);</span>
 <span class="n">segmented</span><span class="o">.</span><span class="na">setOptions</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span> <span class="n">ListItem</span><span class="o">(</span><span class="mi">1L</span><span class="o">,</span> <span class="s">&quot;Banana&quot;</span><span class="o">),</span>
     <span class="k">new</span> <span class="n">ListItem</span><span class="o">(</span><span class="mi">2L</span><span class="o">,</span> <span class="s">&quot;Orange&quot;</span><span class="o">)));</span>
 <span class="n">segmented</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="k">new</span> <span class="n">ListItem</span><span class="o">(</span><span class="mi">1L</span><span class="o">,</span> <span class="s">&quot;Banana&quot;</span><span class="o">));</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">segmented</span><span class="o">.</span><span class="na">build</span><span class="o">());</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">segmented</span><span class="o">);</span>
 </pre></div>
                 
                   
