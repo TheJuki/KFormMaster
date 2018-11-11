@@ -1,18 +1,9 @@
 package com.thejuki.kformmaster.helper
 
 import android.content.Context
-import android.text.InputType
-import android.view.inputmethod.EditorInfo
-import android.widget.ArrayAdapter
-import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.*
-import com.thejuki.kformmaster.widget.FormElementMargins
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * Form Builder
@@ -45,1043 +36,113 @@ fun form(context: Context,
     return form
 }
 
-/** FieldBuilder interface */
-@FormDsl
-interface FieldBuilder {
-    fun build(): BaseFormElement<*>
-}
-
-/** Builder method to add a FormHeader */
-class HeaderBuilder(var title: String = "") : FieldBuilder {
-    var collapsible: Boolean = false
-    var tag: Int = -1
-    var margins: FormElementMargins? = null
-    @ColorInt
-    var backgroundColor: Int? = null
-    @ColorInt
-    var titleTextColor: Int? = null
-    var centerText: Boolean = false
-    var rightToLeft: Boolean = true
-    override fun build() =
-            FormHeader(tag).apply {
-                this@HeaderBuilder.let {
-                    title = it.title
-                    collapsible = it.collapsible
-                    margins = it.margins
-                    rightToLeft = it.rightToLeft
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    titleTextColor = it.titleTextColor
-                    centerText = it.centerText
-                }
-            }
-}
-
 /** FormBuildHelper extension to add a FormHeader */
-fun FormBuildHelper.header(init: HeaderBuilder.() -> Unit): FormHeader {
-    return addFormElement(HeaderBuilder().apply(init).build())
-}
-
-/** Builder method to add a BaseFormElement */
-@FormDsl
-abstract class BaseElementBuilder<T>(protected val tag: Int = -1, var title: String? = null) : FieldBuilder {
-    /**
-     * Form Element Value
-     */
-    var value: T? = null
-
-    /**
-     * Form Element Hint
-     */
-    var hint: String? = null
-
-    /**
-     * Form Element RTL
-     */
-    var rightToLeft: Boolean = true
-
-    /**
-     * Form Element Max Length
-     */
-    var maxLength: Int? = null
-
-    /**
-     * Form Element Max Lines
-     */
-    var maxLines: Int = 1
-
-    /**
-     * Form Element Error
-     */
-    var error: String? = null
-
-    /**
-     * Form Element Required
-     */
-    var required: Boolean = false
-
-    /**
-     * Form Element Clearable
-     * Setting this to true will display a clear button (X) to set the value to null.
-     */
-    var clearable: Boolean = false
-
-    /**
-     * Form Element Clear on Focus
-     * Setting this to true will clear the text value of the form element when focused.
-     */
-    var clearOnFocus: Boolean = false
-
-    /**
-     * Form Element Display divider line before the element
-     */
-    var displayDivider: Boolean = true
-
-    /**
-     * Form Element Display Title besides the value field
-     */
-    var displayTitle: Boolean = true
-
-    /**
-     * Form Element layout Padding Bottom (DP)
-     * By default, this will use android:paddingBottom in the XML
-     */
-    var layoutPaddingBottom: Int? = null
-
-    /**
-     * Form Element Margins (DP)
-     * By default, this will use layout_margin values in the XML
-     */
-    var margins: FormElementMargins? = null
-
-    /**
-     * Form Element Confirm Edit dialog should be shown before editing an element
-     */
-    var confirmEdit: Boolean = false
-
-    /**
-     * Form Element Confirm Edit dialog title
-     */
-    var confirmTitle: String? = null
-
-    /**
-     * Form Element Confirm Edit dialog message
-     */
-    var confirmMessage: String? = null
-
-    /**
-     * Form Element Center the text
-     */
-    var centerText: Boolean = false
-
-    /**
-     * Form Element Visibility
-     */
-    var visible: Boolean = true
-
-    /**
-     * Form Element Enabled
-     */
-    var enabled: Boolean = true
-
-    /**
-     * Form Element [InputType]
-     */
-    var inputType: Int? = null
-
-    /**
-     * Form Element [EditorInfo] imeOptions
-     */
-    var imeOptions: Int? = null
-
-    /**
-     * Form Element Update EditText value when focus is lost
-     * By default, an EditText will update the form value as characters are typed.
-     * Setting this to true will only update the value when focus is lost.
-     */
-    var updateOnFocusChange: Boolean = false
-
-    /**
-     * Form Element Value Observers
-     */
-    val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
-
-    /**
-     * Form Element Background Color
-     */
-    @ColorInt
-    var backgroundColor: Int? = null
-
-    /**
-     * Form Element Hint Text Color
-     */
-    @ColorInt
-    var hintTextColor: Int? = null
-
-    /**
-     * Form Element Title Text Color
-     */
-    @ColorInt
-    var titleTextColor: Int? = null
-
-    /**
-     * Form Element Title Text Color (When Focused)
-     */
-    @ColorInt
-    var titleFocusedTextColor: Int? = null
-
-    /**
-     * Form Element Value Text Color
-     */
-    @ColorInt
-    var valueTextColor: Int? = null
-
-    /**
-     * Form Element Error Text Color
-     */
-    @ColorInt
-    var errorTextColor: Int? = null
-}
-
-/** Builder method to add a FormSingleLineEditTextElement */
-class SingleLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
-    override fun build() =
-            FormSingleLineEditTextElement(tag).apply {
-                this@SingleLineEditTextBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    maxLength = it.maxLength
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    inputType = it.inputType
-                    imeOptions = it.imeOptions
-                    clearable = it.clearable
-                    clearOnFocus = it.clearOnFocus
-                    centerText = it.centerText
-                    updateOnFocusChange = it.updateOnFocusChange
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun FormBuildHelper.header(init: FormHeader.() -> Unit): FormHeader {
+    return addFormElement(FormHeader().apply(init))
 }
 
 /** FormBuildHelper extension to add a FormSingleLineEditTextElement */
-fun FormBuildHelper.text(tag: Int = -1, init: SingleLineEditTextBuilder.() -> Unit): FormSingleLineEditTextElement {
-    return addFormElement(SingleLineEditTextBuilder(tag).apply(init).build())
-}
-
-/** Builder method to add a FormMultiLineEditTextElement */
-class MultiLineEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
-    override fun build() =
-            FormMultiLineEditTextElement(tag).apply {
-                this@MultiLineEditTextBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    maxLength = it.maxLength
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    inputType = it.inputType
-                    imeOptions = it.imeOptions
-                    clearable = it.clearable
-                    clearOnFocus = it.clearOnFocus
-                    centerText = it.centerText
-                    updateOnFocusChange = it.updateOnFocusChange
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun FormBuildHelper.text(tag: Int = -1, init: FormSingleLineEditTextElement.() -> Unit): FormSingleLineEditTextElement {
+    return addFormElement(FormSingleLineEditTextElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormMultiLineEditTextElement */
-fun FormBuildHelper.textArea(tag: Int = -1, init: MultiLineEditTextBuilder.() -> Unit): FormMultiLineEditTextElement {
-    return addFormElement(MultiLineEditTextBuilder(tag).apply(init).build())
-}
-
-/** Builder method to add a FormNumberEditTextElement */
-class NumberEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
-    var numbersOnly: Boolean = false
-    override fun build() =
-            FormNumberEditTextElement(tag).apply {
-                this@NumberEditTextBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    maxLength = it.maxLength
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    numbersOnly = it.numbersOnly
-                    inputType = it.inputType
-                    imeOptions = it.imeOptions
-                    clearable = it.clearable
-                    clearOnFocus = it.clearOnFocus
-                    centerText = it.centerText
-                    updateOnFocusChange = it.updateOnFocusChange
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun FormBuildHelper.textArea(tag: Int = -1, init: FormMultiLineEditTextElement.() -> Unit): FormMultiLineEditTextElement {
+    return addFormElement(FormMultiLineEditTextElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormNumberEditTextElement */
-fun FormBuildHelper.number(tag: Int = -1, init: NumberEditTextBuilder.() -> Unit): FormNumberEditTextElement {
-    return addFormElement(NumberEditTextBuilder(tag).apply(init).build())
-}
-
-/** Builder method to add a FormEmailEditTextElement */
-class EmailEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
-    override fun build() =
-            FormEmailEditTextElement(tag).apply {
-                this@EmailEditTextBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    maxLength = it.maxLength
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    inputType = it.inputType
-                    imeOptions = it.imeOptions
-                    clearable = it.clearable
-                    clearOnFocus = it.clearOnFocus
-                    centerText = it.centerText
-                    updateOnFocusChange = it.updateOnFocusChange
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun FormBuildHelper.number(tag: Int = -1, init: FormNumberEditTextElement.() -> Unit): FormNumberEditTextElement {
+    return addFormElement(FormNumberEditTextElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormEmailEditTextElement */
-fun FormBuildHelper.email(tag: Int = -1, init: EmailEditTextBuilder.() -> Unit): FormEmailEditTextElement {
-    return addFormElement(EmailEditTextBuilder(tag).apply(init).build())
+fun FormBuildHelper.email(tag: Int = -1, init: FormEmailEditTextElement.() -> Unit): FormEmailEditTextElement {
+    return addFormElement(FormEmailEditTextElement(tag).apply(init))
 }
 
-/** Builder method to add a FormPhoneEditTextElement */
-class PasswordEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
-    override fun build() =
-            FormPasswordEditTextElement(tag).apply {
-                this@PasswordEditTextBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    maxLength = it.maxLength
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    inputType = it.inputType
-                    imeOptions = it.imeOptions
-                    clearable = it.clearable
-                    clearOnFocus = it.clearOnFocus
-                    centerText = it.centerText
-                    updateOnFocusChange = it.updateOnFocusChange
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
-}
-
-/** FormBuildHelper extension to add a PasswordEditTextBuilder */
-fun FormBuildHelper.password(tag: Int = -1, init: PasswordEditTextBuilder.() -> Unit): FormPasswordEditTextElement {
-    return addFormElement(PasswordEditTextBuilder(tag).apply(init).build())
-}
-
-/** Builder method to add a FormEmailEditTextElement */
-class PhoneEditTextBuilder(tag: Int = -1) : BaseElementBuilder<String>(tag) {
-    override fun build() =
-            FormPhoneEditTextElement(tag).apply {
-                this@PhoneEditTextBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    maxLength = it.maxLength
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    inputType = it.inputType
-                    imeOptions = it.imeOptions
-                    clearable = it.clearable
-                    clearOnFocus = it.clearOnFocus
-                    centerText = it.centerText
-                    updateOnFocusChange = it.updateOnFocusChange
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+/** FormBuildHelper extension to add a FormPasswordEditTextElement */
+fun FormBuildHelper.password(tag: Int = -1, init: FormPasswordEditTextElement.() -> Unit): FormPasswordEditTextElement {
+    return addFormElement(FormPasswordEditTextElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormPhoneEditTextElement */
-fun FormBuildHelper.phone(tag: Int = -1, init: PhoneEditTextBuilder.() -> Unit): FormPhoneEditTextElement {
-    return addFormElement(PhoneEditTextBuilder(tag).apply(init).build())
-}
-
-/** Builder method to add a FormAutoCompleteElement */
-class AutoCompleteBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
-    var arrayAdapter: ArrayAdapter<*>? = null
-    var dropdownWidth: Int? = null
-    var options: List<T>? = null
-    override fun build() =
-            FormAutoCompleteElement<T>(tag).apply {
-                this@AutoCompleteBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    arrayAdapter = it.arrayAdapter
-                    dropdownWidth = it.dropdownWidth
-                    options = it.options
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun FormBuildHelper.phone(tag: Int = -1, init: FormPhoneEditTextElement.() -> Unit): FormPhoneEditTextElement {
+    return addFormElement(FormPhoneEditTextElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormAutoCompleteElement */
-fun <T> FormBuildHelper.autoComplete(tag: Int = -1, init: AutoCompleteBuilder<T>.() -> Unit): FormAutoCompleteElement<T> {
-    return addFormElement(AutoCompleteBuilder<T>(tag).apply(init).build())
-}
-
-/** Builder method to add a FormTokenAutoCompleteElement */
-class AutoCompleteTokenBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
-    var arrayAdapter: ArrayAdapter<*>? = null
-    var dropdownWidth: Int? = null
-    var options: T? = null
-    override fun build() =
-            FormTokenAutoCompleteElement<T>(tag).apply {
-                this@AutoCompleteTokenBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    arrayAdapter = it.arrayAdapter
-                    dropdownWidth = it.dropdownWidth
-                    options = it.options
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun <T> FormBuildHelper.autoComplete(tag: Int = -1, init: FormAutoCompleteElement<T>.() -> Unit): FormAutoCompleteElement<T> {
+    return addFormElement(FormAutoCompleteElement<T>(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormTokenAutoCompleteElement */
-fun <T : List<*>> FormBuildHelper.autoCompleteToken(tag: Int = -1, init: AutoCompleteTokenBuilder<T>.() -> Unit): FormTokenAutoCompleteElement<T> {
-    return addFormElement(AutoCompleteTokenBuilder<T>(tag).apply(init).build())
-}
-
-/** Builder method to add a FormButtonElement */
-class ButtonBuilder(val tag: Int = -1) : FieldBuilder {
-    var value: String? = null
-    var visible: Boolean = true
-    var enabled: Boolean = true
-    var displayDivider: Boolean = true
-    val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
-    @ColorInt
-    var backgroundColor: Int? = null
-    @ColorInt
-    var valueTextColor: Int? = null
-
-    override fun build() =
-            FormButtonElement(tag).apply {
-                this@ButtonBuilder.let {
-                    value = it.value
-                    displayDivider = it.displayDivider
-                    enabled = it.enabled
-                    visible = it.visible
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    valueTextColor = it.valueTextColor
-                }
-            }
+fun <T : List<*>> FormBuildHelper.autoCompleteToken(tag: Int = -1, init: FormTokenAutoCompleteElement<T>.() -> Unit): FormTokenAutoCompleteElement<T> {
+    return addFormElement(FormTokenAutoCompleteElement<T>(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormButtonElement */
-fun FormBuildHelper.button(tag: Int = -1, init: ButtonBuilder.() -> Unit): FormButtonElement {
-    return addFormElement(ButtonBuilder(tag).apply(init).build())
-}
-
-/** Builder method to add a FormPickerDateElement */
-class DateBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateElement.DateHolder>(tag) {
-    var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
-    var dateValue: Date? = null
-    override fun build() =
-            FormPickerDateElement(tag).apply {
-                this@DateBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value ?: FormPickerDateElement.DateHolder(it.dateValue, it.dateFormat)
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    confirmEdit = it.confirmEdit
-                    confirmTitle = it.confirmTitle
-                    confirmMessage = it.confirmMessage
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    clearable = it.clearable
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun FormBuildHelper.button(tag: Int = -1, init: FormButtonElement.() -> Unit): FormButtonElement {
+    return addFormElement(FormButtonElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormPickerDateElement */
-fun FormBuildHelper.date(tag: Int = -1, init: DateBuilder.() -> Unit): FormPickerDateElement {
-    return addFormElement(DateBuilder(tag).apply(init).build())
-}
-
-/** Builder method to add a FormPickerTimeElement */
-class TimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerTimeElement.TimeHolder>(tag) {
-    var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
-    var dateValue: Date? = null
-    override fun build() =
-            FormPickerTimeElement(tag).apply {
-                this@TimeBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value ?: FormPickerTimeElement.TimeHolder(it.dateValue, it.dateFormat)
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    confirmEdit = it.confirmEdit
-                    confirmTitle = it.confirmTitle
-                    confirmMessage = it.confirmMessage
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    clearable = it.clearable
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun FormBuildHelper.date(tag: Int = -1, init: FormPickerDateElement.() -> Unit): FormPickerDateElement {
+    val element = addFormElement(FormPickerDateElement(tag).apply(init))
+    element.value = element.value ?: FormPickerDateElement.DateHolder(element.dateValue, element.dateFormat)
+    return element
 }
 
 /** FormBuildHelper extension to add a FormPickerTimeElement */
-fun FormBuildHelper.time(tag: Int = -1, init: TimeBuilder.() -> Unit): FormPickerTimeElement {
-    return addFormElement(TimeBuilder(tag).apply(init).build())
-}
-
-/** Builder method to add a FormButtonElement */
-class DateTimeBuilder(tag: Int = -1) : BaseElementBuilder<FormPickerDateTimeElement.DateTimeHolder>(tag) {
-    var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
-    var dateValue: Date? = null
-    override fun build() =
-            FormPickerDateTimeElement(tag).apply {
-                this@DateTimeBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value ?: FormPickerDateTimeElement.DateTimeHolder(it.dateValue, it.dateFormat)
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    confirmEdit = it.confirmEdit
-                    confirmTitle = it.confirmTitle
-                    confirmMessage = it.confirmMessage
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    clearable = it.clearable
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun FormBuildHelper.time(tag: Int = -1, init: FormPickerTimeElement.() -> Unit): FormPickerTimeElement {
+    val element = addFormElement(FormPickerTimeElement(tag).apply(init))
+    element.value = element.value ?: FormPickerTimeElement.TimeHolder(element.dateValue, element.dateFormat)
+    return element
 }
 
 /** FormBuildHelper extension to add a FormPickerDateTimeElement */
-fun FormBuildHelper.dateTime(tag: Int = -1, init: DateTimeBuilder.() -> Unit): FormPickerDateTimeElement {
-    return addFormElement(DateTimeBuilder(tag).apply(init).build())
-}
-
-/** Builder method to add a FormPickerDropDownElement */
-class DropDownBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
-    var dialogTitle: String? = null
-    var dialogEmptyMessage: String? = null
-    var arrayAdapter: ArrayAdapter<*>? = null
-    var options: List<T>? = null
-    var displayRadioButtons: Boolean = false
-    override fun build() =
-            FormPickerDropDownElement<T>(tag).apply {
-                this@DropDownBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    confirmEdit = it.confirmEdit
-                    confirmTitle = it.confirmTitle
-                    confirmMessage = it.confirmMessage
-                    enabled = it.enabled
-                    visible = it.visible
-                    options = it.options ?: ArrayList()
-                    dialogTitle = it.dialogTitle
-                    dialogEmptyMessage = it.dialogEmptyMessage
-                    arrayAdapter = it.arrayAdapter
-                    clearable = it.clearable
-                    displayRadioButtons = it.displayRadioButtons
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun FormBuildHelper.dateTime(tag: Int = -1, init: FormPickerDateTimeElement.() -> Unit): FormPickerDateTimeElement {
+    val element = addFormElement(FormPickerDateTimeElement(tag).apply(init))
+    element.value = element.value ?: FormPickerDateTimeElement.DateTimeHolder(element.dateValue, element.dateFormat)
+    return element
 }
 
 /** FormBuildHelper extension to add a FormPickerDropDownElement */
-fun <T> FormBuildHelper.dropDown(tag: Int = -1, init: DropDownBuilder<T>.() -> Unit): FormPickerDropDownElement<T> {
-    return addFormElement(DropDownBuilder<T>(tag).apply(init).build())
-}
-
-/** Builder method to add a FormPickerMultiCheckBoxElement */
-class MultiCheckBoxBuilder<T : List<*>>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
-    var dialogTitle: String? = null
-    var dialogEmptyMessage: String? = null
-    var options: T? = null
-    override fun build() =
-            FormPickerMultiCheckBoxElement<T>(tag).apply {
-                this@MultiCheckBoxBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    hint = it.hint
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    error = it.error
-                    required = it.required
-                    confirmEdit = it.confirmEdit
-                    confirmTitle = it.confirmTitle
-                    confirmMessage = it.confirmMessage
-                    enabled = it.enabled
-                    visible = it.visible
-                    options = it.options
-                    dialogTitle = it.dialogTitle
-                    clearable = it.clearable
-                    dialogEmptyMessage = it.dialogEmptyMessage
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    hintTextColor = it.hintTextColor
-                    titleTextColor = it.titleTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun <T> FormBuildHelper.dropDown(tag: Int = -1, init: FormPickerDropDownElement<T>.() -> Unit): FormPickerDropDownElement<T> {
+    return addFormElement(FormPickerDropDownElement<T>(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormPickerMultiCheckBoxElement */
-fun <T : List<*>> FormBuildHelper.multiCheckBox(tag: Int = -1, init: MultiCheckBoxBuilder<T>.() -> Unit): FormPickerMultiCheckBoxElement<T> {
-    return addFormElement(MultiCheckBoxBuilder<T>(tag).apply(init).build())
-}
-
-/** Builder method to add a FormSegmentedElement */
-class SegmentedBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
-    var options: List<T>? = null
-    var horizontal: Boolean = true
-    var fillSpace: Boolean = false
-
-    /**
-     * SegmentedGroup properties
-     */
-    var marginDp: Int? = null
-    @ColorInt
-    var tintColor: Int? = null
-    @ColorInt
-    var unCheckedTintColor: Int? = null
-    @ColorInt
-    var checkedTextColor: Int? = null
-    var cornerRadius: Float? = null
-    // Text Size (In SP)
-    var textSize: Float? = null
-    var padding: Int? = null
-    var drawableDirection: FormSegmentedElement.DrawableDirection = FormSegmentedElement.DrawableDirection.Top
-
-    override fun build() =
-            FormSegmentedElement<T>(tag).apply {
-                this@SegmentedBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    rightToLeft = it.rightToLeft
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    horizontal = it.horizontal
-                    fillSpace = it.fillSpace
-
-                    drawableDirection = it.drawableDirection
-                    marginDp = it.marginDp
-                    tintColor = it.tintColor
-                    unCheckedTintColor = it.unCheckedTintColor
-                    checkedTextColor = it.checkedTextColor
-                    cornerRadius = it.cornerRadius
-                    textSize = it.textSize
-                    padding = it.padding
-
-                    options = it.options ?: ArrayList()
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    titleTextColor = it.titleTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun <T : List<*>> FormBuildHelper.multiCheckBox(tag: Int = -1, init: FormPickerMultiCheckBoxElement<T>.() -> Unit): FormPickerMultiCheckBoxElement<T> {
+    return addFormElement(FormPickerMultiCheckBoxElement<T>(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormSegmentedElement */
-fun <T> FormBuildHelper.segmented(tag: Int = -1, init: SegmentedBuilder<T>.() -> Unit): FormSegmentedElement<T> {
-    return addFormElement(SegmentedBuilder<T>(tag).apply(init).build())
-}
-
-/** Builder method to add a FormSwitchElement */
-class SwitchBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
-    var onValue: T? = null
-    var offValue: T? = null
-    override fun build() =
-            FormSwitchElement<T>(tag).apply {
-                this@SwitchBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    onValue = it.onValue
-                    offValue = it.offValue
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    titleTextColor = it.titleTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun <T> FormBuildHelper.segmented(tag: Int = -1, init: FormSegmentedElement<T>.() -> Unit): FormSegmentedElement<T> {
+    return addFormElement(FormSegmentedElement<T>(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormSwitchElement */
-fun <T> FormBuildHelper.switch(tag: Int = -1, init: SwitchBuilder<T>.() -> Unit): FormSwitchElement<T> {
-    return addFormElement(SwitchBuilder<T>(tag).apply(init).build())
-}
-
-/** Builder method to add a FormCheckBoxElement */
-class CheckBoxBuilder<T>(tag: Int = -1) : BaseElementBuilder<T>(tag) {
-    var checkedValue: T? = null
-    var unCheckedValue: T? = null
-    override fun build() =
-            FormCheckBoxElement<T>(tag).apply {
-                this@CheckBoxBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    checkedValue = it.checkedValue
-                    unCheckedValue = it.unCheckedValue
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    titleTextColor = it.titleTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun <T> FormBuildHelper.switch(tag: Int = -1, init: FormSwitchElement<T>.() -> Unit): FormSwitchElement<T> {
+    return addFormElement(FormSwitchElement<T>(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormCheckBoxElement */
-fun <T> FormBuildHelper.checkBox(tag: Int = -1, init: CheckBoxBuilder<T>.() -> Unit): FormCheckBoxElement<T> {
-    return addFormElement(CheckBoxBuilder<T>(tag).apply(init).build())
-}
-
-/** Builder method to add a FormSliderElement */
-class SliderBuilder(tag: Int = -1) : BaseElementBuilder<Int>(tag) {
-    var max: Int = 100
-    var min: Int = 0
-    var steps: Int? = null
-    var incrementBy: Int? = null
-    override fun build() =
-            FormSliderElement(tag).apply {
-                this@SliderBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    error = it.error
-                    required = it.required
-                    enabled = it.enabled
-                    visible = it.visible
-                    max = it.max
-                    min = it.min
-                    steps = it.steps
-                    incrementBy = it.incrementBy
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    titleTextColor = it.titleTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun <T> FormBuildHelper.checkBox(tag: Int = -1, init: FormCheckBoxElement<T>.() -> Unit): FormCheckBoxElement<T> {
+    return addFormElement(FormCheckBoxElement<T>(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormSliderElement */
-fun FormBuildHelper.slider(tag: Int = -1, init: SliderBuilder.() -> Unit): FormSliderElement {
-    return addFormElement(SliderBuilder(tag).apply(init).build())
-}
-
-class LabelBuilder(val tag: Int = -1) : FieldBuilder {
-    var title: String? = null
-    var visible: Boolean = true
-    var rightToLeft: Boolean = true
-    var displayDivider: Boolean = true
-    @ColorInt
-    var backgroundColor: Int? = null
-    @ColorInt
-    var titleTextColor: Int? = null
-    @ColorInt
-    var valueTextColor: Int? = null
-    @ColorInt
-    var errorTextColor: Int? = null
-
-    var layoutPaddingBottom: Int? = null
-    var margins: FormElementMargins? = null
-    var centerText: Boolean = false
-
-    override fun build() =
-            FormLabelElement(tag).apply {
-                this@LabelBuilder.let {
-                    title = it.title.orEmpty()
-                    visible = it.visible
-                    displayDivider = it.displayDivider
-                    rightToLeft = it.rightToLeft
-                    centerText = it.centerText
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    titleTextColor = it.titleTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                }
-            }
+fun FormBuildHelper.slider(tag: Int = -1, init: FormSliderElement.() -> Unit): FormSliderElement {
+    return addFormElement(FormSliderElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormLabelElement */
-fun FormBuildHelper.label(tag: Int = -1, init: LabelBuilder.() -> Unit): FormLabelElement {
-    return addFormElement(LabelBuilder(tag).apply(init).build())
-}
-
-class TextViewBuilder(val tag: Int = -1) : FieldBuilder {
-    var title: String? = null
-    var value: String? = null
-    var visible: Boolean = true
-    var rightToLeft: Boolean = true
-    var displayTitle: Boolean = true
-    var maxLines: Int = 1
-    var displayDivider: Boolean = true
-    val valueObservers = mutableListOf<(value: String?, element: BaseFormElement<String>) -> Unit>()
-
-    @ColorInt
-    var backgroundColor: Int? = null
-    @ColorInt
-    var titleTextColor: Int? = null
-    @ColorInt
-    var titleFocusedTextColor: Int? = null
-    @ColorInt
-    var valueTextColor: Int? = null
-    @ColorInt
-    var errorTextColor: Int? = null
-
-    var layoutPaddingBottom: Int? = null
-    var margins: FormElementMargins? = null
-
-    override fun build() =
-            FormTextViewElement(tag).apply {
-                this@TextViewBuilder.let {
-                    title = it.title.orEmpty()
-                    value = it.value
-                    visible = it.visible
-                    displayDivider = it.displayDivider
-                    displayTitle = it.displayTitle
-                    layoutPaddingBottom = it.layoutPaddingBottom
-                    margins = it.margins
-                    rightToLeft = it.rightToLeft
-                    maxLines = it.maxLines
-                    valueObservers.addAll(it.valueObservers)
-                    // Colors
-                    backgroundColor = it.backgroundColor
-                    titleTextColor = it.titleTextColor
-                    titleFocusedTextColor = it.titleFocusedTextColor
-                    valueTextColor = it.valueTextColor
-                    errorTextColor = it.errorTextColor
-                }
-            }
+fun FormBuildHelper.label(tag: Int = -1, init: FormLabelElement.() -> Unit): FormLabelElement {
+    return addFormElement(FormLabelElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormTextViewElement */
-fun FormBuildHelper.textView(tag: Int = -1, init: TextViewBuilder.() -> Unit): FormTextViewElement {
-    return addFormElement(TextViewBuilder(tag).apply(init).build())
+fun FormBuildHelper.textView(tag: Int = -1, init: FormTextViewElement.() -> Unit): FormTextViewElement {
+    return addFormElement(FormTextViewElement(tag).apply(init))
 }
-
-

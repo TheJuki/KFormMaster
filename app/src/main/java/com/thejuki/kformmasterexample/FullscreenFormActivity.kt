@@ -100,8 +100,8 @@ class FullscreenFormActivity : AppCompatActivity() {
 
     private fun showHideAll() {
         formBuilder.elements.forEach {
-            if (it !is FormHeader) {
-                it.visible = !it.visible
+            if (it is FormHeader) {
+                it.setAllCollapsed(!it.allCollapsed, formBuilder)
             }
         }
     }
@@ -184,6 +184,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 backgroundColor = Color.parseColor("#DDDDDD")
                 titleTextColor = Color.BLACK
                 centerText = true
+                allCollapsed = false
             }
             email(Email.ordinal) {
                 title = getString(R.string.email)
@@ -191,7 +192,6 @@ class FullscreenFormActivity : AppCompatActivity() {
                 displayDivider = false
                 hint = getString(R.string.email_hint)
                 value = "mail@mail.com"
-                rightToLeft = false
                 maxLines = 3
                 maxLength = 100
                 backgroundColor = Color.WHITE

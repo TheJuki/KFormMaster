@@ -5,6 +5,7 @@ The AutoCompleteToken form element is used for an AutoComplete row with multiple
 ![Example](/images/TokenAutocomplete2.PNG)
 
 ## Array Adapter
+
 Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.
 
 !!! note "NOTICE"
@@ -19,7 +20,9 @@ autoCompleteToken<List<ContactItem>>(1) {
 ```
 
 ## Dropdown Width
+
 This is the width of the dropdown list. ViewGroup.LayoutParams.MATCH_PARENT will use the form's width.
+
 ```kotlin
 autoCompleteToken<List<ContactItem>>(1) {
     dropdownWidth = ViewGroup.LayoutParams.MATCH_PARENT
@@ -29,6 +32,7 @@ autoCompleteToken<List<ContactItem>>(1) {
 ## Example
 
 ### Kotlin
+
 ```kotlin
 autoCompleteToken<List<ContactItem>>(1) {
     arrayAdapter = EmailAutoCompleteAdapter(this@FormActivity,
@@ -39,11 +43,12 @@ autoCompleteToken<List<ContactItem>>(1) {
 ```
 
 ### Java
+
 ```java
 List<BaseFormElement<?>> elements = new ArrayList<>();
-AutoCompleteTokenBuilder<List<ContactItem>> autoCompleteToken = new AutoCompleteTokenBuilder<>(1);
+FormTokenAutoCompleteElement<List<ContactItem>> autoCompleteToken = new FormTokenAutoCompleteElement<>(1);
 autoCompleteToken.setArrayAdapter(new EmailAutoCompleteAdapter(this,
     android.R.layout.simple_list_item_1));
 autoCompleteToken.setDropdownWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-elements.add(autoCompleteToken.build());
+elements.add(autoCompleteToken);
 ```

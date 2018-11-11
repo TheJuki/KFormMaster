@@ -38,6 +38,7 @@ nav:
   - Home: 
     - 'Getting Started': 'index.md'
     - 'Form Build Helper': 'helper.md'
+    - 'Migrate from Builders': 'migrateBuilder.md'
   - Form Elements:
     - 'Base': 'element/base.md'
     - 'Header': 'element/header.md'

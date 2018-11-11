@@ -10,9 +10,9 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 29
-        versionName "5.1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode 31
+        versionName "6.1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -84,7 +84,7 @@ ext {
     testExtJunitVersion = '1.0.0-beta02'
     testExpressoVersion = '3.1.0-beta02'
     kotlintestVersion = '2.0.7'
-    mockitoVersion = '2.15.0'
+    mockitoVersion = '2.23.0'
 }
 
 dependencies {
@@ -108,7 +108,7 @@ dependencies {
 }
 
 publish {
-    version = "5.1.0"
+    version = "6.1.0"
     group = "com.thejuki"
     userOrg = 'thejuki'
     artifactId = 'k-form-master'

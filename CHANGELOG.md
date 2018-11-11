@@ -1,5 +1,16 @@
 # Change Log
 
+## [6.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.0.0)
+- #72 The Form Header can now collapse elements when initialized or later 
+- Removed Form Element Builder Classes
+- Migration Guide: https://thejuki.github.io/KFormMaster/migrateBuilder/
+
+## [5.0.7](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.7)
+- #63 Fix dropDown valueChangedListener
+- #64 Fix Segmented control value
+- #65 Add backgroundColor and titleColor to header element
+- #66 Add centerText to base form element
+
 ## [5.0.6](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.6)
 - #62 Add ability to center a drawable in the FormSegmentedElement radio buttons
 

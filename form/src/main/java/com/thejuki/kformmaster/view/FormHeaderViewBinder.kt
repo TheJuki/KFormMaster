@@ -28,19 +28,13 @@ class FormHeaderViewBinder(private val context: Context, private val formBuilder
         val itemView = finder.getRootView() as View
         baseSetup(model, null, textViewTitle, null, itemView, null)
 
+        if (model.allCollapsed) {
+            model.setAllCollapsed(model.allCollapsed, formBuilder)
+        }
+
         itemView.setOnClickListener {
             if (model.collapsible) {
-                model.allCollapsed = !model.allCollapsed
-
-                val index = formBuilder.elements.indexOf(model) + 1
-                if (index != formBuilder.elements.size) {
-                    for (i in index until formBuilder.elements.size) {
-                        if (formBuilder.elements[i] is FormHeader) {
-                            break
-                        }
-                        formBuilder.elements[i].visible = !model.allCollapsed
-                    }
-                }
+                model.setAllCollapsed(!model.allCollapsed, formBuilder)
             }
         }
 
