@@ -1,5 +1,10 @@
 # Change Log
 
+## [6.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.0.0)
+- #72 The Form Header can now collapse elements when initialized or later 
+- Removed Form Element Builder Classes
+- Migration Guide: https://thejuki.github.io/KFormMaster/migrateBuilder/
+
 ## [5.0.7](https://github.com/TheJuki/KFormMaster/releases/tag/5.0.7)
 - #63 Fix dropDown valueChangedListener
 - #64 Fix Segmented control value
