@@ -32,6 +32,9 @@ class FormHeader(tag: Int = -1, title: String? = null) : BaseFormElement<String>
      */
     var allCollapsed: Boolean = false
 
+    /**
+     * Collapse or Uncollapse all elements under the header until the next header
+     */
     fun setAllCollapsed(collapse: Boolean, formBuilder: FormBuildHelper) {
         this.allCollapsed = collapse
 
