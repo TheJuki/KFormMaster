@@ -80,7 +80,7 @@ ext {
     tokenautocompleteVersion = '2.0.8'
     junitVersion = '4.12'
     testRunnerVersion = '1.0.2'
-    testExpressoVersion = '3.0.1'
+    testExpressoVersion = '3.0.2'
     kotlintestVersion = '2.0.7'
     mockitoVersion = '2.23.0'
 }
