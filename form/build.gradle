@@ -12,7 +12,7 @@ android {
         targetSdkVersion 28
         versionCode 31
         versionName "6.1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -80,9 +80,9 @@ ext {
     rendererRecyclerViewAdapterVersion = '2.7.0-SNAPSHOT'
     tokenautocompleteVersion = '2.0.8'
     junitVersion = '4.12'
-    testRulesVersion = '1.1.0-beta02'
-    testExtJunitVersion = '1.0.0-beta02'
-    testExpressoVersion = '3.1.0-beta02'
+    testRulesVersion = '1.1.0'
+    testExtJunitVersion = '1.0.0'
+    testExpressoVersion = '3.1.0'
     kotlintestVersion = '2.0.7'
     mockitoVersion = '2.23.0'
 }

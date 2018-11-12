@@ -16,6 +16,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import com.thejuki.kformmaster.item.ContactItem
 import com.thejuki.kformmaster.token.ItemsCompletionView
@@ -35,11 +36,11 @@ import org.junit.runner.RunWith
  * @version 1.0
  */
 @RunWith(AndroidJUnit4::class)
+@LargeTest
 class FormInstrumentedTest {
 
-    @Rule
-    @JvmField
-    val mActivityRule = ActivityTestRule<FormActivityTest>(FormActivityTest::class.java)
+    @get:Rule
+    val activityRule = ActivityTestRule(FormActivityTest::class.java)
 
     @Test
     fun header_isDisplayed() {
