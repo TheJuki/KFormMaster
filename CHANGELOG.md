@@ -1,5 +1,9 @@
 # Change Log
 
+## [6.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.1.0)
+- Fix dateFormat and dateValue
+- #56 and #76 Upgrade to AndroidX
+
 ## [6.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.0.0)
 - #72 The Form Header can now collapse elements when initialized or later 
 - Removed Form Element Builder Classes
