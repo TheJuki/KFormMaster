@@ -20,11 +20,19 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
      * Date Format part of DateHolder
      */
     var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
+        set(value) {
+            field = value
+            this.value = FormPickerDateElement.DateHolder(dateValue, dateFormat)
+        }
 
     /**
      * Date Value part of DateHolder
      */
     var dateValue: Date? = null
+        set(value) {
+            field = value
+            this.value = FormPickerDateElement.DateHolder(dateValue, dateFormat)
+        }
 
     override fun clear() {
         this.value?.useCurrentDate()

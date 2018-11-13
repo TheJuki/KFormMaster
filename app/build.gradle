@@ -10,8 +10,8 @@ android {
         applicationId "com.thejuki.kformmasterexample"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 8
-        versionName "3.0.0"
+        versionCode 9
+        versionName "4.0.0"
     }
     buildTypes {
         release {

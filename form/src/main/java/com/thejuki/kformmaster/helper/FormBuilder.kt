@@ -88,23 +88,17 @@ fun FormBuildHelper.button(tag: Int = -1, init: FormButtonElement.() -> Unit): F
 
 /** FormBuildHelper extension to add a FormPickerDateElement */
 fun FormBuildHelper.date(tag: Int = -1, init: FormPickerDateElement.() -> Unit): FormPickerDateElement {
-    val element = addFormElement(FormPickerDateElement(tag).apply(init))
-    element.value = element.value ?: FormPickerDateElement.DateHolder(element.dateValue, element.dateFormat)
-    return element
+    return addFormElement(FormPickerDateElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormPickerTimeElement */
 fun FormBuildHelper.time(tag: Int = -1, init: FormPickerTimeElement.() -> Unit): FormPickerTimeElement {
-    val element = addFormElement(FormPickerTimeElement(tag).apply(init))
-    element.value = element.value ?: FormPickerTimeElement.TimeHolder(element.dateValue, element.dateFormat)
-    return element
+    return addFormElement(FormPickerTimeElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormPickerDateTimeElement */
 fun FormBuildHelper.dateTime(tag: Int = -1, init: FormPickerDateTimeElement.() -> Unit): FormPickerDateTimeElement {
-    val element = addFormElement(FormPickerDateTimeElement(tag).apply(init))
-    element.value = element.value ?: FormPickerDateTimeElement.DateTimeHolder(element.dateValue, element.dateFormat)
-    return element
+    return addFormElement(FormPickerDateTimeElement(tag).apply(init))
 }
 
 /** FormBuildHelper extension to add a FormPickerDropDownElement */
