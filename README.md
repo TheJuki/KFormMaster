@@ -22,7 +22,7 @@ This is a Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster)
 ## vivchar/RendererRecyclerViewAdapter 2.7.0
 Add the sonatype snapshots repository to your root build.gradle:
 
-https://github.com/TheJuki/KFormMaster/blob/master/build.gradle#L27
+https://github.com/TheJuki/KFormMaster/blob/master/build.gradle
 
 ```
 repositories {
