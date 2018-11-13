@@ -1,6 +1,6 @@
 package com.thejuki.kformmaster.model
 
-import android.support.v7.widget.SwitchCompat
+import androidx.appcompat.widget.SwitchCompat
 
 /**
  * Form Switch Element

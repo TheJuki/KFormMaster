@@ -1,13 +1,13 @@
 package com.thejuki.kformmaster.view
 
 import android.content.Context
-import android.support.annotation.LayoutRes
-import android.support.v7.widget.AppCompatEditText
-import android.support.v7.widget.AppCompatTextView
 import android.text.InputType
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
+import androidx.annotation.LayoutRes
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatTextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
 import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider

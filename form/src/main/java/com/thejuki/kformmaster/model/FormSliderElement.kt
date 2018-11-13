@@ -1,6 +1,6 @@
 package com.thejuki.kformmaster.model
 
-import android.support.v7.widget.AppCompatSeekBar
+import androidx.appcompat.widget.AppCompatSeekBar
 
 /**
  * Form Slider Element

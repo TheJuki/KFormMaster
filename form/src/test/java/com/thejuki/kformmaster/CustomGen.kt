@@ -152,7 +152,6 @@ interface CustomGen {
                 val element = generateBaseFields(FormAutoCompleteElement()) as FormAutoCompleteElement<String>
                 element.typedString = element.valueAsString
                 element.dropdownWidth = Gen.int().generate()
-                element.options = Gen.list(Gen.string()).generate()
                 val listOfOptions = Gen.list(Gen.string()).generate()
                 element.options = listOfOptions
                 element.arrayAdapter = ArrayAdapter(mock(), R.layout.simple_list_item_1, listOfOptions)
@@ -167,7 +166,6 @@ interface CustomGen {
             override fun generate(): FormTokenAutoCompleteElement<List<String>> {
                 val element = generateBaseFieldsWithList(FormTokenAutoCompleteElement()) as FormTokenAutoCompleteElement<List<String>>
                 element.dropdownWidth = Gen.int().generate()
-                element.options = Gen.list(Gen.string()).generate()
                 val listOfOptions = Gen.list(Gen.string()).generate()
                 element.options = listOfOptions
                 element.arrayAdapter = ArrayAdapter(mock(), R.layout.simple_list_item_1, listOfOptions)

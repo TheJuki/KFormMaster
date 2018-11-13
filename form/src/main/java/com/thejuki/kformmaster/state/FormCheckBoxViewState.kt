@@ -1,6 +1,6 @@
 package com.thejuki.kformmaster.state
 
-import android.support.v7.widget.AppCompatCheckBox
+import androidx.appcompat.widget.AppCompatCheckBox
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.model.FormCheckBoxElement

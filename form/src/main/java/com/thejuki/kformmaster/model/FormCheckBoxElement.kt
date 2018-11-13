@@ -1,6 +1,6 @@
 package com.thejuki.kformmaster.model
 
-import android.support.v7.widget.AppCompatCheckBox
+import androidx.appcompat.widget.AppCompatCheckBox
 
 /**
  * Form CheckBox Element

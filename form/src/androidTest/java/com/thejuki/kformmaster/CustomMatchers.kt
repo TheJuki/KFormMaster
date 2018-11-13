@@ -1,10 +1,10 @@
 package com.thejuki.kformmaster
 
-import android.support.test.espresso.matcher.BoundedMatcher
-import android.support.v7.widget.AppCompatSeekBar
 import android.view.View
 import android.widget.RadioButton
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.test.espresso.matcher.BoundedMatcher
 import com.thejuki.kformmaster.token.ItemsCompletionView
 import com.thejuki.kformmaster.widget.SegmentedGroup
 import org.hamcrest.Description

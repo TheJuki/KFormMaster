@@ -1,7 +1,5 @@
 package com.thejuki.kformmaster.model
 
-import android.support.annotation.ColorInt
-import android.support.v7.widget.*
 import android.text.InputFilter
 import android.text.InputType
 import android.view.Gravity
@@ -9,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.appcompat.widget.*
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import com.thejuki.kformmaster.extensions.dpToPx
 import com.thejuki.kformmaster.extensions.setMargins

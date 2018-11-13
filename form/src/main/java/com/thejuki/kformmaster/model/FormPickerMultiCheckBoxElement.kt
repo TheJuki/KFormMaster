@@ -1,8 +1,9 @@
 package com.thejuki.kformmaster.model
 
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.AppCompatEditText
+import android.content.Context
 import android.view.View
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatEditText
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener

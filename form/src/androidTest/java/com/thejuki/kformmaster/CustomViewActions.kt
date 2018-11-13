@@ -1,11 +1,11 @@
 package com.thejuki.kformmaster
 
-import android.support.test.espresso.UiController
-import android.support.test.espresso.ViewAction
-import android.support.test.espresso.matcher.ViewMatchers
-import android.support.v7.widget.AppCompatSeekBar
 import android.view.View
 import android.widget.RadioButton
+import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.matcher.ViewMatchers
 import com.thejuki.kformmaster.widget.SegmentedGroup
 import org.hamcrest.Matcher
 

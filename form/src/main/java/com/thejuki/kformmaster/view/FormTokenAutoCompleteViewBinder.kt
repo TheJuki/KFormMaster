@@ -1,13 +1,13 @@
 package com.thejuki.kformmaster.view
 
 import android.content.Context
-import android.support.annotation.LayoutRes
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.AppCompatTextView
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
+import androidx.annotation.LayoutRes
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
 import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider

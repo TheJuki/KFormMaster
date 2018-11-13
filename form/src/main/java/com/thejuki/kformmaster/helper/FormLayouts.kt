@@ -1,6 +1,6 @@
 package com.thejuki.kformmaster.helper
 
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 
 /**
  * Form Layouts

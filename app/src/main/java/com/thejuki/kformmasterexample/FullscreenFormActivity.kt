@@ -3,9 +3,6 @@ package com.thejuki.kformmasterexample
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.text.InputType
 import android.view.Menu
 import android.view.MenuItem
@@ -15,6 +12,9 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.FormHeader
 import com.thejuki.kformmaster.model.FormPickerDateElement
