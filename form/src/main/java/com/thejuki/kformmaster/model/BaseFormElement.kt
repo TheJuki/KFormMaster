@@ -59,13 +59,13 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var value: T? by Delegates.observable<T?>(null) { _, _, newValue ->
         valueObservers.forEach { it(newValue, this) }
         editView?.let {
-            if (it is AppCompatEditText && it.text.toString() != value as? String) {
-                it.setText(value as? String)
+            if (it is AppCompatEditText && it.text.toString() != value?.toString()) {
+                it.setText(value?.toString())
 
             } else if (it is TextView && value is String &&
-                    it.text.toString() != value as? String &&
+                    it.text.toString() != value?.toString() &&
                     it !is SwitchCompat && it !is AppCompatCheckBox) {
-                it.text = value as? String
+                it.text = value?.toString()
             } else if (it is SegmentedGroup) {
                 it.checkChild(value?.toString())
             }

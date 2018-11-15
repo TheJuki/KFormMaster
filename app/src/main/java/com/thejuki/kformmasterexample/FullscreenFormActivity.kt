@@ -289,7 +289,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             date(Tag.Date.ordinal) {
                 title = getString(R.string.Date)
                 dateValue = Date()
-                dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+                dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
                 required = true
                 maxLines = 1
                 confirmEdit = true
@@ -494,7 +494,8 @@ class FullscreenFormActivity : AppCompatActivity() {
                         Toast.makeText(this@FullscreenFormActivity,
                                 dateToDeleteElement.value?.getTime().toString(),
                                 Toast.LENGTH_SHORT).show()
-                        dateToDeleteElement.clear()
+                        //dateToDeleteElement.clear()
+                        dateToDeleteElement.dateValue = dateToDeleteElement.dateFormat.parse("2015-10-10")
                         formBuilder.onValueChanged(dateToDeleteElement)
                     }
                     confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FullscreenFormActivity.getString(android.R.string.cancel)) { _, _ ->
