@@ -1,5 +1,8 @@
 # Change Log
 
+## [6.1.1](https://github.com/TheJuki/KFormMaster/releases/tag/6.1.1)
+- #77 Fixed setting the dateValue later and fixed the date/time dialogs to reflect updated dateValue.
+
 ## [6.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.1.0)
 - Fix dateFormat and dateValue
 - #56 and #76 Upgrade to AndroidX
