@@ -1,12 +1,10 @@
 package com.thejuki.kformmaster.view
 
-import android.app.DatePickerDialog
 import android.content.Context
 import android.text.InputType
 import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
@@ -42,6 +40,7 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
         editTextValue.alwaysShowClear = true
 
         editTextValue.setRawInputType(InputType.TYPE_NULL)
+        editTextValue.isFocusable = false
 
         model.editView = editTextValue
 
@@ -54,13 +53,8 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
             this?.validOrCurrentDate()
         }
 
-        val datePickerDialog = DatePickerDialog(context,
-                dateDialogListener(model, editTextValue),
-                model.value?.year ?: 0,
-                if ((model.value?.month ?: 0) == 0) 0 else (model.value?.month ?: 0) - 1,
-                model.value?.dayOfMonth ?: 0)
+        model.reInitDialog(formBuilder)
 
-        setOnClickListener(context, model, itemView, datePickerDialog)
         setClearableListener(model)
 
     }, object : ViewStateProvider<FormPickerDateElement, ViewHolder> {
@@ -73,27 +67,5 @@ class FormPickerDateViewBinder(private val context: Context, private val formBui
         }
     })
 
-    private fun dateDialogListener(model: FormPickerDateElement,
-                                   editTextValue: AppCompatEditText): DatePickerDialog.OnDateSetListener {
-        return DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-            // get current form element, existing value and new value
-            var dateChanged = false
-            with(model.value)
-            {
-                dateChanged = !(this?.year == year && this.month == monthOfYear && this.dayOfMonth == dayOfMonth)
-                this?.year = year
-                this?.month = monthOfYear + 1
-                this?.dayOfMonth = dayOfMonth
-                this?.isEmptyDate = false
-            }
 
-            if (dateChanged)
-            {
-                model.error = null
-                formBuilder.onValueChanged(model)
-                model.valueObservers.forEach { it(model.value, model) }
-                editTextValue.setText(model.valueAsString)
-            }
-        }
-    }
 }

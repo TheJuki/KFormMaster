@@ -1,6 +1,14 @@
 package com.thejuki.kformmaster.model
 
+import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
+import android.view.View
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatEditText
+import com.thejuki.kformmaster.R
+import com.thejuki.kformmaster.helper.FormBuildHelper
+import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import java.io.Serializable
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -23,6 +31,7 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
         set(value) {
             field = value
             this.value = FormPickerDateTimeElement.DateTimeHolder(dateValue, dateFormat)
+            reInitDialog()
         }
 
     /**
@@ -32,7 +41,19 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
         set(value) {
             field = value
             this.value = FormPickerDateTimeElement.DateTimeHolder(dateValue, dateFormat)
+            reInitDialog()
         }
+
+    /**
+     * Hold the [OnFormElementValueChangedListener] from [FormBuildHelper]
+     */
+    private var listener: OnFormElementValueChangedListener? = null
+
+    /**
+     * Alert Dialog Builder
+     * Used to call reInitDialog without needing context again.
+     */
+    private var alertDialogBuilder: AlertDialog.Builder? = null
 
     override fun clear() {
         this.value?.useCurrentDate()
@@ -146,4 +167,88 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
 
     override val isValid: Boolean
         get() = !required || (value != null && value?.getTime() != null)
+
+    /**
+     * Re-initializes the dialog
+     * Should be called value changes by user
+     */
+    fun reInitDialog(formBuilder: FormBuildHelper? = null) {
+
+        if (formBuilder != null) {
+            listener = formBuilder.listener
+        }
+
+        val editTextView = this.editView as? AppCompatEditText
+
+        if (editTextView?.context == null) {
+            return
+        }
+
+        val datePickerDialog = DatePickerDialog(editTextView.context,
+                dateDialogListener(editTextView),
+                value?.year ?: 0,
+                if ((value?.month ?: 0) == 0) 0 else (value?.month ?: 0) - 1,
+                value?.dayOfMonth ?: 0)
+
+        if (alertDialogBuilder == null) {
+            alertDialogBuilder = AlertDialog.Builder(editTextView.context)
+            if (this.confirmTitle == null) {
+                this.confirmTitle = editTextView.context.getString(R.string.form_master_confirm_title)
+            }
+            if (this.confirmMessage == null) {
+                this.confirmMessage = editTextView.context.getString(R.string.form_master_confirm_message)
+            }
+        }
+
+        // display the dialog on click
+        val listener = View.OnClickListener {
+            if (!confirmEdit || valueAsString.isEmpty()) {
+                datePickerDialog.show()
+            } else if (confirmEdit && value != null) {
+                alertDialogBuilder
+                        ?.setTitle(confirmTitle)
+                        ?.setMessage(confirmMessage)
+                        ?.setPositiveButton(android.R.string.ok) { _, _ ->
+                            datePickerDialog.show()
+                        }?.setNegativeButton(android.R.string.cancel) { _, _ -> }?.show()
+            }
+        }
+
+        itemView?.setOnClickListener(listener)
+        editTextView.setOnClickListener(listener)
+    }
+
+    private fun dateDialogListener(editTextValue: AppCompatEditText): DatePickerDialog.OnDateSetListener {
+        return DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+            // get current form element, existing value and new value
+
+            with(value)
+            {
+                this?.year = year
+                this?.month = monthOfYear + 1
+                this?.dayOfMonth = dayOfMonth
+            }
+
+            // Now show time picker
+            TimePickerDialog(editTextValue.context, timeDialogListener(editTextValue),
+                    value?.hourOfDay ?: 0,
+                    value?.minute ?: 0,
+                    false).show()
+        }
+    }
+
+    private fun timeDialogListener(editTextValue: AppCompatEditText): TimePickerDialog.OnTimeSetListener {
+        return TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+            with(value)
+            {
+                this?.hourOfDay = hourOfDay
+                this?.minute = minute
+                this?.isEmptyDateTime = false
+            }
+            error = null
+            listener?.onValueChanged(this)
+            valueObservers.forEach { it(value, this) }
+            editTextValue.setText(valueAsString)
+        }
+    }
 }

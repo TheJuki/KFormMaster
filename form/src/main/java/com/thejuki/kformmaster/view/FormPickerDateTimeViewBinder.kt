@@ -1,13 +1,10 @@
 package com.thejuki.kformmaster.view
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Context
 import android.text.InputType
 import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
@@ -45,6 +42,7 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
         model.editView = editTextValue
 
         editTextValue.setRawInputType(InputType.TYPE_NULL)
+        editTextValue.isFocusable = false
 
         // If no value is set by the user, create a new instance of DateTimeHolder
         with(model.value)
@@ -55,13 +53,8 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
             this?.validOrCurrentDate()
         }
 
-        val datePickerDialog = DatePickerDialog(context,
-                dateDialogListener(model, editTextValue),
-                model.value?.year ?: 0,
-                if ((model.value?.month ?: 0) == 0) 0 else (model.value?.month ?: 0) - 1,
-                model.value?.dayOfMonth ?: 0)
+        model.reInitDialog(formBuilder)
 
-        setOnClickListener(context, model, itemView, datePickerDialog)
         setClearableListener(model)
 
     }, object : ViewStateProvider<FormPickerDateTimeElement, ViewHolder> {
@@ -73,40 +66,4 @@ class FormPickerDateTimeViewBinder(private val context: Context, private val for
             return FormEditTextViewState(holder)
         }
     })
-
-    private fun dateDialogListener(model: FormPickerDateTimeElement,
-                                   editTextValue: AppCompatEditText): DatePickerDialog.OnDateSetListener {
-        return DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-            // get current form element, existing value and new value
-
-            with(model.value)
-            {
-                this?.year = year
-                this?.month = monthOfYear + 1
-                this?.dayOfMonth = dayOfMonth
-            }
-
-            // Now show time picker
-            TimePickerDialog(context, timeDialogListener(model, editTextValue),
-                    model.value?.hourOfDay ?: 0,
-                    model.value?.minute ?: 0,
-                    false).show()
-        }
-    }
-
-    private fun timeDialogListener(model: FormPickerDateTimeElement,
-                                   editTextValue: AppCompatEditText): TimePickerDialog.OnTimeSetListener {
-        return TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-            with(model.value)
-            {
-                this?.hourOfDay = hourOfDay
-                this?.minute = minute
-                this?.isEmptyDateTime = false
-            }
-            model.error = null
-            formBuilder.onValueChanged(model)
-            model.valueObservers.forEach { it(model.value, model) }
-            editTextValue.setText(model.valueAsString)
-        }
-    }
 }

@@ -1,12 +1,10 @@
 package com.thejuki.kformmaster.view
 
-import android.app.TimePickerDialog
 import android.content.Context
 import android.text.InputType
 import android.view.View
 import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
@@ -44,6 +42,7 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
         model.editView = editTextValue
 
         editTextValue.setRawInputType(InputType.TYPE_NULL)
+        editTextValue.isFocusable = false
 
         // If no value is set by the user, create a new instance of TimeHolder
         with(model.value)
@@ -54,13 +53,8 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
             this?.validOrCurrentTime()
         }
 
-        val timePickerDialog = TimePickerDialog(context,
-                timeDialogListener(model, editTextValue),
-                model.value?.hourOfDay ?: 0,
-                model.value?.minute ?: 0,
-                false)
+        model.reInitDialog(formBuilder)
 
-        setOnClickListener(context, model, itemView, timePickerDialog)
         setClearableListener(model)
 
     }, object : ViewStateProvider<FormPickerTimeElement, ViewHolder> {
@@ -72,25 +66,4 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
             return FormEditTextViewState(holder)
         }
     })
-
-    private fun timeDialogListener(model: FormPickerTimeElement,
-                                   editTextValue: AppCompatEditText): TimePickerDialog.OnTimeSetListener {
-        return TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-            var timeChanged = false
-            with(model.value)
-            {
-                timeChanged = !(this?.hourOfDay == hourOfDay && this.minute == minute)
-                this?.hourOfDay = hourOfDay
-                this?.minute = minute
-                this?.isEmptyTime = false
-            }
-
-            if (timeChanged) {
-                model.error = null
-                formBuilder.onValueChanged(model)
-                model.valueObservers.forEach { it(model.value, model) }
-                editTextValue.setText(model.valueAsString)
-            }
-        }
-    }
 }
