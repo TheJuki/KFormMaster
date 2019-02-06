@@ -620,8 +620,15 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      * Base validation
      */
     open val isValid: Boolean
-        get() = !required || (required && value != null &&
+        get() = validityCheck()
+
+    /**
+     * Form element custom validity check
+     */
+    open var validityCheck: () -> Boolean = {
+        !required || (required && value != null &&
                 (value !is String || !(value as? String).isNullOrEmpty()))
+    }
 
     /**
      * Clear edit view
