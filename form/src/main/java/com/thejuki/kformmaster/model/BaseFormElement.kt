@@ -295,7 +295,14 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     it.text = null
                 }
             }
+            onErrorChanged()
         }
+
+    /**
+     * Form element property, error changed
+     * Left intentionally blank in the base class.
+     */
+    protected open fun onErrorChanged() { /* intentionally blank */ }
 
     /**
      * Form Element Required
@@ -594,7 +601,14 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             editView?.let {
                 it.isEnabled = value
             }
+            onEnabled(value)
         }
+
+    /**
+     * Form element property, enabled changed
+     * Left intentionally blank in the base class
+     */
+    protected open fun onEnabled(enable: Boolean) { /* intentionally blank */ }
 
     /**
      * Form Element Value String value
