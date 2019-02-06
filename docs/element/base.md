@@ -371,6 +371,16 @@ This is used by formBuilder.isValidForm.
 element.isValid
 ```
 
+## Custom Validation
+To add custom validation check, assign a lambda to validityCheck.
+```kotlin
+text {
+    validityCheck = {
+        value?.matches("some regex".toRegex()) == true
+    }
+}
+```
+
 ## Dynamic Views
 
 !!! note "NOTICE"

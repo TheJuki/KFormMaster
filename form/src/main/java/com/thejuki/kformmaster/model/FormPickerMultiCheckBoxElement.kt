@@ -19,7 +19,9 @@ import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
     override val isValid: Boolean
-        get() = !required || (value != null && value?.isEmpty() == false)
+        get() = validityCheck()
+
+    override var validityCheck = { !required || (value != null && value?.isEmpty() == false) }
 
     override fun clear() {
         super.clear()

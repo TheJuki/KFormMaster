@@ -14,7 +14,9 @@ class FormButtonElement(tag: Int = -1) : BaseFormElement<String>(tag) {
      * No validation needed
      */
     override val isValid: Boolean
-        get() = true
+        get() = validityCheck()
+
+    override var validityCheck = { true }
 
     /**
      * Nothing to clear
