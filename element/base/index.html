@@ -653,6 +653,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#custom-validation" title="Custom Validation" class="md-nav__link">
+    Custom Validation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dynamic-views" title="Dynamic Views" class="md-nav__link">
     Dynamic Views
   </a>
@@ -1304,6 +1311,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#custom-validation" title="Custom Validation" class="md-nav__link">
+    Custom Validation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dynamic-views" title="Dynamic Views" class="md-nav__link">
     Dynamic Views
   </a>
@@ -1707,6 +1721,16 @@ Setting this will override the hint text color.</p>
 <p>isValid contains a getter that checks if the element is valid. At the base level, this checks if the value is not null or empty.
 This is used by formBuilder.isValidForm.</p>
 <div class="codehilite"><pre><span></span><span class="n">element</span><span class="p">.</span><span class="n">isValid</span>
+</pre></div>
+
+
+<h2 id="custom-validation">Custom Validation<a class="headerlink" href="#custom-validation" title="Permanent link">&para;</a></h2>
+<p>To add custom validation check, assign a lambda to validityCheck.</p>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">validityCheck</span> <span class="p">=</span> <span class="p">{</span>
+        <span class="n">value</span><span class="o">?.</span><span class="n">matches</span><span class="p">(</span><span class="s">&quot;some regex&quot;</span><span class="p">.</span><span class="n">toRegex</span><span class="p">())</span> <span class="p">==</span> <span class="k">true</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
 
