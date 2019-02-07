@@ -1,5 +1,9 @@
 # Change Log
 
+## [6.2.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.2.0)
+- #95 Custom validation for any element
+- #93 Enabled/Error handling for Custom Form Elements
+
 ## [6.1.1](https://github.com/TheJuki/KFormMaster/releases/tag/6.1.1)
 - #77 Fixed setting the dateValue later and fixed the date/time dialogs to reflect updated dateValue.
 
