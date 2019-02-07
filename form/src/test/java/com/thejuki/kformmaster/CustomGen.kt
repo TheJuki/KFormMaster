@@ -56,8 +56,20 @@ interface CustomGen {
          * Generates a FormEmailEditTextElement
          */
         fun formEmailEditTextElement() = object : Gen<FormEmailEditTextElement> {
-            override fun generate() =
-                    generateBaseFields(FormEmailEditTextElement()) as FormEmailEditTextElement
+            override fun generate(): FormEmailEditTextElement {
+                val element = generateBaseFields(FormEmailEditTextElement()) as FormEmailEditTextElement
+                element.value = Gen.oneOf(listOf("test@example.com", "test.tester@example2.org", "email@example.test.edu")).generate()
+                element.validityCheck = {
+                    ("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                            "\\@" +
+                            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                            "(" +
+                            "\\." +
+                            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                            ")+").toRegex().matches(element.value ?: "")
+                }
+                return element
+            }
         }
 
         /**
@@ -205,7 +217,7 @@ interface CustomGen {
                 val element = FormSliderElement()
                 element.title = Gen.string().generate()
                 element.max = Gen.choose(1, 100).generate()
-                element.min = Gen.choose(0, element.max).generate()
+                element.min = Gen.choose(0, element.max - 1).generate()
                 element.value = Gen.choose(element.min, element.max).generate()
                 element.steps = Gen.choose(1, element.max).generate()
                 return element

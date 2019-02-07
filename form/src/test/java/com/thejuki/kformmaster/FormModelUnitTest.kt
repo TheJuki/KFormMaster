@@ -121,7 +121,11 @@ class FormModelUnitTest : ShouldSpec() {
                 CustomGen.verifyBaseFormElement(CustomGen.formMultiLineEditTextElement().generate()) shouldBe true
             }
             should("have valid formEmailEditTextElement") {
-                CustomGen.verifyBaseFormElement(CustomGen.formEmailEditTextElement().generate()) shouldBe true
+                val element = CustomGen.formEmailEditTextElement().generate()
+                CustomGen.verifyBaseFormElement(element) shouldBe true
+                element.isValid shouldBe true
+                element.value = "bad.email@"
+                element.isValid shouldBe false
             }
             should("have valid formPasswordEditTextElement") {
                 CustomGen.verifyBaseFormElement(CustomGen.formPasswordEditTextElement().generate()) shouldBe true

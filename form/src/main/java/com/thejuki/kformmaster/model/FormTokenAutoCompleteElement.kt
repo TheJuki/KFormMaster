@@ -14,7 +14,9 @@ import com.thejuki.kformmaster.token.ItemsCompletionView
 class FormTokenAutoCompleteElement<T : List<*>>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     override val isValid: Boolean
-        get() = !required || (value != null && value?.isEmpty() == false)
+        get() = validityCheck()
+
+    override var validityCheck = { !required || (value != null && value?.isEmpty() == false) }
 
     override fun clear() {
         this.value = null

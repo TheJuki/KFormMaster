@@ -592,15 +592,10 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var enabled: Boolean = true
         set(value) {
             field = value
-            itemView?.let {
-                it.isEnabled = value
-            }
-            titleView?.let {
-                it.isEnabled = value
-            }
-            editView?.let {
-                it.isEnabled = value
-            }
+            itemView?.isEnabled = value
+            titleView?.isEnabled = value
+            editView?.isEnabled = value
+
             onEnabled(value)
         }
 

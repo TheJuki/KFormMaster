@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.thejuki.kformmaster.helper.*
+import com.thejuki.kformmaster.model.FormEmailEditTextElement
 import com.thejuki.kformmaster.model.FormHeader
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmaster.model.FormSegmentedElement
@@ -116,7 +117,12 @@ class FullscreenFormActivity : AppCompatActivity() {
 
             formBuilder.elements.forEach {
                 if (!it.isValid) {
-                    it.error = "This field is required!"
+                    if (it is FormEmailEditTextElement) {
+                        it.error = "Invalid email!"
+                    } else {
+                        it.error = "This field is required!"
+                    }
+
                 }
             }
         }
@@ -204,6 +210,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = true
                 clearable = true
                 clearOnFocus = false
+                validityCheck = {
+                    if (value != null) android.util.Patterns.EMAIL_ADDRESS.matcher(value).matches() else false
+                }
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }

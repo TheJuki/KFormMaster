@@ -142,7 +142,9 @@ class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeEle
     }
 
     override val isValid: Boolean
-        get() = !required || (value != null && value?.getTime() != null)
+        get() = validityCheck()
+
+    override var validityCheck = { !required || (value != null && value?.getTime() != null) }
 
     /**
      * Re-initializes the dialog
