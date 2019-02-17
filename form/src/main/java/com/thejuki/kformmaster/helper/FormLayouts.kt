@@ -31,4 +31,5 @@ class FormLayouts(@LayoutRes var header: Int? = null,
                   @LayoutRes var slider: Int? = null,
                   @LayoutRes var label: Int? = null,
                   @LayoutRes var textView: Int? = null,
-                  @LayoutRes var segmented: Int? = null)
+                  @LayoutRes var segmented: Int? = null,
+                  @LayoutRes var progress: Int? = null)

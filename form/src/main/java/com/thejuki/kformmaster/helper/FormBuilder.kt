@@ -131,6 +131,11 @@ fun FormBuildHelper.slider(tag: Int = -1, init: FormSliderElement.() -> Unit): F
     return addFormElement(FormSliderElement(tag).apply(init))
 }
 
+/** FormBuildHelper extension to add a FormProgressElement */
+fun FormBuildHelper.progress(tag: Int = -1, init: FormProgressElement.() -> Unit): FormProgressElement {
+    return addFormElement(FormProgressElement(tag).apply(init))
+}
+
 /** FormBuildHelper extension to add a FormLabelElement */
 fun FormBuildHelper.label(tag: Int = -1, init: FormLabelElement.() -> Unit): FormLabelElement {
     return addFormElement(FormLabelElement(tag).apply(init))

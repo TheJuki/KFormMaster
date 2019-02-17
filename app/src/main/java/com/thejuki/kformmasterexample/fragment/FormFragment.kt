@@ -68,6 +68,7 @@ class FormFragment : Fragment() {
         LabelElement,
         SwitchElement,
         SliderElement,
+        ProgressElement,
         CheckBoxElement,
         SegmentedElement
     }
@@ -280,6 +281,14 @@ class FormFragment : Fragment() {
                 valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
                 }
+            }
+            progress(ProgressElement.ordinal) {
+                title = getString(R.string.Progress)
+                indeterminate = false
+                progress = 25
+                secondaryProgress = 50
+                min = 0
+                max = 100
             }
             segmented<ListItem>(SegmentedElement.ordinal) {
                 title = getString(R.string.Segmented)

@@ -88,6 +88,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
         LabelElement,
         SwitchElement,
         SliderElement,
+        ProgressElement,
         CheckBoxElement,
         SegmentedElement
     }
@@ -190,6 +191,14 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                 value = true
                 checkedValue = true
                 unCheckedValue = false
+            }
+            progress(ProgressElement.ordinal) {
+                title = getString(R.string.Progress)
+                indeterminate = false
+                progress = 25
+                secondaryProgress = 50
+                min = 0
+                max = 100
             }
             segmented<ListItem>(SegmentedElement.ordinal) {
                 title = getString(R.string.Segmented)

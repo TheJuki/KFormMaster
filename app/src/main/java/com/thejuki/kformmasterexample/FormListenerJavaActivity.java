@@ -24,6 +24,7 @@ import com.thejuki.kformmaster.model.FormPickerDateTimeElement;
 import com.thejuki.kformmaster.model.FormPickerDropDownElement;
 import com.thejuki.kformmaster.model.FormPickerMultiCheckBoxElement;
 import com.thejuki.kformmaster.model.FormPickerTimeElement;
+import com.thejuki.kformmaster.model.FormProgressElement;
 import com.thejuki.kformmaster.model.FormSegmentedElement;
 import com.thejuki.kformmaster.model.FormSingleLineEditTextElement;
 import com.thejuki.kformmaster.model.FormSliderElement;
@@ -120,6 +121,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         LabelElement,
         SwitchElement,
         SliderElement,
+        ProgressElement,
         CheckBoxElement,
         SegmentedElement
     }
@@ -207,7 +209,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
     private void addPickers(List<BaseFormElement<?>> elements) {
         elements.add(new FormHeader(getString(R.string.PreferredItems)));
 
-        FormPickerDropDownElement<ListItem> dropDown = new FormPickerDropDownElement<>();
+        FormPickerDropDownElement<ListItem> dropDown = new FormPickerDropDownElement<>(Tag.SingleItem.ordinal());
         dropDown.setTitle(getString(R.string.SingleItem));
         dropDown.setDialogTitle(getString(R.string.SingleItem));
         dropDown.setOptions(fruits);
@@ -274,6 +276,15 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         checkBox.setCheckedValue(true);
         checkBox.setUnCheckedValue(false);
         elements.add(checkBox);
+
+        FormProgressElement progress = new FormProgressElement(Tag.ProgressElement.ordinal());
+        progress.setTitle(getString(R.string.Progress));
+        progress.setIndeterminate(false);
+        progress.setProgress(25);
+        progress.setSecondaryProgress(50);
+        progress.setMin(0);
+        progress.setMax(100);
+        elements.add(progress);
 
         FormSegmentedElement<ListItem> segmented = new FormSegmentedElement<>(Tag.SegmentedElement.ordinal());
         segmented.setTitle(getString(R.string.Segmented));

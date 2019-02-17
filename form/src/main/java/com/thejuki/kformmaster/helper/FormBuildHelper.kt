@@ -119,6 +119,9 @@ class FormBuildHelper
         // Slider
         this.formAdapter.registerRenderer(FormSliderViewBinder(context, this, formLayouts?.slider).viewBinder)
 
+        // Progress
+        this.formAdapter.registerRenderer(FormProgressViewBinder(context, this, formLayouts?.progress).viewBinder)
+
         // Pickers
         registerPickers(context)
 

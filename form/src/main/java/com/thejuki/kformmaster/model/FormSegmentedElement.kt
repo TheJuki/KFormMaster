@@ -40,6 +40,7 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     /**
      * Drawable direction of the drawable in [SegmentedDrawable]
+     * By default this is DrawableDirection.Top.
      */
     var drawableDirection: DrawableDirection = DrawableDirection.Top
 

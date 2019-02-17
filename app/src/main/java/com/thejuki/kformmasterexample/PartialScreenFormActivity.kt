@@ -88,6 +88,7 @@ class PartialScreenFormActivity : AppCompatActivity() {
         LabelElement,
         SwitchElement,
         SliderElement,
+        ProgressElement,
         CheckBoxElement,
         SegmentedElement
     }
@@ -197,6 +198,14 @@ class PartialScreenFormActivity : AppCompatActivity() {
                 value = true
                 checkedValue = true
                 unCheckedValue = false
+            }
+            progress(ProgressElement.ordinal) {
+                title = getString(R.string.Progress)
+                indeterminate = false
+                progress = 25
+                secondaryProgress = 50
+                min = 0
+                max = 100
             }
             segmented<ListItem>(SegmentedElement.ordinal) {
                 title = getString(R.string.Segmented)

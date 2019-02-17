@@ -16,10 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.thejuki.kformmaster.helper.*
-import com.thejuki.kformmaster.model.FormEmailEditTextElement
-import com.thejuki.kformmaster.model.FormHeader
-import com.thejuki.kformmaster.model.FormPickerDateElement
-import com.thejuki.kformmaster.model.FormSegmentedElement
+import com.thejuki.kformmaster.model.*
 import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmasterexample.FullscreenFormActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
@@ -174,6 +171,7 @@ class FullscreenFormActivity : AppCompatActivity() {
         LabelElement,
         SwitchElement,
         SliderElement,
+        ProgressElement,
         CheckBoxElement,
         SegmentedElement
     }
@@ -457,6 +455,18 @@ class FullscreenFormActivity : AppCompatActivity() {
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
+            }
+            progress(ProgressElement.ordinal) {
+                title = getString(R.string.Progress)
+                //displayTitle = false
+                //centerText = true
+                progressBarStyle = FormProgressElement.ProgressBarStyle.HorizontalBar
+                indeterminate = false
+                progress = 25
+                secondaryProgress = 50
+                min = 0
+                max = 100
+                displayDivider = false
             }
             segmented<SegmentedListItem>(SegmentedElement.ordinal) {
                 // Set the drawables
