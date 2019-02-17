@@ -1,5 +1,8 @@
 # Change Log
 
+## [6.3.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.3.0)
+- #97 Add Progress Element
+
 ## [6.2.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.2.0)
 - #95 Custom validation for any element
 - #93 Enabled/Error handling for Custom Form Elements
