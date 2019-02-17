@@ -2,6 +2,7 @@ package com.thejuki.kformmaster
 
 import android.text.InputType
 import android.widget.DatePicker
+import android.widget.ProgressBar
 import android.widget.TimePicker
 import androidx.appcompat.widget.*
 import androidx.recyclerview.widget.RecyclerView
@@ -113,19 +114,27 @@ class FormInstrumentedTest {
     @Test
     fun text_shouldNotBeDisplayed_whenVisibleIsFalse() {
         // Text element's visible property is set to false and should not show up on the form
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(24))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(25))
         onView(withText("Hidden"))
                 .check(matches(not(isDisplayed())))
     }
 
     @Test
-    fun segmented_changes_whenClicked() {
-        // Select "Mango"
+    fun progress_changes_whenProgressed() {
         onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(22))
+        onView(withClassName(Matchers.equalTo(ProgressBar::class.java.name)))
+                .perform(setProgressBarProgress(75))
+                .check(matches(withProgressBarProgress(75)))
+    }
+
+    @Test
+    fun segmented_changes_whenClicked() {
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(23))
 
         onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
                 .check(matches(hasRadioButtonCheck(0)))
 
+        // Select "Mango"
         onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
                 .perform(setRadioButtonCheck(2))
 
@@ -143,7 +152,7 @@ class FormInstrumentedTest {
     @Test
     fun button_disabled_shouldDoNothing_whenClicked() {
         // Click button to verify that nothing happens because it is disabled
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(25, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(26, click()))
         onView(withId(R.id.recyclerView))
                 .check(matches(not(withText("Disabled?"))))
     }
@@ -229,7 +238,7 @@ class FormInstrumentedTest {
     @Test
     fun button_openDialog_whenClicked() {
         // Click button to verify the value observer Unit action works and displays an alert dialog
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(23, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(24, click()))
         onView(withText("Confirm?"))
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed()))
@@ -242,8 +251,8 @@ class FormInstrumentedTest {
         // Change slider to check progress value
         onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(20, click()))
         onView(withClassName(Matchers.equalTo(AppCompatSeekBar::class.java.name)))
-                .perform(setProgress(10))
-                .check(matches(withProgress(10)))
+                .perform(setSeekBarProgress(10))
+                .check(matches(withSeekBarProgress(10)))
     }
 
     @Test

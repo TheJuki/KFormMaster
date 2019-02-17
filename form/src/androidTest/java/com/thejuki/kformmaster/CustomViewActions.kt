@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster
 
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.RadioButton
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.test.espresso.UiController
@@ -17,7 +18,7 @@ import org.hamcrest.Matcher
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-fun setProgress(progress: Int) =
+fun setSeekBarProgress(progress: Int) =
         object : ViewAction {
             override fun getDescription(): String {
                 return "Set a progress on a SeekBar"
@@ -30,6 +31,22 @@ fun setProgress(progress: Int) =
             override fun perform(uiController: UiController?, view: View?) {
                 val seekBar = view as AppCompatSeekBar
                 seekBar.progress = progress
+            }
+        }
+
+fun setProgressBarProgress(progress: Int) =
+        object : ViewAction {
+            override fun getDescription(): String {
+                return "Set a progress on a ProgressBar"
+            }
+
+            override fun getConstraints(): Matcher<View> {
+                return ViewMatchers.isAssignableFrom(ProgressBar::class.java)
+            }
+
+            override fun perform(uiController: UiController?, view: View?) {
+                val progressBar = view as ProgressBar
+                progressBar.progress = progress
             }
         }
 

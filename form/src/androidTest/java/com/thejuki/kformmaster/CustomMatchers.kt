@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster
 
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSeekBar
@@ -45,7 +46,7 @@ fun hasTextViewSingleLine() =
             override fun matchesSafely(view: View) = (view as? TextView)?.maxLines == 1
         }
 
-fun withProgress(expectedProgress: Int) =
+fun withSeekBarProgress(expectedProgress: Int) =
         object : BoundedMatcher<View, AppCompatSeekBar>(AppCompatSeekBar::class.java) {
             override fun describeTo(description: Description) {
                 description.appendText("SeekBar with progress: $expectedProgress")
@@ -53,6 +54,16 @@ fun withProgress(expectedProgress: Int) =
 
             override fun matchesSafely(seekBar: AppCompatSeekBar) = seekBar.progress == expectedProgress
         }
+
+fun withProgressBarProgress(expectedProgress: Int) =
+        object : BoundedMatcher<View, ProgressBar>(ProgressBar::class.java) {
+            override fun describeTo(description: Description) {
+                description.appendText("ProgressBar with progress: $expectedProgress")
+            }
+
+            override fun matchesSafely(seekBar: ProgressBar) = seekBar.progress == expectedProgress
+        }
+
 
 fun hasRadioButtonCheck(index: Int) =
         object : BoundedMatcher<View, SegmentedGroup>(SegmentedGroup::class.java) {

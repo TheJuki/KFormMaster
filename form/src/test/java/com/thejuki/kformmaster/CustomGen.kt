@@ -127,6 +127,7 @@ interface CustomGen {
                 val element = generateBaseFields(FormSegmentedElement()) as FormSegmentedElement<String>
                 element.horizontal = Gen.bool().generate()
                 element.options = Gen.list(Gen.string()).generate()
+                element.drawableDirection = Gen.oneOf(FormSegmentedElement.DrawableDirection.values().asList()).generate()
                 return element
             }
         }
@@ -220,6 +221,23 @@ interface CustomGen {
                 element.min = Gen.choose(0, element.max - 1).generate()
                 element.value = Gen.choose(element.min, element.max).generate()
                 element.steps = Gen.choose(1, element.max).generate()
+                return element
+            }
+        }
+
+        /**
+         * Generates a FormProgressElement
+         */
+        fun formProgressElement() = object : Gen<FormProgressElement> {
+            override fun generate(): FormProgressElement {
+                val element = FormProgressElement()
+                element.title = Gen.string().generate()
+                element.max = Gen.choose(1, 100).generate()
+                element.min = Gen.choose(0, element.max - 1).generate()
+                element.progress = Gen.choose(element.min, element.max).generate()
+                element.secondaryProgress = Gen.choose(element.min, element.max).generate()
+                element.indeterminate = Gen.bool().generate()
+                element.progressBarStyle = Gen.oneOf(FormProgressElement.ProgressBarStyle.values().asList()).generate()
                 return element
             }
         }

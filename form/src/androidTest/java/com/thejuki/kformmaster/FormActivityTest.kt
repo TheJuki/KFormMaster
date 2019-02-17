@@ -89,6 +89,7 @@ class FormActivityTest : AppCompatActivity() {
         TextViewElement,
         SwitchElement,
         SliderElement,
+        ProgressElement,
         CheckBoxElement,
         SegmentedElement
     }
@@ -194,6 +195,14 @@ class FormActivityTest : AppCompatActivity() {
                 value = false
                 checkedValue = true
                 unCheckedValue = false
+            }
+            progress(ProgressElement.ordinal) {
+                title = "Progress"
+                indeterminate = false
+                progress = 25
+                secondaryProgress = 50
+                min = 0
+                max = 100
             }
             segmented<ListItem>(SegmentedElement.ordinal) {
                 title = "Segmented"

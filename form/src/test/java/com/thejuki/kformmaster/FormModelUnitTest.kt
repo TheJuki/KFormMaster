@@ -78,6 +78,11 @@ class FormModelUnitTest : ShouldSpec() {
                 (element.min < element.max) shouldBe true
                 ((element.value ?: 0 <= element.max) and (element.value ?: 0 >= element.min)) shouldBe true
             }
+            should("have valid formProgressElement") {
+                val element = CustomGen.formProgressElement().generate()
+                (element.min < element.max) shouldBe true
+                ((element.progress ?: 0 <= element.max) and (element.progress ?: 0 >= element.min)) shouldBe true
+            }
             should("have valid formButtonElement") {
                 CustomGen.formButtonElement().generate().value shouldNotBe null
             }
