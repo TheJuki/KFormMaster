@@ -1,6 +1,6 @@
 The Button form element is used for a button row. Click events can be caught with a valueObserver.
 
-![Example](/images/Button.PNG)
+![Example](../../images/Button.PNG)
 
 ## Example
 
