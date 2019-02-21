@@ -1,6 +1,6 @@
 The Switch form element is used for a toggle switch row.
 
-![Example](/images/Switch.PNG)
+![Example](../../images/Switch.PNG)
 
 ## On and Off Values
 

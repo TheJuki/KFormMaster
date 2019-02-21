@@ -1,6 +1,6 @@
 The Label form element is used for a title only field.
 
-![Example](/images/Label.PNG)
+![Example](../../images/Label.PNG)
 
 ## Example
 

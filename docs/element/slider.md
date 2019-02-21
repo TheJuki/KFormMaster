@@ -1,6 +1,6 @@
 The Slider form element is used for a slider (SeekBar) row.
 
-![Example](/images/Slider.PNG)
+![Example](../../images/Slider.PNG)
 
 ## Min
 

@@ -1,6 +1,6 @@
 The Time form element is used for a time dialog.
 
-![Example](/images/Time1.PNG)
+![Example](../../images/Time1.PNG)
 
 <img src="../../images/Time2.PNG" alt="Example" width="300px"/>
 

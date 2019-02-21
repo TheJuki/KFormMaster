@@ -1,6 +1,6 @@
 The Email form element is used for an email address value field with the email keyboard layout.
 
-![Example](/images/Email.PNG)
+![Example](../../images/Email.PNG)
 
 ## Example
 

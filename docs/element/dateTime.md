@@ -1,6 +1,6 @@
 The DateTime form element is used for a date and then time dialog. The date dialog is displayed first and then the time dialog is displayed.
 
-![Example](/images/DateTime.PNG)
+![Example](../../images/DateTime.PNG)
 
 <img src="../../images/Date2.PNG" alt="Example" width="300px"/>
 
