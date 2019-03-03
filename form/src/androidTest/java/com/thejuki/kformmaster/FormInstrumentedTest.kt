@@ -1,32 +1,48 @@
 package com.thejuki.kformmaster
 
+import android.app.Activity
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.text.InputFilter
 import android.text.InputType
+import android.view.Gravity
+import android.view.View
+import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.TimePicker
 import androidx.appcompat.widget.*
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.PickerActions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.rule.ActivityTestRule
+import androidx.test.platform.app.InstrumentationRegistry
+import com.thejuki.kformmaster.extensions.dpToPx
+import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.item.ContactItem
+import com.thejuki.kformmaster.model.FormEmailEditTextElement
 import com.thejuki.kformmaster.token.ItemsCompletionView
+import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
+import junit.framework.Assert.*
 import org.hamcrest.Matchers
 import org.hamcrest.Matchers.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+
 
 /**
  * Form Instrumented Test
@@ -41,7 +57,282 @@ import org.junit.runner.RunWith
 class FormInstrumentedTest {
 
     @get:Rule
-    val activityRule = ActivityTestRule(FormActivityTest::class.java)
+    val activityRule = ActivityScenarioRule(FormActivityTest::class.java)
+
+    private val instrumentation = InstrumentationRegistry.getInstrumentation()
+
+    private fun getActivity(): Activity? {
+        var activity: Activity? = null
+        activityRule.scenario.onActivity {
+            activity = it
+        }
+        return activity
+    }
+
+    private fun getFormBuildHelper(): FormBuildHelper {
+        val activity = getActivity() as FormActivityTest
+        return activity.formBuilder
+    }
+
+    @Test
+    fun form_modelColorsAreSet() {
+        val formBuildHelper = getFormBuildHelper()
+
+        instrumentation.runOnMainSync {
+            // Get email form element
+            val email = formBuildHelper.getFormElement<FormEmailEditTextElement>(FormActivityTest.Tag.Email.ordinal)
+
+            // Check initially set colors
+            checkColors(email)
+
+            email.backgroundColor = Color.RED
+            email.titleTextColor = Color.RED
+            email.titleFocusedTextColor = Color.RED
+            email.valueTextColor = Color.RED
+            email.errorTextColor = Color.RED
+            email.hintTextColor = Color.RED
+
+            // Check new colors
+            checkColors(email)
+        }
+    }
+
+    private fun checkColors(email: FormEmailEditTextElement) {
+        // Check set colors
+        email.titleView?.let {
+            val states = arrayOf(intArrayOf(android.R.attr.state_focused), intArrayOf())
+            val colors = intArrayOf(email.titleFocusedTextColor
+                    ?: ContextCompat.getColor(it.context,
+                            R.color.colorFormMasterElementFocusedTitle),
+                    email.titleTextColor
+                            ?: email.titleView?.textColors?.getColorForState(intArrayOf(),
+                                    (ContextCompat.getColor(it.context, R.color.colorFormMasterElementTextTitle)))
+                            ?: -1
+            )
+            val colorState = ColorStateList(states, colors)
+
+            // Check title focused text color
+            assertEquals(colorState.getColorForState(intArrayOf(android.R.attr.state_focused), ContextCompat.getColor(it.context,
+                    R.color.colorFormMasterElementFocusedTitle)),
+                    it.textColors.getColorForState(intArrayOf(android.R.attr.state_focused), ContextCompat.getColor(it.context,
+                            R.color.colorFormMasterElementFocusedTitle)))
+
+            // Check title text color
+            assertEquals(colorState.getColorForState(intArrayOf(), ContextCompat.getColor(it.context,
+                    R.color.colorFormMasterElementTextTitle)),
+                    it.textColors.getColorForState(intArrayOf(), ContextCompat.getColor(it.context,
+                            R.color.colorFormMasterElementTextTitle)))
+        }
+
+        email.itemView?.let {
+            // Check background color
+            assertEquals(ColorDrawable(email.backgroundColor!!).color, (it.background as ColorDrawable).color)
+        }
+
+        email.editView?.let {
+            if (it is TextView) {
+                // Check hint color
+                assertEquals(ColorStateList.valueOf(email.hintTextColor!!), it.hintTextColors)
+
+                // Check value text color
+                assertEquals(ColorStateList.valueOf(email.valueTextColor!!), it.textColors)
+            }
+        }
+
+        email.errorView?.let {
+            // Check error text color
+            assertEquals(ColorStateList.valueOf(email.errorTextColor!!), it.textColors)
+        }
+    }
+
+    @Test
+    fun form_modelValuesAreSet() {
+        val formBuildHelper = getFormBuildHelper()
+
+        instrumentation.runOnMainSync {
+            // Get email form element
+            val email = formBuildHelper.getFormElement<FormEmailEditTextElement>(FormActivityTest.Tag.Email.ordinal)
+
+            // Get email error text view
+            val emailErrorTextView = email.errorView!!
+
+            // Test Error visibility
+            formBuildHelper.setError(emailErrorTextView, "Test")
+            assertTrue(emailErrorTextView.text == "Test")
+            assertTrue(emailErrorTextView.visibility == View.VISIBLE)
+
+            formBuildHelper.setError(emailErrorTextView, null)
+            assertTrue(emailErrorTextView.visibility == View.GONE)
+
+            // Last Id should have incremented
+            assertTrue(formBuildHelper.lastId > 0)
+
+            // Clear the form values
+            formBuildHelper.clearAll()
+
+            // Check if the email form element is invalid now
+            assertFalse(email.isValid)
+
+            // Check if the form is invalid now
+            assertFalse(formBuildHelper.isValidForm)
+
+            // Check dynamic title view
+            email.titleView?.let {
+                email.title = null
+                assertTrue(it.text.isNullOrEmpty())
+                email.displayTitle = false
+                assertTrue(it.visibility == View.GONE)
+            }
+
+            // Check edit view
+            email.editView?.let {
+                email.value = "test"
+                email.hint = "test@example.com"
+                email.maxLength = 20
+                email.maxLines = 1
+                email.clearable = true
+                email.clearOnFocus = true
+                email.centerText = false
+                email.rightToLeft = false
+
+                if (it is TextView) {
+                    email.clear()
+                    assertTrue(email.value.isNullOrEmpty())
+                    assertTrue(it.text.isNullOrEmpty())
+
+                    assertTrue(it.hint == email.hint)
+
+                    assertEquals(email.maxLength!!, (it.filters[0] as InputFilter.LengthFilter).max)
+                    email.maxLength = null
+                    assertEquals(0, it.filters.size)
+
+                    assertEquals(1, it.maxLines)
+
+                    assertEquals(Gravity.TOP or Gravity.START, it.gravity)
+                    email.rightToLeft = true
+                    assertEquals(Gravity.TOP or Gravity.END, it.gravity)
+
+                    email.centerText = true
+                    assertEquals(Gravity.CENTER, it.gravity)
+                }
+
+                if (it is com.thejuki.kformmaster.widget.ClearableEditText) {
+                    assertTrue(it.displayClear)
+                }
+            }
+
+            // Check dynamic main layout view
+            email.mainLayoutView?.let {
+                email.margins = FormElementMargins(5, 10, 15, 20)
+
+                if (it.layoutParams is ViewGroup.MarginLayoutParams) {
+                    val p = it.layoutParams as ViewGroup.MarginLayoutParams
+                    assertEquals(email.margins?.left.dpToPx(), p.leftMargin)
+                    assertEquals(email.margins?.top.dpToPx(), p.topMargin)
+                    assertEquals(email.margins?.right.dpToPx(), p.rightMargin)
+                    assertEquals(email.margins?.bottom.dpToPx(), p.bottomMargin)
+                }
+            }
+
+            // Check dynamic divider view
+            email.dividerView?.let {
+                email.displayDivider = false
+                assertTrue(it.visibility == View.GONE)
+                email.displayDivider = true
+                assertTrue(it.visibility == View.VISIBLE)
+            }
+        }
+
+    }
+
+    @Test
+    fun form_IsValid() {
+        val formBuildHelper = getFormBuildHelper()
+
+        // Get email form element
+        val email = formBuildHelper.getFormElement<FormEmailEditTextElement>(FormActivityTest.Tag.Email.ordinal)
+        val emailByIndex = formBuildHelper.getElementAtIndex(1) as FormEmailEditTextElement
+
+        // Both methods to get a form element should be equal
+        assertEquals(email, emailByIndex)
+
+        email.validityCheck = {
+            if (email.value != null) android.util.Patterns.EMAIL_ADDRESS.matcher(email.value).matches() else false
+        }
+
+        // Email should be required
+        assertTrue(email.isValid)
+
+        // Form should be valid
+        assertTrue(formBuildHelper.isValidForm)
+
+        // Check if the email form element is valid
+        assertTrue(email.isValid)
+
+        // Initialize with an invalid email
+        var newEmail = "example.com"
+
+        // Make the email form element invalid
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(1))
+        onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
+                hasTextViewInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)))
+                .perform(replaceText(newEmail))
+
+        // Check if the new value was set in the UI
+        onView(withText(newEmail))
+                .check(matches(isDisplayed()))
+
+        // Check if the new value was set in the model
+        assertTrue(email.value == newEmail)
+
+        // Check if the form is invalid now
+        assertFalse(formBuildHelper.isValidForm)
+
+        // Check if the email form element is invalid now
+        assertFalse(email.isValid)
+
+        // Set error
+        instrumentation.runOnMainSync {
+            email.error = "Invalid email!"
+        }
+        instrumentation.waitForIdleSync()
+
+        // Check if the new error was set in the UI
+        onView(withText(email.error))
+                .check(matches(isDisplayed()))
+
+        // Set to valid email
+        newEmail = "test@example.com"
+
+        // Make the email form element valid again
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(1))
+        onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
+                hasTextViewInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)))
+                .perform(replaceText(newEmail))
+
+        // Check if the new value was set in the UI
+        onView(withText(newEmail))
+                .check(matches(isDisplayed()))
+
+        // Check if the new value was set in the model
+        assertTrue(email.value == newEmail)
+
+        // Check if the form is valid now
+        assertTrue(formBuildHelper.isValidForm)
+
+        // Check if the email form element is valid now
+        assertTrue(email.isValid)
+
+        // Remove error
+        instrumentation.runOnMainSync {
+            email.error = null
+        }
+        instrumentation.waitForIdleSync()
+
+        // Check if the error was removed in the UI
+        onView(withText("Invalid email!"))
+                .check(isNotDisplayed())
+    }
 
     @Test
     fun header_isDisplayed() {
@@ -120,6 +411,14 @@ class FormInstrumentedTest {
     }
 
     @Test
+    fun label_isDisplayed() {
+        // Check if the Label is displayed on the form
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(26))
+        onView(withText("Label"))
+                .check(matches(isDisplayed()))
+    }
+
+    @Test
     fun progress_changes_whenProgressed() {
         onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(22))
         onView(withClassName(Matchers.equalTo(ProgressBar::class.java.name)))
@@ -152,7 +451,7 @@ class FormInstrumentedTest {
     @Test
     fun button_disabled_shouldDoNothing_whenClicked() {
         // Click button to verify that nothing happens because it is disabled
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(26, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(27, click()))
         onView(withId(R.id.recyclerView))
                 .check(matches(not(withText("Disabled?"))))
     }

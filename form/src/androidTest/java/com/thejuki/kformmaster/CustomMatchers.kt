@@ -5,11 +5,15 @@ import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.matcher.BoundedMatcher
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.util.HumanReadables
 import com.thejuki.kformmaster.token.ItemsCompletionView
 import com.thejuki.kformmaster.widget.SegmentedGroup
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
+
 
 /**
  * Custom Matchers
@@ -85,3 +89,11 @@ fun <T> hasItemsCompletionViewObject(expectedObject: T) =
 
             override fun matchesSafely(view: ItemsCompletionView) = view.objects.contains(expectedObject)
         }
+
+fun isNotDisplayed(): ViewAssertion {
+    return ViewAssertion { view, _ ->
+        if (view != null && isDisplayed().matches(view)) {
+            throw AssertionError("View is present in the hierarchy and Displayed: " + HumanReadables.describe(view))
+        }
+    }
+}

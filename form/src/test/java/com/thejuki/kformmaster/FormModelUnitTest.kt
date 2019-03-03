@@ -17,6 +17,35 @@ import org.junit.runner.RunWith
 @RunWith(KTestJUnitRunner::class)
 class FormModelUnitTest : ShouldSpec() {
     init {
+        "FormLayouts" {
+            should("have form layout Ids") {
+                val formLayouts = CustomGen.formLayouts().generate()
+
+                formLayouts.header shouldNotBe null
+                formLayouts.text shouldNotBe null
+                formLayouts.textArea shouldNotBe null
+                formLayouts.number shouldNotBe null
+                formLayouts.email shouldNotBe null
+                formLayouts.password shouldNotBe null
+                formLayouts.phone shouldNotBe null
+                formLayouts.autoComplete shouldNotBe null
+                formLayouts.autoCompleteToken shouldNotBe null
+                formLayouts.button shouldNotBe null
+                formLayouts.date shouldNotBe null
+                formLayouts.time shouldNotBe null
+                formLayouts.dateTime shouldNotBe null
+                formLayouts.dropDown shouldNotBe null
+                formLayouts.multiCheckBox shouldNotBe null
+                formLayouts.switch shouldNotBe null
+                formLayouts.checkBox shouldNotBe null
+                formLayouts.slider shouldNotBe null
+                formLayouts.label shouldNotBe null
+                formLayouts.textView shouldNotBe null
+                formLayouts.segmented shouldNotBe null
+                formLayouts.progress shouldNotBe null
+            }
+        }
+
         "BaseFormElement" {
             should("have observe changes to value") {
                 val element = CustomGen.baseFormElement().generate()
@@ -35,7 +64,7 @@ class FormModelUnitTest : ShouldSpec() {
         }
 
         "Label" {
-            should("have valid formHeader") {
+            should("have valid label") {
                 CustomGen.formLabelElement().generate().title shouldNotBe null
             }
         }
@@ -50,13 +79,19 @@ class FormModelUnitTest : ShouldSpec() {
 
         "DateAndTime" {
             should("have valid formPickerDateElement") {
-                CustomGen.formPickerDateElement().generate().value?.getTime() shouldNotBe null
+                val element = CustomGen.formPickerDateElement().generate()
+                element.value?.getTime() shouldNotBe null
+                element.minimumDate shouldNotBe null
+                element.maximumDate shouldNotBe null
             }
             should("have valid formPickerTimeElement") {
                 CustomGen.formPickerTimeElement().generate().value?.getTime() shouldNotBe null
             }
             should("have valid formPickerDateTimeElement") {
-                CustomGen.formPickerDateTimeElement().generate().value?.getTime() shouldNotBe null
+                val element = CustomGen.formPickerDateTimeElement().generate()
+                element.value?.getTime() shouldNotBe null
+                element.minimumDate shouldNotBe null
+                element.maximumDate shouldNotBe null
             }
         }
 

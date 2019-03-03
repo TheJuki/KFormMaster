@@ -1,11 +1,13 @@
 package com.thejuki.kformmaster
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.thejuki.kformmaster.FormActivityTest.Tag.*
 import com.thejuki.kformmaster.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmaster.adapter.EmailAutoCompleteAdapter
@@ -31,7 +33,7 @@ import java.util.Date
  */
 class FormActivityTest : AppCompatActivity() {
 
-    private lateinit var formBuilder: FormBuildHelper
+    lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +71,7 @@ class FormActivityTest : AppCompatActivity() {
             ListItem(id = 4, name = "Guava")
     )
 
-    private enum class Tag {
+    enum class Tag {
         Hidden,
         Disabled,
         Email,
@@ -91,7 +93,8 @@ class FormActivityTest : AppCompatActivity() {
         SliderElement,
         ProgressElement,
         CheckBoxElement,
-        SegmentedElement
+        SegmentedElement,
+        LabelElement
     }
 
     private fun setupForm() {
@@ -105,7 +108,18 @@ class FormActivityTest : AppCompatActivity() {
             header { title = "Header 1"; collapsible = true }
             email(Email.ordinal) {
                 title = "Email"
+                value = "test@example.com"
+                required = true
                 hint = "Email Hint"
+                maxLines = 3
+                maxLength = 100
+                backgroundColor = Color.WHITE
+                titleTextColor = Color.BLACK
+                titleFocusedTextColor = Color.parseColor("#FF4081")
+                valueTextColor = Color.BLACK
+                errorTextColor = ResourcesCompat.getColor(resources, R.color.colorFormMasterElementErrorTitle, null)
+                hintTextColor = Color.BLUE
+                enabled = true
             }
             password(Password.ordinal) {
                 title = "Password"
@@ -242,6 +256,9 @@ class FormActivityTest : AppCompatActivity() {
                 title = "Hidden"
                 visible = false
             }
+            label(LabelElement.ordinal) {
+                title = "Label"
+            }
         }
 
         val disabledButton = FormButtonElement(Disabled.ordinal)
@@ -257,7 +274,11 @@ class FormActivityTest : AppCompatActivity() {
             confirmAlert.show()
         }
 
+        // Add disabledButton using addFormElement
         formBuilder.addFormElement(disabledButton)
         formBuilder.setItems()
+
+        // Add disabledButton using addFormElements
+        formBuilder.addFormElements(listOf(disabledButton))
     }
 }

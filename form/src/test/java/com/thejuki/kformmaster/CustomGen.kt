@@ -2,6 +2,7 @@ package com.thejuki.kformmaster
 
 import android.R
 import android.widget.ArrayAdapter
+import com.thejuki.kformmaster.helper.FormLayouts
 import com.thejuki.kformmaster.model.*
 import io.kotlintest.mock.mock
 import io.kotlintest.properties.Gen
@@ -20,11 +21,40 @@ interface CustomGen {
     companion object {
 
         /**
+         * Generates a FormLayouts object
+         */
+        fun formLayouts() = object : Gen<FormLayouts> {
+            override fun generate() = FormLayouts(
+                    Gen.choose(-100, 100).generate() // header
+                    , Gen.choose(-100, 100).generate() // text
+                    , Gen.choose(-100, 100).generate() // textArea
+                    , Gen.choose(-100, 100).generate() // number
+                    , Gen.choose(-100, 100).generate() // email
+                    , Gen.choose(-100, 100).generate() // password
+                    , Gen.choose(-100, 100).generate() // phone
+                    , Gen.choose(-100, 100).generate() // autoComplete
+                    , Gen.choose(-100, 100).generate() // autoCompleteToken
+                    , Gen.choose(-100, 100).generate() // button
+                    , Gen.choose(-100, 100).generate() // date
+                    , Gen.choose(-100, 100).generate() // time
+                    , Gen.choose(-100, 100).generate() // dateTime
+                    , Gen.choose(-100, 100).generate() // dropDown
+                    , Gen.choose(-100, 100).generate() // multiCheckBox
+                    , Gen.choose(-100, 100).generate() // switch
+                    , Gen.choose(-100, 100).generate() // checkBox
+                    , Gen.choose(-100, 100).generate() // slider
+                    , Gen.choose(-100, 100).generate() // label
+                    , Gen.choose(-100, 100).generate() // textView
+                    , Gen.choose(-100, 100).generate() // segmented
+                    , Gen.choose(-100, 100).generate() // progress
+            )
+        }
+
+        /**
          * Generates a BaseFormElement
          */
         fun baseFormElement() = object : Gen<BaseFormElement<String>> {
             override fun generate() = generateBaseFields(BaseFormElement())
-
         }
 
         /**
@@ -247,10 +277,13 @@ interface CustomGen {
          */
         fun formPickerDateElement() = object : Gen<FormPickerDateElement> {
             override fun generate(): FormPickerDateElement {
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
                 val element = FormPickerDateElement()
                 element.title = Gen.string().generate()
                 element.hint = Gen.string().generate()
-                element.value = FormPickerDateElement.DateHolder(Date(), SimpleDateFormat("MM/dd/yyyy", Locale.US))
+                element.value = FormPickerDateElement.DateHolder(Date(), dateFormat)
+                element.minimumDate = dateFormat.parse("01/01/2018")
+                element.maximumDate = dateFormat.parse("12/15/2025")
                 return element
             }
         }
@@ -273,10 +306,13 @@ interface CustomGen {
          */
         fun formPickerDateTimeElement() = object : Gen<FormPickerDateTimeElement> {
             override fun generate(): FormPickerDateTimeElement {
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
                 val element = FormPickerDateTimeElement()
                 element.title = Gen.string().generate()
                 element.hint = Gen.string().generate()
-                element.value = FormPickerDateTimeElement.DateTimeHolder(Date(), SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US))
+                element.value = FormPickerDateTimeElement.DateTimeHolder(Date(), dateFormat)
+                element.minimumDate = dateFormat.parse("01/01/2018 12:00 AM")
+                element.maximumDate = dateFormat.parse("12/15/2025 12:00 PM")
                 return element
             }
         }
