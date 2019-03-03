@@ -19,6 +19,14 @@ A java.util.Date value.
 
 A java.text.DateFormat value. By default this is SimpleDateFormat.getDateInstance(). It is advised to provide your own format.
 
+## Minimum Date
+
+A java.util.Date value to set the minimum date for the Date picker.
+
+## Maximum Date
+
+A java.util.Date value to set the maximum date for the Date picker.
+
 ## Example
 
 ### Kotlin

@@ -44,6 +44,24 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
         }
 
     /**
+     * Maximum Date/Time in the picker
+     */
+    var maximumDate: Date? = null
+        set(value) {
+            field = value
+            reInitDialog()
+        }
+
+    /**
+     * Minimum Date/Time in the picker
+     */
+    var minimumDate: Date? = null
+        set(value) {
+            field = value
+            reInitDialog()
+        }
+
+    /**
      * Alert Dialog Builder
      * Used to call reInitDialog without needing context again.
      */
@@ -171,6 +189,14 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
                 value?.year ?: 0,
                 if ((value?.month ?: 0) == 0) 0 else (value?.month ?: 0) - 1,
                 value?.dayOfMonth ?: 0)
+
+        maximumDate?.let {
+            datePickerDialog.datePicker.maxDate = it.time
+        }
+
+        minimumDate?.let {
+            datePickerDialog.datePicker.minDate = it.time
+        }
 
         if (alertDialogBuilder == null) {
             alertDialogBuilder = AlertDialog.Builder(editTextView.context)

@@ -297,6 +297,8 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.Date)
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
+                minimumDate = dateFormat.parse("01/01/2018")
+                maximumDate = dateFormat.parse("12/15/2025")
                 required = true
                 maxLines = 1
                 confirmEdit = true
@@ -327,6 +329,8 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.DateTime)
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+                minimumDate = dateFormat.parse("01/01/2018 12:00 AM")
+                maximumDate = dateFormat.parse("12/15/2025 12:00 PM")
                 required = true
                 maxLines = 1
                 confirmEdit = true
