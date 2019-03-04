@@ -39,6 +39,10 @@ android {
         unitTests {
             includeAndroidResources = true
         }
+
+        unitTests.all {
+            useJUnitPlatform()
+        }
     }
 }
 
@@ -79,12 +83,12 @@ ext {
     materialVersion = '1.0.0'
     rendererRecyclerViewAdapterVersion = '2.7.0-SNAPSHOT'
     tokenautocompleteVersion = '2.0.8'
-    junitVersion = '4.12'
+    testCoreVersion = '1.1.0'
     testExtJunitVersion = '1.1.0'
     testRulesVersion = '1.1.1'
     testExpressoVersion = '3.1.1'
-    kotlintestVersion = '2.0.7'
-    mockitoVersion = '2.24.5'
+    kotlintestVersion = '3.3.0'
+    log4jVersion = '2.11.2'
 }
 
 dependencies {
@@ -98,9 +102,9 @@ dependencies {
     // Token Autocomplete
     api "com.splitwise:tokenautocomplete:$tokenautocompleteVersion@aar"
 
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "io.kotlintest:kotlintest:$kotlintestVersion"
-    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.apache.logging.log4j:log4j-slf4j-impl:2.11.2"
+    testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintestVersion"
+    androidTestImplementation "androidx.test:core:$testCoreVersion"
     androidTestImplementation "androidx.test.ext:junit:$testExtJunitVersion"
     androidTestImplementation "androidx.test:rules:$testRulesVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$testExpressoVersion"

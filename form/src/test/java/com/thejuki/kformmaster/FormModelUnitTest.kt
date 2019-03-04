@@ -1,10 +1,8 @@
 package com.thejuki.kformmaster
 
-import io.kotlintest.KTestJUnitRunner
-import io.kotlintest.matchers.shouldBe
-import io.kotlintest.matchers.shouldNotBe
+import io.kotlintest.shouldBe
+import io.kotlintest.shouldNotBe
 import io.kotlintest.specs.ShouldSpec
-import org.junit.runner.RunWith
 
 /**
  * Form Model Unit Test
@@ -14,12 +12,11 @@ import org.junit.runner.RunWith
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-@RunWith(KTestJUnitRunner::class)
 class FormModelUnitTest : ShouldSpec() {
     init {
         "FormLayouts" {
             should("have form layout Ids") {
-                val formLayouts = CustomGen.formLayouts().generate()
+                val formLayouts = CustomGen.formLayouts().random().first()
 
                 formLayouts.header shouldNotBe null
                 formLayouts.text shouldNotBe null
@@ -48,7 +45,7 @@ class FormModelUnitTest : ShouldSpec() {
 
         "BaseFormElement" {
             should("have observe changes to value") {
-                val element = CustomGen.baseFormElement().generate()
+                val element = CustomGen.baseFormElement().random().first()
                 val newValue = "Test Value Observer"
                 element.addValueObserver { value, _ ->
                     value shouldBe newValue
@@ -59,19 +56,19 @@ class FormModelUnitTest : ShouldSpec() {
 
         "Header" {
             should("have valid formHeader") {
-                CustomGen.formHeader().generate().title shouldNotBe null
+                CustomGen.formHeader().random().first().title shouldNotBe null
             }
         }
 
         "Label" {
             should("have valid label") {
-                CustomGen.formLabelElement().generate().title shouldNotBe null
+                CustomGen.formLabelElement().random().first().title shouldNotBe null
             }
         }
 
         "TextView" {
             should("have valid formTextViewElement") {
-                val element = CustomGen.formTextViewElement().generate()
+                val element = CustomGen.formTextViewElement().random().first()
                 element.title shouldNotBe null
                 element.value shouldNotBe null
             }
@@ -79,16 +76,16 @@ class FormModelUnitTest : ShouldSpec() {
 
         "DateAndTime" {
             should("have valid formPickerDateElement") {
-                val element = CustomGen.formPickerDateElement().generate()
+                val element = CustomGen.formPickerDateElement().random().first()
                 element.value?.getTime() shouldNotBe null
                 element.minimumDate shouldNotBe null
                 element.maximumDate shouldNotBe null
             }
             should("have valid formPickerTimeElement") {
-                CustomGen.formPickerTimeElement().generate().value?.getTime() shouldNotBe null
+                CustomGen.formPickerTimeElement().random().first().value?.getTime() shouldNotBe null
             }
             should("have valid formPickerDateTimeElement") {
-                val element = CustomGen.formPickerDateTimeElement().generate()
+                val element = CustomGen.formPickerDateTimeElement().random().first()
                 element.value?.getTime() shouldNotBe null
                 element.minimumDate shouldNotBe null
                 element.maximumDate shouldNotBe null
@@ -97,41 +94,41 @@ class FormModelUnitTest : ShouldSpec() {
 
         "MarkComplete" {
             should("have valid formSegmentedElement") {
-                val element = CustomGen.formSegmentedElement().generate()
+                val element = CustomGen.formSegmentedElement().random().first()
                 CustomGen.verifyBaseFormElement(element) shouldBe true
             }
             should("have valid formCheckBoxElement") {
-                val element = CustomGen.formCheckBoxElement().generate()
+                val element = CustomGen.formCheckBoxElement().random().first()
                 (element.checkedValue == element.value) shouldBe element.isChecked()
             }
             should("have valid formSwitchElement") {
-                val element = CustomGen.formSwitchElement().generate()
+                val element = CustomGen.formSwitchElement().random().first()
                 (element.onValue == element.value) shouldBe element.isOn()
             }
             should("have valid formSliderElement") {
-                val element = CustomGen.formSliderElement().generate()
+                val element = CustomGen.formSliderElement().random().first()
                 (element.min < element.max) shouldBe true
                 ((element.value ?: 0 <= element.max) and (element.value ?: 0 >= element.min)) shouldBe true
             }
             should("have valid formProgressElement") {
-                val element = CustomGen.formProgressElement().generate()
+                val element = CustomGen.formProgressElement().random().first()
                 (element.min < element.max) shouldBe true
                 ((element.progress ?: 0 <= element.max) and (element.progress ?: 0 >= element.min)) shouldBe true
             }
             should("have valid formButtonElement") {
-                CustomGen.formButtonElement().generate().value shouldNotBe null
+                CustomGen.formButtonElement().random().first().value shouldNotBe null
             }
         }
 
         "Pickers" {
             should("have valid formPickerDropDownElement") {
-                val element = CustomGen.formPickerDropDownElement().generate()
+                val element = CustomGen.formPickerDropDownElement().random().first()
                 CustomGen.verifyBaseFormElement(element) shouldBe true
                 element.dialogTitle shouldNotBe null
                 element.arrayAdapter shouldBe null
             }
             should("have valid formPickerMultiCheckBoxElement") {
-                val element = CustomGen.formPickerMultiCheckBoxElement().generate()
+                val element = CustomGen.formPickerMultiCheckBoxElement().random().first()
                 CustomGen.verifyBaseFormElement(element) shouldBe true
                 element.dialogTitle shouldNotBe null
             }
@@ -139,14 +136,14 @@ class FormModelUnitTest : ShouldSpec() {
 
         "AutoComplete" {
             should("have valid formPickerDropDownElement") {
-                val element = CustomGen.formAutoCompleteElement().generate()
+                val element = CustomGen.formAutoCompleteElement().random().first()
                 CustomGen.verifyBaseFormElement(element) shouldBe true
                 element.typedString shouldNotBe null
                 element.arrayAdapter shouldNotBe null
                 element.dropdownWidth shouldNotBe null
             }
             should("have valid formTokenAutoCompleteElement") {
-                val element = CustomGen.formTokenAutoCompleteElement().generate()
+                val element = CustomGen.formTokenAutoCompleteElement().random().first()
                 CustomGen.verifyBaseFormElement(element) shouldBe true
                 element.arrayAdapter shouldNotBe null
                 element.dropdownWidth shouldNotBe null
@@ -155,26 +152,26 @@ class FormModelUnitTest : ShouldSpec() {
 
         "EditTextElement" {
             should("have valid formSingleLineEditTextElement") {
-                CustomGen.verifyBaseFormElement(CustomGen.formSingleLineEditTextElement().generate()) shouldBe true
+                CustomGen.verifyBaseFormElement(CustomGen.formSingleLineEditTextElement().random().first()) shouldBe true
             }
             should("have valid formMultiLineEditTextElement") {
-                CustomGen.verifyBaseFormElement(CustomGen.formMultiLineEditTextElement().generate()) shouldBe true
+                CustomGen.verifyBaseFormElement(CustomGen.formMultiLineEditTextElement().random().first()) shouldBe true
             }
             should("have valid formEmailEditTextElement") {
-                val element = CustomGen.formEmailEditTextElement().generate()
+                val element = CustomGen.formEmailEditTextElement().random().first()
                 CustomGen.verifyBaseFormElement(element) shouldBe true
                 element.isValid shouldBe true
                 element.value = "bad.email@"
                 element.isValid shouldBe false
             }
             should("have valid formPasswordEditTextElement") {
-                CustomGen.verifyBaseFormElement(CustomGen.formPasswordEditTextElement().generate()) shouldBe true
+                CustomGen.verifyBaseFormElement(CustomGen.formPasswordEditTextElement().random().first()) shouldBe true
             }
             should("have valid formPhoneEditTextElement") {
-                CustomGen.verifyBaseFormElement(CustomGen.formPhoneEditTextElement().generate()) shouldBe true
+                CustomGen.verifyBaseFormElement(CustomGen.formPhoneEditTextElement().random().first()) shouldBe true
             }
             should("have valid formNumberEditTextElement") {
-                CustomGen.verifyBaseFormElement(CustomGen.formNumberEditTextElement().generate()) shouldBe true
+                CustomGen.verifyBaseFormElement(CustomGen.formNumberEditTextElement().random().first()) shouldBe true
             }
         }
     }

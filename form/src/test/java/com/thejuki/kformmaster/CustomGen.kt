@@ -4,8 +4,8 @@ import android.R
 import android.widget.ArrayAdapter
 import com.thejuki.kformmaster.helper.FormLayouts
 import com.thejuki.kformmaster.model.*
-import io.kotlintest.mock.mock
 import io.kotlintest.properties.Gen
+import io.mockk.mockk
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,45 +24,52 @@ interface CustomGen {
          * Generates a FormLayouts object
          */
         fun formLayouts() = object : Gen<FormLayouts> {
-            override fun generate() = FormLayouts(
-                    Gen.choose(-100, 100).generate() // header
-                    , Gen.choose(-100, 100).generate() // text
-                    , Gen.choose(-100, 100).generate() // textArea
-                    , Gen.choose(-100, 100).generate() // number
-                    , Gen.choose(-100, 100).generate() // email
-                    , Gen.choose(-100, 100).generate() // password
-                    , Gen.choose(-100, 100).generate() // phone
-                    , Gen.choose(-100, 100).generate() // autoComplete
-                    , Gen.choose(-100, 100).generate() // autoCompleteToken
-                    , Gen.choose(-100, 100).generate() // button
-                    , Gen.choose(-100, 100).generate() // date
-                    , Gen.choose(-100, 100).generate() // time
-                    , Gen.choose(-100, 100).generate() // dateTime
-                    , Gen.choose(-100, 100).generate() // dropDown
-                    , Gen.choose(-100, 100).generate() // multiCheckBox
-                    , Gen.choose(-100, 100).generate() // switch
-                    , Gen.choose(-100, 100).generate() // checkBox
-                    , Gen.choose(-100, 100).generate() // slider
-                    , Gen.choose(-100, 100).generate() // label
-                    , Gen.choose(-100, 100).generate() // textView
-                    , Gen.choose(-100, 100).generate() // segmented
-                    , Gen.choose(-100, 100).generate() // progress
-            )
+            override fun constants() = emptyList<FormLayouts>()
+            override fun random() = generateSequence {
+                FormLayouts(
+                        Gen.choose(-100, 100).random().first() // header
+                        , Gen.choose(-100, 100).random().first() // text
+                        , Gen.choose(-100, 100).random().first() // textArea
+                        , Gen.choose(-100, 100).random().first() // number
+                        , Gen.choose(-100, 100).random().first() // email
+                        , Gen.choose(-100, 100).random().first() // password
+                        , Gen.choose(-100, 100).random().first() // phone
+                        , Gen.choose(-100, 100).random().first() // autoComplete
+                        , Gen.choose(-100, 100).random().first() // autoCompleteToken
+                        , Gen.choose(-100, 100).random().first() // button
+                        , Gen.choose(-100, 100).random().first() // date
+                        , Gen.choose(-100, 100).random().first() // time
+                        , Gen.choose(-100, 100).random().first() // dateTime
+                        , Gen.choose(-100, 100).random().first() // dropDown
+                        , Gen.choose(-100, 100).random().first() // multiCheckBox
+                        , Gen.choose(-100, 100).random().first() // switch
+                        , Gen.choose(-100, 100).random().first() // checkBox
+                        , Gen.choose(-100, 100).random().first() // slider
+                        , Gen.choose(-100, 100).random().first() // label
+                        , Gen.choose(-100, 100).random().first() // textView
+                        , Gen.choose(-100, 100).random().first() // segmented
+                        , Gen.choose(-100, 100).random().first() // progress
+                )
+            }
         }
 
         /**
          * Generates a BaseFormElement
          */
         fun baseFormElement() = object : Gen<BaseFormElement<String>> {
-            override fun generate() = generateBaseFields(BaseFormElement())
+            override fun constants() = emptyList<BaseFormElement<String>>()
+            override fun random() = generateSequence {
+                generateBaseFields(BaseFormElement())
+            }
         }
 
         /**
          * Generates a FormHeader
          */
         fun formHeader() = object : Gen<FormHeader> {
-            override fun generate(): FormHeader {
-                return FormHeader().apply { title = Gen.string().generate() }
+            override fun constants() = emptyList<FormHeader>()
+            override fun random() = generateSequence {
+                FormHeader().apply { title = Gen.string().random().first() }
             }
         }
 
@@ -70,25 +77,30 @@ interface CustomGen {
          * Generates a FormSingleLineEditTextElement
          */
         fun formSingleLineEditTextElement() = object : Gen<FormSingleLineEditTextElement> {
-            override fun generate() =
-                    generateBaseFields(FormSingleLineEditTextElement()) as FormSingleLineEditTextElement
+            override fun constants() = emptyList<FormSingleLineEditTextElement>()
+            override fun random() = generateSequence {
+                generateBaseFields(FormSingleLineEditTextElement()) as FormSingleLineEditTextElement
+            }
         }
 
         /**
          * Generates a FormMultiLineEditTextElement
          */
         fun formMultiLineEditTextElement() = object : Gen<FormMultiLineEditTextElement> {
-            override fun generate() =
-                    generateBaseFields(FormMultiLineEditTextElement()) as FormMultiLineEditTextElement
+            override fun constants() = emptyList<FormMultiLineEditTextElement>()
+            override fun random() = generateSequence {
+                generateBaseFields(FormMultiLineEditTextElement()) as FormMultiLineEditTextElement
+            }
         }
 
         /**
          * Generates a FormEmailEditTextElement
          */
         fun formEmailEditTextElement() = object : Gen<FormEmailEditTextElement> {
-            override fun generate(): FormEmailEditTextElement {
+            override fun constants() = emptyList<FormEmailEditTextElement>()
+            override fun random() = generateSequence {
                 val element = generateBaseFields(FormEmailEditTextElement()) as FormEmailEditTextElement
-                element.value = Gen.oneOf(listOf("test@example.com", "test.tester@example2.org", "email@example.test.edu")).generate()
+                element.value = Gen.from(listOf("test@example.com", "test.tester@example2.org", "email@example.test.edu")).random().first()
                 element.validityCheck = {
                     ("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                             "\\@" +
@@ -98,7 +110,7 @@ interface CustomGen {
                             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
                             ")+").toRegex().matches(element.value ?: "")
                 }
-                return element
+                element
             }
         }
 
@@ -106,34 +118,41 @@ interface CustomGen {
          * Generates a FormPasswordEditTextElement
          */
         fun formPasswordEditTextElement() = object : Gen<FormPasswordEditTextElement> {
-            override fun generate() =
-                    generateBaseFields(FormPasswordEditTextElement()) as FormPasswordEditTextElement
+            override fun constants() = emptyList<FormPasswordEditTextElement>()
+            override fun random() = generateSequence {
+                generateBaseFields(FormPasswordEditTextElement()) as FormPasswordEditTextElement
+            }
         }
 
         /**
          * Generates a FormPhoneEditTextElement
          */
         fun formPhoneEditTextElement() = object : Gen<FormPhoneEditTextElement> {
-            override fun generate() =
-                    generateBaseFields(FormPhoneEditTextElement()) as FormPhoneEditTextElement
+            override fun constants() = emptyList<FormPhoneEditTextElement>()
+            override fun random() = generateSequence {
+                generateBaseFields(FormPhoneEditTextElement()) as FormPhoneEditTextElement
+            }
         }
 
         /**
          * Generates a FormNumberEditTextElement
          */
         fun formNumberEditTextElement() = object : Gen<FormNumberEditTextElement> {
-            override fun generate() =
-                    generateBaseFields(FormNumberEditTextElement()) as FormNumberEditTextElement
+            override fun constants() = emptyList<FormNumberEditTextElement>()
+            override fun random() = generateSequence {
+                generateBaseFields(FormNumberEditTextElement()) as FormNumberEditTextElement
+            }
         }
 
         /**
          * Generates a FormTextViewElement
          */
         fun formTextViewElement() = object : Gen<FormTextViewElement> {
-            override fun generate(): FormTextViewElement {
-                return FormTextViewElement().apply {
-                    title = Gen.string().generate()
-                    value = Gen.string().generate()
+            override fun constants() = emptyList<FormTextViewElement>()
+            override fun random() = generateSequence {
+                FormTextViewElement().apply {
+                    title = Gen.string().random().first()
+                    value = Gen.string().random().first()
                 }
             }
         }
@@ -142,9 +161,10 @@ interface CustomGen {
          * Generates a formLabelElement
          */
         fun formLabelElement() = object : Gen<FormLabelElement> {
-            override fun generate(): FormLabelElement {
-                return FormLabelElement().apply {
-                    title = Gen.string().generate()
+            override fun constants() = emptyList<FormLabelElement>()
+            override fun random() = generateSequence {
+               FormLabelElement().apply {
+                    title = Gen.string().random().first()
                 }
             }
         }
@@ -153,12 +173,13 @@ interface CustomGen {
          * Generates a FormSegmentedElement
          */
         fun formSegmentedElement() = object : Gen<FormSegmentedElement<String>> {
-            override fun generate(): FormSegmentedElement<String> {
+            override fun constants() = emptyList<FormSegmentedElement<String>>()
+            override fun random() = generateSequence {
                 val element = generateBaseFields(FormSegmentedElement()) as FormSegmentedElement<String>
-                element.horizontal = Gen.bool().generate()
-                element.options = Gen.list(Gen.string()).generate()
-                element.drawableDirection = Gen.oneOf(FormSegmentedElement.DrawableDirection.values().asList()).generate()
-                return element
+                element.horizontal = Gen.bool().random().first()
+                element.options = Gen.list(Gen.string()).random().first()
+                element.drawableDirection = Gen.from(FormSegmentedElement.DrawableDirection.values().asList()).random().first()
+               element
             }
         }
 
@@ -166,12 +187,13 @@ interface CustomGen {
          * Generates a FormPickerDropDownElement
          */
         fun formPickerDropDownElement() = object : Gen<FormPickerDropDownElement<String>> {
-            override fun generate(): FormPickerDropDownElement<String> {
+            override fun constants() = emptyList<FormPickerDropDownElement<String>>()
+            override fun random() = generateSequence {
                 val element = generateBaseFields(FormPickerDropDownElement()) as FormPickerDropDownElement<String>
-                element.dialogTitle = Gen.string().generate()
+                element.dialogTitle = Gen.string().random().first()
                 element.arrayAdapter = null
-                element.options = Gen.list(Gen.string()).generate()
-                return element
+                element.options = Gen.list(Gen.string()).random().first()
+               element
             }
         }
 
@@ -179,11 +201,12 @@ interface CustomGen {
          * Generates a FormPickerMultiCheckBoxElement
          */
         fun formPickerMultiCheckBoxElement() = object : Gen<FormPickerMultiCheckBoxElement<List<String>>> {
-            override fun generate(): FormPickerMultiCheckBoxElement<List<String>> {
+            override fun constants() = emptyList<FormPickerMultiCheckBoxElement<List<String>>>()
+            override fun random() = generateSequence {
                 val element = generateBaseFieldsWithList(FormPickerMultiCheckBoxElement()) as FormPickerMultiCheckBoxElement<List<String>>
-                element.dialogTitle = Gen.string().generate()
-                element.options = Gen.list(Gen.string()).generate()
-                return element
+                element.dialogTitle = Gen.string().random().first()
+                element.options = Gen.list(Gen.string()).random().first()
+               element
             }
         }
 
@@ -191,14 +214,15 @@ interface CustomGen {
          * Generates a FormAutoCompleteElement
          */
         fun formAutoCompleteElement() = object : Gen<FormAutoCompleteElement<String>> {
-            override fun generate(): FormAutoCompleteElement<String> {
+            override fun constants() = emptyList<FormAutoCompleteElement<String>>()
+            override fun random() = generateSequence {
                 val element = generateBaseFields(FormAutoCompleteElement()) as FormAutoCompleteElement<String>
                 element.typedString = element.valueAsString
-                element.dropdownWidth = Gen.int().generate()
-                val listOfOptions = Gen.list(Gen.string()).generate()
+                element.dropdownWidth = Gen.int().random().first()
+                val listOfOptions = Gen.list(Gen.string()).random().first()
                 element.options = listOfOptions
-                element.arrayAdapter = ArrayAdapter(mock(), R.layout.simple_list_item_1, listOfOptions)
-                return element
+                element.arrayAdapter = ArrayAdapter(mockk(), R.layout.simple_list_item_1, listOfOptions)
+               element
             }
         }
 
@@ -206,13 +230,14 @@ interface CustomGen {
          * Generates a FormTokenAutoCompleteElement
          */
         fun formTokenAutoCompleteElement() = object : Gen<FormTokenAutoCompleteElement<List<String>>> {
-            override fun generate(): FormTokenAutoCompleteElement<List<String>> {
+            override fun constants() = emptyList<FormTokenAutoCompleteElement<List<String>>>()
+            override fun random() = generateSequence {
                 val element = generateBaseFieldsWithList(FormTokenAutoCompleteElement()) as FormTokenAutoCompleteElement<List<String>>
-                element.dropdownWidth = Gen.int().generate()
-                val listOfOptions = Gen.list(Gen.string()).generate()
+                element.dropdownWidth = Gen.int().random().first()
+                val listOfOptions = Gen.list(Gen.string()).random().first()
                 element.options = listOfOptions
-                element.arrayAdapter = ArrayAdapter(mock(), R.layout.simple_list_item_1, listOfOptions)
-                return element
+                element.arrayAdapter = ArrayAdapter(mockk(), R.layout.simple_list_item_1, listOfOptions)
+               element
             }
         }
 
@@ -220,11 +245,12 @@ interface CustomGen {
          * Generates a FormCheckBoxElement
          */
         fun formCheckBoxElement() = object : Gen<FormCheckBoxElement<String>> {
-            override fun generate(): FormCheckBoxElement<String> {
+            override fun constants() = emptyList<FormCheckBoxElement<String>>()
+            override fun random() = generateSequence {
                 val element = generateBaseFields(FormCheckBoxElement()) as FormCheckBoxElement<String>
                 element.checkedValue = element.valueAsString
-                element.unCheckedValue = Gen.string().generate()
-                return element
+                element.unCheckedValue = Gen.string().random().first()
+               element
             }
         }
 
@@ -232,11 +258,12 @@ interface CustomGen {
          * Generates a FormSwitchElement
          */
         fun formSwitchElement() = object : Gen<FormSwitchElement<String>> {
-            override fun generate(): FormSwitchElement<String> {
+            override fun constants() = emptyList<FormSwitchElement<String>>()
+            override fun random() = generateSequence {
                 val element = generateBaseFields(FormSwitchElement()) as FormSwitchElement<String>
                 element.onValue = element.valueAsString
-                element.offValue = Gen.string().generate()
-                return element
+                element.offValue = Gen.string().random().first()
+               element
             }
         }
 
@@ -244,14 +271,15 @@ interface CustomGen {
          * Generates a FormSliderElement
          */
         fun formSliderElement() = object : Gen<FormSliderElement> {
-            override fun generate(): FormSliderElement {
+            override fun constants() = emptyList<FormSliderElement>()
+            override fun random() = generateSequence {
                 val element = FormSliderElement()
-                element.title = Gen.string().generate()
-                element.max = Gen.choose(1, 100).generate()
-                element.min = Gen.choose(0, element.max - 1).generate()
-                element.value = Gen.choose(element.min, element.max).generate()
-                element.steps = Gen.choose(1, element.max).generate()
-                return element
+                element.title = Gen.string().random().first()
+                element.max = Gen.choose(1, 100).random().first()
+                element.min = Gen.choose(0, element.max - 2).random().first()
+                element.value = Gen.choose(element.min, element.max).random().first()
+                element.steps = Gen.choose(1, element.max).random().first()
+               element
             }
         }
 
@@ -259,16 +287,17 @@ interface CustomGen {
          * Generates a FormProgressElement
          */
         fun formProgressElement() = object : Gen<FormProgressElement> {
-            override fun generate(): FormProgressElement {
+            override fun constants() = emptyList<FormProgressElement>()
+            override fun random() = generateSequence {
                 val element = FormProgressElement()
-                element.title = Gen.string().generate()
-                element.max = Gen.choose(1, 100).generate()
-                element.min = Gen.choose(0, element.max - 1).generate()
-                element.progress = Gen.choose(element.min, element.max).generate()
-                element.secondaryProgress = Gen.choose(element.min, element.max).generate()
-                element.indeterminate = Gen.bool().generate()
-                element.progressBarStyle = Gen.oneOf(FormProgressElement.ProgressBarStyle.values().asList()).generate()
-                return element
+                element.title = Gen.string().random().first()
+                element.max = Gen.choose(1, 100).random().first()
+                element.min = Gen.choose(0, element.max - 2).random().first()
+                element.progress = Gen.choose(element.min, element.max).random().first()
+                element.secondaryProgress = Gen.choose(element.min, element.max).random().first()
+                element.indeterminate = Gen.bool().random().first()
+                element.progressBarStyle = Gen.from(FormProgressElement.ProgressBarStyle.values().asList()).random().first()
+               element
             }
         }
 
@@ -276,15 +305,16 @@ interface CustomGen {
          * Generates a FormPickerDateElement
          */
         fun formPickerDateElement() = object : Gen<FormPickerDateElement> {
-            override fun generate(): FormPickerDateElement {
+            override fun constants() = emptyList<FormPickerDateElement>()
+            override fun random() = generateSequence {
                 val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
                 val element = FormPickerDateElement()
-                element.title = Gen.string().generate()
-                element.hint = Gen.string().generate()
+                element.title = Gen.string().random().first()
+                element.hint = Gen.string().random().first()
                 element.value = FormPickerDateElement.DateHolder(Date(), dateFormat)
                 element.minimumDate = dateFormat.parse("01/01/2018")
                 element.maximumDate = dateFormat.parse("12/15/2025")
-                return element
+               element
             }
         }
 
@@ -292,12 +322,13 @@ interface CustomGen {
          * Generates a FormPickerTimeElement
          */
         fun formPickerTimeElement() = object : Gen<FormPickerTimeElement> {
-            override fun generate(): FormPickerTimeElement {
+            override fun constants() = emptyList<FormPickerTimeElement>()
+            override fun random() = generateSequence {
                 val element = FormPickerTimeElement()
-                element.title = Gen.string().generate()
-                element.hint = Gen.string().generate()
+                element.title = Gen.string().random().first()
+                element.hint = Gen.string().random().first()
                 element.value = FormPickerTimeElement.TimeHolder(Date(), SimpleDateFormat("hh:mm a", Locale.US))
-                return element
+               element
             }
         }
 
@@ -305,15 +336,16 @@ interface CustomGen {
          * Generates a FormPickerDateTimeElement
          */
         fun formPickerDateTimeElement() = object : Gen<FormPickerDateTimeElement> {
-            override fun generate(): FormPickerDateTimeElement {
+            override fun constants() = emptyList<FormPickerDateTimeElement>()
+            override fun random() = generateSequence {
                 val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
                 val element = FormPickerDateTimeElement()
-                element.title = Gen.string().generate()
-                element.hint = Gen.string().generate()
+                element.title = Gen.string().random().first()
+                element.hint = Gen.string().random().first()
                 element.value = FormPickerDateTimeElement.DateTimeHolder(Date(), dateFormat)
                 element.minimumDate = dateFormat.parse("01/01/2018 12:00 AM")
                 element.maximumDate = dateFormat.parse("12/15/2025 12:00 PM")
-                return element
+               element
             }
         }
 
@@ -321,8 +353,9 @@ interface CustomGen {
          * Generates a FormButtonElement
          */
         fun formButtonElement() = object : Gen<FormButtonElement> {
-            override fun generate(): FormButtonElement {
-                return FormButtonElement().setValue(Gen.string().generate()) as FormButtonElement
+            override fun constants() = emptyList<FormButtonElement>()
+            override fun random() = generateSequence {
+               FormButtonElement().setValue(Gen.string().random().first()) as FormButtonElement
             }
         }
 
@@ -331,29 +364,29 @@ interface CustomGen {
          */
         fun generateBaseFields(element: BaseFormElement<String>) =
                 element.apply {
-                    title = Gen.string().generate()
-                    value = Gen.string().generate()
-                    tag = Gen.int().generate()
-                    hint = Gen.string().generate()
-                    visible = Gen.bool().generate()
-                    enabled = Gen.bool().generate()
-                    rightToLeft = Gen.bool().generate()
-                    maxLines = Gen.choose(1, 100).generate()
-                    error = if (Gen.bool().generate()) Gen.string().generate() else null
+                    title = Gen.string().random().first()
+                    value = Gen.string().random().first()
+                    tag = Gen.int().random().first()
+                    hint = Gen.string().random().first()
+                    visible = Gen.bool().random().first()
+                    enabled = Gen.bool().random().first()
+                    rightToLeft = Gen.bool().random().first()
+                    maxLines = Gen.choose(1, 100).random().first()
+                    error = if (Gen.bool().random().first()) Gen.string().random().first() else null
                     valueObservers.add { newValue, elementRef -> println("New Value = $newValue {$elementRef}") }
                 }
 
         fun generateBaseFieldsWithList(element: BaseFormElement<List<String>>) =
                 element.apply {
-                    title = Gen.string().generate()
-                    value = Gen.list(Gen.string()).generate()
-                    tag = Gen.int().generate()
-                    hint = Gen.string().generate()
-                    visible = Gen.bool().generate()
-                    enabled = Gen.bool().generate()
-                    rightToLeft = Gen.bool().generate()
-                    maxLines = Gen.choose(1, 100).generate()
-                    error = if (Gen.bool().generate()) Gen.string().generate() else null
+                    title = Gen.string().random().first()
+                    value = Gen.list(Gen.string()).random().first()
+                    tag = Gen.int().random().first()
+                    hint = Gen.string().random().first()
+                    visible = Gen.bool().random().first()
+                    enabled = Gen.bool().random().first()
+                    rightToLeft = Gen.bool().random().first()
+                    maxLines = Gen.choose(1, 100).random().first()
+                    error = if (Gen.bool().random().first()) Gen.string().random().first() else null
                     valueObservers.add { newValue, elementRef -> println("New Value = $newValue {$elementRef}") }
                 }
 

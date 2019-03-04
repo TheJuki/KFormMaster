@@ -36,7 +36,7 @@ import com.thejuki.kformmaster.model.FormEmailEditTextElement
 import com.thejuki.kformmaster.token.ItemsCompletionView
 import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
-import junit.framework.Assert.*
+import org.junit.Assert.*
 import org.hamcrest.Matchers
 import org.hamcrest.Matchers.*
 import org.junit.Rule
