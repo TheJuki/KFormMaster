@@ -28,6 +28,16 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     }
 
     /**
+     * Form Element Enabled
+     */
+    override var enabled: Boolean = true
+        set(value) {
+            field = value
+            reInitGroup()
+            onEnabled(value)
+        }
+
+    /**
      * Drawable Direction
      */
     enum class DrawableDirection {
@@ -195,6 +205,8 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                                             ?: 0) else 0)
                         }
                     }
+
+                    rb.isEnabled = this@FormSegmentedElement.enabled
 
                     if (fillSpace) {
                         it.addView(rb, RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT,

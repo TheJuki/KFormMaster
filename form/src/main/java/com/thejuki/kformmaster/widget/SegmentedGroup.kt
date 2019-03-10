@@ -33,6 +33,7 @@ class SegmentedGroup : RadioGroup {
 
     private var mMarginDp: Int = 0
     private var mTintColor: Int = 0
+    private var mDisabledColor: Int = 0
     private var mTextSize: Float = 0f
     private var mPadding: Int = 0
     private var mUnCheckedTintColor: Int = 0
@@ -45,6 +46,7 @@ class SegmentedGroup : RadioGroup {
 
     constructor(context: Context) : super(context) {
         mTintColor = ResourcesCompat.getColor(resources, R.color.colorFormMasterElementRadioSelected, null)
+        mDisabledColor = ResourcesCompat.getColor(resources, R.color.colorFormMasterElementTextDisabled, null)
         mUnCheckedTintColor = ResourcesCompat.getColor(resources, R.color.colorFormMasterElementRadioUnSelected, null)
         mMarginDp = resources.getDimension(R.dimen.elementRadioStrokeBorder).toInt()
         mCornerRadius = resources.getDimension(R.dimen.elementRadioCornerRadius)
@@ -55,6 +57,7 @@ class SegmentedGroup : RadioGroup {
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         mTintColor = ResourcesCompat.getColor(resources, R.color.colorFormMasterElementRadioSelected, null)
+        mDisabledColor = ResourcesCompat.getColor(resources, R.color.colorFormMasterElementTextDisabled, null)
         mUnCheckedTintColor = ResourcesCompat.getColor(resources, R.color.colorFormMasterElementRadioUnSelected, null)
         mMarginDp = resources.getDimension(R.dimen.elementRadioStrokeBorder).toInt()
         mCornerRadius = resources.getDimension(R.dimen.elementRadioCornerRadius)
@@ -91,6 +94,10 @@ class SegmentedGroup : RadioGroup {
             mTintColor = typedArray.getColor(
                     R.styleable.SegmentedGroup_sc_tint_color,
                     ResourcesCompat.getColor(resources, R.color.colorFormMasterElementRadioSelected, null))
+
+            mDisabledColor = typedArray.getColor(
+                    R.styleable.SegmentedGroup_sc_disabled_color,
+                    ResourcesCompat.getColor(resources, R.color.colorFormMasterElementTextDisabled, null))
 
             mCheckedTextColor = typedArray.getColor(
                     R.styleable.SegmentedGroup_sc_checked_text_color,
@@ -218,9 +225,12 @@ class SegmentedGroup : RadioGroup {
         mLayoutSelector?.let { layoutSelector ->
             val checked = layoutSelector.selected
             val unchecked = layoutSelector.unselected
+
+            val tintColor = if (view.isEnabled) mTintColor else mDisabledColor
+
             //Set text color
             val colorStateList = ColorStateList(arrayOf(intArrayOf(-android.R.attr.state_checked), intArrayOf(android.R.attr.state_checked)),
-                    intArrayOf(mTintColor, mCheckedTextColor))
+                    intArrayOf(tintColor, mCheckedTextColor))
             (view as Button).setTextColor(colorStateList)
 
             view.compoundDrawables.iterator().forEach { drawable ->
@@ -241,19 +251,19 @@ class SegmentedGroup : RadioGroup {
             //Redraw with tint color
             val checkedDrawable = ResourcesCompat.getDrawable(resources, checked, null)?.mutate()
             val uncheckedDrawable = ResourcesCompat.getDrawable(resources, unchecked, null)?.mutate()
-            (checkedDrawable as GradientDrawable).setColor(mTintColor)
-            checkedDrawable.setStroke(mMarginDp, mTintColor)
-            (uncheckedDrawable as GradientDrawable).setStroke(mMarginDp, mTintColor)
+            (checkedDrawable as GradientDrawable).setColor(tintColor)
+            checkedDrawable.setStroke(mMarginDp, tintColor)
+            (uncheckedDrawable as GradientDrawable).setStroke(mMarginDp, tintColor)
             uncheckedDrawable.setColor(mUnCheckedTintColor)
             //Set proper radius
             checkedDrawable.cornerRadii = layoutSelector.getChildRadii(view)
             uncheckedDrawable.cornerRadii = layoutSelector.getChildRadii(view)
 
             val maskDrawable = ResourcesCompat.getDrawable(resources, unchecked, null)?.mutate() as GradientDrawable
-            maskDrawable.setStroke(mMarginDp, mTintColor)
+            maskDrawable.setStroke(mMarginDp, tintColor)
             maskDrawable.setColor(mUnCheckedTintColor)
             maskDrawable.cornerRadii = layoutSelector.getChildRadii(view)
-            val maskColor = Color.argb(50, Color.red(mTintColor), Color.green(mTintColor), Color.blue(mTintColor))
+            val maskColor = Color.argb(50, Color.red(tintColor), Color.green(tintColor), Color.blue(tintColor))
             maskDrawable.setColor(maskColor)
             val pressedDrawable = LayerDrawable(arrayOf<Drawable>(uncheckedDrawable, maskDrawable))
 

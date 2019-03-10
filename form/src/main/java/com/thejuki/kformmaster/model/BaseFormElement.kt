@@ -589,7 +589,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     /**
      * Form Element Enabled
      */
-    var enabled: Boolean = true
+    open var enabled: Boolean = true
         set(value) {
             field = value
             itemView?.isEnabled = value
