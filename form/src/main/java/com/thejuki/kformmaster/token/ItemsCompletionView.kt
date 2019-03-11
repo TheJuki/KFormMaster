@@ -44,4 +44,8 @@ class ItemsCompletionView : TokenCompleteTextView<Any> {
         testAccessibleInputConnection = super.onCreateInputConnection(outAttrs)
         return testAccessibleInputConnection!!
     }
+
+    override fun shouldIgnoreToken(token: Any): Boolean {
+        return objects.contains(token)
+    }
 }

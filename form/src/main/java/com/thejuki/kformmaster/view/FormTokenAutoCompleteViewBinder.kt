@@ -39,9 +39,9 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
 
         val itemsCompletionView = finder.find(R.id.formElementValue) as ItemsCompletionView
 
-        if (model.value != null) {
-            (model.value as List<*>).forEach {
-                itemsCompletionView.addObject(it)
+        model.value?.let {
+            it.forEach { item ->
+                itemsCompletionView.addObjectAsync(item)
             }
         }
 
@@ -62,7 +62,6 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
         }
 
         itemsCompletionView.setTokenClickStyle(TokenCompleteTextView.TokenClickStyle.Select)
-        itemsCompletionView.allowDuplicates(false)
 
         setEditTextFocusEnabled(itemsCompletionView, itemView)
 

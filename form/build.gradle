@@ -82,7 +82,7 @@ ext {
     androidxVersion = '1.0.0'
     materialVersion = '1.0.0'
     rendererRecyclerViewAdapterVersion = '2.7.0-SNAPSHOT'
-    tokenautocompleteVersion = '2.0.8'
+    tokenautocompleteVersion = '3.0.0'
     testCoreVersion = '1.1.0'
     testExtJunitVersion = '1.1.0'
     testRulesVersion = '1.1.1'

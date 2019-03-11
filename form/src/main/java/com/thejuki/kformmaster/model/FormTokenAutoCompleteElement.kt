@@ -20,7 +20,7 @@ class FormTokenAutoCompleteElement<T : List<*>>(tag: Int = -1) : BaseFormElement
 
     override fun clear() {
         this.value = null
-        (this.editView as? ItemsCompletionView)?.clear()
+        (this.editView as? ItemsCompletionView)?.clearAsync()
     }
 
     /**
