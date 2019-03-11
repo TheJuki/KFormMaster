@@ -10,7 +10,7 @@ buildscript {
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.3.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "guru.stefma.bintrayrelease:bintrayrelease:1.1.2"
         classpath "org.jacoco:org.jacoco.core:$jacocoVersion"
