@@ -1,5 +1,9 @@
 # Change Log
 
+## [6.3.2](https://github.com/TheJuki/KFormMaster/releases/tag/6.3.2)
+- #102 FormSegmentedElement can now be disabled
+- Updated the TokenAutoComplete library
+
 ## [6.3.1](https://github.com/TheJuki/KFormMaster/releases/tag/6.3.1)
 - #101 Add minimumDate and maximumDate to FormPickerDateElement and FormPickerDateTimeElement
 - Added 4 tests
