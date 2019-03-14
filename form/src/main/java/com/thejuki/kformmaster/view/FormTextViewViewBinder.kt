@@ -39,7 +39,7 @@ class FormTextViewViewBinder(private val context: Context, private val formBuild
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
         editTextValue.isEnabled = false
-        editTextValue.setTextColor(ContextCompat.getColor(context, R.color.colorFormMasterElementTextDisabled))
+        editTextValue.setTextColor(ContextCompat.getColor(context, R.color.colorFormMasterElementTextView))
         editTextValue.isFocusable = false
         editTextValue.setRawInputType(InputType.TYPE_NULL)
         editTextValue.setIconLocation(null)

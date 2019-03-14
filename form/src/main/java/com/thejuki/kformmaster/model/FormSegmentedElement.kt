@@ -186,6 +186,8 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                     val rb = LayoutInflater.from(it.context).inflate(R.layout.template_radiobutton_center, null) as RadioButtonCenter
                     rb.text = item.toString()
                     rb.id = ViewCompat.generateViewId()
+
+                    it.holdup = true
                     rb.isChecked = item == this@FormSegmentedElement.value
 
                     if (item is SegmentedDrawable) {

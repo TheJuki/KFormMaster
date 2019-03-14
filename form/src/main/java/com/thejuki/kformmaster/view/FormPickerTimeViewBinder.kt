@@ -48,7 +48,7 @@ class FormPickerTimeViewBinder(private val context: Context, private val formBui
         with(model.value)
         {
             if (this == null) {
-                model.setValue(FormPickerTimeElement.TimeHolder())
+                model.setValue(FormPickerTimeElement.TimeHolder(model.dateValue, model.dateFormat))
             }
             this?.validOrCurrentTime()
         }
