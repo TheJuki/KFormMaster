@@ -1,5 +1,10 @@
 # Change Log
 
+## [6.3.3](https://github.com/TheJuki/KFormMaster/releases/tag/6.3.3)
+- #107 New color in colors.xml for TextView Element: colorFormMasterElementTextView
+- #102 The Segmented Element should keep the model value when it is refreshed
+- #106 Possible fix to date format issues
+
 ## [6.3.2](https://github.com/TheJuki/KFormMaster/releases/tag/6.3.2)
 - #102 FormSegmentedElement can now be disabled
 - Updated the TokenAutoComplete library
