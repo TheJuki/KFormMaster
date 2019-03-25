@@ -187,7 +187,10 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                     rb.text = item.toString()
                     rb.id = ViewCompat.generateViewId()
 
-                    it.holdup = true
+                    if (!this.enabled) {
+                        it.holdup = true
+                    }
+
                     rb.isChecked = item == this@FormSegmentedElement.value
 
                     if (item is SegmentedDrawable) {

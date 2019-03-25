@@ -275,11 +275,11 @@ interface CustomGen {
             override fun random() = generateSequence {
                 val element = FormSliderElement()
                 element.title = Gen.string().random().first()
-                element.max = Gen.choose(1, 100).random().first()
-                element.min = Gen.choose(0, element.max - 2).random().first()
-                element.value = Gen.choose(element.min, element.max).random().first()
-                element.steps = Gen.choose(1, element.max).random().first()
-               element
+                element.max = Random().nextInt(100)
+                element.min = Random().nextInt(element.max)
+                element.value = Random().nextInt(element.max - element.min) + element.min
+                element.steps = Random().nextInt(element.max - element.min + 1) + element.min
+                element
             }
         }
 
@@ -291,10 +291,10 @@ interface CustomGen {
             override fun random() = generateSequence {
                 val element = FormProgressElement()
                 element.title = Gen.string().random().first()
-                element.max = Gen.choose(1, 100).random().first()
-                element.min = Gen.choose(0, element.max - 2).random().first()
-                element.progress = Gen.choose(element.min, element.max).random().first()
-                element.secondaryProgress = Gen.choose(element.min, element.max).random().first()
+                element.max = Random().nextInt(100)
+                element.min = Random().nextInt(element.max)
+                element.progress = Random().nextInt(element.max - element.min) + element.min
+                element.secondaryProgress = Random().nextInt(element.max - element.min) + element.min
                 element.indeterminate = Gen.bool().random().first()
                 element.progressBarStyle = Gen.from(FormProgressElement.ProgressBarStyle.values().asList()).random().first()
                element
