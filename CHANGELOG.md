@@ -1,5 +1,8 @@
 # Change Log
 
+## [6.3.4](https://github.com/TheJuki/KFormMaster/releases/tag/6.3.4)
+- #108 Fix FormSegmentedElement value change when enabled
+
 ## [6.3.3](https://github.com/TheJuki/KFormMaster/releases/tag/6.3.3)
 - #107 New color in colors.xml for TextView Element: colorFormMasterElementTextView
 - #102 The Segmented Element should keep the model value when it is refreshed
