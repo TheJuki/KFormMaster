@@ -29,6 +29,7 @@
     <string name="Label">This is a label. The title takes up the whole row.</string>
     <string name="Custom_Element">Custom Element</string>
     <string name="Custom_Layout">Custom Layout</string>
+    <string name="Places_AutoComplete">Places</string>
     <string name="Confirm">Clear Date field?</string>
     <string name="PersonalInfo">Personal Info</string>
     <string name="FamilyInfo">Family Info</string>
@@ -51,6 +52,7 @@
     <string name="tabbed_form">Tabbed form</string>
     <string name="custom_footer_1">This is a custom element in the app project</string>
     <string name="custom_footer_2">This is a custom layout in the app project</string>
+    <string name="custom_footer_3">This is a custom Google Places Auto Complete element in the app project</string>
     <string name="validate">Validate</string>
     <string name="clear">Clear</string>
     <string name="show_hide">Show/Hide</string>

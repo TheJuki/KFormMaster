@@ -12,6 +12,8 @@ data class ContactItem(val id: Long? = null,
                        val value: String? = null,
                        val label: String? = null
 ) {
+
+    // Text that is displayed in the textfield
     override fun toString(): String {
         return label.orEmpty()
     }

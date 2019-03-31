@@ -11,6 +11,8 @@ package com.thejuki.kformmasterexample.item
 data class ListItem(val id: Long? = null,
                     val name: String? = null
 ) {
+
+    // Text that is displayed in the textfield
     override fun toString(): String {
         return name.orEmpty()
     }

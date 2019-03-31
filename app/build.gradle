@@ -10,8 +10,9 @@ android {
         applicationId "com.thejuki.kformmasterexample"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 9
-        versionName "4.0.0"
+        multiDexEnabled true
+        versionCode 10
+        versionName "5.0.0"
     }
     buildTypes {
         release {
@@ -37,13 +38,20 @@ tasks.withType(Javadoc).all {
 ext {
     androidxVersion = '1.0.0'
     materialVersion = '1.0.0'
+    placesVersion = '1.0.0'
+    multidexVersion = '2.0.1'
 }
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$androidxVersion",
             "com.google.android.material:material:$materialVersion",
-            "androidx.recyclerview:recyclerview:$androidxVersion"
+            "androidx.recyclerview:recyclerview:$androidxVersion",
+            "androidx.multidex:multidex:$multidexVersion"
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    implementation "com.google.android.libraries.places:places:$placesVersion"
+
     implementation project(path: ':form')
 }

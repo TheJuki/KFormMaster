@@ -102,7 +102,7 @@ dependencies {
     // Token Autocomplete
     api "com.splitwise:tokenautocomplete:$tokenautocompleteVersion@aar"
 
-    testImplementation "org.apache.logging.log4j:log4j-slf4j-impl:2.11.2"
+    testImplementation "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
     testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintestVersion"
     androidTestImplementation "androidx.test:core:$testCoreVersion"
     androidTestImplementation "androidx.test.ext:junit:$testExtJunitVersion"

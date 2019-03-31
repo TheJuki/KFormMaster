@@ -1,15 +1,24 @@
 package com.thejuki.kformmasterexample
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmasterexample.custom.helper.customEx
+import com.thejuki.kformmasterexample.custom.helper.placesAutoComplete
+import com.thejuki.kformmasterexample.custom.model.FormPlacesAutoCompleteElement
 import com.thejuki.kformmasterexample.custom.view.CustomViewBinder
+import com.thejuki.kformmasterexample.custom.view.FormPlacesAutoCompleteViewBinder
+import com.thejuki.kformmasterexample.item.PlaceItem
 import kotlinx.android.synthetic.main.activity_fullscreen_form.*
+
 
 /**
  * Custom Form Activity
@@ -30,6 +39,10 @@ class CustomFormActivity : AppCompatActivity() {
         setupToolBar()
 
         setupForm()
+
+        // Setup Places for custom placesAutoComplete element
+        // NOTE: Use your API Key
+        Places.initialize(applicationContext, "[APP_KEY]")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -51,11 +64,12 @@ class CustomFormActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeButtonEnabled(true)
         }
-
     }
 
     private enum class Tag {
-        Custom
+        CustomElement,
+        CustomLayout,
+        PlacesAutoComplete
     }
 
     private fun setupForm() {
@@ -76,21 +90,45 @@ class CustomFormActivity : AppCompatActivity() {
                 textArea = R.layout.form_element_custom
         )) {
             header { title = getString(R.string.custom_form) }
-            customEx(Tag.Custom.ordinal) {
+            customEx(Tag.CustomElement.ordinal) {
                 title = getString(R.string.Custom_Element)
                 titleTextColor = Color.WHITE
+                clearable = true
             }
             header { title = getString(R.string.custom_footer_1) }
-            textArea(Tag.Custom.ordinal) {
+            textArea(Tag.CustomLayout.ordinal) {
                 title = getString(R.string.Custom_Layout)
                 maxLines = 4
                 titleTextColor = Color.WHITE
+                clearable = true
             }
             header { title = getString(R.string.custom_footer_2) }
+            placesAutoComplete(Tag.PlacesAutoComplete.ordinal) {
+                title = getString(R.string.Places_AutoComplete)
+                value = PlaceItem(name = "A place name")
+                hint = "Tap to show auto complete"
+                placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
+                autocompleteActivityMode = AutocompleteActivityMode.OVERLAY
+                clearable = true
+            }
+            header { title = getString(R.string.custom_footer_3) }
         }
 
         // IMPORTANT: Register your custom view binder or you will get a RuntimeException
         // RuntimeException: ViewRenderer not registered for this type
         formBuilder.registerCustomViewBinder(CustomViewBinder(this, formBuilder).viewBinder)
+
+        formBuilder.registerCustomViewBinder(FormPlacesAutoCompleteViewBinder(this, formBuilder).viewBinder)
+    }
+
+    /**
+     * Override the activity's onActivityResult(), check the request code, and
+     * let the FormPlacesAutoCompleteElement handle the result
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == Tag.PlacesAutoComplete.ordinal) {
+            val placesElement = formBuilder.getFormElement<FormPlacesAutoCompleteElement>(Tag.PlacesAutoComplete.ordinal)
+            placesElement.handleActivityResult(formBuilder, resultCode, data)
+        }
     }
 }

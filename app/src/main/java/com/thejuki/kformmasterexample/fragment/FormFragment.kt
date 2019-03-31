@@ -1,5 +1,6 @@
 package com.thejuki.kformmasterexample.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +9,21 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmasterexample.R
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
+import com.thejuki.kformmasterexample.custom.helper.placesAutoComplete
+import com.thejuki.kformmasterexample.custom.model.FormPlacesAutoCompleteElement
+import com.thejuki.kformmasterexample.custom.view.FormPlacesAutoCompleteViewBinder
 import com.thejuki.kformmasterexample.fragment.FormFragment.Tag.*
 import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
+import com.thejuki.kformmasterexample.item.PlaceItem
 import kotlinx.android.synthetic.main.activity_fullscreen_form.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -70,11 +78,17 @@ class FormFragment : Fragment() {
         SliderElement,
         ProgressElement,
         CheckBoxElement,
-        SegmentedElement
+        SegmentedElement,
+        PlacesAutoComplete
     }
 
     private fun setupForm(recyclerView: RecyclerView) {
         val context = context ?: return
+
+        // Setup Places for custom placesAutoComplete element
+        // NOTE: Use your API Key
+        Places.initialize(context, "[APP_KEY]")
+
         formBuilder = form(context, recyclerView, cacheForm = true) {
             header { title = getString(R.string.PersonalInfo); collapsible = true }
             email(Email.ordinal) {
@@ -323,12 +337,38 @@ class FormFragment : Fragment() {
                     confirmAlert.show()
                 }
             }
+            header { title = getString(R.string.Places_AutoComplete); collapsible = true }
+            placesAutoComplete(Tag.PlacesAutoComplete.ordinal) {
+                title = getString(R.string.Places_AutoComplete)
+                value = PlaceItem(name = "A place name")
+                hint = "Tap to show auto complete"
+                placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
+                autocompleteActivityMode = AutocompleteActivityMode.OVERLAY
+                clearable = true
+            }
         }
+
+        // IMPORTANT: Register your custom view binder or you will get a RuntimeException
+        // RuntimeException: ViewRenderer not registered for this type
+
+        // IMPORTANT: Pass in 'this' for the fragment parameter so that startActivityForResult is called from the fragment
+        formBuilder.registerCustomViewBinder(FormPlacesAutoCompleteViewBinder(context, formBuilder, fragment = this).viewBinder)
     }
 
     companion object {
         fun newInstance(): FormFragment {
             return FormFragment()
+        }
+    }
+
+    /**
+     * Override the activity's onActivityResult(), check the request code, and
+     * let the FormPlacesAutoCompleteElement handle the result
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == Tag.PlacesAutoComplete.ordinal) {
+            val placesElement = formBuilder.getFormElement<FormPlacesAutoCompleteElement>(Tag.PlacesAutoComplete.ordinal)
+            placesElement.handleActivityResult(formBuilder, resultCode, data)
         }
     }
 }
