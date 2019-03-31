@@ -116,9 +116,9 @@ class CustomFormActivity : AppCompatActivity() {
 
         // IMPORTANT: Register your custom view binder or you will get a RuntimeException
         // RuntimeException: ViewRenderer not registered for this type
-        formBuilder.registerCustomViewBinder(CustomViewBinder(this, formBuilder).viewBinder)
+        formBuilder.registerCustomViewBinder(CustomViewBinder(this, formBuilder, layoutID = null).viewBinder)
 
-        formBuilder.registerCustomViewBinder(FormPlacesAutoCompleteViewBinder(this, formBuilder).viewBinder)
+        formBuilder.registerCustomViewBinder(FormPlacesAutoCompleteViewBinder(this, formBuilder, layoutID = null).viewBinder)
     }
 
     /**

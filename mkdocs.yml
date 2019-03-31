@@ -10,7 +10,7 @@ repo_url: 'https://github.com/thejuki/KFormMaster'
 edit_uri: ""
 
 # Copyright
-copyright: 'Copyright &copy; 2018 Justin Kirk'
+copyright: 'Copyright &copy; 2018-2019 Justin Kirk'
 
 # Configuration
 theme:
@@ -67,6 +67,7 @@ nav:
     - 'Customize Form': 'custom/customize.md'
     - 'Custom Element': 'custom/element.md'
     - 'Form Layouts': 'custom/formLayouts.md'
+    - 'Google Place Autocomplete': 'custom/placeAutocomplete.md'
   - About:
     - 'Contributing': 'about/contributing.md'
     - 'Credits': 'about/credits.md'

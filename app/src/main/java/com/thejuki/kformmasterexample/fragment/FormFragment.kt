@@ -352,7 +352,7 @@ class FormFragment : Fragment() {
         // RuntimeException: ViewRenderer not registered for this type
 
         // IMPORTANT: Pass in 'this' for the fragment parameter so that startActivityForResult is called from the fragment
-        formBuilder.registerCustomViewBinder(FormPlacesAutoCompleteViewBinder(context, formBuilder, fragment = this).viewBinder)
+        formBuilder.registerCustomViewBinder(FormPlacesAutoCompleteViewBinder(context, formBuilder, layoutID = null, fragment = this).viewBinder)
     }
 
     companion object {
@@ -362,7 +362,7 @@ class FormFragment : Fragment() {
     }
 
     /**
-     * Override the activity's onActivityResult(), check the request code, and
+     * Override the fragment's onActivityResult(), check the request code, and
      * let the FormPlacesAutoCompleteElement handle the result
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

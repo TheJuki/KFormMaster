@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.InputType
 import android.view.View
 import android.widget.LinearLayout
+import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -26,8 +27,9 @@ import com.thejuki.kformmasterexample.custom.model.FormPlacesAutoCompleteElement
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPlacesAutoCompleteViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, private val fragment: Fragment? = null) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(R.layout.form_element, FormPlacesAutoCompleteElement::class.java, { model, finder, _ ->
+class FormPlacesAutoCompleteViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?, private val fragment: Fragment? = null) : BaseFormViewBinder() {
+    var viewBinder = ViewBinder(layoutID
+            ?: R.layout.form_element, FormPlacesAutoCompleteElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
