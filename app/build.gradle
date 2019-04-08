@@ -8,7 +8,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.thejuki.kformmasterexample"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         multiDexEnabled true
         versionCode 10
@@ -38,7 +38,7 @@ tasks.withType(Javadoc).all {
 ext {
     androidxVersion = '1.0.0'
     materialVersion = '1.0.0'
-    placesVersion = '1.0.0'
+    placesVersion = '1.1.0'
     multidexVersion = '2.0.1'
 }
 
