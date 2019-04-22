@@ -88,6 +88,7 @@ ext {
     testRulesVersion = '1.1.1'
     testExpressoVersion = '3.1.1'
     kotlintestVersion = '3.3.2'
+    mockkVersion = '1.9.3'
     log4jVersion = '2.11.2'
 }
 
@@ -103,6 +104,7 @@ dependencies {
     api "com.splitwise:tokenautocomplete:$tokenautocompleteVersion@aar"
 
     testImplementation "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
     testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintestVersion"
     androidTestImplementation "androidx.test:core:$testCoreVersion"
     androidTestImplementation "androidx.test.ext:junit:$testExtJunitVersion"
