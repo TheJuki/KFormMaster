@@ -69,6 +69,11 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
     private var listener: OnFormElementValueChangedListener? = null
 
     /**
+     * Theme
+     */
+    var theme: Int = 0
+
+    /**
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
@@ -92,7 +97,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
         val editTextView = this.editView as? AppCompatEditText
 
         if (alertDialogBuilder == null && editTextView?.context != null) {
-            alertDialogBuilder = AlertDialog.Builder(editTextView.context)
+            alertDialogBuilder = AlertDialog.Builder(editTextView.context, theme)
             if (this.dialogTitle == null) {
                 this.dialogTitle = editTextView.context.getString(R.string.form_master_pick_one)
             }

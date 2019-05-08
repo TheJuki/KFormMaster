@@ -63,6 +63,11 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
         }
 
     /**
+     * Theme
+     */
+    var theme: Int = 0
+
+    /**
      * Hold the [OnFormElementValueChangedListener] from [FormBuildHelper]
      */
     private var listener: OnFormElementValueChangedListener? = null
@@ -205,6 +210,7 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
         }
 
         val datePickerDialog = DatePickerDialog(editTextView.context,
+                theme,
                 dateDialogListener(editTextView),
                 value?.year ?: 0,
                 if ((value?.month ?: 0) == 0) 0 else (value?.month ?: 0) - 1,
@@ -219,7 +225,7 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
         }
 
         if (alertDialogBuilder == null) {
-            alertDialogBuilder = AlertDialog.Builder(editTextView.context)
+            alertDialogBuilder = AlertDialog.Builder(editTextView.context, theme)
             if (this.confirmTitle == null) {
                 this.confirmTitle = editTextView.context.getString(R.string.form_master_confirm_title)
             }
