@@ -62,6 +62,11 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
         }
 
     /**
+     * Theme
+     */
+    var theme: Int = 0
+
+    /**
      * Alert Dialog Builder
      * Used to call reInitDialog without needing context again.
      */
@@ -185,6 +190,7 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
         }
 
         val datePickerDialog = DatePickerDialog(editTextView.context,
+                this.theme,
                 dateDialogListener(editTextView),
                 value?.year ?: 0,
                 if ((value?.month ?: 0) == 0) 0 else (value?.month ?: 0) - 1,
