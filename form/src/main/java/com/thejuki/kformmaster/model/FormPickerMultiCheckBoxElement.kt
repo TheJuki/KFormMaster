@@ -61,6 +61,11 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
     private var listener: OnFormElementValueChangedListener? = null
 
     /**
+     * Theme
+     */
+    var theme: Int = 0
+
+    /**
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
@@ -104,7 +109,7 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
         editTextView?.setText(getSelectedItemsText())
 
         if (alertDialogBuilder == null && editTextView?.context != null) {
-            alertDialogBuilder = AlertDialog.Builder(editTextView.context)
+            alertDialogBuilder = AlertDialog.Builder(editTextView.context, theme)
             if (this.dialogTitle == null) {
                 this.dialogTitle = editTextView.context.getString(R.string.form_master_pick_one_or_more)
             }

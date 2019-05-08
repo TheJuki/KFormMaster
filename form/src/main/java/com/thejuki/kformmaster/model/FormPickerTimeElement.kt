@@ -44,6 +44,11 @@ class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeEle
         }
 
     /**
+     * Theme
+     */
+    var theme: Int = 0
+
+    /**
      * Alert Dialog Builder
      * Used to call reInitDialog without needing context again.
      */
@@ -163,13 +168,14 @@ class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeEle
         }
 
         val timePickerDialog = TimePickerDialog(editTextView.context,
+                theme,
                 timeDialogListener(editTextView),
                 value?.hourOfDay ?: 0,
                 value?.minute ?: 0,
                 false)
 
         if (alertDialogBuilder == null) {
-            alertDialogBuilder = AlertDialog.Builder(editTextView.context)
+            alertDialogBuilder = AlertDialog.Builder(editTextView.context, theme)
             if (this.confirmTitle == null) {
                 this.confirmTitle = editTextView.context.getString(R.string.form_master_confirm_title)
             }

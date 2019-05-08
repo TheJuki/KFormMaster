@@ -62,6 +62,11 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
         }
 
     /**
+     * Theme
+     */
+    var theme: Int = 0
+
+    /**
      * Alert Dialog Builder
      * Used to call reInitDialog without needing context again.
      */
@@ -185,6 +190,7 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
         }
 
         val datePickerDialog = DatePickerDialog(editTextView.context,
+                theme,
                 dateDialogListener(editTextView),
                 value?.year ?: 0,
                 if ((value?.month ?: 0) == 0) 0 else (value?.month ?: 0) - 1,
@@ -199,7 +205,7 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
         }
 
         if (alertDialogBuilder == null) {
-            alertDialogBuilder = AlertDialog.Builder(editTextView.context)
+            alertDialogBuilder = AlertDialog.Builder(editTextView.context, theme)
             if (this.confirmTitle == null) {
                 this.confirmTitle = editTextView.context.getString(R.string.form_master_confirm_title)
             }
