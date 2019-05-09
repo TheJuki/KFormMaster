@@ -74,9 +74,16 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
     var theme: Int = 0
 
     /**
+     * DisplayValueFor
+     *  (optional - used to specify a string value to be displayed)
+     */
+    var displayValueFor: ((T?) -> String?)? = null
+
+    /**
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
+    @Suppress("UNCHECKED_CAST")
     fun reInitDialog(formBuilder: FormBuildHelper? = null) {
         // reformat the options in format needed
         val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
@@ -84,7 +91,11 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
         this.options?.let {
             for (i in it.indices) {
-                options[i] = it[i].toString()
+                if (this.displayValueFor != null) {
+                    options[i] = this.displayValueFor?.invoke(it[i])
+                } else {
+                    options[i] = it[i].toString()
+                }
             }
         }
 
@@ -123,7 +134,11 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                     if (displayRadioButtons) {
                         it.setSingleChoiceItems(this, selectedIndex) { dialogInterface, which ->
                             this@FormPickerDropDownElement.error = null
-                            editTextView?.setText(this.getItem(which)?.toString())
+                            if (this@FormPickerDropDownElement.displayValueFor != null) {
+                                editTextView?.setText(this@FormPickerDropDownElement.displayValueFor?.invoke(this.getItem(which) as T))
+                            } else {
+                                editTextView?.setText(this.getItem(which)?.toString())
+                            }
                             this@FormPickerDropDownElement.setValue(this.getItem(which))
                             listener?.onValueChanged(this@FormPickerDropDownElement)
 
@@ -133,7 +148,11 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                     } else {
                         it.setAdapter(this) { _, which ->
                             this@FormPickerDropDownElement.error = null
-                            editTextView?.setText(this.getItem(which)?.toString())
+                            if (this@FormPickerDropDownElement.displayValueFor != null) {
+                                editTextView?.setText(this@FormPickerDropDownElement.displayValueFor?.invoke(this.getItem(which) as T))
+                            } else {
+                                editTextView?.setText(this.getItem(which)?.toString())
+                            }
                             this@FormPickerDropDownElement.setValue(this.getItem(which))
                             listener?.onValueChanged(this@FormPickerDropDownElement)
 
@@ -197,3 +216,4 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
         editTextView?.setOnClickListener(listener)
     }
 }
+
