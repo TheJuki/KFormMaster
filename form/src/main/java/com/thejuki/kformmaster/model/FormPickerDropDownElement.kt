@@ -75,9 +75,11 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
     /**
      * DisplayValueFor
-     *  (optional - used to specify a string value to be displayed)
+     *  Used to specify a string value to be displayed
      */
-    var displayValueFor: ((T?) -> String?)? = null
+    var displayValueFor: ((T?) -> String?) = {
+        it.toString()
+    }
 
     /**
      * Re-initializes the dialog
@@ -91,11 +93,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
         this.options?.let {
             for (i in it.indices) {
-                if (this.displayValueFor != null) {
-                    options[i] = this.displayValueFor?.invoke(it[i])
-                } else {
-                    options[i] = it[i].toString()
-                }
+                options[i] = this.displayValueFor(it[i])
             }
         }
 
@@ -134,29 +132,21 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                     if (displayRadioButtons) {
                         it.setSingleChoiceItems(this, selectedIndex) { dialogInterface, which ->
                             this@FormPickerDropDownElement.error = null
-                            if (this@FormPickerDropDownElement.displayValueFor != null) {
-                                editTextView?.setText(this@FormPickerDropDownElement.displayValueFor?.invoke(this.getItem(which) as T))
-                            } else {
-                                editTextView?.setText(this.getItem(which)?.toString())
-                            }
+                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(this.getItem(which) as T))
                             this@FormPickerDropDownElement.setValue(this.getItem(which))
                             listener?.onValueChanged(this@FormPickerDropDownElement)
 
-                            editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
+                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(this.getItem(which) as T))
                             dialogInterface.dismiss()
                         }
                     } else {
                         it.setAdapter(this) { _, which ->
                             this@FormPickerDropDownElement.error = null
-                            if (this@FormPickerDropDownElement.displayValueFor != null) {
-                                editTextView?.setText(this@FormPickerDropDownElement.displayValueFor?.invoke(this.getItem(which) as T))
-                            } else {
-                                editTextView?.setText(this.getItem(which)?.toString())
-                            }
+                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(this.getItem(which) as T))
                             this@FormPickerDropDownElement.setValue(this.getItem(which))
                             listener?.onValueChanged(this@FormPickerDropDownElement)
 
-                            editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
+                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(this.getItem(which) as T))
                         }
                     }
                 }
@@ -171,25 +161,26 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                     if (displayRadioButtons) {
                         it.setSingleChoiceItems(options, selectedIndex) { dialogInterface, which ->
                             this.error = null
-                            editTextView?.setText(options[which])
+                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(options[which] as T))
+
                             this.options?.let { option ->
                                 this.setValue(option[which])
                             }
                             listener?.onValueChanged(this)
 
-                            editTextView?.setText(this.valueAsString)
+                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(options[which] as T))
                             dialogInterface.dismiss()
                         }
                     } else {
                         it.setItems(options) { _, which ->
                             this.error = null
-                            editTextView?.setText(options[which])
+                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(options[which] as T))
                             this.options?.let { option ->
                                 this.setValue(option[which])
                             }
                             listener?.onValueChanged(this)
 
-                            editTextView?.setText(this.valueAsString)
+                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(options[which] as T))
                         }
                     }
                 }
