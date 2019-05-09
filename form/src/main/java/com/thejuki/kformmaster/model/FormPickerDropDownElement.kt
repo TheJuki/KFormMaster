@@ -77,9 +77,12 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
      * DisplayValueFor
      *  Used to specify a string value to be displayed
      */
-    var displayValueFor: ((T?) -> String?) = {
-        it.toString()
+    var displayValueFor: ((T?) -> String) = {
+        it?.toString() ?: ""
     }
+
+    override val valueAsString: String
+        get() =  this.displayValueFor(this.value)
 
     /**
      * Re-initializes the dialog
@@ -132,21 +135,21 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                     if (displayRadioButtons) {
                         it.setSingleChoiceItems(this, selectedIndex) { dialogInterface, which ->
                             this@FormPickerDropDownElement.error = null
-                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(this.getItem(which) as T))
+                            editTextView?.setText(this.getItem(which)?.toString())
                             this@FormPickerDropDownElement.setValue(this.getItem(which))
                             listener?.onValueChanged(this@FormPickerDropDownElement)
 
-                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(this.getItem(which) as T))
+                            editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
                             dialogInterface.dismiss()
                         }
                     } else {
                         it.setAdapter(this) { _, which ->
                             this@FormPickerDropDownElement.error = null
-                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(this.getItem(which) as T))
+                            editTextView?.setText(this.getItem(which)?.toString())
                             this@FormPickerDropDownElement.setValue(this.getItem(which))
                             listener?.onValueChanged(this@FormPickerDropDownElement)
 
-                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(this.getItem(which) as T))
+                            editTextView?.setText(this@FormPickerDropDownElement.valueAsString)
                         }
                     }
                 }
@@ -161,26 +164,26 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                     if (displayRadioButtons) {
                         it.setSingleChoiceItems(options, selectedIndex) { dialogInterface, which ->
                             this.error = null
-                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(options[which] as T))
+                            editTextView?.setText(options[which])
 
                             this.options?.let { option ->
                                 this.setValue(option[which])
                             }
                             listener?.onValueChanged(this)
 
-                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(options[which] as T))
+                            editTextView?.setText(this.valueAsString)
                             dialogInterface.dismiss()
                         }
                     } else {
                         it.setItems(options) { _, which ->
                             this.error = null
-                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(options[which] as T))
+                            editTextView?.setText(options[which])
                             this.options?.let { option ->
                                 this.setValue(option[which])
                             }
                             listener?.onValueChanged(this)
 
-                            editTextView?.setText(this@FormPickerDropDownElement.displayValueFor(options[which] as T))
+                            editTextView?.setText(this.valueAsString)
                         }
                     }
                 }
