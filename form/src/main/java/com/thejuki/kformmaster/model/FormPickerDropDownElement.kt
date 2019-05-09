@@ -77,12 +77,12 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
      * DisplayValueFor
      *  Used to specify a string value to be displayed
      */
-    var displayValueFor: ((T?) -> String) = {
+    var displayValueFor: ((T?) -> String?) = {
         it?.toString() ?: ""
     }
 
     override val valueAsString: String
-        get() =  this.displayValueFor(this.value)
+        get() =  this.displayValueFor(this.value) ?: ""
 
     /**
      * Re-initializes the dialog
