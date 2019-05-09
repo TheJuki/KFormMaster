@@ -74,9 +74,21 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
     var theme: Int = 0
 
     /**
+     * DisplayValueFor
+     *  Used to specify a string value to be displayed
+     */
+    var displayValueFor: ((T?) -> String?) = {
+        it?.toString() ?: ""
+    }
+
+    override val valueAsString: String
+        get() =  this.displayValueFor(this.value) ?: ""
+
+    /**
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
+    @Suppress("UNCHECKED_CAST")
     fun reInitDialog(formBuilder: FormBuildHelper? = null) {
         // reformat the options in format needed
         val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
@@ -84,7 +96,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
         this.options?.let {
             for (i in it.indices) {
-                options[i] = it[i].toString()
+                options[i] = this.displayValueFor(it[i])
             }
         }
 
@@ -153,6 +165,7 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
                         it.setSingleChoiceItems(options, selectedIndex) { dialogInterface, which ->
                             this.error = null
                             editTextView?.setText(options[which])
+
                             this.options?.let { option ->
                                 this.setValue(option[which])
                             }
@@ -197,3 +210,4 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
         editTextView?.setOnClickListener(listener)
     }
 }
+

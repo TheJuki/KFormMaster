@@ -608,7 +608,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     /**
      * Form Element Value String value
      */
-    val valueAsString: String
+    open val valueAsString: String
         get() = this.value?.toString() ?: ""
 
     /**
