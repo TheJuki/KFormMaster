@@ -145,3 +145,8 @@ fun FormBuildHelper.label(tag: Int = -1, init: FormLabelElement.() -> Unit): For
 fun FormBuildHelper.textView(tag: Int = -1, init: FormTextViewElement.() -> Unit): FormTextViewElement {
     return addFormElement(FormTextViewElement(tag).apply(init))
 }
+
+/** FormBuildHelper extension to add a FormImageElement */
+fun FormBuildHelper.textView(tag: Int = -1, init: FormImageElement.() -> Unit): FormImageElement {
+    return addFormElement(FormImageElement(tag).apply(init))
+}
