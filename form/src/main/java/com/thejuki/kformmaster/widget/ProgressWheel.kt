@@ -74,7 +74,7 @@ class ProgressWheel
     //The amount of pixels to move the bar by on each draw
     var spinSpeed = 2f
     //The number of milliseconds to wait in between each draw
-    var delayMillis = 10
+    var delayMillis = 200
     private var progress = 0f
 
     val currentProgress : Float
@@ -529,22 +529,18 @@ class ProgressWheel
 
     fun setProgress(progress : Float){
         if (this.progress < 360) {
-            scheduler.scheduleAtFixedRate({
-                this@ProgressWheel.mSetProgress(progress * percentValue)
-                this@ProgressWheel.setText("")
-            }, 0, 200, TimeUnit.MILLISECONDS)
+            this@ProgressWheel.mSetProgress(progress * percentValue)
+            this@ProgressWheel.setText("")
         }
     }
 
     fun setProgressAndText(progress : Float, decimalNumbers: Int = 0){
         if (this.progress < 360 && (this.text ?: "").isNotEmpty()) {
-            scheduler.scheduleAtFixedRate({
-                this@ProgressWheel.mSetProgress(progress * percentValue)
-                if (decimalNumbers == 0)
-                    this@ProgressWheel.setText(percentValue.toInt().toString() + "%")
-                else
-                    this@ProgressWheel.setText("%.${decimalNumbers}f".format(percentValue) + "%")
-            }, 0, 200, TimeUnit.MILLISECONDS)
+            this@ProgressWheel.mSetProgress(progress * percentValue)
+            if (decimalNumbers == 0)
+                this@ProgressWheel.setText(percentValue.toInt().toString() + "%")
+            else
+                this@ProgressWheel.setText("%.${decimalNumbers}f".format(percentValue) + "%")
         }
     }
 
@@ -556,10 +552,8 @@ class ProgressWheel
 
             //this makes the progress go to max before disappearing
             while (this.progress != 100f){
-                scheduler.scheduleAtFixedRate({
-                    if (this@ProgressWheel.progress != 100f && this@ProgressWheel.progress != 0f) //It's always safe to check again, specially after five seconds :P
-                        this@ProgressWheel.setProgressAndText(100f)
-                }, 0, 200, TimeUnit.MILLISECONDS)
+                if (this@ProgressWheel.progress != 100f && this@ProgressWheel.progress != 0f) //It's always safe to check again, specially after five seconds :P
+                    this@ProgressWheel.setProgressAndText(100f)
             }
 
             this.resetCount()
