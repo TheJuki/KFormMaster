@@ -83,7 +83,7 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
             if (model.onClickListener == null) {
                 val options = arrayOf(context.getString(R.string.form_master_picker_camera), context.getString(R.string.form_master_picker_gallery), context.getString(R.string.form_master_picker_remove), context.getString(R.string.form_master_cancel))
 
-                val builder = AlertDialog.Builder(context, model.theme)
+                val builder = AlertDialog.Builder(imageView.context, model.theme)
                 builder.setTitle(context.getString(R.string.form_master_pick_one))
                 builder.setItems(options) { _, which ->
                     when (which) {
