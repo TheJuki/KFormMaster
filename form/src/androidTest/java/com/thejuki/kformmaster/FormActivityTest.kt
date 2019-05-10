@@ -190,9 +190,6 @@ class FormActivityTest : AppCompatActivity() {
                 title = "TextView"
                 value = "This is readonly!"
             }
-            image(5){
-
-            }
             header { title = "Header 5" }
             switch<String>(SwitchElement.ordinal) {
                 title = "Switch"
