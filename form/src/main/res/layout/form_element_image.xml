@@ -62,7 +62,7 @@
         android:textAlignment="center"
         android:textColor="@color/colorFormMasterElementTextTitle"
         android:textSize="18sp"
-        tools:text="@string/form_master_picker_change_image" />
+        android:text="@string/form_master_picker_change_image" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/formElementError"

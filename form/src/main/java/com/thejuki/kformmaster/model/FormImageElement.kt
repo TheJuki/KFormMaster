@@ -35,6 +35,11 @@ open class FormImageElement: BaseFormElement<String> {
         mClearImage?.invoke()
     }
 
+    /**
+     * Theme
+     */
+    var theme: Int = 0
+
     constructor() : super()
     constructor(tag: Int) : super()
 }
