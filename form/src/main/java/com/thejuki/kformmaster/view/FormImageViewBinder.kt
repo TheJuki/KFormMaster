@@ -95,6 +95,9 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
                         }
                     }
                 }
+                builder.setMessage(null)
+                builder.setPositiveButton(null, null)
+                builder.setNegativeButton(null, null)
                 builder.show()
             }
         }
