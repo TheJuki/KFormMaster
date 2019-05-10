@@ -10,8 +10,8 @@ import android.graphics.Shader
 import android.util.AttributeSet
 import android.view.View
 import com.thejuki.kformmaster.R
-import java.util.*
-import kotlin.concurrent.schedule
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -525,24 +525,26 @@ class ProgressWheel
         }
     }
 
+    private val scheduler = Executors.newSingleThreadScheduledExecutor()
+
     fun setProgress(progress : Float){
         if (this.progress < 360) {
-            Timer().schedule(200) {
+            scheduler.scheduleAtFixedRate({
                 this@ProgressWheel.mSetProgress(progress * percentValue)
                 this@ProgressWheel.setText("")
-            }
+            }, 0, 200, TimeUnit.MILLISECONDS)
         }
     }
 
     fun setProgressAndText(progress : Float, decimalNumbers: Int = 0){
         if (this.progress < 360 && (this.text ?: "").isNotEmpty()) {
-            Timer().schedule(200) {
+            scheduler.scheduleAtFixedRate({
                 this@ProgressWheel.mSetProgress(progress * percentValue)
                 if (decimalNumbers == 0)
                     this@ProgressWheel.setText(percentValue.toInt().toString() + "%")
                 else
                     this@ProgressWheel.setText("%.${decimalNumbers}f".format(percentValue) + "%")
-            }
+            }, 0, 200, TimeUnit.MILLISECONDS)
         }
     }
 
@@ -554,10 +556,10 @@ class ProgressWheel
 
             //this makes the progress go to max before disappearing
             while (this.progress != 100f){
-                Timer().schedule(5000) {
+                scheduler.scheduleAtFixedRate({
                     if (this@ProgressWheel.progress != 100f && this@ProgressWheel.progress != 0f) //It's always safe to check again, specially after five seconds :P
                         this@ProgressWheel.setProgressAndText(100f)
-                }
+                }, 0, 200, TimeUnit.MILLISECONDS)
             }
 
             this.resetCount()
