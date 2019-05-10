@@ -68,12 +68,20 @@ class ProgressWheel
     private var circleOuterContour = RectF()
     private var circleInnerContour = RectF()
 
+    private val percentValue : Float = 360f/100
+
     //Animation
     //The amount of pixels to move the bar by on each draw
     var spinSpeed = 2f
     //The number of milliseconds to wait in between each draw
     var delayMillis = 10
     private var progress = 0f
+
+    val currentProgress : Float
+        get() {
+            return this.progress/percentValue
+        }
+
     /**
      * Check if the wheel is currently spinning
      */
@@ -345,15 +353,6 @@ class ProgressWheel
         postInvalidate()
     }
 
-    @JvmOverloads
-    fun incrementProgress(amount: Int = 1) {
-        isSpinning = false
-        progress += amount.toFloat()
-        if (progress > 360)
-            progress %= 360f
-        postInvalidate()
-    }
-
     fun incrementProgress(amount: Float) {
         isSpinning = false
         progress += amount
@@ -365,7 +364,7 @@ class ProgressWheel
     /**
      * Set the progress to a specific value
      */
-    fun setProgress(i: Float?) {
+    private fun mSetProgress(i: Float?) {
         isSpinning = false
         progress = i!!
         postInvalidate()
@@ -526,14 +525,25 @@ class ProgressWheel
         }
     }
 
-    fun getProgress(): Int {
-        return progress.toInt()
+    fun setProgress(progress : Float){
+        if (this.progress < 360) {
+            Timer().schedule(200) {
+                this@ProgressWheel.mSetProgress(progress * percentValue)
+                this@ProgressWheel.setText("")
+            }
+        }
     }
 
-    fun setProgressAndText(progress : Float){
-        val percentValue : Float = 360f/100
-        this.setProgress(progress)
-        this.setText((this.progress/percentValue).toInt().toString() + "%")
+    fun setProgressAndText(progress : Float, decimalNumbers: Int = 0){
+        if (this.progress < 360 && (this.text ?: "").isNotEmpty()) {
+            Timer().schedule(200) {
+                this@ProgressWheel.mSetProgress(progress * percentValue)
+                if (decimalNumbers == 0)
+                    this@ProgressWheel.setText(percentValue.toInt().toString() + "%")
+                else
+                    this@ProgressWheel.setText("%.${decimalNumbers}f".format(percentValue) + "%")
+            }
+        }
     }
 
     fun toggle(state : Boolean){
@@ -542,9 +552,11 @@ class ProgressWheel
             this.bringToFront()
         } else {
 
-            while (this.progress != 360f){
+            //this makes the progress go to max before disappearing
+            while (this.progress != 100f){
                 Timer().schedule(5000) {
-                    this@ProgressWheel.setProgressAndText(360f)
+                    if (this@ProgressWheel.progress != 100f && this@ProgressWheel.progress != 0f) //It's always safe to check again, specially after five seconds :P
+                        this@ProgressWheel.setProgressAndText(100f)
                 }
             }
 
