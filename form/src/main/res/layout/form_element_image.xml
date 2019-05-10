@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textAlignment="center"
-        android:textColor="@color/colorFormMasterElementTextTitle"
+        android:textColor="@color/colorFormMasterElementImageChangeImageTextColor"
         android:textSize="18sp"
         android:text="@string/form_master_picker_change_image" />
 
