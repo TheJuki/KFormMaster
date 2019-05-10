@@ -29,13 +29,12 @@ import java.io.File
 class FormImageViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
     var viewBinder = ViewBinder( layoutID
             ?: R.layout.form_element_image, FormImageElement::class.java, { model, finder, _ ->
-        val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val itemView = finder.getRootView() as View
         val dividerView = finder.find(R.id.formElementDivider) as? View
         model.loadingView = finder.find(R.id.loadingView) as ProgressWheel
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
+        baseSetup(model, dividerView, null, textViewError, itemView, mainViewLayout)
 
         val imageView = finder.find(R.id.formElementValue) as ImageView
 
