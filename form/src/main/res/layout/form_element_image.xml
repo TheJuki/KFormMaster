@@ -25,7 +25,6 @@
             android:id="@+id/loadingView"
             android:layout_width="180sp"
             android:layout_height="180sp"
-            android:visibility="visible"
             ProgressWheel:pwBarColor="@color/colorFormMasterElementImageProgressBarColor"
             ProgressWheel:pwBarLength="@dimen/elementImageProgressBarLength"
             ProgressWheel:pwBarWidth="@dimen/elementImageProgressBarWidth"

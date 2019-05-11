@@ -11,8 +11,6 @@ import android.util.AttributeSet
 import android.view.View
 import com.thejuki.kformmaster.R
 import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
-
 
 /**
  * An indicator of progress, similar to Android's ProgressBar.

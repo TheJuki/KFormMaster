@@ -40,7 +40,6 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
 
         model.loadingView?.resetCount()
         model.loadingView?.setText("")
-        model.loadingView?.visibility = View.GONE
         model.itemView?.bringToFront()
 
         if (model.defaultImage == null){
