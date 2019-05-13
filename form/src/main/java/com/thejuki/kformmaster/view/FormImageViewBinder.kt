@@ -55,12 +55,12 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
 
         if (URLUtil.isFileUrl(model.valueAsString)){
             val imageFile = File(model.valueAsString)
-            imageView.setImage(imageFile, model.imageTransformation, defaultImageDrawable)
+            imageView.setImage(imageFile, model.imageTransformation, defaultImageDrawable, model.imagePickerOptionsFor(model.defaultPickerOptions).maxWidth, model.imagePickerOptionsFor(model.defaultPickerOptions).maxHeight)
         } else if (URLUtil.isNetworkUrl(model.valueAsString)){
-            imageView.setImage(model.valueAsString, model.imageTransformation, defaultImageDrawable)
+            imageView.setImage(model.valueAsString, model.imageTransformation, defaultImageDrawable, model.imagePickerOptionsFor(model.defaultPickerOptions).maxWidth, model.imagePickerOptionsFor(model.defaultPickerOptions).maxHeight)
         } else {
             if (model.defaultImage != null) {
-                imageView.setImage(model.defaultImage!!, model.imageTransformation)
+                imageView.setImage(model.defaultImage!!, model.imageTransformation, model.imagePickerOptionsFor(model.defaultPickerOptions).maxWidth, model.imagePickerOptionsFor(model.defaultPickerOptions).maxHeight)
             }
         }
 
@@ -75,7 +75,7 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
                         when (resultCode) {
                             Activity.RESULT_OK -> {
                                 val file = ImagePicker.getFile(data)!!
-                                imageView.setImage(file, model.imageTransformation)
+                                imageView.setImage(file, model.imageTransformation, null, model.imagePickerOptionsFor(model.defaultPickerOptions).maxWidth, model.imagePickerOptionsFor(model.defaultPickerOptions).maxHeight)
                                 model.onSelectImage?.invoke(file)
                             }
                             ImagePicker.RESULT_ERROR -> model.onSelectImage?.invoke(null)
@@ -86,7 +86,7 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
 
         model.mClearImage = {
             if (model.defaultImage != null) {
-                imageView.setImage(model.defaultImage!!, model.imageTransformation)
+                imageView.setImage(model.defaultImage!!, model.imageTransformation, model.imagePickerOptionsFor(model.defaultPickerOptions).maxWidth, model.imagePickerOptionsFor(model.defaultPickerOptions).maxHeight)
             } else {
                 imageView.setImageDrawable(null)
             }
