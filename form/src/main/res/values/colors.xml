@@ -15,4 +15,11 @@
     <color name="colorFormMasterElementToken">#f5f5f5</color>
     <color name="colorFormMasterElementRadioSelected">#42A5F5</color>
     <color name="colorFormMasterElementRadioUnSelected">#FFFFFF</color>
+    <color name="colorFormMasterElementImageChangeImageTextColor">#42A5F5</color>
+    <color name="colorFormMasterElementImageBackground">#00FFFFFF</color>
+    <color name="colorFormMasterElementImageProgressBarColor">#42A5F5</color>
+    <color name="colorFormMasterElementImageProgressRimColor">#00FFFFFF</color>
+    <color name="colorFormMasterElementImageProgressTextColor">#FFFFFF</color>
+    <color name="colorFormMasterElementImageProgressContourColor">#00FFFFFF</color>
+
 </resources>

@@ -128,6 +128,9 @@ class FormBuildHelper
         // Text View
         this.formAdapter.registerRenderer(FormTextViewViewBinder(context, this, formLayouts?.textView).viewBinder)
 
+        // Image
+        this.formAdapter.registerRenderer(FormImageViewBinder(context, this, formLayouts?.image).viewBinder)
+
         this.listener = listener
     }
 

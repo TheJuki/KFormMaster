@@ -1,7 +1,6 @@
 package com.thejuki.kformmaster.model
 
 import android.app.AlertDialog
-import android.content.Context
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatEditText
