@@ -10,7 +10,13 @@ import android.graphics.Shader
 import android.util.AttributeSet
 import android.view.View
 import com.thejuki.kformmaster.R
-import java.util.concurrent.Executors
+import java.util.*
+import kotlin.concurrent.schedule
+import android.view.animation.Animation
+import android.view.animation.AlphaAnimation
+
+
+
 
 /**
  * An indicator of progress, similar to Android's ProgressBar.
@@ -72,7 +78,7 @@ class ProgressWheel
     //The amount of pixels to move the bar by on each draw
     var spinSpeed = 2f
     //The number of milliseconds to wait in between each draw
-    var delayMillis = 200
+    var delayMillis = 10
     private var progress = 0f
 
     val currentProgress : Float
@@ -389,10 +395,7 @@ class ProgressWheel
 
     fun setBarWidth(barWidth: Int) {
         this.barWidth = barWidth
-
-        if (this.barPaint != null) {
-            this.barPaint.strokeWidth = this.barWidth.toFloat()
-        }
+        this.barPaint.strokeWidth = this.barWidth.toFloat()
     }
 
     fun getTextSize(): Int {
@@ -401,10 +404,7 @@ class ProgressWheel
 
     fun setTextSize(textSize: Int) {
         this.textSize = textSize
-
-        if (this.textPaint != null) {
-            this.textPaint.textSize = this.textSize.toFloat()
-        }
+        this.textPaint.textSize = this.textSize.toFloat()
     }
 
     override fun getPaddingTop(): Int {
@@ -445,10 +445,7 @@ class ProgressWheel
 
     fun setBarColor(barColor: Int) {
         this.barColor = barColor
-
-        if (this.barPaint != null) {
-            this.barPaint.color = this.barColor
-        }
+        this.barPaint.color = this.barColor
     }
 
     fun getCircleColor(): Int {
@@ -457,10 +454,7 @@ class ProgressWheel
 
     fun setCircleColor(circleColor: Int) {
         this.circleColor = circleColor
-
-        if (this.circlePaint != null) {
-            this.circlePaint.color = this.circleColor
-        }
+        this.circlePaint.color = this.circleColor
     }
 
     fun getRimColor(): Int {
@@ -469,10 +463,7 @@ class ProgressWheel
 
     fun setRimColor(rimColor: Int) {
         this.rimColor = rimColor
-
-        if (this.rimPaint != null) {
-            this.rimPaint.color = this.rimColor
-        }
+        this.rimPaint.color = this.rimColor
     }
 
     fun getTextColor(): Int {
@@ -481,10 +472,7 @@ class ProgressWheel
 
     fun setTextColor(textColor: Int) {
         this.textColor = textColor
-
-        if (this.textPaint != null) {
-            this.textPaint.color = this.textColor
-        }
+        this.textPaint.color = this.textColor
     }
 
     fun getRimWidth(): Int {
@@ -493,10 +481,7 @@ class ProgressWheel
 
     fun setRimWidth(rimWidth: Int) {
         this.rimWidth = rimWidth
-
-        if (this.rimPaint != null) {
-            this.rimPaint.strokeWidth = this.rimWidth.toFloat()
-        }
+        this.rimPaint.strokeWidth = this.rimWidth.toFloat()
     }
 
     fun getContourColor(): Int {
@@ -505,10 +490,7 @@ class ProgressWheel
 
     fun setContourColor(contourColor: Int) {
         this.contourColor = contourColor
-
-        if (contourPaint != null) {
-            this.contourPaint.color = this.contourColor
-        }
+        this.contourPaint.color = this.contourColor
     }
 
     fun getContourSize(): Float {
@@ -517,45 +499,71 @@ class ProgressWheel
 
     fun setContourSize(contourSize: Float) {
         this.contourSize = contourSize
-
-        if (contourPaint != null) {
-            this.contourPaint.strokeWidth = this.contourSize
-        }
+        this.contourPaint.strokeWidth = this.contourSize
     }
-
-    private val scheduler = Executors.newSingleThreadScheduledExecutor()
 
     fun setProgress(progress : Float){
         if (this.progress < 360) {
-            this@ProgressWheel.mSetProgress(progress * percentValue)
-            this@ProgressWheel.setText("")
+            Timer().schedule(500) {
+                if (this@ProgressWheel.currentProgress != 100f) {
+                    this@ProgressWheel.mSetProgress(progress * percentValue)
+                    this@ProgressWheel.setText("")
+                }
+            }
         }
     }
 
     fun setProgressAndText(progress : Float, decimalNumbers: Int = 0){
         if (this.progress < 360 && (this.text ?: "").isNotEmpty()) {
-            this@ProgressWheel.mSetProgress(progress * percentValue)
-            if (decimalNumbers == 0)
-                this@ProgressWheel.setText(percentValue.toInt().toString() + "%")
-            else
-                this@ProgressWheel.setText("%.${decimalNumbers}f".format(percentValue) + "%")
+            Timer().schedule(500) {
+                if (this@ProgressWheel.currentProgress != 100f) {
+                    this@ProgressWheel.mSetProgress(progress * percentValue)
+                    if (decimalNumbers == 0)
+                        this@ProgressWheel.setText((this@ProgressWheel.progress / this@ProgressWheel.percentValue).toInt().toString() + "%")
+                    else
+                        this@ProgressWheel.setText("%.${decimalNumbers}f".format((this@ProgressWheel.progress / this@ProgressWheel.percentValue).toString()) + "%")
+                }
+            }
         }
     }
 
-    fun toggle(state : Boolean){
+    fun toggle(state : Boolean, fade: Boolean = false){
         if (state) {
+            if (fade)
+                this.alpha = 0f
+
             this.resetCount()
             this.bringToFront()
-        } else {
 
-            //this makes the progress go to max before disappearing
-            while (this.progress != 100f){
-                if (this@ProgressWheel.progress != 100f && this@ProgressWheel.progress != 0f) //It's always safe to check again, specially after five seconds :P
-                    this@ProgressWheel.setProgressAndText(100f)
+            if (fade){
+                val alphaAnimation = AlphaAnimation(0.0f, 1.0f)
+                alphaAnimation.duration = 1000
+                this.visibility = VISIBLE
+                this.startAnimation(alphaAnimation)
             }
 
-            this.resetCount()
-            this.setText("")
+        } else {
+            Timer().schedule(1500) {
+
+                if (fade) {
+                    val alphaAnimation = AlphaAnimation(1.0f, 0.0f)
+                    alphaAnimation.duration = 1000
+                    alphaAnimation.setAnimationListener(object: Animation.AnimationListener{
+                        override fun onAnimationEnd(animation: Animation?) {
+                            this@ProgressWheel.resetCount()
+                            this@ProgressWheel.setText("")
+                            this@ProgressWheel.alpha = 1f
+                        }
+                        override fun onAnimationRepeat(animation: Animation?) {}
+                        override fun onAnimationStart(animation: Animation?) {}
+                    })
+                    this@ProgressWheel.visibility = VISIBLE
+                    this@ProgressWheel.startAnimation(alphaAnimation)
+                } else {
+                    this@ProgressWheel.resetCount()
+                    this@ProgressWheel.setText("")
+                }
+            }
         }
     }
 }

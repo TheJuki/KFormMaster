@@ -3,16 +3,9 @@ package com.thejuki.kformmaster.helper
 import android.graphics.*
 import com.squareup.picasso.Transformation
 
-class CircleTransform : Transformation {
+class CircleTransform(private val borderColor: Int? = null, private var borderRadius: Int = 2) : Transformation {
     private var x: Int = 0
     private var y: Int = 0
-    private var borderColor : Int? = null
-    private var borderRadius : Int? = null
-
-    constructor(borderColor: Int = Color.WHITE, borderRadius: Int = 2){
-        this.borderColor = borderColor
-        this.borderRadius = borderRadius
-    }
 
     override fun transform(source: Bitmap): Bitmap {
         val size = Math.min(source.width, source.height)
@@ -33,20 +26,17 @@ class CircleTransform : Transformation {
         paint.shader = shader
         paint.isAntiAlias = true
 
-        if (borderColor != null && borderRadius != null) {
-            val r = size / 2f
-
-            // Prepare the background
+        val r = size / 2f
+        if (borderColor != null) {
             val paintBg = Paint()
-            paintBg.color = borderColor!!
+            paintBg.color = borderColor
             paintBg.isAntiAlias = true
-
-            // Draw the background circle
             canvas.drawCircle(r, r, r, paintBg)
-
-            // Draw the image smaller than the background so a little border will be seen
-            canvas.drawCircle(r, r, r - borderRadius!!, paint)
+        } else {
+            borderRadius = 0
         }
+
+        canvas.drawCircle(r, r, r - borderRadius, paint)
 
         squaredBitmap.recycle()
         return bitmap

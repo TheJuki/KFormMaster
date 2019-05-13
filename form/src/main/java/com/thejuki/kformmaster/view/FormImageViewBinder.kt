@@ -2,6 +2,7 @@ package com.thejuki.kformmaster.view
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -19,9 +20,7 @@ import com.thejuki.kformmaster.state.FormImageViewState
 import com.thejuki.kformmaster.widget.ProgressWheel
 import android.webkit.URLUtil
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import com.github.dhaval2404.imagepicker.constant.ImageProvider
 import com.thejuki.kformmaster.extensions.setImage
 import java.io.File
 
@@ -42,15 +41,27 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
         model.loadingView?.setText("")
         model.itemView?.bringToFront()
 
-        if (model.defaultImage == null){
-            model.defaultImage = ContextCompat.getDrawable(context, R.drawable.default_image)
+        if (model.defaultImage != null && model.defaultImage == 0){
+            model.defaultImage = R.drawable.default_image
+        }
+
+        val defaultImageDrawable : Drawable?
+
+        if (model.defaultImage != null){
+            defaultImageDrawable = ContextCompat.getDrawable(context, model.defaultImage!!)
+        } else {
+            defaultImageDrawable = null
         }
 
         if (URLUtil.isFileUrl(model.valueAsString)){
             val imageFile = File(model.valueAsString)
-            imageView.setImage(imageFile, model.imageTransformation, model.defaultImage)
+            imageView.setImage(imageFile, model.imageTransformation, defaultImageDrawable)
         } else if (URLUtil.isNetworkUrl(model.valueAsString)){
-            imageView.setImage(model.valueAsString, model.imageTransformation, model.defaultImage)
+            imageView.setImage(model.valueAsString, model.imageTransformation, defaultImageDrawable)
+        } else {
+            if (model.defaultImage != null) {
+                imageView.setImage(model.defaultImage!!, model.imageTransformation)
+            }
         }
 
         model.editView = imageView
@@ -74,35 +85,15 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
         }
 
         model.mClearImage = {
-            imageView.setImageDrawable(model.defaultImage)
+            if (model.defaultImage != null) {
+                imageView.setImage(model.defaultImage!!, model.imageTransformation)
+            } else {
+                imageView.setImageDrawable(null)
+            }
             model.onClear?.invoke()
         }
 
-        itemView.setOnClickListener {
-            if (model.onClickListener == null) {
-                val options = arrayOf(context.getString(R.string.form_master_picker_camera), context.getString(R.string.form_master_picker_gallery), context.getString(R.string.form_master_picker_remove), context.getString(R.string.form_master_cancel))
-
-                val builder = AlertDialog.Builder(textViewError.context, model.theme)
-                builder.setTitle(context.getString(R.string.form_master_pick_one))
-                builder.setItems(options) { _, which ->
-                    when (which) {
-                        0, 1 -> {
-                            model.openImagePicker(if (which == 0) ImageProvider.CAMERA else ImageProvider.GALLERY)
-                        }
-                        2 -> {
-                            model.clearImage()
-                        }
-                    }
-                }
-                builder.setMessage(null)
-                builder.setPositiveButton(null, null)
-                builder.setNegativeButton(null, null)
-
-                val dialog = builder.create()
-                dialog.show()
-            }
-        }
-
+        model.initDialog()
     }, object : ViewStateProvider<FormImageElement, ViewHolder> {
         override fun createViewStateID(model: FormImageElement): Int {
             return model.id

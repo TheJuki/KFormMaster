@@ -39,17 +39,17 @@
             app:pwContourColor="@color/colorFormMasterElementImageProgressContourColor" />
 
         <ImageView
-            android:id="@+id/formElementValue"
-            android:layout_width="175sp"
-            android:layout_height="175sp"
-            android:layout_gravity="center_horizontal|top"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_conversion_wrapHeight="0"
-            tools:layout_conversion_wrapWidth="0" />
+                android:id="@+id/formElementValue"
+                android:layout_width="175sp"
+                android:layout_height="175sp"
+                android:layout_gravity="center_horizontal|top"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_wrapHeight="0"
+                tools:layout_conversion_wrapWidth="0"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

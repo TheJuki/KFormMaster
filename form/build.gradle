@@ -106,6 +106,9 @@ dependencies {
     // Picasso (Image Manipulation)
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //Inline Activity Result (To call image picker inline)
+    implementation 'com.github.florent37:inline-activity-result-kotlin:1.0.1'
+
     // ImagePicker
     implementation 'com.github.soareseneves:imagepicker:7a420452cd9d0c2501247f3529a3c3364cd40b57'
 
