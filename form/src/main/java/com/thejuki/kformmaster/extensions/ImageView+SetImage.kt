@@ -10,7 +10,7 @@ import java.io.File
 
 fun ImageView.setImage(url: String, transformation: Transformation? = null, defaultImage: Drawable? = null, completionHandler: (() -> Unit)? = null){
     if (transformation!= null){
-        Picasso.get().load(url).centerCrop().memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).transform(transformation).into(this, object: Callback {
+        Picasso.get().load(url).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).transform(transformation).into(this, object: Callback {
             override fun onSuccess() {
                 completionHandler?.invoke()
             }
@@ -20,7 +20,7 @@ fun ImageView.setImage(url: String, transformation: Transformation? = null, defa
             }
         })
     } else {
-        Picasso.get().load(url).centerCrop().memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(this, object : Callback {
+        Picasso.get().load(url).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(this, object : Callback {
             override fun onSuccess() {
                 completionHandler?.invoke()
             }
@@ -35,7 +35,7 @@ fun ImageView.setImage(url: String, transformation: Transformation? = null, defa
 fun ImageView.setImage(file: File?, transformation: Transformation? = null, defaultImage: Drawable? = null, completionHandler: (() -> Unit)? = null){
     if (file != null) {
         if (transformation != null) {
-            Picasso.get().load(file).centerCrop().memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).transform(transformation).into(this, object : Callback {
+            Picasso.get().load(file).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).transform(transformation).into(this, object : Callback {
                 override fun onSuccess() {
                     completionHandler?.invoke()
                 }
@@ -45,7 +45,7 @@ fun ImageView.setImage(file: File?, transformation: Transformation? = null, defa
                 }
             })
         } else {
-            Picasso.get().load(file).centerCrop().memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(this, object : Callback {
+            Picasso.get().load(file).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(this, object : Callback {
                 override fun onSuccess() {
                     completionHandler?.invoke()
                 }
@@ -60,7 +60,7 @@ fun ImageView.setImage(file: File?, transformation: Transformation? = null, defa
 
 fun ImageView.setImage(resourceId: Int, transformation: Transformation? = null, completionHandler: (() -> Unit)? = null){
     if (transformation != null) {
-        Picasso.get().load(resourceId).centerCrop().memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).transform(transformation).into(this, object : Callback {
+        Picasso.get().load(resourceId).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).transform(transformation).into(this, object : Callback {
             override fun onSuccess() {
                 completionHandler?.invoke()
             }
@@ -68,7 +68,7 @@ fun ImageView.setImage(resourceId: Int, transformation: Transformation? = null, 
             override fun onError(e: java.lang.Exception?) {}
         })
     } else {
-        Picasso.get().load(resourceId).centerCrop().memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(this, object : Callback {
+        Picasso.get().load(resourceId).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).into(this, object : Callback {
             override fun onSuccess() {
                 completionHandler?.invoke()
             }
