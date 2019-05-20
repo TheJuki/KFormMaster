@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.4.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.0)
+- #119, #122 Image View Picker element added
+- #120 Add displayValueFor to dropdown element
+- #118 Add theme to picker elements to style the alert dialog
+- Added is24HourView to dateTime and time elements
+
 ## [6.3.4](https://github.com/TheJuki/KFormMaster/releases/tag/6.3.4)
 - #108 Fix FormSegmentedElement value change when enabled
 
