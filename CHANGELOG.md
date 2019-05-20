@@ -5,6 +5,7 @@
 - #120 Add displayValueFor to dropdown element
 - #118 Add theme to picker elements to style the alert dialog
 - Added is24HourView to dateTime and time elements
+- Set min SDK version to 19
 
 ## [6.3.4](https://github.com/TheJuki/KFormMaster/releases/tag/6.3.4)
 - #108 Fix FormSegmentedElement value change when enabled
