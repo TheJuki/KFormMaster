@@ -5,6 +5,11 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.thejuki.kformmaster.helper.FormBuildHelper;
 import com.thejuki.kformmaster.helper.FormLayouts;
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener;
@@ -14,6 +19,7 @@ import com.thejuki.kformmaster.model.FormButtonElement;
 import com.thejuki.kformmaster.model.FormCheckBoxElement;
 import com.thejuki.kformmaster.model.FormEmailEditTextElement;
 import com.thejuki.kformmaster.model.FormHeader;
+import com.thejuki.kformmaster.model.FormImageElement;
 import com.thejuki.kformmaster.model.FormLabelElement;
 import com.thejuki.kformmaster.model.FormMultiLineEditTextElement;
 import com.thejuki.kformmaster.model.FormNumberEditTextElement;
@@ -46,10 +52,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import kotlin.Unit;
 
 /**
@@ -123,7 +125,8 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         SliderElement,
         ProgressElement,
         CheckBoxElement,
-        SegmentedElement
+        SegmentedElement,
+        ImageViewElement
     }
 
     private void setupForm() {
@@ -150,6 +153,17 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
     }
 
     private void addEditTexts(List<BaseFormElement<?>> elements) {
+        FormImageElement imageView = new FormImageElement(Tag.ImageViewElement.ordinal());
+        imageView.setOnSelectImage((file) -> {
+            if (file != null) {
+                Toast.makeText(this, file.getName(), Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Error getting the image", Toast.LENGTH_LONG).show();
+            }
+            return Unit.INSTANCE;
+        });
+        elements.add(imageView);
+
         elements.add(new FormHeader(getString(R.string.PersonalInfo)));
 
         FormEmailEditTextElement email = new FormEmailEditTextElement(Tag.Email.ordinal());

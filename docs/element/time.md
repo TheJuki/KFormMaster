@@ -4,6 +4,16 @@ The Time form element is used for a time dialog.
 
 <img src="../../images/Time2.PNG" alt="Example" width="300px"/>
 
+## Theme
+
+Set this override the default alert dialog theme.
+
+```kotlin
+time(1) {
+    theme = R.style.CustomDialogPicker
+}
+```
+
 !!! info "Value"
 
     * You can set value directly by creating a new instance of FormPickerTimeElement.TimeHolder. However, dateValue and dateFormat will create the instance for you.
@@ -16,6 +26,10 @@ A java.util.Date value.
 ## Date Format
 
 A java.text.DateFormat value. By default this is SimpleDateFormat.getDateInstance(). It is advised to provide your own format.
+
+## Is 24 Hour View
+
+If true, displays the time dialog in the 24 hour view. By default this is false.
 
 ## Example
 

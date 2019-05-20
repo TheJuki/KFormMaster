@@ -63,6 +63,17 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
         }
 
     /**
+     * Is 24 Hour View
+     * If true, displays the time dialog in the 24 hour view
+     * By default, this is false.
+     */
+    var is24HourView: Boolean = false
+        set(value) {
+            field = value
+            reInitDialog()
+        }
+
+    /**
      * Theme
      */
     var theme: Int = 0
@@ -264,10 +275,10 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
             }
 
             // Now show time picker
-            TimePickerDialog(editTextValue.context, timeDialogListener(editTextValue),
+            TimePickerDialog(editTextValue.context, theme, timeDialogListener(editTextValue),
                     value?.hourOfDay ?: 0,
                     value?.minute ?: 0,
-                    false).show()
+                    is24HourView).show()
         }
     }
 

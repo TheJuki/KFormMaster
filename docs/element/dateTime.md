@@ -6,6 +6,16 @@ The DateTime form element is used for a date and then time dialog. The date dial
 
 <img src="../../images/Time2.PNG" alt="Example" width="300px"/>
 
+## Theme
+
+Set this override the default alert dialog theme.
+
+```kotlin
+dateTime(1) {
+    theme = R.style.CustomDialogPicker
+}
+```
+
 !!! info "Value"
 
     * You can set value directly by creating a new instance of FormPickerDateTimeElement.DateTimeHolder. However, dateValue and dateFormat will create the instance for you.
@@ -26,6 +36,10 @@ A java.util.Date value to set the minimum date for the Date picker.
 ## Maximum Date
 
 A java.util.Date value to set the maximum date for the Date picker.
+
+## Is 24 Hour View
+
+If true, displays the time dialog in the 24 hour view. By default this is false.
 
 ## Example
 

@@ -11,10 +11,13 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import com.github.dhaval2404.imagepicker.constant.ImageProvider
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.*
 import com.thejuki.kformmaster.widget.FormElementMargins
@@ -25,6 +28,7 @@ import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
 import com.thejuki.kformmasterexample.item.SegmentedListItem
 import kotlinx.android.synthetic.main.activity_fullscreen_form.*
+import kotlinx.android.synthetic.main.bottomsheet_image.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
@@ -40,12 +44,17 @@ import java.util.Date
 class FullscreenFormActivity : AppCompatActivity() {
 
     private lateinit var formBuilder: FormBuildHelper
+    private lateinit var bottomSheetDialog: BottomSheetDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fullscreen_form)
 
         setupToolBar()
+
+        bottomSheetDialog = BottomSheetDialog(this)
+        val sheetView = this.layoutInflater.inflate(R.layout.bottomsheet_image, null)
+        bottomSheetDialog.setContentView(sheetView)
 
         setupForm()
     }
@@ -173,7 +182,8 @@ class FullscreenFormActivity : AppCompatActivity() {
         SliderElement,
         ProgressElement,
         CheckBoxElement,
-        SegmentedElement
+        SegmentedElement,
+        ImageViewElement
     }
 
     private fun setupForm() {
@@ -182,6 +192,55 @@ class FullscreenFormActivity : AppCompatActivity() {
                         // Uncomment to replace all text elements with the form_element_custom layout
                         //text = R.layout.form_element_custom
                 )) {
+            imageView(ImageViewElement.ordinal) {
+                displayDivider = false
+                imageTransformation = CircleTransform(borderColor = Color.WHITE, borderRadius = 3) //Default value for this is CircleTransform(null) so it makes image round without borders
+                required = false
+                theme = R.style.CustomDialogPicker // This is to theme the default dialog when onClickListener is not used.
+                //defaultImage = R.drawable.default_image
+                //value = "http://example.com/" //(String) This needs to be an image URL or an image FILE (absolutePath)
+                imagePickerOptions = {
+                    // This lets you customize the ImagePicker library, specifying Crop, Dimensions and MaxSize options
+                    it.cropX = 3f
+                    it.cropY = 4f
+                    it.maxWidth = 150
+                    it.maxHeight = 200
+                    it.maxSize = 500
+                }
+                onSelectImage = { file ->
+                    // If file is null, that means an error occurred trying to select the image
+                    if (file != null) {
+                        Toast.makeText(this@FullscreenFormActivity, file.name, LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@FullscreenFormActivity, "Error getting the image", LENGTH_LONG).show()
+                    }
+                }
+
+                // Optional: Handle onClickListener yourself. Here I am using a BottomSheet instead of the
+                // the default AlertDialog
+                bottomSheetDialog.image_bottom_sheet_camera.setOnClickListener {
+                    bottomSheetDialog.dismiss()
+                    this.openImagePicker(ImageProvider.CAMERA)
+
+                }
+                bottomSheetDialog.image_bottom_sheet_gallery.setOnClickListener {
+                    bottomSheetDialog.dismiss()
+                    this.openImagePicker(ImageProvider.GALLERY)
+
+                }
+                bottomSheetDialog.image_bottom_sheet_remove.setOnClickListener {
+                    bottomSheetDialog.dismiss()
+                    this.clearImage()
+
+                }
+                bottomSheetDialog.image_bottom_sheet_close.setOnClickListener {
+                    bottomSheetDialog.dismiss()
+
+                }
+                onClickListener = {
+                    bottomSheetDialog.show()
+                }
+            }
             header {
                 title = getString(R.string.PersonalInfo)
                 collapsible = true
@@ -295,6 +354,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             header { title = getString(R.string.Schedule); collapsible = true }
             date(Tag.Date.ordinal) {
                 title = getString(R.string.Date)
+                theme = R.style.CustomDialogPicker
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
                 minimumDate = dateFormat.parse("01/01/2018")
@@ -312,6 +372,8 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             time(Time.ordinal) {
                 title = getString(R.string.Time)
+                theme = R.style.CustomDialogPicker
+                is24HourView = true
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("hh:mm a", Locale.US)
                 required = true
@@ -327,6 +389,8 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             dateTime(DateTime.ordinal) {
                 title = getString(R.string.DateTime)
+                theme = R.style.CustomDialogPicker
+                is24HourView = true
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
                 minimumDate = dateFormat.parse("01/01/2018 12:00 AM")
@@ -350,6 +414,14 @@ class FullscreenFormActivity : AppCompatActivity() {
                 enabled = true
                 rightToLeft = false
                 dialogEmptyMessage = "This is Empty!"
+                theme = R.style.CustomDialogPicker
+                displayValueFor = {
+                    if (it != null) {
+                        it.name + " (" + options?.indexOf(it) + ")"
+                    } else {
+                        ""
+                    }
+                }
                 confirmEdit = true
                 displayRadioButtons = true
                 maxLines = 3
@@ -364,6 +436,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
                 title = getString(R.string.MultiItems)
                 dialogTitle = getString(R.string.MultiItems)
+                theme = R.style.CustomDialogPicker
                 options = fruits
                 enabled = true
                 maxLines = 3

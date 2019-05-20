@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomDialogPicker" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorBlueAccent</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:textColorAlertDialogListItem">@android:color/white</item>
+        <item name="textColorAlertDialogListItem">@android:color/white</item>
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="android:datePickerStyle">@style/DatePickerDialogStyle</item>
+        <item name="android:timePickerStyle">@style/TimePickerDialogStyle</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItemStyle</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+    </style>
+
+    <style name="SpinnerDropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/background_dark</item>
+    </style>
+
+    <style name="TextViewStyle">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="DatePickerDialogStyle" parent="@android:style/Widget.Material.Light.DatePicker"></style>
+
+    <style name="TimePickerDialogStyle" parent="@android:style/Widget.Material.Light.TimePicker">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="colorAccent">@color/colorBlueAccent</item>
+        <item name="android:headerTimeTextAppearance">
+            @style/TextAppearance.TimePickerDialogStyle.TimeLabel
+        </item>
+        <item name="android:numbersTextColor">@android:color/white</item>
+        <item name="android:numbersBackgroundColor">@color/background_dark</item>
+        <item name="android:numbersSelectorColor">@color/colorBlueAccent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextAppearance.TimePickerDialogStyle.TimeLabel" parent="@android:style/TextAppearance.Material">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+</resources>

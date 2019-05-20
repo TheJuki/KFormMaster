@@ -49,6 +49,17 @@ class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeEle
     var theme: Int = 0
 
     /**
+     * Is 24 Hour View
+     * If true, displays the time dialog in the 24 hour view
+     * By default, this is false.
+     */
+    var is24HourView: Boolean = false
+        set(value) {
+            field = value
+            reInitDialog()
+        }
+
+    /**
      * Alert Dialog Builder
      * Used to call reInitDialog without needing context again.
      */
@@ -172,7 +183,7 @@ class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeEle
                 timeDialogListener(editTextView),
                 value?.hourOfDay ?: 0,
                 value?.minute ?: 0,
-                false)
+                is24HourView)
 
         if (alertDialogBuilder == null) {
             alertDialogBuilder = AlertDialog.Builder(editTextView.context, theme)

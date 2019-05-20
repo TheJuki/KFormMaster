@@ -79,7 +79,8 @@ class FormFragment : Fragment() {
         ProgressElement,
         CheckBoxElement,
         SegmentedElement,
-        PlacesAutoComplete
+        PlacesAutoComplete,
+        ImageViewElement
     }
 
     private fun setupForm(recyclerView: RecyclerView) {
@@ -90,6 +91,23 @@ class FormFragment : Fragment() {
         Places.initialize(context, "[APP_KEY]")
 
         formBuilder = form(context, recyclerView, cacheForm = true) {
+            imageView(ImageViewElement.ordinal) {
+                displayDivider = false
+                required = false
+                //defaultImage = R.drawable.default_image
+                //value = "http://example.com/" //(String) This needs to be an image URL or an image FILE (absolutePath)
+                imagePickerOptions = {
+                    // This lets you customize the ImagePicker library, specifying Crop, Dimensions and MaxSize options
+                }
+                onSelectImage = { file ->
+                    // If file is null, that means an error occurred trying to select the image
+                    if (file != null) {
+                        Toast.makeText(context, file.name, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Error getting the image", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
             header { title = getString(R.string.PersonalInfo); collapsible = true }
             email(Email.ordinal) {
                 title = getString(R.string.email)

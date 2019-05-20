@@ -8,6 +8,16 @@ The MultiCheckBox form element is used for a multiple choice dialog.
 
     The ListItem class is provided in the example app. Your custom class just needs to override toString() to display in the dialog.
 
+## Theme
+
+Set this override the default alert dialog theme.
+
+```kotlin
+multiCheckBox<List<ListItem>>(1) {
+    theme = R.style.CustomDialogPicker
+}
+```
+
 ## Dialog Title
 
 By default this is "Pick one or more".

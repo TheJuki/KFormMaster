@@ -42,6 +42,7 @@ nav:
   - Form Elements:
     - 'Base': 'element/base.md'
     - 'Header': 'element/header.md'
+    - 'Image View': 'element/imageView.md'
     - 'Single Line': 'element/singleLine.md'
     - 'Multi Line': 'element/multiLine.md'
     - 'Email': 'element/email.md'

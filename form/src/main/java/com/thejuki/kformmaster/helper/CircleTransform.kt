@@ -3,6 +3,14 @@ package com.thejuki.kformmaster.helper
 import android.graphics.*
 import com.squareup.picasso.Transformation
 
+/**
+ * Circle Transform
+ *
+ * Used to transform a bitmap into a circle shape
+ *
+ * @author **soareseneves** ([GitHub](https://github.com/soareseneves))
+ * @version 1.0
+ */
 class CircleTransform(private val borderColor: Int? = null, private var borderRadius: Int = 2) : Transformation {
     private var x: Int = 0
     private var y: Int = 0

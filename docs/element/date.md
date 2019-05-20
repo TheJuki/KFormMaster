@@ -4,6 +4,16 @@ The Date form element is used for a date dialog.
 
 <img src="../../images/Date2.PNG" alt="Example" width="300px"/>
 
+## Theme
+
+Set this override the default alert dialog theme.
+
+```kotlin
+date(1) {
+    theme = R.style.CustomDialogPicker
+}
+```
+
 !!! info "Value"
 
     * You can set value directly by creating a new instance of FormPickerDateElement.DateHolder. However, dateValue and dateFormat will create the instance for you.

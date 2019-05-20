@@ -5,6 +5,14 @@ import android.widget.ImageView
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.thejuki.kformmaster.R
 
+/**
+ * Form Image ViewState
+ *
+ * View State for [Drawable]
+ *
+ * @author **soareseneves** ([GitHub](https://github.com/soareseneves))
+ * @version 1.0
+ */
 class FormImageViewState(holder: ViewHolder) : BaseFormViewState(holder) {
     private var value: Drawable? = null
 

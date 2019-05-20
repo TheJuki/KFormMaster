@@ -4,13 +4,35 @@ The DropDown form element is used for a single choice dialog.
 
 <img src="../../images/Dropdown2.PNG" alt="Example" width="300px"/>
 
+!!! note "NOTICE"
+
+    The ListItem, ContactItem, and ContactAutoCompleteAdapter classes are provided in the example app.
+
+## Theme
+
+Set this to override the default alert dialog theme.
+
+```kotlin
+dropDown<ListItem>(1) {
+    theme = R.style.CustomDialogPicker
+}
+```
+
+## Display Value For
+
+This can be used to set the text that is displayed in the options and field. Your custom class can also just override toString() to display in the dialog.
+
+```kotlin
+dropDown<ListItem>(1) {
+    displayValueFor = {
+		it?.name
+    }
+}
+```
+
 ## Array Adapter
 
 Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.
-
-!!! note "NOTICE"
-
-    The ListItem, ContactItem, and ContactAutoCompleteAdapter classes are provided in the example app. Your custom class just needs to override toString() to display in the dialog.
 
 ```kotlin
 dropDown<ContactItem>(1) {

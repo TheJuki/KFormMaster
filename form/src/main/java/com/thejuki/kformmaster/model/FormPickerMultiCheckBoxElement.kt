@@ -1,6 +1,5 @@
 package com.thejuki.kformmaster.model
 
-import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatEditText
@@ -181,7 +180,6 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
 
     private fun getSelectedItemsText(): String {
         val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
-        val optionsSelected = BooleanArray(this.options?.size ?: 0)
         val mSelectedItems = ArrayList<Int>()
 
         this.options?.let {
@@ -189,10 +187,8 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
                 val obj = it[i]
 
                 options[i] = obj.toString()
-                optionsSelected[i] = false
 
                 if (this.value?.contains(obj) == true) {
-                    optionsSelected[i] = true
                     mSelectedItems.add(i)
                 }
             }

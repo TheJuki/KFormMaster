@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/formElementMainLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
     android:background="@color/colorFormMasterElementImageBackground"
     android:orientation="vertical"
-    android:id="@+id/formElementMainLayout"
     android:tag="formImage">
 
     <View
@@ -21,35 +22,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|top">
 
-        <com.thejuki.kformmaster.widget.ProgressWheel
-            android:id="@+id/loadingView"
-            android:layout_width="180sp"
-            android:layout_height="180sp"
-            ProgressWheel:pwBarColor="@color/colorFormMasterElementImageProgressBarColor"
-            ProgressWheel:pwBarLength="@dimen/elementImageProgressBarLength"
-            ProgressWheel:pwBarWidth="@dimen/elementImageProgressBarWidth"
-            ProgressWheel:pwRimColor="@color/colorFormMasterElementImageProgressRimColor"
-            ProgressWheel:pwRimWidth="@dimen/elementImageProgressRimWidth"
-            ProgressWheel:pwTextColor="@color/colorFormMasterElementImageProgressTextColor"
-            ProgressWheel:pwTextSize="@dimen/elementImageProgressTextSize"
+        <ImageView
+            android:id="@+id/formElementValue"
+            android:layout_marginTop="5dp"
+            android:layout_width="175sp"
+            android:layout_height="175sp"
+            android:layout_gravity="center_horizontal|top"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:pwContourColor="@color/colorFormMasterElementImageProgressContourColor" />
-
-        <ImageView
-                android:id="@+id/formElementValue"
-                android:layout_width="175sp"
-                android:layout_height="175sp"
-                android:layout_gravity="center_horizontal|top"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_conversion_wrapHeight="0"
-                tools:layout_conversion_wrapWidth="0"/>
+            tools:ignore="ContentDescription"
+            tools:layout_conversion_wrapHeight="0"
+            tools:layout_conversion_wrapWidth="0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -58,10 +44,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/form_master_picker_change_image"
         android:textAlignment="center"
         android:textColor="@color/colorFormMasterElementImageChangeImageTextColor"
-        android:textSize="18sp"
-        android:text="@string/form_master_picker_change_image" />
+        android:textSize="18sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/formElementError"

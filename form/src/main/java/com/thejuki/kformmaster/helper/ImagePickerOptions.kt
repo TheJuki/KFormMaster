@@ -1,5 +1,13 @@
 package com.thejuki.kformmaster.helper
 
+/**
+ * Image Picker Options
+ *
+ * Used to set the image picker options
+ *
+ * @author **soareseneves** ([GitHub](https://github.com/soareseneves))
+ * @version 1.0
+ */
 class ImagePickerOptions {
     /**
      * Set an aspect ratio for crop bounds.

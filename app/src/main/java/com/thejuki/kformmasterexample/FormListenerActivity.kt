@@ -90,11 +90,22 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
         SliderElement,
         ProgressElement,
         CheckBoxElement,
-        SegmentedElement
+        SegmentedElement,
+        ImageViewElement
     }
 
     private fun setupForm() {
         formBuilder = form(this, recyclerView, this, true) {
+            imageView(ImageViewElement.ordinal) {
+                onSelectImage = { file ->
+                    // If file is null, that means an error occurred trying to select the image
+                    if (file != null) {
+                        Toast.makeText(this@FormListenerActivity, file.name, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@FormListenerActivity, "Error getting the image", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
             header { title = getString(R.string.PersonalInfo) }
             email(Email.ordinal) {
                 title = getString(R.string.email)
