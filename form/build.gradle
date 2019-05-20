@@ -124,7 +124,7 @@ dependencies {
 }
 
 publish {
-    version = "6.3.4"
+    version = "6.4.0"
     group = "com.thejuki"
     userOrg = 'thejuki'
     artifactId = 'k-form-master'
