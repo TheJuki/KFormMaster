@@ -4,7 +4,7 @@
 <a href="https://travis-ci.org/TheJuki/KFormMaster"><img src="https://travis-ci.org/TheJuki/KFormMaster.svg?branch=master" alt="Build status" /></a>
 <a href="https://codecov.io/gh/TheJuki/KFormMaster"><img src="https://codecov.io/gh/TheJuki/KFormMaster/branch/master/graph/badge.svg" alt="codecov" /></a>
 <a href="https://codebeat.co/projects/github-com-thejuki-kformmaster-master"><img alt="codebeat badge" src="https://codebeat.co/badges/43fca492-2564-4401-8f4b-91d3bc811d70" /></a>
-<a href="https://android-arsenal.com/api?level=15"><img src="https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat" alt="API" /></a>
+<a href="https://android-arsenal.com/api?level=15"><img src="https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat" alt="API" /></a>
 <a href="https://android-arsenal.com/details/1/6761"><img src="https://img.shields.io/badge/Android%20Arsenal-KFormMaster-brightgreen.svg?style=flat" border="0" alt="Android Arsenal"></a>
 <a href="https://bintray.com/thejuki/maven/k-form-master/_latestVersion"><img src="https://api.bintray.com/packages/thejuki/maven/k-form-master/images/download.svg" alt="Download" /></a>
 </p>
