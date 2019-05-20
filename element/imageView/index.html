@@ -13,7 +13,7 @@
         <meta name="description" content="Documentation for the KFormMaster Android library">
       
       
-        <link rel="canonical" href="https://thejuki.github.io/KFormMaster/element/button/">
+        <link rel="canonical" href="https://thejuki.github.io/KFormMaster/element/imageView/">
       
       
         <meta name="author" content="TheJuki">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Button - KFormMaster Docs</title>
+        <title>Image View - KFormMaster Docs</title>
       
     
     
@@ -133,7 +133,7 @@
               KFormMaster Docs
             </span>
             <span class="md-header-nav__topic">
-              Button
+              Image View
             </span>
           
         </div>
@@ -410,11 +410,65 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../imageView/" title="Image View" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Image View
+      </label>
+    
+    <a href="./" title="Image View" class="md-nav__link md-nav__link--active">
       Image View
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kotlin" title="Kotlin" class="md-nav__link">
+    Kotlin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java" title="Java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -662,65 +716,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Button
-      </label>
-    
-    <a href="./" title="Button" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../button/" title="Button" class="md-nav__link">
       Button
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#example" title="Example" class="md-nav__link">
-    Example
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kotlin" title="Kotlin" class="md-nav__link">
-    Kotlin
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#java" title="Java" class="md-nav__link">
-    Java
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -923,30 +923,51 @@
               
                 
                 
-                  <h1>Button</h1>
+                  <h1>Image View</h1>
                 
-                <p>The Button form element is used for a button row. Click events can be caught with a valueObserver.</p>
-<p><img alt="Example" src="../../images/Button.PNG" /></p>
+                <p>The Image View form element is used to show an image and when tapped display options to get a new image from the camera or gallery app.</p>
+<p><img src="../../images/ImageView1.PNG" alt="Example" width="300px"/></p>
+<p><img src="../../images/ImageView2.PNG" alt="Example" width="300px"/></p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">button</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;Button Text&quot;</span>
-    <span class="n">valueObservers</span><span class="p">.</span><span class="n">add</span><span class="p">({</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="p">-&gt;</span>
-        <span class="c1">// Nothing was changed but the button was tapped!</span>
-    <span class="p">})</span>
+<div class="codehilite"><pre><span></span><span class="n">imageView</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">displayDivider</span> <span class="p">=</span> <span class="k">false</span>
+    <span class="n">imageTransformation</span> <span class="p">=</span> <span class="n">CircleTransform</span><span class="p">(</span><span class="n">borderColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">WHITE</span><span class="p">,</span> <span class="n">borderRadius</span> <span class="p">=</span> <span class="m">3</span><span class="p">)</span>
+    <span class="n">required</span> <span class="p">=</span> <span class="k">false</span>
+    <span class="n">theme</span> <span class="p">=</span> <span class="n">R</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">CustomDialogPicker</span>
+    <span class="n">defaultImage</span> <span class="p">=</span> <span class="n">R</span><span class="p">.</span><span class="n">drawable</span><span class="p">.</span><span class="n">default_image</span>
+    <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;http://example.com/&quot;</span>
+    <span class="n">imagePickerOptions</span> <span class="p">=</span> <span class="p">{</span>
+        <span class="n">it</span><span class="p">.</span><span class="n">cropX</span> <span class="p">=</span> <span class="m">3f</span>
+        <span class="n">it</span><span class="p">.</span><span class="n">cropY</span> <span class="p">=</span> <span class="m">4f</span>
+        <span class="n">it</span><span class="p">.</span><span class="n">maxWidth</span> <span class="p">=</span> <span class="m">150</span>
+        <span class="n">it</span><span class="p">.</span><span class="n">maxHeight</span> <span class="p">=</span> <span class="m">200</span>
+        <span class="n">it</span><span class="p">.</span><span class="n">maxSize</span> <span class="p">=</span> <span class="m">500</span>
+    <span class="p">}</span>
+     <span class="n">onSelectImage</span> <span class="p">=</span> <span class="p">{</span> <span class="n">file</span> <span class="p">-&gt;</span>
+        <span class="c1">// If file is null, that means an error occurred trying to select the image</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">file</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Toast</span><span class="p">.</span><span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s">&quot;Error getting the image&quot;</span><span class="p">,</span> <span class="n">Toast</span><span class="p">.</span><span class="n">LENGTH_LONG</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-<span class="n">FormButtonElement</span> <span class="n">button</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormButtonElement</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-<span class="n">button</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">&quot;Button Text&quot;</span><span class="o">);</span>
-<span class="n">button</span><span class="o">.</span><span class="na">getValueObservers</span><span class="o">().</span><span class="na">add</span><span class="o">((</span><span class="n">newValue</span><span class="o">,</span> <span class="n">element</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
-    <span class="c1">// Nothing was changed but the button was tapped!</span>
+<span class="n">FormImageElement</span> <span class="n">imageView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormImageElement</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">imageView</span><span class="o">.</span><span class="na">setOnSelectImage</span><span class="o">((</span><span class="n">file</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">file</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">file</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">&quot;Error getting the image&quot;</span><span class="o">,</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_LONG</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
     <span class="k">return</span> <span class="n">Unit</span><span class="o">.</span><span class="na">INSTANCE</span><span class="o">;</span>
 <span class="o">});</span>
-<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">button</span><span class="o">);</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">imageView</span><span class="o">);</span>
 </pre></div>
                 
                   
@@ -968,7 +989,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../segmented/" title="Segmented" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../header/" title="Header" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -977,19 +998,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Segmented
+                Header
               </span>
             </div>
           </a>
         
         
-          <a href="../../custom/customize/" title="Customize Form" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../singleLine/" title="Single Line" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Customize Form
+                Single Line
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

@@ -108,7 +108,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#array-adapter" tabindex="1" class="md-skip">
+      <a href="#theme" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -412,6 +412,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../imageView/" title="Image View" class="md-nav__link">
+      Image View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../singleLine/" title="Single Line" class="md-nav__link">
       Single Line
     </a>
@@ -565,6 +577,20 @@
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#theme" title="Theme" class="md-nav__link">
+    Theme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-value-for" title="Display Value For" class="md-nav__link">
+    Display Value For
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#array-adapter" title="Array Adapter" class="md-nav__link">
@@ -896,6 +922,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#theme" title="Theme" class="md-nav__link">
+    Theme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-value-for" title="Display Value For" class="md-nav__link">
+    Display Value For
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#array-adapter" title="Array Adapter" class="md-nav__link">
     Array Adapter
   </a>
@@ -972,12 +1012,30 @@
                 <p>The DropDown form element is used for a single choice dialog.</p>
 <p><img alt="Example" src="../../images/Dropdown1.PNG" /></p>
 <p><img src="../../images/Dropdown2.PNG" alt="Example" width="300px"/></p>
-<h2 id="array-adapter">Array Adapter<a class="headerlink" href="#array-adapter" title="Permanent link">&para;</a></h2>
-<p>Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.</p>
 <div class="admonition note">
 <p class="admonition-title">NOTICE</p>
-<p>The ListItem, ContactItem, and ContactAutoCompleteAdapter classes are provided in the example app. Your custom class just needs to override toString() to display in the dialog.</p>
+<p>The ListItem, ContactItem, and ContactAutoCompleteAdapter classes are provided in the example app.</p>
 </div>
+<h2 id="theme">Theme<a class="headerlink" href="#theme" title="Permanent link">&para;</a></h2>
+<p>Set this to override the default alert dialog theme.</p>
+<div class="codehilite"><pre><span></span><span class="n">dropDown</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">theme</span> <span class="p">=</span> <span class="n">R</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">CustomDialogPicker</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="display-value-for">Display Value For<a class="headerlink" href="#display-value-for" title="Permanent link">&para;</a></h2>
+<p>This can be used to set the text that is displayed in the options and field. Your custom class can also just override toString() to display in the dialog.</p>
+<div class="codehilite"><pre><span></span><span class="n">dropDown</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">displayValueFor</span> <span class="p">=</span> <span class="p">{</span>
+        <span class="n">it</span><span class="o">?.</span><span class="n">name</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="array-adapter">Array Adapter<a class="headerlink" href="#array-adapter" title="Permanent link">&para;</a></h2>
+<p>Set your custom AutoComplete adapter. It is up to you if you want to retrieve items through an API call.</p>
 <div class="codehilite"><pre><span></span><span class="n">dropDown</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">arrayAdapter</span> <span class="p">=</span> <span class="n">ContactAutoCompleteAdapter</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span>
                         <span class="n">android</span><span class="p">.</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">simple_list_item_1</span><span class="p">)</span>
