@@ -17,7 +17,7 @@ import java.io.File
  * @version 1.0
  */
 fun ImageView.setImage(url: String, transformation: Transformation? = null, defaultImage: Drawable? = null, completionHandler: (() -> Unit)? = null) {
-    if (transformation!= null){
+    if (transformation != null) {
         Picasso.get().load(url).memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE).transform(transformation).into(this, object: Callback {
             override fun onSuccess() {
                 completionHandler?.invoke()
@@ -25,6 +25,7 @@ fun ImageView.setImage(url: String, transformation: Transformation? = null, defa
 
             override fun onError(e: java.lang.Exception?) {
                 this@setImage.setImageDrawable(defaultImage)
+                completionHandler?.invoke()
             }
         })
     } else {
@@ -35,6 +36,7 @@ fun ImageView.setImage(url: String, transformation: Transformation? = null, defa
 
             override fun onError(e: java.lang.Exception?) {
                 this@setImage.setImageDrawable(defaultImage)
+                completionHandler?.invoke()
             }
         })
     }
@@ -50,6 +52,7 @@ fun ImageView.setImage(file: File?, transformation: Transformation? = null, defa
 
                 override fun onError(e: java.lang.Exception?) {
                     this@setImage.setImageDrawable(defaultImage)
+                    completionHandler?.invoke()
                 }
             })
         } else {
@@ -60,6 +63,7 @@ fun ImageView.setImage(file: File?, transformation: Transformation? = null, defa
 
                 override fun onError(e: java.lang.Exception?) {
                     this@setImage.setImageDrawable(defaultImage)
+                    completionHandler?.invoke()
                 }
             })
         }
@@ -76,6 +80,7 @@ fun ImageView.setImage(resourceId: Int?, transformation: Transformation? = null,
 
                 override fun onError(e: java.lang.Exception?) {
                     this@setImage.setImageDrawable(defaultImage)
+                    completionHandler?.invoke()
                 }
             })
         } else {
@@ -86,6 +91,7 @@ fun ImageView.setImage(resourceId: Int?, transformation: Transformation? = null,
 
                 override fun onError(e: java.lang.Exception?) {
                     this@setImage.setImageDrawable(defaultImage)
+                    completionHandler?.invoke()
                 }
             })
         }

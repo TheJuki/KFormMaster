@@ -4,10 +4,13 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import bytesEqualTo
 import com.thejuki.kformmaster.FormActivityTest.Tag.*
 import com.thejuki.kformmaster.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmaster.adapter.EmailAutoCompleteAdapter
@@ -19,6 +22,8 @@ import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.model.FormButtonElement
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import kotlinx.android.synthetic.main.activity_form_test.*
+import org.junit.Assert
+import pixelsEqualTo
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
@@ -94,7 +99,8 @@ class FormActivityTest : AppCompatActivity() {
         ProgressElement,
         CheckBoxElement,
         SegmentedElement,
-        LabelElement
+        LabelElement,
+        ImageViewElement
     }
 
     private fun setupForm() {
@@ -105,6 +111,47 @@ class FormActivityTest : AppCompatActivity() {
         }
 
         formBuilder = form(this, recyclerView, listener, true) {
+            imageView(ImageViewElement.ordinal) {
+                value = "https://via.placeholder.com/200"
+                imageTransformation = CircleTransform(borderColor = Color.BLACK, borderRadius = 3)
+                required = false
+                theme = 0
+                defaultImage = null
+                imagePickerOptions = {
+                    it.cropX = 3f
+                    it.cropY = 4f
+                    it.maxWidth = 150
+                    it.maxHeight = 200
+                    it.maxSize = 500
+                }
+                onSelectImage = { file ->
+                    if (file != null) {
+                        Toast.makeText(this@FormActivityTest, file.name, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@FormActivityTest, "Error getting the image", Toast.LENGTH_LONG).show()
+                    }
+                }
+                onInitialImageLoaded = {
+                    editView?.let {
+                        val imageView = it as ImageView
+                        val defaultImageDrawable = ContextCompat.getDrawable(this@FormActivityTest, defaultImage
+                                ?: 0)
+                        Assert.assertTrue(imageView.drawable.bytesEqualTo(defaultImageDrawable))
+                        Assert.assertTrue(imageView.drawable.pixelsEqualTo(defaultImageDrawable))
+                        println("Passed Image onInitialImageLoaded")
+                    }
+                }
+                onClear = {
+                    editView?.let {
+                        val imageView = it as ImageView
+                        val defaultImageDrawable = ContextCompat.getDrawable(this@FormActivityTest, defaultImage
+                                ?: 0)
+                        Assert.assertTrue(imageView.drawable.bytesEqualTo(defaultImageDrawable))
+                        Assert.assertTrue(imageView.drawable.pixelsEqualTo(defaultImageDrawable))
+                        println("Passed Image onClear")
+                    }
+                }
+            }
             header { title = "Header 1"; collapsible = true }
             email(Email.ordinal) {
                 title = "Email"

@@ -198,7 +198,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = false
                 theme = R.style.CustomDialogPicker // This is to theme the default dialog when onClickListener is not used.
                 //defaultImage = R.drawable.default_image
-                //value = "http://example.com/" //(String) This needs to be an image URL or an image FILE (absolutePath)
+                //value = "https://via.placeholder.com/200" //(String) This needs to be an image URL or an image FILE (absolutePath)
                 imagePickerOptions = {
                     // This lets you customize the ImagePicker library, specifying Crop, Dimensions and MaxSize options
                     it.cropX = 3f

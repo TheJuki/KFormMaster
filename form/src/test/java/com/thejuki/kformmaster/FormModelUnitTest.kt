@@ -1,8 +1,10 @@
 package com.thejuki.kformmaster
 
+import com.thejuki.kformmaster.helper.CircleTransform
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldNotBe
 import io.kotlintest.specs.ShouldSpec
+import java.nio.file.Files
 
 /**
  * Form Model Unit Test
@@ -40,6 +42,7 @@ class FormModelUnitTest : ShouldSpec() {
                 formLayouts.textView shouldNotBe null
                 formLayouts.segmented shouldNotBe null
                 formLayouts.progress shouldNotBe null
+                formLayouts.image shouldNotBe null
             }
         }
 
@@ -121,11 +124,21 @@ class FormModelUnitTest : ShouldSpec() {
         }
 
         "Pickers" {
+            should("have valid formImageElement") {
+                val element = CustomGen.formImageElement().random().first()
+                element.value shouldNotBe null
+                element.defaultImage shouldNotBe null
+                (element.imageTransformation is CircleTransform) shouldBe true
+                val newImage = Files.createTempFile("test", ".png").toFile()
+                newImage.isFile shouldBe true
+                element.onSelectImage?.invoke(newImage)
+            }
             should("have valid formPickerDropDownElement") {
                 val element = CustomGen.formPickerDropDownElement().random().first()
                 CustomGen.verifyBaseFormElement(element) shouldBe true
                 element.dialogTitle shouldNotBe null
                 element.arrayAdapter shouldBe null
+                element.displayValueFor(element.value) shouldBe (element.value ?: "")
             }
             should("have valid formPickerMultiCheckBoxElement") {
                 val element = CustomGen.formPickerMultiCheckBoxElement().random().first()

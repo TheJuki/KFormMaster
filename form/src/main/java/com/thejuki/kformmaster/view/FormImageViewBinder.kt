@@ -57,16 +57,20 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
             if (URLUtil.isFileUrl(model.valueAsString)) {
                 val imageFile = File(model.valueAsString)
                 imageView.setImage(imageFile, model.imageTransformation, defaultImageDrawable)
+                { model.onInitialImageLoaded?.invoke() }
             } else if (URLUtil.isNetworkUrl(model.valueAsString)) {
                 imageView.setImage(model.valueAsString, model.imageTransformation, defaultImageDrawable)
+                { model.onInitialImageLoaded?.invoke() }
             } else {
                 if (model.defaultImage != null) {
                     imageView.setImage(model.defaultImage, model.imageTransformation, defaultImageDrawable)
+                    { model.onInitialImageLoaded?.invoke() }
                 }
             }
         } else {
             if (model.defaultImage != null) {
                 imageView.setImage(model.defaultImage, model.imageTransformation, defaultImageDrawable)
+                { model.onInitialImageLoaded?.invoke() }
             }
         }
 
@@ -92,14 +96,16 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
 
         model.mClearImage = {
             if (model.defaultImage != null) {
-                imageView.setImage(model.defaultImage, model.imageTransformation)
+                imageView.setImage(model.defaultImage, model.imageTransformation, defaultImageDrawable)
+                { model.onClear?.invoke() }
             } else {
                 imageView.setImageDrawable(null)
+                model.onClear?.invoke()
             }
-            model.onClear?.invoke()
         }
 
         model.initDialog()
+
     }, object : ViewStateProvider<FormImageElement, ViewHolder> {
         override fun createViewStateID(model: FormImageElement): Int {
             return model.id

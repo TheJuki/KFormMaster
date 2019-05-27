@@ -36,9 +36,8 @@ import com.thejuki.kformmaster.model.FormEmailEditTextElement
 import com.thejuki.kformmaster.token.ItemsCompletionView
 import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
-import org.junit.Assert.*
-import org.hamcrest.Matchers
 import org.hamcrest.Matchers.*
+import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -251,7 +250,7 @@ class FormInstrumentedTest {
 
         // Get email form element
         val email = formBuildHelper.getFormElement<FormEmailEditTextElement>(FormActivityTest.Tag.Email.ordinal)
-        val emailByIndex = formBuildHelper.getElementAtIndex(1) as FormEmailEditTextElement
+        val emailByIndex = formBuildHelper.getElementAtIndex(2) as FormEmailEditTextElement
 
         // Both methods to get a form element should be equal
         assertEquals(email, emailByIndex)
@@ -273,7 +272,7 @@ class FormInstrumentedTest {
         var newEmail = "example.com"
 
         // Make the email form element invalid
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(1))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(2))
         onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
                 hasTextViewInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)))
                 .perform(replaceText(newEmail))
@@ -305,7 +304,7 @@ class FormInstrumentedTest {
         newEmail = "test@example.com"
 
         // Make the email form element valid again
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(1))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(2))
         onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
                 hasTextViewInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)))
                 .perform(replaceText(newEmail))
@@ -337,27 +336,27 @@ class FormInstrumentedTest {
     @Test
     fun header_isDisplayed() {
         // Check if Header 1 is displayed on the form
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(0))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(1))
         onView(withText("Header 1"))
                 .check(matches(isDisplayed()))
 
         // Check if Header 2 is displayed on the form
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(4))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(5))
         onView(withText("Header 2"))
                 .check(matches(isDisplayed()))
 
         // Check if Header 3 is displayed on the form
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(8))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(9))
         onView(withText("Header 3"))
                 .check(matches(isDisplayed()))
 
         // Check if Header 4 is displayed on the form
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(12))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(13))
         onView(withText("Header 4"))
                 .check(matches(isDisplayed()))
 
         // Check if Header 5 is displayed on the form
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(18))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(19))
         onView(withText("Header 5"))
                 .check(matches(isDisplayed()))
     }
@@ -365,38 +364,38 @@ class FormInstrumentedTest {
     @Test
     fun editTextElement_shouldHaveInputType() {
         // Check Email type
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(1))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(2))
         onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
                 hasTextViewInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)))
                 .check(matches(isDisplayed()))
 
         // Check Password type
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(2))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(3))
         onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
                 hasTextViewInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)))
                 .check(matches(isDisplayed()))
 
         // Check Phone type
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(3))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(4))
         onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
                 hasTextViewInputType(InputType.TYPE_CLASS_PHONE or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)))
                 .check(matches(isDisplayed()))
 
         // Check Single Line type
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(5))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(6))
         onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
                 hasTextViewInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS),
                 hasTextViewSingleLine()))
                 .check(matches(isDisplayed()))
 
         // Check Multi Line type
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(6))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(7))
         onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
                 hasTextViewInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS or InputType.TYPE_TEXT_FLAG_MULTI_LINE)))
                 .check(matches(isDisplayed()))
 
         // Check Number type
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(7))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(8))
         onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
                 hasTextViewInputType(InputType.TYPE_CLASS_NUMBER)))
                 .check(matches(isDisplayed()))
@@ -405,7 +404,7 @@ class FormInstrumentedTest {
     @Test
     fun text_shouldNotBeDisplayed_whenVisibleIsFalse() {
         // Text element's visible property is set to false and should not show up on the form
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(25))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(26))
         onView(withText("Hidden"))
                 .check(matches(not(isDisplayed())))
     }
@@ -413,53 +412,71 @@ class FormInstrumentedTest {
     @Test
     fun label_isDisplayed() {
         // Check if the Label is displayed on the form
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(26))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(27))
         onView(withText("Label"))
                 .check(matches(isDisplayed()))
     }
 
     @Test
     fun progress_changes_whenProgressed() {
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(22))
-        onView(withClassName(Matchers.equalTo(ProgressBar::class.java.name)))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(23))
+        onView(withClassName(equalTo(ProgressBar::class.java.name)))
                 .perform(setProgressBarProgress(75))
                 .check(matches(withProgressBarProgress(75)))
     }
 
     @Test
     fun segmented_changes_whenClicked() {
-        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(23))
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(24))
 
-        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+        onView(withClassName(equalTo(SegmentedGroup::class.java.name)))
                 .check(matches(hasRadioButtonCheck(0)))
 
         // Select "Mango"
-        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+        onView(withClassName(equalTo(SegmentedGroup::class.java.name)))
                 .perform(setRadioButtonCheck(2))
 
         // Check each RadioButton
-        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+        onView(withClassName(equalTo(SegmentedGroup::class.java.name)))
                 .check(matches(not(hasRadioButtonCheck(0))))
-        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+        onView(withClassName(equalTo(SegmentedGroup::class.java.name)))
                 .check(matches(not(hasRadioButtonCheck(1))))
-        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+        onView(withClassName(equalTo(SegmentedGroup::class.java.name)))
                 .check(matches(hasRadioButtonCheck(2)))
-        onView(withClassName(Matchers.equalTo(SegmentedGroup::class.java.name)))
+        onView(withClassName(equalTo(SegmentedGroup::class.java.name)))
                 .check(matches(not(hasRadioButtonCheck(3))))
     }
 
     @Test
     fun button_disabled_shouldDoNothing_whenClicked() {
         // Click button to verify that nothing happens because it is disabled
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(27, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(28, click()))
         onView(withId(R.id.recyclerView))
                 .check(matches(not(withText("Disabled?"))))
     }
 
     @Test
+    fun image_clearsImage_whenCleared() {
+        // Verify initial image drawable is set
+        // NOTE: Since the tests do not have access to the Internet, the default image will be used.
+        // The Assert is setup in onInitialImageLoaded
+
+        // Open Image Dialog and select "Remove"
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withText("Pick one"))
+                .inRoot(RootMatchers.isDialog())
+                .check(matches(isDisplayed()))
+        onData(allOf(`is`(instanceOf(String::class.java)), `is`("Remove")))
+                .perform(click())
+
+        // Verify image drawable is now set the default image
+        // The Assert is setup in onClear
+    }
+
+    @Test
     fun picker_openDialog_whenClicked() {
         // Open SingleItem Dialog and select "Orange"
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(13, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(14, click()))
         onView(withText("SingleItem Dialog"))
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed()))
@@ -467,7 +484,7 @@ class FormInstrumentedTest {
                 .perform(click())
 
         // Open MultiItems Dialog, select "Orange", click "OK"
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(14, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(15, click()))
         onView(withText("MultiItems Dialog"))
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed()))
@@ -476,15 +493,15 @@ class FormInstrumentedTest {
         onView(withId(android.R.id.button1)).perform(click())
 
         // Open Date Dialog, enter 2/25/2018, click "OK"
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(9, click()))
-        onView(withClassName(Matchers.equalTo(DatePicker::class.java.name)))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(10, click()))
+        onView(withClassName(equalTo(DatePicker::class.java.name)))
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed())).perform(PickerActions.setDate(2018, 2, 25))
         onView(withId(android.R.id.button1)).perform(click())
 
         // Open Time Dialog, enter 12:30 AM, click "OK"
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(10, click()))
-        onView(withClassName(Matchers.equalTo(TimePicker::class.java.name)))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(11, click()))
+        onView(withClassName(equalTo(TimePicker::class.java.name)))
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed())).perform(PickerActions.setTime(12, 30))
         onView(withId(android.R.id.button1)).perform(click())
@@ -492,14 +509,14 @@ class FormInstrumentedTest {
         //** DateTime Dialog */
 
         // Open Date Dialog, enter 2/25/2018, click "OK"
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(11, click()))
-        onView(withClassName(Matchers.equalTo(DatePicker::class.java.name)))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(12, click()))
+        onView(withClassName(equalTo(DatePicker::class.java.name)))
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed())).perform(PickerActions.setDate(2018, 2, 25))
         onView(withId(android.R.id.button1)).perform(click())
 
         // Open Time Dialog, enter 12:30 AM, click "OK"
-        onView(withClassName(Matchers.equalTo(TimePicker::class.java.name)))
+        onView(withClassName(equalTo(TimePicker::class.java.name)))
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed())).perform(PickerActions.setTime(12, 30))
         onView(withId(android.R.id.button1)).perform(click())
@@ -508,9 +525,9 @@ class FormInstrumentedTest {
     @Test
     fun autoComplete_providesSuggestions_whenTextIsTyped() {
         // Enter text in the autoComplete field, click on the suggestion, and verify it is displayed in the field
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(15, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(16, click()))
 
-        onView(withClassName(Matchers.equalTo(AppCompatAutoCompleteTextView::class.java.name)))
+        onView(withClassName(equalTo(AppCompatAutoCompleteTextView::class.java.name)))
                 .perform(typeText("Kotlin"))
         onData(equalTo(ContactItem(id = 3, value = "Kotlin Contact", label = "Kotlin Contact (Coder)")))
                 .inRoot(RootMatchers.isPlatformPopup()).perform(click())
@@ -523,13 +540,13 @@ class FormInstrumentedTest {
         // Enter text in the autoCompleteToken field, click on the suggestion, and verify it exists in the options list
         val contactItem = ContactItem(id = 3, value = "Kotlin.Contact@mail.com", label = "Kotlin Contact (Coder)")
 
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(16, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(17, click()))
 
-        onView(withClassName(Matchers.equalTo(ItemsCompletionView::class.java.name)))
+        onView(withClassName(equalTo(ItemsCompletionView::class.java.name)))
                 .perform(typeText("Kotlin"))
         onData(equalTo(contactItem))
                 .inRoot(RootMatchers.isPlatformPopup()).perform(click())
-        onView(withClassName(Matchers.equalTo(ItemsCompletionView::class.java.name)))
+        onView(withClassName(equalTo(ItemsCompletionView::class.java.name)))
                 .check(matches(hasItemsCompletionViewObject(contactItem)))
     }
 
@@ -537,7 +554,7 @@ class FormInstrumentedTest {
     @Test
     fun button_openDialog_whenClicked() {
         // Click button to verify the value observer Unit action works and displays an alert dialog
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(24, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(25, click()))
         onView(withText("Confirm?"))
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed()))
@@ -548,8 +565,8 @@ class FormInstrumentedTest {
     @Test
     fun slider_changes_whenProgressed() {
         // Change slider to check progress value
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(20, click()))
-        onView(withClassName(Matchers.equalTo(AppCompatSeekBar::class.java.name)))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(21, click()))
+        onView(withClassName(equalTo(AppCompatSeekBar::class.java.name)))
                 .perform(setSeekBarProgress(10))
                 .check(matches(withSeekBarProgress(10)))
     }
@@ -557,12 +574,12 @@ class FormInstrumentedTest {
     @Test
     fun checkBox_becomeChecked_whenClicked() {
         // Check it
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(21, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(22, click()))
         onView(`is`(instanceOf(AppCompatCheckBox::class.java)))
                 .check(matches(isChecked()))
 
         // UnCheck it
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(21, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(22, click()))
         onView(`is`(instanceOf(AppCompatCheckBox::class.java)))
                 .check(matches(isNotChecked()))
     }
@@ -570,12 +587,12 @@ class FormInstrumentedTest {
     @Test
     fun switch_becomeChecked_whenClicked() {
         // Check it
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(19, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(20, click()))
         onView(`is`(instanceOf(SwitchCompat::class.java)))
                 .check(matches(isChecked()))
 
         // UnCheck it
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(19, click()))
+        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(20, click()))
         onView(`is`(instanceOf(SwitchCompat::class.java)))
                 .check(matches(isNotChecked()))
     }

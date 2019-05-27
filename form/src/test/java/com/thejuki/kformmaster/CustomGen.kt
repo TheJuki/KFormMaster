@@ -1,7 +1,9 @@
 package com.thejuki.kformmaster
 
 import android.R
+import android.graphics.Color
 import android.widget.ArrayAdapter
+import com.thejuki.kformmaster.helper.CircleTransform
 import com.thejuki.kformmaster.helper.FormLayouts
 import com.thejuki.kformmaster.model.*
 import io.kotlintest.properties.Gen
@@ -49,6 +51,7 @@ interface CustomGen {
                         , Gen.choose(-100, 100).random().first() // textView
                         , Gen.choose(-100, 100).random().first() // segmented
                         , Gen.choose(-100, 100).random().first() // progress
+                        , Gen.choose(-100, 100).random().first() // image
                 )
             }
         }
@@ -163,7 +166,7 @@ interface CustomGen {
         fun formLabelElement() = object : Gen<FormLabelElement> {
             override fun constants() = emptyList<FormLabelElement>()
             override fun random() = generateSequence {
-               FormLabelElement().apply {
+                FormLabelElement().apply {
                     title = Gen.string().random().first()
                 }
             }
@@ -179,7 +182,7 @@ interface CustomGen {
                 element.horizontal = Gen.bool().random().first()
                 element.options = Gen.list(Gen.string()).random().first()
                 element.drawableDirection = Gen.from(FormSegmentedElement.DrawableDirection.values().asList()).random().first()
-               element
+                element
             }
         }
 
@@ -193,7 +196,11 @@ interface CustomGen {
                 element.dialogTitle = Gen.string().random().first()
                 element.arrayAdapter = null
                 element.options = Gen.list(Gen.string()).random().first()
-               element
+                element.theme = Random().nextInt(100)
+                element.displayValueFor = {
+                    element.value ?: ""
+                }
+                element
             }
         }
 
@@ -206,7 +213,8 @@ interface CustomGen {
                 val element = generateBaseFieldsWithList(FormPickerMultiCheckBoxElement()) as FormPickerMultiCheckBoxElement<List<String>>
                 element.dialogTitle = Gen.string().random().first()
                 element.options = Gen.list(Gen.string()).random().first()
-               element
+                element.theme = Random().nextInt(100)
+                element
             }
         }
 
@@ -222,7 +230,7 @@ interface CustomGen {
                 val listOfOptions = Gen.list(Gen.string()).random().first()
                 element.options = listOfOptions
                 element.arrayAdapter = ArrayAdapter(mockk(), R.layout.simple_list_item_1, listOfOptions)
-               element
+                element
             }
         }
 
@@ -237,7 +245,7 @@ interface CustomGen {
                 val listOfOptions = Gen.list(Gen.string()).random().first()
                 element.options = listOfOptions
                 element.arrayAdapter = ArrayAdapter(mockk(), R.layout.simple_list_item_1, listOfOptions)
-               element
+                element
             }
         }
 
@@ -250,7 +258,7 @@ interface CustomGen {
                 val element = generateBaseFields(FormCheckBoxElement()) as FormCheckBoxElement<String>
                 element.checkedValue = element.valueAsString
                 element.unCheckedValue = Gen.string().random().first()
-               element
+                element
             }
         }
 
@@ -263,7 +271,7 @@ interface CustomGen {
                 val element = generateBaseFields(FormSwitchElement()) as FormSwitchElement<String>
                 element.onValue = element.valueAsString
                 element.offValue = Gen.string().random().first()
-               element
+                element
             }
         }
 
@@ -297,7 +305,32 @@ interface CustomGen {
                 element.secondaryProgress = Random().nextInt(element.max - element.min) + element.min
                 element.indeterminate = Gen.bool().random().first()
                 element.progressBarStyle = Gen.from(FormProgressElement.ProgressBarStyle.values().asList()).random().first()
-               element
+                element
+            }
+        }
+
+        /**
+         * Generates a FormImageElement
+         */
+        fun formImageElement() = object : Gen<FormImageElement> {
+            override fun constants() = emptyList<FormImageElement>()
+            override fun random() = generateSequence {
+                val element = FormImageElement()
+                element.value = "https://example.com/image.jpg"
+                element.imageTransformation = CircleTransform(borderColor = Color.WHITE, borderRadius = 3) //Default value for this is CircleTransform(null) so it makes image round without borders
+                element.theme = Random().nextInt(100)
+                element.defaultImage = Random().nextInt(100)
+                element.imagePickerOptions = {
+                    it.cropX = Random().nextFloat()
+                    it.cropY = Random().nextFloat()
+                    it.maxWidth = Random().nextInt(100)
+                    it.maxHeight = Random().nextInt(100)
+                    it.maxSize = Random().nextInt(100)
+                }
+                element.onSelectImage = { file ->
+                    println("\nNew Image = ${file?.name}")
+                }
+                element
             }
         }
 
@@ -314,7 +347,8 @@ interface CustomGen {
                 element.value = FormPickerDateElement.DateHolder(Date(), dateFormat)
                 element.minimumDate = dateFormat.parse("01/01/2018")
                 element.maximumDate = dateFormat.parse("12/15/2025")
-               element
+                element.theme = Random().nextInt(100)
+                element
             }
         }
 
@@ -324,11 +358,13 @@ interface CustomGen {
         fun formPickerTimeElement() = object : Gen<FormPickerTimeElement> {
             override fun constants() = emptyList<FormPickerTimeElement>()
             override fun random() = generateSequence {
+                val dateFormat = SimpleDateFormat("hh:mm a", Locale.US)
                 val element = FormPickerTimeElement()
                 element.title = Gen.string().random().first()
                 element.hint = Gen.string().random().first()
-                element.value = FormPickerTimeElement.TimeHolder(Date(), SimpleDateFormat("hh:mm a", Locale.US))
-               element
+                element.value = FormPickerTimeElement.TimeHolder(Date(), dateFormat)
+                element.theme = Random().nextInt(100)
+                element
             }
         }
 
@@ -345,7 +381,8 @@ interface CustomGen {
                 element.value = FormPickerDateTimeElement.DateTimeHolder(Date(), dateFormat)
                 element.minimumDate = dateFormat.parse("01/01/2018 12:00 AM")
                 element.maximumDate = dateFormat.parse("12/15/2025 12:00 PM")
-               element
+                element.theme = Random().nextInt(100)
+                element
             }
         }
 
@@ -355,7 +392,7 @@ interface CustomGen {
         fun formButtonElement() = object : Gen<FormButtonElement> {
             override fun constants() = emptyList<FormButtonElement>()
             override fun random() = generateSequence {
-               FormButtonElement().setValue(Gen.string().random().first()) as FormButtonElement
+                FormButtonElement().setValue(Gen.string().random().first()) as FormButtonElement
             }
         }
 
@@ -387,7 +424,7 @@ interface CustomGen {
                     rightToLeft = Gen.bool().random().first()
                     maxLines = Gen.choose(1, 100).random().first()
                     error = if (Gen.bool().random().first()) Gen.string().random().first() else null
-                    valueObservers.add { newValue, elementRef -> println("New Value = $newValue {$elementRef}") }
+                    valueObservers.add { newValue, elementRef -> println("\nNew Value = $newValue {$elementRef}") }
                 }
 
         /**
