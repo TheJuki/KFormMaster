@@ -2,6 +2,7 @@ package com.thejuki.kformmaster
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -138,7 +139,7 @@ class FormActivityTest : AppCompatActivity() {
                                 ?: 0)
                         Assert.assertTrue(imageView.drawable.bytesEqualTo(defaultImageDrawable))
                         Assert.assertTrue(imageView.drawable.pixelsEqualTo(defaultImageDrawable))
-                        println("Passed Image onInitialImageLoaded")
+                        Log.i("FormActivityTest", "Passed Image onInitialImageLoaded")
                     }
                 }
                 onClear = {
@@ -148,7 +149,7 @@ class FormActivityTest : AppCompatActivity() {
                                 ?: 0)
                         Assert.assertTrue(imageView.drawable.bytesEqualTo(defaultImageDrawable))
                         Assert.assertTrue(imageView.drawable.pixelsEqualTo(defaultImageDrawable))
-                        println("Passed Image onClear")
+                        Log.i("FormActivityTest", "Passed Image onClear")
                     }
                 }
             }
