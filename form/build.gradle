@@ -86,7 +86,7 @@ ext {
     testCoreVersion = '1.2.0'
     testExtJunitVersion = '1.1.1'
     testRulesVersion = '1.2.0'
-    testExpressoVersion = '3.1.1'
+    testExpressoVersion = '3.2.0'
     kotlintestVersion = '3.3.2'
     mockkVersion = '1.9.3'
     log4jVersion = '2.11.2'
