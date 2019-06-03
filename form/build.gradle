@@ -84,7 +84,7 @@ ext {
     rendererRecyclerViewAdapterVersion = '2.7.0'
     tokenautocompleteVersion = '3.0.1'
     testCoreVersion = '1.2.0'
-    testExtJunitVersion = '1.1.0'
+    testExtJunitVersion = '1.1.1'
     testRulesVersion = '1.2.0'
     testExpressoVersion = '3.1.1'
     kotlintestVersion = '3.3.2'
