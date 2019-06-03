@@ -83,7 +83,7 @@ ext {
     materialVersion = '1.0.0'
     rendererRecyclerViewAdapterVersion = '2.7.0'
     tokenautocompleteVersion = '3.0.1'
-    testCoreVersion = '1.1.0'
+    testCoreVersion = '1.2.0'
     testExtJunitVersion = '1.1.0'
     testRulesVersion = '1.2.0'
     testExpressoVersion = '3.1.1'
