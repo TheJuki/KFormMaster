@@ -169,6 +169,13 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         FormEmailEditTextElement email = new FormEmailEditTextElement(Tag.Email.ordinal());
         email.setTitle(getString(R.string.email));
         email.setHint(getString(R.string.email_hint));
+        email.setValidityCheck(() -> {
+            if (email.getValue() != null) {
+                return android.util.Patterns.EMAIL_ADDRESS.matcher(email.getValue()).matches();
+            } else {
+                return false;
+            }
+        });
         elements.add(email);
 
         FormPasswordEditTextElement password = new FormPasswordEditTextElement(Tag.Password.ordinal());
