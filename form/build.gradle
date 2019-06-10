@@ -81,7 +81,7 @@ tasks.withType(Javadoc).all {
 ext {
     androidxVersion = '1.0.0'
     materialVersion = '1.0.0'
-    rendererRecyclerViewAdapterVersion = '2.7.0'
+    rendererRecyclerViewAdapterVersion = '2.8.0'
     tokenautocompleteVersion = '3.0.1'
     testCoreVersion = '1.2.0'
     testExtJunitVersion = '1.1.1'
