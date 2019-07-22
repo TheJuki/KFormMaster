@@ -107,7 +107,7 @@ dependencies {
     api 'com.squareup.picasso:picasso:2.71828'
 
     //Inline Activity Result (To call image picker inline)
-    implementation 'com.github.florent37:inline-activity-result-kotlin:1.0.1'
+    implementation 'com.github.florent37:inline-activity-result-kotlin:1.0.2'
 
     // ImagePicker
     api 'com.github.dhaval2404:imagepicker:1.2'
