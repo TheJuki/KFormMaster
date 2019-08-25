@@ -1,5 +1,12 @@
 # Change Log
 
+## [6.4.1](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.1)
+- Update dependencies:
+  - Bump RendererRecyclerViewAdapter from 2.7.0 to 2.8.0
+  - Bump tokenautocomplete from 3.0.1 to 3.0.2
+  - Bump imagepicker from 1.2 to 1.3
+- Fix code style issues
+
 ## [6.4.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.0)
 - #119, #122 Image View Picker element added
 - #120 Add displayValueFor to dropdown element
