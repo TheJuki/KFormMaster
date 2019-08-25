@@ -39,10 +39,8 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
 
         val itemsCompletionView = finder.find(R.id.formElementValue) as ItemsCompletionView
 
-        model.value?.let {
-            it.forEach { item ->
-                itemsCompletionView.addObjectAsync(item)
-            }
+        model.value?.forEach { item ->
+            itemsCompletionView.addObjectAsync(item)
         }
 
         itemsCompletionView.hint = model.hint ?: ""

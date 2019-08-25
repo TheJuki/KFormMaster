@@ -9,7 +9,6 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
-import java.io.Serializable
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -100,7 +99,7 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
      *
      * Holds the date fields for [FormPickerDateTimeElement]
      */
-    class DateTimeHolder : Serializable {
+    class DateTimeHolder {
 
         var isEmptyDateTime: Boolean = false
         var dayOfMonth: Int? = null
@@ -189,13 +188,32 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
             return calendar.time
         }
 
-        fun equals(another: DateTimeHolder): Boolean {
-            return another.isEmptyDateTime == this.isEmptyDateTime &&
-                    another.year == this.year &&
-                    another.month == this.month &&
-                    another.dayOfMonth == this.dayOfMonth &&
-                    another.minute == this.minute &&
-                    another.hourOfDay == this.hourOfDay
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as DateTimeHolder
+
+            if (isEmptyDateTime != other.isEmptyDateTime) return false
+            if (dayOfMonth != other.dayOfMonth) return false
+            if (month != other.month) return false
+            if (year != other.year) return false
+            if (hourOfDay != other.hourOfDay) return false
+            if (minute != other.minute) return false
+            if (dateFormat != other.dateFormat) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            var result = isEmptyDateTime.hashCode()
+            result = 31 * result + (dayOfMonth ?: 0)
+            result = 31 * result + (month ?: 0)
+            result = 31 * result + (year ?: 0)
+            result = 31 * result + (hourOfDay ?: 0)
+            result = 31 * result + (minute ?: 0)
+            result = 31 * result + dateFormat.hashCode()
+            return result
         }
     }
 

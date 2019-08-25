@@ -35,7 +35,7 @@ markdown_extensions:
 
 # Navigation tree
 nav:
-  - Home: 
+  - Home:
     - 'Getting Started': 'index.md'
     - 'Form Build Helper': 'helper.md'
     - 'Migrate from Builders': 'migrateBuilder.md'

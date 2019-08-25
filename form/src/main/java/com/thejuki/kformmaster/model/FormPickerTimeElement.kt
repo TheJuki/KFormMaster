@@ -8,7 +8,6 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
-import java.io.Serializable
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -81,7 +80,7 @@ class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeEle
      *
      * Holds the date fields for [FormPickerTimeElement]
      */
-    class TimeHolder : Serializable {
+    class TimeHolder {
 
         var isEmptyTime: Boolean = false
         var hourOfDay: Int? = null
@@ -150,10 +149,26 @@ class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeEle
             isEmptyTime = true
         }
 
-        fun equals(another: TimeHolder): Boolean {
-            return another.isEmptyTime == this.isEmptyTime &&
-                    another.minute == this.minute &&
-                    another.hourOfDay == this.hourOfDay
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as TimeHolder
+
+            if (isEmptyTime != other.isEmptyTime) return false
+            if (hourOfDay != other.hourOfDay) return false
+            if (minute != other.minute) return false
+            if (dateFormat != other.dateFormat) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            var result = isEmptyTime.hashCode()
+            result = 31 * result + (hourOfDay ?: 0)
+            result = 31 * result + (minute ?: 0)
+            result = 31 * result + dateFormat.hashCode()
+            return result
         }
     }
 

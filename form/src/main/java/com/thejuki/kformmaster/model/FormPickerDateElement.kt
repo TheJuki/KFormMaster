@@ -8,7 +8,6 @@ import androidx.appcompat.widget.AppCompatEditText
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
-import java.io.Serializable
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -88,7 +87,7 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
      *
      * Holds the date fields for [FormPickerDateElement]
      */
-    class DateHolder : Serializable {
+    class DateHolder {
 
         var isEmptyDate: Boolean = false
         var dayOfMonth: Int? = null
@@ -160,11 +159,28 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
             return calendar.time
         }
 
-        fun equals(another: DateHolder): Boolean {
-            return another.isEmptyDate == this.isEmptyDate &&
-                    another.year == this.year &&
-                    another.month == this.month &&
-                    another.dayOfMonth == this.dayOfMonth
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as DateHolder
+
+            if (isEmptyDate != other.isEmptyDate) return false
+            if (dayOfMonth != other.dayOfMonth) return false
+            if (month != other.month) return false
+            if (year != other.year) return false
+            if (dateFormat != other.dateFormat) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            var result = isEmptyDate.hashCode()
+            result = 31 * result + (dayOfMonth ?: 0)
+            result = 31 * result + (month ?: 0)
+            result = 31 * result + (year ?: 0)
+            result = 31 * result + dateFormat.hashCode()
+            return result
         }
     }
 

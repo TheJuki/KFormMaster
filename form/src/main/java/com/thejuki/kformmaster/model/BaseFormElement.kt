@@ -154,7 +154,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
         set(value) {
             field = value
             editView?.let {
-                if (it is com.thejuki.kformmaster.widget.SegmentedGroup) {
+                if (it is SegmentedGroup) {
                     if (margins != null) {
                         it.setMargins(margins?.left.dpToPx(),
                                 margins?.top.dpToPx(),
@@ -671,6 +671,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     }
 
     override fun toString(): String {
-        return "FormElement(tag=$tag, title=$title, id=$id, value=$value, hint=$hint, error=$error, required=$required, isValid=$isValid, visible=$visible)"
+        return "FormElement(tag=$tag, title=$title, id=$id, value=$value, hint=$hint, " +
+                "error=$error, required=$required, isValid=$isValid, visible=$visible)"
     }
 }

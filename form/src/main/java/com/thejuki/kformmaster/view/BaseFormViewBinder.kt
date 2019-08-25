@@ -46,7 +46,7 @@ abstract class BaseFormViewBinder {
      */
     fun setClearableListener(formElement: BaseFormElement<*>) {
         formElement.editView?.let {
-            if (it is com.thejuki.kformmaster.widget.ClearableEditText) {
+            if (it is ClearableEditText) {
                 it.displayClear = formElement.clearable
                 it.setListener(object : ClearableEditText.Listener {
                     override fun didClearText() {
@@ -95,7 +95,7 @@ abstract class BaseFormViewBinder {
                 R.color.colorFormMasterElementFocusedTitle),
                 formElement.titleTextColor
                         ?: formElement.titleView?.textColors?.getColorForState(intArrayOf(),
-                                (ContextCompat.getColor(context, R.color.colorFormMasterElementTextTitle)))
+                                ContextCompat.getColor(context, R.color.colorFormMasterElementTextTitle))
                         ?: -1
         )
         formElement.titleView?.setTextColor(ColorStateList(states, colors))
@@ -107,10 +107,10 @@ abstract class BaseFormViewBinder {
                 }
 
                 formElement.titleView?.setTextColor(formElement.titleFocusedTextColor
-                        ?: (ContextCompat.getColor(context, R.color.colorFormMasterElementFocusedTitle)))
+                        ?: ContextCompat.getColor(context, R.color.colorFormMasterElementFocusedTitle))
             } else {
                 formElement.titleView?.setTextColor(formElement.titleTextColor
-                        ?: (ContextCompat.getColor(context, R.color.colorFormMasterElementTextTitle)))
+                        ?: ContextCompat.getColor(context, R.color.colorFormMasterElementTextTitle))
 
                 (formElement.editView as? AppCompatEditText)?.let {
                     if (it.text.toString() != formElement.valueAsString) {

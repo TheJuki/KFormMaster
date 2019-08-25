@@ -11,14 +11,4 @@ import com.thejuki.kformmaster.model.FormSegmentedElement
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormSegmentedViewState(holder: ViewHolder) : BaseFormViewState(holder) {
-    private var value: String? = null
-
-    init {
-
-    }
-
-    override fun restore(holder: ViewHolder) {
-        super.restore(holder)
-    }
-}
+class FormSegmentedViewState(holder: ViewHolder) : BaseFormViewState(holder)
