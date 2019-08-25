@@ -36,22 +36,24 @@ tasks.withType(Javadoc).all {
 }
 
 ext {
-    androidxVersion = '1.0.0'
-    materialVersion = '1.0.0'
     placesVersion = '2.0.0'
     multidexVersion = '2.0.1'
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:$androidxVersion",
-            "com.google.android.material:material:$materialVersion",
-            "androidx.recyclerview:recyclerview:$androidxVersion",
-            "androidx.multidex:multidex:$multidexVersion"
-
+    // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
+    // Androidx
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion",
+            "com.google.android.material:material:$materialVersion",
+            "androidx.recyclerview:recyclerview:$androidxRecyclerviewVersion",
+            "androidx.multidex:multidex:$multidexVersion"
+
+    // Google Places
     implementation "com.google.android.libraries.places:places:$placesVersion"
 
+    // KFormMaster
     implementation project(path: ':form')
 }
