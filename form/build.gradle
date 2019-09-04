@@ -5,11 +5,11 @@ apply plugin: "guru.stefma.bintrayrelease"
 apply plugin: 'jacoco'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 38
         versionName "6.4.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
