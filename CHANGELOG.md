@@ -1,5 +1,9 @@
 # Change Log
 
+## [6.4.2](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.2)
+- #142 Add startDate to FormPickerDateElement, FormPickerDateTimeElement, and FormPickerTimeElement
+- Update target SDK Version to 29
+
 ## [6.4.1](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.1)
 - Update dependencies:
   - Bump RendererRecyclerViewAdapter from 2.7.0 to 2.8.0
