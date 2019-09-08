@@ -23,12 +23,22 @@ import java.util.*
 class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeElement.TimeHolder>(tag) {
 
     /**
+     * Start Date for the DateTimeHolder if the dateValue is null
+     */
+    var startDate: Date? = null
+        set(value) {
+            field = value
+            this.value = TimeHolder(dateValue, dateFormat, startDate)
+            reInitDialog()
+        }
+
+    /**
      * Date Format part of TimeHolder
      */
     var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
         set(value) {
             field = value
-            this.value = FormPickerTimeElement.TimeHolder(dateValue, dateFormat)
+            this.value = TimeHolder(dateValue, dateFormat, startDate)
             reInitDialog()
         }
 
@@ -38,7 +48,7 @@ class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeEle
     var dateValue: Date? = null
         set(value) {
             field = value
-            this.value = FormPickerTimeElement.TimeHolder(dateValue, dateFormat)
+            this.value = TimeHolder(dateValue, dateFormat, startDate)
             reInitDialog()
         }
 
@@ -96,13 +106,19 @@ class FormPickerTimeElement(tag: Int = -1) : FormPickerElement<FormPickerTimeEle
             useCurrentTime()
         }
 
-        constructor(date: Date?, dateFormat: DateFormat = SimpleDateFormat.getDateInstance()) {
+        constructor(date: Date?, dateFormat: DateFormat = SimpleDateFormat.getDateInstance(), startDate: Date? = null) {
             if (date != null) {
                 val calendar = Calendar.getInstance()
                 calendar.time = date
                 this.hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
                 this.minute = calendar.get(Calendar.MINUTE)
             } else {
+                if (startDate != null) {
+                    val calendar = Calendar.getInstance()
+                    calendar.time = startDate
+                    this.hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
+                    this.minute = calendar.get(Calendar.MINUTE)
+                }
                 isEmptyTime = true
             }
             this.dateFormat = dateFormat

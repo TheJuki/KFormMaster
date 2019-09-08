@@ -355,10 +355,11 @@ class FullscreenFormActivity : AppCompatActivity() {
             date(Tag.Date.ordinal) {
                 title = getString(R.string.Date)
                 theme = R.style.CustomDialogPicker
-                dateValue = Date()
+                //dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
                 minimumDate = dateFormat.parse("01/01/2018")
                 maximumDate = dateFormat.parse("12/15/2025")
+                startDate = dateFormat.parse("01/02/2018")
                 required = true
                 maxLines = 1
                 confirmEdit = true
@@ -376,6 +377,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 is24HourView = true
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("hh:mm a", Locale.US)
+                //startDate = dateFormat.parse("12:40 AM")
                 required = true
                 maxLines = 1
                 confirmEdit = true
@@ -393,6 +395,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 is24HourView = true
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+                //startDate = dateFormat.parse("01/01/2018 12:00 AM")
                 minimumDate = dateFormat.parse("01/01/2018 12:00 AM")
                 maximumDate = dateFormat.parse("12/15/2025 12:00 PM")
                 required = true

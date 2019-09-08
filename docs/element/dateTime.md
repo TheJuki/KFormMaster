@@ -41,6 +41,10 @@ A java.util.Date value to set the maximum date for the Date picker.
 
 If true, displays the time dialog in the 24 hour view. By default this is false.
 
+## Start Date
+
+A java.util.Date to use if the date value is null. This will set the date and time picker to this date without showing a value on the form.
+
 ## Example
 
 ### Kotlin

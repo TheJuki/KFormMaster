@@ -23,12 +23,22 @@ import java.util.*
 class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateElement.DateHolder>(tag) {
 
     /**
+     * Start Date for the DateTimeHolder if the dateValue is null
+     */
+    var startDate: Date? = null
+        set(value) {
+            field = value
+            this.value = DateHolder(dateValue, dateFormat, startDate)
+            reInitDialog()
+        }
+
+    /**
      * Date Format part of DateHolder
      */
     var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
         set(value) {
             field = value
-            this.value = FormPickerDateElement.DateHolder(dateValue, dateFormat)
+            this.value = DateHolder(dateValue, dateFormat, startDate)
             reInitDialog()
         }
 
@@ -38,7 +48,7 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
     var dateValue: Date? = null
         set(value) {
             field = value
-            this.value = FormPickerDateElement.DateHolder(dateValue, dateFormat)
+            this.value = DateHolder(dateValue, dateFormat, startDate)
             reInitDialog()
         }
 
@@ -105,7 +115,7 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
             useCurrentDate()
         }
 
-        constructor(date: Date?, dateFormat: DateFormat = SimpleDateFormat.getDateInstance()) {
+        constructor(date: Date?, dateFormat: DateFormat = SimpleDateFormat.getDateInstance(), startDate: Date? = null) {
             if (date != null) {
                 val calendar = Calendar.getInstance()
                 calendar.time = date
@@ -113,6 +123,13 @@ class FormPickerDateElement(tag: Int = -1) : FormPickerElement<FormPickerDateEle
                 this.month = calendar.get(Calendar.MONTH) + 1
                 this.dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
             } else {
+                if (startDate != null) {
+                    val calendar = Calendar.getInstance()
+                    calendar.time = startDate
+                    this.year = calendar.get(Calendar.YEAR)
+                    this.month = calendar.get(Calendar.MONTH) + 1
+                    this.dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+                }
                 isEmptyDate = true
             }
 

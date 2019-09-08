@@ -35,6 +35,10 @@ A java.util.Date value to set the minimum date for the Date picker.
 
 A java.util.Date value to set the maximum date for the Date picker.
 
+## Start Date
+
+A java.util.Date to use if the date value is null. This will set the date picker to this date without showing a value on the form.
+
 ## Example
 
 ### Kotlin

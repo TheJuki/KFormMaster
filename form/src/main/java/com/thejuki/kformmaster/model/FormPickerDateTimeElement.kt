@@ -24,12 +24,22 @@ import java.util.*
 class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDateTimeElement.DateTimeHolder>(tag) {
 
     /**
+     * Start Date for the DateTimeHolder if the dateValue is null
+     */
+    var startDate: Date? = null
+        set(value) {
+            field = value
+            this.value = DateTimeHolder(dateValue, dateFormat, startDate)
+            reInitDialog()
+        }
+
+    /**
      * Date Format part of DateTimeHolder
      */
     var dateFormat: DateFormat = SimpleDateFormat.getDateInstance()
         set(value) {
             field = value
-            this.value = FormPickerDateTimeElement.DateTimeHolder(dateValue, dateFormat)
+            this.value = DateTimeHolder(dateValue, dateFormat, startDate)
             reInitDialog()
         }
 
@@ -39,7 +49,7 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
     var dateValue: Date? = null
         set(value) {
             field = value
-            this.value = FormPickerDateTimeElement.DateTimeHolder(dateValue, dateFormat)
+            this.value = DateTimeHolder(dateValue, dateFormat, startDate)
             reInitDialog()
         }
 
@@ -121,7 +131,7 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
             useCurrentDate()
         }
 
-        constructor(date: Date?, dateFormat: DateFormat = SimpleDateFormat.getDateInstance()) {
+        constructor(date: Date?, dateFormat: DateFormat = SimpleDateFormat.getDateInstance(), startDate: Date? = null) {
             if (date != null) {
                 val calendar = Calendar.getInstance()
                 calendar.time = date
@@ -131,6 +141,15 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
                 this.hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
                 this.minute = calendar.get(Calendar.MINUTE)
             } else {
+                if (startDate != null) {
+                    val calendar = Calendar.getInstance()
+                    calendar.time = startDate
+                    this.year = calendar.get(Calendar.YEAR)
+                    this.month = calendar.get(Calendar.MONTH) + 1
+                    this.dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+                    this.hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
+                    this.minute = calendar.get(Calendar.MINUTE)
+                }
                 isEmptyDateTime = true
             }
 
