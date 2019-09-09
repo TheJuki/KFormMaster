@@ -84,7 +84,7 @@ ext {
     constraintLayoutVersion = '1.1.3'
     picassoVersion = '2.71828'
     inlineActivityResultVersion = '1.0.2'
-    imagePickerVersion = '1.3'
+    imagePickerVersion = '1.4'
     testCoreVersion = '1.2.0'
     testExtJunitVersion = '1.1.1'
     testRulesVersion = '1.2.0'
