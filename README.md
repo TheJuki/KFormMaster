@@ -1,7 +1,7 @@
 <p align="center"><img src="logo.jpeg"></p>
 
 <p align="center">
-<a href="https://travis-ci.org/TheJuki/KFormMaster"><img src="https://travis-ci.org/TheJuki/KFormMaster.svg?branch=master" alt="Build status" /></a>
+<a href="https://travis-ci.com/TheJuki/KFormMaster"><img src="https://travis-ci.com/TheJuki/KFormMaster.svg?branch=master" alt="Build status" /></a>
 <a href="https://codecov.io/gh/TheJuki/KFormMaster"><img src="https://codecov.io/gh/TheJuki/KFormMaster/branch/master/graph/badge.svg" alt="codecov" /></a>
 <a href="https://codebeat.co/projects/github-com-thejuki-kformmaster-master"><img alt="codebeat badge" src="https://codebeat.co/badges/43fca492-2564-4401-8f4b-91d3bc811d70" /></a>
 <a href="https://android-arsenal.com/api?level=19"><img src="https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat" alt="API" /></a>
