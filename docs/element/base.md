@@ -279,6 +279,7 @@ text {
 ## Clickable
 By default this is true.
 Setting clickable to false will disable click events.
+
 !!! info "Use focusable"
 
     Click events will still be fired unless focusable is also set to false.
@@ -292,6 +293,7 @@ text {
 ## Focusable
 By default this is true.
 Setting focusable to false will prevent a field from being focused.
+
 !!! info "Focusable elements"
 
     This value does not change the behavior of the form elements that cannot be focused.

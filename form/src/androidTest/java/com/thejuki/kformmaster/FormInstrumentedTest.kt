@@ -33,6 +33,7 @@ import com.thejuki.kformmaster.extensions.dpToPx
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.item.ContactItem
 import com.thejuki.kformmaster.model.FormEmailEditTextElement
+import com.thejuki.kformmaster.model.FormImageElement
 import com.thejuki.kformmaster.token.ItemsCompletionView
 import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
@@ -461,8 +462,16 @@ class FormInstrumentedTest {
         // NOTE: Since the tests do not have access to the Internet, the default image will be used.
         // The Assert is setup in onInitialImageLoaded
 
+        val formBuildHelper = getFormBuildHelper()
+
+        // Get image view form element
+        val imageView = formBuildHelper.getFormElement<FormImageElement>(FormActivityTest.Tag.ImageViewElement.ordinal)
+
         // Open Image Dialog and select "Remove"
-        onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        instrumentation.runOnMainSync {
+            imageView.itemView?.performClick()
+        }
+        instrumentation.waitForIdleSync()
         onView(withText("Pick one"))
                 .inRoot(RootMatchers.isDialog())
                 .check(matches(isDisplayed()))
