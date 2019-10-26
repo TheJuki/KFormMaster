@@ -59,6 +59,47 @@ text {
 }
 ```
 
+## On Click Unit
+This unit is invoked when the form element is clicked.
+NOTE: The click event is not fired when a text field is clicked on to focus. Use onFocus to get the event when a field has focus.
+```kotlin
+text {
+     onClick = {
+        Toast.makeText(this@FormActivity, this.javaClass.simpleName, LENGTH_SHORT).show()
+    }
+}
+```
+
+## On Focus Unit
+This unit is invoked when the form element is focused.
+```kotlin
+text {
+     onFocus = {
+        Toast.makeText(this@FormActivity, this.javaClass.simpleName, LENGTH_SHORT).show()
+    }
+}
+```
+
+## On Touch Up Unit
+This unit is invoked when the form element is touched up.
+```kotlin
+text {
+     onTouchUp = {
+        Toast.makeText(this@FormActivity, this.javaClass.simpleName, LENGTH_SHORT).show()
+    }
+}
+```
+
+## On Touch Down Unit
+This unit is invoked when the form element is touched down.
+```kotlin
+text {
+     onTouchDown = {
+        Toast.makeText(this@FormActivity, this.javaClass.simpleName, LENGTH_SHORT).show()
+    }
+}
+```
+
 ## Options
 The list of options is used in form elements such as the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. 
 ```kotlin
@@ -232,6 +273,32 @@ Setting enabled to false will disable the form element. This means that the clic
 ```kotlin
 text {
     enabled = false
+}
+```
+
+## Clickable
+By default this is true.
+Setting clickable to false will disable click events.
+!!! info "Use focusable"
+
+    Click events will still be fired unless focusable is also set to false.
+
+```kotlin
+text {
+    clickable = false
+}
+```
+
+## Focusable
+By default this is true.
+Setting focusable to false will prevent a field from being focused.
+!!! info "Focusable elements"
+
+    This value does not change the behavior of the form elements that cannot be focused.
+
+```kotlin
+text {
+    focusable = false
 }
 ```
 

@@ -33,12 +33,10 @@ class FormSliderViewBinder(private val context: Context, private val formBuilder
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
-
         val slider = finder.find(R.id.formElementValue) as AppCompatSeekBar
-        val progressValue = finder.find(R.id.formElementProgress) as AppCompatTextView
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout, slider)
 
-        model.editView = slider
+        val progressValue = finder.find(R.id.formElementProgress) as AppCompatTextView
 
         if (model.value == null) {
             model.value = model.min
@@ -55,10 +53,13 @@ class FormSliderViewBinder(private val context: Context, private val formBuilder
             }
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                //updateSeekValue(model, slider, seekBar?.progress?: 0, progressValue)
-            }
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+
+        itemView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+        }
     }, object : ViewStateProvider<FormSliderElement, ViewHolder> {
         override fun createViewStateID(model: FormSliderElement): Int {
             return model.id

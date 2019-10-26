@@ -35,19 +35,14 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
-
         val itemsCompletionView = finder.find(R.id.formElementValue) as ItemsCompletionView
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout, itemsCompletionView)
 
         model.value?.forEach { item ->
             itemsCompletionView.addObjectAsync(item)
         }
 
         itemsCompletionView.hint = model.hint ?: ""
-
-        model.editView = itemsCompletionView
-
-        setEditTextFocusEnabled(itemsCompletionView, itemView)
 
         val itemsAdapter = if (model.arrayAdapter != null)
             model.arrayAdapter
@@ -61,7 +56,7 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
 
         itemsCompletionView.setTokenClickStyle(TokenCompleteTextView.TokenClickStyle.Select)
 
-        setEditTextFocusEnabled(itemsCompletionView, itemView)
+        setEditTextFocusEnabled(model, itemsCompletionView, itemView)
 
         itemsCompletionView.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -86,8 +81,13 @@ class FormTokenAutoCompleteViewBinder(private val context: Context, private val 
         }
     })
 
-    private fun setEditTextFocusEnabled(itemsCompletionView: ItemsCompletionView, itemView: View) {
+    private fun setEditTextFocusEnabled(model: FormTokenAutoCompleteElement<*>,
+                                        itemsCompletionView: ItemsCompletionView,
+                                        itemView: View) {
         itemView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+
             itemsCompletionView.requestFocus()
             if (itemsCompletionView.text.isNotEmpty()) {
                 itemsCompletionView.selectAll()

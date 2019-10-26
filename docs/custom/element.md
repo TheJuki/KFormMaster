@@ -151,11 +151,11 @@ private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
     var viewBinder = ViewBinder(R.layout.form_element_custom,
     FormCustomElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
+        val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
-        baseSetup(model, textViewTitle, textViewError, itemView)
-
         val editTextValue = finder.find(R.id.formElementValue) as AppCompatEditText
+        baseSetup(model, textViewTitle, textViewError, itemView, mainViewLayout, editTextValue)
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
@@ -171,8 +171,6 @@ private val formBuilder: FormBuildHelper) : BaseFormViewBinder() {
                         R.color.colorFormMasterElementTextTitle))
             }
         }
-
-        model.editView = editTextValue
 
         // Initially use 4 lines
         // unless a different number was provided

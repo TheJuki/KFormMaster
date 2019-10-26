@@ -33,14 +33,11 @@ class FormNumberEditTextViewBinder(private val context: Context, private val for
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
-
         val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout, editTextValue)
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
-
-        model.editView = editTextValue
 
         // Number
         if (model.numbersOnly) {
@@ -55,11 +52,16 @@ class FormNumberEditTextViewBinder(private val context: Context, private val for
         // If imeOptions are provided, use them instead of actionNext
         model.imeOptions?.let { editTextValue.imeOptions = it }
 
-        setEditTextFocusEnabled(editTextValue, itemView)
+        setEditTextFocusEnabled(model, editTextValue, itemView)
         setOnFocusChangeListener(context, model, formBuilder)
         addTextChangedListener(model, formBuilder)
         setOnEditorActionListener(model, formBuilder)
         setClearableListener(model)
+
+        editTextValue.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+        }
 
     }, object : ViewStateProvider<FormNumberEditTextElement, ViewHolder> {
         override fun createViewStateID(model: FormNumberEditTextElement): Int {
@@ -71,8 +73,13 @@ class FormNumberEditTextViewBinder(private val context: Context, private val for
         }
     })
 
-    private fun setEditTextFocusEnabled(editTextValue: AppCompatEditText, itemView: View) {
+    private fun setEditTextFocusEnabled(model: FormNumberEditTextElement,
+                                        editTextValue: AppCompatEditText,
+                                        itemView: View) {
         itemView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+
             editTextValue.requestFocus()
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             editTextValue.setSelection(editTextValue.text?.length ?: 0)

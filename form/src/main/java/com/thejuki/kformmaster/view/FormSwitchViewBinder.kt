@@ -31,17 +31,15 @@ class FormSwitchViewBinder(private val context: Context, private val formBuilder
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, null)
-
         val switch = finder.find(R.id.formElementValue) as SwitchCompat
-        switch.isChecked = model.isOn()
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, editView = switch)
 
-        model.editView = switch
+        switch.isChecked = model.isOn()
 
         // Delay setting to make sure editView is set first
         model.mainLayoutView = mainViewLayout
 
-        setSwitchFocusEnabled(itemView, switch)
+        setSwitchFocusEnabled(model, itemView, switch)
 
         switch.setOnCheckedChangeListener { _, isChecked ->
             model.error = null
@@ -51,6 +49,11 @@ class FormSwitchViewBinder(private val context: Context, private val formBuilder
                 model.setValue(model.offValue)
             }
             formBuilder.onValueChanged(model)
+        }
+
+        switch.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
         }
     }, object : ViewStateProvider<FormSwitchElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormSwitchElement<*>): Int {
@@ -62,8 +65,11 @@ class FormSwitchViewBinder(private val context: Context, private val formBuilder
         }
     })
 
-    private fun setSwitchFocusEnabled(itemView: View, switch: SwitchCompat) {
+    private fun setSwitchFocusEnabled(model: FormSwitchElement<*>, itemView: View, switch: SwitchCompat) {
         itemView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+
             switch.isChecked = !switch.isChecked
         }
     }

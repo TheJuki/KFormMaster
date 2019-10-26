@@ -35,15 +35,12 @@ class FormPlacesAutoCompleteViewBinder(private val context: Context, private val
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
-
         val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout, editTextValue)
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
         editTextValue.alwaysShowClear = true
-
-        model.editView = editTextValue
 
         editTextValue.setRawInputType(InputType.TYPE_NULL)
         editTextValue.isFocusable = false

@@ -32,9 +32,8 @@ class FormTextViewViewBinder(private val context: Context, private val formBuild
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
-
         val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout, editTextValue)
 
         editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
@@ -42,9 +41,17 @@ class FormTextViewViewBinder(private val context: Context, private val formBuild
         editTextValue.setTextColor(ContextCompat.getColor(context, R.color.colorFormMasterElementTextView))
         editTextValue.isFocusable = false
         editTextValue.setRawInputType(InputType.TYPE_NULL)
-        editTextValue.setIconLocation(null)
+        editTextValue.setClearIconLocation(null)
 
-        model.editView = editTextValue
+        itemView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+        }
+
+        editTextValue.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+        }
 
     }, object : ViewStateProvider<FormTextViewElement, ViewHolder> {
         override fun createViewStateID(model: FormTextViewElement): Int {

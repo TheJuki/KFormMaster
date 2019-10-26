@@ -193,6 +193,9 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
         // display the dialog on click
         val listener = View.OnClickListener {
+            // Invoke onClick Unit
+            this.onClick?.invoke()
+
             if (!confirmEdit || valueAsString.isEmpty()) {
                 alertDialog.show()
             } else if (confirmEdit && value != null) {

@@ -31,17 +31,15 @@ class FormCheckBoxViewBinder(private val context: Context, private val formBuild
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, null)
-
         val checkBox = finder.find(R.id.formElementValue) as AppCompatCheckBox
-        checkBox.isChecked = model.isChecked()
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, editView = checkBox)
 
-        model.editView = checkBox
+        checkBox.isChecked = model.isChecked()
 
         // Delay setting to make sure editView is set first
         model.mainLayoutView = mainViewLayout
 
-        setCheckBoxFocusEnabled(itemView, checkBox)
+        setCheckBoxFocusEnabled(model, itemView, checkBox)
 
         checkBox.setOnCheckedChangeListener { _, isChecked ->
             model.error = null
@@ -52,6 +50,12 @@ class FormCheckBoxViewBinder(private val context: Context, private val formBuild
             }
             formBuilder.onValueChanged(model)
         }
+
+        checkBox.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+        }
+
     }, object : ViewStateProvider<FormCheckBoxElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormCheckBoxElement<*>): Int {
             return model.id
@@ -62,8 +66,11 @@ class FormCheckBoxViewBinder(private val context: Context, private val formBuild
         }
     })
 
-    private fun setCheckBoxFocusEnabled(itemView: View, checkBox: AppCompatCheckBox) {
+    private fun setCheckBoxFocusEnabled(model: FormCheckBoxElement<*>, itemView: View, checkBox: AppCompatCheckBox) {
         itemView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+
             checkBox.isChecked = !checkBox.isChecked
         }
     }

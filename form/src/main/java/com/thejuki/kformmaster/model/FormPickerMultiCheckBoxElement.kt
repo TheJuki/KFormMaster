@@ -162,6 +162,9 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
 
         // display the dialog on click
         val listener = View.OnClickListener {
+            // Invoke onClick Unit
+            this.onClick?.invoke()
+
             if (!confirmEdit || value == null || value?.isEmpty() == true) {
                 alertDialog.show()
             } else if (confirmEdit && value != null) {

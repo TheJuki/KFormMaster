@@ -284,6 +284,9 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
 
         // display the dialog on click
         val listener = View.OnClickListener {
+            // Invoke onClick Unit
+            this.onClick?.invoke()
+
             if (!confirmEdit || valueAsString.isEmpty()) {
                 datePickerDialog.show()
             } else if (confirmEdit && value != null) {

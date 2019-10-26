@@ -29,7 +29,17 @@ class FormLabelViewBinder(private val context: Context, private val formBuilder:
         val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, null, itemView, mainViewLayout)
+        baseSetup(model, dividerView, textViewTitle, itemView = itemView, mainViewLayout = mainViewLayout, editView = null)
+
+        itemView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+        }
+
+        textViewTitle?.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+        }
 
     }, object : ViewStateProvider<FormLabelElement, ViewHolder> {
         override fun createViewStateID(model: FormLabelElement): Int {

@@ -35,9 +35,8 @@ class FormProgressViewBinder(private val context: Context, private val formBuild
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
-
         var progressBar = finder.find(R.id.formElementValue) as ProgressBar
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout, progressBar)
 
         if (model.progressBarStyle != HorizontalBar) {
             val parent = progressBar.parent as ViewGroup
@@ -81,7 +80,10 @@ class FormProgressViewBinder(private val context: Context, private val formBuild
         progressBar.progress = model.progress
         progressBar.secondaryProgress = model.secondaryProgress
 
-        model.editView = progressBar
+        itemView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+        }
 
     }, object : ViewStateProvider<FormProgressElement, ViewHolder> {
         override fun createViewStateID(model: FormProgressElement): Int {

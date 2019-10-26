@@ -37,9 +37,8 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
         val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val itemView = finder.getRootView() as View
         val dividerView = finder.find(R.id.formElementDivider) as? View
-        baseSetup(model, dividerView, null, textViewError, itemView, mainViewLayout)
-
         val imageView = finder.find(R.id.formElementValue) as ImageView
+        baseSetup(model, dividerView, null, textViewError, itemView, mainViewLayout, imageView)
 
         model.itemView?.bringToFront()
 
@@ -74,7 +73,6 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
             }
         }
 
-        model.editView = imageView
         model.mOpenImagePicker = {imageProvider ->
             ImagePicker.with(context as Activity)
                     .provider(imageProvider)

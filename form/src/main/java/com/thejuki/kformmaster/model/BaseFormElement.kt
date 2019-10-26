@@ -54,6 +54,26 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     val valueObservers = mutableListOf<(value: T?, element: BaseFormElement<T>) -> Unit>()
 
     /**
+     * Form Element onClick Unit
+     */
+    open var onClick: (() -> Unit)? = null
+
+    /**
+     * Form Element onFocus Unit
+     */
+    open var onFocus: (() -> Unit)? = null
+
+    /**
+     * Form Element onTouchUp Unit
+     */
+    open var onTouchUp: (() -> Unit)? = null
+
+    /**
+     * Form Element onTouchDown Unit
+     */
+    open var onTouchDown: (() -> Unit)? = null
+
+    /**
      * Form Element Value
      */
     var value: T? by Delegates.observable<T?>(null) { _, _, newValue ->
@@ -409,6 +429,8 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             field = value
             itemView?.let {
                 it.isEnabled = enabled
+                it.isClickable = clickable
+                it.isFocusable = focusable
                 // Trigger visibility
                 this.visible = this.visible
 
@@ -430,13 +452,15 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             field = value
             editView?.let {
                 it.isEnabled = enabled
+                it.isClickable = clickable
+                it.isFocusable = focusable
                 if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
                     if (centerText) {
                         it.gravity = Gravity.CENTER
                     } else {
                         it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                     }
-                    it.setSingleLine(maxLines == 1)
+                    it.isSingleLine = maxLines == 1
                     it.maxLines = maxLines
                     if (it !is AppCompatAutoCompleteTextView) {
                         if (maxLength != null) {
@@ -597,6 +621,28 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             editView?.isEnabled = value
 
             onEnabled(value)
+        }
+
+    /**
+     * Form Element Clickable
+     */
+    open var clickable: Boolean = true
+        set(value) {
+            field = value
+            itemView?.isClickable = value
+            titleView?.isClickable = value
+            editView?.isClickable = value
+        }
+
+    /**
+     * Form Element Focusable
+     */
+    open var focusable: Boolean = true
+        set(value) {
+            field = value
+            itemView?.isFocusable = value
+            titleView?.isFocusable = value
+            editView?.isFocusable = value
         }
 
     /**

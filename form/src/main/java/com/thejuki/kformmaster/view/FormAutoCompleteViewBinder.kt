@@ -35,16 +35,13 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
-
         val autoCompleteTextView = finder.find(R.id.formElementValue) as AppCompatAutoCompleteTextView
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout, autoCompleteTextView)
 
         autoCompleteTextView.hint = model.hint ?: ""
 
         // Set threshold (the number of characters to type before the drop down is shown)
         autoCompleteTextView.threshold = 1
-
-        model.editView = autoCompleteTextView
 
         if (model.typedString != null) {
             autoCompleteTextView.setText(model.typedString)
@@ -75,7 +72,7 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
             formBuilder.onValueChanged(model)
         }
 
-        setEditTextFocusEnabled(autoCompleteTextView, itemView)
+        setEditTextFocusEnabled(model, autoCompleteTextView, itemView)
 
         autoCompleteTextView.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
@@ -85,6 +82,11 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
                 textViewTitle?.setTextColor(ContextCompat.getColor(context,
                         R.color.colorFormMasterElementTextTitle))
             }
+        }
+
+        autoCompleteTextView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
         }
     }, object : ViewStateProvider<FormAutoCompleteElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormAutoCompleteElement<*>): Int {
@@ -96,8 +98,13 @@ class FormAutoCompleteViewBinder(private val context: Context, private val formB
         }
     })
 
-    private fun setEditTextFocusEnabled(autoCompleteTextView: AppCompatAutoCompleteTextView, itemView: View) {
+    private fun setEditTextFocusEnabled(model: FormAutoCompleteElement<*>,
+                                        autoCompleteTextView: AppCompatAutoCompleteTextView,
+                                        itemView: View) {
         itemView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+
             autoCompleteTextView.requestFocus()
             if (autoCompleteTextView.text.isNotEmpty()) {
                 autoCompleteTextView.selectAll()

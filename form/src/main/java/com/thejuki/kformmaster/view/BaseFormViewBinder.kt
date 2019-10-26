@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AlertDialog
@@ -30,15 +31,32 @@ abstract class BaseFormViewBinder {
     /**
      * Initializes the base form fields
      */
-    fun baseSetup(formElement: BaseFormElement<*>, dividerView: View?, textViewTitle: AppCompatTextView?,
-                  textViewError: AppCompatTextView?,
-                  itemView: View, mainViewLayout: View?) {
+    fun baseSetup(formElement: BaseFormElement<*>,
+                  dividerView: View? = null,
+                  textViewTitle: AppCompatTextView? = null,
+                  textViewError: AppCompatTextView? = null,
+                  itemView: View,
+                  mainViewLayout: View? = null,
+                  editView: View?) {
 
         formElement.itemView = itemView
         formElement.dividerView = dividerView
         formElement.titleView = textViewTitle
         formElement.errorView = textViewError
         formElement.mainLayoutView = mainViewLayout
+        formElement.editView = editView
+
+        val onTouchListener = View.OnTouchListener { view, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_DOWN -> formElement.onTouchDown?.invoke()
+                MotionEvent.ACTION_UP -> formElement.onTouchUp?.invoke()
+            }
+
+            view?.onTouchEvent(event) ?: true
+        }
+
+        formElement.itemView?.setOnTouchListener(onTouchListener)
+        formElement.editView?.setOnTouchListener(onTouchListener)
     }
 
     /**
@@ -65,6 +83,9 @@ abstract class BaseFormViewBinder {
 
         // display the dialog on click
         val listener = View.OnClickListener {
+            // Invoke onClick Unit
+            formElement.onClick?.invoke()
+
             if (!formElement.confirmEdit || formElement.valueAsString.isEmpty()) {
                 dialog.show()
             } else if (formElement.confirmEdit && formElement.value != null) {
@@ -102,6 +123,9 @@ abstract class BaseFormViewBinder {
 
         formElement.editView?.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
+                // Invoke onFocus Unit
+                formElement.onFocus?.invoke()
+
                 if (formElement.clearOnFocus) {
                     formElement.value = null
                 }

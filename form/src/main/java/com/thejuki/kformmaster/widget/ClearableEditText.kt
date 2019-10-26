@@ -43,16 +43,17 @@ class ClearableEditText : AppCompatEditText, OnTouchListener, OnFocusChangeListe
                 setClearIconVisible(displayClear && alwaysShowClear)
             }
         }
-    private var loc: Location? = Location.RIGHT
+    private var clearIconLocation: Location? = Location.RIGHT
 
-    private var xD: Drawable? = null
+    private var clearIcon: Drawable? = null
     private var listener: Listener? = null
 
-    private var l: OnTouchListener? = null
-    private var f: OnFocusChangeListener? = null
+    private var onClearableEditTextTouchListener: OnTouchListener? = null
+    private var onClearableEditTextFocusChangeListener: OnFocusChangeListener? = null
 
     private val displayedDrawable: Drawable?
-        get() = if (loc != null) compoundDrawables[loc?.idx ?: 0] else null
+        get() = if (clearIconLocation != null) compoundDrawables[clearIconLocation?.idx
+                ?: 0] else null
 
     enum class Location(val idx: Int) {
         LEFT(0), RIGHT(2)
@@ -81,26 +82,27 @@ class ClearableEditText : AppCompatEditText, OnTouchListener, OnFocusChangeListe
     /**
      * null disables the icon
      */
-    fun setIconLocation(loc: Location?) {
-        this.loc = loc
+    fun setClearIconLocation(clearIconLocation: Location?) {
+        this.clearIconLocation = clearIconLocation
         initIcon()
     }
 
-    override fun setOnTouchListener(l: OnTouchListener) {
-        this.l = l
+    override fun setOnTouchListener(onTouchListener: OnTouchListener) {
+        this.onClearableEditTextTouchListener = onTouchListener
     }
 
-    override fun setOnFocusChangeListener(f: OnFocusChangeListener) {
-        this.f = f
+    override fun setOnFocusChangeListener(onFocusChangeListener: OnFocusChangeListener) {
+        this.onClearableEditTextFocusChangeListener = onFocusChangeListener
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         if (displayedDrawable != null) {
             val x = event.x.toInt()
             val y = event.y.toInt()
-            val left = if (loc == Location.LEFT) 0 else width - paddingRight - (xD?.intrinsicWidth
+            val left = if (clearIconLocation == Location.LEFT) 0 else width - paddingRight - (clearIcon?.intrinsicWidth
                     ?: 0)
-            val right = if (loc == Location.LEFT) paddingLeft + (xD?.intrinsicWidth ?: 0) else width
+            val right = if (clearIconLocation == Location.LEFT) paddingLeft + (clearIcon?.intrinsicWidth
+                    ?: 0) else width
             val tappedX = x in left..right && y >= 0 && y <= bottom - top
             if (tappedX) {
                 if (event.action == MotionEvent.ACTION_UP) {
@@ -109,7 +111,7 @@ class ClearableEditText : AppCompatEditText, OnTouchListener, OnFocusChangeListe
                 return true
             }
         }
-        return l?.onTouch(v, event) == true
+        return onClearableEditTextTouchListener?.onTouch(v, event) == true
     }
 
     override fun onFocusChange(v: View, hasFocus: Boolean) {
@@ -121,7 +123,7 @@ class ClearableEditText : AppCompatEditText, OnTouchListener, OnFocusChangeListe
             }
         }
 
-        f?.onFocusChange(v, hasFocus)
+        onClearableEditTextFocusChangeListener?.onFocusChange(v, hasFocus)
     }
 
     override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
@@ -143,15 +145,16 @@ class ClearableEditText : AppCompatEditText, OnTouchListener, OnFocusChangeListe
     }
 
     private fun initIcon() {
-        xD = null
-        if (loc != null) {
-            xD = compoundDrawables[loc?.idx ?: 0]
+        clearIcon = null
+        if (clearIconLocation != null) {
+            clearIcon = compoundDrawables[clearIconLocation?.idx ?: 0]
         }
-        if (xD == null) {
-            xD = ContextCompat.getDrawable(context, R.drawable.ic_close_black_24dp)
+        if (clearIcon == null) {
+            clearIcon = ContextCompat.getDrawable(context, R.drawable.ic_close_black_24dp)
         }
-        xD?.setBounds(0, 0, (xD?.intrinsicWidth ?: 0), (xD?.intrinsicHeight ?: 0))
-        val min = paddingTop + (xD?.intrinsicHeight ?: 0) + paddingBottom
+        clearIcon?.setBounds(0, 0, (clearIcon?.intrinsicWidth ?: 0), (clearIcon?.intrinsicHeight
+                ?: 0))
+        val min = paddingTop + (clearIcon?.intrinsicHeight ?: 0) + paddingBottom
         if (suggestedMinimumHeight < min) {
             minimumHeight = min
         }
@@ -162,8 +165,8 @@ class ClearableEditText : AppCompatEditText, OnTouchListener, OnFocusChangeListe
         val displayed = displayedDrawable
         val wasVisible = displayed != null
         if (visible != wasVisible) {
-            val x = if (visible) xD else null
-            super.setCompoundDrawables(if (loc == Location.LEFT) x else cd[0], cd[1], if (loc == Location.RIGHT) x else cd[2],
+            val x = if (visible) clearIcon else null
+            super.setCompoundDrawables(if (clearIconLocation == Location.LEFT) x else cd[0], cd[1], if (clearIconLocation == Location.RIGHT) x else cd[2],
                     cd[3])
         }
     }

@@ -71,12 +71,6 @@ class FormImageElement(tag: Int = -1) : BaseFormElement<String>(tag) {
     var imagePickerOptions: ((ImagePickerOptions) -> Unit)? = null
 
     /**
-     * On-click listener unit for when the form element is clicked.
-     * Set this Unit to override the default alert dialog that is displayed instead.
-     */
-    var onClickListener: (() -> Unit)? = null
-
-    /**
      * Internal ImageProvider unit
      */
     internal var mOpenImagePicker: ((ImageProvider) -> Unit)? = null
@@ -150,10 +144,11 @@ class FormImageElement(tag: Int = -1) : BaseFormElement<String>(tag) {
         }
 
         itemView?.setOnClickListener {
-            if (onClickListener == null) {
+            // Invoke onClick Unit
+            if (this.onClick == null) {
                 alertDialog.show()
             } else {
-                onClickListener?.invoke()
+                this.onClick?.invoke()
             }
         }
     }

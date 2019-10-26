@@ -30,11 +30,8 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
         val textViewError = finder.find(R.id.formElementError) as? AppCompatTextView
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val itemView = finder.getRootView() as View
-        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout)
-
         val segmented = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.SegmentedGroup
-
-        model.editView = segmented
+        baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout, segmented)
 
         segmented.setProperties(model.marginDp, model.cornerRadius, model.tintColor,
                 model.checkedTextColor, model.unCheckedTintColor, model.padding, model.textSize)
@@ -60,6 +57,11 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
         }
 
         model.reInitGroup()
+
+        itemView.setOnClickListener {
+            // Invoke onClick Unit
+            model.onClick?.invoke()
+        }
 
     }, object : ViewStateProvider<FormSegmentedElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormSegmentedElement<*>): Int {
