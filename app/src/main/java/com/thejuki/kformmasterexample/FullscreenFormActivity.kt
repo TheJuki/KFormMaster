@@ -237,7 +237,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                     bottomSheetDialog.dismiss()
 
                 }
-                onClickListener = {
+                onClick = {
                     bottomSheetDialog.show()
                 }
             }
