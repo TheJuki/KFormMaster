@@ -1,5 +1,9 @@
 # Change Log
 
+## [6.4.3](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.3)
+- Add clickable and focusable booleans
+- Add onClick, onFocus, onTouchUp, and onTouchDown Units
+
 ## [6.4.2](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.2)
 - #142 Add startDate to FormPickerDateElement, FormPickerDateTimeElement, and FormPickerTimeElement
 - Update target SDK Version to 29
