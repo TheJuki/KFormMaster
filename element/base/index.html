@@ -424,6 +424,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#on-click-unit" class="md-nav__link">
+    On Click Unit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on-focus-unit" class="md-nav__link">
+    On Focus Unit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on-touch-up-unit" class="md-nav__link">
+    On Touch Up Unit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on-touch-down-unit" class="md-nav__link">
+    On Touch Down Unit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#options" class="md-nav__link">
     Options
   </a>
@@ -1118,6 +1146,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#on-click-unit" class="md-nav__link">
+    On Click Unit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on-focus-unit" class="md-nav__link">
+    On Focus Unit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on-touch-up-unit" class="md-nav__link">
+    On Touch Up Unit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on-touch-down-unit" class="md-nav__link">
+    On Touch Down Unit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#options" class="md-nav__link">
     Options
   </a>
@@ -1427,6 +1483,47 @@
 </pre></div>
 
 
+<h2 id="on-click-unit">On Click Unit<a class="headerlink" href="#on-click-unit" title="Permanent link">&para;</a></h2>
+<p>This unit is invoked when the form element is clicked.
+NOTE: The click event is not fired when a text field is clicked on to focus. Use onFocus to get the event when a field has focus.</p>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+     <span class="n">onClick</span> <span class="p">=</span> <span class="p">{</span>
+        <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="on-focus-unit">On Focus Unit<a class="headerlink" href="#on-focus-unit" title="Permanent link">&para;</a></h2>
+<p>This unit is invoked when the form element is focused.</p>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+     <span class="n">onFocus</span> <span class="p">=</span> <span class="p">{</span>
+        <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="on-touch-up-unit">On Touch Up Unit<a class="headerlink" href="#on-touch-up-unit" title="Permanent link">&para;</a></h2>
+<p>This unit is invoked when the form element is touched up.</p>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+     <span class="n">onTouchUp</span> <span class="p">=</span> <span class="p">{</span>
+        <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="on-touch-down-unit">On Touch Down Unit<a class="headerlink" href="#on-touch-down-unit" title="Permanent link">&para;</a></h2>
+<p>This unit is invoked when the form element is touched down.</p>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+     <span class="n">onTouchDown</span> <span class="p">=</span> <span class="p">{</span>
+        <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
 <p>The list of options is used in form elements such as the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. </p>
 <div class="codehilite"><pre><span></span><span class="k">private</span> <span class="k">val</span> <span class="py">fruits</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span>
@@ -1602,6 +1699,26 @@ Setting enabled to false will disable the form element. This means that the clic
 </div>
 <div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
     <span class="n">enabled</span> <span class="p">=</span> <span class="k">false</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="admonition info">
+<p class="admonition-title">Use focusable</p>
+<p>Click events will still be fired unless focusable is also set to false.</p>
+</div>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">clickable</span> <span class="p">=</span> <span class="k">false</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="admonition info">
+<p class="admonition-title">Focusable elements</p>
+<p>This value does not change the behavior of the form elements that cannot be focused.</p>
+</div>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">focusable</span> <span class="p">=</span> <span class="k">false</span>
 <span class="p">}</span>
 </pre></div>
 

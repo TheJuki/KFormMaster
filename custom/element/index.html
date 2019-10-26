@@ -1085,11 +1085,11 @@
     <span class="k">var</span> <span class="py">viewBinder</span> <span class="p">=</span> <span class="n">ViewBinder</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">,</span>
     <span class="n">FormCustomElement</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">,</span> <span class="p">{</span> <span class="n">model</span><span class="p">,</span> <span class="n">finder</span><span class="p">,</span> <span class="n">_</span> <span class="p">-&gt;</span>
         <span class="k">val</span> <span class="py">textViewTitle</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementTitle</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatTextView</span>
+        <span class="k">val</span> <span class="py">mainViewLayout</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementMainLayout</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">LinearLayout</span>
         <span class="k">val</span> <span class="py">textViewError</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementError</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatTextView</span>
         <span class="k">val</span> <span class="py">itemView</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">getRootView</span><span class="p">()</span> <span class="k">as</span> <span class="n">View</span>
-        <span class="n">baseSetup</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">textViewTitle</span><span class="p">,</span> <span class="n">textViewError</span><span class="p">,</span> <span class="n">itemView</span><span class="p">)</span>
-
         <span class="k">val</span> <span class="py">editTextValue</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementValue</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatEditText</span>
+        <span class="n">baseSetup</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">textViewTitle</span><span class="p">,</span> <span class="n">textViewError</span><span class="p">,</span> <span class="n">itemView</span><span class="p">,</span> <span class="n">mainViewLayout</span><span class="p">,</span> <span class="n">editTextValue</span><span class="p">)</span>
 
         <span class="n">editTextValue</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">valueAsString</span><span class="p">)</span>
         <span class="n">editTextValue</span><span class="p">.</span><span class="n">hint</span> <span class="p">=</span> <span class="n">model</span><span class="p">.</span><span class="n">hint</span> <span class="o">?:</span> <span class="s">&quot;&quot;</span>
@@ -1105,8 +1105,6 @@
                         <span class="n">R</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">colorFormMasterElementTextTitle</span><span class="p">))</span>
             <span class="p">}</span>
         <span class="p">}</span>
-
-        <span class="n">model</span><span class="p">.</span><span class="n">editView</span> <span class="p">=</span> <span class="n">editTextValue</span>
 
         <span class="c1">// Initially use 4 lines</span>
         <span class="c1">// unless a different number was provided</span>
