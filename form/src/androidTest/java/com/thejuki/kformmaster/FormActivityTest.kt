@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import bytesEqualTo
+import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import com.thejuki.kformmaster.FormActivityTest.Tag.*
 import com.thejuki.kformmaster.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmaster.adapter.EmailAutoCompleteAdapter
@@ -174,7 +175,10 @@ class FormActivityTest : AppCompatActivity() {
             }
             phone(Phone.ordinal) {
                 title = "Phone"
-                value = "+8801712345678"
+                value = "123-456-7890"
+                inputMaskOptions = InputMaskOptions(primaryFormat = "+1 ([000]) [000]-[0000]",
+                        affinityCalculationStrategy = AffinityCalculationStrategy.PREFIX
+                )
             }
             header { title = "Header 2" }
             text(Location.ordinal) {

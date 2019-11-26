@@ -149,6 +149,14 @@ text {
 }
 ```
 
+## Input Mask Options
+By default edit text fields will not have any input mask format. Setting an input mask format will format the text field for the set value and as you type.
+```kotlin
+phone {
+    inputMaskOptions = InputMaskOptions(primaryFormat = "+1 ([000]) [000]-[0000]")
+}
+```
+
 ## Hint
 The hint is the hint (or placeholder) of the value field.
 ```kotlin

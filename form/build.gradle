@@ -11,7 +11,8 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 40
-        versionName "6.4.3"
+        versionName "6.4.4"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -92,6 +93,7 @@ ext {
     kotlintestVersion = '3.4.2'
     mockkVersion = '1.9.3'
     log4jVersion = '2.12.1'
+    inputMaskVersion = '5.0.0'
 }
 
 dependencies {
@@ -103,7 +105,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion",
             "com.google.android.material:material:$materialVersion",
             "androidx.recyclerview:recyclerview:$androidxRecyclerviewVersion",
-            "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+            "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            "androidx.multidex:multidex:$multidexVersion"
 
     // RendererRecyclerViewAdapter
     api "com.github.vivchar:RendererRecyclerViewAdapter:$rendererRecyclerViewAdapterVersion"
@@ -120,6 +123,8 @@ dependencies {
     // ImagePicker
     api "com.github.dhaval2404:imagepicker:$imagePickerVersion"
 
+    api "com.redmadrobot:input-mask-android:$inputMaskVersion"
+
     // Test dependencies
     testImplementation "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
     testImplementation "io.mockk:mockk:$mockkVersion"
@@ -132,7 +137,7 @@ dependencies {
 }
 
 publish {
-    version = "6.4.3"
+    version = "6.4.4"
     group = "com.thejuki"
     userOrg = 'thejuki'
     artifactId = 'k-form-master'

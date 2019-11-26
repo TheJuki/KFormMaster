@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.github.dhaval2404.imagepicker.constant.ImageProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.redmadrobot.inputmask.MaskedTextChangedListener.ValueListener
+import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.*
 import com.thejuki.kformmaster.widget.FormElementMargins
@@ -32,6 +34,7 @@ import kotlinx.android.synthetic.main.bottomsheet_image.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
+
 
 /**
  * Fullscreen Form Activity
@@ -290,7 +293,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             phone(Phone.ordinal) {
                 title = getString(R.string.Phone)
-                value = "+8801712345678"
+                value = "123-456-7890"
                 rightToLeft = false
                 displayDivider = false
                 maxLength = 100
@@ -300,8 +303,17 @@ class FullscreenFormActivity : AppCompatActivity() {
                 clearable = true
                 clearOnFocus = false
                 valueObservers.add { newValue, element ->
-                    Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
+                    //Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
+                inputMaskOptions = InputMaskOptions(primaryFormat = "+1 ([000]) [000]-[0000]",
+                        affinityCalculationStrategy = AffinityCalculationStrategy.PREFIX,
+                        valueListener = object : ValueListener {
+                            override fun onTextChanged(maskFilled: Boolean, extractedValue: String, formattedValue: String) {
+                                Toast.makeText(this@FullscreenFormActivity,
+                                        "Extracted Value: $extractedValue\nFormatted Value: $formattedValue", LENGTH_SHORT).show()
+                            }
+                        }
+                )
             }
             header { title = getString(R.string.FamilyInfo); collapsible = true }
             text(Location.ordinal) {

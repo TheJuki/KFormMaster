@@ -8,10 +8,12 @@ import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import com.redmadrobot.inputmask.MaskedTextChangedListener.Companion.installOn
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.BaseFormElement
@@ -57,6 +59,25 @@ abstract class BaseFormViewBinder {
 
         formElement.itemView?.setOnTouchListener(onTouchListener)
         formElement.editView?.setOnTouchListener(onTouchListener)
+
+        if (formElement.editView != null
+                && formElement.editView is EditText
+                && formElement.inputMaskOptions != null) {
+            formElement.inputMaskOptions?.let {
+                val maskedTextChangedListener = installOn(
+                        formElement.editView as EditText,
+                        it.primaryFormat,
+                        it.affineFormats,
+                        it.customNotations,
+                        it.affinityCalculationStrategy,
+                        it.autocomplete,
+                        it.listener,
+                        it.valueListener
+                )
+
+                maskedTextChangedListener.rightToLeft = it.rightToLeft
+            }
+        }
     }
 
     /**

@@ -34,6 +34,7 @@ import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.item.ContactItem
 import com.thejuki.kformmaster.model.FormEmailEditTextElement
 import com.thejuki.kformmaster.model.FormImageElement
+import com.thejuki.kformmaster.model.FormPhoneEditTextElement
 import com.thejuki.kformmaster.token.ItemsCompletionView
 import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
@@ -283,7 +284,7 @@ class FormInstrumentedTest {
                 .check(matches(isDisplayed()))
 
         // Check if the new value was set in the model
-        assertTrue(email.value == newEmail)
+        assertEquals(newEmail, email.value)
 
         // Check if the form is invalid now
         assertFalse(formBuildHelper.isValidForm)
@@ -315,7 +316,7 @@ class FormInstrumentedTest {
                 .check(matches(isDisplayed()))
 
         // Check if the new value was set in the model
-        assertTrue(email.value == newEmail)
+        assertEquals(newEmail, email.value)
 
         // Check if the form is valid now
         assertTrue(formBuildHelper.isValidForm)
@@ -332,6 +333,31 @@ class FormInstrumentedTest {
         // Check if the error was removed in the UI
         onView(withText("Invalid email!"))
                 .check(isNotDisplayed())
+    }
+
+    @Test
+    fun phone_IsFormatted() {
+        val formBuildHelper = getFormBuildHelper()
+
+        // Get phone form element
+        val phone = formBuildHelper.getFormElement<FormPhoneEditTextElement>(FormActivityTest.Tag.Phone.ordinal)
+
+        // Scroll to Phone text
+        onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(4))
+
+        // Set a new phone number
+        val newPhone = "555 123 9999"
+
+        onView(allOf(`is`(instanceOf(AppCompatEditText::class.java)),
+                hasTextViewInputType(InputType.TYPE_CLASS_PHONE or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)))
+                .perform(replaceText(newPhone))
+
+        // Check if the new value was formatted in the UI
+        onView(withText("+1 (555) 123-9999"))
+                .check(matches(isDisplayed()))
+
+        // Check if the new value was formatted in the model
+        assertEquals("+1 (555) 123-9999", phone.value)
     }
 
     @Test
