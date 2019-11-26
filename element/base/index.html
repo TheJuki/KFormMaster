@@ -480,6 +480,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#input-mask-options" class="md-nav__link">
+    Input Mask Options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hint" class="md-nav__link">
     Hint
   </a>
@@ -1216,6 +1223,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#input-mask-options" class="md-nav__link">
+    Input Mask Options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hint" class="md-nav__link">
     Hint
   </a>
@@ -1597,6 +1611,14 @@ Setting this will override the EditText form element's IME Options.
 If EditorInfo.IME_ACTION_DONE is used, tapping Done on the keyboard will update the form element value.</p>
 <div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
     <span class="n">imeOptions</span> <span class="p">=</span> <span class="n">EditorInfo</span><span class="p">.</span><span class="n">IME_ACTION_DONE</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="input-mask-options">Input Mask Options<a class="headerlink" href="#input-mask-options" title="Permanent link">&para;</a></h2>
+<p>By default edit text fields will not have any input mask format. Setting an input mask format will format the text field for the set value and as you type.</p>
+<div class="codehilite"><pre><span></span><span class="n">phone</span> <span class="p">{</span>
+    <span class="n">inputMaskOptions</span> <span class="p">=</span> <span class="n">InputMaskOptions</span><span class="p">(</span><span class="n">primaryFormat</span> <span class="p">=</span> <span class="s">&quot;+1 ([000]) [000]-[0000]&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
