@@ -1,5 +1,8 @@
 # Change Log
 
+## [6.4.4](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.4)
+- #151 Added Input Mask Options
+
 ## [6.4.3](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.3)
 - Add clickable and focusable booleans
 - Add onClick, onFocus, onTouchUp, and onTouchDown Units
