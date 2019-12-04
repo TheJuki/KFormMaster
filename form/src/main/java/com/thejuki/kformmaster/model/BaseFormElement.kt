@@ -1,11 +1,13 @@
 package com.thejuki.kformmaster.model
 
+import android.net.Uri
 import android.text.InputFilter
 import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.*
@@ -16,6 +18,8 @@ import com.thejuki.kformmaster.helper.FormDsl
 import com.thejuki.kformmaster.helper.InputMaskOptions
 import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
+import java.io.File
+import java.net.URI
 import kotlin.properties.Delegates
 
 
@@ -89,6 +93,9 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 it.text = value?.toString()
             } else if (it is SegmentedGroup) {
                 it.checkChild(value?.toString())
+            } else if (it is ImageView && value is String) {
+                val file = File(URI(value?.toString()))
+                it.setImageURI(Uri.fromFile(file))
             }
         }
     }
