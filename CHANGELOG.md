@@ -1,5 +1,9 @@
 # Change Log
 
+## [6.4.5](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.5)
+- #158 Add ability to change the image of the ImageView by changing value
+- #152 Add support for loading images from a data: string including SVGs in the ImageView
+
 ## [6.4.4](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.4)
 - #151 Added Input Mask Options
 
