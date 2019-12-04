@@ -1,25 +1,32 @@
 package com.thejuki.kformmaster.model
 
-import android.net.Uri
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.PictureDrawable
 import android.text.InputFilter
 import android.text.InputType
+import android.util.Base64
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.webkit.URLUtil
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.*
+import androidx.core.content.ContextCompat
+import com.caverock.androidsvg.SVG
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import com.thejuki.kformmaster.extensions.dpToPx
+import com.thejuki.kformmaster.extensions.setImage
 import com.thejuki.kformmaster.extensions.setMargins
 import com.thejuki.kformmaster.helper.FormDsl
 import com.thejuki.kformmaster.helper.InputMaskOptions
 import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
 import java.io.File
-import java.net.URI
+import java.nio.charset.Charset
 import kotlin.properties.Delegates
 
 
@@ -93,11 +100,58 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 it.text = value?.toString()
             } else if (it is SegmentedGroup) {
                 it.checkChild(value?.toString())
-            } else if (it is ImageView && value is String) {
-                val file = File(URI(value?.toString()))
-                it.setImageURI(Uri.fromFile(file))
+            } else if (it is ImageView) {
+                if (this is FormImageElement) {
+                    var defaultImageDrawable: Drawable? = null
+
+                    this.defaultImage?.let { image ->
+                        defaultImageDrawable = ContextCompat.getDrawable(it.context, image)
+                    }
+
+                    if (this.value != null) {
+                        it.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+
+                        if (URLUtil.isFileUrl(this.valueAsString)) {
+                            val imageFile = File(this.valueAsString)
+                            it.setImage(imageFile, this.imageTransformation, defaultImageDrawable)
+                            { this.onInitialImageLoaded?.invoke() }
+                        } else if (URLUtil.isNetworkUrl(this.valueAsString)) {
+                            it.setImage(this.valueAsString, this.imageTransformation, defaultImageDrawable)
+                            { this.onInitialImageLoaded?.invoke() }
+                        } else if (URLUtil.isDataUrl(this.valueAsString)) {
+                            val pureBase64Encoded = this.valueAsString.substring(this.valueAsString.indexOf(",") + 1)
+                            val decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT)
+
+                            if (this.valueAsString.substring(0, this.valueAsString.indexOf(",")) == "data:image/svg+xml;base64") {
+                                it.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+                                val decodedString = String(decodedBytes, Charset.forName("UTF-8"))
+                                val pictureDrawable = PictureDrawable(SVG.getFromString(decodedString).renderToPicture())
+                                it.setImageDrawable(pictureDrawable)
+                            } else {
+                                var decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+                                this.imageTransformation?.let { transformation ->
+                                    decodedBitmap = transformation.transform(decodedBitmap)
+                                }
+                                it.setImageBitmap(decodedBitmap)
+                            }
+
+                            this.onInitialImageLoaded?.invoke()
+                        } else {
+                            if (this.defaultImage != null) {
+                                it.setImage(this.defaultImage, this.imageTransformation, defaultImageDrawable)
+                                { this.onInitialImageLoaded?.invoke() }
+                            }
+                        }
+                    } else {
+                        if (this.defaultImage != null) {
+                            it.setImage(this.defaultImage, this.imageTransformation, defaultImageDrawable)
+                            { this.onInitialImageLoaded?.invoke() }
+                        }
+                    }
+                }
             }
         }
+
     }
 
     /**
@@ -335,7 +389,8 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      * Form element property, error changed
      * Left intentionally blank in the base class.
      */
-    protected open fun onErrorChanged() { /* intentionally blank */ }
+    protected open fun onErrorChanged() { /* intentionally blank */
+    }
 
     /**
      * Form Element Required
@@ -662,7 +717,8 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      * Form element property, enabled changed
      * Left intentionally blank in the base class
      */
-    protected open fun onEnabled(enable: Boolean) { /* intentionally blank */ }
+    protected open fun onEnabled(enable: Boolean) { /* intentionally blank */
+    }
 
     /**
      * Form Element Value String value

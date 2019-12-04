@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 40
-        versionName "6.4.4"
+        versionCode 42
+        versionName "6.4.5"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -94,6 +94,7 @@ ext {
     mockkVersion = '1.9.3'
     log4jVersion = '2.12.1'
     inputMaskVersion = '5.0.0'
+    androidSVGVersion = '1.4'
 }
 
 dependencies {
@@ -123,7 +124,11 @@ dependencies {
     // ImagePicker
     api "com.github.dhaval2404:imagepicker:$imagePickerVersion"
 
+    // Input mask
     api "com.redmadrobot:input-mask-android:$inputMaskVersion"
+
+    // Android SVG
+    implementation "com.caverock:androidsvg-aar:$androidSVGVersion"
 
     // Test dependencies
     testImplementation "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
@@ -137,7 +142,7 @@ dependencies {
 }
 
 publish {
-    version = "6.4.4"
+    version = "6.4.5"
     group = "com.thejuki"
     userOrg = 'thejuki'
     artifactId = 'k-form-master'
