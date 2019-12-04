@@ -11,7 +11,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 42
-        versionName "6.4.5"
+        versionName "6.4.6"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -142,7 +142,7 @@ dependencies {
 }
 
 publish {
-    version = "6.4.5"
+    version = "6.4.6"
     group = "com.thejuki"
     userOrg = 'thejuki'
     artifactId = 'k-form-master'

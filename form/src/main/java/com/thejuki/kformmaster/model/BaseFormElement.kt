@@ -25,7 +25,6 @@ import com.thejuki.kformmaster.helper.FormDsl
 import com.thejuki.kformmaster.helper.InputMaskOptions
 import com.thejuki.kformmaster.widget.FormElementMargins
 import com.thejuki.kformmaster.widget.SegmentedGroup
-import java.io.File
 import java.nio.charset.Charset
 import kotlin.properties.Delegates
 
@@ -111,11 +110,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     if (this.value != null) {
                         it.setLayerType(View.LAYER_TYPE_HARDWARE, null)
 
-                        if (URLUtil.isFileUrl(this.valueAsString)) {
-                            val imageFile = File(this.valueAsString)
-                            it.setImage(imageFile, this.imageTransformation, defaultImageDrawable)
-                            { this.onInitialImageLoaded?.invoke() }
-                        } else if (URLUtil.isNetworkUrl(this.valueAsString)) {
+                        if (URLUtil.isFileUrl(this.valueAsString) || URLUtil.isNetworkUrl(this.valueAsString)) {
                             it.setImage(this.valueAsString, this.imageTransformation, defaultImageDrawable)
                             { this.onInitialImageLoaded?.invoke() }
                         } else if (URLUtil.isDataUrl(this.valueAsString)) {

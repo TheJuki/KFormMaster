@@ -24,7 +24,6 @@ import com.thejuki.kformmaster.extensions.setImage
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormImageElement
 import com.thejuki.kformmaster.state.FormImageViewState
-import java.io.File
 import java.nio.charset.Charset
 
 
@@ -61,11 +60,7 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
         if (model.value != null) {
             imageView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
 
-            if (URLUtil.isFileUrl(model.valueAsString)) {
-                val imageFile = File(model.valueAsString)
-                imageView.setImage(imageFile, model.imageTransformation, defaultImageDrawable)
-                { model.onInitialImageLoaded?.invoke() }
-            } else if (URLUtil.isNetworkUrl(model.valueAsString)) {
+            if (URLUtil.isFileUrl(model.valueAsString) || URLUtil.isNetworkUrl(model.valueAsString)) {
                 imageView.setImage(model.valueAsString, model.imageTransformation, defaultImageDrawable)
                 { model.onInitialImageLoaded?.invoke() }
             } else if (URLUtil.isDataUrl(model.valueAsString)) {
