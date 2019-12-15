@@ -3,6 +3,7 @@ package com.thejuki.kformmaster.view
 import android.app.Dialog
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.drawable.Icon
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MotionEvent
@@ -18,6 +19,7 @@ import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.widget.ClearableEditText
+import com.thejuki.kformmaster.widget.IconTextView
 
 
 /**
@@ -76,6 +78,20 @@ abstract class BaseFormViewBinder {
                 )
 
                 maskedTextChangedListener.rightToLeft = it.rightToLeft
+            }
+        }
+
+        formElement.titleView?.let {
+            if (it is IconTextView) {
+                it.iconLocation = formElement.titleIconLocation
+                it.icon = formElement.titleIcon
+                it.iconPadding = formElement.titleIconPadding
+                it.listener = object : IconTextView.Listener {
+                    override fun clickedIcon() {
+                        formElement.onTitleIconClick?.invoke()
+                    }
+                }
+                it.reInitIcon()
             }
         }
     }

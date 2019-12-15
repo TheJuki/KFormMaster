@@ -100,6 +100,16 @@ text {
 }
 ```
 
+## On Title Icon Click Unit
+This unit is invoked when the title's icon is clicked.
+```kotlin
+text {
+     onTitleIconClick = {
+        Toast.makeText(this@FormActivity, "Icon clicked", LENGTH_SHORT).show()
+    }
+}
+```
+
 ## Options
 The list of options is used in form elements such as the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. 
 ```kotlin
@@ -243,6 +253,36 @@ Setting this to true will display a clear button (X) to set the value to null.
 ```kotlin
 text {
     clearable = true
+}
+```
+
+## Title Icon
+By default this is null.
+Setting this will set and display the title icon drawable (null will hide the icon).
+
+```kotlin
+text {
+    titleIcon = ContextCompat.getDrawable(this@FormActivity, R.drawable.ic_email_blue_24dp)
+}
+```
+
+## Title Icon Location
+By default this is IconTextView.Location.LEFT.
+Setting this set the title icon location (LEFT or RIGHT of the title).
+
+```kotlin
+text {
+    titleIconLocation = IconTextView.Location.RIGHT
+}
+```
+
+## Title Icon Padding
+By default this is 20.
+Setting this set the padding between the title text and icon.
+
+```kotlin
+text {
+    titleIconPadding = 25
 }
 ```
 

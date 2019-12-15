@@ -24,6 +24,7 @@ import com.thejuki.kformmaster.extensions.setMargins
 import com.thejuki.kformmaster.helper.FormDsl
 import com.thejuki.kformmaster.helper.InputMaskOptions
 import com.thejuki.kformmaster.widget.FormElementMargins
+import com.thejuki.kformmaster.widget.IconTextView
 import com.thejuki.kformmaster.widget.SegmentedGroup
 import java.nio.charset.Charset
 import kotlin.properties.Delegates
@@ -83,6 +84,11 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
      * Form Element onTouchDown Unit
      */
     open var onTouchDown: (() -> Unit)? = null
+
+    /**
+     * Form Element onTitleIconClick Unit
+     */
+    open var onTitleIconClick: (() -> Unit)? = null
 
     /**
      * Form Element Value
@@ -402,6 +408,51 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             editView?.let {
                 if (it is com.thejuki.kformmaster.widget.ClearableEditText) {
                     it.displayClear = value
+                }
+            }
+        }
+
+    /**
+     * Form Element Title Icon
+     * Setting this will set and display the title icon drawable (null will hide the icon). By default, no icon is displayed.
+     */
+    var titleIcon: Drawable? = null
+        set(value) {
+            field = value
+            titleView?.let {
+                if (it is IconTextView) {
+                    it.icon = value
+                    it.reInitIcon()
+                }
+            }
+        }
+
+    /**
+     * Form Element Title Icon Location
+     * Setting this set the title icon location.
+     */
+    var titleIconLocation: IconTextView.Location = IconTextView.Location.LEFT
+        set(value) {
+            field = value
+            titleView?.let {
+                if (it is IconTextView) {
+                    it.iconLocation = value
+                    it.reInitIcon()
+                }
+            }
+        }
+
+    /**
+     * Form Element Title Icon Padding
+     * Setting this set the padding between the title text and icon.
+     */
+    var titleIconPadding: Int = 20
+        set(value) {
+            field = value
+            titleView?.let {
+                if (it is IconTextView) {
+                    it.iconPadding = value
+                    it.reInitIcon()
                 }
             }
         }

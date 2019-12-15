@@ -5,6 +5,14 @@ import com.redmadrobot.inputmask.MaskedTextChangedListener
 import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import com.redmadrobot.inputmask.model.Notation
 
+/**
+ * Input Mask Options
+ *
+ * This class provides each option for configuring the input mask.
+ *
+ * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
+ * @version 1.0
+ */
 class InputMaskOptions(
         var primaryFormat: String,
         var affineFormats: List<String> = emptyList(),

@@ -15,6 +15,7 @@ import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.github.dhaval2404.imagepicker.constant.ImageProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -23,6 +24,7 @@ import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.*
 import com.thejuki.kformmaster.widget.FormElementMargins
+import com.thejuki.kformmaster.widget.IconTextView
 import com.thejuki.kformmasterexample.FullscreenFormActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
@@ -252,6 +254,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.email)
                 centerText = true
                 displayDivider = false
+                titleIcon = ContextCompat.getDrawable(this@FullscreenFormActivity, R.drawable.ic_email_blue_24dp)
+                titleIconLocation = IconTextView.Location.LEFT
+                titleIconPadding = 20
                 hint = getString(R.string.email_hint)
                 value = "mail@mail.com"
                 maxLines = 3
@@ -269,9 +274,13 @@ class FullscreenFormActivity : AppCompatActivity() {
                 validityCheck = {
                     if (value != null) android.util.Patterns.EMAIL_ADDRESS.matcher(value).matches() else false
                 }
+                onTitleIconClick = {
+                    Toast.makeText(this@FullscreenFormActivity, "Icon clicked", LENGTH_SHORT).show()
+                }
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
+
             }
             password(Password.ordinal) {
                 title = getString(R.string.password)

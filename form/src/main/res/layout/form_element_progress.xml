@@ -24,7 +24,7 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.thejuki.kformmaster.widget.IconTextView
             android:id="@+id/formElementTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
