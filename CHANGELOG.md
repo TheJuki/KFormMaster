@@ -1,5 +1,8 @@
 # Change Log
 
+## [6.4.8](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.8)
+- #129 Add icon option to title
+
 ## [6.4.7](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.7)
 - #161 Fix layout weights for the switch and checkbox elements
 
