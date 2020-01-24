@@ -24,6 +24,7 @@ import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.*
 import com.thejuki.kformmaster.widget.FormElementMargins
+import com.thejuki.kformmaster.widget.FormElementPadding
 import com.thejuki.kformmaster.widget.IconTextView
 import com.thejuki.kformmasterexample.FullscreenFormActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
@@ -160,10 +161,10 @@ class FullscreenFormActivity : AppCompatActivity() {
             ListItem(id = 5, name = "Apple")
     )
 
-    private val fruitsSegmented = listOf(SegmentedListItem(id = 1, name = "Banana"),
-            SegmentedListItem(id = 2, name = "Orange"),
-            SegmentedListItem(id = 3, name = "Avocado"),
-            SegmentedListItem(id = 4, name = "Apple")
+    private val fruitsSegmented = listOf(SegmentedListItem(id = 1, name = "Banana", drawableDirection = FormSegmentedElement.DrawableDirection.Left),
+            SegmentedListItem(id = 2, name = "Orange", drawableDirection = FormSegmentedElement.DrawableDirection.Left),
+            SegmentedListItem(id = 3, name = "Avocado", drawableDirection = FormSegmentedElement.DrawableDirection.Left),
+            SegmentedListItem(id = 4, name = "Apple", drawableDirection = FormSegmentedElement.DrawableDirection.Left)
     )
 
     private enum class Tag {
@@ -255,8 +256,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 centerText = true
                 displayDivider = false
                 titleIcon = ContextCompat.getDrawable(this@FullscreenFormActivity, R.drawable.ic_email_blue_24dp)
-                titleIconLocation = IconTextView.Location.LEFT
-                titleIconPadding = 20
+                titleIconLocation = IconTextView.Location.RIGHT
+                titleIconPadding = 5
+                titlePadding = FormElementPadding(0, 0, 80, 0)
                 hint = getString(R.string.email_hint)
                 value = "mail@mail.com"
                 maxLines = 3
@@ -578,7 +580,6 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 displayTitle = true
                 horizontal = true
-                fillSpace = true
                 marginDp = 5
                 margins = FormElementMargins(16, 16, 16, 0)
                 layoutPaddingBottom = 16
@@ -588,7 +589,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 checkedTextColor = Color.WHITE
                 cornerRadius = 0f
                 textSize = 12f
-                padding = 10
+                radioButtonPadding = 10
                 drawableDirection = FormSegmentedElement.DrawableDirection.Top
                 value = fruitsSegmented[0]
                 required = true
@@ -599,6 +600,11 @@ class FullscreenFormActivity : AppCompatActivity() {
             button(ButtonElement.ordinal) {
                 value = getString(R.string.Button)
                 displayDivider = false
+                titleIcon = ContextCompat.getDrawable(this@FullscreenFormActivity, R.drawable.ic_email_blue_24dp)
+                titleIconLocation = IconTextView.Location.LEFT
+                titleIconPadding = 5
+                padding = FormElementPadding(165, 0, 165, 0)
+                centerText = true
                 enabled = true
                 valueObservers.add { newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@FullscreenFormActivity).create()
@@ -612,6 +618,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT).show()
                         dateToDeleteElement.clear()
                         formBuilder.onValueChanged(dateToDeleteElement)
+
                     }
                     confirmAlert.setButton(AlertDialog.BUTTON_NEGATIVE, this@FullscreenFormActivity.getString(android.R.string.cancel)) { _, _ ->
                     }

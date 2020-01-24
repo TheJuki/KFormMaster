@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.*
-import android.os.Build
 import android.util.AttributeSet
 import android.util.StateSet
 import android.util.TypedValue
@@ -209,8 +208,8 @@ class SegmentedGroup : RadioGroup {
             // If this is the last view, don't set LayoutParams
             if (i == count - 1) break
 
-            val initParams = child.layoutParams as RadioGroup.LayoutParams
-            val params = RadioGroup.LayoutParams(initParams.width, initParams.height, initParams.weight)
+            val initParams = child.layoutParams as LayoutParams
+            val params = LayoutParams(initParams.width, initParams.height, initParams.weight)
             // Check orientation for proper margins
             if (orientation == LinearLayout.HORIZONTAL) {
                 params.setMargins(0, 0, -mMarginDp, 0)
@@ -280,12 +279,7 @@ class SegmentedGroup : RadioGroup {
             mDrawableMap[view.getId()] = transitionDrawable
 
             //Set button background
-            if (Build.VERSION.SDK_INT >= 16) {
-                view.setBackground(stateListDrawable)
-            } else {
-                @Suppress("DEPRECATION")
-                view.setBackgroundDrawable(stateListDrawable)
-            }
+            view.setBackground(stateListDrawable)
 
             super.setOnCheckedChangeListener { group, checkedId ->
                 val current = mDrawableMap[checkedId]
@@ -310,7 +304,7 @@ class SegmentedGroup : RadioGroup {
         mDrawableMap.remove(child.id)
     }
 
-    override fun setOnCheckedChangeListener(listener: RadioGroup.OnCheckedChangeListener) {
+    override fun setOnCheckedChangeListener(listener: OnCheckedChangeListener) {
         mCheckedChangeListener = listener
     }
 

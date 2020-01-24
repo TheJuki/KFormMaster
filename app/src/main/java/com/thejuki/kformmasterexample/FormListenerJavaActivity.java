@@ -314,6 +314,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         elements.add(segmented);
 
         FormButtonElement button = new FormButtonElement(Tag.ButtonElement.ordinal());
+        button.setCenterText(true);
         button.setValue(getString(R.string.Button));
         button.getValueObservers().add((newValue, element) -> {
             clearDate();

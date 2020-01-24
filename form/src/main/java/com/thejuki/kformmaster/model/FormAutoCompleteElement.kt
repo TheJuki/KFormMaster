@@ -1,7 +1,7 @@
 package com.thejuki.kformmaster.model
 
 import android.widget.ArrayAdapter
-import androidx.appcompat.widget.AppCompatAutoCompleteTextView
+import android.widget.TextView
 
 /**
  * Form AutoComplete Element
@@ -14,8 +14,7 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 class FormAutoCompleteElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     override fun clear() {
-        this.value = null
-        (this.editView as? AppCompatAutoCompleteTextView)?.setText("")
+        this.setValue(null)
     }
 
     /**
@@ -44,8 +43,16 @@ class FormAutoCompleteElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
      * Sets the value and typedString
      */
     override fun setValue(value: Any?): BaseFormElement<T> {
-        typedString = value?.toString()
+        typedString = value?.toString() ?: ""
 
         return super.setValue(value)
+    }
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is TextView) {
+                it.text = typedString
+            }
+        }
     }
 }

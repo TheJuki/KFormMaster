@@ -14,7 +14,6 @@ open class FormSwitchElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     override fun clear() {
         this.value = offValue
-        (this.editView as? SwitchCompat)?.isChecked = false
     }
 
     /**
@@ -34,5 +33,13 @@ open class FormSwitchElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
         if (onValue == null || value == null)
             return false
         return onValue == value
+    }
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is SwitchCompat) {
+                it.isChecked = isOn()
+            }
+        }
     }
 }

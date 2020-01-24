@@ -14,7 +14,6 @@ open class FormCheckBoxElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     override fun clear() {
         this.value = unCheckedValue
-        (this.editView as? AppCompatCheckBox)?.isChecked = false
     }
 
     /**
@@ -34,5 +33,13 @@ open class FormCheckBoxElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
         if (checkedValue == null || value == null)
             return false
         return checkedValue == value
+    }
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is AppCompatCheckBox) {
+                it.isChecked = isChecked()
+            }
+        }
     }
 }

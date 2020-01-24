@@ -61,8 +61,21 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     /**
      * Enable to fill the whole width
+     * Setting this to true will ignore radioButtonWidth and radioButtonHeight
      */
     var fillSpace: Boolean = false
+
+    /**
+     * Width of each radio button
+     * By default, this is null which does not set the width.
+     */
+    var radioButtonWidth: Int? = null
+
+    /**
+     * Height of each radio button
+     * By default, this is null which does not set the height.
+     */
+    var radioButtonHeight: Int? = null
 
     /**
      * Form Element Options
@@ -162,7 +175,7 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     /**
      * Padding for each radio button
      */
-    var padding: Int? = null
+    var radioButtonPadding: Int? = null
         set(value) {
             field = value
             editView?.let {
@@ -194,25 +207,35 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                     rb.isChecked = item == this@FormSegmentedElement.value
 
                     if (item is SegmentedDrawable) {
-                        if (drawableDirection == DrawableDirection.Center) {
+                        val direction = item.drawableDirection ?: this.drawableDirection
+
+                        if (direction == DrawableDirection.Center) {
                             rb.text = null
                             rb.buttonCenterDrawable = ResourcesCompat.getDrawable(it.context.resources, item.drawableRes
                                     ?: 0, null)?.mutate()
                         } else {
                             rb.setCompoundDrawablesWithIntrinsicBounds(
-                                    if (drawableDirection == DrawableDirection.Left)
+                                    if (direction == DrawableDirection.Left)
                                         item.drawableRes ?: 0 else 0,
-                                    if (drawableDirection == DrawableDirection.Top)
+                                    if (direction == DrawableDirection.Top)
                                         item.drawableRes ?: 0 else 0,
-                                    if (drawableDirection == DrawableDirection.Right)
+                                    if (direction == DrawableDirection.Right)
                                         item.drawableRes ?: 0 else 0,
-                                    if (drawableDirection == DrawableDirection.Bottom)
+                                    if (direction == DrawableDirection.Bottom)
                                         item.drawableRes ?: 0 else 0
                             )
                         }
                     }
 
                     rb.isEnabled = this@FormSegmentedElement.enabled
+
+                    radioButtonHeight?.let { height ->
+                        rb.height = height
+                    }
+
+                    radioButtonWidth?.let { width ->
+                        rb.width = width
+                    }
 
                     if (fillSpace) {
                         it.addView(rb, RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT,

@@ -14,7 +14,6 @@ open class FormSliderElement(tag: Int = -1) : BaseFormElement<Int>(tag) {
 
     override fun clear() {
         this.value = min
-        (this.editView as? AppCompatSeekBar)?.progress = min
     }
 
     /**
@@ -52,4 +51,12 @@ open class FormSliderElement(tag: Int = -1) : BaseFormElement<Int>(tag) {
         get() {
             return if (field != null && field ?: 0 <= 0) 1 else field
         }
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is AppCompatSeekBar) {
+                it.progress = value ?: this.min
+            }
+        }
+    }
 }

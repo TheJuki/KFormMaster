@@ -1,32 +1,21 @@
 package com.thejuki.kformmaster.model
 
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.PictureDrawable
 import android.text.InputFilter
 import android.text.InputType
-import android.util.Base64
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.webkit.URLUtil
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.*
-import androidx.core.content.ContextCompat
-import com.caverock.androidsvg.SVG
 import com.github.vivchar.rendererrecyclerviewadapter.ViewModel
 import com.thejuki.kformmaster.extensions.dpToPx
-import com.thejuki.kformmaster.extensions.setImage
 import com.thejuki.kformmaster.extensions.setMargins
 import com.thejuki.kformmaster.helper.FormDsl
 import com.thejuki.kformmaster.helper.InputMaskOptions
-import com.thejuki.kformmaster.widget.FormElementMargins
-import com.thejuki.kformmaster.widget.IconTextView
-import com.thejuki.kformmaster.widget.SegmentedGroup
-import java.nio.charset.Charset
+import com.thejuki.kformmaster.widget.*
 import kotlin.properties.Delegates
 
 
@@ -96,63 +85,8 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var value: T? by Delegates.observable<T?>(null) { _, _, newValue ->
         valueObservers.forEach { it(newValue, this) }
         editView?.let {
-            if (it is AppCompatEditText && it.text.toString() != value?.toString()) {
-                it.setText(value?.toString())
-
-            } else if (it is TextView && value is String &&
-                    it.text.toString() != value?.toString() &&
-                    it !is SwitchCompat && it !is AppCompatCheckBox) {
-                it.text = value?.toString()
-            } else if (it is SegmentedGroup) {
-                it.checkChild(value?.toString())
-            } else if (it is ImageView) {
-                if (this is FormImageElement) {
-                    var defaultImageDrawable: Drawable? = null
-
-                    this.defaultImage?.let { image ->
-                        defaultImageDrawable = ContextCompat.getDrawable(it.context, image)
-                    }
-
-                    if (this.value != null) {
-                        it.setLayerType(View.LAYER_TYPE_HARDWARE, null)
-
-                        if (URLUtil.isFileUrl(this.valueAsString) || URLUtil.isNetworkUrl(this.valueAsString)) {
-                            it.setImage(this.valueAsString, this.imageTransformation, defaultImageDrawable)
-                            { this.onInitialImageLoaded?.invoke() }
-                        } else if (URLUtil.isDataUrl(this.valueAsString)) {
-                            val pureBase64Encoded = this.valueAsString.substring(this.valueAsString.indexOf(",") + 1)
-                            val decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT)
-
-                            if (this.valueAsString.substring(0, this.valueAsString.indexOf(",")) == "data:image/svg+xml;base64") {
-                                it.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
-                                val decodedString = String(decodedBytes, Charset.forName("UTF-8"))
-                                val pictureDrawable = PictureDrawable(SVG.getFromString(decodedString).renderToPicture())
-                                it.setImageDrawable(pictureDrawable)
-                            } else {
-                                var decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
-                                this.imageTransformation?.let { transformation ->
-                                    decodedBitmap = transformation.transform(decodedBitmap)
-                                }
-                                it.setImageBitmap(decodedBitmap)
-                            }
-
-                            this.onInitialImageLoaded?.invoke()
-                        } else {
-                            if (this.defaultImage != null) {
-                                it.setImage(this.defaultImage, this.imageTransformation, defaultImageDrawable)
-                                { this.onInitialImageLoaded?.invoke() }
-                            }
-                        }
-                    } else {
-                        if (this.defaultImage != null) {
-                            it.setImage(this.defaultImage, this.imageTransformation, defaultImageDrawable)
-                            { this.onInitialImageLoaded?.invoke() }
-                        }
-                    }
-                }
-            }
+            displayNewValue()
         }
-
     }
 
     /**
@@ -216,6 +150,8 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                 } else if (it is SegmentedGroup) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                } else if (it is IconButton) {
+                    it.gravity = if (rightToLeft) (Gravity.CENTER_VERTICAL or Gravity.END) else (Gravity.CENTER_VERTICAL or Gravity.START)
                 }
             }
         }
@@ -230,6 +166,62 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             itemView?.let {
                 if (layoutPaddingBottom != null) {
                     it.setPadding(0, 0, 0, layoutPaddingBottom.dpToPx())
+                }
+            }
+        }
+
+
+    /**
+     * Title Padding
+     */
+    var titlePadding: FormElementPadding? = null
+        set(value) {
+            field = value
+            titleView?.let {
+                if (titlePadding != null) {
+                    it.setPadding(titlePadding?.left.dpToPx(),
+                            titlePadding?.top.dpToPx(),
+                            titlePadding?.right.dpToPx(),
+                            titlePadding?.bottom.dpToPx())
+                }
+            }
+        }
+
+
+    /**
+     * Form Element Padding
+     */
+    var padding: FormElementPadding? = null
+        set(value) {
+            field = value
+
+            if (!(editView is SwitchCompat || editView is AppCompatCheckBox)) {
+                editView?.let {
+                    if (padding != null) {
+                        it.setPadding(padding?.left.dpToPx(),
+                                padding?.top.dpToPx(),
+                                padding?.right.dpToPx(),
+                                padding?.bottom.dpToPx())
+                    }
+                }
+            } else {
+                mainLayoutView?.let {
+                    if (padding != null) {
+                        it.setPadding(padding?.left.dpToPx(),
+                                padding?.top.dpToPx(),
+                                padding?.right.dpToPx(),
+                                padding?.bottom.dpToPx())
+                    }
+                }
+            }
+            if (this is FormHeader) {
+                titleView?.let {
+                    if (padding != null) {
+                        it.setPadding(padding?.left.dpToPx(),
+                                padding?.top.dpToPx(),
+                                padding?.right.dpToPx(),
+                                padding?.bottom.dpToPx())
+                    }
                 }
             }
         }
@@ -514,6 +506,12 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     } else {
                         it.gravity = if (rightToLeft) Gravity.END else Gravity.START
                     }
+                } else if (it is IconButton) {
+                    if (centerText) {
+                        it.gravity = Gravity.CENTER
+                    } else {
+                        it.gravity = if (rightToLeft) (Gravity.CENTER_VERTICAL or Gravity.END) else (Gravity.CENTER_VERTICAL or Gravity.START)
+                    }
                 }
             }
         }
@@ -590,9 +588,15 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     if (hintTextColor != null) {
                         it.setHintTextColor(hintTextColor ?: 0)
                     }
-                } else if (it is AppCompatButton) {
+                } else if (it is IconButton) {
                     if (valueTextColor != null) {
                         it.setTextColor(valueTextColor ?: 0)
+                    }
+
+                    if (centerText) {
+                        it.gravity = Gravity.CENTER
+                    } else {
+                        it.gravity = if (rightToLeft) (Gravity.CENTER_VERTICAL or Gravity.END) else (Gravity.CENTER_VERTICAL or Gravity.START)
                     }
                 } else if (it is SegmentedGroup) {
                     it.gravity = if (rightToLeft) Gravity.END else Gravity.START
@@ -601,6 +605,15 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                                 margins?.top.dpToPx(),
                                 margins?.right.dpToPx(),
                                 margins?.bottom.dpToPx())
+                    }
+                }
+
+                if (!(it is SwitchCompat || it is AppCompatCheckBox)) {
+                    if (padding != null) {
+                        it.setPadding(padding?.left.dpToPx(),
+                                padding?.top.dpToPx(),
+                                padding?.right.dpToPx(),
+                                padding?.bottom.dpToPx())
                     }
                 }
             }
@@ -643,6 +656,20 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                     } else {
                         it.gravity = if (rightToLeft) Gravity.START else Gravity.END
                     }
+
+                    if (padding != null) {
+                        it.setPadding(padding?.left.dpToPx(),
+                                padding?.top.dpToPx(),
+                                padding?.right.dpToPx(),
+                                padding?.bottom.dpToPx())
+                    }
+                }
+
+                if (titlePadding != null) {
+                    it.setPadding(titlePadding?.left.dpToPx(),
+                            titlePadding?.top.dpToPx(),
+                            titlePadding?.right.dpToPx(),
+                            titlePadding?.bottom.dpToPx())
                 }
             }
         }
@@ -693,6 +720,13 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                                 margins?.top.dpToPx(),
                                 margins?.right.dpToPx(),
                                 margins?.bottom.dpToPx())
+                    }
+
+                    if (padding != null) {
+                        it.setPadding(padding?.left.dpToPx(),
+                                padding?.top.dpToPx(),
+                                padding?.right.dpToPx(),
+                                padding?.bottom.dpToPx())
                     }
                 }
             }
@@ -784,6 +818,17 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     open var validityCheck: () -> Boolean = {
         !required || (required && value != null &&
                 (value !is String || !(value as? String).isNullOrEmpty()))
+    }
+
+    /**
+     * Displays the new value in the edit view
+     */
+    open fun displayNewValue() {
+        editView?.let {
+            if (it is AppCompatEditText && it.text.toString() != valueAsString) {
+                it.setText(valueAsString)
+            }
+        }
     }
 
     /**

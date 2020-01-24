@@ -1,13 +1,23 @@
 package com.thejuki.kformmaster.model
 
 import android.app.AlertDialog
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.PictureDrawable
+import android.util.Base64
+import android.view.View
+import android.webkit.URLUtil
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import com.caverock.androidsvg.SVG
 import com.github.dhaval2404.imagepicker.constant.ImageProvider
 import com.squareup.picasso.Transformation
 import com.thejuki.kformmaster.R
+import com.thejuki.kformmaster.extensions.setImage
 import com.thejuki.kformmaster.helper.CircleTransform
 import com.thejuki.kformmaster.helper.ImagePickerOptions
 import java.io.File
+import java.nio.charset.Charset
 
 /**
  * Form Image Element
@@ -149,6 +159,55 @@ class FormImageElement(tag: Int = -1) : BaseFormElement<String>(tag) {
                 alertDialog.show()
             } else {
                 this.onClick?.invoke()
+            }
+        }
+    }
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is ImageView) {
+                var defaultImageDrawable: Drawable? = null
+
+                this.defaultImage?.let { image ->
+                    defaultImageDrawable = ContextCompat.getDrawable(it.context, image)
+                }
+
+                if (this.value != null) {
+                    it.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+
+                    if (URLUtil.isFileUrl(this.valueAsString) || URLUtil.isNetworkUrl(this.valueAsString)) {
+                        it.setImage(this.valueAsString, this.imageTransformation, defaultImageDrawable)
+                        { this.onInitialImageLoaded?.invoke() }
+                    } else if (URLUtil.isDataUrl(this.valueAsString)) {
+                        val pureBase64Encoded = this.valueAsString.substring(this.valueAsString.indexOf(",") + 1)
+                        val decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT)
+
+                        if (this.valueAsString.substring(0, this.valueAsString.indexOf(",")) == "data:image/svg+xml;base64") {
+                            it.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+                            val decodedString = String(decodedBytes, Charset.forName("UTF-8"))
+                            val pictureDrawable = PictureDrawable(SVG.getFromString(decodedString).renderToPicture())
+                            it.setImageDrawable(pictureDrawable)
+                        } else {
+                            var decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+                            this.imageTransformation?.let { transformation ->
+                                decodedBitmap = transformation.transform(decodedBitmap)
+                            }
+                            it.setImageBitmap(decodedBitmap)
+                        }
+
+                        this.onInitialImageLoaded?.invoke()
+                    } else {
+                        if (this.defaultImage != null) {
+                            it.setImage(this.defaultImage, this.imageTransformation, defaultImageDrawable)
+                            { this.onInitialImageLoaded?.invoke() }
+                        }
+                    }
+                } else {
+                    if (this.defaultImage != null) {
+                        it.setImage(this.defaultImage, this.imageTransformation, defaultImageDrawable)
+                        { this.onInitialImageLoaded?.invoke() }
+                    }
+                }
             }
         }
     }

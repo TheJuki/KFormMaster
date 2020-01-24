@@ -335,6 +335,7 @@ class FormFragment : Fragment() {
                 }
             }
             button(ButtonElement.ordinal) {
+                centerText = true
                 value = getString(R.string.Button)
                 enabled = true
                 valueObservers.add { newValue, element ->

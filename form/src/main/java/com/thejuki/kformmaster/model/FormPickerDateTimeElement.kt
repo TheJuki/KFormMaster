@@ -100,7 +100,7 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
 
     override fun clear() {
         this.value?.useCurrentDate()
-        (this.editView as? TextView)?.text = ""
+        this.displayNewValue()
         this.valueObservers.forEach { it(this.value, this) }
     }
 
@@ -157,9 +157,10 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
         }
 
         override fun toString(): String {
-            return if (isEmptyDateTime || year == null || month == null || dayOfMonth == null ||
-                    hourOfDay == null || minute == null) ""
-            else dateFormat.format(getTime())
+            val date = getTime()
+
+            return if (date == null) ""
+            else dateFormat.format(date)
         }
 
         fun validOrCurrentDate() {
@@ -334,6 +335,14 @@ class FormPickerDateTimeElement(tag: Int = -1) : FormPickerElement<FormPickerDat
             listener?.onValueChanged(this)
             valueObservers.forEach { it(value, this) }
             editTextValue.setText(valueAsString)
+        }
+    }
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is TextView) {
+                it.text = valueAsString
+            }
         }
     }
 }

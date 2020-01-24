@@ -8,8 +8,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
-import com.thejuki.kformmaster.R
 
 /**
  * Icon TextView

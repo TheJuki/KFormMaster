@@ -11,7 +11,12 @@ import com.thejuki.kformmaster.model.FormSegmentedElement
  * @version 1.0
  */
 interface SegmentedDrawable {
-
     var drawableRes: Int?
-
+    /**
+     * Drawable direction of the drawable in [SegmentedDrawable]
+     * Overriding this is optional
+     */
+    var drawableDirection: FormSegmentedElement.DrawableDirection?
+        get() = null
+        set(_) = TODO()
 }

@@ -215,6 +215,7 @@ class PartialScreenFormActivity : AppCompatActivity() {
                 value = ListItem(id = 1, name = "Banana")
             }
             button(ButtonElement.ordinal) {
+                centerText = true
                 value = getString(R.string.Button)
                 valueObservers.add { newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@PartialScreenFormActivity).create()

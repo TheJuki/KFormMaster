@@ -1,5 +1,7 @@
 package com.thejuki.kformmaster.model
 
+import android.widget.TextView
+
 /**
  * Form Button Element
  *
@@ -22,4 +24,12 @@ class FormButtonElement(tag: Int = -1) : BaseFormElement<String>(tag) {
      * Nothing to clear
      */
     override fun clear() {}
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is TextView) {
+                it.text = value
+            }
+        }
+    }
 }

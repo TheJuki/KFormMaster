@@ -34,7 +34,7 @@ class FormSegmentedViewBinder(private val context: Context, private val formBuil
         baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout, segmented)
 
         segmented.setProperties(model.marginDp, model.cornerRadius, model.tintColor,
-                model.checkedTextColor, model.unCheckedTintColor, model.padding, model.textSize)
+                model.checkedTextColor, model.unCheckedTintColor, model.radioButtonPadding, model.textSize)
 
         if (model.value == null || model.options?.contains(model.value) == false) {
             segmented.holdup = false

@@ -1,6 +1,7 @@
 package com.thejuki.kformmasterexample.item
 
 import androidx.annotation.DrawableRes
+import com.thejuki.kformmaster.model.FormSegmentedElement
 import com.thejuki.kformmaster.widget.SegmentedDrawable
 
 /**
@@ -13,7 +14,9 @@ import com.thejuki.kformmaster.widget.SegmentedDrawable
  */
 data class SegmentedListItem(val id: Long? = null,
                              val name: String? = null,
-                             @DrawableRes override var drawableRes: Int? = 0
+                             @DrawableRes override var drawableRes: Int? = 0,
+                             override var drawableDirection: FormSegmentedElement.DrawableDirection? =
+                                     FormSegmentedElement.DrawableDirection.Top
 ) : SegmentedDrawable {
 
     // Text that is displayed in the segmented button

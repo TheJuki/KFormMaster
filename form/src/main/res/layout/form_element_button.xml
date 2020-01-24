@@ -20,10 +20,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <com.thejuki.kformmaster.widget.IconButton
             android:id="@+id/formElementValue"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_height="50dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
             android:textColor="@drawable/button_selector"
             android:background="?android:attr/selectableItemBackground"
             android:textSize="@dimen/elementTextValueSize"

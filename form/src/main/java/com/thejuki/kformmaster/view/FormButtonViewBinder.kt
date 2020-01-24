@@ -2,7 +2,6 @@ package com.thejuki.kformmaster.view
 
 import android.content.Context
 import android.view.View
-import android.widget.Button
 import androidx.annotation.LayoutRes
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
@@ -12,6 +11,7 @@ import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormButtonElement
 import com.thejuki.kformmaster.state.FormButtonViewState
+import com.thejuki.kformmaster.widget.IconButton
 
 /**
  * Form Button ViewBinder
@@ -26,7 +26,7 @@ class FormButtonViewBinder(private val context: Context, private val formBuilder
             ?: R.layout.form_element_button, FormButtonElement::class.java, { model, finder, _ ->
         val itemView = finder.getRootView() as View
         val dividerView = finder.find(R.id.formElementDivider) as? View
-        val button = finder.find(R.id.formElementValue) as Button
+        val button = finder.find(R.id.formElementValue) as IconButton
         baseSetup(model, dividerView, itemView = itemView, editView = button)
 
         button.text = model.valueAsString
@@ -38,6 +38,13 @@ class FormButtonViewBinder(private val context: Context, private val formBuilder
             model.setValue(model.value)
             formBuilder.onValueChanged(model)
         }
+
+        button.iconLocation = IconButton.Location.valueOf(model.titleIconLocation.toString())
+        button.icon = model.titleIcon
+        button.iconPadding = model.titleIconPadding
+
+        button.reInitIcon()
+
     }, object : ViewStateProvider<FormButtonElement, ViewHolder> {
         override fun createViewStateID(model: FormButtonElement): Int {
             return model.id
