@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster.model
 
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatEditText
 import com.thejuki.kformmaster.R
@@ -105,8 +106,6 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
 
         val editTextView = this.editView as? AppCompatEditText
 
-        editTextView?.setText(getSelectedItemsText())
-
         if (alertDialogBuilder == null && editTextView?.context != null) {
             alertDialogBuilder = AlertDialog.Builder(editTextView.context, theme)
             if (this.dialogTitle == null) {
@@ -151,7 +150,6 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
                                 this.error = null
                                 this.setValue(selectedOptions)
                                 listener?.onValueChanged(this)
-                                editTextView?.setText(getSelectedItemsText())
                             }
                         }
                         .setNegativeButton(android.R.string.cancel) { _, _ -> }
@@ -181,7 +179,7 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
         editTextView?.setOnClickListener(listener)
     }
 
-    private fun getSelectedItemsText(): String {
+    fun getSelectedItemsText(): String {
         val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
         val mSelectedItems = ArrayList<Int>()
 
@@ -207,5 +205,13 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
         }
 
         return selectedItems
+    }
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is TextView) {
+                it.text = getSelectedItemsText()
+            }
+        }
     }
 }

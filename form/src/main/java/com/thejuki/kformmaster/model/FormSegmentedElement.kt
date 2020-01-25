@@ -250,4 +250,12 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
             }
         }
     }
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is SegmentedGroup) {
+                it.checkChild(valueAsString)
+            }
+        }
+    }
 }

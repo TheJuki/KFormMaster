@@ -34,7 +34,6 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
         val editTextValue = finder.find(R.id.formElementValue) as com.thejuki.kformmaster.widget.ClearableEditText
         baseSetup(model, dividerView, textViewTitle, textViewError, itemView, mainViewLayout, editTextValue)
 
-        editTextValue.setText(model.valueAsString)
         editTextValue.hint = model.hint ?: ""
         editTextValue.alwaysShowClear = true
 
@@ -43,6 +42,7 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
 
         model.reInitDialog(formBuilder)
         setClearableListener(model)
+        editTextValue.setText(model.getSelectedItemsText())
 
     }, object : ViewStateProvider<FormPickerMultiCheckBoxElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormPickerMultiCheckBoxElement<*>): Int {

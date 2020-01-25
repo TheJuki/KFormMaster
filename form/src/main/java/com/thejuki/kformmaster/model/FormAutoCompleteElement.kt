@@ -51,7 +51,7 @@ class FormAutoCompleteElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     override fun displayNewValue() {
         editView?.let {
             if (it is TextView) {
-                it.text = typedString
+                it.text = valueAsString
             }
         }
     }

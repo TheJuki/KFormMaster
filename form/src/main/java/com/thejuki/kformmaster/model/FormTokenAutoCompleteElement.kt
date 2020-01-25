@@ -38,4 +38,15 @@ class FormTokenAutoCompleteElement<T : List<*>>(tag: Int = -1) : BaseFormElement
      * Override the default dropdown width
      */
     var dropdownWidth: Int? = null
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is ItemsCompletionView) {
+                it.clearAsync()
+                value?.forEach { item ->
+                    it.addObjectAsync(item)
+                }
+            }
+        }
+    }
 }
