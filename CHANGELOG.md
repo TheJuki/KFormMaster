@@ -1,5 +1,15 @@
 # Change Log
 
+## [6.5.0](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.0)
+Breaking changes:
+- Button text is not centered by default. Set centerText to true to center the text.
+- "padding" in the segmented form element has been renamed to radioButtonPadding
+
+- #163 Fix issue where the segmented radio buttons may not align to the top. Added radioGroupWrapContent, radioButtonWidth, and radioButtonHeight to assist with fixed sizing for the buttons.
+- #164 Added titlePadding and padding to assist with squeezing the icon and text together.
+- #167 Setting the titleIcon on a button form element will set the button's drawable. Use padding to squeeze the icon and text together.
+- #169 Added displayNewValue() function. This function is called when the value changes to display the new value specific to the form element.
+
 ## [6.4.8](https://github.com/TheJuki/KFormMaster/releases/tag/6.4.8)
 - #129 Add icon option to title
 
