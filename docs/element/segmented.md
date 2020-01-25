@@ -128,7 +128,7 @@ segmented<ListItem>(1) {
 }
 ```
 
-## Radio Button Padding
+## Radio Group Wrap Content
 
 By default this is false.
 Enable to set the radio group layout_width to "wrap_content"
