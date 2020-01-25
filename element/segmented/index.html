@@ -723,8 +723,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#padding" class="md-nav__link">
-    Padding
+  <a href="#radio-button-padding" class="md-nav__link">
+    Radio Button Padding
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#width-of-each-radio-button" class="md-nav__link">
+    Width of each radio button
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#height-of-each-radio-button" class="md-nav__link">
+    Height of each radio button
   </a>
   
 </li>
@@ -998,8 +1012,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#padding" class="md-nav__link">
-    Padding
+  <a href="#radio-button-padding" class="md-nav__link">
+    Radio Button Padding
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#width-of-each-radio-button" class="md-nav__link">
+    Width of each radio button
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#height-of-each-radio-button" class="md-nav__link">
+    Height of each radio button
   </a>
   
 </li>
@@ -1149,11 +1177,37 @@ Setting this will set the text size (In SP) for each radio button.</p>
 </pre></div>
 
 
-<h2 id="padding">Padding<a class="headerlink" href="#padding" title="Permanent link">&para;</a></h2>
+<h2 id="radio-button-padding">Radio Button Padding<a class="headerlink" href="#radio-button-padding" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.dimen.elementRadioPadding.
 Setting this will set the padding for each radio button.</p>
 <div class="codehilite"><pre><span></span><span class="n">segmented</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">padding</span> <span class="p">=</span> <span class="m">5</span>
+    <span class="n">radioButtonPadding</span> <span class="p">=</span> <span class="m">5</span>
+<span class="p">}</span>
+
+<span class="err">##</span> <span class="n">Radio</span> <span class="n">Button</span> <span class="n">Padding</span>
+
+<span class="n">By</span> <span class="n">default</span> <span class="k">this</span> <span class="k">is</span> <span class="k">false</span><span class="p">.</span>
+<span class="n">Enable</span> <span class="n">to</span> <span class="k">set</span> <span class="n">the</span> <span class="n">radio</span> <span class="n">group</span> <span class="n">layout_width</span> <span class="n">to</span> <span class="s">&quot;wrap_content&quot;</span>
+
+<span class="err">```</span><span class="n">kotlin</span>
+<span class="n">segmented</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">radioGroupWrapContent</span> <span class="p">=</span> <span class="k">true</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="width-of-each-radio-button">Width of each radio button<a class="headerlink" href="#width-of-each-radio-button" title="Permanent link">&para;</a></h2>
+<p>By default, this is null which does not set the width.</p>
+<div class="codehilite"><pre><span></span><span class="n">segmented</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">radioButtonWidth</span> <span class="p">=</span> <span class="m">180</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="height-of-each-radio-button">Height of each radio button<a class="headerlink" href="#height-of-each-radio-button" title="Permanent link">&para;</a></h2>
+<p>By default, this is null which does not set the height.</p>
+<div class="codehilite"><pre><span></span><span class="n">segmented</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">radioButtonHeight</span> <span class="p">=</span> <span class="m">240</span>
 <span class="p">}</span>
 </pre></div>
 
