@@ -14,6 +14,7 @@ Setting this will set and display the title icon drawable (null will hide the ic
 text {
     titleIcon = ContextCompat.getDrawable(this@FormActivity, R.drawable.ic_email_blue_24dp)
 }
+```
 
 ## Example
 
