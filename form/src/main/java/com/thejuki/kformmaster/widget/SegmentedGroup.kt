@@ -110,6 +110,15 @@ class SegmentedGroup : RadioGroup {
         }
     }
 
+    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+        super.onLayout(changed, l, t, r, b)
+
+        for (i in 0 until this.childCount) {
+            val child = getChildAt(i)
+            child.y = 0f
+        }
+    }
+
     override fun onFinishInflate() {
         super.onFinishInflate()
         //Use holo light for default

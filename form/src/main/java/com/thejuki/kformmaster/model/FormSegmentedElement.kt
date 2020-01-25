@@ -1,6 +1,9 @@
 package com.thejuki.kformmaster.model
 
+import android.app.ActionBar
+import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RadioGroup
 import androidx.annotation.ColorInt
@@ -61,9 +64,13 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     /**
      * Enable to fill the whole width
-     * Setting this to true will ignore radioButtonWidth and radioButtonHeight
      */
     var fillSpace: Boolean = false
+
+    /**
+     * Enable to set the radio group layout_width to "wrap_content"
+     */
+    var radioGroupWrapContent: Boolean = false
 
     /**
      * Width of each radio button
@@ -192,6 +199,12 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     fun reInitGroup() {
         editView?.let {
             if (it is SegmentedGroup) {
+                if(radioGroupWrapContent) {
+                    val segmentedGroupLayoutParams = it.layoutParams
+                    segmentedGroupLayoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                    it.layoutParams = segmentedGroupLayoutParams
+                }
+
                 it.orientation = if (this@FormSegmentedElement.horizontal) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL
                 it.removeAllViews()
 

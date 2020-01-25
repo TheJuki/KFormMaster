@@ -212,6 +212,7 @@ class PartialScreenFormActivity : AppCompatActivity() {
             segmented<ListItem>(SegmentedElement.ordinal) {
                 title = getString(R.string.Segmented)
                 options = fruits
+                fillSpace = true
                 value = ListItem(id = 1, name = "Banana")
             }
             button(ButtonElement.ordinal) {

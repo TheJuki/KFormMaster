@@ -117,14 +117,44 @@ segmented<ListItem>(1) {
 }
 ```
 
-## Padding
+## Radio Button Padding
 
 By default this is the value of R.dimen.elementRadioPadding.
 Setting this will set the padding for each radio button.
 
 ```kotlin
 segmented<ListItem>(1) {
-    padding = 5
+    radioButtonPadding = 5
+}
+
+## Radio Button Padding
+
+By default this is false.
+Enable to set the radio group layout_width to "wrap_content"
+
+```kotlin
+segmented<ListItem>(1) {
+    radioGroupWrapContent = true
+}
+```
+
+## Width of each radio button
+
+By default, this is null which does not set the width.
+
+```kotlin
+segmented<ListItem>(1) {
+    radioButtonWidth = 180
+}
+```
+
+## Height of each radio button
+
+By default, this is null which does not set the height.
+
+```kotlin
+segmented<ListItem>(1) {
+    radioButtonHeight = 240
 }
 ```
 

@@ -161,10 +161,10 @@ class FullscreenFormActivity : AppCompatActivity() {
             ListItem(id = 5, name = "Apple")
     )
 
-    private val fruitsSegmented = listOf(SegmentedListItem(id = 1, name = "Banana", drawableDirection = FormSegmentedElement.DrawableDirection.Left),
+    private val fruitsSegmented = listOf(SegmentedListItem(id = 1, name = "Banana", drawableDirection = FormSegmentedElement.DrawableDirection.Top),
             SegmentedListItem(id = 2, name = "Orange", drawableDirection = FormSegmentedElement.DrawableDirection.Left),
-            SegmentedListItem(id = 3, name = "Avocado", drawableDirection = FormSegmentedElement.DrawableDirection.Left),
-            SegmentedListItem(id = 4, name = "Apple", drawableDirection = FormSegmentedElement.DrawableDirection.Left)
+            SegmentedListItem(id = 3, name = "Avocado", drawableDirection = FormSegmentedElement.DrawableDirection.Bottom),
+            SegmentedListItem(id = 4, name = "Apple", drawableDirection = FormSegmentedElement.DrawableDirection.Right)
     )
 
     private enum class Tag {
@@ -580,6 +580,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 rightToLeft = false
                 displayTitle = true
                 horizontal = true
+                fillSpace = true
                 marginDp = 5
                 margins = FormElementMargins(16, 16, 16, 0)
                 layoutPaddingBottom = 16
@@ -589,7 +590,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                 checkedTextColor = Color.WHITE
                 cornerRadius = 0f
                 textSize = 12f
-                radioButtonPadding = 10
+                radioGroupWrapContent = false
+                radioButtonHeight = 234
+                radioButtonPadding = 50
                 drawableDirection = FormSegmentedElement.DrawableDirection.Top
                 value = fruitsSegmented[0]
                 required = true

@@ -379,6 +379,32 @@ text {
 }
 ```
 
+## Title Padding (DP)
+Setting padding will override the padding of the form element title view.
+
+!!! info "FormElementPadding"
+
+    FormElementPadding is a simple class to set all padding.
+
+```kotlin
+text {
+    titlePadding = FormElementPadding(/* Left */ 16, /* Top */ 16, /* Right */ 16, /* Bottom */ 0)
+}
+```
+
+## Padding (DP)
+Setting padding will override the padding of the form element edit view.
+
+!!! info "FormElementPadding"
+
+    FormElementPadding is a simple class to set all padding.
+
+```kotlin
+text {
+    padding = FormElementPadding(/* Left */ 16, /* Top */ 16, /* Right */ 16, /* Bottom */ 0)
+}
+```
+
 ## Margins (DP)
 By default, this will use layout_margin values in the XML.
 Setting margins will override the margins of the form element.
