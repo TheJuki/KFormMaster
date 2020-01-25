@@ -11,7 +11,7 @@ Setting this will set and display the title icon drawable (null will hide the ic
     Setting this for the button form element will add the icon to the button.
 
 ```kotlin
-text {
+button {
     titleIcon = ContextCompat.getDrawable(this@FormActivity, R.drawable.ic_email_blue_24dp)
 }
 ```
