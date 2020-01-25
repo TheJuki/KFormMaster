@@ -2,6 +2,19 @@ The Button form element is used for a button row. Click events can be caught wit
 
 ![Example](../../images/Button.PNG)
 
+## Title Icon
+By default this is null.
+Setting this will set and display the title icon drawable (null will hide the icon).
+
+!!! note "Button"
+
+    Setting this for the button form element will add the icon to the button.
+
+```kotlin
+text {
+    titleIcon = ContextCompat.getDrawable(this@FormActivity, R.drawable.ic_email_blue_24dp)
+}
+
 ## Example
 
 ### Kotlin

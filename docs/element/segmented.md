@@ -126,6 +126,7 @@ Setting this will set the padding for each radio button.
 segmented<ListItem>(1) {
     radioButtonPadding = 5
 }
+```
 
 ## Radio Button Padding
 

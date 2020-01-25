@@ -260,6 +260,10 @@ text {
 By default this is null.
 Setting this will set and display the title icon drawable (null will hide the icon).
 
+!!! note "Button"
+
+    Setting this for the button form element will add the icon to the button.
+
 ```kotlin
 text {
     titleIcon = ContextCompat.getDrawable(this@FormActivity, R.drawable.ic_email_blue_24dp)
@@ -522,6 +526,13 @@ text {
         value?.matches("some regex".toRegex()) == true
     }
 }
+```
+
+## Display New Value
+This function is called when the value changes to display the new value specific to the form element.
+By default, this handles setting the text of the AppCompatEditText view.
+```kotlin
+element.displayNewValue()
 ```
 
 ## Dynamic Views
