@@ -732,6 +732,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#display-new-value" class="md-nav__link">
+    Display New Value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dynamic-views" class="md-nav__link">
     Dynamic Views
   </a>
@@ -1517,6 +1524,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#display-new-value" class="md-nav__link">
+    Display New Value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dynamic-views" class="md-nav__link">
     Dynamic Views
   </a>
@@ -1812,6 +1826,10 @@ Setting this to true will display a clear button (X) to set the value to null.</
 <h2 id="title-icon">Title Icon<a class="headerlink" href="#title-icon" title="Permanent link">&para;</a></h2>
 <p>By default this is null.
 Setting this will set and display the title icon drawable (null will hide the icon).</p>
+<div class="admonition note">
+<p class="admonition-title">Button</p>
+<p>Setting this for the button form element will add the icon to the button.</p>
+</div>
 <div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
     <span class="n">titleIcon</span> <span class="p">=</span> <span class="n">ContextCompat</span><span class="p">.</span><span class="n">getDrawable</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="n">drawable</span><span class="p">.</span><span class="n">ic_email_blue_24dp</span><span class="p">)</span>
 <span class="p">}</span>
@@ -2066,6 +2084,13 @@ This is used by formBuilder.isValidForm.</p>
         <span class="n">value</span><span class="o">?.</span><span class="n">matches</span><span class="p">(</span><span class="s">&quot;some regex&quot;</span><span class="p">.</span><span class="n">toRegex</span><span class="p">())</span> <span class="p">==</span> <span class="k">true</span>
     <span class="p">}</span>
 <span class="p">}</span>
+</pre></div>
+
+
+<h2 id="display-new-value">Display New Value<a class="headerlink" href="#display-new-value" title="Permanent link">&para;</a></h2>
+<p>This function is called when the value changes to display the new value specific to the form element.
+By default, this handles setting the text of the AppCompatEditText view.</p>
+<div class="codehilite"><pre><span></span><span class="n">element</span><span class="p">.</span><span class="n">displayNewValue</span><span class="p">()</span>
 </pre></div>
 
 

@@ -91,7 +91,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#example" tabindex="1" class="md-skip">
+      <a href="#title-icon" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -672,19 +672,12 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#title-icon" class="md-nav__link">
+    Title Icon
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kotlin" class="md-nav__link">
-    Kotlin
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#java" class="md-nav__link">
@@ -865,19 +858,12 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    Example
+  <a href="#title-icon" class="md-nav__link">
+    Title Icon
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kotlin" class="md-nav__link">
-    Kotlin
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#java" class="md-nav__link">
@@ -912,9 +898,23 @@
                 
                 <p>The Button form element is used for a button row. Click events can be caught with a valueObserver.</p>
 <p><img alt="Example" src="../../images/Button.PNG" /></p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">button</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<h2 id="title-icon">Title Icon<a class="headerlink" href="#title-icon" title="Permanent link">&para;</a></h2>
+<p>By default this is null.
+Setting this will set and display the title icon drawable (null will hide the icon).</p>
+<div class="admonition note">
+<p class="admonition-title">Button</p>
+<p>Setting this for the button form element will add the icon to the button.</p>
+</div>
+<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+    <span class="n">titleIcon</span> <span class="p">=</span> <span class="n">ContextCompat</span><span class="p">.</span><span class="n">getDrawable</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="n">drawable</span><span class="p">.</span><span class="n">ic_email_blue_24dp</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="err">##</span> <span class="n">Example</span>
+
+<span class="err">###</span> <span class="n">Kotlin</span>
+
+<span class="err">```</span><span class="n">kotlin</span>
+<span class="n">button</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;Button Text&quot;</span>
     <span class="n">valueObservers</span><span class="p">.</span><span class="n">add</span><span class="p">({</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="p">-&gt;</span>
         <span class="c1">// Nothing was changed but the button was tapped!</span>
