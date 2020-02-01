@@ -16,7 +16,9 @@ data class SegmentedListItem(val id: Long? = null,
                              val name: String? = null,
                              @DrawableRes override var drawableRes: Int? = 0,
                              override var drawableDirection: FormSegmentedElement.DrawableDirection? =
-                                     FormSegmentedElement.DrawableDirection.Top
+                                     FormSegmentedElement.DrawableDirection.Top,
+                             override var height: Int? = null,
+                             override var width: Int? = null
 ) : SegmentedDrawable {
 
     // Text that is displayed in the segmented button

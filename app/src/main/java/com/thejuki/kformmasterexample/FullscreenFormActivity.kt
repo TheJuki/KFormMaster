@@ -591,13 +591,21 @@ class FullscreenFormActivity : AppCompatActivity() {
                 cornerRadius = 0f
                 textSize = 12f
                 radioGroupWrapContent = false
-                radioButtonHeight = 234
+                radioButtonHeight = 70
                 radioButtonPadding = 50
                 drawableDirection = FormSegmentedElement.DrawableDirection.Top
                 value = fruitsSegmented[0]
                 required = true
                 valueObservers.add { newValue, element ->
+                    options?.forEach {
+                        it.height = 50
+                        if (it == newValue) {
+                            it.height = 70
+                        }
+                    }
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
+
+                    reInitGroup()
                 }
             }
             button(ButtonElement.ordinal) {

@@ -1,7 +1,5 @@
 package com.thejuki.kformmaster.model
 
-import android.app.ActionBar
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -10,6 +8,7 @@ import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import com.thejuki.kformmaster.R
+import com.thejuki.kformmaster.extensions.dpToPx
 import com.thejuki.kformmaster.widget.RadioButtonCenter
 import com.thejuki.kformmaster.widget.SegmentedDrawable
 import com.thejuki.kformmaster.widget.SegmentedGroup
@@ -56,33 +55,57 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
      * By default this is DrawableDirection.Top.
      */
     var drawableDirection: DrawableDirection = DrawableDirection.Top
+        set(value) {
+            field = value
+            reInitGroup()
+        }
 
     /**
      * Disable to stack the radio buttons vertically
      */
     var horizontal: Boolean = true
+        set(value) {
+            field = value
+            reInitGroup()
+        }
 
     /**
      * Enable to fill the whole width
      */
     var fillSpace: Boolean = false
+        set(value) {
+            field = value
+            reInitGroup()
+        }
 
     /**
      * Enable to set the radio group layout_width to "wrap_content"
      */
     var radioGroupWrapContent: Boolean = false
+        set(value) {
+            field = value
+            reInitGroup()
+        }
 
     /**
      * Width of each radio button
      * By default, this is null which does not set the width.
      */
     var radioButtonWidth: Int? = null
+        set(value) {
+            field = value
+            reInitGroup()
+        }
 
     /**
      * Height of each radio button
      * By default, this is null which does not set the height.
      */
     var radioButtonHeight: Int? = null
+        set(value) {
+            field = value
+            reInitGroup()
+        }
 
     /**
      * Form Element Options
@@ -218,6 +241,15 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                     }
 
                     rb.isChecked = item == this@FormSegmentedElement.value
+                    rb.isEnabled = this@FormSegmentedElement.enabled
+
+                    radioButtonHeight?.let { height ->
+                        rb.height = height.dpToPx()
+                    }
+
+                    radioButtonWidth?.let { width ->
+                        rb.width = width.dpToPx()
+                    }
 
                     if (item is SegmentedDrawable) {
                         val direction = item.drawableDirection ?: this.drawableDirection
@@ -238,16 +270,14 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                                         item.drawableRes ?: 0 else 0
                             )
                         }
-                    }
 
-                    rb.isEnabled = this@FormSegmentedElement.enabled
+                        item.height?.let { height ->
+                            rb.height = height.dpToPx()
+                        }
 
-                    radioButtonHeight?.let { height ->
-                        rb.height = height
-                    }
-
-                    radioButtonWidth?.let { width ->
-                        rb.width = width
+                        item.width?.let { width ->
+                            rb.width = width.dpToPx()
+                        }
                     }
 
                     if (fillSpace) {

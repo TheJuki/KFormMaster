@@ -19,4 +19,12 @@ interface SegmentedDrawable {
     var drawableDirection: FormSegmentedElement.DrawableDirection?
         get() = null
         set(_) = TODO()
+
+    var height: Int?
+        get() = null
+        set(_) = TODO()
+
+    var width: Int?
+        get() = null
+        set(_) = TODO()
 }
