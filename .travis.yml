@@ -2,15 +2,14 @@ language: android
 jdk: oraclejdk8
 env:
   global:
-    - ANDROID_TARGET=android-22
+    - ANDROID_TARGET=android-29
     - ANDROID_ABI=armeabi-v7a
 android:
   components:
     - tools
     - platform-tools
     - tools
-    - build-tools-29.0.2
-    - android-22
+    - build-tools-29.0.3
     - android-29
     - extra-android-support
     - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
@@ -25,8 +24,7 @@ before_script:
 sudo: true
 before_install:
   - yes | sdkmanager "platforms;android-29"
-  - yes | sdkmanager "build-tools;28.0.3"
-  - yes | sdkmanager "build-tools;29.0.2"
+  - yes | sdkmanager "build-tools;29.0.3"
   - chmod +x gradlew
 after_success:
   - bash <(curl -s https://codecov.io/bash)
