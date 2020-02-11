@@ -1,9 +1,11 @@
 language: android
 jdk: oraclejdk8
+os: linux
 env:
   global:
     - ANDROID_TARGET=android-29
     - ANDROID_ABI=armeabi-v7a
+    - ANDROID_TAG=google_apis
 android:
   components:
     - tools
@@ -14,14 +16,13 @@ android:
     - extra-android-support
     - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 before_script:
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI --tag $ANDROID_TAG
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell settings put global window_animation_scale 0 &
   - adb shell settings put global transition_animation_scale 0 &
   - adb shell settings put global animator_duration_scale 0 &
   - adb shell input keyevent 82 &
-sudo: true
 before_install:
   - yes | sdkmanager "platforms;android-29"
   - yes | sdkmanager "build-tools;29.0.3"
