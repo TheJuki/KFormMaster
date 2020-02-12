@@ -15,7 +15,6 @@ android:
     - android-29
     - extra-android-support
 before_script:
-  - sdkmanager "system-images;android-29;default;x86"
   - echo no | avdmanager create avd --force -n test --package "system-images;android-29;default;x86" --abi $ANDROID_ABI --tag $ANDROID_TAG
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
@@ -26,6 +25,7 @@ before_script:
 before_install:
   - yes | sdkmanager "platforms;android-29"
   - yes | sdkmanager "build-tools;29.0.3"
+  - yes | sdkmanager "system-images;android-29;default;x86"
   - chmod +x gradlew
 after_success:
   - bash <(curl -s https://codecov.io/bash)
