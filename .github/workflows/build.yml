@@ -1,0 +1,96 @@
+# https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
+name: Build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  ANDROID_BASE_CHECKS:
+    name: Base Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Perform base checks
+        run: ./gradlew demo:assembleDebug form:javadoc
+  ANDROID_UNIT_TESTS:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Execute unit tests
+        run: ./gradlew form:testDebugUnitTest
+      - name: Upload unit tests artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: unit_tests
+          path: ./form/build/jacoco/
+  ANDROID_EMULATOR_TESTS:
+    name: Emulator Tests
+    runs-on: macOS-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        EMULATOR_API: [29]
+        include:
+          - EMULATOR_API: 29
+            EMULATOR_ARCH: x86_64
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Execute emulator tests
+        timeout-minutes: 30
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.EMULATOR_API }}
+          arch: ${{ matrix.EMULATOR_ARCH }}
+          disable-animations: true
+          profile: Nexus 5X
+          emulator-options: -no-snapshot -no-window -no-boot-anim -camera-back emulated
+          emulator-build: 6110076
+          script: ./gradlew connectedCheck
+      - name: Upload emulator tests artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: emulator_tests_${{ matrix.EMULATOR_API }}
+          path: ./form/build/outputs/code_coverage/debugAndroidTest/connected
+  CODE_COVERAGE:
+    name: Code Coverage Report
+    runs-on: ubuntu-latest
+    needs: [ANDROID_UNIT_TESTS, ANDROID_EMULATOR_TESTS]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Download unit tests artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: unit_tests
+          path: ./form/build/jacoco/
+      - name: Download emulator tests artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: emulator_tests_29
+          path: ./form/build/outputs/code_coverage/debugAndroidTest/connected
+      - name: Create merged coverage report
+        run: ./gradlew form:mergeCoverageReports
+      - name: Upload merged coverage report (GitHub)
+        uses: actions/upload-artifact@v1
+        with:
+          name: report
+          path: ./form/build/reports/mergedCoverageReport
+      - name: Upload merged coverage report (Codecov)
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_KEY }}
+          file: ./form/build/reports/mergedCoverageReport/*
+          fail_ci_if_error: true
