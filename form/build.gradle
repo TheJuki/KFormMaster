@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: "guru.stefma.bintrayrelease"
 apply plugin: 'jacoco'
 
+version = '6.5.1'
+
 android {
     compileSdkVersion 29
 
@@ -11,7 +13,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 46
-        versionName "6.5.1"
+        versionName project.version
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -143,7 +145,7 @@ dependencies {
 }
 
 publish {
-    version = "6.5.1"
+    version = project.version
     group = "com.thejuki"
     userOrg = 'thejuki'
     artifactId = 'k-form-master'

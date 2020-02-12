@@ -14,6 +14,11 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - uses: actions/cache@v1
+          with:
+            path: ~/.gradle/caches
+            key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+            restore-keys: ${{ runner.os }}-gradle-
       - name: Perform base checks
         run: ./gradlew app:assembleDebug
   ANDROID_UNIT_TESTS:
@@ -24,6 +29,11 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
       - name: Execute unit tests
         run: ./gradlew form:testDebugUnitTest
       - name: Upload unit tests artifact
@@ -46,6 +56,11 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - uses: actions/cache@v1
+          with:
+            path: ~/.gradle/caches
+            key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+            restore-keys: ${{ runner.os }}-gradle-
       - name: Execute emulator tests
         timeout-minutes: 30
         uses: reactivecircus/android-emulator-runner@v2
@@ -71,6 +86,11 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - uses: actions/cache@v1
+          with:
+            path: ~/.gradle/caches
+            key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+            restore-keys: ${{ runner.os }}-gradle-
       - name: Download unit tests artifact
         uses: actions/download-artifact@v1
         with:
@@ -81,7 +101,7 @@ jobs:
         with:
           name: emulator_tests_29
           path: ./form/build/outputs/code_coverage/debugAndroidTest/connected
-      - name: Create merged coverage report
+      - name: Create coverage report
         run: ./gradlew form:jacocoTestReport
       - name: Upload coverage report (GitHub)
         uses: actions/upload-artifact@v1
