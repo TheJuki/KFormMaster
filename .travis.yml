@@ -25,6 +25,7 @@ before_script:
 before_install:
   - yes | sdkmanager "platforms;android-29"
   - yes | sdkmanager "build-tools;29.0.3"
+  - yes | sdkmanager --licenses
   - yes | sdkmanager "system-images;android-29;default;x86"
   - chmod +x gradlew
 after_success:
