@@ -15,7 +15,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Perform base checks
-        run: ./gradlew app:assembleDebug form:javadoc
+        run: ./gradlew app:assembleDebug
   ANDROID_UNIT_TESTS:
     name: Unit Tests
     runs-on: ubuntu-latest
