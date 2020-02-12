@@ -15,7 +15,7 @@ android:
     - android-29
     - extra-android-support
 before_script:
-  - sdkmanager --install "system-images;android-29;default;x86"
+  - sdkmanager "system-images;android-29;default;x86"
   - echo no | avdmanager create avd --force -n test --package "system-images;android-29;default;x86" --abi $ANDROID_ABI --tag $ANDROID_TAG
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
