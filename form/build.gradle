@@ -55,7 +55,7 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+task jacocoTestReport(type: JacocoReport, dependsOn: ['compileDebugSources']) {
 
     reports {
         xml.enabled = true
@@ -71,7 +71,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
     sourceDirectories.from = files(mainSrc)
     classDirectories.from = files(debugTree)
     executionData.from = fileTree(dir: project.buildDir, includes: [
-            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+            "jacoco/testDebugUnitTest.exec", // Unit tests
+            "outputs/code_coverage/debugAndroidTest/connected/*coverage.ec" // Android tests
     ])
 }
 

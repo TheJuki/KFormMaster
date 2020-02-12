@@ -82,15 +82,15 @@ jobs:
           name: emulator_tests_29
           path: ./form/build/outputs/code_coverage/debugAndroidTest/connected
       - name: Create merged coverage report
-        run: ./gradlew form:mergeCoverageReports
-      - name: Upload merged coverage report (GitHub)
+        run: ./gradlew form:jacocoTestReport
+      - name: Upload coverage report (GitHub)
         uses: actions/upload-artifact@v1
         with:
           name: report
-          path: ./form/build/reports/mergedCoverageReport
-      - name: Upload merged coverage report (Codecov)
+          path: ./form/build/reports/jacoco/jacocoTestReport
+      - name: Upload coverage report (Codecov)
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_KEY }}
-          file: ./form/build/reports/mergedCoverageReport/*
+          file: ./form/build/reports/jacoco/jacocoTestReport/*
           fail_ci_if_error: true
