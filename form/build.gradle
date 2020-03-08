@@ -125,7 +125,7 @@ dependencies {
     implementation "com.github.florent37:inline-activity-result-kotlin:$inlineActivityResultVersion"
 
     // ImagePicker
-    api "com.github.dhaval2404:imagepicker:$imagePickerVersion"
+    api 'com.github.TheJuki:ImagePicker:1.11'
 
     // Input mask
     api "com.redmadrobot:input-mask-android:$inputMaskVersion"

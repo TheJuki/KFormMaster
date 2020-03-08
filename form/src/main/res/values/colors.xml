@@ -22,4 +22,12 @@
     <color name="colorFormMasterElementImageProgressTextColor">#FFFFFF</color>
     <color name="colorFormMasterElementImageProgressContourColor">#00FFFFFF</color>
     <color name="colorFormMasterBottomSheetImage">#757575</color>
+
+    <color name="ucrop_color_toolbar">#3F51B5</color>
+    <color name="ucrop_color_statusbar">#303F9F</color>
+    <color name="ucrop_color_widget_active">#42A5F5</color>
+    <color name="ucrop_color_toolbar_widget">#fff</color>
+
+    <color name="dialog_choose_icon_color">#757575</color>
+    <color name="dialog_choose_text_color">#757575</color>
 </resources>
