@@ -1,5 +1,10 @@
 # Change Log
 
+## [6.5.2](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.2)
+- #172 Fix ImagePickerActivity where when crop is enabled AND using start() with the completionHandler, the gallery or camera app opens again after a photo is selected/confirmed.
+
+For now, this fix is in a fork of ImagePicker with JitPack providing the build: https://jitpack.io/#TheJuki/ImagePicker/1.11
+
 ## [6.5.1](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.1)
 - Fix FormSegmentedElement radioButtonWidth and radioButtonHeight to use dp
 - Make FormSegmentedElement properties dynamic. Add height and width to SegmentedDrawable.
