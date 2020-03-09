@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: "guru.stefma.bintrayrelease"
 apply plugin: 'jacoco'
 
-version = '6.5.1'
+version = '6.5.2'
 
 android {
     compileSdkVersion 29
