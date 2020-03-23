@@ -3,7 +3,6 @@ package com.thejuki.kformmaster.view
 import android.app.Dialog
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.drawable.Icon
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MotionEvent
@@ -73,6 +72,7 @@ abstract class BaseFormViewBinder {
                         it.customNotations,
                         it.affinityCalculationStrategy,
                         it.autocomplete,
+                        it.autoSkip,
                         it.listener,
                         it.valueListener
                 )

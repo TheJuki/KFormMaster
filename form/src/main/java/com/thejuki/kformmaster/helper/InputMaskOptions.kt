@@ -21,5 +21,6 @@ class InputMaskOptions(
         var autocomplete: Boolean = true,
         var listener: TextWatcher? = null,
         var valueListener: MaskedTextChangedListener.ValueListener? = null,
-        var rightToLeft: Boolean = false
+        var rightToLeft: Boolean = false,
+        var autoSkip: Boolean = false
 )
