@@ -96,7 +96,7 @@ ext {
     kotlintestVersion = '3.4.2'
     mockkVersion = '1.9.3'
     log4jVersion = '2.13.0'
-    inputMaskVersion = '5.0.0'
+    inputMaskVersion = '6.0.0'
     androidSVGVersion = '1.4'
 }
 
