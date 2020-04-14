@@ -33,6 +33,18 @@ ext {
 implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 ```
 
+Add this to your root **build.gradle** file:
+```
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+```
+
 ## Version 6 Changes
 - Removed Form Element Builder Classes
 - Migration Guide: https://thejuki.github.io/KFormMaster/migrateBuilder/
