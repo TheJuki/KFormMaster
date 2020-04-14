@@ -42,7 +42,6 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 }
-
 ```
 
 ## Version 6 Changes
