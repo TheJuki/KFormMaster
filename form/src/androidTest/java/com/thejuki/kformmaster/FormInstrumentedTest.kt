@@ -557,7 +557,7 @@ class FormInstrumentedTest {
         onView(withId(android.R.id.button1)).perform(click())
     }
 
-    @Test
+    //@Test
     fun autoComplete_providesSuggestions_whenTextIsTyped() {
         // Enter text in the autoComplete field, click on the suggestion, and verify it is displayed in the field
         onView(withId(R.id.recyclerView)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(16, click()))
