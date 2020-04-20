@@ -47,10 +47,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        EMULATOR_API: [29]
-        include:
-          - EMULATOR_API: 29
-            EMULATOR_ARCH: x86_64
+        api-level: [29]
+        target: [google_apis]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
@@ -65,12 +63,12 @@ jobs:
         timeout-minutes: 30
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: ${{ matrix.EMULATOR_API }}
-          arch: ${{ matrix.EMULATOR_ARCH }}
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: x86_64
           disable-animations: true
-          profile: Nexus 5X
+          profile: Nexus 6
           emulator-options: -no-snapshot -no-window -no-boot-anim -camera-back emulated
-          emulator-build: 6110076
           script: ./gradlew connectedCheck
       - name: Upload emulator tests artifact
         uses: actions/upload-artifact@v1
