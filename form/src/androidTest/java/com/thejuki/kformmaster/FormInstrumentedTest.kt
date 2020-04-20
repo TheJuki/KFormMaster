@@ -570,7 +570,7 @@ class FormInstrumentedTest {
                 .check(matches(isDisplayed()))
     }
 
-    @Test
+    //@Test
     fun autoCompleteToken_providesSuggestions_whenTextIsTyped() {
         // Enter text in the autoCompleteToken field, click on the suggestion, and verify it exists in the options list
         val contactItem = ContactItem(id = 3, value = "Kotlin.Contact@mail.com", label = "Kotlin Contact (Coder)")
