@@ -20,6 +20,7 @@ import com.github.vivchar.rendererrecyclerviewadapter.ViewState
 import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
 import com.thejuki.kformmaster.R
+import com.thejuki.kformmaster.extensions.dpToPx
 import com.thejuki.kformmaster.extensions.setImage
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.FormImageElement
@@ -43,9 +44,23 @@ class FormImageViewBinder(private val context: Context, private val formBuilder:
         val itemView = finder.getRootView() as View
         val dividerView = finder.find(R.id.formElementDivider) as? View
         val imageView = finder.find(R.id.formElementValue) as ImageView
+        val changeImageLabelView = finder.find(R.id.formElementImageLabel) as AppCompatTextView
         baseSetup(model, dividerView, null, textViewError, itemView, mainViewLayout, imageView)
 
+        model.changeImageLabelView = changeImageLabelView
+
         model.itemView?.bringToFront()
+
+        model.editView?.let {
+            val imageViewLayoutParams = it.layoutParams
+            if (model.displayImageHeight != null) {
+                imageViewLayoutParams.height = (model.displayImageHeight ?: 0).dpToPx()
+            }
+            if (model.displayImageWidth != null) {
+                imageViewLayoutParams.width = (model.displayImageWidth ?: 0).dpToPx()
+            }
+            it.layoutParams = imageViewLayoutParams
+        }
 
         if (model.defaultImage == null) {
             model.defaultImage = R.drawable.default_image

@@ -202,6 +202,11 @@ class FullscreenFormActivity : AppCompatActivity() {
                 displayDivider = false
                 imageTransformation = CircleTransform(borderColor = Color.WHITE, borderRadius = 3) //Default value for this is CircleTransform(null) so it makes image round without borders
                 required = false
+                enabled = true
+                showChangeImageLabel = true
+                changeImageLabel = "Change me"
+                displayImageHeight = 200
+                displayImageWidth = 200
                 theme = R.style.CustomDialogPicker // This is to theme the default dialog when onClickListener is not used.
                 //defaultImage = R.drawable.default_image
                 //value = "https://via.placeholder.com/200" //(String) This needs to be an image URL, data URL, or an image FILE (absolutePath)

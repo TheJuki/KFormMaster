@@ -13,6 +13,10 @@ imageView(1) {
     displayDivider = false
     imageTransformation = CircleTransform(borderColor = Color.WHITE, borderRadius = 3)
     required = false
+    showChangeImageLabel = true
+    changeImageLabel = "Change me"
+    displayImageHeight = 200
+    displayImageWidth = 200
     theme = R.style.CustomDialogPicker
     defaultImage = R.drawable.default_image
     value = "http://example.com/"

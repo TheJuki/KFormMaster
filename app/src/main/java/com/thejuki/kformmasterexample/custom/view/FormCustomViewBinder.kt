@@ -25,7 +25,7 @@ import com.thejuki.kformmasterexample.custom.state.FormCustomViewState
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class CustomViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
+class CustomViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int? = null) : BaseFormViewBinder() {
     var viewBinder = ViewBinder(layoutID
             ?: R.layout.form_element_custom, FormCustomElement::class.java, { model, finder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView

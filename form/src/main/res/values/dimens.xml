@@ -7,8 +7,6 @@
     <dimen name="elementRadioCornerRadius">5dp</dimen>
     <dimen name="elementRadioStrokeBorder">1dp</dimen>
     <dimen name="elementRadioPadding">10dp</dimen>
-    <dimen name="elementImageProgressBarLength">60dp</dimen>
-    <dimen name="elementImageProgressBarWidth">10dp</dimen>
-    <dimen name="elementImageProgressRimWidth">10dp</dimen>
-    <dimen name="elementImageProgressTextSize">20sp</dimen>
+    <dimen name="elementImageDisplayWidth">175dp</dimen>
+    <dimen name="elementImageDisplayHeight">175dp</dimen>
 </resources>

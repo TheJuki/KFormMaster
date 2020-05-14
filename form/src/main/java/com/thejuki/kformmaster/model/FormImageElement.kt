@@ -8,11 +8,13 @@ import android.util.Base64
 import android.view.View
 import android.webkit.URLUtil
 import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.caverock.androidsvg.SVG
 import com.github.dhaval2404.imagepicker.constant.ImageProvider
 import com.squareup.picasso.Transformation
 import com.thejuki.kformmaster.R
+import com.thejuki.kformmaster.extensions.dpToPx
 import com.thejuki.kformmaster.extensions.setImage
 import com.thejuki.kformmaster.helper.CircleTransform
 import com.thejuki.kformmaster.helper.ImagePickerOptions
@@ -28,6 +30,20 @@ import java.nio.charset.Charset
  * @version 1.0
  */
 class FormImageElement(tag: Int = -1) : BaseFormElement<String>(tag) {
+
+    /**
+     * Change Image Label View
+     */
+    var changeImageLabelView: AppCompatTextView? = null
+        set(value) {
+            field = value
+            changeImageLabelView?.let {
+                it.visibility = if (!showChangeImageLabel) View.GONE else View.VISIBLE
+                if (changeImageLabel != null) {
+                    it.text = changeImageLabel
+                }
+            }
+        }
 
     /**
      * Unit called when an image is selected. A File object is returned.
@@ -53,6 +69,68 @@ class FormImageElement(tag: Int = -1) : BaseFormElement<String>(tag) {
      * The default image to display when the initial value is null or invalid.
      */
     var defaultImage: Int? = null
+
+    /**
+     * Display Image Width in DP
+     * (optional - uses @dimen/elementImageDisplayWidth)
+     */
+    var displayImageWidth: Int? = null
+        set(value) {
+            field = value
+
+            if (value != null) {
+                editView?.let {
+                    if (it is ImageView) {
+                        val imageViewLayoutParams = it.layoutParams
+                        imageViewLayoutParams.width = value.dpToPx()
+                        it.layoutParams = imageViewLayoutParams
+                    }
+                }
+            }
+        }
+
+    /**
+     * Display Image Height in DP
+     * (optional - uses @dimen/elementImageDisplayHeight)
+     */
+    var displayImageHeight: Int? = null
+        set(value) {
+            field = value
+            if (value != null) {
+                editView?.let {
+                    if (it is ImageView) {
+                        val imageViewLayoutParams = it.layoutParams
+                        imageViewLayoutParams.height = value.dpToPx()
+                        it.layoutParams = imageViewLayoutParams
+                    }
+                }
+            }
+        }
+
+    /**
+     * Change Image Label
+     * (optional - uses R.string.form_master_picker_change_image)
+     */
+    var changeImageLabel: String? = null
+        set(value) {
+            field = value
+            changeImageLabelView?.let {
+                it.visibility = if (!showChangeImageLabel) View.GONE else View.VISIBLE
+                it.text = changeImageLabel
+            }
+        }
+
+    /**
+     * Show the Change Image Label
+     * By default, this is true.
+     */
+    var showChangeImageLabel: Boolean = true
+        set(value) {
+            field = value
+            changeImageLabelView?.let {
+                it.visibility = if (!showChangeImageLabel) View.GONE else View.VISIBLE
+            }
+        }
 
     /**
      * The Picasso Image Transformation.

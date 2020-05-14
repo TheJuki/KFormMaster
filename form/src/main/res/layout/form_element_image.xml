@@ -25,8 +25,8 @@
         <ImageView
             android:id="@+id/formElementValue"
             android:layout_marginTop="5dp"
-            android:layout_width="175sp"
-            android:layout_height="175sp"
+            android:layout_width="@dimen/elementImageDisplayWidth"
+            android:layout_height="@dimen/elementImageDisplayHeight"
             android:layout_gravity="center_horizontal|top"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"

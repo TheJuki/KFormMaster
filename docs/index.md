@@ -13,21 +13,13 @@ implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/recyclerView"
-        android:descendantFocusability="beforeDescendants" />
-
-</LinearLayout>
+    android:orientation="vertical"
+    android:id="@+id/recyclerView"
+    android:divider="#b5b5b5"
+    android:descendantFocusability="beforeDescendants" />
 ```
 
 * Step 2 (No DSL). Add the Form Elements programmatically in your activity
