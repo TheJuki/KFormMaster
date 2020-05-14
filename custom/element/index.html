@@ -948,11 +948,12 @@
     <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
     <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
     <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-    <span class="na">android:background=</span><span class="s">&quot;@android:color/black&quot;</span>
+    <span class="na">android:background=</span><span class="s">&quot;@color/colorFormMasterElementBackground&quot;</span>
     <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
     <span class="na">android:paddingBottom=</span><span class="s">&quot;16dp&quot;</span><span class="nt">&gt;</span>
 
     <span class="nt">&lt;View</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/formElementDivider&quot;</span>
         <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
         <span class="na">android:layout_height=</span><span class="s">&quot;0.5dp&quot;</span>
         <span class="na">android:layout_marginLeft=</span><span class="s">&quot;16dp&quot;</span>
@@ -960,6 +961,7 @@
         <span class="na">android:background=</span><span class="s">&quot;@color/colorFormMasterDivider&quot;</span> <span class="nt">/&gt;</span>
 
     <span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:id=</span><span class="s">&quot;@+id/formElementMainLayout&quot;</span>
         <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
         <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
         <span class="na">android:layout_marginLeft=</span><span class="s">&quot;16dp&quot;</span>
@@ -967,16 +969,16 @@
         <span class="na">android:layout_marginTop=</span><span class="s">&quot;16dp&quot;</span>
         <span class="na">android:orientation=</span><span class="s">&quot;horizontal&quot;</span><span class="nt">&gt;</span>
 
-        <span class="nt">&lt;android.support.v7.widget.AppCompatTextView</span>
+        <span class="nt">&lt;com.thejuki.kformmaster.widget.IconTextView</span>
             <span class="na">android:id=</span><span class="s">&quot;@+id/formElementTitle&quot;</span>
             <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
             <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
             <span class="na">android:layout_weight=</span><span class="s">&quot;2&quot;</span>
-            <span class="na">android:textColor=</span><span class="s">&quot;@android:color/white&quot;</span>
+            <span class="na">android:textColor=</span><span class="s">&quot;@color/colorFormMasterElementTextTitle&quot;</span>
             <span class="na">android:textSize=</span><span class="s">&quot;@dimen/elementTextTitleSize&quot;</span>
-            <span class="na">tools:text=</span><span class="s">&quot;Test Title&quot;</span> <span class="nt">/&gt;</span>
+            <span class="na">tools:text=</span><span class="s">&quot;Custom Title&quot;</span> <span class="nt">/&gt;</span>
 
-        <span class="nt">&lt;android.support.v7.widget.AppCompatEditText</span>
+        <span class="nt">&lt;com.thejuki.kformmaster.widget.ClearableEditText</span>
             <span class="na">android:id=</span><span class="s">&quot;@+id/formElementValue&quot;</span>
             <span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
             <span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
@@ -986,13 +988,14 @@
             <span class="na">android:imeOptions=</span><span class="s">&quot;actionNext&quot;</span>
             <span class="na">android:inputType=</span><span class="s">&quot;textNoSuggestions&quot;</span>
             <span class="na">android:maxLines=</span><span class="s">&quot;1&quot;</span>
-            <span class="na">android:textColor=</span><span class="s">&quot;@color/colorFormMasterElementFocusedTitle&quot;</span>
-            <span class="na">android:textSize=</span><span class="s">&quot;20sp&quot;</span>
-            <span class="na">tools:text=</span><span class="s">&quot;Test Value&quot;</span> <span class="nt">/&gt;</span>
+            <span class="na">android:textColor=</span><span class="s">&quot;@drawable/edit_text_selector&quot;</span>
+            <span class="na">android:textColorHint=</span><span class="s">&quot;@color/colorFormMasterElementHint&quot;</span>
+            <span class="na">android:textSize=</span><span class="s">&quot;@dimen/elementTextValueSize&quot;</span>
+            <span class="na">tools:text=</span><span class="s">&quot;Custom Value&quot;</span> <span class="nt">/&gt;</span>
 
     <span class="nt">&lt;/LinearLayout&gt;</span>
 
-    <span class="nt">&lt;android.support.v7.widget.AppCompatTextView</span>
+    <span class="nt">&lt;androidx.appcompat.widget.AppCompatTextView</span>
         <span class="na">android:id=</span><span class="s">&quot;@+id/formElementError&quot;</span>
         <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
         <span class="na">android:layout_height=</span><span class="s">&quot;0dp&quot;</span>
@@ -1003,7 +1006,7 @@
         <span class="na">android:textColor=</span><span class="s">&quot;@color/colorFormMasterElementErrorTitle&quot;</span>
         <span class="na">android:textSize=</span><span class="s">&quot;@dimen/elementErrorTitleSize&quot;</span>
         <span class="na">android:visibility=</span><span class="s">&quot;gone&quot;</span>
-        <span class="na">tools:text=</span><span class="s">&quot;Test Error&quot;</span> <span class="nt">/&gt;</span>
+        <span class="na">tools:text=</span><span class="s">&quot;Personal Info&quot;</span> <span class="nt">/&gt;</span>
 
 <span class="nt">&lt;/LinearLayout&gt;</span>
 </pre></div>
@@ -1011,37 +1014,15 @@
 
 <h3 id="form-element-model">Form Element Model<a class="headerlink" href="#form-element-model" title="Permanent link">&para;</a></h3>
 <p>Note that a new model does not need to contain a body if BaseFormElement provides everything you need.</p>
-<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">FormCustomElement</span><span class="p">:</span> <span class="n">BaseFormElement</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span> <span class="p">{</span>
-    <span class="k">constructor</span><span class="p">()</span> <span class="p">:</span> <span class="k">super</span><span class="p">()</span>
-    <span class="k">constructor</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">:</span> <span class="k">super</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
-<span class="p">}</span>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">FormCustomElement</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span> <span class="p">:</span> <span class="n">BaseFormElement</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;(</span><span class="n">tag</span><span class="p">)</span>
 </pre></div>
 
 
 <h3 id="optional-form-builder-extension">Optional: Form Builder Extension<a class="headerlink" href="#optional-form-builder-extension" title="Permanent link">&para;</a></h3>
-<p>Create a FormBuildHelper DSL method and builder class for your custom form model.</p>
-<div class="codehilite"><pre><span></span><span class="cm">/** Builder method to add a CustomElement */</span>
-<span class="k">class</span> <span class="nc">CustomElementBuilder</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span> <span class="p">:</span> <span class="n">BaseElementBuilder</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;(</span><span class="n">tag</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">build</span><span class="p">()</span> <span class="p">=</span>
-            <span class="n">FormCustomElement</span><span class="p">(</span><span class="n">tag</span><span class="p">).</span><span class="n">apply</span> <span class="p">{</span>
-                <span class="k">this</span><span class="n">@CustomElementBuilder</span><span class="p">.</span><span class="n">let</span> <span class="p">{</span>
-                    <span class="n">title</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">title</span><span class="p">.</span><span class="n">orEmpty</span><span class="p">()</span>
-                    <span class="n">value</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">value</span>
-                    <span class="n">hint</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">hint</span>
-                    <span class="n">rightToLeft</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">rightToLeft</span>
-                    <span class="n">maxLines</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">maxLines</span>
-                    <span class="n">error</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">error</span>
-                    <span class="n">required</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">required</span>
-                    <span class="n">enabled</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">enabled</span>
-                    <span class="n">visible</span> <span class="p">=</span> <span class="n">it</span><span class="p">.</span><span class="n">visible</span>
-                    <span class="n">valueObservers</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">valueObservers</span><span class="p">)</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="cm">/** FormBuildHelper extension to add a CustomElement */</span>
-<span class="k">fun</span> <span class="nc">FormBuildHelper</span><span class="p">.</span><span class="nf">customEx</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">,</span> <span class="n">init</span><span class="p">:</span> <span class="n">CustomElementBuilder</span><span class="p">.()</span> <span class="p">-&gt;</span> <span class="n">Unit</span><span class="p">):</span> <span class="n">FormCustomElement</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">addFormElement</span><span class="p">(</span><span class="n">CustomElementBuilder</span><span class="p">(</span><span class="n">tag</span><span class="p">).</span><span class="n">apply</span><span class="p">(</span><span class="n">init</span><span class="p">))</span>
+<p>Create a FormBuildHelper DSL method for your custom form model.</p>
+<div class="codehilite"><pre><span></span><span class="cm">/** FormBuildHelper extension to add a CustomElement */</span>
+<span class="k">fun</span> <span class="nc">FormBuildHelper</span><span class="p">.</span><span class="nf">customEx</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">,</span> <span class="n">init</span><span class="p">:</span> <span class="n">FormCustomElement</span><span class="p">.()</span> <span class="p">-&gt;</span> <span class="n">Unit</span><span class="p">):</span> <span class="n">FormCustomElement</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">addFormElement</span><span class="p">(</span><span class="n">FormCustomElement</span><span class="p">(</span><span class="n">tag</span><span class="p">).</span><span class="n">apply</span><span class="p">(</span><span class="n">init</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -1080,31 +1061,20 @@
 <li>viewStateProvider parameter - Form element view state provider</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">CustomViewBinder</span><span class="p">(</span><span class="k">private</span> <span class="k">val</span> <span class="py">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span>
-<span class="k">private</span> <span class="k">val</span> <span class="py">formBuilder</span><span class="p">:</span> <span class="n">FormBuildHelper</span><span class="p">)</span> <span class="p">:</span> <span class="n">BaseFormViewBinder</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">var</span> <span class="py">viewBinder</span> <span class="p">=</span> <span class="n">ViewBinder</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">,</span>
-    <span class="n">FormCustomElement</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">,</span> <span class="p">{</span> <span class="n">model</span><span class="p">,</span> <span class="n">finder</span><span class="p">,</span> <span class="n">_</span> <span class="p">-&gt;</span>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">CustomViewBinder</span><span class="p">(</span><span class="k">private</span> <span class="k">val</span> <span class="py">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="k">private</span> <span class="k">val</span> <span class="py">formBuilder</span><span class="p">:</span> <span class="n">FormBuildHelper</span><span class="p">,</span> 
+    <span class="n">@LayoutRes</span> <span class="k">private</span> <span class="k">val</span> <span class="py">layoutID</span><span class="p">:</span> <span class="n">Int</span><span class="p">?)</span> <span class="p">:</span> <span class="n">BaseFormViewBinder</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="py">viewBinder</span> <span class="p">=</span> <span class="n">ViewBinder</span><span class="p">(</span><span class="n">layoutID</span>
+            <span class="o">?:</span> <span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">,</span> <span class="n">FormCustomElement</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">,</span> <span class="p">{</span> <span class="n">model</span><span class="p">,</span> <span class="n">finder</span><span class="p">,</span> <span class="n">_</span> <span class="p">-&gt;</span>
         <span class="k">val</span> <span class="py">textViewTitle</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementTitle</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatTextView</span>
         <span class="k">val</span> <span class="py">mainViewLayout</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementMainLayout</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">LinearLayout</span>
         <span class="k">val</span> <span class="py">textViewError</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementError</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatTextView</span>
+        <span class="k">val</span> <span class="py">dividerView</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementDivider</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">View</span>
         <span class="k">val</span> <span class="py">itemView</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">getRootView</span><span class="p">()</span> <span class="k">as</span> <span class="n">View</span>
-        <span class="k">val</span> <span class="py">editTextValue</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementValue</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatEditText</span>
-        <span class="n">baseSetup</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">textViewTitle</span><span class="p">,</span> <span class="n">textViewError</span><span class="p">,</span> <span class="n">itemView</span><span class="p">,</span> <span class="n">mainViewLayout</span><span class="p">,</span> <span class="n">editTextValue</span><span class="p">)</span>
+        <span class="k">val</span> <span class="py">editTextValue</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementValue</span><span class="p">)</span> <span class="k">as</span> <span class="n">com</span><span class="p">.</span><span class="n">thejuki</span><span class="p">.</span><span class="n">kformmaster</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">ClearableEditText</span>
+        <span class="n">baseSetup</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dividerView</span><span class="p">,</span> <span class="n">textViewTitle</span><span class="p">,</span> <span class="n">textViewError</span><span class="p">,</span> <span class="n">itemView</span><span class="p">,</span> <span class="n">mainViewLayout</span><span class="p">,</span> <span class="n">editTextValue</span><span class="p">)</span>
 
         <span class="n">editTextValue</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">valueAsString</span><span class="p">)</span>
         <span class="n">editTextValue</span><span class="p">.</span><span class="n">hint</span> <span class="p">=</span> <span class="n">model</span><span class="p">.</span><span class="n">hint</span> <span class="o">?:</span> <span class="s">&quot;&quot;</span>
-
-        <span class="n">setEditTextFocusEnabled</span><span class="p">(</span><span class="n">editTextValue</span><span class="p">,</span> <span class="n">itemView</span><span class="p">)</span>
-
-        <span class="n">editTextValue</span><span class="p">.</span><span class="n">setOnFocusChangeListener</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">hasFocus</span> <span class="p">-&gt;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">hasFocus</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">textViewTitle</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">ContextCompat</span><span class="p">.</span><span class="n">getColor</span><span class="p">(</span><span class="n">context</span><span class="p">,</span>
-                        <span class="n">R</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">colorFormMasterElementFocusedTitle</span><span class="p">))</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="n">textViewTitle</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">ContextCompat</span><span class="p">.</span><span class="n">getColor</span><span class="p">(</span><span class="n">context</span><span class="p">,</span>
-                        <span class="n">R</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">colorFormMasterElementTextTitle</span><span class="p">))</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
 
         <span class="c1">// Initially use 4 lines</span>
         <span class="c1">// unless a different number was provided</span>
@@ -1112,27 +1082,17 @@
             <span class="n">model</span><span class="p">.</span><span class="n">maxLines</span> <span class="p">=</span> <span class="m">4</span>
         <span class="p">}</span>
 
-        <span class="n">editTextValue</span><span class="p">.</span><span class="n">addTextChangedListener</span><span class="p">(</span><span class="k">object</span> <span class="p">:</span> <span class="nc">TextWatcher</span> <span class="p">{</span>
-            <span class="k">override</span> <span class="k">fun</span> <span class="nf">beforeTextChanged</span><span class="p">(</span><span class="n">charSequence</span><span class="p">:</span> <span class="n">CharSequence</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">i2</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">i3</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="c1">// If an InputType is provided, use it instead</span>
+        <span class="n">model</span><span class="p">.</span><span class="n">inputType</span><span class="o">?.</span><span class="n">let</span> <span class="p">{</span> <span class="n">editTextValue</span><span class="p">.</span><span class="n">setRawInputType</span><span class="p">(</span><span class="n">it</span><span class="p">)</span> <span class="p">}</span>
 
-            <span class="k">override</span> <span class="k">fun</span> <span class="nf">onTextChanged</span><span class="p">(</span><span class="n">charSequence</span><span class="p">:</span> <span class="n">CharSequence</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">i2</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">i3</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// If imeOptions are provided, use them instead of creating a new line</span>
+        <span class="n">model</span><span class="p">.</span><span class="n">imeOptions</span><span class="o">?.</span><span class="n">let</span> <span class="p">{</span> <span class="n">editTextValue</span><span class="p">.</span><span class="n">imeOptions</span> <span class="p">=</span> <span class="n">it</span> <span class="p">}</span>
 
-                <span class="c1">// get current form element, existing value and new value</span>
-                <span class="k">val</span> <span class="py">currentValue</span> <span class="p">=</span> <span class="n">model</span><span class="p">.</span><span class="n">valueAsString</span>
-                <span class="k">val</span> <span class="py">newValue</span> <span class="p">=</span> <span class="n">charSequence</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span>
+        <span class="n">setEditTextFocusEnabled</span><span class="p">(</span><span class="n">editTextValue</span><span class="p">,</span> <span class="n">itemView</span><span class="p">)</span>
+        <span class="n">setOnFocusChangeListener</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">)</span>
+        <span class="n">addTextChangedListener</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">)</span>
+        <span class="n">setOnEditorActionListener</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">)</span>
 
-                <span class="c1">// trigger event only if the value is changed</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">currentValue</span> <span class="p">!=</span> <span class="n">newValue</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="c1">// NOTE: Use setValue()</span>
-                    <span class="c1">// as this will suppress the unchecked cast</span>
-                    <span class="n">model</span><span class="p">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">newValue</span><span class="p">)</span>
-                    <span class="n">model</span><span class="p">.</span><span class="n">error</span> <span class="p">=</span> <span class="k">null</span>
-                    <span class="n">formBuilder</span><span class="p">.</span><span class="n">onValueChanged</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-
-            <span class="k">override</span> <span class="k">fun</span> <span class="nf">afterTextChanged</span><span class="p">(</span><span class="n">editable</span><span class="p">:</span> <span class="n">Editable</span><span class="p">)</span> <span class="p">{}</span>
-        <span class="p">})</span>
     <span class="p">},</span> <span class="k">object</span> <span class="p">:</span> <span class="nc">ViewStateProvider</span><span class="p">&lt;</span><span class="n">FormCustomElement</span><span class="p">,</span> <span class="n">ViewHolder</span><span class="p">&gt;</span> <span class="p">{</span>
         <span class="k">override</span> <span class="k">fun</span> <span class="nf">createViewStateID</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">FormCustomElement</span><span class="p">):</span> <span class="n">Int</span> <span class="p">{</span>
             <span class="k">return</span> <span class="n">model</span><span class="p">.</span><span class="n">id</span>
@@ -1147,7 +1107,7 @@
         <span class="n">itemView</span><span class="p">.</span><span class="n">setOnClickListener</span> <span class="p">{</span>
             <span class="n">editTextValue</span><span class="p">.</span><span class="n">requestFocus</span><span class="p">()</span>
             <span class="k">val</span> <span class="py">imm</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="n">INPUT_METHOD_SERVICE</span><span class="p">)</span> <span class="k">as</span> <span class="n">InputMethodManager</span>
-            <span class="n">editTextValue</span><span class="p">.</span><span class="n">setSelection</span><span class="p">(</span><span class="n">editTextValue</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
+            <span class="n">editTextValue</span><span class="p">.</span><span class="n">setSelection</span><span class="p">(</span><span class="n">editTextValue</span><span class="p">.</span><span class="n">text</span><span class="o">?.</span><span class="n">length</span> <span class="o">?:</span> <span class="m">0</span><span class="p">)</span>
             <span class="n">imm</span><span class="p">.</span><span class="n">showSoftInput</span><span class="p">(</span><span class="n">editTextValue</span><span class="p">,</span> <span class="n">InputMethodManager</span><span class="p">.</span><span class="n">SHOW_IMPLICIT</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>

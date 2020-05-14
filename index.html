@@ -899,21 +899,13 @@
 <li>Step 1. Add a RecyclerView anywhere in the layout where you want your list to be shown (If confused, look at the examples in this repo).</li>
 </ul>
 <div class="codehilite"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;LinearLayout</span>
-    <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-    <span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+<span class="nt">&lt;androidx.recyclerview.widget.RecyclerView</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
     <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
     <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
-    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span><span class="nt">&gt;</span>
-
-    <span class="nt">&lt;android.support.v7.widget.RecyclerView</span>
-        <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-        <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
-        <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
-        <span class="na">android:id=</span><span class="s">&quot;@+id/recyclerView&quot;</span>
-        <span class="na">android:descendantFocusability=</span><span class="s">&quot;beforeDescendants&quot;</span> <span class="nt">/&gt;</span>
-
-<span class="nt">&lt;/LinearLayout&gt;</span>
+    <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
+    <span class="na">android:id=</span><span class="s">&quot;@+id/recyclerView&quot;</span>
+    <span class="na">android:divider=</span><span class="s">&quot;#b5b5b5&quot;</span>
+    <span class="na">android:descendantFocusability=</span><span class="s">&quot;beforeDescendants&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 
 
