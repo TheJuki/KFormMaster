@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.5.3](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.3)
+- #185 Add new properties for FormImageElement:
+  - displayImageWidth and displayImageHeight to change the size of the image displayed on the form
+  - changeImageLabel to set the text of the label that currently is set to "Change Image"
+  - showChangeImageLabel to show/hide the "Change Image" label
+  
 ## [6.5.2](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.2)
 - #172 Fix ImagePickerActivity where when crop is enabled AND using start() with the completionHandler, the gallery or camera app opens again after a photo is selected/confirmed.
 
