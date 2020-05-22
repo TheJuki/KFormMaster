@@ -42,7 +42,7 @@ class FormPickerMultiCheckBoxViewBinder(private val context: Context, private va
 
         model.reInitDialog(formBuilder)
         setClearableListener(model)
-        editTextValue.setText(model.getSelectedItemsText())
+        editTextValue.setText(model.valueAsString)
 
     }, object : ViewStateProvider<FormPickerMultiCheckBoxElement<*>, ViewHolder> {
         override fun createViewStateID(model: FormPickerMultiCheckBoxElement<*>): Int {

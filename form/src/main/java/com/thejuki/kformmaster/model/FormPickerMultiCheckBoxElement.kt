@@ -179,38 +179,19 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
         editTextView?.setOnClickListener(listener)
     }
 
-    fun getSelectedItemsText(): String {
-        val options = arrayOfNulls<CharSequence>(this.options?.size ?: 0)
-        val mSelectedItems = ArrayList<Int>()
+    private fun getSelectedItemsText(): String =
+        this.options?.filter { this.value?.contains(it) ?: false }
+                ?.joinToString(", ") { it.toString() } ?: ""
 
-        this.options?.let {
-            for (i in it.indices) {
-                val obj = it[i]
+    var valueAsStringOverride: ((T?) -> String?)? = null
 
-                options[i] = obj.toString()
-
-                if (this.value?.contains(obj) == true) {
-                    mSelectedItems.add(i)
-                }
-            }
-        }
-
-        var selectedItems = ""
-        for (i in mSelectedItems.indices) {
-            selectedItems += options[mSelectedItems[i]]
-
-            if (i < mSelectedItems.size - 1) {
-                selectedItems += ", "
-            }
-        }
-
-        return selectedItems
-    }
+    override val valueAsString
+        get() = valueAsStringOverride?.invoke(value) ?: getSelectedItemsText()
 
     override fun displayNewValue() {
         editView?.let {
             if (it is TextView) {
-                it.text = getSelectedItemsText()
+                it.text = valueAsString
             }
         }
     }

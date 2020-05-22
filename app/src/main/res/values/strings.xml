@@ -17,6 +17,7 @@
     <string name="DateTime">Date Time</string>
     <string name="SingleItem">Single Item</string>
     <string name="MultiItems">Multi Items</string>
+    <string name="MultiItemsWithOverride">Multi Items With Override</string>
     <string name="AutoComplete">Auto Complete</string>
     <string name="AutoCompleteToken">Auto Complete Token</string>
     <string name="Button">Button</string>
