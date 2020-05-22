@@ -158,7 +158,11 @@ class FullscreenFormActivity : AppCompatActivity() {
             ListItem(id = 2, name = "Orange"),
             ListItem(id = 3, name = "Mango"),
             ListItem(id = 4, name = "Guava"),
-            ListItem(id = 5, name = "Apple")
+            ListItem(id = 5, name = "Apple"),
+            ListItem(id = 6, name = "Dragon Fruit"),
+            ListItem(id = 7, name = "Star Fruit"),
+            ListItem(id = 8, name = "Watermelon"),
+            ListItem(id = 9, name = "Honeydew")
     )
 
     private val fruitsSegmented = listOf(SegmentedListItem(id = 1, name = "Banana", drawableDirection = FormSegmentedElement.DrawableDirection.Top),
@@ -475,6 +479,30 @@ class FullscreenFormActivity : AppCompatActivity() {
                 clearable = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
+                }
+            }
+            multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
+                title = getString(R.string.MultiItemsWithOverride)
+                dialogTitle = getString(R.string.MultiItems)
+                theme = R.style.CustomDialogPicker
+                options = fruits
+                enabled = true
+                maxLines = 1
+                rightToLeft = false
+                displayDivider = false
+                value = listOf()
+                required = true
+                clearable = true
+                valueObservers.add { newValue, element ->
+                    Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
+                }
+                valueAsStringOverride = { values ->
+                    when {
+                        values.isNullOrEmpty() -> "No fruit selected"
+                        values.size == options?.size -> "All fruits selected"
+                        values.size > 3 -> "${values.size} fruits selected"
+                        else -> null
+                    }
                 }
             }
             autoComplete<ContactItem>(AutoCompleteElement.ordinal) {
