@@ -1,5 +1,8 @@
 # Change Log
 
+## [6.5.4](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.4)
+- #187, #188 Add valueAsStringOverride to FormPickerMultiCheckBoxElement
+
 ## [6.5.3](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.3)
 - #185 Add new properties for FormImageElement:
   - displayImageWidth and displayImageHeight to change the size of the image displayed on the form
