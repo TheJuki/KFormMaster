@@ -232,6 +232,7 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                 it.removeAllViews()
 
                 options?.forEach { item ->
+                    var hasSeparateHeights = false
                     val rb = LayoutInflater.from(it.context).inflate(R.layout.template_radiobutton_center, null) as RadioButtonCenter
                     rb.text = item.toString()
                     rb.id = ViewCompat.generateViewId()
@@ -272,6 +273,7 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                         }
 
                         item.height?.let { height ->
+                            hasSeparateHeights = true
                             rb.height = height.dpToPx()
                         }
 
@@ -281,9 +283,15 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                     }
 
                     if (fillSpace) {
-                        it.addView(rb, RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT,
-                                RadioGroup.LayoutParams.WRAP_CONTENT,
-                                1.0f))
+                        if (hasSeparateHeights) {
+                            it.addView(rb, RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT,
+                                    RadioGroup.LayoutParams.WRAP_CONTENT,
+                                    1.0f))
+                        } else {
+                            it.addView(rb, RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT,
+                                    RadioGroup.LayoutParams.MATCH_PARENT,
+                                    1.0f))
+                        }
                     } else {
                         it.addView(rb)
                     }
