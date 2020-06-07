@@ -1,5 +1,8 @@
 # Change Log
 
+## [6.5.5](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.5)
+- #163 Fix segmented radio buttons height when text wraps to next line
+
 ## [6.5.4](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.4)
 - #187, #188 Add valueAsStringOverride to FormPickerMultiCheckBoxElement
 
