@@ -84,6 +84,8 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
     override val valueAsString: String
         get() = this.displayValueFor(this.value) ?: ""
 
+
+    var dialogTitleCustomView: View? = null
     /**
      * Re-initializes the dialog
      * Should be called after the options list changes
@@ -179,6 +181,10 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
             }
 
             alertDialog = it.create()
+
+            if (dialogTitleCustomView != null) {
+                alertDialog.setCustomTitle(dialogTitleCustomView)
+            }
         }
 
         // display the dialog on click
