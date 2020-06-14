@@ -445,6 +445,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 enabled = true
                 rightToLeft = false
                 dialogEmptyMessage = "This is Empty!"
+                // dialogTitleCustomView = TextView(this@FullscreenFormActivity)
                 theme = R.style.CustomDialogPicker
                 displayValueFor = {
                     if (it != null) {

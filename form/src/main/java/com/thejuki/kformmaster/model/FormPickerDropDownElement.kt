@@ -84,8 +84,12 @@ class FormPickerDropDownElement<T>(tag: Int = -1) : FormPickerElement<T>(tag) {
     override val valueAsString: String
         get() = this.displayValueFor(this.value) ?: ""
 
-
+    /**
+     * Alert Dialog Title Custom View
+     * If set, this will set the custom title for the alert dialog
+     */
     var dialogTitleCustomView: View? = null
+
     /**
      * Re-initializes the dialog
      * Should be called after the options list changes
