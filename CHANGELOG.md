@@ -1,5 +1,8 @@
 # Change Log
 
+## [6.5.6](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.6)
+- #191, #192 Add dialogTitleCustomView to dropDown element
+
 ## [6.5.5](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.5)
 - #163 Fix segmented radio buttons height when text wraps to next line
 
