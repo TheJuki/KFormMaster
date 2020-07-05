@@ -407,7 +407,7 @@ interface CustomGen {
                     hint = Gen.string().random().first()
                     visible = Gen.bool().random().first()
                     enabled = Gen.bool().random().first()
-                    rightToLeft = Gen.bool().random().first()
+                    editViewGravity = Gen.int().random().first()
                     maxLines = Gen.choose(1, 100).random().first()
                     error = if (Gen.bool().random().first()) Gen.string().random().first() else null
                     valueObservers.add { newValue, elementRef -> println("New Value = $newValue {$elementRef}") }
@@ -421,7 +421,7 @@ interface CustomGen {
                     hint = Gen.string().random().first()
                     visible = Gen.bool().random().first()
                     enabled = Gen.bool().random().first()
-                    rightToLeft = Gen.bool().random().first()
+                    editViewGravity = Gen.int().random().first()
                     maxLines = Gen.choose(1, 100).random().first()
                     error = if (Gen.bool().random().first()) Gen.string().random().first() else null
                     valueObservers.add { newValue, elementRef -> println("\nNew Value = $newValue {$elementRef}") }

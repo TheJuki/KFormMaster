@@ -193,8 +193,7 @@ class FormInstrumentedTest {
                 email.maxLines = 1
                 email.clearable = true
                 email.clearOnFocus = true
-                email.centerText = false
-                email.rightToLeft = false
+                email.editViewGravity = Gravity.START
 
                 if (it is TextView) {
                     email.clear()
@@ -210,10 +209,10 @@ class FormInstrumentedTest {
                     assertEquals(1, it.maxLines)
 
                     assertEquals(Gravity.TOP or Gravity.START, it.gravity)
-                    email.rightToLeft = true
+                    email.editViewGravity = Gravity.END
                     assertEquals(Gravity.TOP or Gravity.END, it.gravity)
 
-                    email.centerText = true
+                    email.editViewGravity = Gravity.CENTER
                     assertEquals(Gravity.CENTER, it.gravity)
                 }
 
