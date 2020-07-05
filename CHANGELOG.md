@@ -1,5 +1,14 @@
 # Change Log
 
+## [7.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/7.0.0)
+### Issues Resolved
+- #194 Added editViewGravity. The button element's default gravity is CENTER.
+- #195 Added editViewPaintFlags. Set the value to Paint.UNDERLINE_TEXT_FLAG to underline all text, for example.
+- #179 Moved imagepicker dependency to JCenter since JitPack was not working for everyone.
+
+### Breaking change:
+- editViewGravity replaces both rightToLeft and centerText. Set value to Gravity.START, Gravity.END, Gravity.CENTER, etc.
+
 ## [6.5.6](https://github.com/TheJuki/KFormMaster/releases/tag/6.5.6)
 - #191, #192 Add dialogTitleCustomView to dropDown element
 
