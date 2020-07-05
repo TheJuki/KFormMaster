@@ -1,14 +1,12 @@
 
 
 
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Documentation for the KFormMaster Android library">
       
@@ -18,27 +16,8 @@
       
         <meta name="author" content="TheJuki">
       
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.0">
     
     
       
@@ -46,9 +25,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -57,16 +36,13 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
-    
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
     
@@ -75,73 +51,75 @@
     
   </head>
   
-    
-    
-    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-        
-      </defs>
-    </svg>
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#tag" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tag" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://thejuki.github.io/KFormMaster/" title="KFormMaster Docs" class="md-header-nav__button md-logo">
-          
-            <img src="../../images/KF.png" width="24" height="24">
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              KFormMaster Docs
-            </span>
-            <span class="md-header-nav__topic">
-              
-                Base
-              
-            </span>
-          
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://thejuki.github.io/KFormMaster/" title="KFormMaster Docs" class="md-header-nav__button md-logo" aria-label="KFormMaster Docs">
+      
+  <img src="../../images/KF.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            KFormMaster Docs
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Base
+            
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Type to start searching
+            Initializing search
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -149,135 +127,55 @@
     </div>
   </div>
 </div>
+    
+    
+      <div class="md-header-nav__source">
         
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
-
-
-  
-
-<a href="https://github.com/thejuki/KFormMaster" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/thejuki/KFormMaster" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     TheJuki/KFormMaster
   </div>
 </a>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
         
-
-  
-
-<nav class="md-tabs md-tabs--active" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
-    <ul class="md-tabs__list">
       
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../.." class="md-tabs__link">
-          Home
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="./" class="md-tabs__link md-tabs__link--active">
-          Form Elements
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../custom/customize/" class="md-tabs__link">
-          Custom
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../about/contributing/" class="md-tabs__link">
-          About
-        </a>
-      
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
-      
-      <main class="md-main" role="main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://thejuki.github.io/KFormMaster/" title="KFormMaster Docs" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://thejuki.github.io/KFormMaster/" title="KFormMaster Docs" class="md-nav__button md-logo" aria-label="KFormMaster Docs">
       
-        <img src="../../images/KF.png" width="48" height="48">
-      
+  <img src="../../images/KF.png" alt="logo">
+
     </a>
     KFormMaster Docs
   </label>
   
     <div class="md-nav__source">
       
-
-
-  
-
-<a href="https://github.com/thejuki/KFormMaster" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/thejuki/KFormMaster" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     TheJuki/KFormMaster
   </div>
@@ -293,13 +191,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
     
     <label class="md-nav__link" for="nav-1">
       Home
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Home" data-md-level="1">
       <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Home
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -355,13 +259,19 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Form Elements
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Form Elements" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Form Elements
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -376,11 +286,14 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Base
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
       </label>
     
     <a href="./" title="Base" class="md-nav__link md-nav__link--active">
@@ -388,11 +301,16 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -515,15 +433,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#right-to-left-rtl" class="md-nav__link">
-    Right To Left (RTL)
+  <a href="#edit-view-gravity" class="md-nav__link">
+    Edit View Gravity
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#center-text" class="md-nav__link">
-    Center Text
+  <a href="#edit-view-paint-flags" class="md-nav__link">
+    Edit View Paint Flags
   </a>
   
 </li>
@@ -744,10 +662,6 @@
   </a>
   
 </li>
-      
-      
-      
-      
       
     </ul>
   
@@ -1044,13 +958,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Custom
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Custom" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Custom
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1116,13 +1036,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       About
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="About" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         About
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1180,11 +1106,16 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -1307,15 +1238,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#right-to-left-rtl" class="md-nav__link">
-    Right To Left (RTL)
+  <a href="#edit-view-gravity" class="md-nav__link">
+    Edit View Gravity
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#center-text" class="md-nav__link">
-    Center Text
+  <a href="#edit-view-paint-flags" class="md-nav__link">
+    Edit View Paint Flags
   </a>
   
 </li>
@@ -1537,10 +1468,6 @@
   
 </li>
       
-      
-      
-      
-      
     </ul>
   
 </nav>
@@ -1552,6 +1479,9 @@
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
+                
+                
+                  
                 
                 
                   <h1>Base</h1>
@@ -1579,104 +1509,104 @@
 </div>
 <h2 id="tag">Tag<a class="headerlink" href="#tag" title="Permanent link">&para;</a></h2>
 <p>The tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">}</span>
 <span class="n">email</span><span class="p">(</span><span class="n">Tag</span><span class="p">.</span><span class="n">Email</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="codehilite"><pre><span></span><span class="k">val</span> <span class="py">textElement</span> <span class="p">=</span> <span class="n">formBuilder</span><span class="p">.</span><span class="n">getElementAtIndex</span><span class="p">(</span><span class="m">0</span><span class="p">)</span> <span class="k">as</span> <span class="n">FormSingleLineEditTextElement</span>
+<div class="codehilite"><pre><span></span><code><span class="k">val</span> <span class="py">textElement</span> <span class="p">=</span> <span class="n">formBuilder</span><span class="p">.</span><span class="n">getElementAtIndex</span><span class="p">(</span><span class="m">0</span><span class="p">)</span> <span class="k">as</span> <span class="n">FormSingleLineEditTextElement</span>
 <span class="k">val</span> <span class="py">emailElement</span> <span class="p">=</span> <span class="n">formBuilder</span><span class="p">.</span><span class="n">getFormElement</span><span class="p">&lt;</span><span class="n">FormEmailEditTextElement</span><span class="p">&gt;(</span><span class="n">Tag</span><span class="p">.</span><span class="n">Email</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h2>
 <p>The title is the text displayed next to the value of the form element.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">title</span> <span class="p">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">title</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h2>
 <p>The value is the value of the form element. Depending on the form element, this can be a String, Date, or an object of your choice.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;Hello World&quot;</span>
 <span class="p">}</span>
 <span class="n">autoComplete</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;</span> <span class="p">{</span>
     <span class="n">value</span> <span class="p">=</span> <span class="n">ContactItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;John Smith&quot;</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="value-observers">Value Observers<a class="headerlink" href="#value-observers" title="Permanent link">&para;</a></h2>
 <p>The list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;Hello World&quot;</span>
     <span class="n">valueObservers</span><span class="p">.</span><span class="n">add</span><span class="p">({</span> <span class="n">newValue</span><span class="p">,</span> <span class="n">element</span> <span class="p">-&gt;</span>
         <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="n">newValue</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
     <span class="p">})</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="on-click-unit">On Click Unit<a class="headerlink" href="#on-click-unit" title="Permanent link">&para;</a></h2>
 <p>This unit is invoked when the form element is clicked.
 NOTE: The click event is not fired when a text field is clicked on to focus. Use onFocus to get the event when a field has focus.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
      <span class="n">onClick</span> <span class="p">=</span> <span class="p">{</span>
         <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="on-focus-unit">On Focus Unit<a class="headerlink" href="#on-focus-unit" title="Permanent link">&para;</a></h2>
 <p>This unit is invoked when the form element is focused.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
      <span class="n">onFocus</span> <span class="p">=</span> <span class="p">{</span>
         <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="on-touch-up-unit">On Touch Up Unit<a class="headerlink" href="#on-touch-up-unit" title="Permanent link">&para;</a></h2>
 <p>This unit is invoked when the form element is touched up.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
      <span class="n">onTouchUp</span> <span class="p">=</span> <span class="p">{</span>
         <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="on-touch-down-unit">On Touch Down Unit<a class="headerlink" href="#on-touch-down-unit" title="Permanent link">&para;</a></h2>
 <p>This unit is invoked when the form element is touched down.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
      <span class="n">onTouchDown</span> <span class="p">=</span> <span class="p">{</span>
         <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="on-title-icon-click-unit">On Title Icon Click Unit<a class="headerlink" href="#on-title-icon-click-unit" title="Permanent link">&para;</a></h2>
 <p>This unit is invoked when the title's icon is clicked.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
      <span class="n">onTitleIconClick</span> <span class="p">=</span> <span class="p">{</span>
         <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="s">&quot;Icon clicked&quot;</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
 <p>The list of options is used in form elements such as the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. </p>
-<div class="codehilite"><pre><span></span><span class="k">private</span> <span class="k">val</span> <span class="py">fruits</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span>
+<div class="codehilite"><pre><span></span><code><span class="k">private</span> <span class="k">val</span> <span class="py">fruits</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span>
     <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Orange&quot;</span><span class="p">),</span>
     <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Mango&quot;</span><span class="p">),</span>
     <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Guava&quot;</span><span class="p">),</span>
@@ -1691,52 +1621,52 @@ NOTE: The click event is not fired when a text field is clicked on to focus. Use
     <span class="n">options</span> <span class="p">=</span> <span class="n">fruits</span>
     <span class="n">value</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">))</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="update-on-focus-change">Update On Focus Change<a class="headerlink" href="#update-on-focus-change" title="Permanent link">&para;</a></h2>
 <p>By default this is false.
 An EditText will update the form value as characters are typed.
 Setting this to true will only update the value when focus is lost or if Done is tapped on the keyboard. (See IME Options)</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">updateOnFocusChange</span> <span class="p">=</span> <span class="k">true</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="input-type">Input Type<a class="headerlink" href="#input-type" title="Permanent link">&para;</a></h2>
 <p>By default this is set by the form element type.
 Setting this will override the EditText form element's Input Type.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">inputType</span> <span class="p">=</span> <span class="n">InputType</span><span class="p">.</span><span class="n">TYPE_CLASS_TEXT</span> <span class="n">or</span> <span class="n">InputType</span><span class="p">.</span><span class="n">TYPE_TEXT_FLAG_NO_SUGGESTIONS</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="ime-options">IME Options<a class="headerlink" href="#ime-options" title="Permanent link">&para;</a></h2>
 <p>By default this is EditorInfo.IME_ACTION_NEXT.
 Setting this will override the EditText form element's IME Options.
 If EditorInfo.IME_ACTION_DONE is used, tapping Done on the keyboard will update the form element value.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">imeOptions</span> <span class="p">=</span> <span class="n">EditorInfo</span><span class="p">.</span><span class="n">IME_ACTION_DONE</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="input-mask-options">Input Mask Options<a class="headerlink" href="#input-mask-options" title="Permanent link">&para;</a></h2>
 <p>By default edit text fields will not have any input mask format. Setting an input mask format will format the text field for the set value and as you type.</p>
-<div class="codehilite"><pre><span></span><span class="n">phone</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">phone</span> <span class="p">{</span>
     <span class="n">inputMaskOptions</span> <span class="p">=</span> <span class="n">InputMaskOptions</span><span class="p">(</span><span class="n">primaryFormat</span> <span class="p">=</span> <span class="s">&quot;+1 ([000]) [000]-[0000]&quot;</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="hint">Hint<a class="headerlink" href="#hint" title="Permanent link">&para;</a></h2>
 <p>The hint is the hint (or placeholder) of the value field.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">hint</span> <span class="p">=</span> <span class="s">&quot;Enter a name&quot;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="max-length">Max Length<a class="headerlink" href="#max-length" title="Permanent link">&para;</a></h2>
@@ -1749,10 +1679,10 @@ Max length represents the number of characters the value field will allow.</p>
 <li>AutoCompleteToken</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">maxLength</span> <span class="p">=</span> <span class="m">10</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="max-lines">Max Lines<a class="headerlink" href="#max-lines" title="Permanent link">&para;</a></h2>
@@ -1766,45 +1696,45 @@ Max lines represents the number of lines the value field will display.</p>
 <li>Text (Use TextArea instead)</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">textArea</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">textArea</span> <span class="p">{</span>
     <span class="n">maxLines</span> <span class="p">=</span> <span class="m">3</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<h2 id="right-to-left-rtl">Right To Left (RTL)<a class="headerlink" href="#right-to-left-rtl" title="Permanent link">&para;</a></h2>
-<p>By default this is true.
-This determines the gravity of the text in the value field.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
-    <span class="n">rightToLeft</span> <span class="p">=</span> <span class="k">false</span>
+<h2 id="edit-view-gravity">Edit View Gravity<a class="headerlink" href="#edit-view-gravity" title="Permanent link">&para;</a></h2>
+<p>By default, this is Gravity.END (Right to left).
+This determines the gravity of the text in the value field, button, or header.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">editViewGravity</span> <span class="p">=</span> <span class="n">Gravity</span><span class="p">.</span><span class="n">START</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<h2 id="center-text">Center Text<a class="headerlink" href="#center-text" title="Permanent link">&para;</a></h2>
-<p>By default this is false.
-This uses the Center gravity for the text in the value field.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
-    <span class="n">centerText</span> <span class="p">=</span> <span class="k">true</span>
+<h2 id="edit-view-paint-flags">Edit View Paint Flags<a class="headerlink" href="#edit-view-paint-flags" title="Permanent link">&para;</a></h2>
+<p>By default, this is null (No flags).
+This determines the extra paint flags for the edit view.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">editViewPaintFlags</span> <span class="p">=</span> <span class="n">Paint</span><span class="p">.</span><span class="n">UNDERLINE_TEXT_FLAG</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="error">Error<a class="headerlink" href="#error" title="Permanent link">&para;</a></h2>
 <p>This is the error text displayed in red below the form element.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">error</span> <span class="p">=</span> <span class="s">&quot;That&#39;s an error&quot;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h2>
 <p>By default this is false.
 Setting required to true will cause FormBuildHelper.isValidForm to return false if a value is not set.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">required</span> <span class="p">=</span> <span class="k">true</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="clearable">Clearable<a class="headerlink" href="#clearable" title="Permanent link">&para;</a></h2>
@@ -1817,10 +1747,10 @@ Setting this to true will display a clear button (X) to set the value to null.</
 <li>AutoCompleteToken</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">clearable</span> <span class="p">=</span> <span class="k">true</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="title-icon">Title Icon<a class="headerlink" href="#title-icon" title="Permanent link">&para;</a></h2>
@@ -1830,28 +1760,28 @@ Setting this will set and display the title icon drawable (null will hide the ic
 <p class="admonition-title">Button</p>
 <p>Setting this for the button form element will add the icon to the button.</p>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">titleIcon</span> <span class="p">=</span> <span class="n">ContextCompat</span><span class="p">.</span><span class="n">getDrawable</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="n">drawable</span><span class="p">.</span><span class="n">ic_email_blue_24dp</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="title-icon-location">Title Icon Location<a class="headerlink" href="#title-icon-location" title="Permanent link">&para;</a></h2>
 <p>By default this is IconTextView.Location.LEFT.
 Setting this set the title icon location (LEFT or RIGHT of the title).</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">titleIconLocation</span> <span class="p">=</span> <span class="n">IconTextView</span><span class="p">.</span><span class="n">Location</span><span class="p">.</span><span class="n">RIGHT</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="title-icon-padding">Title Icon Padding<a class="headerlink" href="#title-icon-padding" title="Permanent link">&para;</a></h2>
 <p>By default this is 20.
 Setting this set the padding between the title text and icon.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">titleIconPadding</span> <span class="p">=</span> <span class="m">25</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="clear-on-focus">Clear On Focus<a class="headerlink" href="#clear-on-focus" title="Permanent link">&para;</a></h2>
@@ -1864,19 +1794,19 @@ Setting this to true will clear the text value of the form element when focused.
 <li>AutoCompleteToken</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">clearOnFocus</span> <span class="p">=</span> <span class="k">true</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="visible">Visible<a class="headerlink" href="#visible" title="Permanent link">&para;</a></h2>
 <p>By default this is true.
 Setting visible to false will hide the form element.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">visible</span> <span class="p">=</span> <span class="k">false</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="enabled">Enabled<a class="headerlink" href="#enabled" title="Permanent link">&para;</a></h2>
@@ -1886,10 +1816,10 @@ Setting enabled to false will disable the form element. This means that the clic
 <p class="admonition-title">Text View</p>
 <p>Use the TextView element if you just want a simple uneditable text element.</p>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">enabled</span> <span class="p">=</span> <span class="k">false</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="clickable">Clickable<a class="headerlink" href="#clickable" title="Permanent link">&para;</a></h2>
@@ -1899,10 +1829,10 @@ Setting clickable to false will disable click events.</p>
 <p class="admonition-title">Use focusable</p>
 <p>Click events will still be fired unless focusable is also set to false.</p>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">clickable</span> <span class="p">=</span> <span class="k">false</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="focusable">Focusable<a class="headerlink" href="#focusable" title="Permanent link">&para;</a></h2>
@@ -1912,37 +1842,37 @@ Setting focusable to false will prevent a field from being focused.</p>
 <p class="admonition-title">Focusable elements</p>
 <p>This value does not change the behavior of the form elements that cannot be focused.</p>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">focusable</span> <span class="p">=</span> <span class="k">false</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="display-divider">Display Divider<a class="headerlink" href="#display-divider" title="Permanent link">&para;</a></h2>
 <p>By default this is true.
 Setting displayDivider to false will hide the divider line displayed before the element.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">displayDivider</span> <span class="p">=</span> <span class="k">true</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="display-title">Display Title<a class="headerlink" href="#display-title" title="Permanent link">&para;</a></h2>
 <p>By default this is true.
 Setting displayTitle to false will hide the title.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">displayTitle</span> <span class="p">=</span> <span class="k">true</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="layout-padding-bottom-dp">Layout Padding Bottom (DP)<a class="headerlink" href="#layout-padding-bottom-dp" title="Permanent link">&para;</a></h2>
 <p>By default, this will use android:paddingBottom in the XML.
 Setting layoutPaddingBottom will override the bottom padding of the form element.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">layoutPaddingBottom</span> <span class="p">=</span> <span class="m">0</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="title-padding-dp">Title Padding (DP)<a class="headerlink" href="#title-padding-dp" title="Permanent link">&para;</a></h2>
@@ -1951,10 +1881,10 @@ Setting layoutPaddingBottom will override the bottom padding of the form element
 <p class="admonition-title">FormElementPadding</p>
 <p>FormElementPadding is a simple class to set all padding.</p>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">titlePadding</span> <span class="p">=</span> <span class="n">FormElementPadding</span><span class="p">(</span><span class="cm">/* Left */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Top */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Right */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Bottom */</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="padding-dp">Padding (DP)<a class="headerlink" href="#padding-dp" title="Permanent link">&para;</a></h2>
@@ -1963,10 +1893,10 @@ Setting layoutPaddingBottom will override the bottom padding of the form element
 <p class="admonition-title">FormElementPadding</p>
 <p>FormElementPadding is a simple class to set all padding.</p>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">padding</span> <span class="p">=</span> <span class="n">FormElementPadding</span><span class="p">(</span><span class="cm">/* Left */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Top */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Right */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Bottom */</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="margins-dp">Margins (DP)<a class="headerlink" href="#margins-dp" title="Permanent link">&para;</a></h2>
@@ -1976,122 +1906,122 @@ Setting margins will override the margins of the form element.</p>
 <p class="admonition-title">FormElementMargins</p>
 <p>FormElementMargins is a simple class to set all margins.</p>
 </div>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">margins</span> <span class="p">=</span> <span class="n">FormElementMargins</span><span class="p">(</span><span class="cm">/* Left */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Top */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Right */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Bottom */</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="confirm-edit">Confirm Edit<a class="headerlink" href="#confirm-edit" title="Permanent link">&para;</a></h2>
 <p>By default this is false.
 Setting confirmEdit to true will display an alert dialog confirming if the user wishes to edit the value if a current value exists.
 Currently, this only applies to the picker elements that display a dialog.</p>
-<div class="codehilite"><pre><span></span><span class="n">date</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">date</span> <span class="p">{</span>
     <span class="n">confirmEdit</span> <span class="p">=</span> <span class="k">true</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="confirm-title">Confirm Title<a class="headerlink" href="#confirm-title" title="Permanent link">&para;</a></h2>
 <p>By default this is "Confirm Edit".
 Setting this will override the confirm edit dialog title.</p>
-<div class="codehilite"><pre><span></span><span class="n">date</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">date</span> <span class="p">{</span>
     <span class="n">confirmTitle</span> <span class="p">=</span> <span class="s">&quot;Really edit this?&quot;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="confirm-message">Confirm Message<a class="headerlink" href="#confirm-message" title="Permanent link">&para;</a></h2>
 <p>By default this is "Edit this value?".
 Setting this will override the confirm edit dialog message.</p>
-<div class="codehilite"><pre><span></span><span class="n">date</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">date</span> <span class="p">{</span>
     <span class="n">confirmMessage</span> <span class="p">=</span> <span class="s">&quot;Are you ABSOLUTELY sure?&quot;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="background-color">Background Color<a class="headerlink" href="#background-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementBackground.
 Setting this will override the background color.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">backgroundColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">WHITE</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="title-text-color">Title Text Color<a class="headerlink" href="#title-text-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementTextTitle.
 Setting this will override the title text color.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">titleTextColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="title-focused-text-color">Title Focused Text Color<a class="headerlink" href="#title-focused-text-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementFocusedTitle.
 Setting this will override the title text (when focused) color.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">titleFocusedTextColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="value-text-color">Value Text Color<a class="headerlink" href="#value-text-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementTextValue.
 Setting this will override the value text color.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">valueTextColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="error-text-color">Error Text Color<a class="headerlink" href="#error-text-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementErrorTitle.
 Setting this will override the error text color.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">errorTextColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="hint-text-color">Hint Text Color<a class="headerlink" href="#hint-text-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementHint.
 Setting this will override the hint text color.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">hintTextColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="clear-value">Clear value<a class="headerlink" href="#clear-value" title="Permanent link">&para;</a></h2>
 <p>Clear the value of the element.</p>
-<div class="codehilite"><pre><span></span><span class="n">element</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">element</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+</code></pre></div>
 
 
 <h2 id="is-the-value-valid">Is the value valid?<a class="headerlink" href="#is-the-value-valid" title="Permanent link">&para;</a></h2>
 <p>isValid contains a getter that checks if the element is valid. At the base level, this checks if the value is not null or empty.
 This is used by formBuilder.isValidForm.</p>
-<div class="codehilite"><pre><span></span><span class="n">element</span><span class="p">.</span><span class="n">isValid</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">element</span><span class="p">.</span><span class="n">isValid</span>
+</code></pre></div>
 
 
 <h2 id="custom-validation">Custom Validation<a class="headerlink" href="#custom-validation" title="Permanent link">&para;</a></h2>
 <p>To add custom validation check, assign a lambda to validityCheck.</p>
-<div class="codehilite"><pre><span></span><span class="n">text</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
     <span class="n">validityCheck</span> <span class="p">=</span> <span class="p">{</span>
         <span class="n">value</span><span class="o">?.</span><span class="n">matches</span><span class="p">(</span><span class="s">&quot;some regex&quot;</span><span class="p">.</span><span class="n">toRegex</span><span class="p">())</span> <span class="p">==</span> <span class="k">true</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2 id="display-new-value">Display New Value<a class="headerlink" href="#display-new-value" title="Permanent link">&para;</a></h2>
 <p>This function is called when the value changes to display the new value specific to the form element.
 By default, this handles setting the text of the AppCompatEditText view.</p>
-<div class="codehilite"><pre><span></span><span class="n">element</span><span class="p">.</span><span class="n">displayNewValue</span><span class="p">()</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="n">element</span><span class="p">.</span><span class="n">displayNewValue</span><span class="p">()</span>
+</code></pre></div>
 
 
 <h2 id="dynamic-views">Dynamic Views<a class="headerlink" href="#dynamic-views" title="Permanent link">&para;</a></h2>
@@ -2099,8 +2029,6 @@ By default, this handles setting the text of the AppCompatEditText view.</p>
 <p class="admonition-title">NOTICE</p>
 <p>The Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecyclerView.</p>
 </div>
-                
-                  
                 
               
               
@@ -2117,34 +2045,34 @@ By default, this handles setting the text of the AppCompatEditText view.</p>
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
                 Migrate from Builders
-              </span>
+              </div>
             </div>
           </a>
         
         
-          <a href="../header/" title="Header" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+          <a href="../header/" title="Header" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
                 Header
-              </span>
+              </div>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
             </div>
           </a>
         
@@ -2159,11 +2087,10 @@ By default, this handles setting the text of the AppCompatEditText view.</p>
             Copyright &copy; 2020 Justin Kirk
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
       
     </div>
@@ -2172,9 +2099,18 @@ By default, this handles setting the text of the AppCompatEditText view.</p>
       
     </div>
     
-      <script src="../../assets/javascripts/application.c648116f.js"></script>
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a14cc5fd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7a2ea5ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
     
   </body>
