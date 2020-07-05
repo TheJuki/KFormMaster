@@ -206,21 +206,21 @@ textArea {
 }
 ```
 
-## Right To Left (RTL)
-By default this is true.
-This determines the gravity of the text in the value field.
+## Edit View Gravity
+By default, this is Gravity.END (Right to left).
+This determines the gravity of the text in the value field, button, or header.
 ```kotlin
 text {
-    rightToLeft = false
+    editViewGravity = Gravity.START
 }
 ```
 
-## Center Text
-By default this is false.
-This uses the Center gravity for the text in the value field.
+## Edit View Paint Flags
+By default, this is null (No flags).
+This determines the extra paint flags for the edit view.
 ```kotlin
 text {
-    centerText = true
+    editViewPaintFlags = Paint.UNDERLINE_TEXT_FLAG
 }
 ```
 

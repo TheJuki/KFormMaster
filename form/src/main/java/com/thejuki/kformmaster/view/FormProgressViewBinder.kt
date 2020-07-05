@@ -2,6 +2,7 @@ package com.thejuki.kformmaster.view
 
 import android.content.Context
 import android.os.Build
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -60,7 +61,7 @@ class FormProgressViewBinder(private val context: Context, private val formBuild
             progressBar = ProgressBar(context, null, styleAttrId)
             progressBar.id = R.id.formElementValue
 
-            if (model.centerText) {
+            if (model.editViewGravity == Gravity.CENTER) {
                 val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
                         RelativeLayout.LayoutParams.WRAP_CONTENT)
                 params.addRule(RelativeLayout.CENTER_IN_PARENT)

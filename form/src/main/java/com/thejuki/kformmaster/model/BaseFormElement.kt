@@ -140,18 +140,39 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
         }
 
     /**
-     * Form Element RTL
+     * Form Element Edit View Gravity
+     * By default, this is Gravity.END (Right to left)
      */
-    var rightToLeft: Boolean = true
+    open var editViewGravity: Int = Gravity.END
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView && it !is AppCompatCheckBox && it !is SwitchCompat) {
+                    it.gravity = value
+                } else if (it is SegmentedGroup) {
+                    it.gravity = value
+                }
+            }
+
+            titleView?.let {
+                if (this is FormHeader || this is FormLabelElement) {
+                    it.gravity = value
+                }
+            }
+        }
+
+    /**
+     * Form Element Edit View Paint Flags
+     * By default, this is null (No flags).
+     */
+    open var editViewPaintFlags: Int? = null
         set(value) {
             field = value
             editView?.let {
                 if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
-                    it.gravity = if (rightToLeft) Gravity.END else Gravity.START
-                } else if (it is SegmentedGroup) {
-                    it.gravity = if (rightToLeft) Gravity.END else Gravity.START
-                } else if (it is IconButton) {
-                    it.gravity = if (rightToLeft) (Gravity.CENTER_VERTICAL or Gravity.END) else (Gravity.CENTER_VERTICAL or Gravity.START)
+                    editViewPaintFlags?.let { paintFlags ->
+                        it.paintFlags = it.paintFlags or paintFlags
+                    }
                 }
             }
         }
@@ -493,30 +514,6 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var confirmMessage: String? = null
 
     /**
-     * Form Element Center the text
-     */
-    var centerText: Boolean = false
-        set(value) {
-            field = value
-
-            editView?.let {
-                if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
-                    if (centerText) {
-                        it.gravity = Gravity.CENTER
-                    } else {
-                        it.gravity = if (rightToLeft) Gravity.END else Gravity.START
-                    }
-                } else if (it is IconButton) {
-                    if (centerText) {
-                        it.gravity = Gravity.CENTER
-                    } else {
-                        it.gravity = if (rightToLeft) (Gravity.CENTER_VERTICAL or Gravity.END) else (Gravity.CENTER_VERTICAL or Gravity.START)
-                    }
-                }
-            }
-        }
-
-    /**
      * Form Element Update EditText value when focus is lost
      * By default, an EditText will update the form value as characters are typed.
      * Setting this to true will only update the value when focus is lost.
@@ -567,13 +564,13 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                 it.isClickable = clickable
                 it.isFocusable = focusable
                 if (it is TextView && it !is AppCompatCheckBox && it !is AppCompatButton && it !is SwitchCompat) {
-                    if (centerText) {
-                        it.gravity = Gravity.CENTER
-                    } else {
-                        it.gravity = if (rightToLeft) Gravity.END else Gravity.START
-                    }
+                    it.gravity = editViewGravity
                     it.isSingleLine = maxLines == 1
                     it.maxLines = maxLines
+
+                    editViewPaintFlags?.let { paintFlags ->
+                        it.paintFlags = it.paintFlags or paintFlags
+                    }
                     if (it !is AppCompatAutoCompleteTextView) {
                         if (maxLength != null) {
                             it.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength
@@ -593,13 +590,9 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                         it.setTextColor(valueTextColor ?: 0)
                     }
 
-                    if (centerText) {
-                        it.gravity = Gravity.CENTER
-                    } else {
-                        it.gravity = if (rightToLeft) (Gravity.CENTER_VERTICAL or Gravity.END) else (Gravity.CENTER_VERTICAL or Gravity.START)
-                    }
+                    it.gravity = editViewGravity
                 } else if (it is SegmentedGroup) {
-                    it.gravity = if (rightToLeft) Gravity.END else Gravity.START
+                    it.gravity = editViewGravity
                     if (margins != null) {
                         it.setMargins(margins?.left.dpToPx(),
                                 margins?.top.dpToPx(),
@@ -651,17 +644,17 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                                 margins?.right.dpToPx(),
                                 margins?.bottom.dpToPx())
                     }
-                    if (centerText) {
-                        it.gravity = Gravity.CENTER
-                    } else {
-                        it.gravity = if (rightToLeft) Gravity.START else Gravity.END
-                    }
+                    it.gravity = editViewGravity
 
                     if (padding != null) {
                         it.setPadding(padding?.left.dpToPx(),
                                 padding?.top.dpToPx(),
                                 padding?.right.dpToPx(),
                                 padding?.bottom.dpToPx())
+                    }
+
+                    editViewPaintFlags?.let { paintFlags ->
+                        it.paintFlags = it.paintFlags or paintFlags
                     }
                 }
 

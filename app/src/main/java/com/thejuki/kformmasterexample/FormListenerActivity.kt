@@ -1,6 +1,7 @@
 package com.thejuki.kformmasterexample
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.Toast
@@ -181,7 +182,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
             }
             label(LabelElement.ordinal) {
                 title = getString(R.string.Label)
-                rightToLeft = false
+                editViewGravity = Gravity.START
             }
             header { title = getString(R.string.MarkComplete) }
             switch<String>(SwitchElement.ordinal) {
@@ -217,7 +218,6 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                 value = ListItem(id = 1, name = "Banana")
             }
             button(ButtonElement.ordinal) {
-                centerText = true
                 value = getString(R.string.Button)
                 valueObservers.add { newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@FormListenerActivity).create()

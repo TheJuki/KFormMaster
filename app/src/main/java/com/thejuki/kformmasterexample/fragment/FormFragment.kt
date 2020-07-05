@@ -2,6 +2,7 @@ package com.thejuki.kformmasterexample.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -113,7 +114,7 @@ class FormFragment : Fragment() {
                 title = getString(R.string.email)
                 hint = getString(R.string.email_hint)
                 value = "mail@mail.com"
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 maxLines = 3
                 enabled = true
                 required = true
@@ -125,7 +126,7 @@ class FormFragment : Fragment() {
                 title = getString(R.string.password)
                 value = "Password123"
                 required = true
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 enabled = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
@@ -134,7 +135,7 @@ class FormFragment : Fragment() {
             phone(Phone.ordinal) {
                 title = getString(R.string.Phone)
                 value = "+8801712345678"
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 maxLines = 3
                 required = true
                 enabled = true
@@ -146,7 +147,7 @@ class FormFragment : Fragment() {
             text(Location.ordinal) {
                 title = getString(R.string.Location)
                 value = "Dhaka"
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 required = true
                 enabled = true
                 valueObservers.add { newValue, element ->
@@ -156,7 +157,7 @@ class FormFragment : Fragment() {
             textArea(Address.ordinal) {
                 title = getString(R.string.Address)
                 value = "123 Street"
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 maxLines = 2
                 required = true
                 enabled = true
@@ -168,7 +169,7 @@ class FormFragment : Fragment() {
                 title = getString(R.string.ZipCode)
                 value = "123456"
                 numbersOnly = true
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 required = true
                 enabled = true
                 valueObservers.add { newValue, element ->
@@ -182,7 +183,7 @@ class FormFragment : Fragment() {
                 dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.US)
                 required = true
                 maxLines = 1
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 enabled = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
@@ -194,7 +195,7 @@ class FormFragment : Fragment() {
                 dateFormat = SimpleDateFormat("hh:mm a", Locale.US)
                 required = true
                 maxLines = 1
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 enabled = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
@@ -206,7 +207,7 @@ class FormFragment : Fragment() {
                 dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
                 required = true
                 maxLines = 1
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 enabled = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
@@ -218,7 +219,7 @@ class FormFragment : Fragment() {
                 dialogTitle = getString(R.string.SingleItem)
                 options = fruits
                 enabled = true
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 maxLines = 3
                 value = ListItem(id = 1, name = "Banana")
                 required = true
@@ -232,7 +233,7 @@ class FormFragment : Fragment() {
                 options = fruits
                 enabled = true
                 maxLines = 3
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 value = listOf(ListItem(id = 1, name = "Banana"))
                 required = true
                 valueObservers.add { newValue, element ->
@@ -248,7 +249,7 @@ class FormFragment : Fragment() {
                 value = ContactItem(id = 1, value = "John Smith", label = "John Smith (Tester)")
                 enabled = true
                 maxLines = 3
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 required = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
@@ -263,7 +264,7 @@ class FormFragment : Fragment() {
                 value = arrayListOf(ContactItem(id = 1, value = "John.Smith@mail.com", label = "John Smith (Tester)"))
                 required = true
                 maxLines = 3
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 enabled = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
@@ -271,13 +272,13 @@ class FormFragment : Fragment() {
             }
             textView(TextViewElement.ordinal) {
                 title = getString(R.string.TextView)
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 maxLines = 1
                 value = "This is readonly!"
             }
             label(LabelElement.ordinal) {
                 title = getString(R.string.Label)
-                rightToLeft = false
+                editViewGravity = Gravity.START
             }
             header { title = getString(R.string.MarkComplete); collapsible = true }
             switch<String>(SwitchElement.ordinal) {
@@ -326,7 +327,7 @@ class FormFragment : Fragment() {
                 title = getString(R.string.Segmented)
                 options = fruits
                 enabled = true
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 horizontal = true
                 value = ListItem(id = 1, name = "Banana")
                 required = true
@@ -335,7 +336,6 @@ class FormFragment : Fragment() {
                 }
             }
             button(ButtonElement.ordinal) {
-                centerText = true
                 value = getString(R.string.Button)
                 enabled = true
                 valueObservers.add { newValue, element ->

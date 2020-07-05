@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: "guru.stefma.bintrayrelease"
 apply plugin: 'jacoco'
 
-version = '6.5.6'
+version = '7.0.0'
 
 android {
     compileSdkVersion 29
@@ -12,7 +12,7 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 48
+        versionCode 49
         versionName project.version
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -98,6 +98,7 @@ ext {
     log4jVersion = '2.13.3'
     inputMaskVersion = '6.0.0'
     androidSVGVersion = '1.4'
+    imagepickerVersion = '1.11'
 }
 
 dependencies {
@@ -125,7 +126,7 @@ dependencies {
     implementation "com.github.florent37:inline-activity-result-kotlin:$inlineActivityResultVersion"
 
     // ImagePicker
-    api 'com.github.TheJuki:ImagePicker:1.11'
+    api "com.thejuki:imagepicker:$imagepickerVersion"
 
     // Input mask
     api "com.redmadrobot:input-mask-android:$inputMaskVersion"

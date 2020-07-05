@@ -1,6 +1,7 @@
 package com.thejuki.kformmasterexample;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -314,7 +315,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         elements.add(segmented);
 
         FormButtonElement button = new FormButtonElement(Tag.ButtonElement.ordinal());
-        button.setCenterText(true);
+        button.setEditViewGravity(Gravity.CENTER_VERTICAL);
         button.setValue(getString(R.string.Button));
         button.getValueObservers().add((newValue, element) -> {
             clearDate();

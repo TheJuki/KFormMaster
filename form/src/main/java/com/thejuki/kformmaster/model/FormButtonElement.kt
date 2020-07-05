@@ -1,5 +1,6 @@
 package com.thejuki.kformmaster.model
 
+import android.view.Gravity
 import android.widget.TextView
 
 /**
@@ -19,6 +20,16 @@ class FormButtonElement(tag: Int = -1) : BaseFormElement<String>(tag) {
         get() = validityCheck()
 
     override var validityCheck = { true }
+
+    override var editViewGravity: Int = Gravity.CENTER
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView) {
+                    it.gravity = value
+                }
+            }
+        }
 
     /**
      * Nothing to clear

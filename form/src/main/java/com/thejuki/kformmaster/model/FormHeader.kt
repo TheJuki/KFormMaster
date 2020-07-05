@@ -1,5 +1,7 @@
 package com.thejuki.kformmaster.model
 
+import android.view.Gravity
+import android.widget.TextView
 import com.thejuki.kformmaster.helper.FormBuildHelper
 
 /**
@@ -31,6 +33,16 @@ class FormHeader(tag: Int = -1, title: String? = null) : BaseFormElement<String>
      * initialization
      */
     var allCollapsed: Boolean = false
+
+    override var editViewGravity: Int = Gravity.START
+        set(value) {
+            field = value
+            editView?.let {
+                if (it is TextView) {
+                    it.gravity = value
+                }
+            }
+        }
 
     /**
      * Collapse or Uncollapse all elements under the header until the next header

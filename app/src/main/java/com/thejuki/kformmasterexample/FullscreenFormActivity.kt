@@ -2,12 +2,10 @@ package com.thejuki.kformmasterexample
 
 import android.app.Activity
 import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.text.InputType
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -257,12 +255,12 @@ class FullscreenFormActivity : AppCompatActivity() {
                 collapsible = true
                 backgroundColor = Color.parseColor("#DDDDDD")
                 titleTextColor = Color.BLACK
-                centerText = true
+                editViewGravity = Gravity.CENTER
                 allCollapsed = false
             }
             email(Email.ordinal) {
                 title = getString(R.string.email)
-                centerText = true
+                editViewGravity = Gravity.CENTER
                 displayDivider = false
                 titleIcon = ContextCompat.getDrawable(this@FullscreenFormActivity, R.drawable.ic_email_blue_24dp)
                 titleIconLocation = IconTextView.Location.RIGHT
@@ -299,7 +297,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 displayDivider = false
                 required = true
                 maxLength = 100
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 enabled = true
                 clearable = true
                 clearOnFocus = false
@@ -310,7 +308,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             phone(Phone.ordinal) {
                 title = getString(R.string.Phone)
                 value = "123-456-7890"
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 displayDivider = false
                 maxLength = 100
                 maxLines = 3
@@ -335,7 +333,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             text(Location.ordinal) {
                 title = getString(R.string.Location)
                 value = "Dhaka"
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 displayDivider = false
                 maxLength = 100
                 required = true
@@ -349,7 +347,7 @@ class FullscreenFormActivity : AppCompatActivity() {
             textArea(Address.ordinal) {
                 title = getString(R.string.Address)
                 value = "123 Street"
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 displayDivider = false
                 maxLines = 2
                 maxLength = 100
@@ -368,7 +366,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.ZipCode)
                 value = "12345"
                 numbersOnly = true
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 displayDivider = false
                 maxLength = 5
                 required = true
@@ -392,7 +390,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 1
                 confirmEdit = true
                 displayDivider = false
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 enabled = true
                 clearable = true
                 valueObservers.add { newValue, element ->
@@ -410,7 +408,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 1
                 confirmEdit = true
                 displayDivider = false
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 enabled = true
                 clearable = true
                 valueObservers.add { newValue, element ->
@@ -429,7 +427,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 required = true
                 maxLines = 1
                 confirmEdit = true
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 displayDivider = false
                 enabled = true
                 clearable = true
@@ -443,7 +441,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 dialogTitle = getString(R.string.SingleItem)
                 options = fruits
                 enabled = true
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 dialogEmptyMessage = "This is Empty!"
                 // dialogTitleCustomView = TextView(this@FullscreenFormActivity)
                 theme = R.style.CustomDialogPicker
@@ -473,7 +471,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 enabled = true
                 maxLines = 3
                 confirmEdit = true
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 displayDivider = false
                 value = listOf(ListItem(id = 1, name = "Banana"))
                 required = true
@@ -489,7 +487,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 options = fruits
                 enabled = true
                 maxLines = 1
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 displayDivider = false
                 value = listOf()
                 required = true
@@ -516,7 +514,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 enabled = true
                 maxLines = 3
                 displayDivider = false
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 required = true
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
@@ -531,7 +529,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 value = arrayListOf(ContactItem(id = 1, value = "John.Smith@mail.com", label = "John Smith (Tester)"))
                 required = true
                 maxLines = 3
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 displayDivider = false
                 enabled = true
                 valueObservers.add { newValue, element ->
@@ -540,16 +538,17 @@ class FullscreenFormActivity : AppCompatActivity() {
             }
             textView(TextViewElement.ordinal) {
                 title = getString(R.string.TextView)
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 maxLines = 1
                 value = "This is readonly!"
                 displayDivider = false
+                editViewPaintFlags = Paint.FAKE_BOLD_TEXT_FLAG
             }
             label(LabelElement.ordinal) {
                 title = getString(R.string.Label)
-                rightToLeft = false
                 displayDivider = false
-                centerText = true
+                editViewGravity = Gravity.CENTER
+                editViewPaintFlags = Paint.UNDERLINE_TEXT_FLAG
             }
             header { title = getString(R.string.MarkComplete); collapsible = true }
             switch<String>(SwitchElement.ordinal) {
@@ -611,7 +610,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.Segmented)
                 options = fruitsSegmented
                 enabled = true
-                rightToLeft = false
+                editViewGravity = Gravity.START
                 displayTitle = true
                 horizontal = true
                 fillSpace = true
@@ -649,7 +648,6 @@ class FullscreenFormActivity : AppCompatActivity() {
                 titleIconLocation = IconTextView.Location.LEFT
                 titleIconPadding = 5
                 padding = FormElementPadding(165, 0, 165, 0)
-                centerText = true
                 enabled = true
                 valueObservers.add { newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@FullscreenFormActivity).create()
