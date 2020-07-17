@@ -233,13 +233,22 @@ class FormInlineDatePickerBinder(private val context: Context, private val formB
             toggleElement()
         }
 
-        formElementMainLayout.setOnTouchListener { v, event ->
+        fun elementTouch(event: MotionEvent){
             if (event.action == MotionEvent.ACTION_DOWN) {
                 formElementMainLayout.setBackgroundColor(ResourcesCompat.getColor(this.context.resources, R.color.colorFormMasterElementSelectedBackground, null))
             }
             if (event.action == MotionEvent.ACTION_CANCEL || event.action == MotionEvent.ACTION_UP) {
                 formElementMainLayout.setBackgroundColor(ResourcesCompat.getColor(this.context.resources, R.color.colorFormMasterElementBackground, null))
             }
+        }
+
+        formElementMainLayout.setOnTouchListener { v, event ->
+            elementTouch(event)
+            false
+        }
+
+        editTextValue.setOnTouchListener { v, event ->
+            elementTouch(event)
             false
         }
 
