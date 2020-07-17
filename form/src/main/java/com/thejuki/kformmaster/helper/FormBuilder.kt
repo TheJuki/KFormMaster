@@ -150,3 +150,8 @@ fun FormBuildHelper.textView(tag: Int = -1, init: FormTextViewElement.() -> Unit
 fun FormBuildHelper.imageView(tag: Int = -1, init: FormImageElement.() -> Unit): FormImageElement {
     return addFormElement(FormImageElement(tag).apply(init))
 }
+
+/** FormBuildHelper extension to add a FormInlineDatePickerElement */
+fun FormBuildHelper.inlineDatePicker(tag: Int = -1, init: FormInlineDatePickerElement.() -> Unit): FormInlineDatePickerElement {
+    return addFormElement(FormInlineDatePickerElement(tag).apply(init))
+}

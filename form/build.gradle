@@ -134,6 +134,15 @@ dependencies {
     // Android SVG
     implementation "com.caverock:androidsvg-aar:$androidSVGVersion"
 
+    // Expandable Layout (To use InlineDatePickerElement)
+    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
+
+    // ThreeTen Android Backport (To use InlineDatePickerElement)
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+
+    // WheelPicker (To use InlineDatePickerElement)
+    implementation 'cn.aigestudio.wheelpicker:WheelPicker:1.1.3'
+
     // Test dependencies
     testImplementation "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
     testImplementation "io.mockk:mockk:$mockkVersion"

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorFormMasterElementBackground"
+    android:orientation="vertical"
+    android:tag="formModel">
+
+<View
+        android:id="@+id/formElementDivider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/colorFormMasterDivider" android:visibility="visible"/>
+
+    <LinearLayout
+        android:id="@+id/formElementMainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/formElementTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="@color/colorFormMasterElementTextTitle"
+            android:textSize="@dimen/elementTextTitleSize"
+            tools:text="Começa" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/formElementValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="end"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/colorFormMasterElementHint"
+            android:textSize="@dimen/elementTextValueSize"
+            tools:text="09 Jan 2020 16:50" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="19sp"
+            android:layout_height="28sp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0"
+            android:src="@drawable/ic_indicator"
+            tools:layout_conversion_wrapHeight="0"
+            tools:layout_conversion_wrapWidth="0" />
+
+    </LinearLayout>
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/pickerWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:el_duration="500"
+        app:el_expanded="false"
+        app:el_parallax="0">
+
+        <br.com.sigiweb.sigiweb.util.form.datepicker.KFWheelDateTimePicker
+            android:id="@+id/formElementPicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/formElementError"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:textColor="@color/colorFormMasterElementErrorTitle"
+        android:textSize="@dimen/elementErrorTitleSize"
+        android:visibility="gone"
+        tools:text="Personal Info" />
+
+</LinearLayout>

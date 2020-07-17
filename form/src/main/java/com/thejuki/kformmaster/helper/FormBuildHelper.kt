@@ -131,6 +131,9 @@ class FormBuildHelper
         // Image
         this.formAdapter.registerRenderer(FormImageViewBinder(context, this, formLayouts?.image).viewBinder)
 
+        // InlineDateTimePicker
+        this.formAdapter.registerRenderer(FormInlineDatePickerBinder(context, this, formLayouts?.inlineDateTimePicker).viewBinder)
+
         this.listener = listener
     }
 
