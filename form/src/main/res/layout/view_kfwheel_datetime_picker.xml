@@ -5,7 +5,7 @@
     android:gravity="center"
     android:orientation="horizontal">
 
-    <br.com.sigiweb.sigiweb.util.form.datepicker.KFWheelDatePicker
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelDatePicker
         android:id="@+id/wheel_date_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,21 +13,21 @@
         android:paddingStart="5dp"
         android:paddingEnd="5dp" />
 
-    <br.com.sigiweb.sigiweb.util.form.datepicker.KFWheelExtendedDatePicker
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelExtendedDatePicker
         android:id="@+id/wheel_fulldate_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
         android:paddingEnd="5dp" />
 
-    <br.com.sigiweb.sigiweb.util.form.datepicker.KFWheelHourPicker
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelHourPicker
         android:id="@+id/wheel_hour_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
         android:paddingEnd="5dp" />
 
-    <br.com.sigiweb.sigiweb.util.form.datepicker.KFWheelMinutePicker
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelMinutePicker
         android:id="@+id/wheel_minute_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

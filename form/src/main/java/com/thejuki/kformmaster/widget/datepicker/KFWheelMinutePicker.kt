@@ -45,7 +45,7 @@ class KFWheelMinutePicker @JvmOverloads constructor(
     }
 
     override fun setData(data: List<*>?) {
-        throw UnsupportedOperationException("You can not invoke setData in SWWheelMinutePicker")
+        throw UnsupportedOperationException("You can not invoke setData in KFWheelMinutePicker")
     }
 
     override var selectedMinute: Int
