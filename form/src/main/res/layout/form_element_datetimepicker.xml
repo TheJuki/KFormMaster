@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:gravity="end"
-            android:textColor="@color/textColor"
+            android:textColor="@color/colorFormMasterElementTextValue"
             android:textColorHint="@color/colorFormMasterElementHint"
             android:textSize="@dimen/elementTextValueSize"
             tools:text="09 Jan 2020 16:50" />
@@ -51,7 +51,7 @@
             android:layout_height="28sp"
             android:layout_marginLeft="10dp"
             android:layout_weight="0"
-            android:src="@drawable/ic_indicator"
+            android:src="@drawable/datetime_indicator"
             tools:layout_conversion_wrapHeight="0"
             tools:layout_conversion_wrapWidth="0" />
 
@@ -65,7 +65,7 @@
         app:el_expanded="false"
         app:el_parallax="0">
 
-        <br.com.sigiweb.sigiweb.util.form.datepicker.KFWheelDateTimePicker
+        <com.thejuki.kformmaster.widget.datepicker.KFWheelDateTimePicker
             android:id="@+id/formElementPicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

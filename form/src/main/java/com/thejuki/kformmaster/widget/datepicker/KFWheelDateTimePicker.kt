@@ -1,4 +1,4 @@
-package br.com.sigiweb.sigiweb.util.form.datepicker
+package com.thejuki.kformmaster.widget.datepicker
 
 import android.content.Context
 import android.graphics.Typeface
@@ -6,13 +6,12 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import br.com.sigiweb.sigiweb.util.resToColor
-import br.com.sigiweb.sigiweb.util.toLocalDate
-import br.com.sigiweb.sigiweb.util.toLocalDateTime
+import androidx.core.content.res.ResourcesCompat
 import com.aigestudio.wheelpicker.IDebug
 import com.aigestudio.wheelpicker.IWheelPicker
 import com.aigestudio.wheelpicker.WheelPicker
 import com.aigestudio.wheelpicker.WheelPicker.OnWheelChangeListener
+import com.thejuki.kformmaster.extensions.toLocalDateTime
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import java.text.ParseException
@@ -23,9 +22,9 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) :
     LinearLayout(context, attrs), WheelPicker.OnItemSelectedListener,
-    KFWheelDatePicker.SWOnDateSelectedListener,
+        KFWheelDatePicker.SWOnDateSelectedListener,
     IDebug, IWheelPicker,
-    IKFWheelDateTimePicker, IKFWheelExtendedDatePicker{
+        IKFWheelDateTimePicker, IKFWheelExtendedDatePicker {
     private val mPickerDate: KFWheelDatePicker
     private val mPickerExtendedDate: KFWheelExtendedDatePicker
     private val mPickerHour: KFWheelHourPicker
@@ -41,17 +40,17 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
         data: Any,
         position: Int
     ) {
-        if (picker.id == br.com.sigiweb.sigiweb.R.id.wheel_hour_picker) {
+        if (picker.id == com.thejuki.kformmaster.R.id.wheel_hour_picker) {
             if (data is Int)
                 mHour = data
             else
                 mHour = (data as String).toInt()
-        } else if (picker.id == br.com.sigiweb.sigiweb.R.id.wheel_minute_picker) {
+        } else if (picker.id == com.thejuki.kformmaster.R.id.wheel_minute_picker) {
             if (data is Int)
                 mMinute = data
             else
                 mMinute = (data as String).toInt()
-        } else if (picker.id == br.com.sigiweb.sigiweb.R.id.wheel_fulldate_picker) {
+        } else if (picker.id == com.thejuki.kformmaster.R.id.wheel_fulldate_picker) {
             mDate = mPickerExtendedDate.dates[position] as LocalDate
             mPickerHour.selectedDate = mDate
             mPickerMinute.selectedDate = mDate
@@ -466,23 +465,23 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
 
     init {
         val currentDate = LocalDate.now()
-        LayoutInflater.from(context).inflate(br.com.sigiweb.sigiweb.R.layout.view_swwheel_datetime_picker, this)
-        mPickerDate = findViewById<View>(br.com.sigiweb.sigiweb.R.id.wheel_date_picker) as KFWheelDatePicker
+        LayoutInflater.from(context).inflate(com.thejuki.kformmaster.R.layout.view_kfwheel_datetime_picker, this)
+        mPickerDate = findViewById<View>(com.thejuki.kformmaster.R.id.wheel_date_picker) as KFWheelDatePicker
         mPickerDate.setOnDateSelectedListener(this)
         mPickerDate.selectedYear = currentDate.year
         mPickerDate.selectedMonth = currentDate.monthValue
         mPickerDate.selectedDay = currentDate.dayOfMonth
         mPickerDate.setIndicator(true)
-        mPickerDate.indicatorColor = resToColor(this.context, br.com.sigiweb.sigiweb.R.color.mainTintColor)
+        mPickerDate.indicatorColor = ResourcesCompat.getColor(this.context.resources, com.thejuki.kformmaster.R.color.colorFormMasterElementFocusedDateTime, null)
 
-        mPickerExtendedDate = findViewById<View>(br.com.sigiweb.sigiweb.R.id.wheel_fulldate_picker) as KFWheelExtendedDatePicker
+        mPickerExtendedDate = findViewById<View>(com.thejuki.kformmaster.R.id.wheel_fulldate_picker) as KFWheelExtendedDatePicker
         mPickerExtendedDate.setOnItemSelectedListener(this)
         mPickerExtendedDate.selectedDate = currentDate
         mPickerExtendedDate.setIndicator(true)
-        mPickerExtendedDate.indicatorColor = resToColor(this.context, br.com.sigiweb.sigiweb.R.color.mainTintColor)
+        mPickerExtendedDate.indicatorColor = ResourcesCompat.getColor(this.context.resources, com.thejuki.kformmaster.R.color.colorFormMasterElementFocusedDateTime, null)
         mPickerExtendedDate.maximumWidthText = " dom 26 de jan "
 
-        mPickerHour = findViewById<View>(br.com.sigiweb.sigiweb.R.id.wheel_hour_picker) as KFWheelHourPicker
+        mPickerHour = findViewById<View>(com.thejuki.kformmaster.R.id.wheel_hour_picker) as KFWheelHourPicker
         mPickerHour.isCyclic = true
         mPickerHour.setOnItemSelectedListener(this)
 
@@ -491,16 +490,16 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
         mPickerHour.selectedHour = cal[Calendar.HOUR_OF_DAY]
         mPickerHour.selectedDate = currentDate
         mPickerHour.setIndicator(true)
-        mPickerHour.indicatorColor = resToColor(this.context, br.com.sigiweb.sigiweb.R.color.mainTintColor)
+        mPickerHour.indicatorColor = ResourcesCompat.getColor(this.context.resources, com.thejuki.kformmaster.R.color.colorFormMasterElementFocusedDateTime, null)
         mPickerHour.maximumWidthText = "00"
 
-        mPickerMinute = findViewById<View>(br.com.sigiweb.sigiweb.R.id.wheel_minute_picker) as KFWheelMinutePicker
+        mPickerMinute = findViewById<View>(com.thejuki.kformmaster.R.id.wheel_minute_picker) as KFWheelMinutePicker
         mPickerMinute.isCyclic = true
         mPickerMinute.setOnItemSelectedListener(this)
         mPickerMinute.selectedMinute = cal[Calendar.MINUTE]
         mPickerMinute.selectedDate = currentDate
         mPickerMinute.setIndicator(true)
-        mPickerMinute.indicatorColor = resToColor(this.context, br.com.sigiweb.sigiweb.R.color.mainTintColor)
+        mPickerMinute.indicatorColor = ResourcesCompat.getColor(this.context.resources, com.thejuki.kformmaster.R.color.colorFormMasterElementFocusedDateTime, null)
         mPickerMinute.maximumWidthText = "00"
 
         mDate = mPickerExtendedDate.selectedDate

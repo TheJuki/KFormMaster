@@ -13,7 +13,7 @@ import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
-import br.com.sigiweb.sigiweb.util.form.datepicker.KFWheelDateTimePicker
+import com.thejuki.kformmaster.widget.datepicker.KFWheelDateTimePicker
 import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
 import com.github.vivchar.rendererrecyclerviewadapter.ViewState
 import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider

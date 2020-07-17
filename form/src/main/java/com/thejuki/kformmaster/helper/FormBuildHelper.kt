@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.vivchar.rendererrecyclerviewadapter.RendererRecyclerViewAdapter
 import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.view.*
@@ -135,6 +136,7 @@ class FormBuildHelper
         this.formAdapter.registerRenderer(FormInlineDatePickerBinder(context, this, formLayouts?.inlineDateTimePicker).viewBinder)
 
         this.listener = listener
+        AndroidThreeTen.init(context.applicationContext)
     }
 
     private fun registerEditTexts(context: Context) {
