@@ -201,7 +201,7 @@ class FormInlineDatePickerBinder(private val context: Context, private val formB
 
         model.editView = editTextValue
 
-        formElementMainLayout.setOnClickListener {
+        fun toggleElement(){
             dismissKeyboard(context)
             if (model.isAllDay()) {
                 pickerView.wheelDatePicker?.visibility = View.VISIBLE
@@ -223,6 +223,14 @@ class FormInlineDatePickerBinder(private val context: Context, private val formB
                     }
                 }
             }
+        }
+
+        formElementMainLayout.setOnClickListener {
+            toggleElement()
+        }
+
+        editTextValue.setOnClickListener {
+            toggleElement()
         }
 
         formElementMainLayout.setOnTouchListener { v, event ->

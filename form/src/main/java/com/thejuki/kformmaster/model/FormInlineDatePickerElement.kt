@@ -10,7 +10,6 @@ enum class PickerType(val type: Int) {
 }
 
 open class FormInlineDatePickerElement: BaseFormElement<LocalDateTime> {
-    var formField : String? = null
     private var delegate : IFormInlinePicker? = null
     var allDay : Boolean = false
     private var startDate : LocalDate? = null
