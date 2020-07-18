@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelDayPicker
+        android:id="@+id/wheel_date_picker_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp" />
+
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelMonthPicker
+        android:id="@+id/wheel_date_picker_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp" />
+
+    <com.aigestudio.wheelpicker.widgets.WheelYearPicker
+        android:id="@+id/wheel_date_picker_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp" />
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelDatePicker
+        android:id="@+id/wheel_date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp" />
+
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelExtendedDatePicker
+        android:id="@+id/wheel_fulldate_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp" />
+
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelHourPicker
+        android:id="@+id/wheel_hour_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp" />
+
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelMinutePicker
+        android:id="@+id/wheel_minute_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp" />
+
+</LinearLayout>

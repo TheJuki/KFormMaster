@@ -3,6 +3,7 @@
     <color name="colorFormMasterHeaderBackground">#DDDDDD</color>
     <color name="colorFormMasterHeaderText">#000000</color>
     <color name="colorFormMasterElementBackground">#FFFFFF</color>
+    <color name="colorFormMasterElementSelectedBackground">#757575</color>
     <color name="colorFormMasterElementTextTitle">#222222</color>
     <color name="colorFormMasterElementErrorTitle">#FF0000</color>
     <color name="colorFormMasterElementHint">#a8a8a8</color>
@@ -17,11 +18,8 @@
     <color name="colorFormMasterElementRadioUnSelected">#FFFFFF</color>
     <color name="colorFormMasterElementImageChangeImageTextColor">#42A5F5</color>
     <color name="colorFormMasterElementImageBackground">#00FFFFFF</color>
-    <color name="colorFormMasterElementImageProgressBarColor">#42A5F5</color>
-    <color name="colorFormMasterElementImageProgressRimColor">#00FFFFFF</color>
-    <color name="colorFormMasterElementImageProgressTextColor">#FFFFFF</color>
-    <color name="colorFormMasterElementImageProgressContourColor">#00FFFFFF</color>
     <color name="colorFormMasterBottomSheetImage">#757575</color>
+    <color name="colorFormMasterElementFocusedDateTime">#0277bd</color>
 
     <color name="ucrop_color_toolbar">#3F51B5</color>
     <color name="ucrop_color_statusbar">#303F9F</color>
