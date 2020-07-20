@@ -138,7 +138,7 @@ dependencies {
     implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
 
     // ThreeTen Android Backport (To use InlineDatePickerElement)
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
 
     // WheelPicker (To use InlineDatePickerElement)
     implementation 'cn.aigestudio.wheelpicker:WheelPicker:1.1.3'
