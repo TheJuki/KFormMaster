@@ -1,7 +1,9 @@
 <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/recyclerView"
     android:divider="#b5b5b5"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     android:descendantFocusability="beforeDescendants" />

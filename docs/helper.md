@@ -6,7 +6,7 @@ NOTE: This is enabled by default.
 While creating a new instance of FormBuildHelper, add a listener in the constructor.
 
 ```kotlin
-var formBuilder = FormBuildHelper(this, object : OnFormElementValueChangedListener {
+var formBuilder = FormBuildHelper(object : OnFormElementValueChangedListener {
     override fun onValueChanged(formElement: BaseFormElement<*>) {
          // do anything here with formElement.value
     }
@@ -55,7 +55,7 @@ formBuilder.addFormElements(elements)
 Form Layouts override the default layouts used for all related form elements in the form.
 
 ```kotlin
- formBuilder = form(this, recyclerView, formLayouts = FormLayouts(
+ formBuilder = form(recyclerView, formLayouts = FormLayouts(
                 text = R.layout.form_element_custom,
                 textArea = R.layout.form_element_custom))
 ```

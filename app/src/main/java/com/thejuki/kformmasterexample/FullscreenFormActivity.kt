@@ -32,6 +32,7 @@ import com.thejuki.kformmasterexample.item.ListItem
 import com.thejuki.kformmasterexample.item.SegmentedListItem
 import kotlinx.android.synthetic.main.activity_fullscreen_form.*
 import kotlinx.android.synthetic.main.bottomsheet_image.*
+import org.threeten.bp.format.DateTimeFormatter
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
@@ -178,6 +179,7 @@ class FullscreenFormActivity : AppCompatActivity() {
         Date,
         Time,
         DateTime,
+        InlineDatePicker,
         Password,
         SingleItem,
         MultiItems,
@@ -195,7 +197,7 @@ class FullscreenFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        formBuilder = form(this, recyclerView,
+        formBuilder = form(recyclerView,
                 formLayouts = FormLayouts(
                         // Uncomment to replace all text elements with the form_element_custom layout
                         //text = R.layout.form_element_custom
@@ -434,6 +436,12 @@ class FullscreenFormActivity : AppCompatActivity() {
                 valueObservers.add { newValue, element ->
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
+            }
+            inlineDatePicker(InlineDatePicker.ordinal) {
+                title = getString(R.string.InlineDatePicker)
+                value = org.threeten.bp.LocalDateTime.now()
+                dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a", Locale.US)
+                allDay = false
             }
             header { title = getString(R.string.PreferredItems); collapsible = true }
             dropDown<ListItem>(SingleItem.ordinal) {

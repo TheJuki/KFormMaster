@@ -43,10 +43,12 @@ class IconTextView : AppCompatTextView, OnTouchListener {
     constructor(context: Context) : super(context) {
         super.setOnTouchListener(this)
     }
+
     @SuppressLint("ClickableViewAccessibility")
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         super.setOnTouchListener(this)
     }
+
     @SuppressLint("ClickableViewAccessibility")
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
         super.setOnTouchListener(this)
@@ -98,10 +100,10 @@ class IconTextView : AppCompatTextView, OnTouchListener {
         val cd = compoundDrawables
 
         // Reset icons
-        if(cd[0] == icon) {
+        if (cd[0] == icon) {
             cd[0] = null
         }
-        if(cd[2] == icon) {
+        if (cd[2] == icon) {
             cd[2] = null
         }
 

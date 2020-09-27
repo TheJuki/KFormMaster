@@ -180,8 +180,8 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
     }
 
     private fun getSelectedItemsText(): String =
-        this.options?.filter { this.value?.contains(it) ?: false }
-                ?.joinToString(", ") { it.toString() } ?: ""
+            this.options?.filter { this.value?.contains(it) ?: false }
+                    ?.joinToString(", ") { it.toString() } ?: ""
 
     var valueAsStringOverride: ((T?) -> String?)? = null
 

@@ -1,6 +1,6 @@
 package com.thejuki.kformmaster.helper
 
-import com.github.vivchar.rendererrecyclerviewadapter.DiffCallback
+import com.github.vivchar.rendererrecyclerviewadapter.DefaultDiffCallback
 import com.thejuki.kformmaster.model.BaseFormElement
 
 /**
@@ -11,7 +11,7 @@ import com.thejuki.kformmaster.model.BaseFormElement
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class ElementDiffCallback : DiffCallback<BaseFormElement<*>>() {
+class ElementDiffCallback : DefaultDiffCallback<BaseFormElement<*>>() {
     override fun areItemsTheSame(oldItem: BaseFormElement<*>, newItem: BaseFormElement<*>): Boolean {
         return oldItem.id == newItem.id
     }

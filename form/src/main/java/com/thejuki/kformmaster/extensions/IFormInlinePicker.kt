@@ -8,6 +8,6 @@ interface IFormInlinePicker {
     fun toggle()
     fun collapse()
     fun expand()
-    fun setDateTime(dateTime : LocalDateTime)
-    fun setStartDate(date : LocalDate?)
+    fun setDateTime(dateTime: LocalDateTime)
+    fun setStartDate(date: LocalDate?)
 }

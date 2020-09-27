@@ -12,6 +12,7 @@ import com.thejuki.kformmaster.model.FormSegmentedElement
  */
 interface SegmentedDrawable {
     var drawableRes: Int?
+
     /**
      * Drawable direction of the drawable in [SegmentedDrawable]
      * Overriding this is optional

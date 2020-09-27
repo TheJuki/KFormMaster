@@ -17,6 +17,7 @@ import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
 import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
 import kotlinx.android.synthetic.main.activity_partial_screen_form.*
+import org.threeten.bp.format.DateTimeFormatter
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
@@ -79,6 +80,7 @@ class PartialScreenFormActivity : AppCompatActivity() {
         Date,
         Time,
         DateTime,
+        InlineDatePicker,
         Password,
         SingleItem,
         MultiItems,
@@ -103,7 +105,7 @@ class PartialScreenFormActivity : AppCompatActivity() {
             }
         }
 
-        formBuilder = form(this, recyclerView, listener, true) {
+        formBuilder = form(recyclerView, listener, true) {
             imageView(ImageViewElement.ordinal) {}
             header { title = getString(R.string.PersonalInfo) }
             email(Email.ordinal) {
@@ -145,6 +147,11 @@ class PartialScreenFormActivity : AppCompatActivity() {
                 title = getString(R.string.DateTime)
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+            }
+            inlineDatePicker(InlineDatePicker.ordinal) {
+                title = getString(R.string.InlineDatePicker)
+                value = org.threeten.bp.LocalDateTime.now()
+                dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a", Locale.US)
             }
             header { title = getString(R.string.PreferredItems) }
             dropDown<ListItem>(SingleItem.ordinal) {

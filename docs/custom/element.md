@@ -92,31 +92,11 @@ fun FormBuildHelper.customEx(tag: Int = -1, init: FormCustomElement.() -> Unit):
 }
 ```
 
-### Optional: Form Element View State
-
-Create a view state class your custom form element value.
-
-```kotlin
-class FormCustomViewState(holder: ViewHolder) : BaseFormViewState(holder) {
-    private var value: String? = null
-
-    init {
-        val editText = holder.viewFinder.find(R.id.formElementValue) as AppCompatEditText
-        value = editText.text.toString()
-    }
-
-    override fun restore(holder: ViewHolder) {
-        super.restore(holder)
-        holder.viewFinder.setText(R.id.formElementValue, value)
-    }
-}
-```
-
 ### Form Element View Binder
 
 Create a view binder for your custom form element.
 
-!!! note "ViewBinder"
+!!! note "ViewRenderer"
 
     * layoutID parameter - Form element layout name
     * type parameter - Form element model class (ModelName::class.java)
@@ -127,10 +107,10 @@ Create a view binder for your custom form element.
     * viewStateProvider parameter - Form element view state provider
 
 ```kotlin
-class CustomViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, 
-    @LayoutRes private val layoutID: Int?) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(layoutID
-            ?: R.layout.form_element_custom, FormCustomElement::class.java, { model, finder, _ ->
+class CustomViewRenderer(private val formBuilder: FormBuildHelper, 
+    @LayoutRes private val layoutID: Int?) : BaseFormViewRenderer() {
+    val viewRenderer = ViewRenderer(layoutID
+            ?: R.layout.form_element_custom, FormCustomElement::class.java) { model, finder: FormViewFinder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
@@ -158,21 +138,12 @@ class CustomViewBinder(private val context: Context, private val formBuilder: Fo
         setOnFocusChangeListener(context, model, formBuilder)
         addTextChangedListener(model, formBuilder)
         setOnEditorActionListener(model, formBuilder)
-
-    }, object : ViewStateProvider<FormCustomElement, ViewHolder> {
-        override fun createViewStateID(model: FormCustomElement): Int {
-            return model.id
-        }
-
-        override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormCustomViewState(holder)
-        }
-    })
+    }
 
     private fun setEditTextFocusEnabled(editTextValue: AppCompatEditText, itemView: View) {
         itemView.setOnClickListener {
             editTextValue.requestFocus()
-            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = itemView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             editTextValue.setSelection(editTextValue.text?.length ?: 0)
             imm.showSoftInput(editTextValue, InputMethodManager.SHOW_IMPLICIT)
         }
@@ -206,14 +177,14 @@ class CustomFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        formBuilder = form(this, recyclerView) {
+        formBuilder = form(recyclerView) {
             customEx(Tag.Custom.ordinal) {
                 title = getString(R.string.Custom)
             }
         }
 
         // Required
-        formBuilder.registerCustomViewBinder(CustomViewBinder(this, formBuilder).viewBinder)
+        formBuilder.registerCustomViewRenderer(CustomViewRenderer(formBuilder).viewRenderer)
     }
 }
 ```

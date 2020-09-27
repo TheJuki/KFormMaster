@@ -1,7 +1,6 @@
 package com.thejuki.kformmasterexample;
 
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -21,6 +20,7 @@ import com.thejuki.kformmaster.model.FormCheckBoxElement;
 import com.thejuki.kformmaster.model.FormEmailEditTextElement;
 import com.thejuki.kformmaster.model.FormHeader;
 import com.thejuki.kformmaster.model.FormImageElement;
+import com.thejuki.kformmaster.model.FormInlineDatePickerElement;
 import com.thejuki.kformmaster.model.FormLabelElement;
 import com.thejuki.kformmaster.model.FormMultiLineEditTextElement;
 import com.thejuki.kformmaster.model.FormNumberEditTextElement;
@@ -44,6 +44,7 @@ import com.thejuki.kformmasterexample.item.ContactItem;
 import com.thejuki.kformmasterexample.item.ListItem;
 
 import org.jetbrains.annotations.NotNull;
+import org.threeten.bp.format.DateTimeFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -114,6 +115,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         Date,
         Time,
         DateTime,
+        InlineDatePicker,
         Password,
         SingleItem,
         MultiItems,
@@ -136,7 +138,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         // Uncomment to replace all text elements with the form_element_custom layout
         //formLayouts.setText(R.layout.form_element_custom);
 
-        formBuilder = new FormBuildHelper(this, this, findViewById(R.id.recyclerView), true, formLayouts);
+        formBuilder = new FormBuildHelper(this, findViewById(R.id.recyclerView), true, formLayouts);
 
         List<BaseFormElement<?>> elements = new ArrayList<>();
 
@@ -226,6 +228,12 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         dateTime.setDateValue(new Date());
         dateTime.setDateFormat(new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US));
         elements.add(dateTime);
+
+        FormInlineDatePickerElement inlineDatePicker = new FormInlineDatePickerElement(Tag.InlineDatePicker.ordinal());
+        inlineDatePicker.setTitle(getString(R.string.InlineDatePicker));
+        inlineDatePicker.setValue(org.threeten.bp.LocalDateTime.now());
+        inlineDatePicker.setDateTimeFormatter(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a", Locale.US));
+        elements.add(inlineDatePicker);
     }
 
     private void addPickers(List<BaseFormElement<?>> elements) {
@@ -315,7 +323,6 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         elements.add(segmented);
 
         FormButtonElement button = new FormButtonElement(Tag.ButtonElement.ordinal());
-        button.setEditViewGravity(Gravity.CENTER_VERTICAL);
         button.setValue(getString(R.string.Button));
         button.getValueObservers().add((newValue, element) -> {
             clearDate();

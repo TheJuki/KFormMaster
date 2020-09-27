@@ -2,23 +2,29 @@ package com.thejuki.kformmaster.widget.datepicker
 
 import android.content.Context
 import android.util.AttributeSet
-import com.thejuki.kformmaster.extensions.rangeTo
 import com.aigestudio.wheelpicker.WheelPicker
+import com.thejuki.kformmaster.extensions.rangeTo
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
 
+/**
+ * Wheel Extender Date Picker
+ *
+ * @author **soareseneves** ([GitHub](https://github.com/soareseneves))
+ * @version 1.0
+ */
 class KFWheelExtendedDatePicker @JvmOverloads constructor(
-    context: Context?,
-    attrs: AttributeSet? = null
+        context: Context?,
+        attrs: AttributeSet? = null
 ) :
-    WheelPicker(context, attrs), IKFWheelExtendedDatePicker {
+        WheelPicker(context, attrs), IKFWheelExtendedDatePicker {
     private var mSelectedDate: LocalDate
     private var mStartDate: LocalDate? = null
-    var dates : MutableList<LocalDate?> = ArrayList()
+    var dates: MutableList<LocalDate?> = ArrayList()
     private fun updateDates() {
 
-        val startDate : LocalDate
+        val startDate: LocalDate
 
         if (this.startDate != null)
             startDate = this.startDate!!
@@ -27,7 +33,7 @@ class KFWheelExtendedDatePicker @JvmOverloads constructor(
 
         val endDate = LocalDate.now().plusYears(100)
 
-        val data : MutableList<String?> = ArrayList()
+        val data: MutableList<String?> = ArrayList()
 
         dates.removeAll { true }
 

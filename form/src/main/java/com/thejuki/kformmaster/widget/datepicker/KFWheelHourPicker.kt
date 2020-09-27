@@ -6,20 +6,25 @@ import com.aigestudio.wheelpicker.WheelPicker
 import org.threeten.bp.LocalDate
 import java.util.*
 
-
+/**
+ * Wheel Hour Picker
+ *
+ * @author **soareseneves** ([GitHub](https://github.com/soareseneves))
+ * @version 1.0
+ */
 class KFWheelHourPicker @JvmOverloads constructor(
-    context: Context?,
-    attrs: AttributeSet? = null
+        context: Context?,
+        attrs: AttributeSet? = null
 ) :
-    WheelPicker(context, attrs), IKFWheelHourPicker {
+        WheelPicker(context, attrs), IKFWheelHourPicker {
     private var mSelectedHour: Int
     private var mSelectedDate: LocalDate
     private var cal = Calendar.getInstance()
     private var currentHour = cal[Calendar.HOUR_OF_DAY]
     private var mAllHours = true
-    var hours : MutableList<Int?> = ArrayList()
+    var hours: MutableList<Int?> = ArrayList()
     private fun updateHours() {
-        val hourData : MutableList<String?> = ArrayList()
+        val hourData: MutableList<String?> = ArrayList()
 
         cal = Calendar.getInstance()
         currentHour = cal[Calendar.HOUR_OF_DAY]

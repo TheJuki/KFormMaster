@@ -16,17 +16,19 @@ implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/recyclerView"
     android:divider="#b5b5b5"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     android:descendantFocusability="beforeDescendants" />
 ```
 
 * Step 2 (No DSL). Add the Form Elements programmatically in your activity
 ```kotlin
 // Initialize variables
-formBuilder = FormBuildHelper(this)
-formBuilder.attachRecyclerView(this, recyclerView)
+formBuilder = FormBuildHelper()
+formBuilder.attachRecyclerView(recyclerView)
 
 val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
@@ -49,7 +51,7 @@ formBuilder.addFormElements(elements)
 
 * Step 2 (With DSL). Add the Form Elements programmatically in your activity
 ```kotlin
-formBuilder = form(this, recyclerView) {
+formBuilder = form(recyclerView) {
     email(Email.ordinal) {
         title = getString(R.string.email)
     }

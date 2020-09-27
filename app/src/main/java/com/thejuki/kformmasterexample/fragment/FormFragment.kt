@@ -20,12 +20,13 @@ import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
 import com.thejuki.kformmasterexample.custom.helper.placesAutoComplete
 import com.thejuki.kformmasterexample.custom.model.FormPlacesAutoCompleteElement
-import com.thejuki.kformmasterexample.custom.view.FormPlacesAutoCompleteViewBinder
+import com.thejuki.kformmasterexample.custom.view.FormPlacesAutoCompleteViewRenderer
 import com.thejuki.kformmasterexample.fragment.FormFragment.Tag.*
 import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
 import com.thejuki.kformmasterexample.item.PlaceItem
 import kotlinx.android.synthetic.main.activity_fullscreen_form.view.*
+import org.threeten.bp.format.DateTimeFormatter
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
@@ -67,6 +68,7 @@ class FormFragment : Fragment() {
         Date,
         Time,
         DateTime,
+        InlineDatePicker,
         Password,
         SingleItem,
         MultiItems,
@@ -91,7 +93,7 @@ class FormFragment : Fragment() {
         // NOTE: Use your API Key
         Places.initialize(context, "[APP_KEY]")
 
-        formBuilder = form(context, recyclerView, cacheForm = true) {
+        formBuilder = form(recyclerView, cacheForm = true) {
             imageView(ImageViewElement.ordinal) {
                 displayDivider = false
                 required = false
@@ -212,6 +214,11 @@ class FormFragment : Fragment() {
                 valueObservers.add { newValue, element ->
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
                 }
+            }
+            inlineDatePicker(InlineDatePicker.ordinal) {
+                title = getString(R.string.InlineDatePicker)
+                value = org.threeten.bp.LocalDateTime.now()
+                dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a", Locale.US)
             }
             header { title = getString(R.string.PreferredItems); collapsible = true }
             dropDown<ListItem>(SingleItem.ordinal) {
@@ -371,7 +378,7 @@ class FormFragment : Fragment() {
         // RuntimeException: ViewRenderer not registered for this type
 
         // IMPORTANT: Pass in 'this' for the fragment parameter so that startActivityForResult is called from the fragment
-        formBuilder.registerCustomViewBinder(FormPlacesAutoCompleteViewBinder(context, formBuilder, layoutID = null, fragment = this).viewBinder)
+        formBuilder.registerCustomViewRenderer(FormPlacesAutoCompleteViewRenderer(formBuilder, layoutID = null, fragment = this).viewRenderer)
     }
 
     companion object {

@@ -222,7 +222,7 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
     fun reInitGroup() {
         editView?.let {
             if (it is SegmentedGroup) {
-                if(radioGroupWrapContent) {
+                if (radioGroupWrapContent) {
                     val segmentedGroupLayoutParams = it.layoutParams
                     segmentedGroupLayoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
                     it.layoutParams = segmentedGroupLayoutParams
@@ -298,14 +298,6 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                 }
 
                 it.updateBackground()
-            }
-        }
-    }
-
-    override fun displayNewValue() {
-        editView?.let {
-            if (it is SegmentedGroup) {
-                it.checkChild(valueAsString)
             }
         }
     }

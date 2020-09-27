@@ -14,11 +14,10 @@ import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmasterexample.custom.helper.customEx
 import com.thejuki.kformmasterexample.custom.helper.placesAutoComplete
 import com.thejuki.kformmasterexample.custom.model.FormPlacesAutoCompleteElement
-import com.thejuki.kformmasterexample.custom.view.CustomViewBinder
-import com.thejuki.kformmasterexample.custom.view.FormPlacesAutoCompleteViewBinder
+import com.thejuki.kformmasterexample.custom.view.CustomViewRenderer
+import com.thejuki.kformmasterexample.custom.view.FormPlacesAutoCompleteViewRenderer
 import com.thejuki.kformmasterexample.item.PlaceItem
 import kotlinx.android.synthetic.main.activity_fullscreen_form.*
-
 
 /**
  * Custom Form Activity
@@ -86,7 +85,7 @@ class CustomFormActivity : AppCompatActivity() {
          * CustomEx - An entire custom form element: Layout, View, Model, State, and Helper
          * textArea (FormLayouts) - textArea elements will use the form_element_custom layout
          */
-        formBuilder = form(this, recyclerView, listener, formLayouts = FormLayouts(
+        formBuilder = form(recyclerView, listener, formLayouts = FormLayouts(
                 textArea = R.layout.form_element_custom
         )) {
             header { title = getString(R.string.custom_form) }
@@ -116,9 +115,9 @@ class CustomFormActivity : AppCompatActivity() {
 
         // IMPORTANT: Register your custom view binder or you will get a RuntimeException
         // RuntimeException: ViewRenderer not registered for this type
-        formBuilder.registerCustomViewBinder(CustomViewBinder(this, formBuilder, layoutID = null).viewBinder)
+        formBuilder.registerCustomViewRenderer(CustomViewRenderer(formBuilder, layoutID = null).viewRenderer)
 
-        formBuilder.registerCustomViewBinder(FormPlacesAutoCompleteViewBinder(this, formBuilder, layoutID = null).viewBinder)
+        formBuilder.registerCustomViewRenderer(FormPlacesAutoCompleteViewRenderer(formBuilder, layoutID = null).viewRenderer)
     }
 
     /**
@@ -126,6 +125,7 @@ class CustomFormActivity : AppCompatActivity() {
      * let the FormPlacesAutoCompleteElement handle the result
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Tag.PlacesAutoComplete.ordinal) {
             val placesElement = formBuilder.getFormElement<FormPlacesAutoCompleteElement>(Tag.PlacesAutoComplete.ordinal)
             placesElement.handleActivityResult(formBuilder, resultCode, data)

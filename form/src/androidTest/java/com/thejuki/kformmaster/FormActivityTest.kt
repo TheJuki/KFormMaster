@@ -112,7 +112,7 @@ class FormActivityTest : AppCompatActivity() {
             }
         }
 
-        formBuilder = form(this, recyclerView, listener, true) {
+        formBuilder = form(recyclerView, listener, true) {
             imageView(ImageViewElement.ordinal) {
                 value = "https://via.placeholder.com/200"
                 imageTransformation = CircleTransform(borderColor = Color.BLACK, borderRadius = 3)

@@ -6,11 +6,17 @@ import com.aigestudio.wheelpicker.WheelPicker
 import com.aigestudio.wheelpicker.widgets.IWheelMonthPicker
 import java.util.*
 
+/**
+ * Wheel Month Picker
+ *
+ * @author **soareseneves** ([GitHub](https://github.com/soareseneves))
+ * @version 1.0
+ */
 class KFWheelMonthPicker @JvmOverloads constructor(
-    context: Context?,
-    attrs: AttributeSet? = null
+        context: Context?,
+        attrs: AttributeSet? = null
 ) :
-    WheelPicker(context, attrs), IWheelMonthPicker {
+        WheelPicker(context, attrs), IWheelMonthPicker {
     private var mSelectedMonth: Int
     private fun updateSelectedYear() {
         selectedItemPosition = mSelectedMonth - 1

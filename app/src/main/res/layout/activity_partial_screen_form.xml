@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
@@ -12,13 +13,14 @@
         android:text="@string/this_is_a_big_pointless_place_holder"
         android:gravity="center" />
 
-    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_weight="2"
         android:id="@+id/recyclerView"
         android:divider="#b5b5b5"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:descendantFocusability="beforeDescendants" />
 
     <TextView

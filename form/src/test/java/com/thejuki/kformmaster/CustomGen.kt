@@ -8,6 +8,8 @@ import com.thejuki.kformmaster.helper.FormLayouts
 import com.thejuki.kformmaster.model.*
 import io.kotlintest.properties.Gen
 import io.mockk.mockk
+import org.threeten.bp.ZoneId
+import org.threeten.bp.format.DateTimeFormatter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -52,6 +54,7 @@ interface CustomGen {
                         , Gen.choose(-100, 100).random().first() // segmented
                         , Gen.choose(-100, 100).random().first() // progress
                         , Gen.choose(-100, 100).random().first() // image
+                        , Gen.choose(-100, 100).random().first() // inlineDateTimePicker
                 )
             }
         }
@@ -382,6 +385,24 @@ interface CustomGen {
                 element.minimumDate = dateFormat.parse("01/01/2018 12:00 AM")
                 element.maximumDate = dateFormat.parse("12/15/2025 12:00 PM")
                 element.theme = Random().nextInt(100)
+                element
+            }
+        }
+
+        /**
+         * Generates a FormInlineDatePickerElement
+         */
+        fun formInlineDatePickerElement() = object : Gen<FormInlineDatePickerElement> {
+            override fun constants() = emptyList<FormInlineDatePickerElement>()
+            override fun random() = generateSequence {
+                val element = FormInlineDatePickerElement()
+                element.title = Gen.string().random().first()
+                element.hint = Gen.string().random().first()
+                element.value = org.threeten.bp.LocalDateTime.now(ZoneId.of("UTC"))
+                element.dateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME
+                element.allDay = Gen.bool().random().first()
+                element.pickerType = Gen.from(FormInlineDatePickerElement.PickerType.values().asList()).random().first()
+                element.linkedPicker = FormInlineDatePickerElement()
                 element
             }
         }

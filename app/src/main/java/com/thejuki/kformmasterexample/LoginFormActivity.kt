@@ -73,8 +73,8 @@ class LoginFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        formBuilder = FormBuildHelper(this, cacheForm = true)
-        formBuilder.attachRecyclerView(this, recyclerView)
+        formBuilder = FormBuildHelper()
+        formBuilder.attachRecyclerView(recyclerView)
 
         val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 

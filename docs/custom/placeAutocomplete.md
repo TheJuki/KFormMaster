@@ -21,7 +21,7 @@ implementation 'com.google.android.libraries.places:places:1.0.0'
 ```text
 /app/src/main/java/com/thejuki/kformmasterexample/item/PlaceItem.kt
 /app/src/main/java/com/thejuki/kformmasterexample/custom/model/FormPlacesAutoCompleteElement.kt
-/app/src/main/java/com/thejuki/kformmasterexample/custom/view/FormPlacesAutoCompleteViewBinder.kt
+/app/src/main/java/com/thejuki/kformmasterexample/custom/view/FormPlacesAutoCompleteViewRenderer.kt
 /app/src/main/java/com/thejuki/kformmasterexample/custom/helper/FormBuilderExtensions.kt
 ```
 
@@ -55,7 +55,7 @@ class CustomFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        formBuilder = form(this, recyclerView) {
+        formBuilder = form(recyclerView) {
             placesAutoComplete(Tag.PlacesElement.ordinal) {
                 title = getString(R.string.Places_AutoComplete)
                 // Set a value initially to show in the textfield
@@ -76,7 +76,7 @@ class CustomFormActivity : AppCompatActivity() {
 
         // Required
         // IMPORTANT: Pass in 'this' for the fragment parameter so that startActivityForResult is called from the fragment (If you are using a fragment instead of an activity)
-        formBuilder.registerCustomViewBinder(FormPlacesAutoCompleteViewBinder(context, formBuilder, layoutID = null, fragment = null).viewBinder)
+        formBuilder.registerCustomViewRenderer(FormPlacesAutoCompleteViewRenderer(formBuilder, layoutID = null, fragment = null).viewRenderer)
     }
 
     /**

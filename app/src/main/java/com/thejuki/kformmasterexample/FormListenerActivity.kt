@@ -96,7 +96,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
     }
 
     private fun setupForm() {
-        formBuilder = form(this, recyclerView, this, true) {
+        formBuilder = form(recyclerView, this, true) {
             imageView(ImageViewElement.ordinal) {
                 onSelectImage = { file ->
                     // If file is null, that means an error occurred trying to select the image

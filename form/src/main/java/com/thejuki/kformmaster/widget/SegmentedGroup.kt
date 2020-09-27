@@ -324,13 +324,15 @@ class SegmentedGroup : RadioGroup {
          * float tables for setting the radius via Gradient.setCornerRadii are used instead
          * of multiple xml drawables.
          */
-    private inner class LayoutSelector(r : Float    //this is the radios read by attributes or xml dimens
+    private inner class LayoutSelector(r: Float    //this is the radios read by attributes or xml dimens
     ) {
 
         private var children: Int = 0
         private var child: Int = 0
+
         /* Returns the selected layout id based on view */
         val selected = R.drawable.radio_checked
+
         /* Returns the unselected layout id based on view */
         val unselected = R.drawable.radio_unchecked
         private val r1 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0.1f, resources.displayMetrics)    //0.1 dp to px

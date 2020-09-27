@@ -33,6 +33,7 @@
     <string name="Places_AutoComplete">Places</string>
     <string name="Confirm">Clear Date field?</string>
     <string name="PersonalInfo">Personal Info</string>
+    <string name="InlineDatePicker">Inline Date Picker</string>
     <string name="FamilyInfo">Family Info</string>
     <string name="Schedule">Schedule</string>
     <string name="PreferredItems">Preferred Items</string>

@@ -99,7 +99,7 @@ class TestFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        formBuilder = form(this, recyclerView, formLayouts = FormLayouts(
+        formBuilder = form(recyclerView, formLayouts = FormLayouts(
                 number = R.layout.form_element_custom
         )) {
             header { title = "A" }

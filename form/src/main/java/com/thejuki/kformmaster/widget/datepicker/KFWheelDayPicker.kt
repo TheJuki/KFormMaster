@@ -6,21 +6,27 @@ import com.aigestudio.wheelpicker.WheelPicker
 import com.aigestudio.wheelpicker.widgets.IWheelDayPicker
 import java.util.*
 
+/**
+ * Wheel Day Picker
+ *
+ * @author **soareseneves** ([GitHub](https://github.com/soareseneves))
+ * @version 1.0
+ */
 class KFWheelDayPicker @JvmOverloads constructor(
-    context: Context?,
-    attrs: AttributeSet? = null
+        context: Context?,
+        attrs: AttributeSet? = null
 ) :
-    WheelPicker(context, attrs), IWheelDayPicker {
+        WheelPicker(context, attrs), IWheelDayPicker {
     private val mCalendar: Calendar
     private var mYear: Int
     private var mMonth: Int
     private var mSelectedDay: Int
     private fun updateDays() {
         mCalendar[Calendar.YEAR] = mYear
-        mCalendar[Calendar.MONTH] = mMonth -1
+        mCalendar[Calendar.MONTH] = mMonth - 1
         val days = mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         var data =
-            DAYS[days]
+                DAYS[days]
         if (null == data) {
             data = ArrayList()
             for (i in 1..days) data.add(i.toString().padStart(2, '0'))
@@ -76,13 +82,13 @@ class KFWheelDayPicker @JvmOverloads constructor(
 
     companion object {
         private val DAYS: MutableMap<Int, MutableList<String?>> =
-            HashMap()
+                HashMap()
     }
 
     init {
         mCalendar = Calendar.getInstance()
         mYear = mCalendar[Calendar.YEAR]
-        mMonth = mCalendar[Calendar.MONTH]+1
+        mMonth = mCalendar[Calendar.MONTH] + 1
         updateDays()
         mSelectedDay = mCalendar[Calendar.DAY_OF_MONTH]
         updateSelectedDay()

@@ -1,6 +1,5 @@
 package com.thejuki.kformmaster.helper
 
-import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.*
@@ -18,14 +17,12 @@ import com.thejuki.kformmaster.model.*
 annotation class FormDsl
 
 /** Type-safe builder method to initialize the form */
-fun form(context: Context,
-         recyclerView: RecyclerView,
+fun form(recyclerView: RecyclerView,
          listener: OnFormElementValueChangedListener? = null,
          cacheForm: Boolean = true,
          formLayouts: FormLayouts? = null,
          init: FormBuildHelper.() -> Unit): FormBuildHelper {
     val form = FormBuildHelper(
-            context = context,
             listener = listener,
             recyclerView = recyclerView,
             cacheForm = cacheForm,

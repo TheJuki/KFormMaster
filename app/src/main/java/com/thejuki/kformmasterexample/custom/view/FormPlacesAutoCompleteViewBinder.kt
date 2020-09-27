@@ -1,6 +1,5 @@
 package com.thejuki.kformmasterexample.custom.view
 
-import android.content.Context
 import android.text.InputType
 import android.view.View
 import android.widget.LinearLayout
@@ -8,28 +7,25 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.github.vivchar.rendererrecyclerviewadapter.ViewHolder
-import com.github.vivchar.rendererrecyclerviewadapter.ViewState
-import com.github.vivchar.rendererrecyclerviewadapter.ViewStateProvider
-import com.github.vivchar.rendererrecyclerviewadapter.binder.ViewBinder
+import com.github.vivchar.rendererrecyclerviewadapter.ViewRenderer
 import com.google.android.libraries.places.widget.Autocomplete
 import com.thejuki.kformmaster.helper.FormBuildHelper
-import com.thejuki.kformmaster.state.FormEditTextViewState
-import com.thejuki.kformmaster.view.BaseFormViewBinder
+import com.thejuki.kformmaster.helper.FormViewFinder
+import com.thejuki.kformmaster.view.BaseFormViewRenderer
 import com.thejuki.kformmasterexample.R
 import com.thejuki.kformmasterexample.custom.model.FormPlacesAutoCompleteElement
 
 /**
- * Form Custom ViewBinder
+ * Form Custom ViewRenderer
  *
  * View Binder for [FormPlacesAutoCompleteElement]
  *
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPlacesAutoCompleteViewBinder(private val context: Context, private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?, private val fragment: Fragment? = null) : BaseFormViewBinder() {
-    var viewBinder = ViewBinder(layoutID
-            ?: R.layout.form_element, FormPlacesAutoCompleteElement::class.java, { model, finder, _ ->
+class FormPlacesAutoCompleteViewRenderer(private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?, private val fragment: Fragment? = null) : BaseFormViewRenderer() {
+    var viewRenderer = ViewRenderer(layoutID
+            ?: R.layout.form_element, FormPlacesAutoCompleteElement::class.java) { model, finder: FormViewFinder, _ ->
         val textViewTitle = finder.find(R.id.formElementTitle) as AppCompatTextView
         val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
@@ -48,7 +44,7 @@ class FormPlacesAutoCompleteViewBinder(private val context: Context, private val
         setClearableListener(model)
 
         val listener = View.OnClickListener {
-            context.let { activity ->
+            itemView.context.let { activity ->
                 if (activity is FragmentActivity) {
                     val intent = Autocomplete.IntentBuilder(
                             model.autocompleteActivityMode, model.placeFields)
@@ -65,13 +61,5 @@ class FormPlacesAutoCompleteViewBinder(private val context: Context, private val
         itemView.setOnClickListener(listener)
         editTextValue.setOnClickListener(listener)
 
-    }, object : ViewStateProvider<FormPlacesAutoCompleteElement, ViewHolder> {
-        override fun createViewStateID(model: FormPlacesAutoCompleteElement): Int {
-            return model.id
-        }
-
-        override fun createViewState(holder: ViewHolder): ViewState<ViewHolder> {
-            return FormEditTextViewState(holder)
-        }
-    })
+    }
 }

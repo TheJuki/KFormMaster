@@ -17,13 +17,19 @@ import org.threeten.bp.LocalDateTime
 import java.text.ParseException
 import java.util.*
 
+/**
+ * Wheel Date Time Picker
+ *
+ * @author **soareseneves** ([GitHub](https://github.com/soareseneves))
+ * @version 1.0
+ */
 class KFWheelDateTimePicker @JvmOverloads constructor(
-    context: Context?,
-    attrs: AttributeSet? = null
+        context: Context?,
+        attrs: AttributeSet? = null
 ) :
-    LinearLayout(context, attrs), WheelPicker.OnItemSelectedListener,
+        LinearLayout(context, attrs), WheelPicker.OnItemSelectedListener,
         KFWheelDatePicker.SWOnDateSelectedListener,
-    IDebug, IWheelPicker,
+        IDebug, IWheelPicker,
         IKFWheelDateTimePicker, IKFWheelExtendedDatePicker {
     private val mPickerDate: KFWheelDatePicker
     private val mPickerExtendedDate: KFWheelExtendedDatePicker
@@ -36,9 +42,9 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
     private var mStartDate: LocalDate? = null
 
     override fun onItemSelected(
-        picker: WheelPicker,
-        data: Any,
-        position: Int
+            picker: WheelPicker,
+            data: Any,
+            position: Int
     ) {
         if (picker.id == com.thejuki.kformmaster.R.id.wheel_hour_picker) {
             if (data is Int)
@@ -89,11 +95,11 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
 
     override fun getVisibleItemCount(): Int {
         if (mPickerExtendedDate.visibleItemCount == mPickerHour.visibleItemCount &&
-            mPickerHour.visibleItemCount == mPickerMinute.visibleItemCount
+                mPickerHour.visibleItemCount == mPickerMinute.visibleItemCount
         ) return mPickerExtendedDate.visibleItemCount
         throw ArithmeticException(
-            "Can not get visible item count correctly from" +
-                    "WheelDatePicker!"
+                "Can not get visible item count correctly from" +
+                        "WheelDatePicker!"
         )
     }
 
@@ -114,32 +120,32 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
     @Deprecated("")
     override fun setOnItemSelectedListener(listener: WheelPicker.OnItemSelectedListener) {
         throw UnsupportedOperationException(
-            "You can not set OnItemSelectedListener for" +
-                    "WheelDatePicker"
+                "You can not set OnItemSelectedListener for" +
+                        "WheelDatePicker"
         )
     }
 
     @Deprecated("")
     override fun getSelectedItemPosition(): Int {
         throw UnsupportedOperationException(
-            "You can not get position of selected item from" +
-                    "WheelDatePicker"
+                "You can not get position of selected item from" +
+                        "WheelDatePicker"
         )
     }
 
     @Deprecated("")
     override fun setSelectedItemPosition(position: Int) {
         throw UnsupportedOperationException(
-            "You can not set position of selected item for" +
-                    "WheelDatePicker"
+                "You can not set position of selected item for" +
+                        "WheelDatePicker"
         )
     }
 
     @Deprecated("")
     override fun getCurrentItemPosition(): Int {
         throw UnsupportedOperationException(
-            "You can not get position of current item from" +
-                    "WheelDatePicker"
+                "You can not get position of current item from" +
+                        "WheelDatePicker"
         )
     }
 
@@ -151,70 +157,70 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
     @Deprecated("")
     override fun setData(data: List<*>?) {
         throw UnsupportedOperationException(
-            "You don't need to set data source for" +
-                    "WheelDatePicker"
+                "You don't need to set data source for" +
+                        "WheelDatePicker"
         )
     }
 
     @Deprecated("")
     override fun setSameWidth(hasSameSize: Boolean) {
         throw UnsupportedOperationException(
-            "You don't need to set same width for" +
-                    "WheelDatePicker"
+                "You don't need to set same width for" +
+                        "WheelDatePicker"
         )
     }
 
     @Deprecated("")
     override fun hasSameWidth(): Boolean {
         throw UnsupportedOperationException(
-            "You don't need to set same width for" +
-                    "WheelDatePicker"
+                "You don't need to set same width for" +
+                        "WheelDatePicker"
         )
     }
 
     @Deprecated("")
     override fun setOnWheelChangeListener(listener: OnWheelChangeListener) {
         throw UnsupportedOperationException(
-            "WheelDatePicker unsupport set" +
-                    "OnWheelChangeListener"
+                "WheelDatePicker unsupport set" +
+                        "OnWheelChangeListener"
         )
     }
 
     @Deprecated("")
     override fun getMaximumWidthText(): String {
         throw UnsupportedOperationException(
-            "You can not get maximum width text from" +
-                    "WheelDatePicker"
+                "You can not get maximum width text from" +
+                        "WheelDatePicker"
         )
     }
 
     @Deprecated("")
     override fun setMaximumWidthText(text: String) {
         throw UnsupportedOperationException(
-            "You don't need to set maximum width text for" +
-                    "WheelDatePicker"
+                "You don't need to set maximum width text for" +
+                        "WheelDatePicker"
         )
     }
 
     @Deprecated("")
     override fun getMaximumWidthTextPosition(): Int {
         throw UnsupportedOperationException(
-            "You can not get maximum width text position" +
-                    "from WheelDatePicker"
+                "You can not get maximum width text position" +
+                        "from WheelDatePicker"
         )
     }
 
     @Deprecated("")
     override fun setMaximumWidthTextPosition(position: Int) {
         throw UnsupportedOperationException(
-            "You don't need to set maximum width text" +
-                    "position for WheelDatePicker"
+                "You don't need to set maximum width text" +
+                        "position for WheelDatePicker"
         )
     }
 
     override fun getSelectedItemTextColor(): Int {
         if (mPickerExtendedDate.selectedItemTextColor == mPickerHour.selectedItemTextColor &&
-            mPickerHour.selectedItemTextColor == mPickerMinute.selectedItemTextColor)
+                mPickerHour.selectedItemTextColor == mPickerMinute.selectedItemTextColor)
             return mPickerExtendedDate.selectedItemTextColor
         throw RuntimeException("Can not get color of selected item text correctly from" +
                 "WheelDatePicker!")
@@ -228,7 +234,7 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
 
     override fun getItemTextColor(): Int {
         if (mPickerExtendedDate.itemTextColor == mPickerHour.itemTextColor &&
-            mPickerHour.itemTextColor == mPickerMinute.itemTextColor)
+                mPickerHour.itemTextColor == mPickerMinute.itemTextColor)
             return mPickerExtendedDate.itemTextColor
         throw RuntimeException("Can not get color of item text correctly from" +
                 "WheelDatePicker!")
@@ -242,7 +248,7 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
 
     override fun getItemTextSize(): Int {
         if (mPickerExtendedDate.itemTextSize == mPickerHour.itemTextSize &&
-            mPickerHour.itemTextSize == mPickerMinute.itemTextSize)
+                mPickerHour.itemTextSize == mPickerMinute.itemTextSize)
             return mPickerExtendedDate.itemTextSize
         throw RuntimeException("Can not get size of item text correctly from" +
                 "WheelDatePicker!");
@@ -256,7 +262,7 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
 
     override fun getItemSpace(): Int {
         if (mPickerExtendedDate.itemSpace == mPickerHour.itemSpace &&
-            mPickerHour.itemSpace == mPickerMinute.itemSpace)
+                mPickerHour.itemSpace == mPickerMinute.itemSpace)
             return mPickerExtendedDate.itemSpace
         throw RuntimeException("Can not get item space correctly from WheelDatePicker!")
     }
@@ -280,7 +286,7 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
 
     override fun getIndicatorSize(): Int {
         if (mPickerExtendedDate.indicatorSize == mPickerHour.indicatorSize &&
-            mPickerHour.indicatorSize == mPickerMinute.indicatorSize)
+                mPickerHour.indicatorSize == mPickerMinute.indicatorSize)
             return mPickerExtendedDate.indicatorSize
         throw RuntimeException("Can not get indicator size correctly from WheelDatePicker!")
     }
@@ -293,7 +299,7 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
 
     override fun getIndicatorColor(): Int {
         if (mPickerExtendedDate.curtainColor == mPickerHour.curtainColor &&
-            mPickerHour.curtainColor == mPickerMinute.curtainColor)
+                mPickerHour.curtainColor == mPickerMinute.curtainColor)
             return mPickerExtendedDate.curtainColor
         throw RuntimeException("Can not get indicator color correctly from WheelDatePicker!")
     }
@@ -317,7 +323,7 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
 
     override fun getCurtainColor(): Int {
         if (mPickerExtendedDate.curtainColor == mPickerHour.curtainColor &&
-            mPickerHour.curtainColor == mPickerMinute.curtainColor)
+                mPickerHour.curtainColor == mPickerMinute.curtainColor)
             return mPickerExtendedDate.curtainColor
         throw RuntimeException("Can not get curtain color correctly from WheelDatePicker!")
     }
@@ -357,14 +363,14 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
     @Deprecated("")
     override fun setItemAlign(align: Int) {
         throw UnsupportedOperationException(
-            "You don't need to set item align for" +
-                    "WheelDatePicker"
+                "You don't need to set item align for" +
+                        "WheelDatePicker"
         )
     }
 
     override fun getTypeface(): Typeface {
         if (mPickerExtendedDate.typeface == mPickerHour.typeface &&
-            mPickerHour.typeface == mPickerMinute.typeface)
+                mPickerHour.typeface == mPickerMinute.typeface)
             return mPickerExtendedDate.typeface
         throw RuntimeException("Can not get typeface correctly from WheelDatePicker!")
     }
@@ -453,7 +459,7 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
             mStartDate = date
             mPickerDate.startDate = date
             mPickerExtendedDate.startDate = date
-            if (date != null){
+            if (date != null) {
                 mPickerHour.allHours = false
                 mPickerMinute.allMinutes = false
             }
@@ -507,7 +513,7 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
         mMinute = mPickerMinute.selectedMinute
     }
 
-    fun setDateTime(dateTime : LocalDateTime){
+    fun setDateTime(dateTime: LocalDateTime) {
         mPickerDate.selectedYear = dateTime.year
         mPickerDate.selectedMonth = dateTime.monthValue
         mPickerDate.selectedDay = dateTime.dayOfMonth

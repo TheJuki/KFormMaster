@@ -4,7 +4,7 @@ Form Layouts override the default layouts used for all related form elements in 
 
 ### Kotlin
 ```kotlin
- formBuilder = form(this, recyclerView, formLayouts = FormLayouts(
+ formBuilder = form(recyclerView, formLayouts = FormLayouts(
                 text = R.layout.form_element_custom,
                 textArea = R.layout.form_element_custom
         )) 

@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_photo_camera_black_24dp"
-            android:tint="@color/colorFormMasterBottomSheetImage"
+            app:tint="@color/colorFormMasterBottomSheetImage"
             android:contentDescription="@string/form_master_picker_camera" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_photo_library_black_24dp"
-            android:tint="@color/colorFormMasterBottomSheetImage"
+            app:tint="@color/colorFormMasterBottomSheetImage"
             android:contentDescription="@string/form_master_picker_gallery" />
 
         <TextView
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_remove_black_24dp"
-            android:tint="@color/colorFormMasterBottomSheetImage"
+            app:tint="@color/colorFormMasterBottomSheetImage"
             android:contentDescription="@string/form_master_picker_remove" />
 
         <TextView
@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_close_black_24dp"
-            android:tint="@color/colorFormMasterBottomSheetImage"
+            app:tint="@color/colorFormMasterBottomSheetImage"
             android:contentDescription="@string/form_master_cancel" />
 
         <TextView
