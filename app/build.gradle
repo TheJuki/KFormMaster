@@ -36,7 +36,7 @@ tasks.withType(Javadoc).all {
 }
 
 ext {
-    placesVersion = '2.3.0'
+    placesVersion = '2.4.0'
 }
 
 dependencies {
