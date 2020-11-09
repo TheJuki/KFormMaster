@@ -85,7 +85,7 @@ tasks.withType(Javadoc).all {
 ext {
     rendererRecyclerViewAdapterVersion = '3.0.0'
     tokenautocompleteVersion = '3.0.2'
-    constraintLayoutVersion = '2.0.2'
+    constraintLayoutVersion = '2.0.4'
     picassoVersion = '2.71828'
     inlineActivityResultVersion = '1.0.2'
     imagepickerVersion = '1.11'
