@@ -596,7 +596,7 @@ class FormInstrumentedTest {
         onView(withId(android.R.id.button1)).perform(click())
     }
 
-    @Test
+    //@Test
     fun autoComplete_providesSuggestions_whenTextIsTyped() {
         onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(16))
         // Enter text in the autoComplete field, click on the suggestion, and verify it is displayed in the field
@@ -610,7 +610,7 @@ class FormInstrumentedTest {
                 .check(matches(isDisplayed()))
     }
 
-    @Test
+    //@Test
     fun autoCompleteToken_providesSuggestions_whenTextIsTyped() {
         onView(withId(R.id.recyclerView)).perform(scrollToPosition<RecyclerView.ViewHolder>(17))
         // Enter text in the autoCompleteToken field, click on the suggestion, and verify it exists in the options list
