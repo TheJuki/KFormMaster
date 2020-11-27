@@ -1,5 +1,15 @@
 # Change Log
 
+## [8.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/8.0.0)
+### Targeting SDK API Level 30, Min API Level 19
+
+## Issues Resolved
+- #197 Removed disabling FormTextViewElement
+- #201 Setting backgroundColor for the main view for the Header and Label elements
+- #205 Fixed remaining issue with displayNewValue
+- #214 Upgraded to ViewRenderers
+- #220 Moved FormActivityTest to main form folder
+
 ## [7.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/7.0.0)
 ### Issues Resolved
 - #194 Added editViewGravity. The button element's default gravity is CENTER.
