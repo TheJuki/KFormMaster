@@ -496,6 +496,18 @@
 
 
   <li class="md-nav__item">
+    <a href="element/inlineDatePicker/" title="InlineDatePicker" class="md-nav__link">
+      InlineDatePicker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="element/dropDown/" title="Dropdown" class="md-nav__link">
       Dropdown
     </a>
@@ -832,9 +844,11 @@
 <span class="nt">&lt;androidx.recyclerview.widget.RecyclerView</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
     <span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
     <span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+    <span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span>
     <span class="na">android:orientation=</span><span class="s">&quot;vertical&quot;</span>
     <span class="na">android:id=</span><span class="s">&quot;@+id/recyclerView&quot;</span>
     <span class="na">android:divider=</span><span class="s">&quot;#b5b5b5&quot;</span>
+    <span class="na">app:layoutManager=</span><span class="s">&quot;androidx.recyclerview.widget.LinearLayoutManager&quot;</span>
     <span class="na">android:descendantFocusability=</span><span class="s">&quot;beforeDescendants&quot;</span> <span class="nt">/&gt;</span>
 </code></pre></div>
 
@@ -843,8 +857,8 @@
 <li>Step 2 (No DSL). Add the Form Elements programmatically in your activity</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="c1">// Initialize variables</span>
-<span class="n">formBuilder</span> <span class="p">=</span> <span class="n">FormBuildHelper</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
-<span class="n">formBuilder</span><span class="p">.</span><span class="n">attachRecyclerView</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recyclerView</span><span class="p">)</span>
+<span class="n">formBuilder</span> <span class="p">=</span> <span class="n">FormBuildHelper</span><span class="p">()</span>
+<span class="n">formBuilder</span><span class="p">.</span><span class="n">attachRecyclerView</span><span class="p">(</span><span class="n">recyclerView</span><span class="p">)</span>
 
 <span class="k">val</span> <span class="py">elements</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">BaseFormElement</span><span class="p">&lt;*&gt;&gt;</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">()</span>
 
@@ -869,7 +883,7 @@
 <ul>
 <li>Step 2 (With DSL). Add the Form Elements programmatically in your activity</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recyclerView</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="n">recyclerView</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">email</span><span class="p">(</span><span class="n">Email</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">title</span> <span class="p">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
     <span class="p">}</span>

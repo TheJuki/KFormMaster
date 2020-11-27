@@ -449,6 +449,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../element/inlineDatePicker/" title="InlineDatePicker" class="md-nav__link">
+      InlineDatePicker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../element/dropDown/" title="Dropdown" class="md-nav__link">
       Dropdown
     </a>
@@ -821,7 +833,7 @@
 </ul>
 <div class="codehilite"><pre><span></span><code>/app/src/main/java/com/thejuki/kformmasterexample/item/PlaceItem.kt
 /app/src/main/java/com/thejuki/kformmasterexample/custom/model/FormPlacesAutoCompleteElement.kt
-/app/src/main/java/com/thejuki/kformmasterexample/custom/view/FormPlacesAutoCompleteViewBinder.kt
+/app/src/main/java/com/thejuki/kformmasterexample/custom/view/FormPlacesAutoCompleteViewRenderer.kt
 /app/src/main/java/com/thejuki/kformmasterexample/custom/helper/FormBuilderExtensions.kt
 </code></pre></div>
 
@@ -859,7 +871,7 @@
     <span class="p">}</span>
 
     <span class="k">private</span> <span class="k">fun</span> <span class="nf">setupForm</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recyclerView</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="n">recyclerView</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">placesAutoComplete</span><span class="p">(</span><span class="n">Tag</span><span class="p">.</span><span class="n">PlacesElement</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">title</span> <span class="p">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">Places_AutoComplete</span><span class="p">)</span>
                 <span class="c1">// Set a value initially to show in the textfield</span>
@@ -880,7 +892,7 @@
 
         <span class="c1">// Required</span>
         <span class="c1">// IMPORTANT: Pass in &#39;this&#39; for the fragment parameter so that startActivityForResult is called from the fragment (If you are using a fragment instead of an activity)</span>
-        <span class="n">formBuilder</span><span class="p">.</span><span class="n">registerCustomViewBinder</span><span class="p">(</span><span class="n">FormPlacesAutoCompleteViewBinder</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">,</span> <span class="n">layoutID</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span> <span class="n">fragment</span> <span class="p">=</span> <span class="k">null</span><span class="p">).</span><span class="n">viewBinder</span><span class="p">)</span>
+        <span class="n">formBuilder</span><span class="p">.</span><span class="n">registerCustomViewRenderer</span><span class="p">(</span><span class="n">FormPlacesAutoCompleteViewRenderer</span><span class="p">(</span><span class="n">formBuilder</span><span class="p">,</span> <span class="n">layoutID</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span> <span class="n">fragment</span> <span class="p">=</span> <span class="k">null</span><span class="p">).</span><span class="n">viewRenderer</span><span class="p">)</span>
     <span class="p">}</span>
 
     <span class="cm">/**</span>

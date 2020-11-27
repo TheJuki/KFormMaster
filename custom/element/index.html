@@ -449,6 +449,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../element/inlineDatePicker/" title="InlineDatePicker" class="md-nav__link">
+      InlineDatePicker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../element/dropDown/" title="Dropdown" class="md-nav__link">
       Dropdown
     </a>
@@ -665,13 +677,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#optional-form-element-view-state" class="md-nav__link">
-    Optional: Form Element View State
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#form-element-view-binder" class="md-nav__link">
     Form Element View Binder
   </a>
@@ -832,13 +837,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#optional-form-element-view-state" class="md-nav__link">
-    Optional: Form Element View State
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#form-element-view-binder" class="md-nav__link">
     Form Element View Binder
   </a>
@@ -957,28 +955,10 @@
 </code></pre></div>
 
 
-<h3 id="optional-form-element-view-state">Optional: Form Element View State<a class="headerlink" href="#optional-form-element-view-state" title="Permanent link">&para;</a></h3>
-<p>Create a view state class your custom form element value.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FormCustomViewState</span><span class="p">(</span><span class="n">holder</span><span class="p">:</span> <span class="n">ViewHolder</span><span class="p">)</span> <span class="p">:</span> <span class="n">BaseFormViewState</span><span class="p">(</span><span class="n">holder</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">private</span> <span class="k">var</span> <span class="py">value</span><span class="p">:</span> <span class="n">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
-
-    <span class="n">init</span> <span class="p">{</span>
-        <span class="k">val</span> <span class="py">editText</span> <span class="p">=</span> <span class="n">holder</span><span class="p">.</span><span class="n">viewFinder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementValue</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatEditText</span>
-        <span class="n">value</span> <span class="p">=</span> <span class="n">editText</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span>
-    <span class="p">}</span>
-
-    <span class="k">override</span> <span class="k">fun</span> <span class="nf">restore</span><span class="p">(</span><span class="n">holder</span><span class="p">:</span> <span class="n">ViewHolder</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">super</span><span class="p">.</span><span class="n">restore</span><span class="p">(</span><span class="n">holder</span><span class="p">)</span>
-        <span class="n">holder</span><span class="p">.</span><span class="n">viewFinder</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementValue</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-
 <h3 id="form-element-view-binder">Form Element View Binder<a class="headerlink" href="#form-element-view-binder" title="Permanent link">&para;</a></h3>
 <p>Create a view binder for your custom form element.</p>
 <div class="admonition note">
-<p class="admonition-title">ViewBinder</p>
+<p class="admonition-title">ViewRenderer</p>
 <ul>
 <li>layoutID parameter - Form element layout name</li>
 <li>type parameter - Form element model class (ModelName::class.java)</li>
@@ -991,10 +971,10 @@
 <li>viewStateProvider parameter - Form element view state provider</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">CustomViewBinder</span><span class="p">(</span><span class="k">private</span> <span class="k">val</span> <span class="py">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="k">private</span> <span class="k">val</span> <span class="py">formBuilder</span><span class="p">:</span> <span class="n">FormBuildHelper</span><span class="p">,</span> 
-    <span class="n">@LayoutRes</span> <span class="k">private</span> <span class="k">val</span> <span class="py">layoutID</span><span class="p">:</span> <span class="n">Int</span><span class="p">?)</span> <span class="p">:</span> <span class="n">BaseFormViewBinder</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">var</span> <span class="py">viewBinder</span> <span class="p">=</span> <span class="n">ViewBinder</span><span class="p">(</span><span class="n">layoutID</span>
-            <span class="o">?:</span> <span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">,</span> <span class="n">FormCustomElement</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">,</span> <span class="p">{</span> <span class="n">model</span><span class="p">,</span> <span class="n">finder</span><span class="p">,</span> <span class="n">_</span> <span class="p">-&gt;</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">CustomViewRenderer</span><span class="p">(</span><span class="k">private</span> <span class="k">val</span> <span class="py">formBuilder</span><span class="p">:</span> <span class="n">FormBuildHelper</span><span class="p">,</span> 
+    <span class="n">@LayoutRes</span> <span class="k">private</span> <span class="k">val</span> <span class="py">layoutID</span><span class="p">:</span> <span class="n">Int</span><span class="p">?)</span> <span class="p">:</span> <span class="n">BaseFormViewRenderer</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">val</span> <span class="py">viewRenderer</span> <span class="p">=</span> <span class="n">ViewRenderer</span><span class="p">(</span><span class="n">layoutID</span>
+            <span class="o">?:</span> <span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">,</span> <span class="n">FormCustomElement</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span> <span class="p">{</span> <span class="n">model</span><span class="p">,</span> <span class="n">finder</span><span class="p">:</span> <span class="n">FormViewFinder</span><span class="p">,</span> <span class="n">_</span> <span class="p">-&gt;</span>
         <span class="k">val</span> <span class="py">textViewTitle</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementTitle</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatTextView</span>
         <span class="k">val</span> <span class="py">mainViewLayout</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementMainLayout</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="n">LinearLayout</span>
         <span class="k">val</span> <span class="py">textViewError</span> <span class="p">=</span> <span class="n">finder</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">id</span><span class="p">.</span><span class="n">formElementError</span><span class="p">)</span> <span class="k">as</span> <span class="n">AppCompatTextView</span>
@@ -1022,21 +1002,12 @@
         <span class="n">setOnFocusChangeListener</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">)</span>
         <span class="n">addTextChangedListener</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">)</span>
         <span class="n">setOnEditorActionListener</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">)</span>
-
-    <span class="p">},</span> <span class="k">object</span> <span class="p">:</span> <span class="nc">ViewStateProvider</span><span class="p">&lt;</span><span class="n">FormCustomElement</span><span class="p">,</span> <span class="n">ViewHolder</span><span class="p">&gt;</span> <span class="p">{</span>
-        <span class="k">override</span> <span class="k">fun</span> <span class="nf">createViewStateID</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">FormCustomElement</span><span class="p">):</span> <span class="n">Int</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">model</span><span class="p">.</span><span class="n">id</span>
-        <span class="p">}</span>
-
-        <span class="k">override</span> <span class="k">fun</span> <span class="nf">createViewState</span><span class="p">(</span><span class="n">holder</span><span class="p">:</span> <span class="n">ViewHolder</span><span class="p">):</span> <span class="n">ViewState</span><span class="p">&lt;</span><span class="n">ViewHolder</span><span class="p">&gt;</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">FormCustomViewState</span><span class="p">(</span><span class="n">holder</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">})</span>
+    <span class="p">}</span>
 
     <span class="k">private</span> <span class="k">fun</span> <span class="nf">setEditTextFocusEnabled</span><span class="p">(</span><span class="n">editTextValue</span><span class="p">:</span> <span class="n">AppCompatEditText</span><span class="p">,</span> <span class="n">itemView</span><span class="p">:</span> <span class="n">View</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">itemView</span><span class="p">.</span><span class="n">setOnClickListener</span> <span class="p">{</span>
             <span class="n">editTextValue</span><span class="p">.</span><span class="n">requestFocus</span><span class="p">()</span>
-            <span class="k">val</span> <span class="py">imm</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="n">INPUT_METHOD_SERVICE</span><span class="p">)</span> <span class="k">as</span> <span class="n">InputMethodManager</span>
+            <span class="k">val</span> <span class="py">imm</span> <span class="p">=</span> <span class="n">itemView</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="n">INPUT_METHOD_SERVICE</span><span class="p">)</span> <span class="k">as</span> <span class="n">InputMethodManager</span>
             <span class="n">editTextValue</span><span class="p">.</span><span class="n">setSelection</span><span class="p">(</span><span class="n">editTextValue</span><span class="p">.</span><span class="n">text</span><span class="o">?.</span><span class="n">length</span> <span class="o">?:</span> <span class="m">0</span><span class="p">)</span>
             <span class="n">imm</span><span class="p">.</span><span class="n">showSoftInput</span><span class="p">(</span><span class="n">editTextValue</span><span class="p">,</span> <span class="n">InputMethodManager</span><span class="p">.</span><span class="n">SHOW_IMPLICIT</span><span class="p">)</span>
         <span class="p">}</span>
@@ -1070,14 +1041,14 @@
     <span class="p">}</span>
 
     <span class="k">private</span> <span class="k">fun</span> <span class="nf">setupForm</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recyclerView</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="n">recyclerView</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">customEx</span><span class="p">(</span><span class="n">Tag</span><span class="p">.</span><span class="n">Custom</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">title</span> <span class="p">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">Custom</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
         <span class="c1">// Required</span>
-        <span class="n">formBuilder</span><span class="p">.</span><span class="n">registerCustomViewBinder</span><span class="p">(</span><span class="n">CustomViewBinder</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">formBuilder</span><span class="p">).</span><span class="n">viewBinder</span><span class="p">)</span>
+        <span class="n">formBuilder</span><span class="p">.</span><span class="n">registerCustomViewRenderer</span><span class="p">(</span><span class="n">CustomViewRenderer</span><span class="p">(</span><span class="n">formBuilder</span><span class="p">).</span><span class="n">viewRenderer</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>

@@ -538,6 +538,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../element/inlineDatePicker/" title="InlineDatePicker" class="md-nav__link">
+      InlineDatePicker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../element/dropDown/" title="Dropdown" class="md-nav__link">
       Dropdown
     </a>
@@ -903,7 +915,7 @@
 NOTE: This is enabled by default.</p>
 <h3 id="set-form-element-value-change-listener-to-get-changed-value-instantly">Set form element value change listener to get changed value instantly<a class="headerlink" href="#set-form-element-value-change-listener-to-get-changed-value-instantly" title="Permanent link">&para;</a></h3>
 <p>While creating a new instance of FormBuildHelper, add a listener in the constructor.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="py">formBuilder</span> <span class="p">=</span> <span class="n">FormBuildHelper</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">object</span> <span class="p">:</span> <span class="nc">OnFormElementValueChangedListener</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="py">formBuilder</span> <span class="p">=</span> <span class="n">FormBuildHelper</span><span class="p">(</span><span class="k">object</span> <span class="p">:</span> <span class="nc">OnFormElementValueChangedListener</span> <span class="p">{</span>
     <span class="k">override</span> <span class="k">fun</span> <span class="nf">onValueChanged</span><span class="p">(</span><span class="n">formElement</span><span class="p">:</span> <span class="n">BaseFormElement</span><span class="p">&lt;*&gt;)</span> <span class="p">{</span>
          <span class="c1">// do anything here with formElement.value</span>
     <span class="p">}</span>
@@ -952,7 +964,7 @@ NOTE: This is enabled by default.</p>
 
 <h3 id="form-layouts">Form Layouts<a class="headerlink" href="#form-layouts" title="Permanent link">&para;</a></h3>
 <p>Form Layouts override the default layouts used for all related form elements in the form.</p>
-<div class="codehilite"><pre><span></span><code> <span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">recyclerView</span><span class="p">,</span> <span class="n">formLayouts</span> <span class="p">=</span> <span class="n">FormLayouts</span><span class="p">(</span>
+<div class="codehilite"><pre><span></span><code> <span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="n">recyclerView</span><span class="p">,</span> <span class="n">formLayouts</span> <span class="p">=</span> <span class="n">FormLayouts</span><span class="p">(</span>
                 <span class="n">text</span> <span class="p">=</span> <span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">,</span>
                 <span class="n">textArea</span> <span class="p">=</span> <span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">form_element_custom</span><span class="p">))</span>
 </code></pre></div>
