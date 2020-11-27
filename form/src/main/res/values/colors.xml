@@ -3,7 +3,7 @@
     <color name="colorFormMasterHeaderBackground">#DDDDDD</color>
     <color name="colorFormMasterHeaderText">#000000</color>
     <color name="colorFormMasterElementBackground">#FFFFFF</color>
-    <color name="colorFormMasterElementSelectedBackground">#757575</color>
+    <color name="colorFormMasterElementSelectedBackground">#ededed</color>
     <color name="colorFormMasterElementTextTitle">#222222</color>
     <color name="colorFormMasterElementErrorTitle">#FF0000</color>
     <color name="colorFormMasterElementHint">#a8a8a8</color>

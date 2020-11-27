@@ -419,7 +419,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
         set(value) {
             field = value
             editView?.let {
-                if (it is com.thejuki.kformmaster.widget.ClearableEditText) {
+                if (it is ClearableEditText) {
                     it.displayClear = value
                 }
             }
@@ -696,6 +696,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             field = value
             if (editView == null || !(editView is SwitchCompat || editView is AppCompatCheckBox)) {
                 mainLayoutView?.let {
+                    it.isEnabled = enabled
                     if (margins != null) {
                         it.setMargins(margins?.left.dpToPx(),
                                 margins?.top.dpToPx(),
@@ -708,6 +709,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             // set the padding instead of the margins.
             else if (editView is SwitchCompat || editView is AppCompatCheckBox) {
                 mainLayoutView?.let {
+                    it.isEnabled = enabled
                     if (margins != null) {
                         it.setPadding(margins?.left.dpToPx(),
                                 margins?.top.dpToPx(),
@@ -760,6 +762,7 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
             itemView?.isEnabled = value
             titleView?.isEnabled = value
             editView?.isEnabled = value
+            mainLayoutView?.isEnabled = value
 
             onEnabled(value)
         }

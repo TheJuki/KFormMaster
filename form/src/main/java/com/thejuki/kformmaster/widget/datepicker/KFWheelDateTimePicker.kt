@@ -14,6 +14,7 @@ import com.aigestudio.wheelpicker.WheelPicker.OnWheelChangeListener
 import com.thejuki.kformmaster.extensions.toLocalDateTime
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
+import org.threeten.bp.format.DateTimeFormatter
 import java.text.ParseException
 import java.util.*
 
@@ -40,6 +41,7 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
     private var mHour: Int
     private var mMinute: Int
     private var mStartDate: LocalDate? = null
+    var dateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ISO_DATE
 
     override fun onItemSelected(
             picker: WheelPicker,
@@ -71,19 +73,11 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
 
         val date = mDate.atTime(mPickerHour.selectedHour, mPickerMinute.selectedMinute)
 
-        if (null != mListener) try {
-            mListener!!.onDateSelected(this, date)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
+        mListener?.onDateSelected(this, date)
     }
 
     override fun onDateSelected(picker: KFWheelDatePicker?, date: Date?) {
-        if (null != mListener) try {
-            mListener!!.onDateSelected(this, date?.toLocalDateTime())
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
+        mListener?.onDateSelected(this, date?.toLocalDateTime())
     }
 
     override fun setDebug(isDebug: Boolean) {
@@ -458,6 +452,7 @@ class KFWheelDateTimePicker @JvmOverloads constructor(
         set(date) {
             mStartDate = date
             mPickerDate.startDate = date
+            mPickerExtendedDate.dateTimeFormatter = dateTimeFormatter
             mPickerExtendedDate.startDate = date
             if (date != null) {
                 mPickerHour.allHours = false

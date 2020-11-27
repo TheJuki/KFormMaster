@@ -40,6 +40,8 @@
     <string name="MarkComplete">Mark Complete</string>
     <string name="FormValid">Form is Valid</string>
     <string name="FormInvalid">Form is Invalid!</string>
+    <string name="InlineDateStart">Date Start</string>
+    <string name="InlineDateEnd">Date End</string>
 
     <string name="this_is_a_big_pointless_place_holder">This is a big pointless place-holder</string>
     <string name="another_pointless_place_holder">Another pointless place-holder</string>

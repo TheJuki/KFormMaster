@@ -5,10 +5,11 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Paint
 import android.os.Handler
+import android.os.Looper
+import android.text.InputType
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatTextView
@@ -19,6 +20,7 @@ import com.thejuki.kformmaster.extensions.IFormInlinePicker
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.helper.FormViewFinder
 import com.thejuki.kformmaster.model.FormInlineDatePickerElement
+import com.thejuki.kformmaster.widget.ClearableEditText
 import com.thejuki.kformmaster.widget.datepicker.KFWheelDateTimePicker
 import net.cachapa.expandablelayout.ExpandableLayout
 import org.threeten.bp.LocalDate
@@ -29,11 +31,11 @@ import kotlin.concurrent.schedule
 
 class FormInlineDatePickerViewRenderer(private val formBuilder: FormBuildHelper, @LayoutRes private val layoutID: Int?) : BaseFormViewRenderer() {
 
-    private val handler = Handler()
+    private val handler = Handler(Looper.myLooper()!!)
 
-    fun checkFinalDate(model: FormInlineDatePickerElement, editView: AppCompatTextView) {
+    fun checkFinalDate(model: FormInlineDatePickerElement, editView: ClearableEditText) {
         if (model.pickerType == FormInlineDatePickerElement.PickerType.Secondary) {
-            if (model.linkedPicker != null) {
+            if (model.linkedPicker != null && model.linkedPicker?.value != null) {
                 model.value?.let {
                     if (it < model.linkedPicker?.value) {
                         editView.setTextColor(ResourcesCompat.getColor(editView.context.resources, R.color.colorFormMasterElementErrorTitle, null))
@@ -70,23 +72,14 @@ class FormInlineDatePickerViewRenderer(private val formBuilder: FormBuildHelper,
         val textViewError = finder.find(R.id.formElementError) as AppCompatTextView
         val itemView = finder.getRootView() as View
         val pickerView = finder.find(R.id.formElementPicker) as KFWheelDateTimePicker
-        val imageView = finder.find(R.id.imageView) as ImageView
-        val editTextValue = finder.find(R.id.formElementValue) as AppCompatTextView
+        val editTextValue = finder.find(R.id.formElementValue) as ClearableEditText
         baseSetup(model, dividerView, textViewTitle, textViewError, itemView, formElementMainLayout, editTextValue)
 
-        if (!model.enabled) {
-            imageView.visibility = View.GONE
-            formElementMainLayout.isEnabled = false
-            editTextValue.setTextColor(ResourcesCompat.getColor(itemView.context.resources, R.color.colorFormMasterElementTextDisabled, null))
-        } else {
-            imageView.visibility = View.VISIBLE
-            formElementMainLayout.isEnabled = true
-            editTextValue.setTextColor(ResourcesCompat.getColor(itemView.context.resources, R.color.colorFormMasterElementTextView, null))
-        }
+        pickerView.dateTimeFormatter = model.dateTimePickerFormatter
+        pickerView.startDate = model.startDate
 
         model.setDelegate(object : IFormInlinePicker {
             override fun setAllDayPicker() {
-                //pickerWrapper.collapse()
                 if (model.isAllDay()) {
                     pickerView.wheelDatePicker?.visibility = View.VISIBLE
                     pickerView.wheelExtendedDatePicker?.visibility = View.GONE
@@ -151,11 +144,16 @@ class FormInlineDatePickerViewRenderer(private val formBuilder: FormBuildHelper,
         }
 
         model.valueObservers.add { newValue, _ ->
-            if (newValue != null)
+            if (newValue != null) {
                 pickerView.setDateTime(newValue)
+            }
         }
 
         editTextValue.hint = model.hint ?: ""
+        editTextValue.alwaysShowClear = true
+
+        editTextValue.setRawInputType(InputType.TYPE_NULL)
+        editTextValue.isFocusable = false
 
         pickerView.setOnDateSelectedListener(object : KFWheelDateTimePicker.SWOnDateSelectedListener {
             override fun onDateSelected(picker: KFWheelDateTimePicker?, date: LocalDateTime?) {
@@ -168,12 +166,11 @@ class FormInlineDatePickerViewRenderer(private val formBuilder: FormBuildHelper,
                     checkFinalDate(model, editTextValue)
                 }
 
-                if (model.isAllDay())
+                if (model.isAllDay()) {
                     pickerWrapper.collapse()
+                }
             }
         })
-
-        model.editView = editTextValue
 
         fun toggleElement(context: Context) {
             dismissKeyboard(context)

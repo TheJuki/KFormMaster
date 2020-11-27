@@ -7,11 +7,11 @@ apply plugin: 'jacoco'
 version = '8.0.0'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 49
         versionName project.version
         multiDexEnabled true
@@ -85,7 +85,7 @@ tasks.withType(Javadoc).all {
 ext {
     rendererRecyclerViewAdapterVersion = '3.0.0'
     tokenautocompleteVersion = '3.0.2'
-    constraintLayoutVersion = '2.0.2'
+    constraintLayoutVersion = '2.0.4'
     picassoVersion = '2.71828'
     inlineActivityResultVersion = '1.0.2'
     imagepickerVersion = '1.11'
@@ -95,11 +95,11 @@ ext {
     testExpressoVersion = '3.3.0'
     kotlintestVersion = '3.4.2'
     mockkVersion = '1.10.2'
-    log4jVersion = '2.13.3'
+    log4jVersion = '2.14.0'
     inputMaskVersion = '6.0.0'
     androidSVGVersion = '1.4'
     expandablelayoutVersion = '2.9.2'
-    threetenabpVersion = '1.2.4'
+    threetenabpVersion = '1.3.0'
     wheelpickerVersion = '1.1.3'
 }
 

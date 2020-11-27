@@ -5,15 +5,15 @@
     android:gravity="center"
     android:orientation="horizontal">
 
-    <com.thejuki.kformmaster.widget.datepicker.KFWheelDayPicker
-        android:id="@+id/wheel_date_picker_day"
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelMonthPicker
+        android:id="@+id/wheel_date_picker_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
         android:paddingEnd="5dp" />
 
-    <com.thejuki.kformmaster.widget.datepicker.KFWheelMonthPicker
-        android:id="@+id/wheel_date_picker_month"
+    <com.thejuki.kformmaster.widget.datepicker.KFWheelDayPicker
+        android:id="@+id/wheel_date_picker_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="5dp"

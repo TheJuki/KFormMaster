@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorFormMasterElementBackground"
-    android:orientation="vertical"
-    android:tag="formModel">
+    android:orientation="vertical">
 
     <View
         android:id="@+id/formElementDivider"
@@ -22,7 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:gravity="center"
-        android:orientation="horizontal"
         android:paddingStart="16dp"
         android:paddingEnd="16dp">
 
@@ -35,26 +33,20 @@
             android:textSize="@dimen/elementTextTitleSize"
             tools:text="Começa" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.thejuki.kformmaster.widget.ClearableEditText
             android:id="@+id/formElementValue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="3"
+            android:background="@null"
             android:gravity="end"
-            android:textColor="@color/colorFormMasterElementTextValue"
+            android:imeOptions="actionNext"
+            android:inputType="textNoSuggestions"
+            android:maxLines="1"
+            android:textColor="@drawable/edit_text_selector"
             android:textColorHint="@color/colorFormMasterElementHint"
             android:textSize="@dimen/elementTextValueSize"
-            tools:text="09 Jan 2020 16:50" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="19sp"
-            android:layout_height="28sp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="0"
-            android:src="@drawable/datetime_indicator"
-            tools:layout_conversion_wrapHeight="0"
-            tools:layout_conversion_wrapWidth="0" />
+            tools:text="Riddhiman Adib" />
 
     </LinearLayout>
 

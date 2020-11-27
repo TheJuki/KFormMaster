@@ -19,27 +19,26 @@ class KFWheelExtendedDatePicker @JvmOverloads constructor(
         attrs: AttributeSet? = null
 ) :
         WheelPicker(context, attrs), IKFWheelExtendedDatePicker {
-    private var mSelectedDate: LocalDate
+    private var mSelectedDate: LocalDate = LocalDate.now()
     private var mStartDate: LocalDate? = null
+    var dateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ISO_DATE
     var dates: MutableList<LocalDate?> = ArrayList()
+
     private fun updateDates() {
 
-        val startDate: LocalDate
-
-        if (this.startDate != null)
-            startDate = this.startDate!!
+        val startDate: LocalDate = if (this.startDate != null)
+            this.startDate!!
         else
-            startDate = LocalDate.now().minusYears(100)
+            LocalDate.now().minusYears(100)
 
         val endDate = LocalDate.now().plusYears(100)
 
         val data: MutableList<String?> = ArrayList()
 
-        dates.removeAll { true }
+        dates.clear()
 
         for (date in startDate..endDate step 1) {
-            val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("E d 'de' MMM")
-            val formattedDate = date.format(formatter)
+            val formattedDate = date.format(dateTimeFormatter)
             data.add(formattedDate)
             dates.add(date)
         }
@@ -52,7 +51,7 @@ class KFWheelExtendedDatePicker @JvmOverloads constructor(
     }
 
     override fun setData(data: List<*>?) {
-        throw UnsupportedOperationException("You can not invoke setData in WheelDayPicker")
+        throw UnsupportedOperationException("You can not invoke setData in KFWheelExtendedDatePicker")
     }
 
     override var selectedDate: LocalDate
@@ -73,10 +72,4 @@ class KFWheelExtendedDatePicker @JvmOverloads constructor(
             updateDates()
             updateSelectedDate()
         }
-
-    init {
-        updateDates()
-        mSelectedDate = LocalDate.now()
-        updateSelectedDate()
-    }
 }

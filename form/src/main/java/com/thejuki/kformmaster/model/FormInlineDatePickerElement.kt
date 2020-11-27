@@ -7,7 +7,16 @@ import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.FormatStyle
 
+/**
+ * Form Inline Date Picker Element
+ *
+ * @author **soareseneves** ([GitHub](https://github.com/soareseneves))
+ * @version 1.0
+ */
 open class FormInlineDatePickerElement(tag: Int = -1) : BaseFormElement<LocalDateTime>(tag) {
+    /**
+     * Picker Type Enum
+     */
     enum class PickerType(val type: Int) {
         Primary(1),
         Secondary(2)
@@ -22,15 +31,43 @@ open class FormInlineDatePickerElement(tag: Int = -1) : BaseFormElement<LocalDat
             displayNewValue()
         }
 
+    /**
+     * Date Time Format for displaying on the picker with the date and time (allDay = false)
+     */
+    var dateTimePickerFormatter: DateTimeFormatter = DateTimeFormatter.ISO_DATE
+
     private var delegate: IFormInlinePicker? = null
+
+    /**
+     * All Day
+     *
+     * By default, this is false which shows the time picker.
+     * Set the true to hide the time picker.
+     */
     var allDay: Boolean = false
-    private var startDate: LocalDate? = null
+
+    /**
+     * Start Date for the picker if value is null.
+     */
+    var startDate: LocalDate? = null
         set(value) {
             field = value
             delegate?.setStartDate(value)
         }
 
+    /**
+     * Picker Type
+     *
+     * By default, this is PickerType.Primary.
+     * Set to PickerType.Secondary for the second Linked Picker.
+     */
     var pickerType = PickerType.Primary
+
+    /**
+     * Linked Picker
+     *
+     * Links two FormInlineDatePickerElements together.
+     */
     var linkedPicker: FormInlineDatePickerElement? = null
         set(value) {
             field = value
@@ -38,14 +75,23 @@ open class FormInlineDatePickerElement(tag: Int = -1) : BaseFormElement<LocalDat
                 value?.linkedPicker = this
         }
 
+    /**
+     * Set Delegate
+     */
     fun setDelegate(delegate: IFormInlinePicker) {
         this.delegate = delegate
     }
 
+    /**
+     * Is All Day
+     */
     fun isAllDay(): Boolean {
         return allDay
     }
 
+    /**
+     * Set All Day with a DateTime
+     */
     fun setAllDay(allDay: Boolean, value: LocalDateTime? = null) {
         this.allDay = allDay
         if (value != null)
@@ -54,18 +100,30 @@ open class FormInlineDatePickerElement(tag: Int = -1) : BaseFormElement<LocalDat
         delegate?.setAllDayPicker()
     }
 
+    /**
+     * Set Date
+     */
     fun setDateTime(dateTime: LocalDateTime) {
         delegate?.setDateTime(dateTime)
     }
 
+    /**
+     * Toggle the display of the picker
+     */
     fun toggle() {
         delegate?.toggle()
     }
 
+    /**
+     * Hide the picker
+     */
     fun collapse() {
         delegate?.collapse()
     }
 
+    /**
+     * Display the picker
+     */
     fun expand() {
         delegate?.expand()
     }

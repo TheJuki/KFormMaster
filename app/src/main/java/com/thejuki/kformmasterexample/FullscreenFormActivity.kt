@@ -179,7 +179,9 @@ class FullscreenFormActivity : AppCompatActivity() {
         Date,
         Time,
         DateTime,
-        InlineDatePicker,
+        InlineDateTimePicker,
+        InlineDateStartPicker,
+        InlineDateEndPicker,
         Password,
         SingleItem,
         MultiItems,
@@ -267,7 +269,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 titleIcon = ContextCompat.getDrawable(this@FullscreenFormActivity, R.drawable.ic_email_blue_24dp)
                 titleIconLocation = IconTextView.Location.RIGHT
                 titleIconPadding = 5
-                titlePadding = FormElementPadding(0, 0, 80, 0)
+                titlePadding = FormElementPadding(0, 0, 70, 0)
                 hint = getString(R.string.email_hint)
                 value = "mail@mail.com"
                 maxLines = 3
@@ -437,11 +439,32 @@ class FullscreenFormActivity : AppCompatActivity() {
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
             }
-            inlineDatePicker(InlineDatePicker.ordinal) {
+            inlineDatePicker(InlineDateTimePicker.ordinal) {
                 title = getString(R.string.InlineDatePicker)
                 value = org.threeten.bp.LocalDateTime.now()
+                editViewGravity = Gravity.START
+                dateTimePickerFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US)
                 dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a", Locale.US)
                 allDay = false
+                required = true
+            }
+            val dateStart = inlineDatePicker(InlineDateStartPicker.ordinal) {
+                title = getString(R.string.InlineDateStart)
+                startDate = org.threeten.bp.LocalDateTime.now().minusDays(1).toLocalDate()
+                editViewGravity = Gravity.START
+                dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US)
+                allDay = true
+                required = true
+            }
+            inlineDatePicker(InlineDateEndPicker.ordinal) {
+                title = getString(R.string.InlineDateEnd)
+                value = org.threeten.bp.LocalDateTime.now()
+                editViewGravity = Gravity.START
+                pickerType = FormInlineDatePickerElement.PickerType.Secondary
+                linkedPicker = dateStart
+                dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US)
+                allDay = true
+                required = true
             }
             header { title = getString(R.string.PreferredItems); collapsible = true }
             dropDown<ListItem>(SingleItem.ordinal) {
@@ -633,7 +656,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 textSize = 12f
                 radioGroupWrapContent = false
                 radioButtonHeight = 70
-                radioButtonPadding = 50
+                radioButtonPadding = 30
                 drawableDirection = FormSegmentedElement.DrawableDirection.Top
                 value = fruitsSegmented[0]
                 required = true
@@ -655,7 +678,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 titleIcon = ContextCompat.getDrawable(this@FullscreenFormActivity, R.drawable.ic_email_blue_24dp)
                 titleIconLocation = IconTextView.Location.LEFT
                 titleIconPadding = 5
-                padding = FormElementPadding(165, 0, 165, 0)
+                padding = FormElementPadding(155, 0, 155, 0)
                 enabled = true
                 valueObservers.add { newValue, element ->
                     val confirmAlert = AlertDialog.Builder(this@FullscreenFormActivity).create()

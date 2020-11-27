@@ -11,4 +11,5 @@
     <string name="form_master_picker_gallery">Gallery</string>
     <string name="form_master_picker_remove">Remove</string>
     <string name="form_master_picker_change_image">Change Image</string>
+    <string name="form_master_datetime_indicator">DateTime Indicator</string>
 </resources>

@@ -16,9 +16,9 @@ import com.aigestudio.wheelpicker.widgets.IWheelDayPicker
 import com.aigestudio.wheelpicker.widgets.IWheelMonthPicker
 import com.aigestudio.wheelpicker.widgets.IWheelYearPicker
 import com.aigestudio.wheelpicker.widgets.WheelYearPicker
+import com.thejuki.kformmaster.extensions.toDate
 import org.threeten.bp.LocalDate
 import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -70,9 +70,8 @@ class KFWheelDatePicker @JvmOverloads constructor(
             mPickerDay.month = mMonth
         }
         mDay = mPickerDay.currentDay
-        val date = "$mYear-$mMonth-$mDay"
         if (null != mListener) try {
-            mListener?.onDateSelected(this, SDF.parse(date))
+            mListener?.onDateSelected(this, currentDate)
         } catch (e: ParseException) {
             e.printStackTrace()
         }
@@ -384,13 +383,7 @@ class KFWheelDatePicker @JvmOverloads constructor(
 
     override val currentDate: Date?
         get() {
-            val date = "$mYear-$mMonth-$mDay"
-            try {
-                return SDF.parse(date)
-            } catch (e: ParseException) {
-                e.printStackTrace()
-            }
-            return null
+            return LocalDate.of(mYear, mMonth, mDay).toDate()
         }
 
     override var itemAlignYear: Int
@@ -525,19 +518,15 @@ class KFWheelDatePicker @JvmOverloads constructor(
         fun onDateSelected(picker: KFWheelDatePicker?, date: Date?)
     }
 
-    companion object {
-        private val SDF =
-                SimpleDateFormat("yyyy-M-d", Locale.getDefault())
-    }
-
     override var startDate: LocalDate?
         get() {
             return mStartDate
         }
         set(date) {
             mStartDate = date
-            if (mStartDate != null)
-                mPickerYear.yearStart = mStartDate!!.year
+            mStartDate?.let {
+                mPickerYear.yearStart = it.year
+            }
         }
 
     init {
