@@ -305,6 +305,12 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
     var backgroundColor: Int? = null
         set(value) {
             field = value
+            if (this is FormHeader || this is FormLabelElement) {
+                if (backgroundColor != null) {
+                    mainLayoutView?.setBackgroundColor(backgroundColor ?: 0)
+                }
+            }
+
             itemView?.let {
                 if (backgroundColor != null) {
                     it.setBackgroundColor(backgroundColor ?: 0)
@@ -723,6 +729,12 @@ open class BaseFormElement<T>(var tag: Int = -1) : ViewModel {
                                 padding?.right.dpToPx(),
                                 padding?.bottom.dpToPx())
                     }
+                }
+            }
+
+            if (this is FormHeader || this is FormLabelElement) {
+                if (backgroundColor != null) {
+                    mainLayoutView?.setBackgroundColor(backgroundColor ?: 0)
                 }
             }
         }
