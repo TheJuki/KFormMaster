@@ -4,6 +4,7 @@
 ### Targeting SDK API Level 30, Min API Level 19
 
 ## Issues Resolved
+- #196 InlineDatePickerElement: https://thejuki.github.io/KFormMaster/element/inlineDatePicker/
 - #197 Removed disabling FormTextViewElement
 - #201 Setting backgroundColor for the main view for the Header and Label elements
 - #205 Fixed remaining issue with displayNewValue
