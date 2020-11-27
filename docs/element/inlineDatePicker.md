@@ -4,6 +4,14 @@ The Inline Date Picker form element is used for an inline date spinner on the fo
 
 ![Example](../../images/InlineDateStartAndEnd.png)
 
+!!! info "Init"
+
+    Init AndroidThreeTen in your Application.
+
+    ```
+    AndroidThreeTen.init(applicationContext)
+    ```
+
 !!! info "Value"
 
     * Value is of type org.threeten.bp.LocalDateTime to keep support for SDK API Level 19.
