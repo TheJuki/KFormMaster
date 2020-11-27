@@ -40,9 +40,11 @@ class FormInlineDatePickerViewRenderer(private val formBuilder: FormBuildHelper,
                     if (it < model.linkedPicker?.value) {
                         editView.setTextColor(ResourcesCompat.getColor(editView.context.resources, R.color.colorFormMasterElementErrorTitle, null))
                         editView.paintFlags = editView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                        model.dateError = true
                     } else {
                         editView.setTextColor(ResourcesCompat.getColor(editView.context.resources, R.color.colorFormMasterElementTextValue, null))
                         editView.paintFlags = editView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                        model.dateError = false
                     }
                 }
             }
@@ -118,6 +120,10 @@ class FormInlineDatePickerViewRenderer(private val formBuilder: FormBuildHelper,
 
             override fun toggle() {
                 pickerWrapper.toggle()
+            }
+
+            override fun isExpanded(): Boolean {
+                return pickerWrapper.isExpanded
             }
 
             override fun collapse() {

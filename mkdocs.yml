@@ -54,6 +54,7 @@ nav:
       - 'Date': 'element/date.md'
       - 'Time': 'element/time.md'
       - 'DateTime': 'element/dateTime.md'
+      - 'InlineDatePicker': 'element/inlineDatePicker.md'
       - 'Dropdown': 'element/dropDown.md'
       - 'MultiCheckBox': 'element/multiCheckBox.md'
       - 'AutoComplete': 'element/autoComplete.md'

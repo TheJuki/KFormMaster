@@ -42,7 +42,7 @@ open class FormInlineDatePickerElement(tag: Int = -1) : BaseFormElement<LocalDat
      * All Day
      *
      * By default, this is false which shows the time picker.
-     * Set the true to hide the time picker.
+     * Set to true to hide the time picker.
      */
     var allDay: Boolean = false
 
@@ -74,6 +74,15 @@ open class FormInlineDatePickerElement(tag: Int = -1) : BaseFormElement<LocalDat
             if (pickerType == PickerType.Secondary)
                 value?.linkedPicker = this
         }
+
+    /**
+     * Date Error
+     *
+     * By default, this is false.
+     * The secondary linked date picker will set this to true when the date is
+     * before the primary linked picker.
+     */
+    var dateError: Boolean = false
 
     /**
      * Set Delegate
@@ -112,6 +121,13 @@ open class FormInlineDatePickerElement(tag: Int = -1) : BaseFormElement<LocalDat
      */
     fun toggle() {
         delegate?.toggle()
+    }
+
+    /**
+     * Return the expanded state of the picker
+     */
+    fun isExpanded(): Boolean {
+        return delegate?.isExpanded() == true
     }
 
     /**

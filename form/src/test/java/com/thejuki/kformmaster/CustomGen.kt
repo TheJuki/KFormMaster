@@ -400,6 +400,8 @@ interface CustomGen {
                 element.hint = Gen.string().random().first()
                 element.value = org.threeten.bp.LocalDateTime.now(ZoneId.of("UTC"))
                 element.dateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME
+                element.dateTimePickerFormatter = DateTimeFormatter.ISO_DATE
+                element.startDate = org.threeten.bp.LocalDateTime.now(ZoneId.of("UTC")).toLocalDate()
                 element.allDay = Gen.bool().random().first()
                 element.pickerType = Gen.from(FormInlineDatePickerElement.PickerType.values().asList()).random().first()
                 element.linkedPicker = FormInlineDatePickerElement()

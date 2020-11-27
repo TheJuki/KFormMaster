@@ -98,6 +98,7 @@ class FormModelUnitTest : ShouldSpec() {
                 val element = CustomGen.formInlineDatePickerElement().random().first()
                 element.value shouldNotBe null
                 element.dateTimeFormatter shouldNotBe null
+                element.dateTimePickerFormatter shouldNotBe null
                 element.linkedPicker shouldNotBe null
             }
         }

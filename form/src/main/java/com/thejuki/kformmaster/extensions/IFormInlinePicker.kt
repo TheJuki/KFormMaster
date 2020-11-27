@@ -13,6 +13,7 @@ interface IFormInlinePicker {
     fun setAllDayPicker()
     fun toggle()
     fun collapse()
+    fun isExpanded(): Boolean
     fun expand()
     fun setDateTime(dateTime: LocalDateTime)
     fun setStartDate(date: LocalDate?)

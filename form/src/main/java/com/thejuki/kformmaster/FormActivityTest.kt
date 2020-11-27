@@ -3,6 +3,7 @@ package com.thejuki.kformmaster
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import bytesEqualTo
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import com.thejuki.kformmaster.FormActivityTest.Tag.*
 import com.thejuki.kformmaster.adapter.ContactAutoCompleteAdapter
@@ -22,9 +24,10 @@ import com.thejuki.kformmaster.item.ListItem
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.model.FormButtonElement
+import com.thejuki.kformmaster.model.FormInlineDatePickerElement
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import kotlinx.android.synthetic.main.activity_form_test.*
-import org.junit.Assert
+import org.threeten.bp.format.DateTimeFormatter
 import pixelsEqualTo
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,6 +51,7 @@ class FormActivityTest : AppCompatActivity() {
 
         setupToolBar()
 
+        AndroidThreeTen.init(this)
         setupForm()
     }
 
@@ -102,7 +106,10 @@ class FormActivityTest : AppCompatActivity() {
         CheckBoxElement,
         SegmentedElement,
         LabelElement,
-        ImageViewElement
+        ImageViewElement,
+        InlineDateTimePicker,
+        InlineDateStartPicker,
+        InlineDateEndPicker
     }
 
     private fun setupForm() {
@@ -138,8 +145,12 @@ class FormActivityTest : AppCompatActivity() {
                         val imageView = it as ImageView
                         val defaultImageDrawable = ContextCompat.getDrawable(this@FormActivityTest, defaultImage
                                 ?: 0)
-                        Assert.assertTrue(imageView.drawable.bytesEqualTo(defaultImageDrawable))
-                        Assert.assertTrue(imageView.drawable.pixelsEqualTo(defaultImageDrawable))
+                        if (BuildConfig.DEBUG && !imageView.drawable.bytesEqualTo(defaultImageDrawable)) {
+                            error("Failed Image onInitialImageLoaded")
+                        }
+                        if (BuildConfig.DEBUG && !imageView.drawable.pixelsEqualTo(defaultImageDrawable)) {
+                            error("Failed Image onInitialImageLoaded")
+                        }
                         Log.i("FormActivityTest", "Passed Image onInitialImageLoaded")
                     }
                 }
@@ -148,8 +159,12 @@ class FormActivityTest : AppCompatActivity() {
                         val imageView = it as ImageView
                         val defaultImageDrawable = ContextCompat.getDrawable(this@FormActivityTest, defaultImage
                                 ?: 0)
-                        Assert.assertTrue(imageView.drawable.bytesEqualTo(defaultImageDrawable))
-                        Assert.assertTrue(imageView.drawable.pixelsEqualTo(defaultImageDrawable))
+                        if (BuildConfig.DEBUG && !imageView.drawable.bytesEqualTo(defaultImageDrawable)) {
+                            error("Failed Image onClear")
+                        }
+                        if (BuildConfig.DEBUG && !imageView.drawable.pixelsEqualTo(defaultImageDrawable)) {
+                            error("Failed Image onClear")
+                        }
                         Log.i("FormActivityTest", "Passed Image onClear")
                     }
                 }
@@ -286,7 +301,7 @@ class FormActivityTest : AppCompatActivity() {
                         dateToDeleteElement.clear()
                         formBuilder.onValueChanged(dateToDeleteElement)
 
-                        val dateToDeleteElementIndex = formBuilder.getElementAtIndex(9) as FormPickerDateElement
+                        val dateToDeleteElementIndex = formBuilder.getElementAtIndex(10) as FormPickerDateElement
                         dateToDeleteElementIndex.clear()
                         formBuilder.onValueChanged(dateToDeleteElementIndex)
 
@@ -310,6 +325,30 @@ class FormActivityTest : AppCompatActivity() {
             }
             label(LabelElement.ordinal) {
                 title = "Label"
+            }
+            inlineDatePicker(InlineDateTimePicker.ordinal) {
+                title = "Inline Date Picker"
+                value = org.threeten.bp.LocalDateTime.of(2020, 11, 1, 2, 30)
+                editViewGravity = Gravity.START
+                dateTimePickerFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US)
+                dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a", Locale.US)
+                allDay = false
+            }
+            val dateStart = inlineDatePicker(InlineDateStartPicker.ordinal) {
+                title = "Start Date"
+                startDate = org.threeten.bp.LocalDateTime.of(2020, 11, 2, 2, 30).toLocalDate()
+                editViewGravity = Gravity.START
+                dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US)
+                allDay = true
+            }
+            inlineDatePicker(InlineDateEndPicker.ordinal) {
+                title = "End Date"
+                value = org.threeten.bp.LocalDateTime.of(2020, 11, 3, 2, 30)
+                editViewGravity = Gravity.START
+                pickerType = FormInlineDatePickerElement.PickerType.Secondary
+                linkedPicker = dateStart
+                dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US)
+                allDay = true
             }
         }
 

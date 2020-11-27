@@ -16,6 +16,10 @@ A org.threeten.bp.LocalDateTime value.
 
 A org.threeten.bp.format.DateTimeFormatter value. By default this is DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL). It is advised to provide your own format.
 
+## DateTime Picker Format
+
+Date Time Format for displaying on the picker with the date and time (allDay = false). By default this is DateTimeFormatter.ISO_DATE. 
+
 ## All Day
 
 By default, this is false which shows the time picker.
@@ -34,6 +38,12 @@ Set to PickerType.Secondary for the second Linked Picker.
 
 Links two FormInlineDatePickerElements together.
 
+## Date Error
+
+By default, this is false.
+The secondary linked date picker will set this to true when the date is 
+before the primary date linked picker.
+
 ## Example
 
 ### Kotlin
@@ -42,7 +52,6 @@ Links two FormInlineDatePickerElements together.
 inlineDatePicker(1) {
     value = org.threeten.bp.LocalDateTime.now()
     dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a", Locale.US)
-    allDay = false
 }
 ```
 
