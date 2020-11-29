@@ -163,12 +163,18 @@ Create a form activity for your custom form element.
 ```kotlin
 class CustomFormActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityFormBinding
+
     // Setup the FormBuildHelper at the class level if necessary
     private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_form)
+
+        binding = ActivityFormBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
         setupForm()
     }
 
@@ -177,7 +183,7 @@ class CustomFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        formBuilder = form(recyclerView) {
+        formBuilder = form(binding.recyclerView) {
             customEx(Tag.Custom.ordinal) {
                 title = getString(R.string.Custom)
             }

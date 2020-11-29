@@ -14,9 +14,9 @@ import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmasterexample.PartialScreenFormActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
+import com.thejuki.kformmasterexample.databinding.ActivityPartialScreenFormBinding
 import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
-import kotlinx.android.synthetic.main.activity_partial_screen_form.*
 import org.threeten.bp.format.DateTimeFormatter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,11 +32,15 @@ import java.util.Date
  */
 class PartialScreenFormActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityPartialScreenFormBinding
     private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_partial_screen_form)
+
+        binding = ActivityPartialScreenFormBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         setupToolBar()
 
@@ -105,7 +109,7 @@ class PartialScreenFormActivity : AppCompatActivity() {
             }
         }
 
-        formBuilder = form(recyclerView, listener, true) {
+        formBuilder = form(binding.recyclerView, listener, true) {
             imageView(ImageViewElement.ordinal) {}
             header { title = getString(R.string.PersonalInfo) }
             email(Email.ordinal) {

@@ -14,9 +14,9 @@ import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmasterexample.FormListenerActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
+import com.thejuki.kformmasterexample.databinding.ActivityFullscreenFormBinding
 import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
-import kotlinx.android.synthetic.main.activity_fullscreen_form.*
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
@@ -31,11 +31,15 @@ import java.util.Date
  */
 class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListener {
 
+    private lateinit var binding: ActivityFullscreenFormBinding
     private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fullscreen_form)
+
+        binding = ActivityFullscreenFormBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         setupToolBar()
 
@@ -96,7 +100,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
     }
 
     private fun setupForm() {
-        formBuilder = form(recyclerView, this, true) {
+        formBuilder = form(binding.recyclerView, this, true) {
             imageView(ImageViewElement.ordinal) {
                 onSelectImage = { file ->
                     // If file is null, that means an error occurred trying to select the image

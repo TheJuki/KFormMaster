@@ -16,8 +16,8 @@ import com.thejuki.kformmasterexample.custom.helper.placesAutoComplete
 import com.thejuki.kformmasterexample.custom.model.FormPlacesAutoCompleteElement
 import com.thejuki.kformmasterexample.custom.view.CustomViewRenderer
 import com.thejuki.kformmasterexample.custom.view.FormPlacesAutoCompleteViewRenderer
+import com.thejuki.kformmasterexample.databinding.ActivityFullscreenFormBinding
 import com.thejuki.kformmasterexample.item.PlaceItem
-import kotlinx.android.synthetic.main.activity_fullscreen_form.*
 
 /**
  * Custom Form Activity
@@ -29,11 +29,15 @@ import kotlinx.android.synthetic.main.activity_fullscreen_form.*
  */
 class CustomFormActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityFullscreenFormBinding
     private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fullscreen_form)
+
+        binding = ActivityFullscreenFormBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         setupToolBar()
 
@@ -85,7 +89,7 @@ class CustomFormActivity : AppCompatActivity() {
          * CustomEx - An entire custom form element: Layout, View, Model, State, and Helper
          * textArea (FormLayouts) - textArea elements will use the form_element_custom layout
          */
-        formBuilder = form(recyclerView, listener, formLayouts = FormLayouts(
+        formBuilder = form(binding.recyclerView, listener, formLayouts = FormLayouts(
                 textArea = R.layout.form_element_custom
         )) {
             header { title = getString(R.string.custom_form) }

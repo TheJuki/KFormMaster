@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
@@ -21,11 +20,11 @@ import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
 import com.thejuki.kformmasterexample.custom.helper.placesAutoComplete
 import com.thejuki.kformmasterexample.custom.model.FormPlacesAutoCompleteElement
 import com.thejuki.kformmasterexample.custom.view.FormPlacesAutoCompleteViewRenderer
+import com.thejuki.kformmasterexample.databinding.ActivityFullscreenFormBinding
 import com.thejuki.kformmasterexample.fragment.FormFragment.Tag.*
 import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
 import com.thejuki.kformmasterexample.item.PlaceItem
-import kotlinx.android.synthetic.main.activity_fullscreen_form.view.*
 import org.threeten.bp.format.DateTimeFormatter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,13 +40,16 @@ import java.util.Date
  */
 class FormFragment : Fragment() {
 
+    private var _binding: ActivityFullscreenFormBinding? = null
+    private val binding get() = _binding!!
     private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.activity_fullscreen_form, container, false)
+                              savedInstanceState: Bundle?): View {
+        _binding = ActivityFullscreenFormBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        setupForm(view.recyclerView)
+        setupForm()
 
         return view
     }
@@ -86,14 +88,14 @@ class FormFragment : Fragment() {
         ImageViewElement
     }
 
-    private fun setupForm(recyclerView: RecyclerView) {
+    private fun setupForm() {
         val context = context ?: return
 
         // Setup Places for custom placesAutoComplete element
         // NOTE: Use your API Key
         Places.initialize(context, "[APP_KEY]")
 
-        formBuilder = form(recyclerView, cacheForm = true) {
+        formBuilder = form(binding.recyclerView, cacheForm = true) {
             imageView(ImageViewElement.ordinal) {
                 displayDivider = false
                 required = false
@@ -392,9 +394,14 @@ class FormFragment : Fragment() {
      * let the FormPlacesAutoCompleteElement handle the result
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == Tag.PlacesAutoComplete.ordinal) {
-            val placesElement = formBuilder.getFormElement<FormPlacesAutoCompleteElement>(Tag.PlacesAutoComplete.ordinal)
+        if (requestCode == PlacesAutoComplete.ordinal) {
+            val placesElement = formBuilder.getFormElement<FormPlacesAutoCompleteElement>(PlacesAutoComplete.ordinal)
             placesElement.handleActivityResult(formBuilder, resultCode, data)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

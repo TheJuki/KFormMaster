@@ -1,10 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: "guru.stefma.bintrayrelease"
+apply plugin: 'guru.stefma.bintrayrelease'
 apply plugin: 'jacoco'
 
-version = '8.0.0'
+version = '8.1.0'
 
 android {
     compileSdkVersion 30
@@ -12,7 +11,7 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 49
+        versionCode 50
         versionName project.version
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -27,6 +26,11 @@ android {
             testCoverageEnabled true
         }
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8

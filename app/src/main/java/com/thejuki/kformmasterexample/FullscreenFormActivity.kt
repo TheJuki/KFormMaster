@@ -27,11 +27,11 @@ import com.thejuki.kformmaster.widget.IconTextView
 import com.thejuki.kformmasterexample.FullscreenFormActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter
+import com.thejuki.kformmasterexample.databinding.ActivityFullscreenFormBinding
+import com.thejuki.kformmasterexample.databinding.BottomsheetImageBinding
 import com.thejuki.kformmasterexample.item.ContactItem
 import com.thejuki.kformmasterexample.item.ListItem
 import com.thejuki.kformmasterexample.item.SegmentedListItem
-import kotlinx.android.synthetic.main.activity_fullscreen_form.*
-import kotlinx.android.synthetic.main.bottomsheet_image.*
 import org.threeten.bp.format.DateTimeFormatter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,17 +48,23 @@ import java.util.Date
  */
 class FullscreenFormActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityFullscreenFormBinding
+    private lateinit var bottomSheetDialogBinding: BottomsheetImageBinding
     private lateinit var formBuilder: FormBuildHelper
     private lateinit var bottomSheetDialog: BottomSheetDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fullscreen_form)
+
+        binding = ActivityFullscreenFormBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         setupToolBar()
 
         bottomSheetDialog = BottomSheetDialog(this)
-        val sheetView = this.layoutInflater.inflate(R.layout.bottomsheet_image, null)
+        bottomSheetDialogBinding = BottomsheetImageBinding.inflate(layoutInflater)
+        val sheetView = bottomSheetDialogBinding.root
         bottomSheetDialog.setContentView(sheetView)
 
         setupForm()
@@ -199,7 +205,7 @@ class FullscreenFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        formBuilder = form(recyclerView,
+        formBuilder = form(binding.recyclerView,
                 formLayouts = FormLayouts(
                         // Uncomment to replace all text elements with the form_element_custom layout
                         //text = R.layout.form_element_custom
@@ -235,19 +241,19 @@ class FullscreenFormActivity : AppCompatActivity() {
 
                 // Optional: Handle onClickListener yourself. Here I am using a BottomSheet instead of the
                 // the default AlertDialog
-                bottomSheetDialog.image_bottom_sheet_camera.setOnClickListener {
+                bottomSheetDialogBinding.imageBottomSheetCamera.setOnClickListener {
                     bottomSheetDialog.dismiss()
                     this.openImagePicker(ImageProvider.CAMERA)
                 }
-                bottomSheetDialog.image_bottom_sheet_gallery.setOnClickListener {
+                bottomSheetDialogBinding.imageBottomSheetGallery.setOnClickListener {
                     bottomSheetDialog.dismiss()
                     this.openImagePicker(ImageProvider.GALLERY)
                 }
-                bottomSheetDialog.image_bottom_sheet_remove.setOnClickListener {
+                bottomSheetDialogBinding.imageBottomSheetRemove.setOnClickListener {
                     bottomSheetDialog.dismiss()
                     this.clearImage()
                 }
-                bottomSheetDialog.image_bottom_sheet_close.setOnClickListener {
+                bottomSheetDialogBinding.imageBottomSheetClose.setOnClickListener {
                     bottomSheetDialog.dismiss()
                 }
                 onClick = {

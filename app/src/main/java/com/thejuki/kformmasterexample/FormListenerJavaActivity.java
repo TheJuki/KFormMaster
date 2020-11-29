@@ -2,6 +2,7 @@ package com.thejuki.kformmasterexample;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ import com.thejuki.kformmaster.model.FormTextViewElement;
 import com.thejuki.kformmaster.model.FormTokenAutoCompleteElement;
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter;
 import com.thejuki.kformmasterexample.adapter.EmailAutoCompleteAdapter;
+import com.thejuki.kformmasterexample.databinding.ActivityFullscreenFormBinding;
 import com.thejuki.kformmasterexample.item.ContactItem;
 import com.thejuki.kformmasterexample.item.ListItem;
 
@@ -67,12 +69,16 @@ import kotlin.Unit;
  * @version 1.0
  */
 public class FormListenerJavaActivity extends AppCompatActivity implements OnFormElementValueChangedListener {
-    private FormBuildHelper formBuilder = null;
+    private ActivityFullscreenFormBinding binding;
+    private FormBuildHelper formBuilder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fullscreen_form);
+
+        binding = ActivityFullscreenFormBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         setupToolBar();
 
@@ -100,7 +106,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
 
     }
 
-    private List<ListItem> fruits = Arrays.asList(new ListItem(1L, "Banana"),
+    private final List<ListItem> fruits = Arrays.asList(new ListItem(1L, "Banana"),
             new ListItem(2L, "Orange"),
             new ListItem(3L, "Mango"),
             new ListItem(4L, "Guava")
@@ -138,7 +144,7 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         // Uncomment to replace all text elements with the form_element_custom layout
         //formLayouts.setText(R.layout.form_element_custom);
 
-        formBuilder = new FormBuildHelper(this, findViewById(R.id.recyclerView), true, formLayouts);
+        formBuilder = new FormBuildHelper(this, binding.recyclerView, true, formLayouts);
 
         List<BaseFormElement<?>> elements = new ArrayList<>();
 

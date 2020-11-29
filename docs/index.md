@@ -28,7 +28,7 @@ implementation "com.thejuki:k-form-master:$kFormMasterVersion"
 ```kotlin
 // Initialize variables
 formBuilder = FormBuildHelper()
-formBuilder.attachRecyclerView(recyclerView)
+formBuilder.attachRecyclerView(binding.recyclerView)
 
 val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 
@@ -51,7 +51,7 @@ formBuilder.addFormElements(elements)
 
 * Step 2 (With DSL). Add the Form Elements programmatically in your activity
 ```kotlin
-formBuilder = form(recyclerView) {
+formBuilder = form(binding.recyclerView) {
     email(Email.ordinal) {
         title = getString(R.string.email)
     }

@@ -11,7 +11,7 @@ import com.thejuki.kformmaster.model.FormEmailEditTextElement
 import com.thejuki.kformmaster.model.FormPasswordEditTextElement
 import com.thejuki.kformmasterexample.LoginFormActivity.Tag.Email
 import com.thejuki.kformmasterexample.LoginFormActivity.Tag.Password
-import kotlinx.android.synthetic.main.activity_login_form.*
+import com.thejuki.kformmasterexample.databinding.ActivityLoginFormBinding
 
 /**
  * Login Form Activity
@@ -23,25 +23,28 @@ import kotlinx.android.synthetic.main.activity_login_form.*
  */
 class LoginFormActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityLoginFormBinding
     private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_form)
+
+        binding = ActivityLoginFormBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         setupToolBar()
 
         setupForm()
 
-        buttonLogin.setOnClickListener {
+        binding.buttonLogin.setOnClickListener {
             val loginElementValue = formBuilder.getFormElement<FormEmailEditTextElement>(Email.ordinal).value
             val passwordElementValue = formBuilder.getFormElement<FormPasswordEditTextElement>(Password.ordinal).value
             val checkBoxElementValue = formBuilder.getElementAtIndex(2).value as Boolean?
             Toast.makeText(this@LoginFormActivity, "Do whatever you want with this data\n" +
                     "$loginElementValue\n" +
                     "$passwordElementValue\n" +
-                    checkBoxElementValue
-                    , Toast.LENGTH_SHORT).show()
+                    checkBoxElementValue, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -74,7 +77,7 @@ class LoginFormActivity : AppCompatActivity() {
 
     private fun setupForm() {
         formBuilder = FormBuildHelper()
-        formBuilder.attachRecyclerView(recyclerView)
+        formBuilder.attachRecyclerView(binding.recyclerView)
 
         val elements: MutableList<BaseFormElement<*>> = mutableListOf()
 

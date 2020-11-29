@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.model.FormHeader
-import kotlinx.android.synthetic.main.activity_fullscreen_form.*
+import com.thejuki.kformmasterexample.databinding.ActivityFullscreenFormBinding
 
 /**
  * Fullscreen Form Activity
@@ -19,11 +19,15 @@ import kotlinx.android.synthetic.main.activity_fullscreen_form.*
  */
 class TestFormActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityFullscreenFormBinding
     private lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fullscreen_form)
+
+        binding = ActivityFullscreenFormBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         setupToolBar()
 
@@ -99,7 +103,7 @@ class TestFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        formBuilder = form(recyclerView, formLayouts = FormLayouts(
+        formBuilder = form(binding.recyclerView, formLayouts = FormLayouts(
                 number = R.layout.form_element_custom
         )) {
             header { title = "A" }

@@ -9,8 +9,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.thejuki.kformmasterexample.FormTabbedActivity.Tabs.Form
 import com.thejuki.kformmasterexample.FormTabbedActivity.Tabs.values
+import com.thejuki.kformmasterexample.databinding.ActivityTabbedFormBinding
 import com.thejuki.kformmasterexample.fragment.FormFragment
-import kotlinx.android.synthetic.main.activity_tabbed_form.*
 
 /**
  * Form Tabbed Activity
@@ -22,11 +22,16 @@ import kotlinx.android.synthetic.main.activity_tabbed_form.*
  */
 class FormTabbedActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityTabbedFormBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tabbed_form)
 
-        setSupportActionBar(toolbar)
+        binding = ActivityTabbedFormBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        setSupportActionBar(binding.toolbar)
         setupToolBar()
 
         setupTabs()
@@ -55,14 +60,14 @@ class FormTabbedActivity : AppCompatActivity() {
     }
 
     private fun setupTabs() {
-        tabs.addTab(tabs.newTab().setText(getString(R.string.form)))
+        binding.tabs.addTab(binding.tabs.newTab().setText(getString(R.string.form)))
 
         // Set up the ViewPager with the sections adapter.
-        container.adapter = SectionsPagerAdapter(supportFragmentManager, tabs.tabCount)
+        binding.container.adapter = SectionsPagerAdapter(supportFragmentManager, binding.tabs.tabCount)
 
-        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
-        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
-        tabs.tabMode = TabLayout.MODE_SCROLLABLE
+        binding.container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabs))
+        binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.container))
+        binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
     }
 
     private enum class Tabs {

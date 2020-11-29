@@ -18,6 +18,7 @@ import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import com.thejuki.kformmaster.FormActivityTest.Tag.*
 import com.thejuki.kformmaster.adapter.ContactAutoCompleteAdapter
 import com.thejuki.kformmaster.adapter.EmailAutoCompleteAdapter
+import com.thejuki.kformmaster.databinding.ActivityFormTestBinding
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.item.ContactItem
 import com.thejuki.kformmaster.item.ListItem
@@ -26,7 +27,6 @@ import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.model.FormButtonElement
 import com.thejuki.kformmaster.model.FormInlineDatePickerElement
 import com.thejuki.kformmaster.model.FormPickerDateElement
-import kotlinx.android.synthetic.main.activity_form_test.*
 import org.threeten.bp.format.DateTimeFormatter
 import pixelsEqualTo
 import java.text.SimpleDateFormat
@@ -43,15 +43,19 @@ import java.util.Date
  */
 class FormActivityTest : AppCompatActivity() {
 
+    private lateinit var binding: ActivityFormTestBinding
     lateinit var formBuilder: FormBuildHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_form_test)
+
+        binding = ActivityFormTestBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         setupToolBar()
 
-        AndroidThreeTen.init(this)
+        AndroidThreeTen.init(applicationContext)
         setupForm()
     }
 
@@ -119,7 +123,7 @@ class FormActivityTest : AppCompatActivity() {
             }
         }
 
-        formBuilder = form(recyclerView, listener, true) {
+        formBuilder = form(binding.recyclerView, listener, true) {
             imageView(ImageViewElement.ordinal) {
                 value = "https://via.placeholder.com/200"
                 imageTransformation = CircleTransform(borderColor = Color.BLACK, borderRadius = 3)

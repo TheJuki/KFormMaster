@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.jakewharton.threetenabp.AndroidThreeTen
-import kotlinx.android.synthetic.main.activity_main.*
+import com.thejuki.kformmasterexample.databinding.ActivityMainBinding
 
 /**
  * Main Activity
@@ -16,25 +16,30 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         // Init AndroidThreeTen
         AndroidThreeTen.init(applicationContext)
 
-        buttonFullScreenActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FullscreenFormActivity::class.java)) }
+        binding.buttonFullScreenActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FullscreenFormActivity::class.java)) }
 
-        buttonPartialScreenActivity.setOnClickListener { startActivity(Intent(this@MainActivity, PartialScreenFormActivity::class.java)) }
+        binding.buttonPartialScreenActivity.setOnClickListener { startActivity(Intent(this@MainActivity, PartialScreenFormActivity::class.java)) }
 
-        buttonFormListenerActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FormListenerActivity::class.java)) }
+        binding.buttonFormListenerActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FormListenerActivity::class.java)) }
 
-        buttonFormListenerJavaActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FormListenerJavaActivity::class.java)) }
+        binding.buttonFormListenerJavaActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FormListenerJavaActivity::class.java)) }
 
-        buttonTabbedFormActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FormTabbedActivity::class.java)) }
+        binding.buttonTabbedFormActivity.setOnClickListener { startActivity(Intent(this@MainActivity, FormTabbedActivity::class.java)) }
 
-        buttonLoginActivity.setOnClickListener { startActivity(Intent(this@MainActivity, LoginFormActivity::class.java)) }
+        binding.buttonLoginActivity.setOnClickListener { startActivity(Intent(this@MainActivity, LoginFormActivity::class.java)) }
 
-        buttonCustomFormActivity.setOnClickListener { startActivity(Intent(this@MainActivity, CustomFormActivity::class.java)) }
+        binding.buttonCustomFormActivity.setOnClickListener { startActivity(Intent(this@MainActivity, CustomFormActivity::class.java)) }
     }
 }
