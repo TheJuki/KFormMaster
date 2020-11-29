@@ -1027,12 +1027,18 @@
 </div>
 <div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">CustomFormActivity</span> <span class="p">:</span> <span class="n">AppCompatActivity</span><span class="p">()</span> <span class="p">{</span>
 
+    <span class="k">private</span> <span class="k">lateinit</span> <span class="k">var</span> <span class="py">binding</span><span class="p">:</span> <span class="n">ActivityFormBinding</span>
+
     <span class="c1">// Setup the FormBuildHelper at the class level if necessary</span>
     <span class="k">private</span> <span class="k">lateinit</span> <span class="k">var</span> <span class="py">formBuilder</span><span class="p">:</span> <span class="n">FormBuildHelper</span>
 
     <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle</span><span class="p">?)</span> <span class="p">{</span>
         <span class="k">super</span><span class="p">.</span><span class="n">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
-        <span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_form</span><span class="p">)</span>
+
+        <span class="n">binding</span> <span class="p">=</span> <span class="n">ActivityFormBinding</span><span class="p">.</span><span class="n">inflate</span><span class="p">(</span><span class="n">layoutInflater</span><span class="p">)</span>
+        <span class="k">val</span> <span class="py">view</span> <span class="p">=</span> <span class="n">binding</span><span class="p">.</span><span class="n">root</span>
+        <span class="n">setContentView</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+
         <span class="n">setupForm</span><span class="p">()</span>
     <span class="p">}</span>
 
@@ -1041,7 +1047,7 @@
     <span class="p">}</span>
 
     <span class="k">private</span> <span class="k">fun</span> <span class="nf">setupForm</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="n">recyclerView</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="n">recyclerView</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">customEx</span><span class="p">(</span><span class="n">Tag</span><span class="p">.</span><span class="n">Custom</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">title</span> <span class="p">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">Custom</span><span class="p">)</span>
             <span class="p">}</span>

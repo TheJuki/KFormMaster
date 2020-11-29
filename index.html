@@ -858,7 +858,7 @@
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="c1">// Initialize variables</span>
 <span class="n">formBuilder</span> <span class="p">=</span> <span class="n">FormBuildHelper</span><span class="p">()</span>
-<span class="n">formBuilder</span><span class="p">.</span><span class="n">attachRecyclerView</span><span class="p">(</span><span class="n">recyclerView</span><span class="p">)</span>
+<span class="n">formBuilder</span><span class="p">.</span><span class="n">attachRecyclerView</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="n">recyclerView</span><span class="p">)</span>
 
 <span class="k">val</span> <span class="py">elements</span><span class="p">:</span> <span class="n">MutableList</span><span class="p">&lt;</span><span class="n">BaseFormElement</span><span class="p">&lt;*&gt;&gt;</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">()</span>
 
@@ -883,7 +883,7 @@
 <ul>
 <li>Step 2 (With DSL). Add the Form Elements programmatically in your activity</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="n">recyclerView</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">formBuilder</span> <span class="p">=</span> <span class="n">form</span><span class="p">(</span><span class="n">binding</span><span class="p">.</span><span class="n">recyclerView</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">email</span><span class="p">(</span><span class="n">Email</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">title</span> <span class="p">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
     <span class="p">}</span>
