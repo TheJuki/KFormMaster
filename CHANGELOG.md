@@ -1,5 +1,8 @@
 # Change Log
 
+## [8.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/8.1.0)
+- Remove kotlin-android-extensions gradle plugin. Use Jetpack View Binding for Test and Examples.
+
 ## [8.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/8.0.0)
 ### Targeting SDK API Level 30, Min API Level 19
 
