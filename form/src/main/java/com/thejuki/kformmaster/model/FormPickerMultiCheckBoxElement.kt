@@ -89,7 +89,7 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
             for (i in it.indices) {
                 val obj = it[i]
 
-                options[i] = this.displayValueFor(obj)
+                options[i] = this.displayValueFor(it[i])
                 optionsSelected[i] = false
 
                 if (this.value?.contains(obj) == true) {
