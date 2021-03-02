@@ -66,6 +66,14 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
     var theme: Int = 0
 
     /**
+     * Display Value For
+     * Used to specify a string value to be displayed
+     */
+    var displayValueFor: ((T?) -> String?) = {
+        it?.toString() ?: ""
+    }
+    
+    /**
      * Re-initializes the dialog
      * Should be called after the options list changes
      */
@@ -81,7 +89,7 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
             for (i in it.indices) {
                 val obj = it[i]
 
-                options[i] = obj.toString()
+                options[i] = this.displayValueFor(it[i])
                 optionsSelected[i] = false
 
                 if (this.value?.contains(obj) == true) {
