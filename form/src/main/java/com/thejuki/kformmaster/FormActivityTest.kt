@@ -237,7 +237,7 @@ class FormActivityTest : AppCompatActivity() {
                 arrayAdapter = null
                 value = ListItem(id = 1, name = "Banana")
             }
-            multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
+            multiCheckBox<ListItem, List<ListItem>>(MultiItems.ordinal) {
                 title = "MultiItems"
                 dialogTitle = "MultiItems Dialog"
                 options = fruits

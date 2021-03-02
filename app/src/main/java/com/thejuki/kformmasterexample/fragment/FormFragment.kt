@@ -236,7 +236,7 @@ class FormFragment : Fragment() {
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
-            multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
+            multiCheckBox<ListItem, List<ListItem>>(MultiItems.ordinal) {
                 title = getString(R.string.MultiItems)
                 dialogTitle = getString(R.string.MultiItems)
                 options = fruits

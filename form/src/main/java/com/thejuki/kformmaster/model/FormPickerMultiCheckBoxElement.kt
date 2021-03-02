@@ -16,7 +16,7 @@ import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerElement<T>(tag) {
+class FormPickerMultiCheckBoxElement<LI : Any?, T : List<LI>>(tag: Int = -1) : FormPickerElement<T>(tag) {
 
     override val isValid: Boolean
         get() = validityCheck()
@@ -69,7 +69,7 @@ class FormPickerMultiCheckBoxElement<T : List<*>>(tag: Int = -1) : FormPickerEle
      * Display Value For
      * Used to specify a string value to be displayed
      */
-    var displayValueFor: ((T?) -> String?) = {
+    var displayValueFor: ((LI?) -> String?) = {
         it?.toString() ?: ""
     }
     

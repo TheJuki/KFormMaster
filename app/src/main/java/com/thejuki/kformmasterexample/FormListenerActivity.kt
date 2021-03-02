@@ -159,7 +159,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                 options = fruits
                 value = ListItem(id = 1, name = "Banana")
             }
-            multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
+            multiCheckBox<ListItem, List<ListItem>>(MultiItems.ordinal) {
                 title = getString(R.string.MultiItems)
                 dialogTitle = getString(R.string.MultiItems)
                 options = fruits

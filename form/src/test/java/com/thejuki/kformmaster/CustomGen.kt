@@ -210,10 +210,11 @@ interface CustomGen {
         /**
          * Generates a FormPickerMultiCheckBoxElement
          */
-        fun formPickerMultiCheckBoxElement() = object : Gen<FormPickerMultiCheckBoxElement<List<String>>> {
-            override fun constants() = emptyList<FormPickerMultiCheckBoxElement<List<String>>>()
+        fun formPickerMultiCheckBoxElement() = object : Gen<FormPickerMultiCheckBoxElement<String, List<String>>> {
+            override fun constants() = emptyList<FormPickerMultiCheckBoxElement<String, List<String>>>()
             override fun random() = generateSequence {
-                val element = generateBaseFieldsWithList(FormPickerMultiCheckBoxElement()) as FormPickerMultiCheckBoxElement<List<String>>
+                @Suppress("UNCHECKED_CAST")
+                val element = generateBaseFieldsWithList(FormPickerMultiCheckBoxElement()) as FormPickerMultiCheckBoxElement<String, List<String>>
                 element.dialogTitle = Gen.string().random().first()
                 element.options = Gen.list(Gen.string()).random().first()
                 element.theme = Random().nextInt(100)

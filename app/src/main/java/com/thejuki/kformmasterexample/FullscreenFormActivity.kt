@@ -500,7 +500,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
             }
-            multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
+            multiCheckBox<ListItem, List<ListItem>>(MultiItems.ordinal) {
                 title = getString(R.string.MultiItems)
                 dialogTitle = getString(R.string.MultiItems)
                 theme = R.style.CustomDialogPicker
@@ -509,6 +509,13 @@ class FullscreenFormActivity : AppCompatActivity() {
                 maxLines = 3
                 confirmEdit = true
                 editViewGravity = Gravity.START
+                displayValueFor = {
+                    if (it != null) {
+                        it.id.toString()
+                    } else {
+                        ""
+                    }
+                }
                 displayDivider = false
                 value = listOf(ListItem(id = 1, name = "Banana"))
                 required = true
@@ -517,7 +524,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
             }
-            multiCheckBox<List<ListItem>>(MultiItems.ordinal) {
+            multiCheckBox<ListItem, List<ListItem>>(MultiItems.ordinal) {
                 title = getString(R.string.MultiItemsWithOverride)
                 dialogTitle = getString(R.string.MultiItems)
                 theme = R.style.CustomDialogPicker
