@@ -1,7 +1,6 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-    ext.kotlin_version = '1.4.30'
+    ext.kotlin_version = '1.4.31'
+    ext.dokka_version = '1.4.20'
     ext.jacocoVersion = '0.8.6'
     ext.androidxAppCompatVersion = '1.2.0'
     ext.androidxRecyclerviewVersion = '1.1.0'
@@ -9,19 +8,24 @@ buildscript {
     ext.multidexVersion = '2.0.1'
 
     repositories {
+        mavenCentral()
         google()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "guru.stefma.bintrayrelease:bintrayrelease:1.1.2"
         classpath "org.jacoco:org.jacoco.core:$jacocoVersion"
+        classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.22.0'
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
     }
 }
 
+apply plugin: 'io.codearte.nexus-staging'
+
 allprojects {
     repositories {
+        mavenCentral()
         google()
         jcenter()
         maven { url "https://jitpack.io" }

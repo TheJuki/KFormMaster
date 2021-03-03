@@ -11,6 +11,7 @@ android {
         versionCode 11
         versionName "5.1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -18,9 +19,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     buildFeatures {
         viewBinding true
     }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
@@ -28,6 +31,12 @@ android {
 
     lintOptions {
         abortOnError false
+    }
+
+    sourceSets {
+        all {
+            it.java.srcDir "src/$it.name/java"
+        }
     }
 }
 

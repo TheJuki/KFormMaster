@@ -37,6 +37,7 @@ Add this to your root **build.gradle** file:
 ```
 allprojects {
     repositories {
+        mavenCentral()
         google()
         jcenter()
         maven { url "https://jitpack.io" }

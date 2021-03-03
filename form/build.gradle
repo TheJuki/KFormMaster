@@ -1,9 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'guru.stefma.bintrayrelease'
 apply plugin: 'jacoco'
+apply plugin: 'org.jetbrains.dokka'
 
-version = '8.1.0'
+ext {
+    PUBLISH_GROUP_ID = 'com.github.thejuki'
+    PUBLISH_VERSION = '8.1.1'
+    PUBLISH_ARTIFACT_ID = 'k-form-master'
+}
+
+apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
 
 android {
     compileSdkVersion 30
@@ -12,7 +18,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 50
-        versionName project.version
+        versionName PUBLISH_VERSION
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,6 +44,12 @@ android {
 
     lintOptions {
         abortOnError false
+    }
+
+    sourceSets {
+        all {
+            it.java.srcDir "src/$it.name/java"
+        }
     }
 
     testOptions {
@@ -82,8 +94,12 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['compileDebugSources']) {
     ])
 }
 
-tasks.withType(Javadoc).all {
-    enabled = false
+dokkaHtml.configure {
+    dokkaSourceSets {
+        named("main") {
+            noAndroidSdkLink.set(false)
+        }
+    }
 }
 
 ext {
@@ -158,14 +174,5 @@ dependencies {
     androidTestImplementation "androidx.test:rules:$testRulesVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$testExpressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$testExpressoVersion"
-}
-
-publish {
-    version = project.version
-    group = "com.thejuki"
-    userOrg = 'thejuki'
-    artifactId = 'k-form-master'
-    desc = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
-    website = 'https://github.com/TheJuki/KFormMaster'
 }
 
