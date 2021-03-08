@@ -527,6 +527,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#value-as-string-override" class="md-nav__link">
+    Value as String Override
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-value-for" class="md-nav__link">
+    Display Value For
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -640,6 +654,18 @@
   <li class="md-nav__item">
     <a href="../segmented/" title="Segmented" class="md-nav__link">
       Segmented
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segmentedInlineTitle/" title="SegmentedInlineTitle" class="md-nav__link">
+      SegmentedInlineTitle
     </a>
   </li>
 
@@ -850,6 +876,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#value-as-string-override" class="md-nav__link">
+    Value as String Override
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-value-for" class="md-nav__link">
+    Display Value For
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -903,7 +943,7 @@
 </div>
 <h2 id="theme">Theme<a class="headerlink" href="#theme" title="Permanent link">&para;</a></h2>
 <p>Set this override the default alert dialog theme.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">theme</span> <span class="p">=</span> <span class="n">R</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">CustomDialogPicker</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -912,7 +952,7 @@
 <h2 id="dialog-title">Dialog Title<a class="headerlink" href="#dialog-title" title="Permanent link">&para;</a></h2>
 <p>By default this is "Pick one or more".
 Setting this will override the alert dialog title.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">dialogTitle</span> <span class="p">=</span> <span class="s">&quot;Pick one or more&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -921,15 +961,35 @@ Setting this will override the alert dialog title.</p>
 <h2 id="dialog-empty-message">Dialog Empty Message<a class="headerlink" href="#dialog-empty-message" title="Permanent link">&para;</a></h2>
 <p>By default this is "Empty".
 Setting this will override the alert dialog message when the options list is empty or null.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">dialogEmptyMessage</span> <span class="p">=</span> <span class="s">&quot;Nothing to see here&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<h2 id="value-as-string-override">Value as String Override<a class="headerlink" href="#value-as-string-override" title="Permanent link">&para;</a></h2>
+<p>This can be used to set the text that is displayed in the field. By default, the field will display the string values of the selected objects separated by commas.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">valueAsStringOverride</span> <span class="p">=</span> <span class="p">{</span>
+        <span class="n">it</span><span class="o">?.</span><span class="n">name</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<h2 id="display-value-for">Display Value For<a class="headerlink" href="#display-value-for" title="Permanent link">&para;</a></h2>
+<p>This can be used to set the text that is displayed in the options. Your custom class can also just override toString() to display in the dialog.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">displayValueFor</span> <span class="p">=</span> <span class="p">{</span>
+        <span class="n">it</span><span class="o">?.</span><span class="n">name</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <h3 id="kotlin">Kotlin<a class="headerlink" href="#kotlin" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">,</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">dialogTitle</span> <span class="p">=</span> <span class="s">&quot;Pick one or more&quot;</span>
     <span class="n">options</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span>
                      <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Orange&quot;</span><span class="p">))</span>
@@ -940,7 +1000,7 @@ Setting this will override the alert dialog message when the options list is emp
 
 <h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="n">List</span><span class="o">&lt;</span><span class="n">BaseFormElement</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-<span class="n">FormPickerMultiCheckBoxElement</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ListItem</span><span class="o">&gt;&gt;</span> <span class="n">multiCheckBox</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormPickerMultiCheckBoxElement</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Tag</span><span class="p">.</span><span class="na">MultiItems</span><span class="p">.</span><span class="na">ordinal</span><span class="p">());</span>
+<span class="n">FormPickerMultiCheckBoxElement</span><span class="o">&lt;</span><span class="n">ListItem</span><span class="p">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ListItem</span><span class="o">&gt;&gt;</span> <span class="n">multiCheckBox</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FormPickerMultiCheckBoxElement</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">Tag</span><span class="p">.</span><span class="na">MultiItems</span><span class="p">.</span><span class="na">ordinal</span><span class="p">());</span>
 <span class="n">multiCheckBox</span><span class="p">.</span><span class="na">setDialogTitle</span><span class="p">(</span><span class="s">&quot;Pick one or more&quot;</span><span class="p">);</span>
 <span class="n">multiCheckBox</span><span class="p">.</span><span class="na">setOptions</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="k">new</span> <span class="n">ListItem</span><span class="p">(</span><span class="mi">1L</span><span class="p">,</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span>
     <span class="k">new</span> <span class="n">ListItem</span><span class="p">(</span><span class="mi">2L</span><span class="p">,</span> <span class="s">&quot;Orange&quot;</span><span class="p">)));</span>
