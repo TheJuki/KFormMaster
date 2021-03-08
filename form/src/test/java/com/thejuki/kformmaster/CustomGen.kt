@@ -52,6 +52,7 @@ interface CustomGen {
                         , Gen.choose(-100, 100).random().first() // label
                         , Gen.choose(-100, 100).random().first() // textView
                         , Gen.choose(-100, 100).random().first() // segmented
+                        , Gen.choose(-100, 100).random().first() // segmentedInlineTitle
                         , Gen.choose(-100, 100).random().first() // progress
                         , Gen.choose(-100, 100).random().first() // image
                         , Gen.choose(-100, 100).random().first() // inlineDateTimePicker

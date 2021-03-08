@@ -70,8 +70,6 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
 
     private val fruits = listOf(ListItem(id = 1, name = "Banana"),
             ListItem(id = 2, name = "Orange"),
-            ListItem(id = 3, name = "Mango"),
-            ListItem(id = 4, name = "Guava")
     )
 
     private enum class Tag {
@@ -216,7 +214,7 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
                 min = 0
                 max = 100
             }
-            segmented<ListItem>(SegmentedElement.ordinal) {
+            segmentedInlineTitle<ListItem>(SegmentedElement.ordinal) {
                 title = getString(R.string.Segmented)
                 options = fruits
                 value = ListItem(id = 1, name = "Banana")

@@ -22,7 +22,7 @@ import com.thejuki.kformmaster.widget.SegmentedGroup
  * @author **TheJuki** ([GitHub](https://github.com/TheJuki))
  * @version 1.0
  */
-class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
+open class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
 
     override fun clear() {
         this.value = null
@@ -298,6 +298,14 @@ class FormSegmentedElement<T>(tag: Int = -1) : BaseFormElement<T>(tag) {
                 }
 
                 it.updateBackground()
+            }
+        }
+    }
+
+    override fun displayNewValue() {
+        editView?.let {
+            if (it is SegmentedGroup) {
+                it.checkChild(valueAsString)
             }
         }
     }

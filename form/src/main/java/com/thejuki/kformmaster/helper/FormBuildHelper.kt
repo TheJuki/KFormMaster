@@ -113,6 +113,7 @@ class FormBuildHelper
 
         // Segmented
         this.formAdapter.registerRenderer(FormSegmentedViewRenderer(this, formLayouts?.segmented).viewRenderer)
+        this.formAdapter.registerRenderer(FormSegmentedInlineTitleViewRenderer(this, formLayouts?.segmentedInlineTitle).viewRenderer)
 
         // Slider
         this.formAdapter.registerRenderer(FormSliderViewRenderer(this, formLayouts?.slider).viewRenderer)
@@ -201,7 +202,6 @@ class FormBuildHelper
         if (this.cacheForm) {
             this.recyclerView.setItemViewCacheSize(this.elements.size)
         }
-        this.formAdapter.notifyDataSetChanged()
     }
 
     /**

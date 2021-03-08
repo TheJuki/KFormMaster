@@ -41,6 +41,7 @@ class FormModelUnitTest : ShouldSpec() {
                 formLayouts.label shouldNotBe null
                 formLayouts.textView shouldNotBe null
                 formLayouts.segmented shouldNotBe null
+                formLayouts.segmentedInlineTitle shouldNotBe null
                 formLayouts.progress shouldNotBe null
                 formLayouts.image shouldNotBe null
                 formLayouts.inlineDateTimePicker shouldNotBe null

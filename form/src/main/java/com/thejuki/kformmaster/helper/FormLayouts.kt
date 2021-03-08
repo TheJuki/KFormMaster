@@ -32,6 +32,7 @@ class FormLayouts(@LayoutRes var header: Int? = null,
                   @LayoutRes var label: Int? = null,
                   @LayoutRes var textView: Int? = null,
                   @LayoutRes var segmented: Int? = null,
+                  @LayoutRes var segmentedInlineTitle: Int? = null,
                   @LayoutRes var progress: Int? = null,
                   @LayoutRes var image: Int? = null,
                   @LayoutRes var inlineDateTimePicker: Int? = null)

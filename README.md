@@ -6,7 +6,7 @@
 <a href="https://codebeat.co/projects/github-com-thejuki-kformmaster-master"><img alt="codebeat badge" src="https://codebeat.co/badges/43fca492-2564-4401-8f4b-91d3bc811d70" /></a>
 <a href="https://android-arsenal.com/api?level=19"><img src="https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat" alt="API" /></a>
 <a href="https://android-arsenal.com/details/1/6761"><img src="https://img.shields.io/badge/Android%20Arsenal-KFormMaster-brightgreen.svg?style=flat" border="0" alt="Android Arsenal"></a>
-<a href="https://bintray.com/thejuki/maven/k-form-master/_latestVersion"><img src="https://api.bintray.com/packages/thejuki/maven/k-form-master/images/download.svg" alt="Download" /></a>
+<a href="https://maven-badges.herokuapp.com/maven-central/com.github.thejuki/k-form-master"><img src="https://maven-badges.herokuapp.com/maven-central/com.github.thejuki/k-form-master/badge.svg" alt="Maven Central" /></a>
 </p>
 
 This is a Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster)
@@ -24,13 +24,16 @@ This is a Kotlin port of [FormMaster](https://github.com/adib2149/FormMaster)
 - See [Java Example](https://github.com/TheJuki/KFormMaster/blob/master/app/src/main/java/com/thejuki/kformmasterexample/FormListenerJavaActivity.java)
 
 ## Installation
+
+NOTE: This library was moved from Bintray/JCenter to Maven Central. The group id is now "com.github.thejuki".
+
 Add this in your app's **build.gradle** file:
 ```
 ext {
   kFormMasterVersion = [Latest]
 }
 
-implementation "com.thejuki:k-form-master:$kFormMasterVersion"
+implementation "com.github.thejuki:k-form-master:$kFormMasterVersion"
 ```
 
 Add this to your root **build.gradle** file:
@@ -44,10 +47,6 @@ allprojects {
     }
 }
 ```
-
-## Version 6 Changes
-- Removed Form Element Builder Classes
-- Migration Guide: https://thejuki.github.io/KFormMaster/migrateBuilder/
 
 ## BrowserStack
 <a href="http://browserstack.com/">

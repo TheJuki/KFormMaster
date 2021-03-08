@@ -5,7 +5,7 @@ apply plugin: 'org.jetbrains.dokka'
 
 ext {
     PUBLISH_GROUP_ID = 'com.github.thejuki'
-    PUBLISH_VERSION = '8.1.1'
+    PUBLISH_VERSION = '8.2.0'
     PUBLISH_ARTIFACT_ID = 'k-form-master'
 }
 
@@ -108,7 +108,7 @@ ext {
     constraintLayoutVersion = '2.0.4'
     picassoVersion = '2.71828'
     inlineActivityResultVersion = '1.0.2'
-    imagepickerVersion = '1.11'
+    imagepickerVersion = '1.2.0'
     testCoreVersion = '1.3.0'
     testExtJunitVersion = '1.1.2'
     testRulesVersion = '1.3.0'
@@ -148,7 +148,7 @@ dependencies {
     implementation "com.github.florent37:inline-activity-result-kotlin:$inlineActivityResultVersion"
 
     // ImagePicker
-    api "com.thejuki:imagepicker:$imagepickerVersion"
+    api "com.github.thejuki:imagepicker:$imagepickerVersion"
 
     // Input mask
     api "com.redmadrobot:input-mask-android:$inputMaskVersion"

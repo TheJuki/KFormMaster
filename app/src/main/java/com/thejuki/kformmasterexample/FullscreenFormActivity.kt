@@ -511,7 +511,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 editViewGravity = Gravity.START
                 displayValueFor = {
                     if (it != null) {
-                        it.id.toString()
+                        it.name + " (" + options?.indexOf(it) + ")"
                     } else {
                         ""
                     }

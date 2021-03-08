@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorFormMasterElementBackground"
+    android:orientation="vertical"
+    android:paddingBottom="16dp">
+
+    <View
+        android:id="@+id/formElementDivider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/colorFormMasterDivider" />
+
+    <LinearLayout
+        android:id="@+id/formElementMainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <com.thejuki.kformmaster.widget.IconTextView
+            android:id="@+id/formElementTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/colorFormMasterElementTextTitle"
+            android:textSize="@dimen/elementTextTitleSize"
+            tools:text="Personal Info" />
+
+        <com.thejuki.kformmaster.widget.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/formElementValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@null"
+            android:orientation="horizontal"
+            android:gravity="end"
+            segmentedgroup:sc_border_width="2dp"
+            segmentedgroup:sc_corner_radius="10dp">
+
+            <!-- RadioButtons are added programmatically. These will be removed. -->
+
+            <RadioButton
+                android:id="@+id/button21"
+                style="@style/RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="One" />
+
+            <RadioButton
+                android:id="@+id/button22"
+                style="@style/RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Two" />
+
+        </com.thejuki.kformmaster.widget.SegmentedGroup>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/formElementError"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:textColor="@color/colorFormMasterElementErrorTitle"
+        android:textSize="@dimen/elementErrorTitleSize"
+        android:visibility="gone"
+        tools:text="Personal Info" />
+
+</LinearLayout>

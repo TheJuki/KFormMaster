@@ -113,6 +113,11 @@ fun <T> FormBuildHelper.segmented(tag: Int = -1, init: FormSegmentedElement<T>.(
     return addFormElement(FormSegmentedElement<T>(tag).apply(init))
 }
 
+/** FormBuildHelper extension to add a FormSegmentedInlineTitleElement */
+fun <T> FormBuildHelper.segmentedInlineTitle(tag: Int = -1, init: FormSegmentedInlineTitleElement<T>.() -> Unit): FormSegmentedInlineTitleElement<T> {
+    return addFormElement(FormSegmentedInlineTitleElement<T>(tag).apply(init))
+}
+
 /** FormBuildHelper extension to add a FormSwitchElement */
 fun <T> FormBuildHelper.switch(tag: Int = -1, init: FormSwitchElement<T>.() -> Unit): FormSwitchElement<T> {
     return addFormElement(FormSwitchElement<T>(tag).apply(init))
