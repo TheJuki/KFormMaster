@@ -1,6 +1,22 @@
 # Change Log
 
+## [8.2.1](https://github.com/TheJuki/KFormMaster/releases/tag/8.2.1)
+### Issues Resolved
+- #244 Migrated to Maven Central (New group id: com.github.thejuki)
+  - Still need to migrate older builds from Bintray/JCenter
+  - Also, need to use new io.github.gradle-nexus.publish-plugin when Android support is added to fix publishing on release
+- #239 Add back displayNewValue to FormSegmentedElement as this caused more issues
+- #236 Add new SegmentedInlineTitle for a radio group with an inline title (Needed a new layout file and did not want breaking existing segmented usages that have a lot of buttons to display or a long title)
+- #228 Removed call to notifyDataSetChanged() in setItems() as this is not needed
+- #231 Updated imagepicker dependency to rename strings to avoid conflicts
+
+### Breaking Changes
+- #243, #241 Add displayValueFor to FormPickerMultiCheckBoxElement
+  - FormPickerMultiCheckBoxElement now needs generic for inner class: multiCheckBox<ListItem, List<ListItem>>
 ## [8.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/8.1.0)
+- Remove kotlin-android-extensions gradle plugin. Use Jetpack View Binding for Test and Examples.
+
+## [8.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/8.0.0)
 - Remove kotlin-android-extensions gradle plugin. Use Jetpack View Binding for Test and Examples.
 
 ## [8.0.0](https://github.com/TheJuki/KFormMaster/releases/tag/8.0.0)
