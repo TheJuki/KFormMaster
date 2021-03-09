@@ -13,8 +13,6 @@
 ### Breaking Changes
 - #243, #241 Add displayValueFor to FormPickerMultiCheckBoxElement
   - FormPickerMultiCheckBoxElement now needs generic for inner class: multiCheckBox<ListItem, List<ListItem>>
-## [8.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/8.1.0)
-- Remove kotlin-android-extensions gradle plugin. Use Jetpack View Binding for Test and Examples.
 
 ## [8.1.0](https://github.com/TheJuki/KFormMaster/releases/tag/8.0.0)
 - Remove kotlin-android-extensions gradle plugin. Use Jetpack View Binding for Test and Examples.
