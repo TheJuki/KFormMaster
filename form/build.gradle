@@ -115,7 +115,7 @@ ext {
     testExpressoVersion = '3.3.0'
     kotlintestVersion = '3.4.2'
     mockkVersion = '1.11.0'
-    log4jVersion = '2.14.0'
+    log4jVersion = '2.14.1'
     inputMaskVersion = '6.0.0'
     androidSVGVersion = '1.4'
     expandablelayoutVersion = '2.9.2'
