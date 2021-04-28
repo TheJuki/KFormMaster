@@ -114,12 +114,12 @@ ext {
     testRulesVersion = '1.3.0'
     testExpressoVersion = '3.3.0'
     kotlintestVersion = '3.4.2'
-    mockkVersion = '1.10.6'
+    mockkVersion = '1.11.0'
     log4jVersion = '2.14.0'
     inputMaskVersion = '6.0.0'
     androidSVGVersion = '1.4'
     expandablelayoutVersion = '2.9.2'
-    threetenabpVersion = '1.3.0'
+    threetenabpVersion = '1.3.1'
     wheelpickerVersion = '1.1.3'
 }
 
