@@ -107,7 +107,7 @@ ext {
     tokenautocompleteVersion = '3.0.2'
     constraintLayoutVersion = '2.0.4'
     picassoVersion = '2.71828'
-    inlineActivityResultVersion = '1.0.2'
+    inlineActivityResultVersion = '1.0.4'
     imagepickerVersion = '1.12.0'
     testCoreVersion = '1.3.0'
     testExtJunitVersion = '1.1.2'
