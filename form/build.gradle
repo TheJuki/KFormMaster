@@ -110,7 +110,7 @@ ext {
     inlineActivityResultVersion = '1.0.4'
     imagepickerVersion = '1.12.0'
     testCoreVersion = '1.3.0'
-    testExtJunitVersion = '1.1.2'
+    testExtJunitVersion = '1.1.3'
     testRulesVersion = '1.3.0'
     testExpressoVersion = '3.3.0'
     kotlintestVersion = '3.4.2'
