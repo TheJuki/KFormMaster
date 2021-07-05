@@ -111,7 +111,7 @@ ext {
     imagepickerVersion = '1.12.0'
     testCoreVersion = '1.3.0'
     testExtJunitVersion = '1.1.2'
-    testRulesVersion = '1.3.0'
+    testRulesVersion = '1.4.0'
     testExpressoVersion = '3.3.0'
     kotlintestVersion = '3.4.2'
     mockkVersion = '1.11.0'
