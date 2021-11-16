@@ -66,6 +66,7 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           arch: x86_64
+          ram-size: 2048M
           disable-animations: true
           profile: Nexus 6
           emulator-options: -no-snapshot -no-window -no-boot-anim -camera-back emulated
