@@ -14,8 +14,9 @@
         android:fullBackupContent="true"
         android:name="androidx.multidex.MultiDexApplication"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:targetApi="q">
-        <activity android:name=".MainActivity">
+        tools:targetApi="s"
+        android:dataExtractionRules="@xml/data_extraction_rules">
+        <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

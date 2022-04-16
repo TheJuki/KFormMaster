@@ -1,6 +1,7 @@
 package com.thejuki.kformmaster.view
 
 import android.view.View
+import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 import com.github.vivchar.rendererrecyclerviewadapter.ViewRenderer
 import com.thejuki.kformmaster.R
@@ -22,8 +23,9 @@ class FormButtonViewRenderer(private val formBuilder: FormBuildHelper, @LayoutRe
             ?: R.layout.form_element_button, FormButtonElement::class.java) { model, finder: FormViewFinder, _ ->
         val itemView = finder.getRootView() as View
         val dividerView = finder.find(R.id.formElementDivider) as? View
+        val mainViewLayout = finder.find(R.id.formElementMainLayout) as? LinearLayout
         val button = finder.find(R.id.formElementValue) as IconButton
-        baseSetup(model, dividerView, itemView = itemView, editView = button)
+        baseSetup(model, dividerView, itemView = itemView, mainViewLayout = mainViewLayout, editView = button)
 
         button.text = model.valueAsString
 

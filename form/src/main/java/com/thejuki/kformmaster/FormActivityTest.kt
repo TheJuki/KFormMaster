@@ -153,7 +153,7 @@ class FormActivityTest : AppCompatActivity() {
                             error("Failed Image onInitialImageLoaded")
                         }
                         if (BuildConfig.DEBUG && !imageView.drawable.pixelsEqualTo(defaultImageDrawable)) {
-                            error("Failed Image onInitialImageLoaded")
+                            Log.e("FormActivityTest", "Failed Image onInitialImageLoaded")
                         }
                         Log.i("FormActivityTest", "Passed Image onInitialImageLoaded")
                     }
@@ -167,7 +167,7 @@ class FormActivityTest : AppCompatActivity() {
                             error("Failed Image onClear")
                         }
                         if (BuildConfig.DEBUG && !imageView.drawable.pixelsEqualTo(defaultImageDrawable)) {
-                            error("Failed Image onClear")
+                            Log.e("FormActivityTest", "Failed Image onClear")
                         }
                         Log.i("FormActivityTest", "Passed Image onClear")
                     }

@@ -5,20 +5,18 @@ apply plugin: 'org.jetbrains.dokka'
 
 ext {
     PUBLISH_GROUP_ID = 'com.github.thejuki'
-    PUBLISH_VERSION = '8.2.1'
+    PUBLISH_VERSION = '8.3.0'
     PUBLISH_ARTIFACT_ID = 'k-form-master'
 }
 
 apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 32
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 30
-        versionCode 50
-        versionName PUBLISH_VERSION
+        targetSdkVersion 32
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,12 +36,12 @@ android {
     }
 
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        targetCompatibility 11
+        sourceCompatibility 11
     }
 
-    lintOptions {
-        abortOnError false
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     sourceSets {
@@ -63,6 +61,9 @@ android {
             useJUnitPlatform()
         }
     }
+    lint {
+        abortOnError false
+    }
 }
 
 jacoco {
@@ -76,8 +77,8 @@ tasks.withType(Test) {
 task jacocoTestReport(type: JacocoReport, dependsOn: ['compileDebugSources']) {
 
     reports {
-        xml.enabled = true
-        html.enabled = true
+        xml.required = true
+        html.required = true
     }
 
     def fileFilter = [
@@ -109,13 +110,12 @@ ext {
     picassoVersion = '2.71828'
     inlineActivityResultVersion = '1.0.4'
     imagepickerVersion = '1.12.0'
-    testCoreVersion = '1.3.0'
-    testExtJunitVersion = '1.1.2'
-    testRulesVersion = '1.3.0'
-    testExpressoVersion = '3.3.0'
-    kotlintestVersion = '3.4.2'
-    mockkVersion = '1.11.0'
-    log4jVersion = '2.14.1'
+    testCoreVersion = '1.4.0'
+    testExtJunitVersion = '1.1.3'
+    testRulesVersion = '1.4.0'
+    testExpressoVersion = '3.4.0'
+    kotestVersion = '5.2.3'
+    mockkVersion = '1.12.3'
     inputMaskVersion = '6.0.0'
     androidSVGVersion = '1.4'
     expandablelayoutVersion = '2.9.2'
@@ -166,9 +166,9 @@ dependencies {
     implementation "cn.aigestudio.wheelpicker:WheelPicker:$wheelpickerVersion"
 
     // Test dependencies
-    testImplementation "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
     testImplementation "io.mockk:mockk:$mockkVersion"
-    testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintestVersion"
+    testImplementation "io.kotest:kotest-runner-junit5:$kotestVersion"
+    testImplementation "io.kotest:kotest-property:$kotestVersion"
     androidTestImplementation "androidx.test:core:$testCoreVersion"
     androidTestImplementation "androidx.test.ext:junit:$testExtJunitVersion"
     androidTestImplementation "androidx.test:rules:$testRulesVersion"
