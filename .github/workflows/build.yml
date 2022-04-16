@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 11
       - uses: actions/cache@v1
         with:
           path: ~/.gradle/caches
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 11
       - uses: actions/cache@v1
         with:
           path: ~/.gradle/caches
@@ -47,13 +47,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api-level: [29]
+        api-level: [32]
         target: [google_apis]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 11
       - uses: actions/cache@v1
         with:
           path: ~/.gradle/caches
@@ -84,7 +84,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 11
       - uses: actions/cache@v1
         with:
           path: ~/.gradle/caches
@@ -98,7 +98,7 @@ jobs:
       - name: Download emulator tests artifact
         uses: actions/download-artifact@v1
         with:
-          name: emulator_tests_29
+          name: emulator_tests_32
           path: ./form/build/outputs/code_coverage/debugAndroidTest/connected
       - name: Create coverage report
         run: ./gradlew form:jacocoTestReport
