@@ -2,6 +2,7 @@ package com.thejuki.kformmasterexample.custom.model
 
 import android.app.Activity
 import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
@@ -34,6 +35,11 @@ class FormPlacesAutoCompleteElement(tag: Int = -1) : BaseFormElement<PlaceItem>(
     var autocompleteActivityMode: AutocompleteActivityMode = AutocompleteActivityMode.OVERLAY
 
     /**
+     * Activity Result Launcher for [AutocompleteActivity]
+     */
+    var activityResultLauncher: ActivityResultLauncher<Intent>? = null
+
+    /**
      * Handles the Activity Result for the [AutocompleteActivity]
      */
     fun handleActivityResult(formBuilder: FormBuildHelper, resultCode: Int, data: Intent?) {
@@ -45,8 +51,6 @@ class FormPlacesAutoCompleteElement(tag: Int = -1) : BaseFormElement<PlaceItem>(
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 val status = Autocomplete.getStatusFromIntent(it)
                 error = status.statusMessage
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                // The user canceled the operation.
             }
         }
     }

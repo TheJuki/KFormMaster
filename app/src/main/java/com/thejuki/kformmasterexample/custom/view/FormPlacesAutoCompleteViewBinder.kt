@@ -49,17 +49,13 @@ class FormPlacesAutoCompleteViewRenderer(private val formBuilder: FormBuildHelpe
                     val intent = Autocomplete.IntentBuilder(
                             model.autocompleteActivityMode, model.placeFields)
                             .build(activity)
-                    if (fragment != null) {
-                        fragment.startActivityForResult(intent, model.tag)
-                    } else {
-                        activity.startActivityForResult(intent, model.tag)
-                    }
+
+                    model.activityResultLauncher?.launch(intent)
                 }
             }
         }
 
         itemView.setOnClickListener(listener)
         editTextValue.setOnClickListener(listener)
-
     }
 }

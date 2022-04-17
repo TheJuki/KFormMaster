@@ -1,7 +1,7 @@
 buildscript {
     ext.kotlin_version = '1.6.20'
     ext.dokka_version = '1.4.32'
-    ext.jacocoVersion = '0.8.7'
+    ext.jacocoVersion = '0.8.8'
     ext.androidxAppCompatVersion = '1.4.1'
     ext.androidxRecyclerviewVersion = '1.2.1'
     ext.materialVersion = '1.5.0'

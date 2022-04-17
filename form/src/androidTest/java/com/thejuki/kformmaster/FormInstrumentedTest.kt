@@ -258,7 +258,7 @@ class FormInstrumentedTest {
         assertEquals(email, emailByIndex)
 
         email.validityCheck = {
-            if (email.value != null) android.util.Patterns.EMAIL_ADDRESS.matcher(email.value).matches() else false
+            if (email.value != null) android.util.Patterns.EMAIL_ADDRESS.matcher(email.value ?: "").matches() else false
         }
 
         // Email should be required

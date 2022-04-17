@@ -1,9 +1,10 @@
 package com.thejuki.kformmasterexample
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -31,6 +32,10 @@ class CustomFormActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFullscreenFormBinding
     private lateinit var formBuilder: FormBuildHelper
+    private val startPlacesForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        val placesElement = formBuilder.getFormElement<FormPlacesAutoCompleteElement>(Tag.PlacesAutoComplete.ordinal)
+        placesElement.handleActivityResult(formBuilder, result.resultCode, result.data)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,6 +118,7 @@ class CustomFormActivity : AppCompatActivity() {
                 placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
                 autocompleteActivityMode = AutocompleteActivityMode.OVERLAY
                 clearable = true
+                activityResultLauncher = startPlacesForResult
             }
             header { title = getString(R.string.custom_footer_3) }
         }
@@ -122,17 +128,5 @@ class CustomFormActivity : AppCompatActivity() {
         formBuilder.registerCustomViewRenderer(CustomViewRenderer(formBuilder, layoutID = null).viewRenderer)
 
         formBuilder.registerCustomViewRenderer(FormPlacesAutoCompleteViewRenderer(formBuilder, layoutID = null).viewRenderer)
-    }
-
-    /**
-     * Override the activity's onActivityResult(), check the request code, and
-     * let the FormPlacesAutoCompleteElement handle the result
-     */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Tag.PlacesAutoComplete.ordinal) {
-            val placesElement = formBuilder.getFormElement<FormPlacesAutoCompleteElement>(Tag.PlacesAutoComplete.ordinal)
-            placesElement.handleActivityResult(formBuilder, resultCode, data)
-        }
     }
 }
