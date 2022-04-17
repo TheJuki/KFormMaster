@@ -124,5 +124,6 @@ nexusStaging {
 }
 
 signing {
+    required { hasProperty("signingKeyId") }
     sign publishing.publications
 }
