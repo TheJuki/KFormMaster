@@ -36,8 +36,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility 11
-        sourceCompatibility 11
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
@@ -65,6 +65,13 @@ android {
     lint {
         abortOnError false
     }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 jacoco {
@@ -91,8 +98,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['compileDebugSources']) {
     sourceDirectories.from = files(mainSrc)
     classDirectories.from = files(debugTree)
     executionData.from = fileTree(dir: project.buildDir, includes: [
-            "jacoco/testDebugUnitTest.exec", // Unit tests
-            "outputs/code_coverage/debugAndroidTest/connected/*coverage.ec" // Android tests
+            "outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec", // Unit tests
+            "outputs/code_coverage/debugAndroidTest/connected/**/coverage.ec" // Android tests
     ])
 }
 
@@ -116,7 +123,7 @@ ext {
     testExpressoVersion = '3.4.0'
     kotestVersion = '5.2.3'
     mockkVersion = '1.12.3'
-    inputMaskVersion = '6.0.0'
+    inputMaskVersion = '6.1.0'
     androidSVGVersion = '1.4'
     expandablelayoutVersion = '2.9.2'
     threetenabpVersion = '1.4.0'
@@ -147,19 +154,19 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
 
     // Input mask
-    api "com.redmadrobot:input-mask-android:$inputMaskVersion"
+    api "com.github.RedMadRobot:input-mask-android:$inputMaskVersion"
 
     // Android SVG
     implementation "com.caverock:androidsvg-aar:$androidSVGVersion"
 
     // Expandable Layout (To use InlineDatePickerElement)
-    implementation "net.cachapa.expandablelayout:expandablelayout:$expandablelayoutVersion"
+    implementation "com.github.cachapa:ExpandableLayout:$expandablelayoutVersion"
 
     // ThreeTen Android Backport (To use InlineDatePickerElement)
     api "com.jakewharton.threetenabp:threetenabp:$threetenabpVersion"
 
     // WheelPicker (To use InlineDatePickerElement)
-    implementation "cn.aigestudio.wheelpicker:WheelPicker:$wheelpickerVersion"
+    implementation 'com.github.AigeStudio:WheelPicker:5913fa15fc'
 
     // Test dependencies
     testImplementation "io.mockk:mockk:$mockkVersion"

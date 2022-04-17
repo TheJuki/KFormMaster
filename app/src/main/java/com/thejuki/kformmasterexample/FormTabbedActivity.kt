@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.thejuki.kformmasterexample.FormTabbedActivity.Tabs.Form
 import com.thejuki.kformmasterexample.FormTabbedActivity.Tabs.values
 import com.thejuki.kformmasterexample.databinding.ActivityTabbedFormBinding
@@ -60,14 +61,18 @@ class FormTabbedActivity : AppCompatActivity() {
     }
 
     private fun setupTabs() {
-        binding.tabs.addTab(binding.tabs.newTab().setText(getString(R.string.form)))
+        binding.tabs.addTab(binding.tabs.newTab())
 
         // Set up the ViewPager with the sections adapter.
-        binding.container.adapter = SectionsPagerAdapter(supportFragmentManager, binding.tabs.tabCount)
+        binding.container.adapter = SectionsPagerAdapter(this, binding.tabs.tabCount)
 
-        binding.container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabs))
-        binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.container))
         binding.tabs.tabMode = TabLayout.MODE_SCROLLABLE
+
+        TabLayoutMediator(binding.tabs, binding.container) { tab, position ->
+            when (values()[position]) {
+                Form -> tab.text = getString(R.string.form)
+            }
+        }.attach()
     }
 
     private enum class Tabs {
@@ -75,18 +80,18 @@ class FormTabbedActivity : AppCompatActivity() {
     }
 
     /**
-     * A [FragmentPagerAdapter] that returns a fragment corresponding to
+     * A [FragmentStateAdapter] that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    inner class SectionsPagerAdapter(fm: FragmentManager, private val tabCount: Int) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    inner class SectionsPagerAdapter(fa: FragmentActivity, private val tabCount: Int) : FragmentStateAdapter(fa) {
 
-        override fun getItem(position: Int): Fragment {
+        override fun createFragment(position: Int): Fragment {
             return when (values()[position]) {
                 Form -> FormFragment.newInstance()
             }
         }
 
-        override fun getCount(): Int {
+        override fun getItemCount(): Int {
             return tabCount
         }
     }

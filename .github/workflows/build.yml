@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: unit_tests
-          path: ./form/build/jacoco/
+          path: ./form/build/outputs/unit_test_code_coverage/debugUnitTest/
   ANDROID_EMULATOR_TESTS:
     name: Emulator Tests
     runs-on: macOS-latest
