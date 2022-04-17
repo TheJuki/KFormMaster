@@ -219,7 +219,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 )) {
             imageView(ImageViewElement.ordinal) {
                 activityResultLauncher = startImagePickerForResult
-                applyCircleCrop = true
+                applyCircleCrop = false
                 displayDivider = false
                 required = false
                 enabled = true

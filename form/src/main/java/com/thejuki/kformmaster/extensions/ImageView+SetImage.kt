@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestOptions
  */
 
 fun ImageView.setDrawableImage(@DrawableRes resource: Int, applyCircle: Boolean = false, completionHandler: (() -> Unit)? = null) {
-    val glide = Glide.with(this).load(resource)
+    val glide = Glide.with(this).load(resource).dontTransform()
     if (applyCircle) {
         glide.apply(RequestOptions.circleCropTransform()).into(this)
     } else {
