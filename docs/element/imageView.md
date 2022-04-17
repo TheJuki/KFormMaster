@@ -1,3 +1,5 @@
+# Image View
+
 The Image View form element is used to show an image and when tapped display options to get a new image from the camera or gallery app.
 
 <img src="../../images/ImageView1.PNG" alt="Example" width="300px"/>

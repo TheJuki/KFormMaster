@@ -1,6 +1,8 @@
+# Number
+
 The Number element is used for a number value field with the number keyboard layout.
 
-![Example](../../images/Number.PNG)
+![Example](../images/Number.PNG)
 
 !!! note "NOTICE"
 

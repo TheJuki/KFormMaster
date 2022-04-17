@@ -1,8 +1,10 @@
+# AutoCompleteToken
+
 The AutoCompleteToken form element is used for an AutoComplete row with multiple values represented as tokens.
 
-![Example](../../images/TokenAutocomplete1.PNG)
+![Example](../images/TokenAutocomplete1.PNG)
 
-![Example](../../images/TokenAutocomplete2.PNG)
+![Example](../images/TokenAutocomplete2.PNG)
 
 ## Array Adapter
 

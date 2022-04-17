@@ -1,16 +1,18 @@
+# Google Place Autocomplete
+
 The autocomplete service in the Places SDK for Android returns place predictions in response to user search queries. As the user types, the autocomplete service returns suggestions for places such as businesses, addresses and points of interest.
 
 [Place Autocomplete Reference](https://developers.google.com/places/android-sdk/autocomplete)
 
 !!! note "Note"
 
-    This element is not included with the other form elements because it relies on the Places library, requires an API key, and relies on onActivityResult to get the selected Place object.
+    This element is not included with the other form elements because it relies on the Places library, requires an API key, and relies on registerForActivityResult to get the selected Place object.
 
     This element behaves as just an on click event to display the Places Autocomplete activity. The selected Place will be displayed in the form element text field using the PlaceItem class's toString method.
 
 To use this custom form element in the app folder you will need to do following: 
 
-- Get an [API Key](https://developers.google.com/places/android-sdk/signup)
+- Get an [API Key](https://developers.google.com/maps/documentation/places/android-sdk/cloud-setup)
 - Add the Places SDK dependency to your app's build.gradle file (Use the latest version)
 
 ```text
@@ -32,17 +34,28 @@ implementation 'com.google.android.libraries.places:places:1.0.0'
     * Register your custom view binder or you will get a RuntimeException
     * RuntimeException: ViewRenderer not registered for this type
 
-    * Override onActivityResult and have the form element call handleActivityResult(formBuilder, resultCode, data)
+    * Create a registerForActivityResult variable and have the form element call handleActivityResult(formBuilder, resultCode, data)
 
 ```kotlin
 class CustomFormActivity : AppCompatActivity() {
 
     // Setup the FormBuildHelper at the class level
+    private lateinit var binding: ActivityFullscreenFormBinding
     private lateinit var formBuilder: FormBuildHelper
+    private val startPlacesForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        val placesElement = formBuilder.getFormElement<FormPlacesAutoCompleteElement>(Tag.PlacesAutoComplete.ordinal)
+        placesElement.handleActivityResult(formBuilder, result.resultCode, result.data)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_form)
+         super.onCreate(savedInstanceState)
+
+        binding = ActivityFullscreenFormBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        setupToolBar()
+
         setupForm()
 
         // Setup Places for custom placesAutoComplete element
@@ -55,7 +68,7 @@ class CustomFormActivity : AppCompatActivity() {
     }
 
     private fun setupForm() {
-        formBuilder = form(recyclerView) {
+        formBuilder = form(binding.recyclerView) {
             placesAutoComplete(Tag.PlacesElement.ordinal) {
                 title = getString(R.string.Places_AutoComplete)
                 // Set a value initially to show in the textfield
@@ -71,23 +84,13 @@ class CustomFormActivity : AppCompatActivity() {
                 */
                 autocompleteActivityMode = AutocompleteActivityMode.OVERLAY
                 clearable = true
+                activityResultLauncher = startPlacesForResult
             }
         }
 
         // Required
         // IMPORTANT: Pass in 'this' for the fragment parameter so that startActivityForResult is called from the fragment (If you are using a fragment instead of an activity)
         formBuilder.registerCustomViewRenderer(FormPlacesAutoCompleteViewRenderer(formBuilder, layoutID = null, fragment = null).viewRenderer)
-    }
-
-    /**
-     * Override the activity's onActivityResult(), check the request code, and
-     * let the FormPlacesAutoCompleteElement handle the result
-     */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == Tag.PlacesElement.ordinal) {
-            val placesElement = formBuilder.getFormElement<FormPlacesAutoCompleteElement>(Tag.PlacesElement.ordinal)
-            placesElement.handleActivityResult(formBuilder, resultCode, data)
-        }
     }
 }
 ```

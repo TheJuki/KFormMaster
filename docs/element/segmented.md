@@ -1,6 +1,8 @@
+# Segmented
+
 The Segmented form element is used for a radio group.
 
-![Example](../../images/Segmented.PNG)
+![Example](../images/Segmented.PNG)
 
 <img src="../../images/Segmented2.PNG" alt="Example" width="500px"/>
 

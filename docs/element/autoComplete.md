@@ -1,8 +1,10 @@
+# AutoComplete
+
 The AutoComplete form element is used for an AutoComplete row.
 
-![Example](../../images/Autocomplete1.PNG)
+![Example](../images/Autocomplete1.PNG)
 
-![Example](../../images/Autocomplete2.PNG)
+![Example](../images/Autocomplete2.PNG)
 
 ## Array Adapter
 

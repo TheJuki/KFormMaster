@@ -1,6 +1,8 @@
+# Password
+
 The Password form element is used for a password value field. This field is masked.
 
-![Example](../../images/Password.PNG)
+![Example](../images/Password.PNG)
 
 ## Example
 

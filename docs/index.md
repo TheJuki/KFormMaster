@@ -1,3 +1,5 @@
+# Getting Started
+
 ## Installation
 Add this in your app's **build.gradle** file:
 ```

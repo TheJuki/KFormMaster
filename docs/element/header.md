@@ -1,6 +1,8 @@
+# Header
+
 The Header element is used as a header row.
 
-![Example](../../images/Header.PNG)
+![Example](../images/Header.PNG)
 
 ## Collapsible
 

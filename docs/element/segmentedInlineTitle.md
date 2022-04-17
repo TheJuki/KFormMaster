@@ -1,6 +1,8 @@
+# Segmented Inline Title
+
 The Segmented Inline Title form element is used for a radio group with an inline title (The normal segmented element has the title above the radio buttons).
 
-![Example](../../images/SegmentedInlineTitle.png)
+![Example](../images/SegmentedInlineTitle.png)
 
 !!! note "NOTICE"
 

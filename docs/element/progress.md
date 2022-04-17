@@ -1,6 +1,8 @@
+# Progress
+
 The Progress form element is used for a progress bar row.
 
-![Example](../../images/Progress.PNG)
+![Example](../images/Progress.PNG)
 
 ## Min
 

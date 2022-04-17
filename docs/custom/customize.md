@@ -1,3 +1,5 @@
+# Customize Form
+
 ### Form accent color change
 If you want to change the colors, just override the colors in your **colors.xml** file:
 ```xml

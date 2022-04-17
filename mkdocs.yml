@@ -10,26 +10,47 @@ repo_url: 'https://github.com/thejuki/KFormMaster'
 edit_uri: ""
 
 # Copyright
-copyright: 'Copyright &copy; 2020 Justin Kirk'
+copyright: 'Copyright &copy; 2022 Justin Kirk'
 
 # Configuration
 theme:
   name: material
   language: en
-  feature:
-    tabs: true
-  palette:
-    primary: indigo
-    accent: indigo
+  features:
+    - navigation.tabs
+    - navigation.tracking
+    - navigation.instant
+  palette: 
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   font:
     text: Roboto
     code: Roboto Mono
   logo: 'images/KF.png'
+  favicon: 'images/KF.png'
+
+# Plugins
+plugins:
+  - search:
+      lang: en
 
 # Extensions
 markdown_extensions:
-  - codehilite
   - admonition
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
   - toc:
       permalink: true
 

@@ -1,3 +1,5 @@
+# Helper
+
 ### Cache Form Elements
 By default, RecyclerView will cache 2 views. By setting cacheForm = true in the FormBuildHelper, all form elements will be cached instead of recycled.
 NOTE: This is enabled by default.

@@ -1,6 +1,8 @@
+# MultiCheckBox
+
 The MultiCheckBox form element is used for a multiple choice dialog.
 
-![Example](../../images/MultiCheckBox1.PNG)
+![Example](../images/MultiCheckBox1.PNG)
 
 <img src="../../images/MultiCheckBox2.PNG" alt="Example" width="300px"/>
 

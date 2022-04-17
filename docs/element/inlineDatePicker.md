@@ -1,8 +1,10 @@
+# Inline Date Picker
+
 The Inline Date Picker form element is used for an inline date spinner on the form on tap.
 
-![Example](../../images/InlineDateTimePicker.png)
+![Example](../images/InlineDateTimePicker.png)
 
-![Example](../../images/InlineDateStartAndEnd.png)
+![Example](../images/InlineDateStartAndEnd.png)
 
 !!! info "Init"
 
