@@ -124,6 +124,6 @@ nexusStaging {
 }
 
 signing {
-    required { keyId?.trim() }
+    required { signing.keyId?.trim() }
     sign publishing.publications
 }
