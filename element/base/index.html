@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,13 +9,13 @@
         <meta name="description" content="Documentation for the KFormMaster Android library">
       
       
-        <link rel="canonical" href="https://thejuki.github.io/KFormMaster/element/base/">
-      
-      
         <meta name="author" content="TheJuki">
       
-      <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.0">
+      
+        <link rel="canonical" href="https://thejuki.github.io/KFormMaster/element/base/">
+      
+      <link rel="icon" href="../../images/KF.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
     
     
       
@@ -25,28 +23,28 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.120efc48.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.9647289d.min.css">
+        
       
+    
+    
+    
       
         
         
-        <meta name="theme-color" content="#3f51b5">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
-      
-    
-    
-    
-    
-      
+
     
     
   </head>
@@ -54,9 +52,16 @@
   
     
     
+      
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -64,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tag" class="md-skip">
+        <a href="#base" class="md-skip">
           Skip to content
         </a>
       
@@ -73,47 +78,79 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="https://thejuki.github.io/KFormMaster/" title="KFormMaster Docs" class="md-header-nav__button md-logo" aria-label="KFormMaster Docs">
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="KFormMaster Docs" class="md-header__button md-logo" aria-label="KFormMaster Docs" data-md-component="logo">
       
   <img src="../../images/KF.png" alt="logo">
 
     </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             KFormMaster Docs
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
               Base
             
           </span>
         </div>
-      
+      </div>
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -129,12 +166,11 @@
 </div>
     
     
-      <div class="md-header-nav__source">
-        
-<a href="https://github.com/thejuki/KFormMaster" title="Go to repository" class="md-source">
+      <div class="md-header__source">
+        <a href="https://github.com/thejuki/KFormMaster" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     TheJuki/KFormMaster
@@ -143,25 +179,107 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
+      
         
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
       
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    </li>
+  
+
       
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Form Elements
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../custom/customize/" class="md-tabs__link">
+        Custom
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/contributing/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://thejuki.github.io/KFormMaster/" title="KFormMaster Docs" class="md-nav__button md-logo" aria-label="KFormMaster Docs">
+    <a href="../.." title="KFormMaster Docs" class="md-nav__button md-logo" aria-label="KFormMaster Docs" data-md-component="logo">
       
   <img src="../../images/KF.png" alt="logo">
 
@@ -170,11 +288,10 @@
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/thejuki/KFormMaster" title="Go to repository" class="md-source">
+      <a href="https://github.com/thejuki/KFormMaster" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     TheJuki/KFormMaster
@@ -188,66 +305,76 @@
       
       
 
-
-  <li class="md-nav__item md-nav__item--nested">
+  
+  
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
-    
-    <label class="md-nav__link" for="nav-1">
-      Home
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="Home" data-md-level="1">
-      <label class="md-nav__title" for="nav-1">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        Home
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Home" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helper/" class="md-nav__link">
+        Form Build Helper
+      </a>
+    </li>
+  
+
+            
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../migrateBuilder/" class="md-nav__link">
+        Migrate from Builders
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../.." title="Getting Started" class="md-nav__link">
-      Getting Started
-    </a>
-  </li>
-
-        
+            
           
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../helper/" title="Form Build Helper" class="md-nav__link">
-      Form Build Helper
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-nav__link">
-      Migrate from Builders
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+        </ul>
+      </nav>
+    </li>
+  
 
     
       
@@ -255,63 +382,69 @@
       
 
   
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
-    
-    <label class="md-nav__link" for="nav-2">
-      Form Elements
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="Form Elements" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        Form Elements
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
   
-
-
-  <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+  
+  
     
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Form Elements
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Form Elements" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Form Elements
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Base
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Base" class="md-nav__link md-nav__link--active">
-      Base
-    </a>
-    
+      </a>
       
+        
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
+    
+  
+  
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#tag" class="md-nav__link">
@@ -666,457 +799,532 @@
     </ul>
   
 </nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../header/" title="Header" class="md-nav__link">
-      Header
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../imageView/" title="Image View" class="md-nav__link">
-      Image View
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../singleLine/" title="Single Line" class="md-nav__link">
-      Single Line
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../multiLine/" title="Multi Line" class="md-nav__link">
-      Multi Line
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../email/" title="Email" class="md-nav__link">
-      Email
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../password/" title="Password" class="md-nav__link">
-      Password
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../number/" title="Number" class="md-nav__link">
-      Number
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../phone/" title="Phone" class="md-nav__link">
-      Phone
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../textView/" title="Text View" class="md-nav__link">
-      Text View
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../label/" title="Label" class="md-nav__link">
-      Label
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../date/" title="Date" class="md-nav__link">
-      Date
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../time/" title="Time" class="md-nav__link">
-      Time
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../dateTime/" title="DateTime" class="md-nav__link">
-      DateTime
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../inlineDatePicker/" title="InlineDatePicker" class="md-nav__link">
-      InlineDatePicker
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../dropDown/" title="Dropdown" class="md-nav__link">
-      Dropdown
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../multiCheckBox/" title="MultiCheckBox" class="md-nav__link">
-      MultiCheckBox
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../autoComplete/" title="AutoComplete" class="md-nav__link">
-      AutoComplete
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../autoCompleteToken/" title="AutoCompleteToken" class="md-nav__link">
-      AutoCompleteToken
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../switch/" title="Switch" class="md-nav__link">
-      Switch
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../slider/" title="Slider" class="md-nav__link">
-      Slider
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../checkBox/" title="CheckBox" class="md-nav__link">
-      CheckBox
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../progress/" title="Progress" class="md-nav__link">
-      Progress
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../segmented/" title="Segmented" class="md-nav__link">
-      Segmented
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../segmentedInlineTitle/" title="SegmentedInlineTitle" class="md-nav__link">
-      SegmentedInlineTitle
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../button/" title="Button" class="md-nav__link">
-      Button
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../header/" class="md-nav__link">
+        Header
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imageView/" class="md-nav__link">
+        Image View
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../singleLine/" class="md-nav__link">
+        Single Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiLine/" class="md-nav__link">
+        Multi Line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../email/" class="md-nav__link">
+        Email
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../password/" class="md-nav__link">
+        Password
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../number/" class="md-nav__link">
+        Number
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phone/" class="md-nav__link">
+        Phone
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../textView/" class="md-nav__link">
+        Text View
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../label/" class="md-nav__link">
+        Label
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../date/" class="md-nav__link">
+        Date
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../time/" class="md-nav__link">
+        Time
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dateTime/" class="md-nav__link">
+        DateTime
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inlineDatePicker/" class="md-nav__link">
+        InlineDatePicker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dropDown/" class="md-nav__link">
+        Dropdown
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiCheckBox/" class="md-nav__link">
+        MultiCheckBox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../autoComplete/" class="md-nav__link">
+        AutoComplete
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../autoCompleteToken/" class="md-nav__link">
+        AutoCompleteToken
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../switch/" class="md-nav__link">
+        Switch
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../slider/" class="md-nav__link">
+        Slider
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkBox/" class="md-nav__link">
+        CheckBox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progress/" class="md-nav__link">
+        Progress
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../segmented/" class="md-nav__link">
+        Segmented
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../segmentedInlineTitle/" class="md-nav__link">
+        SegmentedInlineTitle
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../button/" class="md-nav__link">
+        Button
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item md-nav__item--nested">
+  
+  
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
-    
-    <label class="md-nav__link" for="nav-3">
-      Custom
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="Custom" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        Custom
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Custom
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Custom" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Custom
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../custom/customize/" class="md-nav__link">
+        Customize Form
+      </a>
+    </li>
+  
+
+            
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../custom/element/" class="md-nav__link">
+        Custom Element
+      </a>
+    </li>
+  
+
+            
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../custom/formLayouts/" class="md-nav__link">
+        Form Layouts
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../custom/customize/" title="Customize Form" class="md-nav__link">
-      Customize Form
-    </a>
-  </li>
-
-        
+            
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../custom/placeAutocomplete/" class="md-nav__link">
+        Google Place Autocomplete
+      </a>
+    </li>
+  
+
+            
           
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../custom/element/" title="Custom Element" class="md-nav__link">
-      Custom Element
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../custom/formLayouts/" title="Form Layouts" class="md-nav__link">
-      Form Layouts
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../custom/placeAutocomplete/" title="Google Place Autocomplete" class="md-nav__link">
-      Google Place Autocomplete
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+        </ul>
+      </nav>
+    </li>
+  
 
     
       
       
       
 
-
-  <li class="md-nav__item md-nav__item--nested">
+  
+  
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
-    
-    <label class="md-nav__link" for="nav-4">
-      About
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="About" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        About
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+            
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        Credits
+      </a>
+    </li>
+  
+
+            
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
 
-
-  <li class="md-nav__item">
-    <a href="../../about/contributing/" title="Contributing" class="md-nav__link">
-      Contributing
-    </a>
-  </li>
-
-        
+            
           
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../about/credits/" title="Credits" class="md-nav__link">
-      Credits
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../about/license/" title="License" class="md-nav__link">
-      License
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+        </ul>
+      </nav>
+    </li>
+  
 
     
   </ul>
@@ -1126,21 +1334,24 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
+    
+  
+  
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#tag" class="md-nav__link">
@@ -1500,17 +1711,14 @@
               </div>
             
           
-          <div class="md-content">
+          <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                
-                  
-                
-                
-                  <h1>Base</h1>
-                
-                <p>Common values used by multiple form elements are stored in the base form element model such as tag, title, and value.</p>
+
+
+<h1 id="base">Base<a class="headerlink" href="#base" title="Permanent link">&para;</a></h1>
+<p>Common values used by multiple form elements are stored in the base form element model such as tag, title, and value.</p>
 <div class="admonition info">
 <p class="admonition-title">Base Value Requirements</p>
 <ul>
@@ -1532,167 +1740,135 @@
 </ul>
 </div>
 <h2 id="tag">Tag<a class="headerlink" href="#tag" title="Permanent link">&para;</a></h2>
-<p>The tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+<p>The tag is an integer used to easily get a form element later. You can also retrieve a form element by the index it was inserted into the form elements list.
+<div class="highlight"><pre><span></span><code><span class="n">text</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">}</span>
-<span class="n">email</span><span class="p">(</span><span class="n">Tag</span><span class="p">.</span><span class="n">Email</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">email</span><span class="p">(</span><span class="n">Tag</span><span class="p">.</span><span class="na">Email</span><span class="p">.</span><span class="na">ordinal</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="p">}</span>
 </code></pre></div>
-
-
-<div class="codehilite"><pre><span></span><code><span class="k">val</span> <span class="py">textElement</span> <span class="p">=</span> <span class="n">formBuilder</span><span class="p">.</span><span class="n">getElementAtIndex</span><span class="p">(</span><span class="m">0</span><span class="p">)</span> <span class="k">as</span> <span class="n">FormSingleLineEditTextElement</span>
-<span class="k">val</span> <span class="py">emailElement</span> <span class="p">=</span> <span class="n">formBuilder</span><span class="p">.</span><span class="n">getFormElement</span><span class="p">&lt;</span><span class="n">FormEmailEditTextElement</span><span class="p">&gt;(</span><span class="n">Tag</span><span class="p">.</span><span class="n">Email</span><span class="p">.</span><span class="n">ordinal</span><span class="p">)</span>
-</code></pre></div>
-
-
+<div class="highlight"><pre><span></span><code><span class="kd">val</span> <span class="nv">textElement</span> <span class="o">=</span> <span class="n">formBuilder</span><span class="p">.</span><span class="na">getElementAtIndex</span><span class="p">(</span><span class="m">0</span><span class="p">)</span> <span class="k">as</span> <span class="n">FormSingleLineEditTextElement</span>
+<span class="kd">val</span> <span class="nv">emailElement</span> <span class="o">=</span> <span class="n">formBuilder</span><span class="p">.</span><span class="na">getFormElement</span><span class="o">&lt;</span><span class="n">FormEmailEditTextElement</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Tag</span><span class="p">.</span><span class="na">Email</span><span class="p">.</span><span class="na">ordinal</span><span class="p">)</span>
+</code></pre></div></p>
 <h2 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h2>
-<p>The title is the text displayed next to the value of the form element.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">title</span> <span class="p">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">title</span><span class="p">)</span>
+<p>The title is the text displayed next to the value of the form element.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">title</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h2>
-<p>The value is the value of the form element. Depending on the form element, this can be a String, Date, or an object of your choice.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;Hello World&quot;</span>
+<p>The value is the value of the form element. Depending on the form element, this can be a String, Date, or an object of your choice.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;Hello World&quot;</span>
 <span class="p">}</span>
-<span class="n">autoComplete</span><span class="p">&lt;</span><span class="n">ContactItem</span><span class="p">&gt;</span> <span class="p">{</span>
-    <span class="n">value</span> <span class="p">=</span> <span class="n">ContactItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;John Smith&quot;</span><span class="p">)</span>
+<span class="n">autoComplete</span><span class="o">&lt;</span><span class="n">ContactItem</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">ContactItem</span><span class="p">(</span><span class="n">id</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;John Smith&quot;</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="value-observers">Value Observers<a class="headerlink" href="#value-observers" title="Permanent link">&para;</a></h2>
-<p>The list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">value</span> <span class="p">=</span> <span class="s">&quot;Hello World&quot;</span>
-    <span class="n">valueObservers</span><span class="p">.</span><span class="n">add</span><span class="p">({</span> <span class="n">newValue</span><span class="p">,</span> <span class="n">element</span> <span class="p">-&gt;</span>
-        <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="n">newValue</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+<p>The list of value observers are fired when the form element value changes. When a value changes, the Unit passes in the new value and form element.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;Hello World&quot;</span>
+    <span class="n">valueObservers</span><span class="p">.</span><span class="na">add</span><span class="p">({</span> <span class="n">newValue</span><span class="p">,</span> <span class="n">element</span> <span class="o">-&gt;</span>
+        <span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="nd">@FormActivity</span><span class="p">,</span> <span class="n">newValue</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
     <span class="p">})</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="on-click-unit">On Click Unit<a class="headerlink" href="#on-click-unit" title="Permanent link">&para;</a></h2>
 <p>This unit is invoked when the form element is clicked.
-NOTE: The click event is not fired when a text field is clicked on to focus. Use onFocus to get the event when a field has focus.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-     <span class="n">onClick</span> <span class="p">=</span> <span class="p">{</span>
-        <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+NOTE: The click event is not fired when a text field is clicked on to focus. Use onFocus to get the event when a field has focus.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+     <span class="n">onClick</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="nd">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="na">javaClass</span><span class="p">.</span><span class="na">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="on-focus-unit">On Focus Unit<a class="headerlink" href="#on-focus-unit" title="Permanent link">&para;</a></h2>
-<p>This unit is invoked when the form element is focused.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-     <span class="n">onFocus</span> <span class="p">=</span> <span class="p">{</span>
-        <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+<p>This unit is invoked when the form element is focused.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+     <span class="n">onFocus</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="nd">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="na">javaClass</span><span class="p">.</span><span class="na">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="on-touch-up-unit">On Touch Up Unit<a class="headerlink" href="#on-touch-up-unit" title="Permanent link">&para;</a></h2>
-<p>This unit is invoked when the form element is touched up.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-     <span class="n">onTouchUp</span> <span class="p">=</span> <span class="p">{</span>
-        <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+<p>This unit is invoked when the form element is touched up.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+     <span class="n">onTouchUp</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="nd">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="na">javaClass</span><span class="p">.</span><span class="na">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="on-touch-down-unit">On Touch Down Unit<a class="headerlink" href="#on-touch-down-unit" title="Permanent link">&para;</a></h2>
-<p>This unit is invoked when the form element is touched down.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-     <span class="n">onTouchDown</span> <span class="p">=</span> <span class="p">{</span>
-        <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">javaClass</span><span class="p">.</span><span class="n">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+<p>This unit is invoked when the form element is touched down.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+     <span class="n">onTouchDown</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="nd">@FormActivity</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="na">javaClass</span><span class="p">.</span><span class="na">simpleName</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="on-title-icon-click-unit">On Title Icon Click Unit<a class="headerlink" href="#on-title-icon-click-unit" title="Permanent link">&para;</a></h2>
-<p>This unit is invoked when the title's icon is clicked.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-     <span class="n">onTitleIconClick</span> <span class="p">=</span> <span class="p">{</span>
-        <span class="n">Toast</span><span class="p">.</span><span class="n">makeText</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="s">&quot;Icon clicked&quot;</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="n">show</span><span class="p">()</span>
+<p>This unit is invoked when the title's icon is clicked.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+     <span class="n">onTitleIconClick</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="nd">@FormActivity</span><span class="p">,</span> <span class="s">&quot;Icon clicked&quot;</span><span class="p">,</span> <span class="n">LENGTH_SHORT</span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
-<p>The list of options is used in form elements such as the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. </p>
-<div class="codehilite"><pre><span></span><code><span class="k">private</span> <span class="k">val</span> <span class="py">fruits</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span>
-    <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Orange&quot;</span><span class="p">),</span>
-    <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Mango&quot;</span><span class="p">),</span>
-    <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Guava&quot;</span><span class="p">),</span>
-    <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Apple&quot;</span><span class="p">)</span>
+<p>The list of options is used in form elements such as the Form Picker Dropdown Element and Form Picker MultiCheckBox Element. 
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">val</span> <span class="nv">fruits</span> <span class="o">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">),</span>
+    <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Orange&quot;</span><span class="p">),</span>
+    <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Mango&quot;</span><span class="p">),</span>
+    <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Guava&quot;</span><span class="p">),</span>
+    <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Apple&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="n">dropDown</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;</span> <span class="p">{</span>
-    <span class="n">options</span> <span class="p">=</span> <span class="n">fruits</span>
-    <span class="n">value</span> <span class="p">=</span> <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">)</span>
+<span class="n">dropDown</span><span class="o">&lt;</span><span class="n">ListItem</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">fruits</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="n">multiCheckBox</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;&gt;</span> <span class="p">{</span>
-    <span class="n">options</span> <span class="p">=</span> <span class="n">fruits</span>
-    <span class="n">value</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">))</span>
+<span class="n">multiCheckBox</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">ListItem</span><span class="o">&gt;&gt;</span> <span class="p">{</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">fruits</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">ListItem</span><span class="p">(</span><span class="n">id</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Banana&quot;</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="update-on-focus-change">Update On Focus Change<a class="headerlink" href="#update-on-focus-change" title="Permanent link">&para;</a></h2>
 <p>By default this is false.
 An EditText will update the form value as characters are typed.
-Setting this to true will only update the value when focus is lost or if Done is tapped on the keyboard. (See IME Options)</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">updateOnFocusChange</span> <span class="p">=</span> <span class="k">true</span>
+Setting this to true will only update the value when focus is lost or if Done is tapped on the keyboard. (See IME Options)
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">updateOnFocusChange</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="input-type">Input Type<a class="headerlink" href="#input-type" title="Permanent link">&para;</a></h2>
 <p>By default this is set by the form element type.
-Setting this will override the EditText form element's Input Type.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">inputType</span> <span class="p">=</span> <span class="n">InputType</span><span class="p">.</span><span class="n">TYPE_CLASS_TEXT</span> <span class="n">or</span> <span class="n">InputType</span><span class="p">.</span><span class="n">TYPE_TEXT_FLAG_NO_SUGGESTIONS</span>
+Setting this will override the EditText form element's Input Type.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">inputType</span> <span class="o">=</span> <span class="n">InputType</span><span class="p">.</span><span class="na">TYPE_CLASS_TEXT</span> <span class="n">or</span> <span class="n">InputType</span><span class="p">.</span><span class="na">TYPE_TEXT_FLAG_NO_SUGGESTIONS</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="ime-options">IME Options<a class="headerlink" href="#ime-options" title="Permanent link">&para;</a></h2>
 <p>By default this is EditorInfo.IME_ACTION_NEXT.
 Setting this will override the EditText form element's IME Options.
-If EditorInfo.IME_ACTION_DONE is used, tapping Done on the keyboard will update the form element value.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">imeOptions</span> <span class="p">=</span> <span class="n">EditorInfo</span><span class="p">.</span><span class="n">IME_ACTION_DONE</span>
+If EditorInfo.IME_ACTION_DONE is used, tapping Done on the keyboard will update the form element value.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">imeOptions</span> <span class="o">=</span> <span class="n">EditorInfo</span><span class="p">.</span><span class="na">IME_ACTION_DONE</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="input-mask-options">Input Mask Options<a class="headerlink" href="#input-mask-options" title="Permanent link">&para;</a></h2>
-<p>By default edit text fields will not have any input mask format. Setting an input mask format will format the text field for the set value and as you type.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">phone</span> <span class="p">{</span>
-    <span class="n">inputMaskOptions</span> <span class="p">=</span> <span class="n">InputMaskOptions</span><span class="p">(</span><span class="n">primaryFormat</span> <span class="p">=</span> <span class="s">&quot;+1 ([000]) [000]-[0000]&quot;</span><span class="p">)</span>
+<p>By default edit text fields will not have any input mask format. Setting an input mask format will format the text field for the set value and as you type.
+<div class="highlight"><pre><span></span><code><span class="n">phone</span> <span class="p">{</span>
+    <span class="n">inputMaskOptions</span> <span class="o">=</span> <span class="n">InputMaskOptions</span><span class="p">(</span><span class="n">primaryFormat</span> <span class="o">=</span> <span class="s">&quot;+1 ([000]) [000]-[0000]&quot;</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="hint">Hint<a class="headerlink" href="#hint" title="Permanent link">&para;</a></h2>
-<p>The hint is the hint (or placeholder) of the value field.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">hint</span> <span class="p">=</span> <span class="s">&quot;Enter a name&quot;</span>
+<p>The hint is the hint (or placeholder) of the value field.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">hint</span> <span class="o">=</span> <span class="s">&quot;Enter a name&quot;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="max-length">Max Length<a class="headerlink" href="#max-length" title="Permanent link">&para;</a></h2>
 <p>By default this is null which means that there is no max text length.
 Max length represents the number of characters the value field will allow.</p>
@@ -1703,11 +1879,10 @@ Max length represents the number of characters the value field will allow.</p>
 <li>AutoCompleteToken</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">maxLength</span> <span class="p">=</span> <span class="m">10</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">maxLength</span> <span class="o">=</span> <span class="m">10</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="max-lines">Max Lines<a class="headerlink" href="#max-lines" title="Permanent link">&para;</a></h2>
 <p>By default this is 1. TextArea defaults to 4.
@@ -1720,47 +1895,38 @@ Max lines represents the number of lines the value field will display.</p>
 <li>Text (Use TextArea instead)</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">textArea</span> <span class="p">{</span>
-    <span class="n">maxLines</span> <span class="p">=</span> <span class="m">3</span>
+<div class="highlight"><pre><span></span><code><span class="n">textArea</span> <span class="p">{</span>
+    <span class="n">maxLines</span> <span class="o">=</span> <span class="m">3</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="edit-view-gravity">Edit View Gravity<a class="headerlink" href="#edit-view-gravity" title="Permanent link">&para;</a></h2>
 <p>By default, this is Gravity.END (Right to left).
-This determines the gravity of the text in the value field, button, or header.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">editViewGravity</span> <span class="p">=</span> <span class="n">Gravity</span><span class="p">.</span><span class="n">START</span>
+This determines the gravity of the text in the value field, button, or header.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">editViewGravity</span> <span class="o">=</span> <span class="n">Gravity</span><span class="p">.</span><span class="na">START</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="edit-view-paint-flags">Edit View Paint Flags<a class="headerlink" href="#edit-view-paint-flags" title="Permanent link">&para;</a></h2>
 <p>By default, this is null (No flags).
-This determines the extra paint flags for the edit view.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">editViewPaintFlags</span> <span class="p">=</span> <span class="n">Paint</span><span class="p">.</span><span class="n">UNDERLINE_TEXT_FLAG</span>
+This determines the extra paint flags for the edit view.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">editViewPaintFlags</span> <span class="o">=</span> <span class="n">Paint</span><span class="p">.</span><span class="na">UNDERLINE_TEXT_FLAG</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="error">Error<a class="headerlink" href="#error" title="Permanent link">&para;</a></h2>
-<p>This is the error text displayed in red below the form element.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">error</span> <span class="p">=</span> <span class="s">&quot;That&#39;s an error&quot;</span>
+<p>This is the error text displayed in red below the form element.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="s">&quot;That&#39;s an error&quot;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h2>
 <p>By default this is false.
-Setting required to true will cause FormBuildHelper.isValidForm to return false if a value is not set.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">required</span> <span class="p">=</span> <span class="k">true</span>
+Setting required to true will cause FormBuildHelper.isValidForm to return false if a value is not set.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">required</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="clearable">Clearable<a class="headerlink" href="#clearable" title="Permanent link">&para;</a></h2>
 <p>By default this is false.
 Setting this to true will display a clear button (X) to set the value to null.</p>
@@ -1771,11 +1937,10 @@ Setting this to true will display a clear button (X) to set the value to null.</
 <li>AutoCompleteToken</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">clearable</span> <span class="p">=</span> <span class="k">true</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">clearable</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="title-icon">Title Icon<a class="headerlink" href="#title-icon" title="Permanent link">&para;</a></h2>
 <p>By default this is null.
@@ -1784,29 +1949,26 @@ Setting this will set and display the title icon drawable (null will hide the ic
 <p class="admonition-title">Button</p>
 <p>Setting this for the button form element will add the icon to the button.</p>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">titleIcon</span> <span class="p">=</span> <span class="n">ContextCompat</span><span class="p">.</span><span class="n">getDrawable</span><span class="p">(</span><span class="k">this</span><span class="n">@FormActivity</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="n">drawable</span><span class="p">.</span><span class="n">ic_email_blue_24dp</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">titleIcon</span> <span class="o">=</span> <span class="n">ContextCompat</span><span class="p">.</span><span class="na">getDrawable</span><span class="p">(</span><span class="k">this</span><span class="nd">@FormActivity</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">ic_email_blue_24dp</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="title-icon-location">Title Icon Location<a class="headerlink" href="#title-icon-location" title="Permanent link">&para;</a></h2>
 <p>By default this is IconTextView.Location.LEFT.
 Setting this set the title icon location (LEFT or RIGHT of the title).</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">titleIconLocation</span> <span class="p">=</span> <span class="n">IconTextView</span><span class="p">.</span><span class="n">Location</span><span class="p">.</span><span class="n">RIGHT</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">titleIconLocation</span> <span class="o">=</span> <span class="n">IconTextView</span><span class="p">.</span><span class="na">Location</span><span class="p">.</span><span class="na">RIGHT</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="title-icon-padding">Title Icon Padding<a class="headerlink" href="#title-icon-padding" title="Permanent link">&para;</a></h2>
 <p>By default this is 20.
 Setting this set the padding between the title text and icon.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">titleIconPadding</span> <span class="p">=</span> <span class="m">25</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">titleIconPadding</span> <span class="o">=</span> <span class="m">25</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="clear-on-focus">Clear On Focus<a class="headerlink" href="#clear-on-focus" title="Permanent link">&para;</a></h2>
 <p>By default this is false.
@@ -1818,21 +1980,18 @@ Setting this to true will clear the text value of the form element when focused.
 <li>AutoCompleteToken</li>
 </ul>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">clearOnFocus</span> <span class="p">=</span> <span class="k">true</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">clearOnFocus</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="visible">Visible<a class="headerlink" href="#visible" title="Permanent link">&para;</a></h2>
 <p>By default this is true.
-Setting visible to false will hide the form element.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">visible</span> <span class="p">=</span> <span class="k">false</span>
+Setting visible to false will hide the form element.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">visible</span> <span class="o">=</span> <span class="kc">false</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="enabled">Enabled<a class="headerlink" href="#enabled" title="Permanent link">&para;</a></h2>
 <p>By default this is true.
 Setting enabled to false will disable the form element. This means that the click event will not fire when tapped, the text will be grayed out, and the value cannot be edited.</p>
@@ -1840,11 +1999,10 @@ Setting enabled to false will disable the form element. This means that the clic
 <p class="admonition-title">Text View</p>
 <p>Use the TextView element if you just want a simple uneditable text element.</p>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">enabled</span> <span class="p">=</span> <span class="k">false</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">enabled</span> <span class="o">=</span> <span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="clickable">Clickable<a class="headerlink" href="#clickable" title="Permanent link">&para;</a></h2>
 <p>By default this is true.
@@ -1853,11 +2011,10 @@ Setting clickable to false will disable click events.</p>
 <p class="admonition-title">Use focusable</p>
 <p>Click events will still be fired unless focusable is also set to false.</p>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">clickable</span> <span class="p">=</span> <span class="k">false</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">clickable</span> <span class="o">=</span> <span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="focusable">Focusable<a class="headerlink" href="#focusable" title="Permanent link">&para;</a></h2>
 <p>By default this is true.
@@ -1866,50 +2023,42 @@ Setting focusable to false will prevent a field from being focused.</p>
 <p class="admonition-title">Focusable elements</p>
 <p>This value does not change the behavior of the form elements that cannot be focused.</p>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">focusable</span> <span class="p">=</span> <span class="k">false</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">focusable</span> <span class="o">=</span> <span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="display-divider">Display Divider<a class="headerlink" href="#display-divider" title="Permanent link">&para;</a></h2>
 <p>By default this is true.
-Setting displayDivider to false will hide the divider line displayed before the element.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">displayDivider</span> <span class="p">=</span> <span class="k">true</span>
+Setting displayDivider to false will hide the divider line displayed before the element.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">displayDivider</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="display-title">Display Title<a class="headerlink" href="#display-title" title="Permanent link">&para;</a></h2>
 <p>By default this is true.
-Setting displayTitle to false will hide the title.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">displayTitle</span> <span class="p">=</span> <span class="k">true</span>
+Setting displayTitle to false will hide the title.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">displayTitle</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="layout-padding-bottom-dp">Layout Padding Bottom (DP)<a class="headerlink" href="#layout-padding-bottom-dp" title="Permanent link">&para;</a></h2>
 <p>By default, this will use android:paddingBottom in the XML.
-Setting layoutPaddingBottom will override the bottom padding of the form element.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">layoutPaddingBottom</span> <span class="p">=</span> <span class="m">0</span>
+Setting layoutPaddingBottom will override the bottom padding of the form element.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">layoutPaddingBottom</span> <span class="o">=</span> <span class="m">0</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="title-padding-dp">Title Padding (DP)<a class="headerlink" href="#title-padding-dp" title="Permanent link">&para;</a></h2>
 <p>Setting padding will override the padding of the form element title view.</p>
 <div class="admonition info">
 <p class="admonition-title">FormElementPadding</p>
 <p>FormElementPadding is a simple class to set all padding.</p>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">titlePadding</span> <span class="p">=</span> <span class="n">FormElementPadding</span><span class="p">(</span><span class="cm">/* Left */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Top */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Right */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Bottom */</span> <span class="m">0</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">titlePadding</span> <span class="o">=</span> <span class="n">FormElementPadding</span><span class="p">(</span><span class="cm">/* Left */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Top */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Right */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Bottom */</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="padding-dp">Padding (DP)<a class="headerlink" href="#padding-dp" title="Permanent link">&para;</a></h2>
 <p>Setting padding will override the padding of the form element edit view.</p>
@@ -1917,11 +2066,10 @@ Setting layoutPaddingBottom will override the bottom padding of the form element
 <p class="admonition-title">FormElementPadding</p>
 <p>FormElementPadding is a simple class to set all padding.</p>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">padding</span> <span class="p">=</span> <span class="n">FormElementPadding</span><span class="p">(</span><span class="cm">/* Left */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Top */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Right */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Bottom */</span> <span class="m">0</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">padding</span> <span class="o">=</span> <span class="n">FormElementPadding</span><span class="p">(</span><span class="cm">/* Left */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Top */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Right */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Bottom */</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="margins-dp">Margins (DP)<a class="headerlink" href="#margins-dp" title="Permanent link">&para;</a></h2>
 <p>By default, this will use layout_margin values in the XML.
@@ -1930,211 +2078,175 @@ Setting margins will override the margins of the form element.</p>
 <p class="admonition-title">FormElementMargins</p>
 <p>FormElementMargins is a simple class to set all margins.</p>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">margins</span> <span class="p">=</span> <span class="n">FormElementMargins</span><span class="p">(</span><span class="cm">/* Left */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Top */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Right */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Bottom */</span> <span class="m">0</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">margins</span> <span class="o">=</span> <span class="n">FormElementMargins</span><span class="p">(</span><span class="cm">/* Left */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Top */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Right */</span> <span class="m">16</span><span class="p">,</span> <span class="cm">/* Bottom */</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h2 id="confirm-edit">Confirm Edit<a class="headerlink" href="#confirm-edit" title="Permanent link">&para;</a></h2>
 <p>By default this is false.
 Setting confirmEdit to true will display an alert dialog confirming if the user wishes to edit the value if a current value exists.
-Currently, this only applies to the picker elements that display a dialog.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">date</span> <span class="p">{</span>
-    <span class="n">confirmEdit</span> <span class="p">=</span> <span class="k">true</span>
+Currently, this only applies to the picker elements that display a dialog.
+<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">{</span>
+    <span class="n">confirmEdit</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="confirm-title">Confirm Title<a class="headerlink" href="#confirm-title" title="Permanent link">&para;</a></h2>
 <p>By default this is "Confirm Edit".
-Setting this will override the confirm edit dialog title.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">date</span> <span class="p">{</span>
-    <span class="n">confirmTitle</span> <span class="p">=</span> <span class="s">&quot;Really edit this?&quot;</span>
+Setting this will override the confirm edit dialog title.
+<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">{</span>
+    <span class="n">confirmTitle</span> <span class="o">=</span> <span class="s">&quot;Really edit this?&quot;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="confirm-message">Confirm Message<a class="headerlink" href="#confirm-message" title="Permanent link">&para;</a></h2>
 <p>By default this is "Edit this value?".
-Setting this will override the confirm edit dialog message.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">date</span> <span class="p">{</span>
-    <span class="n">confirmMessage</span> <span class="p">=</span> <span class="s">&quot;Are you ABSOLUTELY sure?&quot;</span>
+Setting this will override the confirm edit dialog message.
+<div class="highlight"><pre><span></span><code><span class="n">date</span> <span class="p">{</span>
+    <span class="n">confirmMessage</span> <span class="o">=</span> <span class="s">&quot;Are you ABSOLUTELY sure?&quot;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="background-color">Background Color<a class="headerlink" href="#background-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementBackground.
-Setting this will override the background color.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">backgroundColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">WHITE</span>
+Setting this will override the background color.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">backgroundColor</span> <span class="o">=</span> <span class="n">Color</span><span class="p">.</span><span class="na">WHITE</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="title-text-color">Title Text Color<a class="headerlink" href="#title-text-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementTextTitle.
-Setting this will override the title text color.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">titleTextColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
+Setting this will override the title text color.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">titleTextColor</span> <span class="o">=</span> <span class="n">Color</span><span class="p">.</span><span class="na">BLACK</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="title-focused-text-color">Title Focused Text Color<a class="headerlink" href="#title-focused-text-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementFocusedTitle.
-Setting this will override the title text (when focused) color.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">titleFocusedTextColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
+Setting this will override the title text (when focused) color.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">titleFocusedTextColor</span> <span class="o">=</span> <span class="n">Color</span><span class="p">.</span><span class="na">BLACK</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="value-text-color">Value Text Color<a class="headerlink" href="#value-text-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementTextValue.
-Setting this will override the value text color.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">valueTextColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
+Setting this will override the value text color.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">valueTextColor</span> <span class="o">=</span> <span class="n">Color</span><span class="p">.</span><span class="na">BLACK</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="error-text-color">Error Text Color<a class="headerlink" href="#error-text-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementErrorTitle.
-Setting this will override the error text color.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">errorTextColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
+Setting this will override the error text color.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">errorTextColor</span> <span class="o">=</span> <span class="n">Color</span><span class="p">.</span><span class="na">BLACK</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="hint-text-color">Hint Text Color<a class="headerlink" href="#hint-text-color" title="Permanent link">&para;</a></h2>
 <p>By default this is the value of R.Color.colorFormMasterElementHint.
-Setting this will override the hint text color.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">hintTextColor</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
+Setting this will override the hint text color.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">hintTextColor</span> <span class="o">=</span> <span class="n">Color</span><span class="p">.</span><span class="na">BLACK</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="clear-value">Clear value<a class="headerlink" href="#clear-value" title="Permanent link">&para;</a></h2>
-<p>Clear the value of the element.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">element</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
-</code></pre></div>
-
-
+<p>Clear the value of the element.
+<div class="highlight"><pre><span></span><code><span class="n">element</span><span class="p">.</span><span class="na">clear</span><span class="p">()</span>
+</code></pre></div></p>
 <h2 id="is-the-value-valid">Is the value valid?<a class="headerlink" href="#is-the-value-valid" title="Permanent link">&para;</a></h2>
 <p>isValid contains a getter that checks if the element is valid. At the base level, this checks if the value is not null or empty.
-This is used by formBuilder.isValidForm.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">element</span><span class="p">.</span><span class="n">isValid</span>
-</code></pre></div>
-
-
+This is used by formBuilder.isValidForm.
+<div class="highlight"><pre><span></span><code><span class="n">element</span><span class="p">.</span><span class="na">isValid</span>
+</code></pre></div></p>
 <h2 id="custom-validation">Custom Validation<a class="headerlink" href="#custom-validation" title="Permanent link">&para;</a></h2>
-<p>To add custom validation check, assign a lambda to validityCheck.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
-    <span class="n">validityCheck</span> <span class="p">=</span> <span class="p">{</span>
-        <span class="n">value</span><span class="o">?.</span><span class="n">matches</span><span class="p">(</span><span class="s">&quot;some regex&quot;</span><span class="p">.</span><span class="n">toRegex</span><span class="p">())</span> <span class="p">==</span> <span class="k">true</span>
+<p>To add custom validation check, assign a lambda to validityCheck.
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="p">{</span>
+    <span class="n">validityCheck</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">value</span><span class="o">?.</span><span class="na">matches</span><span class="p">(</span><span class="s">&quot;some regex&quot;</span><span class="p">.</span><span class="na">toRegex</span><span class="p">())</span> <span class="o">==</span> <span class="kc">true</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-
-
+</code></pre></div></p>
 <h2 id="display-new-value">Display New Value<a class="headerlink" href="#display-new-value" title="Permanent link">&para;</a></h2>
 <p>This function is called when the value changes to display the new value specific to the form element.
-By default, this handles setting the text of the AppCompatEditText view.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">element</span><span class="p">.</span><span class="n">displayNewValue</span><span class="p">()</span>
-</code></pre></div>
-
-
+By default, this handles setting the text of the AppCompatEditText view.
+<div class="highlight"><pre><span></span><code><span class="n">element</span><span class="p">.</span><span class="na">displayNewValue</span><span class="p">()</span>
+</code></pre></div></p>
 <h2 id="dynamic-views">Dynamic Views<a class="headerlink" href="#dynamic-views" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">NOTICE</p>
 <p>The Item View, Title View, Edit View, and Error View are accessible from the model to support changing variables such as the title, value, visibility, and error. However, try not to use the views directly. Let the variable setters do the work for you. Also, the views cannot be modified during the creation of the form elements as they are initialized during the render of the RecyclerView.</p>
 </div>
-                
-              
-              
-                
-
 
               
             </article>
           </div>
         </div>
+        
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
         
-          <a href="../../migrateBuilder/" title="Migrate from Builders" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <a href="../../migrateBuilder/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Migrate from Builders" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Migrate from Builders
             </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Migrate from Builders
-              </div>
-            </div>
-          </a>
+          </div>
+        </a>
+      
+      
         
-        
-          <a href="../header/" title="Header" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Header
-              </div>
+        <a href="../header/" class="md-footer__link md-footer__link--next" aria-label="Next: Header" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Header
             </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2020 Justin Kirk
-          </div>
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Justin Kirk
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
 </footer>
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.instant"], "search": "../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
-      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.a14cc5fd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
-      
-      <script>
-        app = initialize({
-          base: "../..",
-          features: [],
-          search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.7a2ea5ba.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
+    
+      <script src="../../assets/javascripts/bundle.6e54b5cd.min.js"></script>
       
     
   </body>
