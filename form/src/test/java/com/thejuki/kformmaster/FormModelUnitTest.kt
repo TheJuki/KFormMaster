@@ -1,6 +1,6 @@
 package com.thejuki.kformmaster
 
-import com.thejuki.kformmaster.helper.CircleTransform
+import android.net.Uri
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
@@ -138,10 +138,10 @@ class FormModelUnitTest : ShouldSpec({
             val element = CustomGen.formImageElement.next()
             element.value shouldNotBe null
             element.defaultImage shouldNotBe null
-            (element.imageTransformation is CircleTransform) shouldBe true
+            element.applyCircleCrop shouldBe false
             val newImage = Files.createTempFile("test", ".png").toFile()
             newImage.isFile shouldBe true
-            element.onSelectImage?.invoke(newImage)
+            element.onSelectImage?.invoke(Uri.fromFile(newImage), null)
         }
         should("have valid formPickerDropDownElement") {
             val element = CustomGen.formPickerDropDownElement.next()

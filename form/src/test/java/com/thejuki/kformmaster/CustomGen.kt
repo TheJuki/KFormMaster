@@ -1,9 +1,7 @@
 package com.thejuki.kformmaster
 
 import android.R
-import android.graphics.Color
 import android.widget.ArrayAdapter
-import com.thejuki.kformmaster.helper.CircleTransform
 import com.thejuki.kformmaster.helper.FormLayouts
 import com.thejuki.kformmaster.model.*
 import io.kotest.property.Arb
@@ -273,10 +271,7 @@ interface CustomGen {
         val formImageElement = arbitrary {
             val element = FormImageElement()
             element.value = "https://example.com/image.jpg"
-            element.imageTransformation = CircleTransform(
-                borderColor = Color.WHITE,
-                borderRadius = 3
-            ) //Default value for this is CircleTransform(null) so it makes image round without borders
+            element.applyCircleCrop = false
             element.theme = Random().nextInt(100)
             element.defaultImage = Random().nextInt(100)
             element.imagePickerOptions = {
@@ -286,8 +281,8 @@ interface CustomGen {
                 it.maxHeight = Random().nextInt(100)
                 it.maxSize = Random().nextInt(100)
             }
-            element.onSelectImage = { file ->
-                println("\nNew Image = ${file?.name}")
+            element.onSelectImage = { uri, _ ->
+                println("\nNew Image = ${uri?.path}")
             }
             element
         }
