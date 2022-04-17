@@ -5,11 +5,14 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
+import com.thejuki.kformmaster.model.FormImageElement
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmasterexample.FormListenerActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
@@ -33,6 +36,11 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
 
     private lateinit var binding: ActivityFullscreenFormBinding
     private lateinit var formBuilder: FormBuildHelper
+    private val startImagePickerForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        val imageViewElement = formBuilder.getFormElement<FormImageElement>(
+            ImageViewElement.ordinal)
+        imageViewElement.handleActivityResult(result.resultCode, result.data)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,12 +108,13 @@ class FormListenerActivity : AppCompatActivity(), OnFormElementValueChangedListe
     private fun setupForm() {
         formBuilder = form(binding.recyclerView, this, true) {
             imageView(ImageViewElement.ordinal) {
-                onSelectImage = { file ->
-                    // If file is null, that means an error occurred trying to select the image
-                    if (file != null) {
-                        Toast.makeText(this@FormListenerActivity, file.name, Toast.LENGTH_SHORT).show()
+                activityResultLauncher = startImagePickerForResult
+                onSelectImage = { uri, error ->
+                    // If uri is null, that means an error occurred trying to select the image
+                    if (uri != null) {
+                        Toast.makeText(this@FormListenerActivity, uri.path, Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this@FormListenerActivity, "Error getting the image", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@FormListenerActivity, error, Toast.LENGTH_LONG).show()
                     }
                 }
             }

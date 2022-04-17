@@ -11,9 +11,16 @@ The Image View form element is used to show an image and when tapped display opt
 ### Kotlin
 
 ```kotlin
+private val startImagePickerForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+    val imageViewElement = formBuilder.getFormElement<FormImageElement>(
+        Tag.ImageViewElement.ordinal)
+    imageViewElement.handleActivityResult(result.resultCode, result.data)
+}
+
 imageView(1) {
+    activityResultLauncher = startImagePickerForResult
     displayDivider = false
-    imageTransformation = CircleTransform(borderColor = Color.WHITE, borderRadius = 3)
+    applyCircleCrop = true
     required = false
     showChangeImageLabel = true
     changeImageLabel = "Change me"
@@ -29,27 +36,37 @@ imageView(1) {
         it.maxHeight = 200
         it.maxSize = 500
     }
-     onSelectImage = { file ->
-        // If file is null, that means an error occurred trying to select the image
-        if (file != null) {
-            Toast.makeText(context, file.name, Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(context, "Error getting the image", Toast.LENGTH_LONG).show()
-        }
-    }
+    onSelectImage = { uri, error ->
+         // If uri is null, that means an error occurred trying to select the image
+         if (uri != null) {
+             Toast.makeText(this@YourActivity, uri.path, LENGTH_SHORT).show()
+         } else {
+             Toast.makeText(this@YourActivity, error, LENGTH_LONG).show()
+         }
+     }
 }
 ```
 
 ### Java
 
 ```java
+private ActivityResultLauncher<Intent> startImagePickerForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+    new ActivityResultCallback<>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            FormImageElement imageViewElement = formBuilder.getFormElement(Tag.ImageViewElement.ordinal());
+            imageViewElement.handleActivityResult(result.getResultCode(), result.getData());
+        }
+    });
+
 List<BaseFormElement<?>> elements = new ArrayList<>();
 FormImageElement imageView = new FormImageElement(1);
-imageView.setOnSelectImage((file) -> {
-    if (file != null) {
-        Toast.makeText(this, file.getName(), Toast.LENGTH_SHORT).show();
+imageView.setActivityResultLauncher(startImagePickerForResult);
+imageView.setOnSelectImage((uri, error) -> {
+    if (uri != null) {
+        Toast.makeText(this, uri.getPath(), Toast.LENGTH_SHORT).show();
     } else {
-        Toast.makeText(this, "Error getting the image", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
     return Unit.INSTANCE;
 });

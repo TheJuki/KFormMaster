@@ -11,6 +11,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.LENGTH_SHORT
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -52,6 +54,11 @@ class FullscreenFormActivity : AppCompatActivity() {
     private lateinit var bottomSheetDialogBinding: BottomsheetImageBinding
     private lateinit var formBuilder: FormBuildHelper
     private lateinit var bottomSheetDialog: BottomSheetDialog
+    private val startImagePickerForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        val imageViewElement = formBuilder.getFormElement<FormImageElement>(
+            Tag.ImageViewElement.ordinal)
+        imageViewElement.handleActivityResult(result.resultCode, result.data)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -211,8 +218,9 @@ class FullscreenFormActivity : AppCompatActivity() {
                         //text = R.layout.form_element_custom
                 )) {
             imageView(ImageViewElement.ordinal) {
+                activityResultLauncher = startImagePickerForResult
+                applyCircleCrop = true
                 displayDivider = false
-                imageTransformation = CircleTransform(borderColor = Color.WHITE, borderRadius = 3) //Default value for this is CircleTransform(null) so it makes image round without borders
                 required = false
                 enabled = true
                 showChangeImageLabel = true
@@ -230,12 +238,12 @@ class FullscreenFormActivity : AppCompatActivity() {
                     it.maxHeight = 200
                     it.maxSize = 500
                 }
-                onSelectImage = { file ->
-                    // If file is null, that means an error occurred trying to select the image
-                    if (file != null) {
-                        Toast.makeText(this@FullscreenFormActivity, file.name, LENGTH_SHORT).show()
+                onSelectImage = { uri, error ->
+                    // If uri is null, that means an error occurred trying to select the image
+                    if (uri != null) {
+                        Toast.makeText(this@FullscreenFormActivity, uri.path, LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this@FullscreenFormActivity, "Error getting the image", LENGTH_LONG).show()
+                        Toast.makeText(this@FullscreenFormActivity, error, LENGTH_LONG).show()
                     }
                 }
 

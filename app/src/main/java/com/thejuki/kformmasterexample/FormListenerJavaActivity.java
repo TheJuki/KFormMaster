@@ -1,11 +1,16 @@
 package com.thejuki.kformmasterexample;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -71,6 +76,15 @@ import kotlin.Unit;
 public class FormListenerJavaActivity extends AppCompatActivity implements OnFormElementValueChangedListener {
     private ActivityFullscreenFormBinding binding;
     private FormBuildHelper formBuilder;
+
+    private ActivityResultLauncher<Intent> startImagePickerForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    FormImageElement imageViewElement = formBuilder.getFormElement(Tag.ImageViewElement.ordinal());
+                    imageViewElement.handleActivityResult(result.getResultCode(), result.getData());
+                }
+            });
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -163,11 +177,12 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
 
     private void addEditTexts(List<BaseFormElement<?>> elements) {
         FormImageElement imageView = new FormImageElement(Tag.ImageViewElement.ordinal());
-        imageView.setOnSelectImage((file) -> {
-            if (file != null) {
-                Toast.makeText(this, file.getName(), Toast.LENGTH_SHORT).show();
+        imageView.setActivityResultLauncher(startImagePickerForResult);
+        imageView.setOnSelectImage((uri, error) -> {
+            if (uri != null) {
+                Toast.makeText(this, uri.getPath(), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Error getting the image", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, error, Toast.LENGTH_LONG).show();
             }
             return Unit.INSTANCE;
         });

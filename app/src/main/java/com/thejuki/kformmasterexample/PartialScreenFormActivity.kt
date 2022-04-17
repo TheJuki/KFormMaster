@@ -5,11 +5,14 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.thejuki.kformmaster.helper.*
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
+import com.thejuki.kformmaster.model.FormImageElement
 import com.thejuki.kformmaster.model.FormPickerDateElement
 import com.thejuki.kformmasterexample.PartialScreenFormActivity.Tag.*
 import com.thejuki.kformmasterexample.adapter.ContactAutoCompleteAdapter
@@ -34,6 +37,11 @@ class PartialScreenFormActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPartialScreenFormBinding
     private lateinit var formBuilder: FormBuildHelper
+    private val startImagePickerForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+        val imageViewElement = formBuilder.getFormElement<FormImageElement>(
+            ImageViewElement.ordinal)
+        imageViewElement.handleActivityResult(result.resultCode, result.data)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -110,7 +118,9 @@ class PartialScreenFormActivity : AppCompatActivity() {
         }
 
         formBuilder = form(binding.recyclerView, listener, true) {
-            imageView(ImageViewElement.ordinal) {}
+            imageView(ImageViewElement.ordinal) {
+                activityResultLauncher = startImagePickerForResult
+            }
             header { title = getString(R.string.PersonalInfo) }
             email(Email.ordinal) {
                 title = getString(R.string.email)

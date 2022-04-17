@@ -1,24 +1,27 @@
 package com.thejuki.kformmaster.model
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.PictureDrawable
+import android.net.Uri
 import android.util.Base64
 import android.view.View
 import android.webkit.URLUtil
 import android.widget.ImageView
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import com.caverock.androidsvg.SVG
+import com.github.dhaval2404.imagepicker.ImagePicker
+import com.github.dhaval2404.imagepicker.ImagePickerActivity
 import com.github.dhaval2404.imagepicker.constant.ImageProvider
-import com.squareup.picasso.Transformation
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.extensions.dpToPx
-import com.thejuki.kformmaster.extensions.setImage
-import com.thejuki.kformmaster.helper.CircleTransform
+import com.thejuki.kformmaster.extensions.setBitmapImage
+import com.thejuki.kformmaster.extensions.setDrawableImage
+import com.thejuki.kformmaster.extensions.setLocalImage
 import com.thejuki.kformmaster.helper.ImagePickerOptions
-import java.io.File
 import java.nio.charset.Charset
 
 /**
@@ -46,9 +49,14 @@ class FormImageElement(tag: Int = -1) : BaseFormElement<String>(tag) {
         }
 
     /**
-     * Unit called when an image is selected. A File object is returned.
+     * Activity Result Launcher for [ImagePickerActivity]
      */
-    var onSelectImage: ((image: File?) -> Unit)? = null
+    var activityResultLauncher: ActivityResultLauncher<Intent>? = null
+
+    /**
+     * Unit called when an image is selected. A Uri is returned.
+     */
+    var onSelectImage: ((image: Uri?, error: String?) -> Unit)? = null
 
     /**
      * Unit called when the initial image is loaded from value or defaultImage.
@@ -133,10 +141,10 @@ class FormImageElement(tag: Int = -1) : BaseFormElement<String>(tag) {
         }
 
     /**
-     * The Picasso Image Transformation.
-     * By default this is [CircleTransform].
+     * Apply Circle Crop
+     * By default, this is true.
      */
-    var imageTransformation: Transformation? = CircleTransform()
+    var applyCircleCrop: Boolean = true
 
     /**
      * Default Image Picker Options
@@ -241,20 +249,30 @@ class FormImageElement(tag: Int = -1) : BaseFormElement<String>(tag) {
         }
     }
 
+    /**
+     * Handles the Activity Result for the [ImagePickerActivity]
+     */
+    fun handleActivityResult(resultCode: Int, data: Intent?) {
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                data?.data?.let {
+                    (editView as ImageView).setLocalImage(it, applyCircleCrop)
+                    onSelectImage?.invoke(it, null)
+                }
+            }
+            ImagePicker.RESULT_ERROR -> onSelectImage?.invoke(null, ImagePicker.getError(data))
+            else -> onCancel?.invoke()
+        }
+    }
+
     override fun displayNewValue() {
         editView?.let {
             if (it is ImageView) {
-                var defaultImageDrawable: Drawable? = null
-
-                this.defaultImage?.let { image ->
-                    defaultImageDrawable = ContextCompat.getDrawable(it.context, image)
-                }
-
                 if (this.value != null) {
                     it.setLayerType(View.LAYER_TYPE_HARDWARE, null)
 
                     if (URLUtil.isFileUrl(this.valueAsString) || URLUtil.isNetworkUrl(this.valueAsString)) {
-                        it.setImage(this.valueAsString, this.imageTransformation, defaultImageDrawable)
+                        it.setLocalImage(Uri.parse(this.valueAsString), applyCircleCrop)
                         { this.onInitialImageLoaded?.invoke() }
                     } else if (URLUtil.isDataUrl(this.valueAsString)) {
                         val pureBase64Encoded = this.valueAsString.substring(this.valueAsString.indexOf(",") + 1)
@@ -266,23 +284,20 @@ class FormImageElement(tag: Int = -1) : BaseFormElement<String>(tag) {
                             val pictureDrawable = PictureDrawable(SVG.getFromString(decodedString).renderToPicture())
                             it.setImageDrawable(pictureDrawable)
                         } else {
-                            var decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
-                            this.imageTransformation?.let { transformation ->
-                                decodedBitmap = transformation.transform(decodedBitmap)
-                            }
-                            it.setImageBitmap(decodedBitmap)
+                            val decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+                            it.setBitmapImage(decodedBitmap, applyCircleCrop)
                         }
 
                         this.onInitialImageLoaded?.invoke()
                     } else {
                         if (this.defaultImage != null) {
-                            it.setImage(this.defaultImage, this.imageTransformation, defaultImageDrawable)
+                            it.setDrawableImage(defaultImage ?: 0, applyCircleCrop)
                             { this.onInitialImageLoaded?.invoke() }
                         }
                     }
                 } else {
                     if (this.defaultImage != null) {
-                        it.setImage(this.defaultImage, this.imageTransformation, defaultImageDrawable)
+                        it.setDrawableImage(defaultImage ?: 0, applyCircleCrop)
                         { this.onInitialImageLoaded?.invoke() }
                     }
                 }

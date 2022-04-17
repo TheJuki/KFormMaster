@@ -2,8 +2,8 @@ package com.thejuki.kformmaster.view
 
 import android.app.Activity
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.PictureDrawable
+import android.net.Uri
 import android.util.Base64
 import android.view.View
 import android.webkit.URLUtil
@@ -11,13 +11,14 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContextCompat
 import com.caverock.androidsvg.SVG
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.vivchar.rendererrecyclerviewadapter.ViewRenderer
 import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.extensions.dpToPx
-import com.thejuki.kformmaster.extensions.setImage
+import com.thejuki.kformmaster.extensions.setBitmapImage
+import com.thejuki.kformmaster.extensions.setDrawableImage
+import com.thejuki.kformmaster.extensions.setLocalImage
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.helper.FormViewFinder
 import com.thejuki.kformmaster.model.FormImageElement
@@ -61,17 +62,11 @@ class FormImageViewRenderer(private val formBuilder: FormBuildHelper, @LayoutRes
             model.defaultImage = R.drawable.default_image
         }
 
-        var defaultImageDrawable: Drawable? = null
-
-        model.defaultImage?.let {
-            defaultImageDrawable = ContextCompat.getDrawable(itemView.context, it)
-        }
-
         if (model.value != null) {
             imageView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
 
             if (URLUtil.isFileUrl(model.valueAsString) || URLUtil.isNetworkUrl(model.valueAsString)) {
-                imageView.setImage(model.valueAsString, model.imageTransformation, defaultImageDrawable)
+                imageView.setLocalImage(Uri.parse(model.valueAsString), model.applyCircleCrop)
                 { model.onInitialImageLoaded?.invoke() }
             } else if (URLUtil.isDataUrl(model.valueAsString)) {
                 val pureBase64Encoded = model.valueAsString.substring(model.valueAsString.indexOf(",") + 1)
@@ -83,23 +78,20 @@ class FormImageViewRenderer(private val formBuilder: FormBuildHelper, @LayoutRes
                     val pictureDrawable = PictureDrawable(SVG.getFromString(decodedString).renderToPicture())
                     imageView.setImageDrawable(pictureDrawable)
                 } else {
-                    var decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
-                    model.imageTransformation?.let { transformation ->
-                        decodedBitmap = transformation.transform(decodedBitmap)
-                    }
-                    imageView.setImageBitmap(decodedBitmap)
+                    val decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+                    imageView.setBitmapImage(decodedBitmap, model.applyCircleCrop)
                 }
 
                 model.onInitialImageLoaded?.invoke()
             } else {
                 if (model.defaultImage != null) {
-                    imageView.setImage(model.defaultImage, model.imageTransformation, defaultImageDrawable)
+                    imageView.setDrawableImage(model.defaultImage ?: 0, model.applyCircleCrop)
                     { model.onInitialImageLoaded?.invoke() }
                 }
             }
         } else {
             if (model.defaultImage != null) {
-                imageView.setImage(model.defaultImage, model.imageTransformation, defaultImageDrawable)
+                imageView.setDrawableImage(model.defaultImage ?: 0, model.applyCircleCrop)
                 { model.onInitialImageLoaded?.invoke() }
             }
         }
@@ -110,22 +102,14 @@ class FormImageViewRenderer(private val formBuilder: FormBuildHelper, @LayoutRes
                     .crop(model.imagePickerOptionsFor(model.defaultPickerOptions).cropX, model.imagePickerOptionsFor(model.defaultPickerOptions).cropY)
                     .maxResultSize(model.imagePickerOptionsFor(model.defaultPickerOptions).maxWidth, model.imagePickerOptionsFor(model.defaultPickerOptions).maxHeight)
                     .compress(model.imagePickerOptionsFor(model.defaultPickerOptions).maxSize)
-                    .start { resultCode, data ->
-                        when (resultCode) {
-                            Activity.RESULT_OK -> {
-                                val file = ImagePicker.getFile(data)
-                                imageView.setImage(file, model.imageTransformation)
-                                model.onSelectImage?.invoke(file)
-                            }
-                            ImagePicker.RESULT_ERROR -> model.onSelectImage?.invoke(null)
-                            else -> model.onCancel?.invoke()
-                        }
+                    .createIntent {
+                        model.activityResultLauncher?.launch(it)
                     }
         }
 
         model.mClearImage = {
             if (model.defaultImage != null) {
-                imageView.setImage(model.defaultImage, model.imageTransformation, defaultImageDrawable)
+                imageView.setDrawableImage(model.defaultImage ?: 0, model.applyCircleCrop)
                 { model.onClear?.invoke() }
             } else {
                 imageView.setImageDrawable(null)

@@ -9,7 +9,6 @@ import com.github.vivchar.rendererrecyclerviewadapter.ViewRenderer
 import com.thejuki.kformmaster.listener.OnFormElementValueChangedListener
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.view.*
-import java.util.*
 
 /**
  * Form Build Helper
@@ -55,7 +54,7 @@ class FormBuildHelper
     /**
      * Listener for when an element's value changes
      */
-    internal var listener: OnFormElementValueChangedListener? = null
+    var listener: OnFormElementValueChangedListener? = null
 
     /**
      * Checks if the form is valid

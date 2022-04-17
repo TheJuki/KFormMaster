@@ -126,7 +126,6 @@ class FormActivityTest : AppCompatActivity() {
         formBuilder = form(binding.recyclerView, listener, true) {
             imageView(ImageViewElement.ordinal) {
                 value = "https://via.placeholder.com/200"
-                imageTransformation = CircleTransform(borderColor = Color.BLACK, borderRadius = 3)
                 required = false
                 theme = 0
                 defaultImage = null
@@ -137,11 +136,11 @@ class FormActivityTest : AppCompatActivity() {
                     it.maxHeight = 200
                     it.maxSize = 500
                 }
-                onSelectImage = { file ->
-                    if (file != null) {
-                        Toast.makeText(this@FormActivityTest, file.name, Toast.LENGTH_SHORT).show()
+                onSelectImage = { uri, error ->
+                    if (uri != null) {
+                        Toast.makeText(this@FormActivityTest, uri.path, Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this@FormActivityTest, "Error getting the image", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@FormActivityTest, error, Toast.LENGTH_LONG).show()
                     }
                 }
                 onInitialImageLoaded = {
