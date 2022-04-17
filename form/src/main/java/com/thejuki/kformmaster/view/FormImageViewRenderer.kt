@@ -3,7 +3,6 @@ package com.thejuki.kformmaster.view
 import android.app.Activity
 import android.graphics.BitmapFactory
 import android.graphics.drawable.PictureDrawable
-import android.net.Uri
 import android.util.Base64
 import android.view.View
 import android.webkit.URLUtil
@@ -18,7 +17,7 @@ import com.thejuki.kformmaster.R
 import com.thejuki.kformmaster.extensions.dpToPx
 import com.thejuki.kformmaster.extensions.setBitmapImage
 import com.thejuki.kformmaster.extensions.setDrawableImage
-import com.thejuki.kformmaster.extensions.setLocalImage
+import com.thejuki.kformmaster.extensions.setNetworkImage
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.helper.FormViewFinder
 import com.thejuki.kformmaster.model.FormImageElement
@@ -66,7 +65,7 @@ class FormImageViewRenderer(private val formBuilder: FormBuildHelper, @LayoutRes
             imageView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
 
             if (URLUtil.isFileUrl(model.valueAsString) || URLUtil.isNetworkUrl(model.valueAsString)) {
-                imageView.setLocalImage(Uri.parse(model.valueAsString), model.applyCircleCrop)
+                imageView.setNetworkImage(model.valueAsString, model.applyCircleCrop)
                 { model.onInitialImageLoaded?.invoke() }
             } else if (URLUtil.isDataUrl(model.valueAsString)) {
                 val pureBase64Encoded = model.valueAsString.substring(model.valueAsString.indexOf(",") + 1)

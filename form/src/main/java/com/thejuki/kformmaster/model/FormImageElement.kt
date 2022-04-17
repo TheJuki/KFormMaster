@@ -17,10 +17,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.ImagePickerActivity
 import com.github.dhaval2404.imagepicker.constant.ImageProvider
 import com.thejuki.kformmaster.R
-import com.thejuki.kformmaster.extensions.dpToPx
-import com.thejuki.kformmaster.extensions.setBitmapImage
-import com.thejuki.kformmaster.extensions.setDrawableImage
-import com.thejuki.kformmaster.extensions.setLocalImage
+import com.thejuki.kformmaster.extensions.*
 import com.thejuki.kformmaster.helper.ImagePickerOptions
 import java.nio.charset.Charset
 
@@ -272,7 +269,7 @@ class FormImageElement(tag: Int = -1) : BaseFormElement<String>(tag) {
                     it.setLayerType(View.LAYER_TYPE_HARDWARE, null)
 
                     if (URLUtil.isFileUrl(this.valueAsString) || URLUtil.isNetworkUrl(this.valueAsString)) {
-                        it.setLocalImage(Uri.parse(this.valueAsString), applyCircleCrop)
+                        it.setNetworkImage(this.valueAsString, applyCircleCrop)
                         { this.onInitialImageLoaded?.invoke() }
                     } else if (URLUtil.isDataUrl(this.valueAsString)) {
                         val pureBase64Encoded = this.valueAsString.substring(this.valueAsString.indexOf(",") + 1)

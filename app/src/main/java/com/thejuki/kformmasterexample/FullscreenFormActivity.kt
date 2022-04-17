@@ -219,7 +219,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 )) {
             imageView(ImageViewElement.ordinal) {
                 activityResultLauncher = startImagePickerForResult
-                applyCircleCrop = false
+                applyCircleCrop = true
                 displayDivider = false
                 required = false
                 enabled = true
@@ -229,7 +229,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 displayImageWidth = 200
                 theme = R.style.CustomDialogPicker // This is to theme the default dialog when onClickListener is not used.
                 //defaultImage = R.drawable.default_image
-                //value = "https://via.placeholder.com/200" //(String) This needs to be an image URL, data URL, or an image FILE (absolutePath)
+                //value = "https://via.placeholder.com/200.png" //(String) This needs to be an image URL, data URL, or an image FILE (absolutePath)
                 imagePickerOptions = {
                     // This lets you customize the ImagePicker library, specifying Crop, Dimensions and MaxSize options
                     it.cropX = 3f

@@ -125,9 +125,9 @@ class FormActivityTest : AppCompatActivity() {
 
         formBuilder = form(binding.recyclerView, listener, true) {
             imageView(ImageViewElement.ordinal) {
-                value = "https://via.placeholder.com/200"
                 required = false
                 theme = 0
+                applyCircleCrop = false
                 defaultImage = null
                 imagePickerOptions = {
                     it.cropX = 3f

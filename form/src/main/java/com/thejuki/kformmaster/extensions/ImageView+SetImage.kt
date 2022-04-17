@@ -38,6 +38,17 @@ fun ImageView.setLocalImage(uri: Uri, applyCircle: Boolean = false, completionHa
     completionHandler?.invoke()
 }
 
+fun ImageView.setNetworkImage(url: String, applyCircle: Boolean = false, completionHandler: (() -> Unit)? = null) {
+    val glide = Glide.with(this).load(url)
+    if (applyCircle) {
+        glide.apply(RequestOptions.circleCropTransform()).into(this)
+    } else {
+        glide.into(this)
+    }
+
+    completionHandler?.invoke()
+}
+
 fun ImageView.setBitmapImage(bitmap: Bitmap, applyCircle: Boolean = false, completionHandler: (() -> Unit)? = null) {
     val glide = Glide.with(this).load(bitmap)
     if (applyCircle) {
