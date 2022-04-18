@@ -29,7 +29,6 @@ version = PUBLISH_VERSION
 
 ext["signing.keyId"] = System.getenv('SIGNING_KEY_ID')
 ext["signing.password"] = System.getenv('SIGNING_PASSWORD')
-ext["signing.secretKeyRingFile"] = System.getenv('SIGNING_SECRET_KEY_RING_FILE')
 ext["ossrhUsername"] = System.getenv('OSSRH_USERNAME')
 ext["ossrhPassword"] = System.getenv('OSSRH_PASSWORD')
 ext["sonatypeStagingProfileId"] = System.getenv('SONATYPE_STAGING_PROFILE_ID')
@@ -90,7 +89,7 @@ publishing {
 
             def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            url = snapshotsRepoUrl
 
             credentials {
                 username ossrhUsername
