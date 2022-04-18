@@ -22,4 +22,4 @@ jobs:
           distribution: temurin
           cache: gradle
       - name: Perform maven upload
-        run: ./gradlew publishToSonatype
+        run: ./gradlew publishToSonatype --stacktrace

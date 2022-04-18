@@ -13,7 +13,7 @@ publisher {
     project.scm = GithubScm("TheJuki", "KFormMaster")
     project.addLicense(License.APACHE_2_0)
     project.addLicense("License", "https://github.com/TheJuki/KFormMaster/blob/master/LICENSE")
-    project.addDeveloper("Justin Kirk", "thejuki@hotmail.com", "thejuki")
+    project.addDeveloper("Justin Kirk", "thejuki@hotmail.com", "thejuki", null)
     release.version = PUBLISH_VERSION
     release.tag = PUBLISH_VERSION
     release.setSources(Release.SOURCES_AUTO) // creates a sources Jar
