@@ -10,14 +10,10 @@ publisher {
     project.artifact = PUBLISH_ARTIFACT_ID
     project.group = PUBLISH_GROUP_ID
     project.url = "https://github.com/TheJuki/KFormMaster"
-    project.scm = GithubScm(userz = "TheJuki", repository = "KFormMaster")
+    project.scm = GithubScm("TheJuki", "KFormMaster")
     project.addLicense(License.APACHE_2_0)
     project.addLicense("License", "https://github.com/TheJuki/KFormMaster/blob/master/LICENSE")
-    project.addDeveloper(
-        name = "Justin Kirk",
-        email = "thejuki@hotmail.com",
-        organization = "thejuki"
-    )
+    project.addDeveloper("Justin Kirk", "thejuki@hotmail.com", "thejuki")
     release.version = PUBLISH_VERSION
     release.tag = PUBLISH_VERSION
     release.setSources(Release.SOURCES_AUTO) // creates a sources Jar
@@ -26,8 +22,8 @@ publisher {
     release.setDocs(dokkaJar.get())
     
     sonatype {
-        sonatype.auth.userzz = "SONATYPE_USER"
-        sonatype.auth.password = "SONATYPE_PASSWORD"
+        auth.user = "SONATYPE_USER"
+        auth.password = "SONATYPE_PASSWORD"
         signing.key = "SIGNING_KEY"
         signing.password = "SIGNING_PASSWORD"
     }
