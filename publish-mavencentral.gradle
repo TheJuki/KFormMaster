@@ -1,112 +1,34 @@
-apply plugin: 'maven-publish'
-apply plugin: 'signing'
+apply plugin: 'io.deepmedia.tools.publisher'
 apply plugin: 'org.jetbrains.dokka'
-
-task androidSourcesJar(type: Jar) {
-    archiveClassifier.set('sources')
-    if (project.plugins.findPlugin("com.android.library")) {
-        from android.sourceSets.main.java.srcDirs
-        from android.sourceSets.main.kotlin.srcDirs
-    } else {
-        from sourceSets.main.java.srcDirs
-        from sourceSets.main.kotlin.srcDirs
-    }
-}
-
-task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
-    archiveClassifier.set('javadoc')
-    from dokkaJavadoc.outputDirectory
-}
-
-artifacts {
-    archives androidSourcesJar
-    archives javadocJar
-}
-
 
 group = PUBLISH_GROUP_ID
 version = PUBLISH_VERSION
 
-ext["signing.keyId"] = System.getenv('SIGNING_KEY_ID')
-ext["signing.password"] = System.getenv('SIGNING_PASSWORD')
-ext["ossrhUsername"] = System.getenv('OSSRH_USERNAME')
-ext["ossrhPassword"] = System.getenv('OSSRH_PASSWORD')
-ext["sonatypeStagingProfileId"] = System.getenv('SONATYPE_STAGING_PROFILE_ID')
-
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId PUBLISH_GROUP_ID
-            artifactId PUBLISH_ARTIFACT_ID
-            version PUBLISH_VERSION
-            if (project.plugins.findPlugin("com.android.library")) {
-                artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
-            } else {
-                artifact("$buildDir/libs/${project.getName()}-${version}.jar")
-            }
-
-            artifact androidSourcesJar
-            artifact javadocJar
-
-            pom {
-                name = PUBLISH_ARTIFACT_ID
-                description = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
-                url = 'https://github.com/TheJuki/KFormMaster'
-                licenses {
-                    license {
-                        name = 'Apache License 2.0'
-                        url = 'https://github.com/TheJuki/KFormMaster/blob/master/LICENSE'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'thejuki'
-                        name = 'Justin Kirk'
-                        email = 'thejuki@hotmail.com'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:github.com/TheJuki/KFormMaster.git'
-                    developerConnection = 'scm:git:ssh://github.com/TheJuki/KFormMaster.git'
-                    url = 'https://github.com/TheJuki/KFormMaster/tree/master'
-                }
-                withXml {
-                    def dependenciesNode = asNode().appendNode('dependencies')
-
-                    project.configurations.implementation.allDependencies.each {
-                        def dependencyNode = dependenciesNode.appendNode('dependency')
-                        dependencyNode.appendNode('groupId', it.group)
-                        dependencyNode.appendNode('artifactId', it.name)
-                        dependencyNode.appendNode('version', it.version)
-                    }
-                }
-            }
-        }
+publisher {
+    project.name = PUBLISH_ARTIFACT_ID
+    project.description = 'Easily build generic forms with minimal effort (A Kotlin port of FormMaster)'
+    project.artifact = PUBLISH_ARTIFACT_ID
+    project.group = PUBLISH_GROUP_ID
+    project.url = "https://github.com/TheJuki/KFormMaster"
+    project.scm = GithubScm(user = "TheJuki", repository = "KFormMaster")
+    project.addLicense(License.APACHE_2_0)
+    project.addLicense("License", "https://github.com/TheJuki/KFormMaster/blob/master/LICENSE")
+    project.addDeveloper(
+        name = "Justin Kirk",
+        email = "thejuki@hotmail.com",
+        organization = "thejuki"
+    )
+    release.version = PUBLISH_VERSION
+    release.tag = PUBLISH_VERSION
+    release.setSources(Release.SOURCES_AUTO) // creates a sources Jar
+    release.setSources(sourcesJar.get())
+    release.setDocs(Release.DOCS_AUTO) // create a docs Jar
+    release.setDocs(dokkaJar.get())
+    
+    sonatype {
+        auth.user = "SONATYPE_USER"
+        auth.password = "SONATYPE_PASSWORD"
+        signing.key = "SIGNING_KEY"
+        signing.password = "SIGNING_PASSWORD"
     }
-    repositories {
-        maven {
-            name = "sonatype"
-
-            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            url = snapshotsRepoUrl
-
-            credentials {
-                username ossrhUsername
-                password ossrhPassword
-            }
-        }
-    }
-}
-
-nexusStaging {
-    packageGroup = PUBLISH_GROUP_ID
-    stagingProfileId = sonatypeStagingProfileId
-    username = ossrhUsername
-    password = ossrhPassword
-}
-
-signing {
-    required { System.getenv('SIGNING_KEY_ID')?.trim() }
-    sign publishing.publications
 }
