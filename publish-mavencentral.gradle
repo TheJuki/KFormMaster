@@ -26,8 +26,8 @@ publisher {
     release.setDocs(dokkaJar.get())
     
     sonatype {
-        auth.user = "SONATYPE_USER"
-        auth.password = "SONATYPE_PASSWORD"
+        sonatype.auth.user = "SONATYPE_USER"
+        sonatype.auth.password = "SONATYPE_PASSWORD"
         signing.key = "SIGNING_KEY"
         signing.password = "SIGNING_PASSWORD"
     }
