@@ -24,7 +24,7 @@ import java.nio.charset.Charset
 /**
  * Form Image Element
  *
- * Form element for Header TextView
+ * Form element for ImageView
  *
  * @author **soareseneves** ([GitHub](https://github.com/soareseneves))
  * @version 1.0
