@@ -39,13 +39,6 @@ android {
             it.useJUnitPlatform()
         }
     }
-
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
 }
 
 jacoco { toolVersion = "0.8.8" }
