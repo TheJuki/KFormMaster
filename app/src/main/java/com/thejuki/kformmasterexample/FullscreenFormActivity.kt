@@ -299,7 +299,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 clearable = true
                 clearOnFocus = false
                 validityCheck = {
-                    if (value != null) android.util.Patterns.EMAIL_ADDRESS.matcher(value).matches() else false
+                    if (value != null) android.util.Patterns.EMAIL_ADDRESS.matcher(value ?: "").matches() else false
                 }
                 onTitleIconClick = {
                     Toast.makeText(this@FullscreenFormActivity, "Icon clicked", LENGTH_SHORT).show()
