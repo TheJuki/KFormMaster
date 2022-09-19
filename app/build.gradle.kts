@@ -34,6 +34,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+    namespace = "com.thejuki.kformmasterexample"
 }
 
 dependencies {

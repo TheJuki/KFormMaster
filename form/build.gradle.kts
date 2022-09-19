@@ -39,6 +39,7 @@ android {
             it.useJUnitPlatform()
         }
     }
+    namespace = "com.thejuki.kformmaster"
 }
 
 jacoco { toolVersion = "0.8.8" }
