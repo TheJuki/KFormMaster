@@ -97,7 +97,7 @@ dependencies {
     // ImagePicker
     api("com.github.dhaval2404:imagepicker:2.1")
 
-    implementation("com.github.bumptech.glide:glide:4.13.1")
+    implementation("com.github.bumptech.glide:glide:4.14.2")
 
     // Input mask
     api("com.github.RedMadRobot:input-mask-android:6.1.0")
