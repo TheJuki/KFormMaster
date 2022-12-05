@@ -11,11 +11,11 @@ plugins {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 19
-        targetSdk = 32
+        targetSdk = 33
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -82,10 +82,10 @@ tasks.dokkaHtml.configure {
 
 dependencies {
     // Androidx
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.5.0")
+    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("com.google.android.material:material:1.7.0")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.multidex:multidex:2.0.1")
 
     // RendererRecyclerViewAdapter
@@ -97,7 +97,7 @@ dependencies {
     // ImagePicker
     api("com.github.dhaval2404:imagepicker:2.1")
 
-    implementation("com.github.bumptech.glide:glide:4.13.1")
+    implementation("com.github.bumptech.glide:glide:4.14.2")
 
     // Input mask
     api("com.github.RedMadRobot:input-mask-android:6.1.0")
@@ -116,13 +116,13 @@ dependencies {
 
     // Test dependencies
     testImplementation("io.mockk:mockk:1.12.3")
-    testImplementation("io.kotest:kotest-runner-junit5:5.2.3")
-    testImplementation("io.kotest:kotest-property:5.2.3")
-    androidTestImplementation("androidx.test:core:1.4.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test:rules:1.4.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
+    testImplementation("io.kotest:kotest-runner-junit5:5.5.4")
+    testImplementation("io.kotest:kotest-property:5.5.4")
+    androidTestImplementation("androidx.test:core:1.5.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.4")
+    androidTestImplementation("androidx.test:rules:1.5.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.0")
 }
 
 publisher {

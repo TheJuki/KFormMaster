@@ -402,6 +402,7 @@ class FormFragment : Fragment() {
      * Override the fragment's onActivityResult(), check the request code, and
      * let the FormPlacesAutoCompleteElement handle the result
      */
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == PlacesAutoComplete.ordinal) {
             val placesElement = formBuilder.getFormElement<FormPlacesAutoCompleteElement>(PlacesAutoComplete.ordinal)

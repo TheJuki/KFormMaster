@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "com.thejuki.kformmasterexample"
         minSdk = 19
-        targetSdk = 32
+        targetSdk = 33
         multiDexEnabled = true
         versionCode = 1
         versionName = "1.0"
@@ -39,13 +39,13 @@ android {
 
 dependencies {
     // Androidx
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.5.0")
+    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("com.google.android.material:material:1.7.0")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.multidex:multidex:2.0.1")
 
     // Google Places
-    implementation("com.google.android.libraries.places:places:2.6.0")
+    implementation("com.google.android.libraries.places:places:2.7.0")
 
     // KFormMaster
     implementation(project(":form"))
