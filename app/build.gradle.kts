@@ -47,7 +47,7 @@ dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
 
     // Google Places
-    implementation("com.google.android.libraries.places:places:2.7.0")
+    implementation("com.google.android.libraries.places:places:3.0.0")
 
     // KFormMaster
     implementation(project(":form"))
