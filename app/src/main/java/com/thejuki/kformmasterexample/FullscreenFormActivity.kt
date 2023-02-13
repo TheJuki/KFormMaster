@@ -453,6 +453,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                     Toast.makeText(this@FullscreenFormActivity, newValue.toString(), LENGTH_SHORT).show()
                 }
             }
+            /*
             inlineDatePicker(InlineDateTimePicker.ordinal) {
                 title = getString(R.string.InlineDatePicker)
                 value = org.threeten.bp.LocalDateTime.now()
@@ -462,6 +463,8 @@ class FullscreenFormActivity : AppCompatActivity() {
                 allDay = false
                 required = true
             }
+             */
+            /*
             val dateStart = inlineDatePicker(InlineDateStartPicker.ordinal) {
                 title = getString(R.string.InlineDateStart)
                 startDate = org.threeten.bp.LocalDateTime.now().minusDays(1).toLocalDate()
@@ -480,6 +483,7 @@ class FullscreenFormActivity : AppCompatActivity() {
                 allDay = true
                 required = true
             }
+             */
             header { title = getString(R.string.PreferredItems); collapsible = true }
             dropDown<ListItem>(SingleItem.ordinal) {
                 title = getString(R.string.SingleItem)

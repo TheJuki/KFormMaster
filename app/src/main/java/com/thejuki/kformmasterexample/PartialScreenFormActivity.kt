@@ -162,11 +162,13 @@ class PartialScreenFormActivity : AppCompatActivity() {
                 dateValue = Date()
                 dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
             }
+            /*
             inlineDatePicker(InlineDatePicker.ordinal) {
                 title = getString(R.string.InlineDatePicker)
                 value = org.threeten.bp.LocalDateTime.now()
                 dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a", Locale.US)
             }
+             */
             header { title = getString(R.string.PreferredItems) }
             dropDown<ListItem>(SingleItem.ordinal) {
                 title = getString(R.string.SingleItem)

@@ -226,11 +226,13 @@ class FormFragment : Fragment() {
                     Toast.makeText(context, newValue.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
+            /*
             inlineDatePicker(InlineDatePicker.ordinal) {
                 title = getString(R.string.InlineDatePicker)
                 value = org.threeten.bp.LocalDateTime.now()
                 dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a", Locale.US)
             }
+             */
             header { title = getString(R.string.PreferredItems); collapsible = true }
             dropDown<ListItem>(SingleItem.ordinal) {
                 title = getString(R.string.SingleItem)

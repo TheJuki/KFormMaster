@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import io.deepmedia.tools.publisher.common.GithubScm
 import io.deepmedia.tools.publisher.common.License
 import io.deepmedia.tools.publisher.common.Release
@@ -15,7 +17,6 @@ android {
 
     defaultConfig {
         minSdk = 19
-        targetSdk = 33
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -82,8 +83,8 @@ tasks.dokkaHtml.configure {
 
 dependencies {
     // Androidx
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.multidex:multidex:2.0.1")
@@ -115,14 +116,14 @@ dependencies {
     implementation("com.github.AigeStudio:WheelPicker:5913fa15fc")
 
     // Test dependencies
-    testImplementation("io.mockk:mockk:1.12.3")
+    testImplementation("io.mockk:mockk:1.13.1")
     testImplementation("io.kotest:kotest-runner-junit5:5.5.4")
     testImplementation("io.kotest:kotest-property:5.5.4")
     androidTestImplementation("androidx.test:core:1.5.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
 }
 
 publisher {

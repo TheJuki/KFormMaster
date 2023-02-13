@@ -250,11 +250,13 @@ public class FormListenerJavaActivity extends AppCompatActivity implements OnFor
         dateTime.setDateFormat(new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US));
         elements.add(dateTime);
 
+        /*
         FormInlineDatePickerElement inlineDatePicker = new FormInlineDatePickerElement(Tag.InlineDatePicker.ordinal());
         inlineDatePicker.setTitle(getString(R.string.InlineDatePicker));
         inlineDatePicker.setValue(org.threeten.bp.LocalDateTime.now());
         inlineDatePicker.setDateTimeFormatter(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a", Locale.US));
         elements.add(inlineDatePicker);
+         */
     }
 
     private void addPickers(List<BaseFormElement<?>> elements) {
