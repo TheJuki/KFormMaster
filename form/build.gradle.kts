@@ -116,7 +116,7 @@ dependencies {
     implementation("com.github.AigeStudio:WheelPicker:5913fa15fc")
 
     // Test dependencies
-    testImplementation("io.mockk:mockk:1.13.1")
+    testImplementation("io.mockk:mockk:1.13.4")
     testImplementation("io.kotest:kotest-runner-junit5:5.5.4")
     testImplementation("io.kotest:kotest-property:5.5.4")
     androidTestImplementation("androidx.test:core:1.5.0")
